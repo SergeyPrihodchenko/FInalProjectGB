@@ -27,8 +27,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-//Route::resource('vacancy', VacancyController::class);
-
 Route::resource('vacancy', VacancyController::class);
 
 
