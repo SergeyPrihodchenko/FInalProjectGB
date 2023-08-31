@@ -29,9 +29,7 @@ require __DIR__ . '/auth.php';
 
 //Route::resource('vacancy', VacancyController::class);
 
-Route::get('/vacancies', function (){
-    return Inertia::render('Vacancy');
-});
+Route::resource('vacancy', VacancyController::class);
 
 
 
