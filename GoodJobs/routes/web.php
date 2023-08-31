@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Vacancy\VacancyController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,4 +27,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-//левый коммент
+//Route::resource('vacancy', VacancyController::class);
+
+Route::get('/vacancies', function (){
+    return Inertia::render('Vacancy');
+});
+
+
+
