@@ -32,4 +32,3 @@ Route::resource('vacancy', VacancyController::class);
 
 
 
-
