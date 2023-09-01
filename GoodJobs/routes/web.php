@@ -1,19 +1,13 @@
 <?php
 
+use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vacancy\VacancyController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Main', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [MainController::class, 'index'])->name('main');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -27,8 +21,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-
 Route::resource('vacancy', VacancyController::class);
-
-
-
