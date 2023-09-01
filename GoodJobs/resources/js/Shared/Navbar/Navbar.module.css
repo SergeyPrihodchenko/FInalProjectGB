@@ -1,0 +1,16 @@
+.navBg {
+    background-color: #242424;
+    color: #fff;
+}
+
+.navList {
+    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.navLink {
+    display: block;
+    padding: 10px 0;
+}
