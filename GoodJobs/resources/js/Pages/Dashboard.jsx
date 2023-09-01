@@ -1,8 +1,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import { MainPage } from './MainPage/MainPage';
 
 export default function Dashboard({ auth }) {
     return (
+        // <>
+        //     <MainPage />
+        // </>
         <AuthenticatedLayout
             user={auth.user}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
