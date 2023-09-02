@@ -17,4 +17,4 @@ const Vacancy = ({ vacancies }) => {
     )
 }
 
-export default Vacancy
+export default Vacancy;
