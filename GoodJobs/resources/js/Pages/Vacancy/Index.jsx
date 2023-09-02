@@ -1,16 +1,20 @@
-import React, {useState} from "react";
+import MainLayout from "@/Layouts/MainLayout/MainLayout";
+import { AppCard } from "@/Shared/AppCard/AppCard";
+import { AppPage } from "@/Shared/AppPage/AppPage";
+import { Typography } from "@/Shared/Typography/Typography";
+import React, { useState } from "react";
 
-const Vacancy = ({vacancies}) => {
+const Vacancy = ({ vacancies }) => {
 
     console.log(vacancies)
     return (
-        <>
-            <div>
-                <h1>Вакансии</h1>
-
-            </div>
-        </>
+        <MainLayout>
+            <AppPage>
+                <Typography variant={'h2'}>Вакансии</Typography>
+                {vacancies.map(vacancy => <AppCard key={vacancy.name} card={vacancy} width={'100%'} minHeight={'180px'} />)}
+            </AppPage>
+        </MainLayout>
     )
 }
 
-export default Vacancy
+export default Vacancy;
