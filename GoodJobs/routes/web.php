@@ -8,9 +8,9 @@ use Inertia\Inertia;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/profilePage', function () {
+    return Inertia::render('ProfilePage/ProfilePage');
+})->middleware(['auth', 'verified'])->name('profilePage');
 
 
 Route::middleware('auth')->group(function () {
