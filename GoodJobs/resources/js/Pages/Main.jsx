@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { MainPage } from './MainPage/MainPage';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function App({ auth, laravelVersion, phpVersion }) {
     return (
         <>
             {auth.user ? (
