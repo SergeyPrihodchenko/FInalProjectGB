@@ -1,0 +1,59 @@
+.title {
+    color: var(--primary-text);
+    font-weight: 700;
+}
+.text {
+    color: var(--primary-text);
+}
+.secondary .text {
+    color: var(--secondary-text);
+}
+.secondary .title {
+    color: var(--secondary-text);
+}
+
+
+
+/* xs */
+.xs .title {
+    font: var(--font-s);
+}
+.xs .text {
+    font: var(--font-xs);
+}
+/* s */
+.s .title {
+    font: var(--font-m);
+}
+.s .text {
+    font: var(--font-s);
+}
+/* m */
+.m .title {
+    font: var(--font-l);
+}
+.m .text {
+    font: var(--font-m);
+}
+/* l */
+.l .title {
+    font: var(--font-xl);
+}
+.l .text {
+    font: var(--font-l);
+}
+/* xl */
+.xl .title {
+    font: var(--font-xxl);
+}
+.xl .text {
+    font: var(--font-xl);
+}
+
+
+.appText .text {
+    font-weight: 700;
+}
+.appText .title {
+    font-weight: 700;
+}

@@ -1,16 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-const Vacancy = ({vacancies}) => {
-
-    console.log(vacancies)
+const Vacancy = ({ vacancies }) => {
+    console.log(vacancies);
     return (
         <>
             <div>
                 <h1>Вакансии</h1>
-
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Vacancy
+export default Vacancy;

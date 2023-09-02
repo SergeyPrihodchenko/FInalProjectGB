@@ -1,6 +1,22 @@
 @import "./reset";
+@import "./variables";
+@import "./light";
 
-
-body {
-    font-size: 16px;
+#root {
+    width: 100%;
+    background: var(--light-bg);
 }
+body {
+    width: 100%;
+    font: var(--font-s);
+    background: var(--light-bg);
+}
+*::-webkit-scrollbar {
+    width: 12px; /* ширина scrollbar */
+    height: 8px;
+}
+
+/* 
+
+*/
+
