@@ -26,8 +26,8 @@ export default function Dashboard({ auth }) {
                             You're logged in!
                         </div>
                     </div>
-                </div>
+                 </div>
             </div>
-        </AuthenticatedLayout>
+         </AuthenticatedLayout>
     );
 }
