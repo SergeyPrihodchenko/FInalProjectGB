@@ -9,6 +9,3 @@ export const AppPage = ({ children }) => {
     )
 }
 
-AppPage.propTypes = {
-    children: PropTypes.element.isRequired,
-}

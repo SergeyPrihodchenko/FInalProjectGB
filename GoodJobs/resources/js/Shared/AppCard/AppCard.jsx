@@ -2,6 +2,7 @@ import s from './AppCard.module.css';
 import { Typography } from '../Typography/Typography';
 
 import cn from 'classnames';
+import { Link } from '@inertiajs/react';
 
 
 export const AppCard = ({
@@ -15,9 +16,9 @@ export const AppCard = ({
         minHeight: `${minHeight}`,
         borderRight: `${borderRight}`,
     };
-    return <div className={cn(s.card)} style={styles}>
-        <Typography variant={'h4'}>{card.title}</Typography>
-        <span>{card.salary}</span>
-    </div>
+    return <Link className={cn(s.card)} style={styles}>
+        <Typography variant={'h4'}>{card.name}</Typography>
+        {card.description && <p>{card.description}</p>}
+    </Link>
 }
 
