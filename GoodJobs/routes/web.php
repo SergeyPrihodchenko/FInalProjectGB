@@ -12,7 +12,6 @@ Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
 })->middleware(['auth', 'verified'])->name('profilePage');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
