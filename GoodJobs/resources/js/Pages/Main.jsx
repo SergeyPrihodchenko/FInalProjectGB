@@ -1,9 +1,10 @@
-import { Link } from '@inertiajs/react';
-import { MainPage } from './MainPage/MainPage';
+import { Link } from "@inertiajs/react";
+import { MainPage } from "./MainPage/MainPage";
+import "../App/styles/index.css";
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
     return (
-        <>
+        <div className="app_light_theme">
             {auth.user ? (
                 // <Link
                 // href={route('dashboard')}
@@ -15,21 +16,20 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
             ) : (
                 <>
                     <Link
-                        href={route('login')}
+                        href={route("login")}
                         className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >
                         Log in
                     </Link>
 
                     <Link
-                        href={route('register')}
+                        href={route("register")}
                         className="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >
                         Register
                     </Link>
                 </>
             )}
-
-        </>
+        </div>
     );
 }
