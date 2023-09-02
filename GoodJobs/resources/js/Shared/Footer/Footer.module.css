@@ -1,0 +1,18 @@
+.footer {
+    background-color: #242424;
+    padding: 30px;
+    color: #fff;
+}
+
+.footerTop {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.footerBottom {
+    margin-top: 20px;
+}
+
+.footerTopList {
+    margin-right: 45px;
+}
