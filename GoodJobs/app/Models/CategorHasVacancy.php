@@ -9,7 +9,7 @@ class CategorHasVacancy extends Model
 {
     use HasFactory;
 
-    protected $table = 'vacancies';
+    protected $table = 'category_has_vacancy';
 
     protected $fillable = [
         'category_id',
