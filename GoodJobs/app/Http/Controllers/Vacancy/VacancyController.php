@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Vacancy;
 
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\Vacancy;
-
 use Inertia\Inertia;
-use Symfony\Component\HttpFoundation\Response;
 
 class VacancyController
 {
-    public function index(Vacancy $vacancy):\Inertia\Response
+    public function index():\Inertia\Response
     {
 
         $vacancies = Vacancy::all();
@@ -37,7 +35,29 @@ class VacancyController
 
         $vacancy = Vacancy::create($data);
 
-        return response($vacancy, Response::HTTP_CREATED);
+        return Inertia::render('Vacancy/Show', [
+            'title' => $vacancy->name,
+            'vacancy' => $vacancy
+        ]);
+    }
+
+    public function update(Vacancy $vacancy, StoreRequest $request)
+    {
+        $data = $request->validated();
+
+        $vacancy->update($data);
+
+        return Inertia::render('Vacancy/Show', [
+            'title' => $vacancy->name,
+            'vacancy' => $vacancy
+        ]);
+    }
+
+    public function delete(Vacancy $vacancy)
+    {
+        $vacancy->delete();
+
+        return response('', 204);
     }
 
 }
