@@ -1,6 +1,21 @@
 import s from './Footer.module.css';
 import { AppPage } from "../AppPage/AppPage"
 import { Typography } from '../Typography/Typography';
+import { SocialLinksWidget } from '../Widgets/SocialLinksWidget/SocialLinksWidget';
+import { BootstrapIcon } from '../Icon/BootstrapIcon';
+
+const socialList = [
+    {
+        name: 'telegram',
+        icon: <BootstrapIcon name={'BsTelegram'} size={28} />,
+        url: 'https://web.telegram.org/k/'
+    },
+    {
+        name: 'whatsapp',
+        icon: <BootstrapIcon name={'BsWhatsapp'} size={28} />,
+        url: 'https://web.whatsapp.com/'
+    },
+]
 
 export const Footer = ({ children }) => {
     return (
@@ -38,6 +53,7 @@ export const Footer = ({ children }) => {
                 <hr />
                 <div className={s.footerBottom}>
                     <span>© 2023 Группа компаний GoldenHead</span>
+                    <SocialLinksWidget list={socialList} />
                 </div>
             </AppPage>
         </footer>

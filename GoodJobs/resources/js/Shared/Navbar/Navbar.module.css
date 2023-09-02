@@ -1,3 +1,9 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .navBg {
     background-color: #242424;
     color: #fff;
@@ -8,6 +14,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    align-items: center;
 }
 
 .navLink {

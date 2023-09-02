@@ -4,6 +4,10 @@ import { AppList } from '@/Shared/AppList/AppList';
 import propTypes from 'prop-types';
 import MainLayout from '@/Layouts/MainLayout/MainLayout';
 import { AppPage } from '@/Shared/AppPage/AppPage';
+import { AuthContext } from '@/Shared/store/AuthContext';
+import { Banner } from '@/Shared/Banner/Banner';
+import { Typography } from '@/Shared/Typography/Typography';
+import { Search } from '@/Shared/Search/Search';
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
@@ -14,14 +18,28 @@ const cardsInfo = [...Array(12)].map(() => {
     }
 });
 
-export const MainPage = () => {
-    console.log(cardsInfo);
+export const MainPage = ({ auth, categories, className }) => {
+    const user = auth?.user;
+    console.log(user);
+    // console.log('main page: ', auth?.user);
     return (
-        <MainLayout>
-            <AppPage>
-                <AppList list={cardsInfo} />
-            </AppPage>
-        </MainLayout>
+        <AuthContext.Provider value={{ user }}>
+            <MainLayout className={className}>
+                <Banner imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}>
+                    <AppPage>
+                        <Typography variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
+                        <Search placeholder={'Профессия, должность компания'} />
+                    </AppPage>
+                </Banner>
+                <AppPage>
+                    <AppList list={categories} />
+                    <AppList list={categories} />
+                </AppPage>
+            </MainLayout>
+        </AuthContext.Provider>
+
+
+
     );
 
 }
