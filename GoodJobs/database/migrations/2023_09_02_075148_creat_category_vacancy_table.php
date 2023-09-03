@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_has_vacancy', static function(Blueprint $table):void {
+        Schema::create('category_vacancy', static function(Blueprint $table):void {
             $table->foreignId('category_id')
                 ->references('id')
                 ->on('categories')
