@@ -17,8 +17,10 @@ export const AppCard = ({
         borderRight: `${borderRight}`,
     };
     return <Link className={cn(s.card)} style={styles}>
-        <Typography variant={'h4'}>{card.name}</Typography>
+        <Typography variant={'h4'}>{card.title}</Typography>
         {card.description && <p>{card.description}</p>}
+        {card.payment && <p>от {card.payment} руб.</p>}
+        {card.payment && <p>Опыт работы: от {card.experience} {+card.experience === 1 ? 'года' : 'лет'}</p>}
     </Link>
 }
 

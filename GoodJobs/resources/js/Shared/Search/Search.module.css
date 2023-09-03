@@ -1,0 +1,18 @@
+.searchBlock {
+    position: relative;
+}
+
+
+.searchResults {
+    background-color: #ececec;
+    border-radius: 4px;
+    position: absolute;
+    top: 46px;
+    max-width: 635px;
+    width: 100%;
+    transition: .3s ease-out;
+}
+
+.searchResultsItem {
+    padding: 10px 8px;
+}
