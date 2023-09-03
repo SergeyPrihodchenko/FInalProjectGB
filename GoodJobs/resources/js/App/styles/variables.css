@@ -2,13 +2,13 @@
     --font-family-main: consolas, "Times New Roman", serif;
 
     /* xs */
-    --font-size-xs: 13px;
-    --font-line-xs: 21px;
+    --font-size-xs: 16px;
+    --font-line-xs: 24px;
     --font-xs: var(--font-size-xs) / var(--font-line-xs) var(--font-family-main);
 
     /* s */
-    --font-size-s: 16px;
-    --font-line-s: 24px;
+    --font-size-s: 20px;
+    --font-line-s: 28px;
     --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
 
     /* m */

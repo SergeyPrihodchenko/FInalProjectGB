@@ -22,8 +22,8 @@ const cardsInfo = [...Array(12)].map(() => {
 export const MainPage = () => {
     console.log(cardsInfo);
     return (
-        <MainLayout>
-        <VacancyPage/>
+        <MainLayout >
+            <VacancyPage />
             {/* <AppPage>
                 <AppList list={cardsInfo} />
             </AppPage> */}

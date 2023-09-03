@@ -1,6 +1,5 @@
 .title {
     color: var(--primary-text);
-    font-weight: 700;
 }
 .text {
     color: var(--primary-text);
@@ -11,8 +10,6 @@
 .secondary .title {
     color: var(--secondary-text);
 }
-
-
 
 /* xs */
 .xs .title {
@@ -50,10 +47,12 @@
     font: var(--font-xl);
 }
 
-
-.appText .text {
+.bold .text {
     font-weight: 700;
 }
-.appText .title {
+.bold .title {
     font-weight: 700;
+}
+.cancel {
+    color: var(--cancel);
 }
