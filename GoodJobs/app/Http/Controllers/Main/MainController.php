@@ -15,19 +15,11 @@ class MainController extends Controller
     {
         $categories = Category::all();
         $vacancy = Vacancy::all();
-        if (!empty($categories) && !empty($vacancy)) {
             return Inertia::render('Main', [
                 'canLogin' => Route::has('login'),
                 'canRegister' => Route::has('register'),
                 'categories' => $categories,
                 'vacancy' => $vacancy
             ]);
-        } else {
-            return Inertia::render('Main', [
-                'canLogin' => Route::has('login'),
-                'canRegister' => Route::has('register')
-            ]);
-        }
-        
     }
 }

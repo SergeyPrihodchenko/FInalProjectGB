@@ -18,12 +18,8 @@ class CategorySeeder extends Seeder
 
     public function getData()
     {
-        $data = [];
-        for ($i = 0; $i < 3; $i++) {
-            $data[] = [
-                'title' => 'category: '.$i
-            ];
-        }
+
+        $data = [['title' => 'удаленая работа'], ['title' => 'сдельная работа'], ['title' => 'полный рабочий день']];
 
         return $data;
     }
