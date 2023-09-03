@@ -21,7 +21,7 @@ class CategorySeeder extends Seeder
         $data = [];
         for ($i = 0; $i < 3; $i++) {
             $data[] = [
-                'name' => 'category: '.$i
+                'title' => 'category: '.$i
             ];
         }
 

@@ -25,13 +25,12 @@ const cardsInfo = [...Array(12)].map(() => {
 export const MainPage = ({ auth, categories, className }) => {
     const user = auth?.user;
     console.log(user);
-    // console.log('main page: ', auth?.user);
     return (
         <AuthContext.Provider value={{ user }}>
             <MainLayout className={className}>
                 <Banner imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}>
                     <AppPage>
-                        <Typography variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
+                        <Typography className={'mb-6'} variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
                         <Search placeholder={'Профессия, должность компания'} />
                     </AppPage>
                 </Banner>

@@ -9,14 +9,14 @@ const variantsMapping = {
     h6: "h6",
 }
 
-export const Typography = ({ variant, color, children, ...props }) => {
+export const Typography = ({ variant, color, children, className, ...props }) => {
     const Component = variant ? variantsMapping[variant] : "p";
 
     return (
         <Component className={cn({
             [`typography--variant-${variant}`]: variant,
             [`typography--color-${color}`]: color,
-        })} {...props}>
+        }, className)} {...props}>
             {children}
         </Component >
     )
