@@ -20,19 +20,27 @@ export const Navbar = () => {
                     <ul className={s.navList}>
                         <Link className={s.navLink}>Создать резюме</Link>
                         <Link href={route('vacancy.index')} >Вакансии</Link>
-                        {!user ? <Link
-                            href={route('login')}
-                            className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}
-                        >
-                            Войти
-                        </Link> :
-                            <>
-                                <Link href={route('profile.edit')} className={cn(s.navLink, [''])}>
-                                    <BootstrapIcon name={'BsPersonCircle'} size={30} />
-                                </Link>
+                        {!user ? <>
+                            <Link
+                                href={route('register')}
+                                className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}
+                            >
+                                Регистрация
+                            </Link>
+                            <Link
+                                href={route('login')}
+                                className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}
+                            >
+                                Войти
+                            </Link>
 
-                                <Link href={route('logout')} method="post" className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}>Выйти</Link>
-                            </>
+                        </> : <>
+                            <Link href={route('profilePage')} className={cn(s.navLink, [''])}>
+                                <BootstrapIcon name={'BsPersonCircle'} size={30} />
+                            </Link>
+
+                            <Link href={route('logout')} method="post" className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}>Выйти</Link>
+                        </>
 
                         }
 

@@ -1,12 +1,13 @@
 import { Link } from "@inertiajs/react";
 import { MainPage } from "./MainPage/MainPage";
 import "../App/styles/index.css";
+import cn from 'classnames';
 
-export default function Main({ auth, laravelVersion, phpVersion, categories, className }) {
+export default function Main({ auth, laravelVersion, phpVersion, categories, vacancies, className }) {
     return (
 
-        <>
-            <MainPage categories={categories} auth={auth} className={className} />
+        <div className='app_light_theme'>
+            <MainPage categories={categories} auth={auth} className={cn(className)} vacancies={vacancies} />
             {/* {auth.user ? (
                 <Link
                 href={route('dashboard')}
@@ -33,7 +34,7 @@ export default function Main({ auth, laravelVersion, phpVersion, categories, cla
                 </>
             )} */}
 
-        </>
+        </div>
 
     );
 }

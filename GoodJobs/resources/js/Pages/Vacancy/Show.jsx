@@ -6,7 +6,7 @@ const Vacancy = ({ vacancy }) => {
     return (
         <>
             <div>
-                <h1>{vacancy.name}</h1>
+                <h1>{vacancy.title}</h1>
 
             </div>
         </>
