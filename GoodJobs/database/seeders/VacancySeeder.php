@@ -24,6 +24,7 @@ class VacancySeeder extends Seeder
                 'title' => fake()->jobTitle(),
                 'payment' => fake()->numberBetween(0,1200),
                 'experience' => fake()->numberBetween(0,100),
+
             ];
         }
 
