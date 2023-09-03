@@ -1,6 +1,15 @@
 *{
-    box-sizing: border-box;   
+    box-sizing: border-box;  
 }
+/* .container{
+   
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 0 auto;
+} */
 
 .profilePage{
     font-family: 'Times New Roman';
@@ -8,10 +17,8 @@
 }
 
 .mainProfilePage {
-    width: 1600px;
     margin: 0 auto;
     margin-top: 90px;
-    padding-left: 100px;
 }
 
 .textTitle {
@@ -51,9 +58,13 @@
     font-size: 24px;
     padding: 50px 50px;
     text-align:center;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid grey;   
+}
 
-   column-count: 3;
+.textForm {
+    height: 100px;
+    width: 33.333%;  
+    float: left;    
 }
 
 .inputFormProfile {
@@ -71,7 +82,7 @@
     text-align: center;
   }
   
-.btnProfilePage {
+  .btnProfilePage {
     font-size: 32px;
     color: #066B8B;
     margin-top: 75px;
