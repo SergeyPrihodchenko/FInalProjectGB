@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-const Vacancy = ({vacancy}) => {
+const Vacancy = ({ vacancy }) => {
 
     console.log(vacancy)
     return (
         <>
             <div>
-                <h1>Вакансия</h1>
+                <h1>{vacancy.name}</h1>
 
             </div>
         </>

@@ -1,5 +1,5 @@
 .typography--variant-h1 {
-    font-size: 6rem;
+    font-size: 3.3rem;
     font-weight: 500;
 }
 
@@ -44,6 +44,10 @@
 
 .typography--variant-body1 {
     font-size: 0.875rem;
+}
+
+.typography--color-title {
+    color: #fff;
 }
 
 .typography--color-primary {
