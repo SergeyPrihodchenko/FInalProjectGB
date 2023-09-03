@@ -8,6 +8,7 @@ import { AuthContext } from '@/Shared/store/AuthContext';
 import { Banner } from '@/Shared/Banner/Banner';
 import { Typography } from '@/Shared/Typography/Typography';
 import { Search } from '@/Shared/Search/Search';
+import DataJson from './Data';
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
@@ -22,17 +23,18 @@ const cardsInfo = [...Array(12)].map(() => {
     };
 });
 
+
+
 export const MainPage = ({ auth, categories, className }) => {
     const user = auth?.user;
     console.log(user);
-    // console.log('main page: ', auth?.user);
     return (
         <AuthContext.Provider value={{ user }}>
             <MainLayout className={className}>
                 <Banner imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}>
                     <AppPage>
-                        <Typography variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
-                        <Search placeholder={'Профессия, должность компания'} />
+                        <Typography className={'mb-6'} variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
+                        <Search placeholder={'Профессия, должность компания'} data={DataJson} />
                     </AppPage>
                 </Banner>
                 <AppPage>
