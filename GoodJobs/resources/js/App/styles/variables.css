@@ -29,8 +29,7 @@
     /* 2xl */
     --font-size-2xl: 48px;
     --font-line-2xl: 56px;
-    --font-2xl: var(--font-size-2xl) / var(--font-line-2xl)
-        var(--font-family-main);
+    --font-2xl: var(--font-size-2xl) / var(--font-line-2xl) var(--font-family-main);
 
     /* Transition delay */
     --transition-delay: 0.3s;
@@ -50,4 +49,5 @@
     /* Colors */
     --overlay-color: rgba(0 0 0 / 60%);
     --error-color: #ff0000cc;
+
 }

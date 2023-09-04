@@ -21,10 +21,8 @@ class VacancyController
 
     public function show(Vacancy $vacancy):\Inertia\Response
     {
-
-
         return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->name,
+            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }

@@ -21,7 +21,7 @@ class VacancySeeder extends Seeder
         $data = [];
         for ($i = 0; $i < 10; $i++) {
             $data[] = [
-                'title' => fake()->jobTitle(),
+                'title' => fake('ru_RU')->jobTitle(),
                 'payment' => fake()->numberBetween(0,1200),
                 'experience' => fake()->numberBetween(0,100),
 

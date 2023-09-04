@@ -8,7 +8,9 @@ import { AuthContext } from '@/Shared/store/AuthContext';
 import { Banner } from '@/Shared/Banner/Banner';
 import { Typography } from '@/Shared/Typography/Typography';
 import { Search } from '@/Shared/Search/Search';
-import DataJson from './Data';
+import { data } from './Data';
+import { Head } from '@inertiajs/react'
+import AppText from '@/Shared/AppText/AppText';
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
@@ -25,21 +27,25 @@ const cardsInfo = [...Array(12)].map(() => {
 
 
 
-export const MainPage = ({ auth, categories, className }) => {
+export const MainPage = ({ auth, categories, className, vacancies }) => {
     const user = auth?.user;
-    console.log(user);
+    console.log(vacancies);
     return (
         <AuthContext.Provider value={{ user }}>
+            <Head title="Home" />
             <MainLayout className={className}>
                 <Banner imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}>
                     <AppPage>
                         <Typography className={'mb-6'} variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
-                        <Search placeholder={'Профессия, должность компания'} data={DataJson} />
+                        <Search placeholder={'Профессия, должность, компания'} vacancies={vacancies} />
                     </AppPage>
                 </Banner>
                 <AppPage>
+                    <AppText title={'Категории'} size={'l'} />
                     <AppList list={categories} />
-                    <AppList list={categories} />
+
+                    <AppText title={'Вакансии'} size={'l'} />
+                    <AppList list={vacancies} />
                 </AppPage>
             </MainLayout>
         </AuthContext.Provider>
