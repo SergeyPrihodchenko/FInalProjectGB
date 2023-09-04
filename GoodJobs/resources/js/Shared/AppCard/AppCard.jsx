@@ -1,11 +1,9 @@
 import s from './AppCard.module.css';
 import { Typography } from '../Typography/Typography';
-
 import cn from 'classnames';
 import { Link } from '@inertiajs/react';
-import Vacancy from '@/Pages/Vacancy/Index';
 
-const type = {
+const typeCards = {
     category: "category",
     vacancy: "vacancy"
 }
@@ -13,6 +11,8 @@ const type = {
 export const AppCard = ({
     card,
     type,
+    path,
+    param,
     width,
     minHeight,
     borderRight
@@ -22,7 +22,7 @@ export const AppCard = ({
         minHeight: `${minHeight}`,
         borderRight: `${borderRight}`,
     };
-    return <Link href={(route('category.show', card))} className={cn(s.card)} style={styles}>
+    return <Link href={(route(`${path}`, `${param}`))} className={cn(s.card)} style={styles}>
         <Typography variant={'h4'}>{card.title}</Typography>
         {card.description && <p>{card.description}qqq</p>}
         {card.payment && <p>от {card.payment} руб.</p>}
