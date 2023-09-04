@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { string } from "prop-types";
+import PropTypes from "prop-types";
 import s from "./AppText.module.css";
 import cn from "classnames";
 
@@ -12,10 +12,14 @@ const mapSizeToHeader = {
 };
 
 export default function AppText(props) {
-    const { className, title, text, size = "s", variant, bold } = props;
+    const { className, title, text, size = "m", variant, bold } = props;
     const HeaderTag = mapSizeToHeader[size];
     return (
-        <div className={cn(s.appText, className, s[size], s[variant], s[bold])}>
+        <div
+            className={cn(s.appText, className, s[size], s[variant], {
+                [s.bold]: bold,
+            })}
+        >
             {title && <HeaderTag className={s.title}>{title}</HeaderTag>}
 
             {text && <p className={s.text}>{text}</p>}
