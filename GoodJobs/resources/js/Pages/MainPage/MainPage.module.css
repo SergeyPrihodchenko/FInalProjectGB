@@ -1,0 +1,11 @@
+.catList {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.vacancyList {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
