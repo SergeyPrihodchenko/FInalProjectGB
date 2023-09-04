@@ -14,12 +14,12 @@ class MainController extends Controller
     public function index() 
     {
         $categories = Category::all();
-        $vacancy = Vacancy::all();
+        $vacancies = Vacancy::all();
             return Inertia::render('Main', [
                 'canLogin' => Route::has('login'),
                 'canRegister' => Route::has('register'),
                 'categories' => $categories,
-                'vacancy' => $vacancy
+                'vacancies' => $vacancies
             ]);
     }
 }

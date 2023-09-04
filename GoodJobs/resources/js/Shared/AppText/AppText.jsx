@@ -7,7 +7,7 @@ const mapSizeToHeader = {
     xs: "h5",
     s: "h4",
     m: "h3",
-    x: "h2",
+    l: "h2",
     xl: "h1",
 };
 

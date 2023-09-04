@@ -1,27 +1,13 @@
 import { Link } from "@inertiajs/react";
 import { MainPage } from "./MainPage/MainPage";
 import "../App/styles/index.css";
+import cn from 'classnames';
 
-export default function Main({ auth, laravelVersion, phpVersion, categories, className }) {
+export default function Main({ auth, laravelVersion, phpVersion, categories, vacancies, className }) {
     return (
+        <div className='app_light_theme'>
+            <MainPage categories={categories} auth={auth} className={cn(className)} vacancies={vacancies} />
 
-        <>
-           <Link
-                        href={route("register")}
-                        className="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >
-                        Register
-                </Link>
-            
-            <Link
-                        href={route("profilePage")}
-                        className="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >
-                        ProfilePage
-                </Link>
-            <MainPage categories={categories} auth={auth} className={className} />
-            
-            
             {/* {auth.user ? (
                 <Link
                 href={route('dashboard')}
@@ -48,7 +34,7 @@ export default function Main({ auth, laravelVersion, phpVersion, categories, cla
                 </>
             )} */}
 
-        </>
+        </div>
 
     );
 }

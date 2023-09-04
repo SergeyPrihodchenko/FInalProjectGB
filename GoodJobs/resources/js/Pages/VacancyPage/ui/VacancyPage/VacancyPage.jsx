@@ -52,7 +52,7 @@ const VacanyPageList = {
     },
 };
 const navList = ["Мои резюме", "Отклики", "Помощь"];
-export function VacancyPage(props) {
+export function VacancyPage({ vacancy }) {
     return (
         <div className={s.vacancyPage}>
             <nav className={s.nav}>
