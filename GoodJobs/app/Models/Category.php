@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    public function vacancies() 
+    {
+        return $this->belongsToMany(Vacancy::class);
+    }
 }

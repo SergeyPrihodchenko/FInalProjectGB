@@ -3,7 +3,7 @@ import { MainPage } from "./MainPage/MainPage";
 import "../App/styles/index.css";
 import cn from 'classnames';
 
-export default function Main({ auth, laravelVersion, phpVersion, categories, vacancies, className }) {
+export default function Main({ auth, categories, vacancies, className }) {
     return (
         <div className='app_light_theme'>
             <MainPage categories={categories} auth={auth} className={cn(className)} vacancies={vacancies} />
