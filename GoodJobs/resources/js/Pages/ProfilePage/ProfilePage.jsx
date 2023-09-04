@@ -1,10 +1,10 @@
 import React from 'react';
-//import PropTypes from 'prop-types'
 import s from './ProfilePage.module.css';
 import { AppPage } from '@/Shared/AppPage/AppPage';
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
 import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
 import AppText from '@/Shared/ui/AppText/AppText';
+import { AuthContext } from '@/Shared/store/AuthContext';
 
 
 
@@ -47,56 +47,59 @@ const arrayNav = [
     'Рассылки',
 ];
 
-function ProfilePage(props) {
+function ProfilePage({ auth }) {
+    const user = auth?.user;
     return (
         //<div className={s.container}>
-        <MainLayout>
-            <AppPage>
-                <div className={s.profilePage}>
-                    <div className={s.mainProfilePage}>
+        <AuthContext.Provider value={{ user }}>
+            <MainLayout>
+                <AppPage>
+                    <div className={s.profilePage}>
+                        <div className={s.mainProfilePage}>
 
-                        <AppText title={'Настройки'} size={'l'} />
-                        <p className={s.textTitle}>Настройки</p>
+                            <AppText title={'Настройки'} size={'l'} />
+                            <p className={s.textTitle}>Настройки</p>
 
-                        <div className={s.navProfilePage}>
-                            <ul className={s.nav}>
-                                {
-                                    arrayNav.map((el) => {
-                                        console.log(el);
-                                        return (
-                                            <li className={s.navSettings}>
-                                                <a href="#" className={s.navLink}>{el}</a>
-                                            </li>
+                            <div className={s.navProfilePage}>
+                                <ul className={s.nav}>
+                                    {
+                                        arrayNav.map((el) => {
+                                            console.log(el);
+                                            return (
+                                                <li className={s.navSettings}>
+                                                    <a href="#" className={s.navLink}>{el}</a>
+                                                </li>
 
-                                        )
-                                    })
-                                }
-                            </ul>
-                        </div>
-                        {
-                            arrayForm.map((el) => {
-                                console.log(el);
-                                return (
-                                    <form action="#" className={s.formProfilePage}>
-                                        <div className={s.formProfile}>
-                                            <lable for="name" className={s.textForm}>{el.lable}</lable>
-                                            <input className={s.inputFormProfile} type="text" placeholder={el.placeholder} />
-                                            <input className={s.btnFormProfile} type="submit" value="Изменить" />
-                                        </div>
-                                    </form>
-                                )
-                            })
-                        }
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </div>
+                            {
+                                arrayForm.map((el) => {
+                                    console.log(el);
+                                    return (
+                                        <form action="#" className={s.formProfilePage}>
+                                            <div className={s.formProfile}>
+                                                <lable for="name" className={s.textForm}>{el.lable}</lable>
+                                                <input className={s.inputFormProfile} type="text" placeholder={el.placeholder} />
+                                                <input className={s.btnFormProfile} type="submit" value="Изменить" />
+                                            </div>
+                                        </form>
+                                    )
+                                })
+                            }
 
-                        <BtnDelete />
-                        {/* <div className={s.btnProfilePage}>
+                            <BtnDelete />
+                            {/* <div className={s.btnProfilePage}>
           <button className={s.btnDeleteProfile} type="submit">Удаление аккаунта</button>
         </div> */}
 
+                        </div>
                     </div>
-                </div>
-            </AppPage>
-        </MainLayout>
+                </AppPage>
+            </MainLayout>
+        </AuthContext.Provider>
         //</div>
     )
     {

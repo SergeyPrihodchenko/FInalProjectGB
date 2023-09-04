@@ -8,7 +8,6 @@ import { AuthContext } from '@/Shared/store/AuthContext';
 import { Banner } from '@/Shared/Banner/Banner';
 import { Typography } from '@/Shared/Typography/Typography';
 import { Search } from '@/Shared/Search/Search';
-import { data } from './Data';
 import { Head } from '@inertiajs/react'
 import AppText from '@/Shared/ui/AppText/AppText';
 
@@ -29,7 +28,6 @@ const cardsInfo = [...Array(12)].map(() => {
 
 export const MainPage = ({ auth, categories, className, vacancies }) => {
     const user = auth?.user;
-    console.log(vacancies);
     return (
         <AuthContext.Provider value={{ user }}>
             <Head title="Home" />
