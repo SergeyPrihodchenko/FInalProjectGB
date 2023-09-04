@@ -22,7 +22,7 @@ export const AppCard = ({
         minHeight: `${minHeight}`,
         borderRight: `${borderRight}`,
     };
-    return <Link href={(route('vacancy.show', `${card.id}`))} className={cn(s.card)} style={styles}>
+    return <Link href={(route('category.show', `${card.id}`))} className={cn(s.card)} style={styles}>
         <Typography variant={'h4'}>{card.title}</Typography>
         {card.description && <p>{card.description}qqq</p>}
         {card.payment && <p>от {card.payment} руб.</p>}
