@@ -11,7 +11,13 @@ const Vacancy = ({ vacancies, title }) => {
         <MainLayout>
             <AppPage>
                 <Typography variant={'h2'}>{title}</Typography>
-                {vacancies.map(vacancy => <AppCard key={vacancy.id} card={vacancy} width={'100%'} minHeight={'180px'} />)}
+                {vacancies.map(vacancy => <AppCard
+                    type={'vacancy'}
+                    path={'vacancy.index'}
+                    key={vacancy.id}
+                    card={vacancy}
+                    width={'100%'}
+                    minHeight={'180px'} />)}
             </AppPage>
         </MainLayout>
     )

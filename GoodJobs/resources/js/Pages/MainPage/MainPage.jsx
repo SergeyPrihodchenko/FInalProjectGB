@@ -10,6 +10,7 @@ import { Typography } from '@/Shared/Typography/Typography';
 import { Search } from '@/Shared/Search/Search';
 import { Head } from '@inertiajs/react'
 import AppText from '@/Shared/ui/AppText/AppText';
+import { AppCard } from '@/Shared/AppCard/AppCard';
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
@@ -40,11 +41,19 @@ export const MainPage = ({ auth, categories, className, vacancies }) => {
                 </Banner>
                 <AppPage>
                     <AppText title={'Категории'} size={'l'} />
+                    <div className={styles.catList}>
+                        {categories.map(cat => <AppCard path={'category.show'} param={cat.id} card={cat} />)}
+                    </div>
 
-                    <AppList list={categories} />
+
+                    {/* <AppList list={categories} /> */}
 
                     <AppText title={'Вакансии'} size={'l'} />
-                    <AppList list={vacancies} />
+                    <div className={styles.vacancyList}>
+                        {vacancies.map(vac => <AppCard path={'vacancy.show'} param={vac.id} card={vac} />)}
+                    </div>
+
+                    {/* <AppList list={vacancies} /> */}
                 </AppPage>
             </MainLayout>
         </AuthContext.Provider>

@@ -13,20 +13,20 @@ class CategoryController extends Controller
     public function show(Request $request, $id)
     {
         $vacancies = (Category::find($id))->vacancies;
-        return Inertia::render('Vacancy/Index', [
-            'title' => 'Вакансии - ' . $request->get('title'),
+        return Inertia::render('CategoryPage/CategoryPage', [
+            'titleCat' => 'Вакансии - ' . $request->get('title'),
             'vacancies' => $vacancies
         ]);
     }
 
-    public function serchSort(Request $request) 
+    public function searchSort(Request $request) 
     {
-        $serchStr = $request->get('vacancy');
-        $vacancies = Vacancy::where('title', 'like', '%'.$serchStr.'%')->get();
-        if (count($vacancies) !== 0) {
+        $searchStr = $request->get('vacancy');
+        $vacanciesCat = Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
+        if (count($vacanciesCat) !== 0) {
             return Inertia::render('Vacancy/Index', [
                 'title' => 'Вакансии' . $request->get('title'),
-                'vacancies' => $vacancies
+                'vacancies' => $vacanciesCat
             ]);
         }
         return Inertia::render('Vacancy/Index', [

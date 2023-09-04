@@ -14,7 +14,7 @@ Route::get('/profilePage', function () {
 })->middleware(['auth', 'verified'])->name('profilePage');
 
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
-Route::get('/category/serch', [CategoryController::class, 'serchSort'])->name('category.sort');
+Route::get('/category/search', [CategoryController::class, 'searchSort'])->name('category.sort');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
