@@ -10,7 +10,7 @@ import { Typography } from '@/Shared/Typography/Typography';
 import { Search } from '@/Shared/Search/Search';
 import { data } from './Data';
 import { Head } from '@inertiajs/react'
-import AppText from '@/Shared/AppText/AppText';
+import AppText from '@/Shared/ui/AppText/AppText';
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
