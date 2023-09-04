@@ -6,17 +6,19 @@
     width: 100%;
     background: var(--light-bg);
 }
+
 body {
     width: 100%;
     font: var(--font-m);
     background: var(--light-bg);
 }
+
 *::-webkit-scrollbar {
-    width: 12px; /* ширина scrollbar */
+    width: 12px;
+    /* ширина scrollbar */
     height: 8px;
 }
 
 /* 
 
 */
-

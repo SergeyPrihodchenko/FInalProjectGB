@@ -42,6 +42,7 @@ export const MainPage = ({ auth, categories, className, vacancies }) => {
                 </Banner>
                 <AppPage>
                     <AppText title={'Категории'} size={'l'} />
+
                     <AppList list={categories} />
 
                     <AppText title={'Вакансии'} size={'l'} />

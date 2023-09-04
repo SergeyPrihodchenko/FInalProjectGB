@@ -16,7 +16,7 @@
 
 /* xs */
 .xs .title {
-    font: var(--font-s);
+    font: var(--font-xs);
 }
 
 .xs .text {
@@ -25,7 +25,7 @@
 
 /* s */
 .s .title {
-    font: var(--font-m);
+    font: var(--font-s);
 }
 
 .s .text {
@@ -34,7 +34,7 @@
 
 /* m */
 .m .title {
-    font: var(--font-l);
+    font: var(--font-m);
 }
 
 .m .text {
@@ -66,6 +66,7 @@
 .appText .title {
     font-weight: 700;
 }
+
 .cancel {
     color: var(--cancel);
 }
