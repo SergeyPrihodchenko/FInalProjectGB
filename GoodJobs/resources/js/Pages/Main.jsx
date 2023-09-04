@@ -5,9 +5,9 @@ import cn from 'classnames';
 
 export default function Main({ auth, laravelVersion, phpVersion, categories, vacancies, className }) {
     return (
-
         <div className='app_light_theme'>
             <MainPage categories={categories} auth={auth} className={cn(className)} vacancies={vacancies} />
+
             {/* {auth.user ? (
                 <Link
                 href={route('dashboard')}

@@ -1,6 +1,17 @@
+
 * {
     box-sizing: border-box;
+
 }
+/* .container{
+   
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 0 auto;
+} */
 
 .profilePage {
     font-family: 'Times New Roman';
@@ -53,7 +64,13 @@
     text-align: center;
     border-bottom: 1px solid grey;
 
-    column-count: 3;
+    column-count: 3;  
+}
+
+.textForm {
+    height: 100px;
+    width: 33.333%;  
+    float: left;    
 }
 
 .inputFormProfile {
@@ -76,5 +93,4 @@
     color: #066B8B;
     margin-top: 75px;
     margin-bottom: 115px;
-
 }
