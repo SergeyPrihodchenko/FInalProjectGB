@@ -74,7 +74,7 @@ export const Search = ({ placeholder, vacancies }) => {
     };
     return (
         <div className={s.searchBlock}>
-            <form method='' action={route('vacancy.show', `${param}`)} className='w-full flex'>
+            <form method='GET' action={route('category.sort', `${param}`)} className='w-full flex'>
                 <InputLabel className='w-full'>
                     <TextInput
                         autoComplete='off'
