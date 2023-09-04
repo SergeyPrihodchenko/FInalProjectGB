@@ -13,7 +13,8 @@ Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
 })->middleware(['auth', 'verified'])->name('profilePage');
 
-Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/category/serch', [CategoryController::class, 'serchSort'])->name('category.sort');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
