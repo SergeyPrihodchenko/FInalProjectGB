@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { AppButton } from "@/Shared/ui/AppButton/AppButton";
+import AppButton from "@/Shared/ui/AppButton/AppButton";
 import AppText from "@/Shared/ui/AppText/AppText";
 import { AppPage } from "@/Shared/AppPage/AppPage";
-import s from "./VacanyNav.module.css";
+import s from "./VacanyPageNav.module.css";
 const navList = ["Мои резюме", "Отклики", "Помощь"];
-function VacanyNav(props) {
+function VacanyPageNav(props) {
     return (
-        <nav className={s.nav}>
+        <nav className={s.vacancyPageNav}>
             <AppPage className={s.conatiner}>
                 <div className={s.navLinkList}>
                     {navList.map((navItem, index) => {
@@ -28,6 +28,6 @@ function VacanyNav(props) {
     );
 }
 
-VacanyNav.propTypes = {};
+VacanyPageNav.propTypes = {};
 
-export default VacanyNav;
+export default VacanyPageNav;

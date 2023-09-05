@@ -11,6 +11,7 @@ import { Search } from '@/Shared/Search/Search';
 import { Head } from '@inertiajs/react'
 import AppText from '@/Shared/ui/AppText/AppText';
 import { AppCard } from '@/Shared/AppCard/AppCard';
+import { VacancyPage } from '../VacancyPage/ui/VacancyPage/VacancyPage';
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
@@ -33,7 +34,7 @@ export const MainPage = ({ auth, categories, className, vacancies }) => {
         <AuthContext.Provider value={{ user }}>
             <Head title="Home" />
             <MainLayout className={className}>
-                <Banner imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}>
+                {/* <Banner imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}>
                     <AppPage>
                         <Typography className={'mb-6'} variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
                         <Search placeholder={'Профессия, должность, компания'} vacancies={vacancies} />
@@ -43,18 +44,19 @@ export const MainPage = ({ auth, categories, className, vacancies }) => {
                     <AppText title={'Категории'} size={'l'} />
                     <div className={styles.catList}>
                         {categories.map(cat => <AppCard path={'category.show'} param={cat.id} card={cat} />)}
-                    </div>
+                    </div> */}
 
 
                     {/* <AppList list={categories} /> */}
 
-                    <AppText title={'Вакансии'} size={'l'} />
+                    {/* <AppText title={'Вакансии'} size={'l'} />
                     <div className={styles.vacancyList}>
                         {vacancies.map(vac => <AppCard path={'vacancy.show'} param={vac.id} card={vac} />)}
-                    </div>
+                    </div> */}
 
                     {/* <AppList list={vacancies} /> */}
-                </AppPage>
+                {/* </AppPage> */}
+                <VacancyPage/>
             </MainLayout>
         </AuthContext.Provider>
 
