@@ -4,7 +4,7 @@ import { AppPage } from '@/Shared/AppPage/AppPage';
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
 import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
 import AppText from '@/Shared/ui/AppText/AppText';
-import { AuthContext } from '@/Shared/store/AuthContext';
+import { Head } from '@inertiajs/react';
 
 
 
@@ -48,61 +48,62 @@ const arrayNav = [
 ];
 
 function ProfilePage({ auth }) {
-    const user = auth?.user;
+    const user = auth.user;
     return (
-        //<div className={s.container}>
-        <AuthContext.Provider value={{ user }}>
-            <MainLayout>
-                <AppPage>
-                    <div className={s.profilePage}>
-                        <div className={s.mainProfilePage}>
+        <MainLayout user={user} className={'app_light_theme'}>
 
-                            <AppText title={'Настройки'} size={'l'} />
-                            <p className={s.textTitle}>Настройки</p>
+            <Head title={`Настройки`} />
+            <AppPage>
+                <div className={s.profilePage}>
+                    <div className={s.mainProfilePage}>
 
-                            <div className={s.navProfilePage}>
-                                <ul className={s.nav}>
-                                    {
-                                        arrayNav.map((el) => {
-                                            console.log(el);
-                                            return (
-                                                <li className={s.navSettings}>
-                                                    <a href="#" className={s.navLink}>{el}</a>
-                                                </li>
+                        <AppText title={'Настройки'} size={'l'} />
 
-                                            )
-                                        })
-                                    }
-                                </ul>
-                            </div>
-                            {
-                                arrayForm.map((el) => {
-                                    console.log(el);
-                                    return (
-                                        <form action="#" className={s.formProfilePage}>
-                                            <div className={s.formProfile}>
-                                                <lable for="name" className={s.textForm}>{el.lable}</lable>
-                                                <input className={s.inputFormProfile} type="text" placeholder={el.placeholder} />
-                                                <input className={s.btnFormProfile} type="submit" value="Изменить" />
-                                            </div>
-                                        </form>
-                                    )
-                                })
-                            }
+                        <p className={s.textTitle}>Настройки</p>
 
-                            <BtnDelete />
-                            {/* <div className={s.btnProfilePage}>
+                        <div className={s.navProfilePage}>
+                            <ul className={s.nav}>
+                                {
+                                    arrayNav.map((el) => {
+                                        console.log(el);
+                                        return (
+                                            <li className={s.navSettings}>
+                                                <a href="#" className={s.navLink}>{el}</a>
+                                            </li>
+
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div>
+                        {
+                            arrayForm.map((el) => {
+                                console.log(el);
+                                return (
+                                    <form action="#" className={s.formProfilePage}>
+                                        <div className={s.formProfile}>
+                                            <lable for="name" className={s.textForm}>{el.lable}</lable>
+                                            <input className={s.inputFormProfile} type="text" placeholder={el.placeholder} />
+                                            <input className={s.btnFormProfile} type="submit" value="Изменить" />
+                                        </div>
+                                    </form>
+                                )
+                            })
+                        }
+
+                        <BtnDelete />
+                        {/* <div className={s.btnProfilePage}>
           <button className={s.btnDeleteProfile} type="submit">Удаление аккаунта</button>
         </div> */}
 
-                        </div>
                     </div>
-                </AppPage>
-            </MainLayout>
-        </AuthContext.Provider>
-        //</div>
+                </div>
+            </AppPage>
+        </MainLayout>
     )
-    {
+}
+
+{/* {
         arrayForm.forEach((el) => {
             console.log(el);
             return (
@@ -124,13 +125,14 @@ function ProfilePage({ auth }) {
                         </div>
                     </AppPage>
                 </MainLayout>
+            </div >
+
                 // </div>
             )
-        })
-    }
-}
+    }) */}
 
 
 //ProfilePage.propTypes = {}
 
-export default ProfilePage
+
+export default ProfilePage;

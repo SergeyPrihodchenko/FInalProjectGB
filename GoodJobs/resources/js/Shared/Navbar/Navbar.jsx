@@ -2,37 +2,59 @@ import { AppPage } from '../AppPage/AppPage';
 import { Link } from '@inertiajs/react';
 import s from './Navbar.module.css';
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import { AuthContext } from '../store/AuthContext';
 import cn from 'classnames';
 import { BootstrapIcon } from '../Icon/BootstrapIcon';
 import { Logo } from '../Logo/Logo';
+import mainlogo from '@/Shared/assets/icons/mainlogo.svg';
 
 
-export const Navbar = () => {
-    const { user } = useContext(AuthContext);
-
+export const Navbar = ({ user }) => {
     return (
         <nav className={s.navBg}>
             <AppPage>
                 <div className={s.navBar}>
-                    <Logo src={``} alt={'Логотип'} href={route('main')} />
+                    <Logo src={mainlogo} alt={'Логотип'} href={route('main')} />
                     <ul className={s.navList}>
-                        <Link className={s.navLink}>Создать резюме</Link>
-                        <Link href={route('vacancy.index')} >Вакансии</Link>
+                        <li>
+                            <Link className={s.navLink}>
+                                Создать резюме
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className={s.navLink}>
+                                Соискателям
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className={s.navLink}>
+                                Работодателям
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className={s.navLink} href={route('vacancy.index')} >
+                                Вакансии
+                            </Link>
+
+                        </li>
                         {!user ? <>
-                            <Link
-                                href={route('register')}
-                                className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}
-                            >
-                                Регистрация
-                            </Link>
-                            <Link
-                                href={route('login')}
-                                className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}
-                            >
-                                Войти
-                            </Link>
+                            <li>
+                                <Link
+                                    href={route('register')}
+                                    className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}
+                                >
+                                    Регистрация
+                                </Link>
+
+                            </li>
+                            <li>
+
+                                <Link
+                                    href={route('login')}
+                                    className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])}
+                                >
+                                    Войти
+                                </Link>
+                            </li>
 
                         </> : <>
                             <Link href={route('profilePage')} className={cn(s.navLink, [''])}>
@@ -44,7 +66,7 @@ export const Navbar = () => {
 
                         }
 
-
+                        <Link href={route('company')} >Компания</Link>
                         {/* <Link href={route('login')} className={s.navLink}>Войти</Link> */}
                     </ul>
 

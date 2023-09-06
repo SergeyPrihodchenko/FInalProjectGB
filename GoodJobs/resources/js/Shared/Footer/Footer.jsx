@@ -1,8 +1,9 @@
 import s from './Footer.module.css';
 import { AppPage } from "../AppPage/AppPage"
 import { Typography } from '../Typography/Typography';
-import { SocialLinksWidget } from '../Widgets/SocialLinksWidget/SocialLinksWidget';
+import { SocialLinksWidget } from '../../Widgets/SocialLinksWidget/SocialLinksWidget';
 import { BootstrapIcon } from '../Icon/BootstrapIcon';
+import AppText from '../ui/AppText/AppText';
 
 const socialList = [
     {
@@ -15,7 +16,7 @@ const socialList = [
         icon: <BootstrapIcon name={'BsWhatsapp'} size={28} />,
         url: 'https://web.whatsapp.com/'
     },
-]
+];
 
 export const Footer = ({ children }) => {
     return (
@@ -23,28 +24,40 @@ export const Footer = ({ children }) => {
             <AppPage>
                 <div className={s.footerTop}>
                     <div className={s.footerTopList}>
-                        <Typography variant={'h3'} >Golden head</Typography>
+                        <AppText
+                            title='Golden head'
+                            size='m'
+                            variant='secondary'
+                            bold
+                            className='mb-3'
+                        />
                         <ul >
-                            <li>О компании</li>
-                            <li>Наши вакансии</li>
-                            <li>Реклама на сайте</li>
-                            <li>Требования к ПО</li>
-                            <li>Защита персональных данных</li>
-                            <li>Безопасный Golden Head</li>
-                            <li>Партнерам</li>
+                            <li className='mb-1'>О компании</li>
+                            <li className='mb-1'>Наши вакансии</li>
+                            <li className='mb-1'>Реклама на сайте</li>
+                            <li className='mb-1'>Требования к ПО</li>
+                            <li className='mb-1'>Защита персональных данных</li>
+                            <li className='mb-1'>Безопасный Golden Head</li>
+                            <li className='mb-1'>Партнерам</li>
                             <li>Инвесторам</li>
                         </ul>
                     </div>
                     <div className={s.footerTopList}>
-                        <Typography variant={'h3'} >Сервисы для соискателей</Typography>
+                        <AppText
+                            title='Сервисы для соискателей'
+                            size='m'
+                            variant='secondary'
+                            bold
+                            className='mb-3'
+                        />
                         <ul className={s.footerTopList}>
-                            <li>Готовое резюме</li>
-                            <li>Все сервисы</li>
-                            <li>Продвижение резюме</li>
-                            <li>Хочу у вас работать</li>
-                            <li>Производственный календарь</li>
-                            <li>Карьера для молодых специалистов</li>
-                            <li>Школа программистов</li>
+                            <li className='mb-1'>Готовое резюме</li>
+                            <li className='mb-1'>Все сервисы</li>
+                            <li className='mb-1'>Продвижение резюме</li>
+                            <li className='mb-1'>Хочу у вас работать</li>
+                            <li className='mb-1'>Производственный календарь</li>
+                            <li className='mb-1'>Карьера для молодых специалистов</li>
+                            <li className='mb-1'>Школа программистов</li>
                             <li>Профориентация</li>
                         </ul>
                     </div>
