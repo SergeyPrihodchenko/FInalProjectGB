@@ -8,13 +8,16 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
+Route::get('/company', function () {
+    return Inertia::render('CompanyPage/CompanyPage');
+})->name('company');
 
 Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
 })->middleware(['auth', 'verified'])->name('profilePage');
 
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
-Route::get('/category/serch', [CategoryController::class, 'serchSort'])->name('category.sort');
+Route::get('/category/search', [CategoryController::class, 'searchSort'])->name('category.sort');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

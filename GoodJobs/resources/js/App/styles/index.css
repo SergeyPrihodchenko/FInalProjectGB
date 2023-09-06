@@ -5,18 +5,24 @@
 #root {
     width: 100%;
     background: var(--light-bg);
+    font-family: var(--font-family-main);
 }
+
 body {
     width: 100%;
     font: var(--font-m);
     background: var(--light-bg);
+    font-family: var(--font-family-main);
+}
+.app {
+    font-family: var(--font-family-main);
 }
 *::-webkit-scrollbar {
-    width: 12px; /* ширина scrollbar */
+    width: 12px;
+    /* ширина scrollbar */
     height: 8px;
 }
 
 /* 
 
 */
-

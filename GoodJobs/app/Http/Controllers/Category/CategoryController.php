@@ -14,8 +14,8 @@ class CategoryController extends Controller
     public function show(Request $request, $id)
     {
         $vacancies = (Category::find($id))->vacancies;
-        return Inertia::render('Vacancy/Index', [
-            'title' => 'Вакансии - ' . $request->get('title'),
+        return Inertia::render('CategoryPage/CategoryPage', [
+            'titleCat' => 'Вакансии - ' . $request->get('title'),
             'vacancies' => $vacancies
         ]);
     }
