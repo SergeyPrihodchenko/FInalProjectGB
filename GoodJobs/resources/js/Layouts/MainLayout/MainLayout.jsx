@@ -3,20 +3,15 @@ import { Header } from '@/Shared/Header/Header';
 import { Navbar } from '@/Shared/Navbar/Navbar';
 import { Footer } from '@/Shared/Footer/Footer'
 import { PropTypes } from 'prop-types';
-import { Toolbar } from '@/Shared/Toolbar/Toolbar';
-import { useContext } from 'react';
-import { AuthContext } from '@/Shared/store/AuthContext';
-import { Banner } from '@/Shared/Banner/Banner';
-import { Typography } from '@/Shared/Typography/Typography';
+import cn from "classnames"
 
 
-const MainLayout = ({ children }) => {
-    const { user } = useContext(AuthContext);
+
+const MainLayout = ({ children, user, className }) => {
     return (
-        <div className={s.mainLayout}>
+        <div className={cn(s.mainLayout, className)}>
             <Header>
-                <Toolbar />
-                <Navbar />
+                <Navbar user={user} />
             </Header>
             <main>
                 {children}

@@ -10,7 +10,7 @@
 
 body {
     width: 100%;
-    font: var(--font-m);
+    font: var(--font-s);
     background: var(--light-bg);
     font-family: var(--font-family-main);
 }
