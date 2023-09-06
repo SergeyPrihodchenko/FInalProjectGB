@@ -6,5 +6,5 @@ export const AppPage = ({ children, className }) => {
 };
 
 AppPage.propTypes = {
-    children: PropTypes.any.isRequired,
+    children: PropTypes.any,
 };
