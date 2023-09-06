@@ -12,6 +12,7 @@ import { Search } from "@/Shared/Search/Search";
 import { Head } from "@inertiajs/react";
 import AppText from "@/Shared/ui/AppText/AppText";
 import { AppCard } from "@/Shared/AppCard/AppCard";
+import { VacancyPage } from "../VacancyPage/ui/VacancyPage/VacancyPage";
 
 // const cardsInfo = [...Array(12)].map(() => {
 //     return {
@@ -76,6 +77,7 @@ export const MainPage = ({ auth, categories, className, vacancies }) => {
 
                     <AppList list={vacancies} />
                 </AppPage>
+                {/* <VacancyPage /> */}
             </MainLayout>
         </AuthContext.Provider>
     );
