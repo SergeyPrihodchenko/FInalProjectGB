@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -19,14 +20,15 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function searchSort(Request $request) 
+    public function serchSort(CategoryRequest $request) 
     {
-        $searchStr = $request->get('vacancy');
-        $vacanciesCat = Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
-        if (count($vacanciesCat) !== 0) {
+        $data = $request->validated();
+        $serchStr = $data['vacancy'];
+        $vacancies = Vacancy::where('title', 'like', '%'.$serchStr.'%')->get();
+        if (count($vacancies) !== 0) {
             return Inertia::render('Vacancy/Index', [
-                'title' => 'Вакансии' . $request->get('title'),
-                'vacancies' => $vacanciesCat
+                'title' => 'Вакансии',
+                'vacancies' => $vacancies
             ]);
         }
         return Inertia::render('Vacancy/Index', [
