@@ -25,6 +25,6 @@ AppButton.propTypes = {
     width: PropTypes.string,
     height: PropTypes.string,
     children: PropTypes.any,
-    variant: PropTypes.oneOf(["filled ", "outline", "clear"]),
+    variant: PropTypes.oneOf(["filled", "outline", "clear"]),
     size: PropTypes.oneOf(["s", "m", "l"]),
 };

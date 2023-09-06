@@ -8,7 +8,7 @@ import { AuthContext } from '@/Shared/store/AuthContext';
 import { Banner } from '@/Shared/Banner/Banner';
 import { Typography } from '@/Shared/Typography/Typography';
 import { Search } from '@/Shared/Search/Search';
-import { Head } from '@inertiajs/react'
+import {Head, Link} from '@inertiajs/react'
 import AppText from '@/Shared/ui/AppText/AppText';
 import { AppCard } from '@/Shared/AppCard/AppCard';
 
