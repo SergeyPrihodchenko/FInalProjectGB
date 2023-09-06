@@ -20,11 +20,11 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function serchSort(CategoryRequest $request) 
+    public function searchSort(CategoryRequest $request) 
     {
         $data = $request->validated();
-        $serchStr = $data['vacancy'];
-        $vacancies = Vacancy::where('title', 'like', '%'.$serchStr.'%')->get();
+        $searchStr = $data['vacancy'];
+        $vacancies = Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
         if (count($vacancies) !== 0) {
             return Inertia::render('Vacancy/Index', [
                 'title' => 'Вакансии',
