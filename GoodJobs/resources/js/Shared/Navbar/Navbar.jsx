@@ -66,7 +66,7 @@ export const Navbar = ({ user }) => {
 
                         }
 
-
+                        <Link href={route('company')} >Компания</Link>
                         {/* <Link href={route('login')} className={s.navLink}>Войти</Link> */}
                     </ul>
 
