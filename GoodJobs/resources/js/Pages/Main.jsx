@@ -1,12 +1,12 @@
-import { MainPage } from "./MainPage/MainPage";
+import MainPage from "./MainPage/MainPage";
 import "../App/styles/index.css";
 import cn from 'classnames';
 
-export default function Main({ auth, categories, vacancies, className }) {
+export default function Main({ auth, categories, vacancies }) {
     return (
 
         <div className='app_light_theme'>
-            <MainPage categories={categories} auth={auth} className={cn(className)} vacancies={vacancies} />
+            <MainPage categories={categories} auth={auth} vacancies={vacancies} />
 
             {/* {auth.user ? (
                 <Link

@@ -4,7 +4,6 @@ import { AppPage } from '@/Shared/AppPage/AppPage';
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
 import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
 import AppText from '@/Shared/ui/AppText/AppText';
-import { AuthContext } from '@/Shared/store/AuthContext';
 
 
 
@@ -48,16 +47,19 @@ const arrayNav = [
 ];
 
 function ProfilePage({ auth }) {
-    const user = auth?.user;
+    const user = auth.user;
     return (
+
         //<div className={s.container}>
-        <AuthContext.Provider value={{ user }}>
-            <MainLayout>
+        <div className='app_light_theme'>
+            <MainLayout user={user}>
+
                 <AppPage>
                     <div className={s.profilePage}>
                         <div className={s.mainProfilePage}>
 
                             <AppText title={'Настройки'} size={'l'} />
+
                             <p className={s.textTitle}>Настройки</p>
 
                             <div className={s.navProfilePage}>
@@ -99,10 +101,11 @@ function ProfilePage({ auth }) {
                     </div>
                 </AppPage>
             </MainLayout>
-        </AuthContext.Provider>
-        //</div>
+        </div>
     )
-    {
+}
+
+{/* {
         arrayForm.forEach((el) => {
             console.log(el);
             return (
@@ -124,13 +127,14 @@ function ProfilePage({ auth }) {
                         </div>
                     </AppPage>
                 </MainLayout>
+            </div >
+
                 // </div>
             )
-        })
-    }
-}
+    }) */}
 
 
 //ProfilePage.propTypes = {}
 
-export default ProfilePage
+
+export default ProfilePage;

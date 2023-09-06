@@ -6,17 +6,15 @@ import { PropTypes } from 'prop-types';
 import { Toolbar } from '@/Shared/Toolbar/Toolbar';
 import { useContext } from 'react';
 import { AuthContext } from '@/Shared/store/AuthContext';
-import { Banner } from '@/Shared/Banner/Banner';
-import { Typography } from '@/Shared/Typography/Typography';
 
 
-const MainLayout = ({ children }) => {
-    const { user } = useContext(AuthContext);
+
+const MainLayout = ({ children, user }) => {
     return (
         <div className={s.mainLayout}>
             <Header>
                 <Toolbar />
-                <Navbar />
+                <Navbar user={user} />
             </Header>
             <main>
                 {children}

@@ -27,9 +27,9 @@
     --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
     /* 2xl */
-    --font-size-2xl: 48px;
-    --font-line-2xl: 56px;
-    --font-2xl: var(--font-size-2xl) / var(--font-line-2xl) var(--font-family-main);
+    --font-size-xxl: 48px;
+    --font-line-xxl: 56px;
+    --font-xxl: var(--font-size-xxl) / var(--font-line-xxl) var(--font-family-main);
 
     /* Transition delay */
     --transition-delay: 0.3s;

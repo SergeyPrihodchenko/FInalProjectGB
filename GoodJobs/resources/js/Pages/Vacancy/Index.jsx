@@ -4,11 +4,10 @@ import { AppPage } from "@/Shared/AppPage/AppPage";
 import { Typography } from "@/Shared/Typography/Typography";
 import React, { useState } from "react";
 
-const Vacancy = ({ vacancies, title }) => {
-
-    console.log(vacancies)
+const Vacancy = ({ vacancies, title, auth }) => {
+    const user = auth?.user;
     return (
-        <MainLayout>
+        <MainLayout user={user}>
             <AppPage>
                 <Typography variant={'h2'}>{title}</Typography>
                 {vacancies.map(vacancy => <AppCard

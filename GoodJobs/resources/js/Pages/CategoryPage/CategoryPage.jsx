@@ -9,7 +9,7 @@ const CategoryPage = ({ auth, vacancies, titleCat }) => {
     const user = auth?.user;
     return (
         <AuthContext.Provider value={{ user }}>
-            <MainLayout>
+            <MainLayout user={user}>
                 <AppPage>
                     <Typography variant={'h2'}>{titleCat}</Typography>
 
