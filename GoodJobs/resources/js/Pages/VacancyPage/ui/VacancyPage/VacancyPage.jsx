@@ -10,6 +10,7 @@ import VacancyPageAdress from "../VacancyPageAdress/VacancyPageAdress";
 import AppButton from "@/Shared/ui/AppButton/AppButton";
 import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
 import data from "../../data.json";
+import MainLayout from "@/Layouts/MainLayout/MainLayout.jsx";
 
 //     description:
 //         "ООО Stanok & Babina - Ведущий фрезеровочный завод на планете. По Вытачиваем любую деталь, любой формы и из любого материала. Ни одного отказа от производимого товара, ни одного отрицательного отзыва. Производим всегда все в срок и любого объема. Обращаясь к нам вы платите не только за идеальные заказанные детали, но и за сохранность своих нервов, уверенность в готовности вашего заказа в установленные сроки без брака.",
@@ -65,10 +66,11 @@ import data from "../../data.json";
 //         ],
 //     },
 // };
-const VacanyPageList = data;
+
 const navList = ["Мои резюме", "Отклики", "Помощь"];
 export function VacancyPage(props) {
     return (
+        <MainLayout>
         <div className={s.vacancyPage}>
             {/* {Object.entries(AppRoutesByPathPattern).forEach(
                         ([patter, route]) => {
@@ -103,6 +105,7 @@ export function VacancyPage(props) {
                 </div>
             </AppPage>
         </div>
+        </MainLayout>
     );
 }
 

@@ -27,14 +27,14 @@ class VacancyController
         ]);
     }
 
-    public function store(Vacancy $vacancy, StoreRequest $request)
+    public function store(StoreRequest $request)
     {
         $data = $request->validated();
 
         $vacancy = Vacancy::create($data);
 
         return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->name,
+            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }
@@ -46,7 +46,7 @@ class VacancyController
         $vacancy->update($data);
 
         return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->name,
+            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }
