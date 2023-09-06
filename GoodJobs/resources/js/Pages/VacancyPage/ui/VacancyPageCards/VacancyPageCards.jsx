@@ -10,19 +10,31 @@ function VacancyPageCards(props) {
         <div className={cn(s.vacancyCards, className)}>
             <div className={s.mainCard}>
                 <AppText title="Токарь фрезеровщик" bold={true} size="l" />
-                <AppText text="от 150 000 до 300 000 ₽ на руки" size="m" />
-                <AppText size="m" text="Требуемый опыт работы: 1-3 года" />
+                <AppText
+                    text="от 150 000 до 300 000 ₽ на руки"
+                    size="m"
+                    className={s.price}
+                />
+                <AppText
+                    size="m"
+                    text="Требуемый опыт работы: 1-3 года"
+                    className={s.experience}
+                />
                 <AppText size="m" text="Полная занятость, сменный графики" />
                 <div>
-                    <AppText text="Сейчас эту вакансию смотрят" />
-                    <AppText text=" 3 человека" />
+                    <AppText
+                        text="Сейчас эту вакансию смотрят"
+                        className={s.view}
+                    />
+                    <AppText text=" 3 человека" variant="error" />
                 </div>
-                <AppButton>
+                <AppButton className={s.btn}>
                     <AppText text="Откликнуться" />
                 </AppButton>
             </div>
             <div className={s.aboutCompany}>
-                <AppText size="m" title="ООО Станок и Бабина" text="Москва" />
+                <AppText size="m" title="ООО Станок и Бабина" />
+                <AppText size="m" text="Москва" className={s.city} />
             </div>
         </div>
     );

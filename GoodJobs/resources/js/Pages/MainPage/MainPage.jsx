@@ -25,8 +25,6 @@ const cardsInfo = [...Array(12)].map(() => {
 });
 
 
-
-
 // const cardsInfo = [...Array(12)].map(() => {
 //     return {
 //         id: faker.string.nanoid(10),
@@ -138,8 +136,6 @@ const MainPage = ({ auth, categories, className, vacancies }) => {
                         ))}
                     </div>
                 </div>
-
-
             </AppPage>
         </MainLayout>
     );
