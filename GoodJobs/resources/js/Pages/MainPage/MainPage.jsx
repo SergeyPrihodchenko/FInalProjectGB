@@ -1,3 +1,4 @@
+
 import styles from "./MainPage.module.css";
 import { fakerRU as faker } from "@faker-js/faker";
 import { AppList } from "@/Shared/AppList/AppList";

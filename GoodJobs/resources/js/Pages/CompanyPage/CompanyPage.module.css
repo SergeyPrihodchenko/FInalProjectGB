@@ -1,0 +1,53 @@
+.companyPageContainer{
+    max-width: 1200px;
+    margin: 25px auto 0;
+
+}
+.companyPageLeft{
+    background-color: #fafafa;
+    width: 210px;
+}
+.companyPageLeftCard{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.companyPageLeftCardLogo{
+    display: flex;
+    align-items: center;
+    height: 170px;
+}
+.companyPageLeftCardInfo{
+
+}
+.companyPageLeftCardInfoCard{
+    font-size: 14px;
+    line-height: 1.43;
+    margin-top: 15px;
+
+}
+.companyPageLeftCardInfoCard:first-child{
+    margin-top: 0;
+}
+.companyPageLeftCardInfoText{
+    color: #303233;
+}
+.companyPageLeftCardInfoLink{
+    color: #3c9df2;
+}
+.companyPageStrong{
+    font-weight: 700;
+}
+.companyPageLeftToolbar{
+    margin-top: 30px;
+}
+.companyPageLeftToolbarButton{
+    border: 1px solid #babdbf;
+    background-color: #fafafa;
+    border-radius: 5px;
+}
+.companyPageLeftToolbarButton:first-child{
+    margin-bottom: 10px;
+}
