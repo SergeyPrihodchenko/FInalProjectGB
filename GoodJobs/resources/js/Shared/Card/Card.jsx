@@ -1,4 +1,4 @@
-import s from "./AppCard.module.css";
+import s from "./Card.module.css";
 import { Typography } from "../Typography/Typography";
 import cn from "classnames";
 import { Link } from "@inertiajs/react";
@@ -8,7 +8,7 @@ const typeCards = {
     vacancy: "vacancy",
 };
 
-export const AppCard = ({
+export const Card = ({
     card,
     type,
     path,
@@ -22,7 +22,7 @@ export const AppCard = ({
         minHeight: `${minHeight}`,
         borderRight: `${borderRight}`,
     };
-    
+
     if (path) {
         if (param) {
             return (
