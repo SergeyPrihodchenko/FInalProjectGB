@@ -7,8 +7,13 @@ import MainLayout from "@/Layouts/MainLayout/MainLayout";
 export default function Main({ auth, categories, vacancies, className }) {
     return (
         <div className="app_light_theme">
-            <MainPage categories={categories} auth={auth} className={cn(className)} vacancies={vacancies} />
-       
+            <MainPage
+                categories={categories}
+                auth={auth}
+                className={cn(className)}
+                vacancies={vacancies}
+            />
+
             {/* {auth.user ? (
                 <Link
                 href={route('dashboard')}
