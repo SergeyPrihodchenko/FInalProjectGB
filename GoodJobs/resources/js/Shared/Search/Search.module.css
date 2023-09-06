@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.searchBtn {
+    color: var(--secondary-text)
+}
+
 
 .searchResults {
     background-color: #ececec;
