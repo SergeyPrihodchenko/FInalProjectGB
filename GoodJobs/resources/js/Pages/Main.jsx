@@ -1,12 +1,19 @@
 import MainPage from "./MainPage/MainPage";
 import "../App/styles/index.css";
-import cn from 'classnames';
+import cn from "classnames";
+import { VacancyPage } from "./VacancyPage/ui/VacancyPage/VacancyPage";
+import MainLayout from "@/Layouts/MainLayout/MainLayout";
 
 export default function Main({ auth, categories, vacancies }) {
     return (
 
-        <div className='app_light_theme'>
-            <MainPage categories={categories} auth={auth} vacancies={vacancies} />
+        <div className="app_light_theme">
+            <MainPage
+                categories={categories}
+                auth={auth}
+                className={cn(className)}
+                vacancies={vacancies}
+            />
 
             {/* {auth.user ? (
                 <Link
@@ -33,8 +40,6 @@ export default function Main({ auth, categories, vacancies }) {
                     </Link>
                 </>
             )} */}
-
         </div>
-
     );
 }

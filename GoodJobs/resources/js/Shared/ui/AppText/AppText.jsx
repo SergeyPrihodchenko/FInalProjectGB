@@ -12,13 +12,22 @@ const mapSizeToHeader = {
 };
 
 export default function AppText(props) {
-    const { className, title, text, size = "m", variant, bold } = props;
+    const {
+        className,
+        title,
+        text,
+        size = "m",
+        variant = "primary",
+        bold,
+        ...otherProps
+    } = props;
     const HeaderTag = mapSizeToHeader[size];
     return (
         <div
             className={cn(s.appText, className, s[size], s[variant], {
                 [s.bold]: bold,
             })}
+            {...otherProps}
         >
             {title && <HeaderTag className={s.title}>{title}</HeaderTag>}
 
@@ -35,6 +44,7 @@ AppText.propTypes = {
         "accent",
         "error",
         "cancel",
+        "notaccented",
         "save",
     ]),
     size: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
