@@ -25,19 +25,6 @@ const cardsInfo = [...Array(12)].map(() => {
 });
 
 
-// const cardsInfo = [...Array(12)].map(() => {
-//     return {
-//         id: faker.string.nanoid(10),
-//         title: faker.person.jobType(),
-//         salary: `${faker.finance.amount({
-//             min: 30000,
-//             max: 100000,
-//             dec: 0,
-//         })} руб`,
-//         borderRight: `5px solid ${faker.color.rgb({ casing: "lower" })}`,
-//     };
-// });
-
 const MainPage = ({ auth, categories, className, vacancies }) => {
     const user = auth?.user;
     return (
