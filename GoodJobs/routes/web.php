@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
+Route::get('/company', function () {
+    return Inertia::render('CompanyPage/CompanyPage');
+})->name('company');
 
 Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');

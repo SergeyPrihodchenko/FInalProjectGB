@@ -5,12 +5,12 @@
     --primary-text: #000;
     --secondary-text: #fff;
 
-    /* buttons*/
     --accent: #0fc3fce5;
     --accent-80: #0fc3fc80;
     --cancel: #ff0000cc;
     --error: #ff0000cc;
     --save: #62de85;
+    --not-accented: rgba(0, 0, 0, 0.56);
 
     /* skeleton */
     --light-skeleton-color: #f7f7f7;
@@ -24,5 +24,5 @@
 
     /* listBox */
     /* --list-bg: #d5d5d7; */
-    --header-color: #912d2d;
+    --header-color: #000;
 }

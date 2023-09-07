@@ -1,8 +1,10 @@
 import React from 'react';
+//import PropTypes from 'prop-types'
 import s from './ProfilePage.module.css';
 import { AppPage } from '@/Shared/AppPage/AppPage';
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
-import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
+//import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
+import AppButton from '@/Shared/ui/AppButton/AppButton';
 import AppText from '@/Shared/ui/AppText/AppText';
 import { AuthContext } from '@/Shared/store/AuthContext';
 import { usePage, useForm } from '@inertiajs/react';

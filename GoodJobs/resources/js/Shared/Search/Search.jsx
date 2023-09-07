@@ -2,8 +2,8 @@ import { useState } from 'react';
 import InputLabel from '@/Components/InputLabel';
 import s from './Search.module.css';
 import TextInput from "@/Components/TextInput"
-import PrimaryButton from '@/Components/PrimaryButton';
 import cn from 'classnames';
+import AppButton from '../ui/AppButton/AppButton';
 
 export const Search = ({ placeholder, vacancies }) => {
     const [param, setParam] = useState('');
@@ -74,7 +74,7 @@ export const Search = ({ placeholder, vacancies }) => {
     };
     return (
         <div className={s.searchBlock}>
-            <form method='GET' action={route('category.sort', `${param}`)} className='w-full flex'>
+            <form method='GET' action={route('category.sort')} className='w-full flex gap-4'>
                 <InputLabel className='w-full'>
                     <TextInput
                         autoComplete='off'
@@ -85,10 +85,9 @@ export const Search = ({ placeholder, vacancies }) => {
                         onKeyDown={handleKeyDown}
                     />
                 </InputLabel>
-
-                <PrimaryButton className="ml-4" >
+                <AppButton className={s.searchBtn}>
                     Найти
-                </PrimaryButton>
+                </AppButton>
 
             </form>
             {suggestionsActive && <Suggestions />}
