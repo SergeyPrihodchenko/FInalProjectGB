@@ -12,6 +12,7 @@ class VacancyController
     {
 
         $vacancies = Vacancy::all();
+        
 
         return Inertia::render('Vacancy/Index', [
             'title' => 'Вакансии',

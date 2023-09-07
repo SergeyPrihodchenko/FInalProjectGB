@@ -1,6 +1,6 @@
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/Shared/AppPage/AppPage";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppText from "@/Shared/ui/AppText/AppText";
 import AppLink from "@/Shared/ui/AppLink/AppLink";
 import AppCard from "@/Shared/ui/AppCard/AppCard";
@@ -8,6 +8,19 @@ import AppButton from "@/Shared/ui/AppButton/AppButton";
 
 const Vacancy = ({ vacancies, title, auth }) => {
     const user = auth?.user;
+    console.log(vacancies);
+    useEffect(() => {
+        document.addEventListener('scroll', handleScroll);
+
+        return function () {
+            document.removeEventListener('scroll', handleScroll);
+        }
+    }, []);
+    const handleScroll = (e) => {
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 500) {
+            console.log('scroll');
+        }
+    }
     return (
         <MainLayout user={user} className={'app_light_theme'}>
             <AppPage>
@@ -18,7 +31,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                     className="m-[20px]"
                 />
                 <div className="flex flex-col gap-[20px] mb-[20px]">
-                    {vacancies.map(vac =>
+                    {vacancies.data.map(vac =>
                         <AppLink
                             path={'vacancy.show'}
                             param={vac.id}
