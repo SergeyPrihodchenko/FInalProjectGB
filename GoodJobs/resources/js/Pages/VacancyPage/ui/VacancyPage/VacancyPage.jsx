@@ -69,44 +69,48 @@ import Vacancy from "@/Pages/Vacancy/Index.jsx";
 // };
 
 const navList = ["Мои резюме", "Отклики", "Помощь"];
-function VacancyPage({auth}) {
+function VacancyPage({ auth }) {
     const user = auth?.user;
     return (
         <MainLayout user={user}>
-        <div className={s.vacancyPage}>
-            {/* {Object.entries(AppRoutesByPathPattern).forEach(
+            <div className={s.vacancyPage}>
+                {/* {Object.entries(AppRoutesByPathPattern).forEach(
                         ([patter, route]) => {
                             if (matchPath(patter, location.pathname)) {
                                 setAppRoute(route);
                             }
                         }
                     )} */}
-            <VacanyNav />
-            <AppPage>
-                <div className={s.vacancyPage}>
-                    <VacancyPageCards className={s.cards} />
-                    {/*<VacancyPageList*/}
-                    {/*    vacancyPageList={VacanyPageList}*/}
-                    {/*    className={s.list}*/}
-                    {/*/>*/}
+                <VacanyNav />
+                <AppPage>
+                    <div className={s.vacancyPage}>
+                        <VacancyPageCards className={s.cards} />
+                        {/*<VacancyPageList*/}
+                        {/*    vacancyPageList={VacanyPageList}*/}
+                        {/*    className={s.list}*/}
+                        {/*/>*/}
 
-                    <VacancyPageAdress className={s.adress} />
-                    <AppText
-                        text="Вакансия опубликована 28 августа 2023 в Москве"
-                        variant="notaccented"
-                        size="s"
-                        className={s.date}
-                    />
-                    <AppButton width="360px" height="60px" className={s.btn}>
-                        <AppText text="Откликнуться" />
-                    </AppButton>
-                    {/*<VacancyPageReviews*/}
-                    {/*    list={VacanyPageList}*/}
-                    {/*    className={s.reviews}*/}
-                    {/*/>*/}
-                </div>
-            </AppPage>
-        </div>
+                        <VacancyPageAdress className={s.adress} />
+                        <AppText
+                            text="Вакансия опубликована 28 августа 2023 в Москве"
+                            variant="notaccented"
+                            size="s"
+                            className={s.date}
+                        />
+                        <AppButton
+                            width="360px"
+                            height="60px"
+                            className={s.btn}
+                        >
+                            <AppText text="Откликнуться" />
+                        </AppButton>
+                        {/*<VacancyPageReviews*/}
+                        {/*    list={VacanyPageList}*/}
+                        {/*    className={s.reviews}*/}
+                        {/*/>*/}
+                    </div>
+                </AppPage>
+            </div>
         </MainLayout>
     );
 }

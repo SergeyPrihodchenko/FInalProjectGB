@@ -4,11 +4,13 @@ import s from "./VacancyPageCards.module.css";
 import cn from "classnames";
 import AppText from "@/Shared/ui/AppText/AppText";
 import AppButton from "@/Shared/ui/AppButton/AppButton";
+import AppCard from "@/Shared/ui/AppCard/AppCard";
+import AppLink from "@/Shared/ui/AppLink/AppLink";
 function VacancyPageCards(props) {
     const { children, className } = props;
     return (
         <div className={cn(s.vacancyCards, className)}>
-            <div className={s.mainCard}>
+            <AppCard shadow className={s.mainCard}>
                 <AppText title="Токарь фрезеровщик" bold={true} size="l" />
                 <AppText
                     text="от 150 000 до 300 000 ₽ на руки"
@@ -31,11 +33,11 @@ function VacancyPageCards(props) {
                 <AppButton className={s.btn}>
                     <AppText text="Откликнуться" />
                 </AppButton>
-            </div>
-            <div className={s.aboutCompany}>
+            </AppCard>
+            <AppCard className={s.aboutCompany}>
                 <AppText size="m" title="ООО Станок и Бабина" />
                 <AppText size="m" text="Москва" className={s.city} />
-            </div>
+            </AppCard>
         </div>
     );
 }
