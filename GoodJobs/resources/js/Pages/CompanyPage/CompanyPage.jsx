@@ -1,19 +1,57 @@
 import React, {useState} from 'react';
 import MainLayout from "@/Layouts/MainLayout/MainLayout.jsx";
-import {AppButton} from "@/Shared/ui/AppButton/AppButton";
+import AppButton from "@/Shared/ui/AppButton/AppButton";
 import s from "./CompanyPage.module.css";
 import cn from "classnames";
 import {Head} from "@inertiajs/react";
 import { Rating, Tooltip} from "@mui/material";
 import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineSharp';
+import {Typography} from "@/Shared/Typography/Typography.jsx";
+import CompanyPageReviewItem from "@/Pages/CompanyPage/CompanyPageReviewItem.jsx";
+import CompanyPageEmployeeReviewItem from "@/Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
 
 function CompanyPage() {
     const [rating, setRating] = useState(2)
     const mockCountReview = 2
+    const mockReview = [
+        {
+            id: '1',
+            number: '4,0',
+            isPercent:false,
+            subtitle: "очень хорошо",
+            title: 'Оценка Dream Job'
+        },
+        {
+            id: '2',
+            number: '72',
+            isPercent:true,
+            subtitle: "",
+            title: 'Рекомендуют работодателя'
+        }
+    ]
+    const mockEmployeeReview = [
+        {
+            id: '1',
+            rating:4,
+            date:"2022-07-01",
+            title: "Отзыв сотрудника",
+            subtitle: 'График, отношение с коллективом'
+        },
+        {
+            id: '2',
+            rating:5,
+            date:"2022-05-01",
+            title: "Отзыв сотрудника",
+            subtitle: 'Все супер'
+        }
+    ]
     return (
         <MainLayout>
             <Head><title>Компания</title></Head>
             <div className={cn(s.companyPageContainer)}>
+                <div>
+
+                </div>
                 <div className={cn(s.companyPageLeft)}>
                     <section className={cn(s.companyPageLeftCard)}>
                         <div className={cn(s.companyPageLeftCardLogo)}>
@@ -83,6 +121,28 @@ function CompanyPage() {
                             <p>Адрес: 420054, РТ г. Казань ул. Габдуллы Тукая, 125, корпус 3</p>
                             <p>Телефон: 8 (843) 2072740</p>
                             <p>Электронная почта: hr@maxima.life</p>
+                        </div>
+                    </div>
+                    <div className={s.companyPageReview}>
+                        <Typography variant="h6">Отзывы о компании</Typography>
+                        <div className={s.companyPageReviewCard}>
+                            {mockReview.map(item => (
+                                <CompanyPageReviewItem key={item.id} {...item}/>
+                            ))}
+                            <div className={s.companyPageReviewButtonCard}>
+                                    <span>Ваши отзывы помогают людям принимать взвешенные карьерные решения</span>
+                                    <AppButton className={cn(s.companyPageReviewButtonCardButton, s.companyPageLeftToolbarButton)} variant="filled" width="170px">
+                                        Оставить отзыв
+                                    </AppButton>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={s.companyPageReview}>
+                        <Typography variant="h6">Что говорят сотрудники</Typography>
+                        <div className={s.companyPageEmployeeReviewCards}>
+                            {mockEmployeeReview.map(item => (
+                                <CompanyPageEmployeeReviewItem key={item.id} {...item} />
+                            ))}
                         </div>
                     </div>
                 </div>
