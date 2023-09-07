@@ -7,7 +7,7 @@ export const BtnDelete = () => {
     return (
      
             <div className={s.btnProfilePage}>
-                <button className={s.btnDeleteProfile} type="submit">Удаление аккаунта</button>
+                <button className={s.btnDeleteProfile}>Удаление аккаунта</button>
             </div>
         
     )

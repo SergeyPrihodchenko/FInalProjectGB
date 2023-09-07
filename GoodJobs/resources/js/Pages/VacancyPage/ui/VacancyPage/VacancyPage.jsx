@@ -10,6 +10,8 @@ import VacancyPageAdress from "../VacancyPageAdress/VacancyPageAdress";
 import AppButton from "@/Shared/ui/AppButton/AppButton";
 import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
 import data from "../../data.json";
+import MainLayout from "@/Layouts/MainLayout/MainLayout.jsx";
+import Vacancy from "@/Pages/Vacancy/Index.jsx";
 
 //     description:
 //         "ООО Stanok & Babina - Ведущий фрезеровочный завод на планете. По Вытачиваем любую деталь, любой формы и из любого материала. Ни одного отказа от производимого товара, ни одного отрицательного отзыва. Производим всегда все в срок и любого объема. Обращаясь к нам вы платите не только за идеальные заказанные детали, но и за сохранность своих нервов, уверенность в готовности вашего заказа в установленные сроки без брака.",
@@ -65,10 +67,12 @@ import data from "../../data.json";
 //         ],
 //     },
 // };
-const VacanyPageList = data;
+
 const navList = ["Мои резюме", "Отклики", "Помощь"];
-export function VacancyPage(props) {
+function VacancyPage({auth}) {
+    const user = auth?.user;
     return (
+        <MainLayout user={user}>
         <div className={s.vacancyPage}>
             {/* {Object.entries(AppRoutesByPathPattern).forEach(
                         ([patter, route]) => {
@@ -81,10 +85,10 @@ export function VacancyPage(props) {
             <AppPage>
                 <div className={s.vacancyPage}>
                     <VacancyPageCards className={s.cards} />
-                    <VacancyPageList
-                        vacancyPageList={VacanyPageList}
-                        className={s.list}
-                    />
+                    {/*<VacancyPageList*/}
+                    {/*    vacancyPageList={VacanyPageList}*/}
+                    {/*    className={s.list}*/}
+                    {/*/>*/}
 
                     <VacancyPageAdress className={s.adress} />
                     <AppText
@@ -96,14 +100,17 @@ export function VacancyPage(props) {
                     <AppButton width="360px" height="60px" className={s.btn}>
                         <AppText text="Откликнуться" />
                     </AppButton>
-                    <VacancyPageReviews
-                        list={VacanyPageList}
-                        className={s.reviews}
-                    />
+                    {/*<VacancyPageReviews*/}
+                    {/*    list={VacanyPageList}*/}
+                    {/*    className={s.reviews}*/}
+                    {/*/>*/}
                 </div>
             </AppPage>
         </div>
+        </MainLayout>
     );
 }
 
 VacancyPage.propTypes = {};
+
+export default VacancyPage;
