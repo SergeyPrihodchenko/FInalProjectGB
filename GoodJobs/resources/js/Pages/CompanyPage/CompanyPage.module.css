@@ -1,9 +1,11 @@
 .companyPageContainer{
     max-width: 1200px;
     margin: 25px auto 0;
+    display: flex;
 
 }
 .companyPageLeft{
+    margin: 0 10px;
     background-color: #fafafa;
     width: 210px;
 }
@@ -50,4 +52,50 @@
 }
 .companyPageLeftToolbarButton:first-child{
     margin-bottom: 10px;
+}
+
+.companyPageRight {
+    padding: 0 10px;
+}
+.companyPageHeader{
+
+}
+.CompanyPageRightHeaderPosition{
+    line-height: 1.43;
+    font-size: 14px;
+}
+.CompanyPageRightHeaderTitle{
+    font-size: 32px;
+    line-height: 1.12;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.CompanyPageRightHeaderRating{
+    display: flex;
+    align-items: center;
+}
+.CompanyPageRightHeaderTitleText{
+    margin-right: 8px;
+}
+.CompanyPageRightHeaderRatingText{
+    line-height: 1.4;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 5px;
+}
+.companyPageRatingLink{
+    margin-left: 8px;
+}
+.companyPageRightInfo{
+    margin-top: 16px;
+    display: grid;
+    grid-row-gap: 16px;
+    line-height: 1.5;
+    font-size: 16px;
+}
+.companyPageRightInfoContacts{
+    line-height: 1.5;
+    font-size: 16px;
+    display: grid;
+    grid-row-gap: 8px;
 }

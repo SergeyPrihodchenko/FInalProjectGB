@@ -22,30 +22,43 @@ class VacancyTest extends TestCase
 
     public function test_can_view_vacancy_detail()
     {
-        $date = Carbon::now();
-
-        $stringDate = $date->toDateTimeString();
-
-        $date = date('Y-m-d H:i:s');
-
-
         $vacancy = Vacancy::create([
-            'name' => 'tester',
-            'description' => 'The Laravel Podcast brings you Laravel and PHP development news and discussion.',
-            'created_at' => $date,
-            'updated_at' => $date,
+            'title' => 'tester',
+            'payment' => 10000,
+            'experience' => 10,
         ]);
-
 
         $this->get('/vacancy/1')
             ->assertInertia(fn(Assert $page) => $page
-                ->component('Vacancy/Show')
+                ->component('VacancyPage/ui/VacancyPage/VacancyPage')
                 ->has('vacancy', fn(Assert $page) => $page
                     ->where('id', $vacancy->id)
-                    ->where('name', 'tester')
-                    ->where('description', 'The Laravel Podcast brings you Laravel and PHP development news and discussion.')
-                    ->where('created_at',$stringDate)
-                    ->where('updated_at', $stringDate)
+                    ->where('title', 'tester')
+                    ->where('payment', '10000')
+                    ->where('experience', '10')
+                    ->etc()
+                )
+            );
+    }
+    public function test_can_create_a_new_vacancy()
+    {
+        $this->post('/vacancy', [
+            'title' => 'post vacancy test',
+            'payment' => 10000,
+            'experience' => 10,
+        ]);
+
+        $vacancy = Vacancy::all();
+
+        $this->get('/vacancy/' . $vacancy[0]->id)
+            ->assertInertia(fn(Assert $page) => $page
+                ->component('VacancyPage/ui/VacancyPage/VacancyPage')
+                ->has('vacancy', fn(Assert $page) => $page
+                    ->where('id', $vacancy[0]->id)
+                    ->where('title', 'post vacancy test')
+                    ->where('payment', '10000')
+                    ->where('experience', '10')
+                    ->etc()
                 )
             );
     }
