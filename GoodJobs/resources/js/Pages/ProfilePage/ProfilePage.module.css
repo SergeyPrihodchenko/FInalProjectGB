@@ -3,15 +3,6 @@
     box-sizing: border-box;
 
 }
-/* .container{
-   
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 16px;
-    padding-right: 16px;
-    margin: 0 auto;
-} */
 
 .profilePage {
     font-family: 'Times New Roman';
@@ -19,76 +10,19 @@
 }
 
 .mainProfilePage {
-    /* width: 1600px; */
     margin: 0 auto;
     margin-top: 90px;
-    /* padding-left: 100px; */
 }
 
-.textTitle {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.navProfilePage {
-    /* width: 1200px; */
-    margin-top: 23px;
-    border-bottom: 2px solid black;
-    margin-bottom: 63px;
-
-}
-
-.nav {
-    margin: 0;
-    padding: 0;
-
-    display: flex;
-    justify-content: start;
-}
-
-.navLink {
-    font-size: 24px;
-    padding-right: 50px;
-    display: block;
-}
-
-.formProfilePage {
-    /* margin-left: 64px; */
-    /* width: 1083px; */
-    background-color: #CFF3FE;
-}
-
-.formProfile {
-    font-size: 24px;
-    padding: 50px 50px;
-    text-align: center;
-    border-bottom: 1px solid grey; 
-}
-
-.textForm {
-    height: 100px;
-    width: 33.333%;  
-    float: left;    
-}
-
-.inputFormProfile {
-    border: none;
-    width: 400px;
-    height: 40px;
-    background-color: #CFF3FE;
-    padding-right: 100px;
-}
-
-.inputFormProfile::placeholder {
-    font-size: 24px;
-    color: black;
-    font-family: 'Times New Roman';
-    text-align: center;
-}
-
-.btnProfilePage {
-    font-size: 32px;
-    color: #066B8B;
+.btnDelete {
     margin-top: 75px;
     margin-bottom: 115px;
+    width: 310px;
+    height: 70px;
+}
+
+.spanBtnDelete {
+    font-size: 24px;
+    text-align: center;
+    color: #066B8B;
 }
