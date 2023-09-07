@@ -10,7 +10,6 @@ import AppText from "@/Shared/ui/AppText/AppText";
 import AppCard from "@/Shared/ui/AppCard/AppCard";
 import AppLink from "@/Shared/ui/AppLink/AppLink";
 import AppButton from "@/Shared/ui/AppButton/AppButton";
-import VacancyPage from "../VacancyPage/ui/VacancyPage/VacancyPage";
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
@@ -134,7 +133,6 @@ const MainPage = ({ auth, categories, className, vacancies }) => {
                     </div>
                 </div>
             </AppPage>
-            <VacancyPage />
         </MainLayout>
     );
 };
