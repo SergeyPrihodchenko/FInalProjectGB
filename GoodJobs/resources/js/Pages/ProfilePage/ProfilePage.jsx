@@ -3,7 +3,8 @@ import React from 'react';
 import s from './ProfilePage.module.css';
 import { AppPage } from '@/Shared/AppPage/AppPage';
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
-//import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
+import "./ProfilePage.module.css";
+// import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
 import AppButton from '@/Shared/ui/AppButton/AppButton';
 import AppText from '@/Shared/ui/AppText/AppText';
 import { AuthContext } from '@/Shared/store/AuthContext';
@@ -74,7 +75,7 @@ function ProfilePage({ auth }) {
     return (
         //<div className={s.container}>
         <AuthContext.Provider value={{ user }}>
-            <MainLayout>
+            <MainLayout className={"app_light_theme"}>
                 <AppPage>
                     <div className={s.profilePage}>
                         <div className={s.mainProfilePage}>
