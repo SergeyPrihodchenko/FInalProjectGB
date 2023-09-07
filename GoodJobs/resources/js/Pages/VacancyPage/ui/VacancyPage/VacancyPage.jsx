@@ -97,7 +97,11 @@ function VacancyPage({ auth }) {
                             size="s"
                             className={s.date}
                         />
-                        <AppButton width="360px" height="60px" className={s.btn}>
+                        <AppButton
+                            width="360px"
+                            height="60px"
+                            className={s.btn}
+                        >
                             <AppText text="Откликнуться" />
                         </AppButton>
                         {/*<VacancyPageReviews*/}
