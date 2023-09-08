@@ -122,7 +122,7 @@ const MainPage = ({ auth, categories, className, vacancies }) => {
                     </div>
                 </div>
             </AppPage>
-            <VacancyPage />
+            {/* <VacancyPage /> */}
         </MainLayout>
     );
 };

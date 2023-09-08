@@ -19,7 +19,7 @@ class VacancySeeder extends Seeder
     public function getData()
     {
         $data = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $data[] = [
                 'title' => fake('ru_RU')->jobTitle(),
                 'payment' => fake()->numberBetween(1000,12000),

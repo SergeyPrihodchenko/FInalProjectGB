@@ -5,22 +5,50 @@ import AppText from "@/Shared/ui/AppText/AppText";
 import AppLink from "@/Shared/ui/AppLink/AppLink";
 import AppCard from "@/Shared/ui/AppCard/AppCard";
 import AppButton from "@/Shared/ui/AppButton/AppButton";
+import axios from "axios";
 
 const Vacancy = ({ vacancies, title, auth }) => {
+    const [vacancyList, setVacancyList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalCount, setTotalCount] = useState(0);
+    const [fetching, setFetching] = useState(true);
+
+
     const user = auth?.user;
-    console.log(vacancies);
+
+    useEffect(() => {
+        if (fetching) {
+            console.log('fetching');
+            axios.get(`/vacancylist?page=${currentPage}`)
+                .then(response => {
+                    const paginator = response.data,
+                        list = paginator.data;
+                    console.log(paginator);
+                    // if (vacancyList.length < paginator.total) {
+                    setVacancyList([...vacancyList, ...list]);
+                    setCurrentPage(current => current + 1);
+                    setTotalCount(paginator.total);
+                    // }
+                })
+                .finally(() => setFetching(false));
+        }
+    }, [fetching]);
+
     useEffect(() => {
         document.addEventListener('scroll', handleScroll);
-
         return function () {
             document.removeEventListener('scroll', handleScroll);
         }
     }, []);
     const handleScroll = (e) => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 500) {
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 300) {
+            setFetching(true);
             console.log('scroll');
         }
     }
+    console.log('vacancyList:', vacancyList.length);
+    console.log('totalCount:', totalCount);
+
     return (
         <MainLayout user={user} className={'app_light_theme'}>
             <AppPage>
@@ -31,7 +59,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                     className="m-[20px]"
                 />
                 <div className="flex flex-col gap-[20px] mb-[20px]">
-                    {vacancies.data.map(vac =>
+                    {vacancyList.map(vac =>
                         <AppLink
                             path={'vacancy.show'}
                             param={vac.id}
