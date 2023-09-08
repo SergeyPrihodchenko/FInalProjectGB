@@ -1,8 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import s from '../ProfilePage.module.css';
 import { useForm } from '@inertiajs/react';
-import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
-import Modal from '@/Components/Modal';
+import { BtnDelete } from '../ProfileButton/BtnDeleteProfilePage';
 
 function DeleteProfileForm(){
 
