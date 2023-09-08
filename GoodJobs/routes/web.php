@@ -4,6 +4,7 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vacancy\VacancyController;
+use App\Models\Vacancy;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -22,10 +23,15 @@ Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('ca
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
+
+// пагинация
+Route::get('/vacancylist', function () {
+    return Vacancy::paginate(20);
+});

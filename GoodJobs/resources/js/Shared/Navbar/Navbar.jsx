@@ -65,8 +65,7 @@ export const Navbar = ({ user }) => {
                         </>
 
                         }
-
-                        <Link href={route('company')} >Компания</Link>
+                        <Link href={route('company')} className={cn(s.navLink, ["font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"])} >Компания</Link>
                         {/* <Link href={route('login')} className={s.navLink}>Войти</Link> */}
                     </ul>
 
