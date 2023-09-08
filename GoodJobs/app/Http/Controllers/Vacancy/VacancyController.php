@@ -21,22 +21,20 @@ class VacancyController
 
     public function show(Vacancy $vacancy):\Inertia\Response
     {
-
-
-        return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->name,
+        return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
+            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }
 
-    public function store(Vacancy $vacancy, StoreRequest $request)
+    public function store(StoreRequest $request)
     {
         $data = $request->validated();
 
         $vacancy = Vacancy::create($data);
 
         return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->name,
+            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }
@@ -48,7 +46,7 @@ class VacancyController
         $vacancy->update($data);
 
         return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->name,
+            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }

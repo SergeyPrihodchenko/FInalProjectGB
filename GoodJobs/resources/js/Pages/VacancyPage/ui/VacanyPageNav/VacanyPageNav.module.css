@@ -1,0 +1,16 @@
+.vacancyPageNav {
+    width: 100%;
+    background-color: var(--accent);
+}
+.conatiner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navLinkList {
+    display: flex;
+    justify-content: space-between;
+}
+.navItem {
+    padding: 20px;
+}

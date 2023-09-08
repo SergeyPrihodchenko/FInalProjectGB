@@ -12,6 +12,8 @@
 
 .mainLayout>header {
     grid-area: header;
+    background-color: var(--header-color);
+
 }
 
 .mainLayout>main {
