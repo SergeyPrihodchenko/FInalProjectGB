@@ -16,7 +16,7 @@ class VacancySeeder extends Seeder
         DB::table('vacancies')->insert($this->getData());
     }
 
-    public function getData()
+    public function getData(): array
     {
         $data = [];
         for ($i = 0; $i < 10; $i++) {
