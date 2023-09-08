@@ -19,7 +19,7 @@ export default function VacancyPageList(props) {
             )}
             {vacancyList && (
                 <div className={s.vacancyList}>
-                    {vacancyList.map((vacancyItem, index) => {
+                    {vacancyList?.map((vacancyItem, index) => {
                         return (
                             <div className={s.vacancyItem} key={index}>
                                 <AppText title={vacancyItem.title} bold />
