@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import s from "./VacancyPageList.module.css";
 import cn from "classnames";
 import AppText from "@/Shared/ui/AppText/AppText";
-import VacancyPageCard from "../VacancyPageCard/VacancyPageCard";
+import AppCard from "@/Shared/ui/AppCard/AppCard";
+import AppLink from "@/Shared/ui/AppLink/AppLink";
 
 export default function VacancyPageList(props) {
     const { vacancyPageList, className } = props;
     const { vacancyList, description, skills, contacts } = vacancyPageList;
 
-   
     return (
         <div className={cn(s.vacancyPageList, className)}>
             {vacancyPageList.description && (
@@ -19,7 +19,7 @@ export default function VacancyPageList(props) {
             )}
             {vacancyList && (
                 <div className={s.vacancyList}>
-                    {vacancyList.map((vacancyItem, index) => {
+                    {vacancyList?.map((vacancyItem, index) => {
                         return (
                             <div className={s.vacancyItem} key={index}>
                                 <AppText title={vacancyItem.title} bold />
@@ -45,9 +45,15 @@ export default function VacancyPageList(props) {
                     <AppText title={skills?.title} bold />
                     {skills?.skillsList.map((skill, index) => {
                         return (
-                            <VacancyPageCard key={index}>
+                            <AppCard
+                                variant="secondary"
+                                width={"fit-content"}
+                                borderRadiusSmall
+                                className={s.skill}
+                                key={index}
+                            >
                                 {skill}
-                            </VacancyPageCard>
+                            </AppCard>
                         );
                     })}
                 </div>

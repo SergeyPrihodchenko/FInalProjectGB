@@ -4,7 +4,7 @@ import AppText from "@/Shared/ui/AppText/AppText";
 import s from "./VacancyPageReviews.module.css";
 import cn from "classnames";
 function VacancyPageReviews(props) {
-    const { className, VacanyPageList } = props;
+    const { className } = props;
     return (
         <div className={cn(s.vacancyPageReviews, className)}>
             <hr className={s.hr} />

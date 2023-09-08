@@ -47,8 +47,6 @@ const Vacancy = ({ vacancy }) => {
                 </div>
 
             </AppPage>
-
-
         </MainLayout>
 
     )

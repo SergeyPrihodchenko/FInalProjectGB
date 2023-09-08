@@ -44,7 +44,6 @@ class VacancyTest extends TestCase
                 )
             );
     }
-
     public function test_can_create_a_new_vacancy()
     {
         $this->post(route('vacancy.store', [

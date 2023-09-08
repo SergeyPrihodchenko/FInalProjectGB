@@ -30,6 +30,6 @@
         "@mui/icons-material": "^5.14.8",
         "@mui/material": "^5.14.8",
         "2gis-maps": "^3.7.3",
-        "esbuild": "^0.19.2"
+        "moment": "^2.29.4"
     }
 }
