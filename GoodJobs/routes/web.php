@@ -14,7 +14,7 @@ use Inertia\Inertia;
 Route::get('/', [MainController::class, 'index'])->name('main');
 Route::get('/category/search', [MainController::class, 'searchSort'])->name('category.sort');
 
-Route::get('/company', function () {
+Route::get('/testPageCompany', function () {
     return Inertia::render('CompanyPage/CompanyPage');
 })->name('company');
 
@@ -34,5 +34,5 @@ require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
 
-//Route::resource('company', CompanyController::class);
+Route::resource('company', CompanyController::class);
 

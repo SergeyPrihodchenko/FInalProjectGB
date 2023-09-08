@@ -1,5 +1,4 @@
 import MainLayout from "@/Layouts/MainLayout/MainLayout";
-import { AppCard } from "@/Shared/AppCard/AppCard";
 import { AppPage } from "@/Shared/AppPage/AppPage";
 import { Typography } from "@/Shared/Typography/Typography";
 import React, { useState } from "react";
@@ -11,7 +10,6 @@ const Company = ({ companies }) => {
         <MainLayout>
             <AppPage>
                 <Typography variant={'h2'}>Компании</Typography>
-
             </AppPage>
         </MainLayout>
     )

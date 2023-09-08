@@ -16,6 +16,7 @@ class CompanyController extends Controller
     {
         $companies = Company::all();
         //dd($companies);
+
         return Inertia::render('Company/Index', [
             'companies'=>$companies
         ]);
