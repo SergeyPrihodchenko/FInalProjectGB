@@ -49,7 +49,7 @@ const arrayNav = ["Личные данные", "Нежелательное", "И
 function ProfilePage({ auth }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, post, processing } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         name: user.name,
         email: user.email,
         phone: user.phone,
@@ -127,6 +127,7 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
+
                                 </div>
                             </form>
 
@@ -152,6 +153,7 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
+
                                 </div>
                             </form>
 
@@ -178,6 +180,7 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
+
                                 </div>
                             </form>
 
@@ -203,6 +206,7 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
+
                                 </div>
                             </form>
 
@@ -234,6 +238,7 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
+
                                 </div>
                             </form>
 

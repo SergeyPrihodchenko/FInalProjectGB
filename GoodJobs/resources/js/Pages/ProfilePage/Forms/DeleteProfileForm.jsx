@@ -12,6 +12,7 @@ function DeleteProfileForm() {
         delete: destroy,
     } = useForm({
         password: "",
+
     });
 
     const destroyProfile = (e) => {
@@ -25,6 +26,7 @@ function DeleteProfileForm() {
             <p className={s.textTitle}>Удалить аккаунт</p>
 
             <form onSubmit={destroyProfile} className={s.formProfile}>
+
                 <lable for="name" className={s.textForm}>
                     Пароль:
                 </lable>
@@ -38,6 +40,7 @@ function DeleteProfileForm() {
                     onChange={(e) => setData("password", e.target.value)}
                 />
                 <BtnDelete type="submit" />
+
             </form>
         </>
     );
