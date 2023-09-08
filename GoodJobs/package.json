@@ -25,10 +25,11 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "2gis-maps": "^3.7.3",
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.14.8",
-        "@mui/material": "^5.14.8"
+        "@mui/material": "^5.14.8",
+        "2gis-maps": "^3.7.3",
+        "esbuild": "^0.19.2"
     }
 }

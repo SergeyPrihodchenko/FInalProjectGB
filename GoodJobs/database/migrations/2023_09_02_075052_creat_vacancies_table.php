@@ -16,7 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->string('payment', 100);
-            $table->string('experience', 250);
+            $table->text('description')->nullable();
+            $table->string('contacts')->nullable();
+            $table->string('experience', 250)->default('');
             $table->timestamps();
         });
     }

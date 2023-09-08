@@ -10,7 +10,6 @@ class VacancyController
 {
     public function index():\Inertia\Response
     {
-
         $vacancies = Vacancy::all();
 
         return Inertia::render('Vacancy/Index', [
@@ -25,6 +24,11 @@ class VacancyController
             'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
+    }
+
+    public function create():\Inertia\Response
+    {
+        return Inertia::render('Vacancy/CreateVacancy');
     }
 
     public function store(StoreRequest $request)
@@ -51,11 +55,10 @@ class VacancyController
         ]);
     }
 
-    public function delete(Vacancy $vacancy)
+    public function destroy(Vacancy $vacancy)
     {
         $vacancy->delete();
 
         return response('', 204);
     }
-
 }

@@ -15,8 +15,10 @@ class Vacancy extends Model
 
     protected $fillable = [
         'title',
+        'description',
         'payment',
         'experience',
+        'contacts'
     ];
 
     public function categories(): belongsToMany
