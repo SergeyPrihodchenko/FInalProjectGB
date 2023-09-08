@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Category\CategoryController;
-use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vacancy\VacancyController;
@@ -29,5 +28,3 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
-
-Route::resource('company', CompanyController::class);
