@@ -34,5 +34,5 @@ require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
 
-Route::resource('company', CompanyController::class);
+//Route::resource('company', CompanyController::class);
 
