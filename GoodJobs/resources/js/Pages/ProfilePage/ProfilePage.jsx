@@ -57,7 +57,7 @@ function ProfilePage({ auth }) {
 
     const user = usePage().props.auth.user;
 
-    const { data, setData, post, processing } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         name: user.name,
         email: user.email,
         phone: user.phone,
@@ -124,6 +124,7 @@ function ProfilePage({ auth }) {
                                         onChange={(e) => setData('name', e.target.value)}
                                     />
                                     <input className={s.btnFormProfile} type="submit" value="Изменить" />
+                                    <div style={{color: "red"}}>{errors.name}</div>
                                 </div>
                             </form>
 
@@ -138,6 +139,7 @@ function ProfilePage({ auth }) {
                                         onChange={(e) => setData('email', e.target.value)}
                                     />
                                     <input className={s.btnFormProfile} type="submit" value="Изменить" />
+                                    <div style={{color: "red"}}>{errors.email}</div>
                                 </div>
                             </form>
 
@@ -152,6 +154,7 @@ function ProfilePage({ auth }) {
                                         onChange={(e) => setData('phone', e.target.value)}
                                     />
                                     <input className={s.btnFormProfile} disabled={processing} type="submit" value="Изменить" />
+                                    <div style={{color: "red"}}>{errors.phone}</div>
                                 </div>
                             </form>
 
@@ -166,6 +169,7 @@ function ProfilePage({ auth }) {
                                         onChange={(e) => setData('address', e.target.value)}
                                     />
                                     <input className={s.btnFormProfile} type="submit" value="Изменить" />
+                                    <div style={{color: "red"}}>{errors.address}</div>
                                 </div>
                             </form>
 
@@ -180,6 +184,7 @@ function ProfilePage({ auth }) {
                                         onChange={(e) => setData('social_media', e.target.value)}
                                     />
                                     <input className={s.btnFormProfile} type="submit" value="Изменить" />
+                                    <div style={{color: "red"}}>{errors.social_media}</div>
                                 </div>
                             </form>
 
