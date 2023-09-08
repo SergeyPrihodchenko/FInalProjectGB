@@ -7,7 +7,7 @@ function DeleteProfileForm(){
 
     const passwordInput = useRef();
 
-    const {data, setData, delete: destroy} = useForm({
+    const {data, setData, delete: destroy, errors} = useForm({
         password: ''
     });
 
@@ -32,6 +32,7 @@ function DeleteProfileForm(){
                         placeholder='Пароль'
                         onChange={(e) => setData('password', e.target.value)} 
                     />
+                    <div style={{color: "red"}}>{errors.password}</div>
                     <BtnDelete type='submit' />
             </form>
         </>

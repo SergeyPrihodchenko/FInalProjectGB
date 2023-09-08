@@ -7,7 +7,7 @@ function UpdatePasswordForm(){
     const passwordInput = useRef();
     const currentPasswordInput = useRef();
 
-    const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
+    const { data, setData, errors, put, reset } = useForm({
         current_password: '',
         password: '',
         password_confirmation: '',
@@ -50,6 +50,7 @@ function UpdatePasswordForm(){
                         placeholder='текущий пароль' 
                         onChange={(e) => setData('current_password', e.target.value)}
                     />
+                    <div style={{color: "red"}}>{errors.current_password}</div>
                 </div>
                 <div className={s.formProfile}>
                     <lable for="name" className={s.textForm}>Новый пароль:</lable>
@@ -62,6 +63,7 @@ function UpdatePasswordForm(){
                         placeholder='новый пароль'
                         onChange={(e) => setData('password', e.target.value)} 
                     />
+                    <div style={{color: "red"}}>{errors.password}</div>
                 </div>
                 <div className={s.formProfile}>
                     <lable for="name" className={s.textForm}>Подтвердить пароль:</lable>
@@ -73,6 +75,7 @@ function UpdatePasswordForm(){
                         placeholder='Подтверждение пароля'
                         onChange={(e) => setData('password_confirmation', e.target.value)} 
                     />
+                    <div style={{color: "red"}}>{errors.password_confirmation}</div>
                     <input className={s.btnFormProfile} type="submit" value="Изменить" />
                 </div>
             </form>
