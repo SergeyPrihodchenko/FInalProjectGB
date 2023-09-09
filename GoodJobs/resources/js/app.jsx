@@ -5,7 +5,7 @@ import "./1App/styles/index.css";
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
-import MainLayout from "./4Layouts/MainLayout/MainLayout";
+import MainLayout from "./5Layouts/MainLayout/MainLayout";
 import { AuthContext } from "./8Shared/store/AuthContext";
 import { useEffect } from "react";
 import { AuthProvider } from "./1App/providers/AuthProvider/AuthProvider";
@@ -15,8 +15,8 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) =>
         resolvePageComponent(
-            `./Pages/${name}.jsx`,
-            import.meta.glob("./Pages/**/*.jsx")
+            `./3Pages/${name}.jsx`,
+            import.meta.glob("./3Pages/**/*.jsx")
         ),
 
     setup({ el, App, props }) {

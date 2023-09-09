@@ -1,0 +1,15 @@
+.toolbar {
+    background-color: #eee;
+}
+
+.toolbarGroup {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+}
+
+.toolbarink {
+    display: block;
+    padding: 10px 0;
+}
