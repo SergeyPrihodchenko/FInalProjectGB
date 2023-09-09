@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import MainLayout from "@/Layouts/MainLayout/MainLayout.jsx";
-import AppButton from "@/Shared/ui/AppButton/AppButton";
+import MainLayout from "@/4Layouts/MainLayout/MainLayout.jsx";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import s from "./CompanyPage.module.css";
 import cn from "classnames";
 import { Head } from "@inertiajs/react";
 import { Rating, Tooltip } from "@mui/material";
 import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineSharp";
-import { Typography } from "@/Shared/Typography/Typography.jsx";
+import { Typography } from "@/8Shared/Typography/Typography.jsx";
 import CompanyPageReviewItem from "@/Pages/CompanyPage/CompanyPageReviewItem.jsx";
 import CompanyPageEmployeeReviewItem from "@/Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
 

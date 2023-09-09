@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import s from "./VacancyPageAdress.module.css";
-import AppButton from "@/Shared/ui/AppButton/AppButton";
-import AppText from "@/Shared/ui/AppText/AppText";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppText from "@/8Shared/ui/AppText/AppText";
 import cn from "classnames";
 import Map from "./Map";
 
@@ -17,7 +17,6 @@ function VacancyPageAdress(props) {
 
     const [zoom, setZoom] = useState(17);
     const onZoomChange = (e) => setZoom(e.target.value);
-  
 
     const options = useMemo(
         () => ({

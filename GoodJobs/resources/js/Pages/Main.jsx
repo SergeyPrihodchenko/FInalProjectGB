@@ -1,18 +1,17 @@
 import MainPage from "./MainPage/MainPage";
-import "../App/styles/index.css";
+import "../1App/styles/index.css";
 import cn from "classnames";
+import MainLayout from "@/4Layouts/MainLayout/MainLayout";
 
 export default function Main({ auth, categories, vacancies, className }) {
+    const user = auth?.user;
     return (
-        <>
-            <MainPage
-                categories={categories}
-                auth={auth}
-                className={cn(className)}
-                vacancies={vacancies}
-            />
-        </>
-
+        <MainPage
+            categories={categories}
+            auth={auth}
+            className={cn(className)}
+            vacancies={vacancies}
+        />
 
         /* {auth.user ? (
             <Link
