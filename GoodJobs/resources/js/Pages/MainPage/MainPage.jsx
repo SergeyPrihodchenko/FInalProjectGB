@@ -1,15 +1,15 @@
 import s from "./MainPage.module.css";
 import { fakerRU as faker } from "@faker-js/faker";
 import propTypes from "prop-types";
-import MainLayout from "@/Layouts/MainLayout/MainLayout";
-import { AppPage } from "@/Shared/AppPage/AppPage";
-import { Banner } from "@/Shared/Banner/Banner";
-import { Search } from "@/Shared/Search/Search";
+import MainLayout from "@/4Layouts/MainLayout/MainLayout";
+import { AppPage } from "@/8Shared/AppPage/AppPage";
+import { Banner } from "@/8Shared/Banner/Banner";
+import { Search } from "@/8Shared/Search/Search";
 import { Head } from "@inertiajs/react";
-import AppText from "@/Shared/ui/AppText/AppText";
-import AppCard from "@/Shared/ui/AppCard/AppCard";
-import AppLink from "@/Shared/ui/AppLink/AppLink";
-import AppButton from "@/Shared/ui/AppButton/AppButton";
+import AppText from "@/8Shared/ui/AppText/AppText";
+import AppCard from "@/8Shared/ui/AppCard/AppCard";
+import AppLink from "@/8Shared/ui/AppLink/AppLink";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 const cardsInfo = [...Array(12)].map(() => {
     return {

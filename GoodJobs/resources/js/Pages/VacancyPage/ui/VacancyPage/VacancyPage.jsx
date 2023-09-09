@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { AppPage } from "@/Shared/AppPage/AppPage";
+import { AppPage } from "@/8Shared/AppPage/AppPage";
 import s from "./VacancyPage.module.css";
-import AppText from "@/Shared/ui/AppText/AppText";
+import AppText from "@/8Shared/ui/AppText/AppText";
 import VacanyNav from "../VacanyPageNav/VacanyPageNav";
 import VacancyPageCards from "../VacancyPageCards/VacancyPageCards";
 import VacancyPageList from "../VacancyPageList/VacancyPageList";
 import VacancyPageAdress from "../VacancyPageAdress/VacancyPageAdress";
-import AppButton from "@/Shared/ui/AppButton/AppButton";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 import data from "../../data.json";
-import MainLayout from "@/Layouts/MainLayout/MainLayout.jsx";
-import Vacancy from "@/Pages/Vacancy/Index.jsx";
+import MainLayout from "@/4Layouts/MainLayout/MainLayout.jsx";
 import { Head } from "@inertiajs/react";
 import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
 
@@ -22,7 +21,7 @@ function VacancyPage({ auth }) {
         <title>Вакансия</title>
     </Head>;
     return (
-        <MainLayout user={user} className={"app_light_theme"}>
+        <>
             <div className={s.vacancyPage}>
                 {/* {Object.entries(AppRoutesByPathPattern).forEach(
                         ([patter, route]) => {
@@ -54,13 +53,11 @@ function VacancyPage({ auth }) {
                         >
                             <AppText text="Откликнуться" />
                         </AppButton>
-                        <VacancyPageReviews
-                         className={s.reviews}
-                       />
+                        <VacancyPageReviews className={s.reviews} />
                     </div>
                 </AppPage>
             </div>
-        </MainLayout>
+        </>
     );
 }
 

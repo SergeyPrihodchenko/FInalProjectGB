@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import s from "./VacancyPageCards.module.css";
 import cn from "classnames";
-import AppText from "@/Shared/ui/AppText/AppText";
-import AppButton from "@/Shared/ui/AppButton/AppButton";
-import AppCard from "@/Shared/ui/AppCard/AppCard";
-import AppLink from "@/Shared/ui/AppLink/AppLink";
+import AppText from "@/8Shared/ui/AppText/AppText";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppCard from "@/8Shared/ui/AppCard/AppCard";
+import AppLink from "@/8Shared/ui/AppLink/AppLink";
 function VacancyPageCards(props) {
     const { children, className } = props;
     return (

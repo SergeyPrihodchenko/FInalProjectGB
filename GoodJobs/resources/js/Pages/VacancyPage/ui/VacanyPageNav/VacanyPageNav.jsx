@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AppButton from "@/Shared/ui/AppButton/AppButton";
-import AppText from "@/Shared/ui/AppText/AppText";
-import { AppPage } from "@/Shared/AppPage/AppPage";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppText from "@/8Shared/ui/AppText/AppText";
+import { AppPage } from "@/8Shared/AppPage/AppPage";
 import s from "./VacanyPageNav.module.css";
 const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacanyPageNav(props) {

@@ -1,18 +1,19 @@
-import MainLayout from "@/Layouts/MainLayout/MainLayout";
-import { AppPage } from "@/Shared/AppPage/AppPage";
-import { Typography } from "@/Shared/Typography/Typography";
+import MainLayout from "@/4Layouts/MainLayout/MainLayout";
+import { AppPage } from "@/8Shared/AppPage/AppPage";
+import { Typography } from "@/8Shared/Typography/Typography";
 import React, { useState } from "react";
 
-const Company = ({ companies }) => {
+const Company = ({ companies, auth }) => {
+    const user = auth?.user;
 
-    console.log(companies)
+    console.log(companies);
     return (
-        <MainLayout>
+        <MainLayout className={"app_light_theme"} user={user}>
             <AppPage>
-                <Typography variant={'h2'}>Компании</Typography>
+                <Typography variant={"h2"}>Компании</Typography>
             </AppPage>
         </MainLayout>
-    )
-}
+    );
+};
 
 export default Company;

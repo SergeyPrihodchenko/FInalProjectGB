@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AppText from "@/Shared/ui/AppText/AppText";
+import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./VacancyPageReviews.module.css";
 import cn from "classnames";
 function VacancyPageReviews(props) {

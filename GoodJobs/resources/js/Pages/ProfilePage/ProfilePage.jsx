@@ -1,13 +1,13 @@
 import React from "react";
 //import PropTypes from 'prop-types'
 import s from "./ProfilePage.module.css";
-import { AppPage } from "@/Shared/AppPage/AppPage";
-import MainLayout from "@/Layouts/MainLayout/MainLayout";
+import { AppPage } from "@/8Shared/AppPage/AppPage";
+import MainLayout from "@/4Layouts/MainLayout/MainLayout";
 import "./ProfilePage.module.css";
-// import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
-import AppButton from "@/Shared/ui/AppButton/AppButton";
-import AppText from "@/Shared/ui/AppText/AppText";
-import { AuthContext } from "@/Shared/store/AuthContext";
+// import { BtnDelete } from '@/8Shared/ProfileButton/BtnDeleteProfilePage';
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppText from "@/8Shared/ui/AppText/AppText";
+import { AuthContext } from "@/8Shared/store/AuthContext";
 import { usePage, useForm } from "@inertiajs/react";
 import UpdatePasswordForm from "./Forms/UpdatePasswordForm";
 import DeleteProfileForm from "./Forms/DeleteProfileForm";
@@ -66,7 +66,7 @@ function ProfilePage({ auth }) {
     return (
         //<div className={s.container}>
         <AuthContext.Provider value={{ user }}>
-            <MainLayout className={"app_light_theme"}>
+            <MainLayout className={"app_light_theme"} user={user}>
                 <AppPage>
                     <div className={s.profilePage}>
                         <div className={s.mainProfilePage}>
@@ -127,7 +127,6 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
-
                                 </div>
                             </form>
 
@@ -153,7 +152,6 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
-
                                 </div>
                             </form>
 
@@ -180,7 +178,6 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
-
                                 </div>
                             </form>
 
@@ -206,7 +203,6 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
-
                                 </div>
                             </form>
 
@@ -238,7 +234,6 @@ function ProfilePage({ auth }) {
                                         type="submit"
                                         value="Изменить"
                                     />
-
                                 </div>
                             </form>
 
@@ -260,7 +255,7 @@ function ProfilePage({ auth }) {
             console.log(el);
             return (
                 //<div className={s.container}>
-                <MainLayout>
+                <MainLayout className={"app_light_theme"} user={user}>
                     <AppPage>
                         <div className={s.profilePage}>
                             <div className={s.mainProfilePage}>

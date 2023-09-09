@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import s from "./VacancyPageList.module.css";
 import cn from "classnames";
-import AppText from "@/Shared/ui/AppText/AppText";
-import AppCard from "@/Shared/ui/AppCard/AppCard";
-import AppLink from "@/Shared/ui/AppLink/AppLink";
+import AppText from "@/8Shared/ui/AppText/AppText";
+import AppCard from "@/8Shared/ui/AppCard/AppCard";
+import AppLink from "@/8Shared/ui/AppLink/AppLink";
 
 export default function VacancyPageList(props) {
     const { vacancyPageList, className } = props;
