@@ -7,8 +7,8 @@ import { Head } from "@inertiajs/react";
 import { Rating, Tooltip } from "@mui/material";
 import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineSharp";
 import { Typography } from "@/8Shared/Typography/Typography.jsx";
-import CompanyPageReviewItem from "@/Pages/CompanyPage/CompanyPageReviewItem.jsx";
-import CompanyPageEmployeeReviewItem from "@/Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
+import CompanyPageReviewItem from "@/3Pages/CompanyPage/CompanyPageReviewItem.jsx";
+import CompanyPageEmployeeReviewItem from "@/3Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
 
 function CompanyPage({ auth }) {
     const user = auth?.user;

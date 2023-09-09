@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "@/Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
 import {Rating} from "@mui/material";
 import moment from "moment";
 import PropTypes from "prop-types";
