@@ -17,10 +17,14 @@ export const Search = ({ placeholder, vacancies }) => {
         setValue(query);
         if (query.length > 0) {
             const filterSuggestions = vacancies.filter(
-                (suggestion) => { return (suggestion.title.toLowerCase().indexOf(query) > -1 && suggestion.title.toLowerCase().startsWith(query[0])) }
+                (suggestion) => {
+                    return (suggestion.title.toLowerCase().indexOf(query) > -1 && suggestion.title.toLowerCase().startsWith(query[0])
+                    )
+                }
             );
             setSuggestions(filterSuggestions);
             setSuggestionsActive(true);
+            console.log(value);
         } else {
             setSuggestionsActive(false);
         }

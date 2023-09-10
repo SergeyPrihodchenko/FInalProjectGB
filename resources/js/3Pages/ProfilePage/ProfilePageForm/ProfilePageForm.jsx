@@ -1,7 +1,7 @@
 import React from "react";
 //import PropTypes from 'prop-types'
 import s from "../ProfilePageForm/ProfilePageForm.module.css";
-import { AppPage } from "@/8Shared/AppPage/AppPage";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import AppText from "@/8Shared/ui/AppText/AppText";
 

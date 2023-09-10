@@ -21,8 +21,15 @@ return new class extends Migration
             $table->timestamps();
             $table->enum('employment', EmploymentType::all());
             $table->index('employment');
-            //$table->unsignedBigInteger('company_id');
-            //$table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
+            $table->unsignedBigInteger('company_id');
+
+            // Создание внешнего ключа
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->index('company_id');
         });
     }
 
@@ -31,9 +38,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('companies');
+
 //        Schema::table('vacancies', function($table)
 //        {
-//            $table->dropForeign('company_id');
+//            $table->dropForeign(['company_id']);
+//            $table->dropColumn('company_id');
 //        });
         Schema::dropIfExists('vacancies');
     }

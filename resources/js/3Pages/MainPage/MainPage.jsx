@@ -2,7 +2,7 @@ import s from "./MainPage.module.css";
 import { fakerRU as faker } from "@faker-js/faker";
 import propTypes from "prop-types";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
-import { AppPage } from "@/8Shared/AppPage/AppPage";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { Banner } from "@/8Shared/Banner/Banner";
 import { Search } from "@/8Shared/Search/Search";
 import { Head } from "@inertiajs/react";
@@ -23,19 +23,6 @@ const cardsInfo = [...Array(12)].map(() => {
         borderRight: `5px solid ${faker.color.rgb({ casing: "lower" })}`,
     };
 });
-
-// const cardsInfo = [...Array(12)].map(() => {
-//     return {
-//         id: faker.string.nanoid(10),
-//         title: faker.person.jobType(),
-//         salary: `${faker.finance.amount({
-//             min: 30000,
-//             max: 100000,
-//             dec: 0,
-//         })} руб`,
-//         borderRight: `5px solid ${faker.color.rgb({ casing: "lower" })}`,
-//     };
-// });
 
 const MainPage = ({ auth, categories, className, vacancies }) => {
     const user = auth?.user;

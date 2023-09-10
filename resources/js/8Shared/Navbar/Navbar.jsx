@@ -1,4 +1,4 @@
-import { AppPage } from "../AppPage/AppPage";
+import { AppPage } from "../../5Layouts/AppPage/AppPage";
 import { Link } from "@inertiajs/react";
 import s from "./Navbar.module.css";
 import PropTypes from "prop-types";
