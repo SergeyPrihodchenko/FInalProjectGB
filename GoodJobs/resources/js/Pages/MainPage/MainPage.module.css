@@ -1,6 +1,33 @@
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    font-size: 16px;
+.bannerTitle {
+    margin-bottom: 15px;
+}
+
+.vacancyList,
+.catList {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.cardPadding {
+    padding: 20px;
+}
+
+.catTitle,
+.vacTitle {
+    margin: 20px 0;
+}
+
+.vacancyCard {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.vacancyBtn {
+    margin-top: auto;
+    padding: 0 12px;
+    color: #222;
 }

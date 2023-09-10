@@ -1,14 +1,16 @@
-import styles from './MainPage.module.css';
-import { fakerRU as faker } from '@faker-js/faker';
-import { AppList } from '@/Shared/AppList/AppList';
-import propTypes from 'prop-types';
-import MainLayout from '@/Layouts/MainLayout/MainLayout';
-import { AppPage } from '@/Shared/AppPage/AppPage';
-import { AuthContext } from '@/Shared/store/AuthContext';
-import { Banner } from '@/Shared/Banner/Banner';
-import { Typography } from '@/Shared/Typography/Typography';
-import { Search } from '@/Shared/Search/Search';
-import DataJson from './Data';
+import s from "./MainPage.module.css";
+import { fakerRU as faker } from "@faker-js/faker";
+import propTypes from "prop-types";
+import MainLayout from "@/Layouts/MainLayout/MainLayout";
+import { AppPage } from "@/Shared/AppPage/AppPage";
+import { Banner } from "@/Shared/Banner/Banner";
+import { Search } from "@/Shared/Search/Search";
+import { Head } from "@inertiajs/react";
+import AppText from "@/Shared/ui/AppText/AppText";
+import AppCard from "@/Shared/ui/AppCard/AppCard";
+import AppLink from "@/Shared/ui/AppLink/AppLink";
+import AppButton from "@/Shared/ui/AppButton/AppButton";
+import VacancyPage from "../VacancyPage/ui/VacancyPage/VacancyPage";
 
 const cardsInfo = [...Array(12)].map(() => {
     return {
@@ -24,30 +26,106 @@ const cardsInfo = [...Array(12)].map(() => {
 });
 
 
-
-export const MainPage = ({ auth, categories, className }) => {
+const MainPage = ({ auth, categories, className, vacancies }) => {
     const user = auth?.user;
-    console.log(user);
     return (
-        <AuthContext.Provider value={{ user }}>
-            <MainLayout className={className}>
-                <Banner imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}>
-                    <AppPage>
-                        <Typography className={'mb-6'} variant={'h1'} color={'title'}>Работа найдется для каждого</Typography>
-                        <Search placeholder={'Профессия, должность компания'} data={DataJson} />
-                    </AppPage>
-                </Banner>
+        <MainLayout className={"app_light_theme"} user={user}>
+            <Head title="Home" />
+            <Banner
+                imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}
+            >
                 <AppPage>
-                    <AppList list={categories} />
-                    <AppList list={categories} />
+                    <AppText
+                        bold
+                        title={"Работа найдется для каждого"}
+                        size="xl"
+                        variant="secondary"
+                        className={s.bannerTitle}
+                    />
+                    <Search
+                        placeholder={"Профессия, должность, компания"}
+                        vacancies={vacancies}
+                    />
                 </AppPage>
-            </MainLayout>
-        </AuthContext.Provider>
+            </Banner>
+            <AppPage>
+                <div className="categoryContainer">
+                    <AppText
+                        bold
+                        title={"Категории"}
+                        size={"l"}
+                        className={s.catTitle}
+                    />
+                    <div className={s.catList}>
+                        {categories.map((cat) => (
+                            <AppLink
+                                path={"category.show"}
+                                param={cat}
+                                key={cat.id}
+                            >
+                                <AppCard
+                                    variant="primary"
+                                    width={"300px"}
+                                    height={"200px"}
+                                    shadow
+                                    borderRadius
+                                    borderLeft
+                                    className={s.cardPadding}
+                                >
+                                    <AppText title={cat.title} size="m" />
+                                </AppCard>
+                            </AppLink>
+                        ))}
+                    </div>
+                </div>
 
-
-
-
+                <div className="vacancyContainer mb-[20px]">
+                    <AppText
+                        bold
+                        title={"Вакансии"}
+                        size={"l"}
+                        className={s.vacTitle}
+                    />
+                    <div className={s.vacancyList}>
+                        {vacancies.map((vac) => (
+                            <AppLink
+                                path={"vacancy.show"}
+                                param={vac.id}
+                                key={vac.id}
+                            >
+                                <AppCard
+                                    width={"300px"}
+                                    height={"200px"}
+                                    variant="primary"
+                                    shadow
+                                    borderLeft
+                                    borderRadius
+                                    className={s.vacancyCard}
+                                >
+                                    <AppText title={vac.title} />
+                                    <AppText text={`от ${vac.payment} руб.`} />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Опыт работы от ${vac.experience} лет`}
+                                    />
+                                    <AppButton
+                                        className={s.vacancyBtn}
+                                        width="auto"
+                                        height="32px"
+                                    >
+                                        Откликнуться
+                                    </AppButton>
+                                </AppCard>
+                            </AppLink>
+                        ))}
+                    </div>
+                </div>
+            </AppPage>
+            {/* <VacancyPage /> */}
+        </MainLayout>
     );
 };
 
 MainPage.propTypes = {};
+export default MainPage;

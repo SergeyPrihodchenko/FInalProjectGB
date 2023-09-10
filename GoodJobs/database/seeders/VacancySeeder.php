@@ -20,12 +20,15 @@ class VacancySeeder extends Seeder
     public function getData(): array
     {
         $data = [];
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $data[] = [
+
                 'title' => fake()->jobTitle(),
                 'payment' => fake()->numberBetween(0,1200),
                 'experience' => fake()->numberBetween(0,100),
                 'company_id' => Company::create(['name'=>fake()->company])->id,
+
+                
 
             ];
         }

@@ -1,18 +1,20 @@
-.vacancyPage {
+/* .vacancyPage {
+} */
+.cards {
+    margin-top: 100px;
 }
-.nav {
-    width: 100%;
-    background-color: var(--accent-80);
+.list {
+    margin-top: 40px;
 }
-.conatiner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.adress {
+    margin-top: 60px;
 }
-.navLinkList {
-    display: flex;
-    justify-content: space-between;
+.date {
+    margin-top: 40px;
 }
-.navItem {
-    padding: 20px;
+.btn {
+    margin-top: 40px;
+}
+.reviews {
+    margin-top: 100px;
 }

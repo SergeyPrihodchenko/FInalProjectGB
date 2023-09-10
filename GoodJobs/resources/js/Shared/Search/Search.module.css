@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.searchBtn {
+    color: var(--secondary-text)
+}
+
 
 .searchResults {
     background-color: #ececec;
@@ -15,4 +19,23 @@
 
 .searchResultsItem {
     padding: 10px 8px;
+}
+
+.active {
+    background: var(--accent);
+    border-radius: inherit;
+}
+
+.suggestions {
+    position: absolute;
+    top: 44px;
+    width: 635px;
+    border-radius: 8px;
+
+    background-color: #f2f2f2;
+
+}
+
+.suggestionItem {
+    padding: 10px;
 }
