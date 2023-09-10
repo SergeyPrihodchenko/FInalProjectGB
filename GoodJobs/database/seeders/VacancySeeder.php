@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Company;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,7 @@ class VacancySeeder extends Seeder
                 'title' => fake()->jobTitle(),
                 'payment' => fake()->numberBetween(0,1200),
                 'experience' => fake()->numberBetween(0,100),
+                'company_id' => Company::create(['name'=>fake()->company])->id,
 
             ];
         }
