@@ -11,14 +11,16 @@ class VacancyController
     public function index():\Inertia\Response
     {
         $vacancies = Vacancy::all();
+        //VacancyPage/ui/VacancyPageList/VacancyPageList
 
-        return Inertia::render('VacancyPage/ui/VacancyPageList/VacancyPageList', [
+        return Inertia::render('Vacancy/Index', [
             'vacancies' => $vacancies
         ]);
     }
 
     public function show(Vacancy $vacancy):\Inertia\Response
     {
+        //VacancyPage/ui/VacancyPage/VacancyPage
         return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
             'vacancy' => $vacancy
         ]);

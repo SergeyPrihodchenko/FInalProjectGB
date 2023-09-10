@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Feature;
 
 use App\Enums\EmploymentType;
 use App\Models\Vacancy;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Inertia\Testing\AssertableInertia as Assert;
+use Tests\TestCase;
 
 class VacancyTest extends TestCase
 {
@@ -23,7 +23,7 @@ class VacancyTest extends TestCase
     public function test_index_return_page_is_vacancy_index(): void
     {
         $this->get(route('vacancy.index'))->assertInertia(fn(Assert $page) => $page
-            ->component('VacancyPage/ui/VacancyPageList/VacancyPageList')
+            ->component('Vacancy/Index')
         );
     }
 
