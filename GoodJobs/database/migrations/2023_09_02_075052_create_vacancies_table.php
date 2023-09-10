@@ -12,19 +12,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         Schema::create('vacancies', static function (Blueprint $table): void {
             $table->id();
             $table->string('title', 100);
-            $table->string('payment', 100);
-            $table->text('description')->nullable();
-            $table->string('contacts')->nullable();
-            $table->string('experience', 250)->default('');
-            $table->timestamps();
+            $table->integer('payment')->nullable();
             $table->enum('employment', EmploymentType::all());
             $table->index('employment');
-            //$table->unsignedBigInteger('company_id');
-            //$table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
+            $table->text('description')->nullable();
+            $table->integer('experience')->default(0);
+            $table->string('contacts')->nullable();
+            $table->text('requirements')->nullable();
+            $table->text('responsibilities')->nullable();
+            $table->string('conditions')->nullable();
+            $table->text('skills')->nullable();
+            $table->text('reviews')->nullable();
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 

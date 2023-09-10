@@ -22,11 +22,18 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
-            'description' => 'sometimes',
-            'payment' => 'sometimes',
-            'experience' => '',
-            'contacts' => ''
+            'title' => ['required'],
+            'payment' => ['sometimes'], // зарплата
+            'employment' => ['sometimes'], // тип работы (полный день...)
+            'description' => ['sometimes'], // описание
+            'experience' => ['sometimes'], // опыт
+            'contacts' => ['sometimes'], // контакты
+            'requirements' => ['sometimes'], // требования
+            'responsibilities' => ['sometimes'], // обязанности
+            'conditions' => ['sometimes',], // условия
+            'skills' => ['sometimes'], // навыки
+            'reviews' => ['sometimes'], // отзывы
+            'company_id' => ['sometimes'] // компания
         ];
     }
 }
