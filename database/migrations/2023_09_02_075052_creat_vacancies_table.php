@@ -38,6 +38,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('companies');
+
 //        Schema::table('vacancies', function($table)
 //        {
 //            $table->dropForeign(['company_id']);
