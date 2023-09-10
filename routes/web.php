@@ -33,5 +33,5 @@ Route::resource('vacancy', VacancyController::class);
 
 // пагинация
 Route::get('/vacancylist', function () {
-    return Vacancy::paginate(20);
+    return Vacancy::paginate(10);
 });
