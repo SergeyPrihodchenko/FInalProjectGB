@@ -2,7 +2,7 @@ import s from "./MainPage.module.css";
 import { fakerRU as faker } from "@faker-js/faker";
 import propTypes from "prop-types";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
-import { AppPage } from "@/8Shared/AppPage/AppPage";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { Banner } from "@/8Shared/Banner/Banner";
 import { Search } from "@/8Shared/Search/Search";
 import { Head } from "@inertiajs/react";

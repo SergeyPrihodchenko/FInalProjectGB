@@ -1,6 +1,6 @@
-import cn from 'classnames';
-import s from './Toolbar.module.css';
-import { AppPage } from '../AppPage/AppPage';
+import cn from "classnames";
+import s from "./Toolbar.module.css";
+import { AppPage } from "../../5Layouts/AppPage/AppPage";
 
 export const Toolbar = ({ children }) => {
     return (
@@ -8,13 +8,17 @@ export const Toolbar = ({ children }) => {
             <AppPage>
                 <ul className={s.toolbarGroup}>
                     <li>
-                        <a href='#' className={s.toolbarink}>Соискателям</a>
+                        <a href="#" className={s.toolbarink}>
+                            Соискателям
+                        </a>
                     </li>
                     <li>
-                        <a href='#' className={s.toolbarink}>Работодателям</a>
+                        <a href="#" className={s.toolbarink}>
+                            Работодателям
+                        </a>
                     </li>
                 </ul>
             </AppPage>
         </div>
     );
-}
+};

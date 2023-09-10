@@ -1,5 +1,5 @@
 import s from "./Footer.module.css";
-import { AppPage } from "../AppPage/AppPage";
+import { AppPage } from "../../5Layouts/AppPage/AppPage";
 import { Typography } from "../Typography/Typography";
 import { SocialLinksWidget } from "../../4Widgets/SocialLinksWidget/SocialLinksWidget";
 import { BootstrapIcon } from "../Icon/BootstrapIcon";

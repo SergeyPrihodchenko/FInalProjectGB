@@ -1,5 +1,5 @@
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
-import { AppPage } from "@/8Shared/AppPage/AppPage";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { Typography } from "@/8Shared/Typography/Typography";
 import React, { useState } from "react";
 
