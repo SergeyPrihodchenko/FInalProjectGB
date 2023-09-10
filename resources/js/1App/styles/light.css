@@ -1,0 +1,31 @@
+.app_light_theme {
+    /* main colors */
+    --light-bg: #fff;
+    --dark-bg: #242424;
+    --primary-text: #000;
+    --secondary-text: #fff;
+
+    --accent: #0fc3fce5;
+    --cancel: #ff0000cc;
+    --error: #ff0000cc;
+    --save: #62de85;
+    --not-accented: rgba(0, 0, 0, 0.56);
+
+    /* skeleton */
+    --light-skeleton-color: #f7f7f7;
+    --light-skeleton-shadow: rgba(0 0 0 / 20%);
+    --dark-skeleton-color: #1515ad;
+    --dark-skeleton-shadow: #2b2be8;
+
+    /* card */
+    --light-card-bg: #f7f7f7;
+    --dark-card-bg: #181818;
+
+    /* listBox */
+    /* --list-bg: #d5d5d7; */
+    --header-color: #000;
+
+
+    /* Checkbox */
+    --checkbox-color: #242424;
+}
