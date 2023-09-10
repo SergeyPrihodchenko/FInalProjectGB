@@ -21,16 +21,16 @@ const Vacancy = ({ vacancies, title, auth }) => {
 
     const user = auth?.user;
 
-    const fetchVacancyCards = useCallback(async () => {
-        if (isLoading) return;
-        setIsLoading(true);
-        axios.get(`/vacancylist?page=${index}`)
-            .then(res => setVacancyList([...vacancyList, ...res.data.data]))
-            .catch((err) => console.log(err));
-        setIndex((prevIndex) => prevIndex + 1);
+    // const fetchVacancyCards = useCallback(async () => {
+    //     if (isLoading) return;
+    //     setIsLoading(true);
+    //     axios.get(`/vacancylist?page=${index}`)
+    //         .then(res => setVacancyList([...vacancyList, ...res.data.data]))
+    //         .catch((err) => console.log(err));
+    //     setIndex((prevIndex) => prevIndex + 1);
 
-        setIsLoading(false);
-    }, [index, isLoading]);
+    //     setIsLoading(false);
+    // }, [index, isLoading]);
 
 
     useEffect(() => {
