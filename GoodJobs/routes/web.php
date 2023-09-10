@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
@@ -31,7 +33,11 @@ require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
 
+Route::resource('company', CompanyController::class);
+
+
 // пагинация
 Route::get('/vacancylist', function () {
     return Vacancy::paginate(20);
 });
+
