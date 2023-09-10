@@ -1,0 +1,22 @@
+/* .appInput {
+} */
+.input {
+    border: 1px solid black;
+    outline: none;
+}
+.input:focus {
+    outline: none;
+    /* border: 2px solid #0fc3fc; */
+}
+.radiusL {
+    border-radius: 33px;
+}
+.radiusM {
+    border-radius: 15px;
+}
+.radiusS {
+    border-radius: 6px;
+}
+.radiusNone {
+    border-radius: none;
+}

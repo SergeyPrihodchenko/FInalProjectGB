@@ -8,6 +8,7 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vacancy\VacancyController;
+use App\Models\Vacancy;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

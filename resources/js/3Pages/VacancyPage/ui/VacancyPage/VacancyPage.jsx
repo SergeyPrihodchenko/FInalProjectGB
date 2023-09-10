@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { AppPage } from "@/8Shared/AppPage/AppPage";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import s from "./VacancyPage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import VacanyNav from "../VacanyPageNav/VacanyPageNav";
@@ -13,6 +13,7 @@ import data from "../../data.json";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout.jsx";
 import { Head } from "@inertiajs/react";
 import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage({ auth }) {
@@ -31,6 +32,7 @@ function VacancyPage({ auth }) {
                         }
                     )} */}
                 <VacanyNav />
+                {/* <AppInput label="123" placeholder="placeholder"  /> */}
                 <AppPage>
                     <div className={s.vacancyPage}>
                         <VacancyPageCards className={s.cards} />
