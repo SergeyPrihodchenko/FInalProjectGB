@@ -15,19 +15,28 @@ return new class extends Migration
         Schema::create('vacancies', static function (Blueprint $table): void {
             $table->id();
             $table->string('title', 100);
-            $table->integer('payment')->nullable();
+            $table->string('payment', 100);
             $table->enum('employment', EmploymentType::all());
             $table->index('employment');
             $table->text('description')->nullable();
-            $table->integer('experience')->default(0);
+            $table->string('experience', 250);
             $table->string('contacts')->nullable();
             $table->text('requirements')->nullable();
             $table->text('responsibilities')->nullable();
             $table->string('conditions')->nullable();
             $table->text('skills')->nullable();
             $table->text('reviews')->nullable();
+
+            // Создание внешнего ключа компании
             $table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies')->cascadeOnDelete();
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->index('company_id');
+
+            //date
             $table->timestamps();
         });
     }
@@ -37,10 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-//        Schema::table('vacancies', function($table)
-//        {
-//            $table->dropForeign('company_id');
-//        });
         Schema::dropIfExists('vacancies');
     }
 };

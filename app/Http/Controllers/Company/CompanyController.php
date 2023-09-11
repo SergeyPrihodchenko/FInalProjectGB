@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use function Termwind\render;
 
 class CompanyController extends Controller
 {
@@ -51,7 +52,10 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return Inertia::render('Company/company_detail', [
+            'company' => $company
+        ]);
+
     }
 
     /**

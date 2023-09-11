@@ -1,0 +1,26 @@
+*::-webkit-scrollbar-track {
+    background: var(--dark-bg); /* цвет дорожки */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--accent); /* цвет плашки */
+
+    border-radius: 20px; /* закругления плашки */
+    border: 2px solid var(--save); /* padding вокруг плашки */
+}
+
+.app *::-webkit-scrollbar {
+    width: 12px; /* ширина scrollbar */
+    height: 8px;
+}
+
+.app *::-webkit-scrollbar-track {
+    background: var(--light-card-bg); /* цвет дорожки */
+}
+
+.app *::-webkit-scrollbar-thumb {
+    background-color: var(--accent); /* цвет плашки */
+
+    border-radius: 20px; /* закругления плашки */
+    border: 2px solid var(--save); /* padding вокруг плашки */
+}
