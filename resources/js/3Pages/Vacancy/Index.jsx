@@ -1,6 +1,6 @@
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
@@ -12,25 +12,51 @@ const employmentType = ['Полная занятость', 'Частичная �
 
 const Vacancy = ({ vacancies, title, auth }) => {
     const [vacancyList, setVacancyList] = useState([]);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [totalCount, setTotalCount] = useState(0);
-    // const [fetching, setFetching] = useState(true);\
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(2);
+    const loaderRef = useRef(null);
 
 
     const user = auth?.user;
+    const fetchVacancyCards = useCallback(async () => {
+        if (isLoading) return;
 
-    // const fetchVacancyCards = useCallback(async () => {
-    //     if (isLoading) return;
-    //     setIsLoading(true);
-    //     axios.get(`/vacancylist?page=${index}`)
-    //         .then(res => setVacancyList([...vacancyList, ...res.data.data]))
-    //         .catch((err) => console.log(err));
-    //     setIndex((prevIndex) => prevIndex + 1);
+        setIsLoading(true);
 
-    //     setIsLoading(false);
-    // }, [index, isLoading]);
+        axios.get(`/vacancylist?page=${index}`)
+            .then(res => {
+                if (res.data.data.length) {
+                    setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data])
+                } else {
+                    setIsLoading(false);
+                    return;
+                }
+            })
+            .catch((err) => console.log(err));
+        // .finally(() => setIsLoading(false))
+
+        setIndex((prevIndex) => prevIndex + 1);
+        setIsLoading(false);
+    }, [index, isLoading]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const target = entries[0];
+            if (target.isIntersecting) {
+                fetchVacancyCards();
+            }
+        });
+
+        if (loaderRef.current) {
+            observer.observe(loaderRef.current);
+        }
+
+        return () => {
+            if (loaderRef.current) {
+                observer.unobserve(loaderRef.current);
+            }
+        };
+    }, [loaderRef, vacancyList]);
 
 
     useEffect(() => {
@@ -41,63 +67,12 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 setVacancyList(response.data.data)
             } catch (error) {
                 console.log(error);
+            } finally {
+                setIsLoading(false);
             }
-            setIsLoading(false);
-
         }
         getData();
     }, []);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const { scrollTop, clientHeight, scrollHeight } =
-                document.documentElement;
-            if (scrollTop + clientHeight >= scrollHeight - 20) {
-                fetchVacancyCards();
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [fetchVacancyCards]);
-    // useEffect(() => {
-    //     if (fetching) {
-    //         console.log('fetching');
-    //         axios.get(`/vacancylist?page=${currentPage}`)
-    //             .then(response => {
-    //                 const paginator = response.data,
-    //                     list = paginator.data;
-    //                 console.log(paginator);
-    //                 setVacancyList([...vacancyList, ...list]);
-    //                 setCurrentPage(current => current + 1);
-    //                 setTotalCount(paginator.total);
-    //             })
-    //             .finally(() => setFetching(false));
-    //     }
-    // }, [fetching]);
-
-
-    // useEffect(() => {
-    //     const handleScroll = (e) => {
-    //         console.log(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight));
-    //         if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200 && vacancyList.length !== totalCount) {
-    //             setFetching(true);
-    //             console.log('scroll');
-    //             console.log(vacancyList.length);
-    //         }
-    //     }
-
-    //     window.addEventListener('scroll', handleScroll);
-    //     return function () {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     }
-    // }, []);
-
-    // console.log('vacancyList:', vacancyList.length);
-    // console.log('totalCount:', totalCount);
-    // console.log(vacancyList.length !== totalCount);
 
 
     return (
@@ -155,6 +130,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                     )}
 
                 </div>
+                <div ref={loaderRef} className='bg-slate-300'>{isLoading && 'Loading'}</div>
             </AppPage>
         </MainLayout>
     )
