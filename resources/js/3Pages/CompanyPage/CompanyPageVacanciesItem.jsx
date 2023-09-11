@@ -9,10 +9,10 @@ const CompanyPageVacanciesItem = ({id,title,cards}) => {
     return (
         <div onClick={()=>setOpen(!open)} key={id} className={cn(s.companyPageVacanciesInfo,s.companyPageVacanciesInfoItem)} >
             <span className={s.companyPageVacanciesTitleDecorate}>{title}</span> <span className={s.companyPageVacanciesTitleCount}>{cards.length}</span>
-            {cards.length!==0 &&cards.map(item=>(
-                <>
+            {cards?.map(item=>(
+                <div key={item.id}>
                     {open &&
-                        <div key={item.id} className={s.companyPageVacanciesItemDropdown}>
+                        <div className={s.companyPageVacanciesItemDropdown}>
                             <div className={s.companyPageVacanciesItemDropdownInfo}>
                                 <span className={s.companyPageVacanciesItemDropdownTitle}>{item.jobTitle}</span>
                                 <span
@@ -26,7 +26,7 @@ const CompanyPageVacanciesItem = ({id,title,cards}) => {
                             </div>
                         </div>
                     }
-                </>
+                </div>
             ))}
         </div>
     );
