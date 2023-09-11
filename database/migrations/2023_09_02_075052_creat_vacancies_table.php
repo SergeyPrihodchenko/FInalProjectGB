@@ -38,13 +38,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        // Schema::dropIfExists('companies');
 
-//        Schema::table('vacancies', function($table)
-//        {
-//            $table->dropForeign(['company_id']);
-//            $table->dropColumn('company_id');
-//        });
+       Schema::table('vacancies', function($table)
+       {
+           $table->dropForeign(['company_id']);
+           $table->dropColumn('company_id');
+       });
         Schema::dropIfExists('vacancies');
     }
 };
