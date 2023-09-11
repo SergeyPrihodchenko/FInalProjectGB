@@ -4,18 +4,24 @@ namespace App\Http\Controllers\Vacancy;
 
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\Vacancy;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class VacancyController
 {
-    public function index():\Inertia\Response
+    public function index(Request $request)
     {
-        $vacancies = Vacancy::all();
 
-        return Inertia::render('Vacancy/Index', [
-            'title' => 'Вакансии',
-            'vacancies' => $vacancies
-        ]);
+        $request->get('page');
+        $vacancies = Vacancy::paginate(10);
+        if(!empty($request)) {
+            return Inertia::render('Vacancy/Index', [
+                'title' => 'Вакансии',
+                'vacancies' => $vacancies
+            ]);
+        }
+        
+        return $vacancies;
     }
 
     public function show(Vacancy $vacancy):\Inertia\Response

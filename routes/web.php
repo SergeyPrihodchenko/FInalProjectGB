@@ -35,9 +35,5 @@ require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
 
-// пагинация
-Route::get('/vacancylist', function () {
-    return Vacancy::paginate(10);
-});
 Route::resource('company', CompanyController::class);
 
