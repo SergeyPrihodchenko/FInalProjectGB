@@ -9,10 +9,12 @@ import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineS
 import { Typography } from "@/Shared/Typography/Typography.jsx";
 import CompanyPageReviewItem from "@/Pages/CompanyPage/CompanyPageReviewItem.jsx";
 import CompanyPageEmployeeReviewItem from "@/Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
+import CompanyPageVacanciesItem from "@/Pages/CompanyPage/CompanyPageVacaniesItem.jsx";
 
 function CompanyPage({ auth }) {
     const user = auth?.user;
     const [rating, setRating] = useState(2);
+    const [vacancyOpen,setVacancyOpen] = useState(true)
     const mockCountReview = 2;
     const mockReview = [
         {
@@ -46,13 +48,59 @@ function CompanyPage({ auth }) {
             subtitle: "Все супер",
         },
     ];
+    const mockCompanyVacancies = [
+        {
+            id:"1",
+            title:"Агент по недвижимости",
+            cards:[
+                {
+                    id:"1",
+                    jobTitle:"Специалист по недвижимости",
+                    date:"2022-07-01",
+                    salaryMin:80000,
+                    salaryMax:100000,
+                    location:"Москва"
+                },
+                {
+                    id:"2",
+                    jobTitle:"Риэлтор",
+                    date:"2022-06-01",
+                    salaryMin:50000,
+                    salaryMax:null,
+                    location:"Москва"
+                }
+            ]
+        },
+        {
+            id:"2",
+            title:"Программист-разработчик",
+            cards:[
+                {
+                    id:"1",
+                    jobTitle:"Frontend",
+                    date:"2022-04-01",
+                    salaryMin:null,
+                    salaryMax:200000,
+                    location:"Москва"
+                },
+                {
+                    id:"2",
+                    jobTitle:"Backend",
+                    date:"2022-02-01",
+                    salaryMin:null,
+                    salaryMax:220000,
+                    location:"Москва"
+                }
+            ]
+        },
+    ]
+    const allVacanciesCount = mockCompanyVacancies.flatMap(item=>item.cards).length
     return (
         <MainLayout className={"app_light_theme"} user={user}>
             <Head>
                 <title>Компания</title>
             </Head>
             <div className={cn(s.companyPageContainer)}>
-                <div></div>
                 <div className={cn(s.companyPageLeft)}>
                     <section className={cn(s.companyPageLeftCard)}>
                         <div className={cn(s.companyPageLeftCardLogo)}>
@@ -244,6 +292,23 @@ function CompanyPage({ auth }) {
                                 />
                             ))}
                         </div>
+                    </div>
+                    <div className={cn(s.companyPageReview,s.companyPageVacancies)}>
+                        <Typography variant="h6">
+                            Вакансии компании «ООО Maxima»
+                        </Typography>
+                        <div onClick={()=>setVacancyOpen(!vacancyOpen)} className={s.companyPageVacanciesInfo} >
+                            <span className={s.companyPageVacanciesTitleDecorate}>Вакансии в текущем регионе: Россия</span> <span className={s.companyPageVacanciesTitleCount}>{allVacanciesCount}</span>
+                        </div>
+                        {vacancyOpen &&
+                            <div>
+                                {mockCompanyVacancies.map(item => (
+                                    <CompanyPageVacanciesItem
+                                        key={item.id}
+                                        {...item} />
+                                ))}
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
