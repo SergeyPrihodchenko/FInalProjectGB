@@ -39,5 +39,6 @@ Route::resource('vacancy', VacancyController::class);
 Route::get('/vacancylist', function () {
     return Vacancy::paginate(10);
 });
+
 Route::resource('company', CompanyController::class);
 
