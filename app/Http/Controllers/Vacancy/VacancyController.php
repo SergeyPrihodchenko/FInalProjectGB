@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Vacancy;
 
+use App\Enums\EmploymentType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\Vacancy;
 use Inertia\Inertia;
@@ -10,11 +11,8 @@ class VacancyController
 {
     public function index():\Inertia\Response
     {
-        $vacancies = Vacancy::all();
-
         return Inertia::render('Vacancy/Index', [
             'title' => 'Вакансии',
-            'vacancies' => $vacancies
         ]);
     }
 
