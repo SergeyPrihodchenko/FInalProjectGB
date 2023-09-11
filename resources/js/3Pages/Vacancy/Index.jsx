@@ -7,17 +7,18 @@ import AppCard from "@/8Shared/ui/AppCard/AppCard";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import axios from "axios";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
+import Loader from "@/8Shared/Loader/Loader";
 
 const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
 
 const Vacancy = ({ vacancies, title, auth }) => {
-    const [vacancyList, setVacancyList] = useState([]);
+    const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(2);
     const loaderRef = useRef(null);
 
-
     const user = auth?.user;
+
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
 
@@ -27,51 +28,59 @@ const Vacancy = ({ vacancies, title, auth }) => {
             .then(res => {
                 if (res.data.data.length) {
                     setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data])
+                    // setIsLoading(false);
                 } else {
-                    setIsLoading(false);
                     return;
                 }
             })
-            .catch((err) => console.log(err));
-        // .finally(() => setIsLoading(false))
+            .catch((err) => console.log(err))
+            .finally(() => setIsLoading(false))
 
         setIndex((prevIndex) => prevIndex + 1);
-        setIsLoading(false);
+
     }, [index, isLoading]);
 
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            const target = entries[0];
-            if (target.isIntersecting) {
-                fetchVacancyCards();
-            }
-        });
+        if (!vacancies) {
+            const observer = new IntersectionObserver((entries) => {
+                const target = entries[0];
+                if (target.isIntersecting) {
+                    fetchVacancyCards();
+                }
+            });
 
-        if (loaderRef.current) {
-            observer.observe(loaderRef.current);
+            if (loaderRef.current) {
+                observer.observe(loaderRef.current);
+            }
+
+            return () => {
+                if (loaderRef.current) {
+                    observer.unobserve(loaderRef.current);
+                    setIsLoading(false);
+                }
+            };
         }
 
-        return () => {
-            if (loaderRef.current) {
-                observer.unobserve(loaderRef.current);
-            }
-        };
     }, [loaderRef, vacancyList]);
 
 
     useEffect(() => {
-        const getData = async () => {
-            setIsLoading(true);
-            try {
-                const response = await axios.get(`/vacancylist?page=1`);
-                setVacancyList(response.data.data)
-            } catch (error) {
-                console.log(error);
-            } finally {
+        if (!vacancies) {
+            const getData = async () => {
+                setIsLoading(true);
+                try {
+                    const response = await axios.get(`/vacancylist?page=1`);
+                    setVacancyList(response.data.data)
+                } catch (error) {
+                    console.log(error);
+                }
                 setIsLoading(false);
-            }
+
+            };
+
+            getData();
         }
-        getData();
+
     }, []);
 
 
@@ -130,7 +139,9 @@ const Vacancy = ({ vacancies, title, auth }) => {
                     )}
 
                 </div>
-                <div ref={loaderRef} className='bg-slate-300'>{isLoading && 'Loading'}</div>
+                <div ref={loaderRef}>
+                    {isLoading && <Loader />}
+                </div>
             </AppPage>
         </MainLayout>
     )
