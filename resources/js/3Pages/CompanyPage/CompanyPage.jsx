@@ -9,7 +9,7 @@ import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineS
 import { Typography } from "@/8Shared/Typography/Typography.jsx";
 import CompanyPageReviewItem from "@/3Pages/CompanyPage/CompanyPageReviewItem.jsx";
 import CompanyPageEmployeeReviewItem from "@/3Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
-import CompanyPageVacanciesItem from "@/3Pages/CompanyPage/CompanyPageVacaniesItem.jsx";
+import CompanyPageVacanciesItem from "@/3Pages/CompanyPage/CompanyPageVacanciesItem.jsx";
 
 function CompanyPage({ auth }) {
     const user = auth?.user;
