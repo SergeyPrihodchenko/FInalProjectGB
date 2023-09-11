@@ -170,3 +170,48 @@
     color:#6e7173;
     margin-left: 8px;
 }
+.companyPageVacancies{
+
+}
+.companyPageVacanciesTitleDecorate{
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px!important;
+    text-decoration-style: dashed!important;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #3c9df2;
+}
+.companyPageVacanciesInfo{
+    font-size: 18px;
+    margin-top: 16px;
+}
+.companyPageVacanciesTitleCount{
+    color: #959799;
+    font-size: 14px;
+    margin-left: 8px;
+    text-decoration: none;
+}
+.companyPageVacanciesInfoItem{
+    font-size: 14px;
+    margin-left: 20px;
+}
+.companyPageVacanciesItemDropdown{
+    margin-top: 15px;
+    margin-left: 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    border-bottom: 1px solid #babdbf;
+}
+.companyPageVacanciesItemDropdownInfo{
+    display: flex;
+    flex-direction: column;
+}
+.companyPageVacanciesItemDropdownTitle{
+    font-size: 18px;
+    color: #1785e5;
+}
+.companyPageVacanciesItemDropdownSubtitle{
+    margin: 16px 0;
+    font-size: 14px;
+    color:#6e7173;
+}
