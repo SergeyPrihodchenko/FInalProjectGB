@@ -31,6 +31,8 @@ function AppCard({
 
 AppCard.propTypes = {
     variant: PropTypes.oneOf(["clear", "primary", "secondary"]),
+    width: PropTypes.string,
+
 };
 
 export default AppCard;

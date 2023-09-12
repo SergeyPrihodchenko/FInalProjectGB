@@ -1,0 +1,15 @@
+.vacancyWrapper {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.vacancyList {
+    flex-grow: 1;
+}
+
+.vacancyFilterTitle {
+    margin-bottom: 13px;
+}
+
+.vacancyListCard {}

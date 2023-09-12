@@ -1,5 +1,5 @@
 import React from "react";
-import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import PropTypes from "prop-types";
 
 const CompanyPageReviewItem = ({ id, isPercent, subtitle, title, number }) => {

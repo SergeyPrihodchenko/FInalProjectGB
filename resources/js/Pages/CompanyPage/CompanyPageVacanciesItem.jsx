@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import cn from "classnames";
-import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-const CompanyPageVacanciesItem = ({id,title,cards}) => {
-    const [open,setOpen] = useState(false)
+const CompanyPageVacanciesItem = ({ id, title, cards }) => {
+    const [open, setOpen] = useState(false)
     return (
-        <div onClick={()=>setOpen(!open)} key={id} className={cn(s.companyPageVacanciesInfo,s.companyPageVacanciesInfoItem)} >
+        <div onClick={() => setOpen(!open)} key={id} className={cn(s.companyPageVacanciesInfo, s.companyPageVacanciesInfoItem)} >
             <span className={s.companyPageVacanciesTitleDecorate}>{title}</span> <span className={s.companyPageVacanciesTitleCount}>{cards.length}</span>
-            {cards.length!==0 &&cards.map(item=>(
+            {cards.length !== 0 && cards.map(item => (
                 <>
                     {open &&
                         <div key={item.id} className={s.companyPageVacanciesItemDropdown}>
@@ -32,8 +32,8 @@ const CompanyPageVacanciesItem = ({id,title,cards}) => {
     );
 };
 CompanyPageVacanciesItem.propTypes = {
-    id:PropTypes.string,
-    cards:PropTypes.array,
-    title:PropTypes.string,
+    id: PropTypes.string,
+    cards: PropTypes.array,
+    title: PropTypes.string,
 }
 export default CompanyPageVacanciesItem;

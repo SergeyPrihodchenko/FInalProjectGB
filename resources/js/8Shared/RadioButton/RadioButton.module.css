@@ -1,0 +1,35 @@
+.radioField {
+    display: flex;
+    margin-bottom: 10px;
+
+}
+
+.radioWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.radioWrapper input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 1px solid var(--checkbox-color);
+    outline: none;
+    cursor: pointer;
+
+}
+
+input[type="radio"]:focus,
+input[type="radio"]:focus:checked {
+    box-shadow: none;
+    border: none;
+}
+
+input[type="radio"]:checked.checked {
+    background-color: var(--accent);
+    position: relative;
+    border: none;
+}
