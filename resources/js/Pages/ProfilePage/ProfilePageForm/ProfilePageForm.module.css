@@ -5,7 +5,7 @@
 .formProfile {
     padding: 50px 50px;
     text-align: center;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--not-accented);
 }
 
 .textForm {
@@ -13,7 +13,9 @@
     float: left;    
 }
 
-.inputFormProfile {
+.inputFormProfile,
+.inputFormProfileUpdate,
+.inputForm {
     border: none;
     width: 400px;
     height: 40px;
@@ -22,11 +24,11 @@
     padding-bottom: 20px;
 }
 
-.inputFormProfile::placeholder  {
+.inputFormProfile::placeholder,
+.inputFormProfileUpdate::placeholder,
+.inputForm::placeholder  {
     font-size: 20px;
-    color: black;
-    text-align: center;
-    font-family: consolas; 
+    color: var( --not-accented);
 }
 
 .btnFormProfile {
@@ -50,17 +52,17 @@
 }
 
 .inputFormProfileUpdate {
-    border: none;
-    width: 400px;
-    height: 40px;
-    background-color: #CFF3FE;
-    padding-right: 100px;
-    padding-bottom: 20px;
-    margin-right: 300px;
+    margin-right: 200px;
 }
 
-.inputFormProfileUpdate::placeholder {
+.inputForm {
+    border: none;
+    width: 300px;
+    height: 40px;
+    background-color: #CFF3FE;
+}
+.inputFormProfile::placeholder
+  {
     font-size: 20px;
-    color: black;
-    padding-left: 75px;
+    color: var( --not-accented);
 }

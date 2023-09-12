@@ -62,7 +62,7 @@ function UpdatePasswordForm(){
                         id="password"
                         ref={passwordInput}
                         value={data.password}
-                        className={s.inputFormProfile} 
+                        className={s.inputForm} 
                         type="password" 
                         placeholder='новый пароль'
                         onChange={(e) => setData('password', e.target.value)} 
