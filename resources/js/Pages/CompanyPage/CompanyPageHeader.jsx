@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import {Rating, Tooltip} from "@mui/material";
 import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineSharp.js";
 import cn from "classnames";

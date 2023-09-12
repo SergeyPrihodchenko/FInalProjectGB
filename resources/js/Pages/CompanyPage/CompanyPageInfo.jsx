@@ -1,7 +1,7 @@
 import React from 'react';
-import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import PropTypes from "prop-types";
-import CompanyPageInfoItem from "@/3Pages/CompanyPage/CompanyPageInfoItem.jsx";
+import CompanyPageInfoItem from "@/Pages/CompanyPage/CompanyPageInfoItem.jsx";
 
 const CompanyPageInfo = ({address, contactPhone, contactEmail, title, tagline, infoList }) => {
     return (

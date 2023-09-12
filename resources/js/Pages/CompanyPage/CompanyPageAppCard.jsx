@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from "classnames";
-import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton.jsx";
 import PropTypes from "prop-types";
 

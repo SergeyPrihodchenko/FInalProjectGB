@@ -1,12 +1,12 @@
 import React from 'react';
-import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import {Typography} from "@/8Shared/Typography/Typography.jsx";
-import CompanyPageReviewItem from "@/3Pages/CompanyPage/CompanyPageReviewItem.jsx";
+import CompanyPageReviewItem from "@/Pages/CompanyPage/CompanyPageReviewItem.jsx";
 import AppButton from "@/8Shared/ui/AppButton/AppButton.jsx";
 import cn from "classnames";
-import CompanyPageEmployeeReviewItem from "@/3Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
+import CompanyPageEmployeeReviewItem from "@/Pages/CompanyPage/CompanyPageEmployeeReviewItem.jsx";
 import PropTypes from "prop-types";
-import CompanyPageInfo from "@/3Pages/CompanyPage/CompanyPageInfo.jsx";
+import CompanyPageInfo from "@/Pages/CompanyPage/CompanyPageInfo.jsx";
 
 const CompanyPageReview = ({otherReview, employeeReview }) => {
     return (

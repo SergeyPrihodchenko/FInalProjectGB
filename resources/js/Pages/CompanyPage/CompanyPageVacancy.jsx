@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import cn from "classnames";
-import s from "@/3Pages/CompanyPage/CompanyPage.module.css";
+import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import {Typography} from "@/8Shared/Typography/Typography.jsx";
-import CompanyPageVacanciesItem from "@/3Pages/CompanyPage/CompanyPageVacanciesItem.jsx";
+import CompanyPageVacanciesItem from "@/Pages/CompanyPage/CompanyPageVacanciesItem.jsx";
 import PropTypes from "prop-types";
 
 const CompanyPageVacancy = ({companyName, companyVacancyList}) => {
