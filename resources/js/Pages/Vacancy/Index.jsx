@@ -12,6 +12,7 @@ import Loader from "@/8Shared/Loader/Loader";
 const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
 
 const Vacancy = ({ vacancies, title, auth }) => {
+    console.log(vacancies);
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(2);
