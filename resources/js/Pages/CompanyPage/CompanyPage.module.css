@@ -7,7 +7,6 @@
 .companyPageLeft{
     margin: 0 10px;
     background-color: #fafafa;
-    max-width: 210px;
     height: fit-content;
 }
 .companyPageLeftCard{
@@ -23,7 +22,7 @@
     height: 170px;
 }
 .companyPageLeftCardInfo{
-    margin-top: 8px;
+    margin-top: 16px;
 
 }
 .companyPageLeftCardInfoCard{
