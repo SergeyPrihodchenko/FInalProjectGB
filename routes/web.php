@@ -23,6 +23,10 @@ Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
 })->middleware(['auth', 'verified'])->name('profilePage');
 
+Route::get('/testResumePage', function () {
+    return Inertia::render('ResumePage/ResumePage');
+})->name('resumePage');
+
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::middleware('auth')->group(function () {

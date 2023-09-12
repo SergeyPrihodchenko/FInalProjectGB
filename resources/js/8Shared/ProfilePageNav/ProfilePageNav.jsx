@@ -35,15 +35,17 @@ export const ProfilePageNav = () => {
                                         size={30}
                                     />
                                 </a>
-                                <div className={s.navLink}>
-                                    <AppButton variant="outline" size="l">
-                                        <AppText
-                                            size={"m"}
-                                            bold
-                                            title={"Создать резюме"}
-                                        />
-                                    </AppButton>
-                                </div>
+                                <a href={route("resumePage")}>
+                                    <div className={s.navLink}>
+                                        <AppButton variant="outline" size="l">
+                                            <AppText
+                                                size={"m"}
+                                                bold
+                                                title={"Создать резюме"}
+                                            />
+                                        </AppButton>
+                                </div></a>
+                                
                             </div>
                         </div>
                     }

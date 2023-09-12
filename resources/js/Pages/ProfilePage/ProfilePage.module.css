@@ -1,17 +1,20 @@
-
 * {
     box-sizing: border-box;
 
 }
 
 .profilePage {
-    font-family: 'Times New Roman';
     margin: 0;
 }
 
 .mainProfilePage {
     margin: 0 auto;
     margin-top: 90px;
+}
+
+.textBtnDelete {
+    text-align: center;
+    color: var(--accent);
 }
 
 .btnDelete {
@@ -21,8 +24,23 @@
     height: 70px;
 }
 
-.spanBtnDelete {
-    font-size: 24px;
+.formProfileDelete {
     text-align: center;
-    color: #066B8B;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputFormProfileDelete {
+    margin-left: 50px;
+    border-radius: 30px;
+    width: 400px;
+    height: 40px;
+    border: 2px solid var(--accent);
+}
+
+.inputFormProfileDelete::placeholder {
+    font-size: 20px;
+    color: var(--not-accented);
+    padding-left: 90px;
 }
