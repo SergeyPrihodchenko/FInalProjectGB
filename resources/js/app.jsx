@@ -28,12 +28,13 @@ createInertiaApp({
         const porps = props;
         // console.log("app.jsx user", auth);
         // console.log("app.jsx porps", porps);
+        // console.log("app.jsx App", porps);
 
         root.render(
             <>
                 {/* <AuthProvider auth={auth} {...props}></AuthProvider> */}
                 {/* <MainLayout className={"app_light_theme"} user={auth}> */}
-                <App {...props} id="root" />
+                <App {...props} id="root"></App>
                 {/* </MainLayout> */}
             </>
         );
