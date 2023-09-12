@@ -45,8 +45,8 @@ class MainController extends Controller
     {
         // $data = $request->validated();
         // $searchStr = $data['vacancy'];
-        $searchStr = $request->post('str');
+        // $searchStr = $request->post('str');
         // return Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
-        return $searchStr;
+        return  \response()->json(['test' => 'test']);
     }
 }
