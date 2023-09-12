@@ -4,6 +4,7 @@ import s from './Search.module.css';
 import TextInput from "@/Components/TextInput"
 import cn from 'classnames';
 import AppButton from '../ui/AppButton/AppButton';
+import axios from 'axios';
 
 export const Search = ({ placeholder, vacancies }) => {
     const [param, setParam] = useState('');
@@ -12,8 +13,21 @@ export const Search = ({ placeholder, vacancies }) => {
     const [suggestionsActive, setSuggestionsActive] = useState(false);
     const [value, setValue] = useState("");
 
+    const [sortVacancy, SetSortVacancy] = useState([]);
+
+    const request = async (str) => {
+        const request = await fetch('/searchSort', {
+            method: 'POST',
+            body: {str: str}
+        });
+
+        const response = await request.json();
+        console.log(response);
+    } 
+    
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
+        request(query);
         setValue(query);
         if (query.length > 0) {
             const filterSuggestions = vacancies.filter(
@@ -24,7 +38,7 @@ export const Search = ({ placeholder, vacancies }) => {
             );
             setSuggestions(filterSuggestions);
             setSuggestionsActive(true);
-            console.log(value);
+            console.log(query);
         } else {
             setSuggestionsActive(false);
         }
