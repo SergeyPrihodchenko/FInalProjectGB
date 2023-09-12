@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import s from '../ProfilePage.module.css';
+import s from '../ProfilePageForm/ProfilePageForm.module.css';
 import { useForm } from '@inertiajs/react';
+import AppText from '@/8Shared/ui/AppText/AppText';
 
 function UpdatePasswordForm(){
 
@@ -34,52 +35,55 @@ function UpdatePasswordForm(){
     };
 
     return (
-        <>
-            <p className={s.textTitle}>Изменить пароль</p>
-
-
-            <form onSubmit={updatePassword} className={s.formProfilePage}>
-                <div className={s.formProfile}>
-                    <lable for="name" className={s.textForm}>Текущий пароль:</lable>
+        <div className={s.formProfilePage}>
+            <form onSubmit={updatePassword} className={s.formProfile}>
+                <div>
+                    <AppText size='s' text={'Текущий пароль'} className={s.textForm}/>
+                        {/* <lable className={s.textForm}>Текущий пароль</lable> */}
                     <input
                         id="current_password"
                         ref={currentPasswordInput}
                         value={data.current_password}
-                        className={s.inputFormProfile} 
+                        className={s.inputFormProfileUpdate}
                         type="password" 
                         placeholder='текущий пароль' 
                         onChange={(e) => setData('current_password', e.target.value)}
                     />
-                    <div style={{color: "red"}}>{errors.current_password}</div>
+                    <div style={{color: "red"}}>{errors.current_password}</div>    
                 </div>
-                <div className={s.formProfile}>
-                    <lable for="name" className={s.textForm}>Новый пароль:</lable>
+                    
+                <div className={s.divLeft}>
+                    <input className={s.btnFormProfile} type="submit" value="Изменить"/>
+                </div>
+                <div>
+                    <AppText size='s' text={'Новый пароль'} className={s.textForm}/>
+                    {/* <lable className={s.textForm}>Новый пароль</lable> */}
                     <input
                         id="password"
                         ref={passwordInput}
                         value={data.password}
-                        className={s.inputFormProfile} 
+                        className={s.inputForm} 
                         type="password" 
                         placeholder='новый пароль'
                         onChange={(e) => setData('password', e.target.value)} 
                     />
                     <div style={{color: "red"}}>{errors.password}</div>
                 </div>
-                <div className={s.formProfile}>
-                    <lable for="name" className={s.textForm}>Подтвердить пароль:</lable>
+                <div>
+                    <AppText size='s' text={'Подтвердить пароль'} className={s.textForm}/>
+                    {/* <lable className={s.textForm}>Подтвердить пароль</lable> */}
                     <input
                         id="password_confirmation"
                         value={data.password_confirmation}
-                        className={s.inputFormProfile} 
+                        className={s.inputFormProfileUpdate} 
                         type="password" 
-                        placeholder='Подтверждение пароля'
+                        placeholder='подтверждение пароля'
                         onChange={(e) => setData('password_confirmation', e.target.value)} 
                     />
-                    <div style={{color: "red"}}>{errors.password_confirmation}</div>
-                    <input className={s.btnFormProfile} type="submit" value="Изменить" />
-                </div>
+                    <div style={{color: "red"}}>{errors.password_confirmation}</div>  
+                </div>    
             </form>
-        </>
+        </div>
     )
 }
 

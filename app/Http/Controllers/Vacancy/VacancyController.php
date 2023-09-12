@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Vacancy;
 
-use App\Enums\EmploymentType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\Vacancy;
 use Inertia\Inertia;
@@ -11,17 +10,25 @@ class VacancyController
 {
     public function index():\Inertia\Response
     {
+        
+        //VacancyPage/ui/VacancyPageList/VacancyPageList
+
         return Inertia::render('Vacancy/Index', [
-            'title' => 'Вакансии',
+            'title' => 'Вакансии'
         ]);
     }
 
     public function show(Vacancy $vacancy):\Inertia\Response
     {
-        return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
-            'title' => $vacancy->title,
+        //VacancyPage/ui/VacancyPage/VacancyPage
+        return Inertia::render('Vacancy/Show', [
             'vacancy' => $vacancy
         ]);
+    }
+
+    public function create():\Inertia\Response
+    {
+        return Inertia::render('Vacancy/CreateVacancy');
     }
 
     public function store(StoreRequest $request)
@@ -31,7 +38,6 @@ class VacancyController
         $vacancy = Vacancy::create($data);
 
         return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }
@@ -43,16 +49,14 @@ class VacancyController
         $vacancy->update($data);
 
         return Inertia::render('Vacancy/Show', [
-            'title' => $vacancy->title,
             'vacancy' => $vacancy
         ]);
     }
 
-    public function delete(Vacancy $vacancy)
+    public function destroy(Vacancy $vacancy)
     {
         $vacancy->delete();
 
         return response('', 204);
     }
-
 }

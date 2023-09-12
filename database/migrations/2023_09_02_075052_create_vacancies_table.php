@@ -1,7 +1,6 @@
 <?php
 
 use App\Enums\EmploymentType;
-use App\Enums\ScheduleType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -47,13 +46,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::dropIfExists('companies');
-
-    //    Schema::table('vacancies', function($table)
-    //    {
-    //        $table->dropForeign(['company_id']);
-    //        $table->dropColumn('company_id');
-    //    });
         Schema::dropIfExists('vacancies');
     }
 };

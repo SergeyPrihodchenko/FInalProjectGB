@@ -8,17 +8,11 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import axios from "axios";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import Loader from "@/8Shared/Loader/Loader";
-import s from "./VacancyListPage.module.css"
-import RadioButton from "@/8Shared/RadioButton/RadioButton";
-import { Head } from "@inertiajs/react";
-import cn from "classnames"
 
 const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
-const incomeLevel = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽', 'Своя зарплата'];
-const workExperience = ['Не имеет значения', 'Нет опыта', '1-3 года', '3-6 лет', 'более 6 лет'];
-
 
 const Vacancy = ({ vacancies, title, auth }) => {
+    console.log(vacancies);
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(2);
@@ -36,6 +30,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 if (res.data.data.length) {
                     setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data])
                     setIsLoading(false);
+                    console.log(res.data.data);
                 } else {
                     return;
                 }
@@ -53,7 +48,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 const target = entries[0];
                 if (target.isIntersecting) {
                     fetchVacancyCards();
-
+                    setIsLoading(false);
                 }
             });
 
@@ -94,83 +89,53 @@ const Vacancy = ({ vacancies, title, auth }) => {
 
     return (
         <MainLayout user={user} className={'app_light_theme'}>
-            <Head title={title} />
             <AppPage>
-                <div className={s.vacancyWrapper}>
-                    <div className="filterContainer left">
-                        <form action="">
-                            <AppText text="Уровень дохода" bold className={s.vacancyFilterTitle} />
-                            {incomeLevel.map(item => <Checkbox key={item} label={item} />)}
-                            <AppText text="Опыт работы" bold className={s.vacancyFilterTitle} />
-                            {workExperience.map(item =>
-                                <RadioButton key={item} label={item} name='work_experience' />
-                            )}
+                <div className="filterContainer">
+                    <form action="">
+                        <AppText text="Тип занятости" bold />
+                        {employmentType.map(item => <Checkbox key={item} label={item} />)}
 
-                            <AppText text="Тип занятости" bold className={s.vacancyFilterTitle} />
-                            {employmentType.map(item => <Checkbox key={item} label={item} />)}
-
-
-                        </form>
-                    </div>
-                    <div className={s.vacancyList}>
-
-                        <div className="flex flex-col gap-[20px] mb-[20px]">
-                            {vacancyList.map(vac =>
-                                <AppLink
-                                    path={'vacancy.show'}
-                                    param={vac.id}
-                                    key={vac.payment}
-                                >
-                                    <AppCard
-                                        width={'100%'}
-                                        height={'200px'}
-                                        shadow
-                                        className={cn('flex flex-col items-start p-5')}
-                                    >
-                                        <AppText
-                                            title={vac.title}
-                                        />
-                                        <AppText
-                                            text={`от ${vac.payment} руб.`}
-
-                                        />
-                                        <AppText
-                                            size='s'
-                                            variant='notaccented'
-                                            text={`Опыт работы от ${vac.experience} лет`}
-                                        />
-                                        <div className="flex gap-8 mt-auto">
-                                            <AppButton
-                                                className={'px-[12px] mt-auto rounded-[20px]'}
-                                                width='auto'
-                                                height='32px'
-
-
-                                            >
-                                                Откликнуться
-                                            </AppButton>
-                                            <AppButton
-                                                className={'px-[12px]'}
-                                                variant="outline"
-                                                width='auto'
-                                                height='32px'
-                                            >
-                                                Показать контакты
-                                            </AppButton>
-                                        </div>
-                                    </AppCard>
-                                </AppLink>
-                            )}
-
-                        </div>
-                        <div ref={loaderRef}>
-                            {isLoading && <Loader />}
-                        </div>
-
-                    </div>
+                    </form>
                 </div>
+                <div className="flex flex-col gap-[20px] mb-[20px]">
+                    {vacancyList.map(vac =>
+                        <AppLink
+                            path={'vacancy.show'}
+                            param={vac.id}
+                            key={vac.payment}
+                        >
+                            <AppCard
+                                width={'100%'}
+                                height={'200px'}
+                                shadow
+                                className={'flex flex-col items-start p-5'}
+                            >
+                                <AppText
+                                    title={vac.title}
+                                />
+                                <AppText
+                                    text={`от ${vac.payment} руб.`}
+                                />
+                                <AppText
+                                    size='s'
+                                    variant='notaccented'
+                                    text={`Опыт работы от ${vac.experience} лет`}
+                                />
+                                <AppButton
+                                    className={'px-[12px] mt-auto rounded-[20px]'}
+                                    width='auto'
+                                    height='32px'
+                                >
+                                    Откликнуться
+                                </AppButton>
+                            </AppCard>
+                        </AppLink>
+                    )}
 
-
+                </div>
+                <div ref={loaderRef}>
+                    {isLoading && <Loader />}
+                </div>
             </AppPage>
         </MainLayout>
     )

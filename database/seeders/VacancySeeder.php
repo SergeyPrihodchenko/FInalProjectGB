@@ -21,9 +21,8 @@ class VacancySeeder extends Seeder
     public function getData(): array
     {
         $data = [];
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $data[] = [
-
                 'title' => fake('ru_RU')->jobTitle,
                 'payment' => fake()->numberBetween(1000, 12000),
                 'employment' => EmploymentType::fullTimeJob->value,
@@ -38,9 +37,6 @@ class VacancySeeder extends Seeder
                 'company_id' => Company::create([
                     'name' => fake('ru_RU')->company,
                 ])->id,
-
-                
-
             ];
         }
 

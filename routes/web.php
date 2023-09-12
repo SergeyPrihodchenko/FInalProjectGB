@@ -1,6 +1,5 @@
 <?php
 
-//!!!
 use App\Http\Controllers\Company\CompanyController;
 
 use App\Http\Controllers\Category\CategoryController;
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
+Route::post('/searchSort', [MainController::class, 'afterSearchSort']);
 Route::get('/category/search', [MainController::class, 'searchSort'])->name('category.sort');
 
 Route::get('/testPageCompany', function () {
@@ -22,6 +22,10 @@ Route::get('/testPageCompany', function () {
 Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
 })->middleware(['auth', 'verified'])->name('profilePage');
+
+Route::get('/testResumePage', function () {
+    return Inertia::render('ResumePage/ResumePage');
+})->name('resumePage');
 
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
@@ -37,7 +41,7 @@ Route::resource('vacancy', VacancyController::class);
 
 // пагинация
 Route::get('/vacancylist', function () {
-    return Vacancy::paginate(10);
+    return Vacancy::paginate(3);
 });
 
 Route::resource('company', CompanyController::class);
