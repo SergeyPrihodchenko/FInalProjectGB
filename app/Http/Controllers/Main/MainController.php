@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
 use App\Models\Vacancy;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -40,10 +41,12 @@ class MainController extends Controller
         ]);
     }
 
-    public function afterSearchSort(CategoryRequest $request) 
+    public function afterSearchSort(Request $request) 
     {
-        $data = $request->validated();
-        $searchStr = $data['vacancy'];
-        return Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
+        // $data = $request->validated();
+        // $searchStr = $data['vacancy'];
+        $searchStr = $request->post('str');
+        // return Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
+        return $searchStr;
     }
 }
