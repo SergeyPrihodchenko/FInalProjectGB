@@ -22,6 +22,7 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'str' => 'string|max:150',
             'vacancy' => 'string|max:150',
             'title' => "string|max:150"
         ];

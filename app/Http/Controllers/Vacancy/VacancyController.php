@@ -10,11 +10,10 @@ class VacancyController
 {
     public function index(): \Inertia\Response
     {
-        $vacancies = Vacancy::all();
         //VacancyPage/ui/VacancyPageList/VacancyPageList
-
+        //В странице Vacancy/Index больше не нужны дынные из БД в этом свойтве
         return Inertia::render('Vacancy/Index', [
-            'vacancies' => $vacancies
+            'title' => 'Вакансии'
         ]);
     }
 

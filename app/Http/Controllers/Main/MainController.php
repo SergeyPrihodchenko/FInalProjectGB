@@ -28,7 +28,7 @@ class MainController extends Controller
     {
         $data = $request->validated();
         $searchStr = $data['vacancy'];
-        $vacancies = Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
+        $vacancies = Vacancy::where('title', 'REGEXP', "/.*$searchStr.*/gmi")->get();
         if (count($vacancies) !== 0) {
             return Inertia::render('Vacancy/Index', [
                 'title' => 'Вакансии',
@@ -41,12 +41,10 @@ class MainController extends Controller
         ]);
     }
 
-    public function afterSearchSort(Request $request) 
+    public function afterSearchSort(CategoryRequest $request) 
     {
-        // $data = $request->validated();
-        // $searchStr = $data['vacancy'];
-        // $searchStr = $request->post('str');
-        // return Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
-        return  \response()->json(['test' => 'test']);
+        $data = $request->validated();
+        $searchStr = $data['str'];
+        return Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
     }
 }
