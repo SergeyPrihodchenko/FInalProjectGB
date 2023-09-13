@@ -16,7 +16,7 @@ function AppCard({
 }) {
     return (
         <div
-            className={cn(s.AppCard, className, s[variant], {
+            className={cn(s.appCard, className, s[variant], {
                 [s.shadow]: shadow,
                 [s.borderLeft]: borderLeft,
                 [s.borderRadius]: borderRadius,
@@ -31,6 +31,8 @@ function AppCard({
 
 AppCard.propTypes = {
     variant: PropTypes.oneOf(["clear", "primary", "secondary"]),
+    width: PropTypes.string,
+
 };
 
 export default AppCard;

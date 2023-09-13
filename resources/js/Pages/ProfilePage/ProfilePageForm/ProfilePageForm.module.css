@@ -3,66 +3,35 @@
 }
 
 .formProfile {
+    font-size: 24px;
     padding: 50px 50px;
     text-align: center;
-    border-bottom: 1px solid var(--not-accented);
+    border-bottom: 1px solid grey;
 }
 
 .textForm {
-    width: 30%;  
+    height: 100px;
+    width: 33.333%;  
     float: left;    
 }
 
-.inputFormProfile,
-.inputFormProfileUpdate,
-.inputForm {
+.inputFormProfile {
     border: none;
     width: 400px;
     height: 40px;
     background-color: #CFF3FE;
     padding-right: 100px;
-    padding-bottom: 20px;
 }
 
-.inputFormProfile::placeholder,
-.inputFormProfileUpdate::placeholder,
-.inputForm::placeholder  {
+.inputFormProfile::placeholder {
     font-size: 20px;
-    color: var( --not-accented);
+    color: black;
+    font-family: 'Times New Roman';
+    text-align: center;
+    font-family: consolas;
 }
 
 .btnFormProfile {
-    margin-top: 10px;
     border: none;
     background-color: #CFF3FE;
-    padding-left: 100px;
-}
-
-/* .hidden {
-    display:none;
-}
-
-.open {
-    display: block;
-} */
-
-.divLeft {
-    float: right;
-    width: 30%; 
-}
-
-.inputFormProfileUpdate {
-    margin-right: 200px;
-}
-
-.inputForm {
-    border: none;
-    width: 300px;
-    height: 40px;
-    background-color: #CFF3FE;
-}
-.inputFormProfile::placeholder
-  {
-    font-size: 20px;
-    color: var( --not-accented);
 }

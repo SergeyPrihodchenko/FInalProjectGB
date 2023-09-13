@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
 import s from "../ProfilePage.module.css";
-import style from "../ProfilePageForm/ProfilePageForm.module.css";
 import { useForm } from "@inertiajs/react";
-import AppButton from "@/8Shared/ui/AppButton/AppButton";
-import AppText from "@/8Shared/ui/AppText/AppText";
+import { BtnDelete } from "../ProfileButton/BtnDeleteProfilePage";
 
 function DeleteProfileForm() {
     const passwordInput = useRef();
@@ -24,24 +22,27 @@ function DeleteProfileForm() {
     };
 
     return (
-        <form onSubmit={destroyProfile} className={s.formProfileDelete}>
-            <input
-                id="password"
-                ref={passwordInput}
-                value={data.password}
-                className={s.inputFormProfileDelete}
-                type="password"
-                placeholder="Введите пароль"
-                onChange={(e) => setData("password", e.target.value)}
-            />
-            <div className={style.divLeft}>
-                <AppText size={'m'} title={
-                    <AppButton variant='clear' size='m' type="submit">
-                        <span className={s.textBtnDelete}>Удаление аккаунта</span>
-                    </AppButton> 
-                }/>
-            </div>        
-        </form>      
+        <>
+            <p className={s.textTitle}>Удалить аккаунт</p>
+
+            <form onSubmit={destroyProfile} className={s.formProfile}>
+
+                <lable for="name" className={s.textForm}>
+                    Пароль:
+                </lable>
+                <input
+                    id="password"
+                    ref={passwordInput}
+                    value={data.password}
+                    className={s.inputFormProfile}
+                    type="password"
+                    placeholder="Пароль"
+                    onChange={(e) => setData("password", e.target.value)}
+                />
+                <BtnDelete type="submit" />
+
+            </form>
+        </>
     );
 }
 
