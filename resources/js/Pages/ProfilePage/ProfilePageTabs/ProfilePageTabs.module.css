@@ -5,26 +5,14 @@
 }
 
 .navSettings {
-    border: none;
     list-style-type: none;
-    border-bottom: 2px solid var(--primary-text);
+    border-bottom: 2px solid black;
     margin-bottom: 50px;
 }
 
 .navLink {
-    display: block;
     padding-bottom: 15px;
     padding-right: 50px;
-    
-}
-
-.textDesc {
-    list-style-type: none;
-}
-
-.navText {
-    border: none;
-    background-color: var(--secondary-text);
+    display: block;
     text-decoration: none;
-    list-style-type: none;
 }
