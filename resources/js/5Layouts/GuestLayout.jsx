@@ -3,20 +3,30 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link } from "@inertiajs/react";
 import mainlogo from "@/8Shared/assets/icons/mainlogo.svg";
 import logo from "@/8Shared/assets/icons/logo.png";
-
-export default function Guest({ children }) {
+import cn from "classnames";
+import s from "./GuestLayout.module.css";
+import MainLayout from "./MainLayout/MainLayout";
+export default function Guest({ children, className }) {
     return (
-        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
-                </Link>
-                {/* <Logo src={mainlogo} alt={"Логотип"} href={route("main")} /> */}
-            </div>
+        <MainLayout className="app_light_theme">
+            <div
+                className={cn(
+                    " flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100",
+                    className,
+                    s.layout
+                )}
+            >
+                <div>
+                    <Link href="/">
+                        <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                    </Link>
+                    {/* <Logo src={mainlogo} alt={"Логотип"} href={route("main")} /> */}
+                </div>
 
-            <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {children}
+                <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                    {children}
+                </div>
             </div>
-        </div>
+        </MainLayout>
     );
 }

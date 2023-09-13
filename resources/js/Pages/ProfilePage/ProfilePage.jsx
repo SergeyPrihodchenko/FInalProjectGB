@@ -236,7 +236,6 @@ function ProfilePage({ auth }) {
                                     />
                                 </div>
                             </form>
-
                             <UpdatePasswordForm />
 
                             <DeleteProfileForm />

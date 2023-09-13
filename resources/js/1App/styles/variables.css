@@ -39,7 +39,9 @@
 
     /* Sizes */
     --header-height: 75px;
-    --footer-height: 365px;
+    --second-header: 100px;
+    --footer-height: 380px;
+
     --sidebar-width: 0px;
 
     /* z-index */
