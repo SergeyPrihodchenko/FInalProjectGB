@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { Head } from "@inertiajs/react";
 
-const Vacancy = ({ vacancy, auth }) => {
-    const user = auth?.user;
+
+const Vacancy = ({ vacancy }) => {
     console.log(vacancy);
     return (
         <MainLayout className={"app_light_theme"} user={user}>
