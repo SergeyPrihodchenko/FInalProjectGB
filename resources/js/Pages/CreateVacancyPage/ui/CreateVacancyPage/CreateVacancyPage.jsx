@@ -8,13 +8,14 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 function CreateVacancyPage(props) {
     const { auth, vacancy } = props;
     const user = auth?.user;
-    console.log("vacancy", vacancy);
+    console.log("CreateVacancyPage props", props);
 
     return (
         <MainLayout className="app_light_theme" user={user}>
             <Head title="CreateVacancyPage" />
             <AppPage>
                 <AppText title="CreateVacancyPage" size="xl" />
+                
             </AppPage>
         </MainLayout>
     );

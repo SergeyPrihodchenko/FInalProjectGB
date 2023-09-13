@@ -8,14 +8,20 @@ function AppButton(props) {
         onClick,
         className,
         variant = "filled",
+        sizeText = "m",
         width = "240px",
         height = "40px",
+        bold,
+        rounded,
         ...otherProps
     } = props;
     return (
         <button
             style={{ width: width, height: height }}
-            className={cn(s.appButton, className, s[variant])}
+            className={cn(s.appButton, className, s[variant], s[sizeText], {
+                [s.rounded]: rounded,
+                [s.bold]: bold,
+            })}
             {...otherProps}
             onClick={onClick}
         >
@@ -30,7 +36,7 @@ AppButton.propTypes = {
     width: PropTypes.string,
     height: PropTypes.string,
     children: PropTypes.any,
-    variant: PropTypes.oneOf(["filled", "outline", "clear"]),
-    size: PropTypes.oneOf(["s", "m", "l"]),
+    variant: PropTypes.oneOf(["filled", "outline","accentOutline", "clear"]),
+    sizeText: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
 };
 export default AppButton;
