@@ -17,7 +17,7 @@ function ProfilePage({ auth }) {
 
     return (
         <AuthContext.Provider value={{ user }}>
-            <MainLayout className={"app_light_theme"}>
+            <MainLayout className={"app_light_theme"} user={user}>
                 <ProfilePageNav />
                 <AppPage>
                     <container className={s.profilePage}>

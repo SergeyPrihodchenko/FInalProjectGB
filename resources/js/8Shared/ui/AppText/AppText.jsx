@@ -24,7 +24,7 @@ export default function AppText(props) {
     const HeaderTag = mapSizeToHeader[size];
     return (
         <div
-            className={cn(s.appText, className, s[size], s[variant], {
+            className={cn(s.appText, s[size], s[variant], className, {
                 [s.bold]: bold,
             })}
             {...otherProps}
