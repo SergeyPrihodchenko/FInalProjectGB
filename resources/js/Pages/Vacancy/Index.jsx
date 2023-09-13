@@ -9,7 +9,11 @@ import axios from "axios";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import Loader from "@/8Shared/Loader/Loader";
 
-const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
+const employmentType = [
+    "Полная занятость",
+    "Частичная занятость",
+    "Стажировка",
+];
 
 const Vacancy = ({ vacancies, title, auth }) => {
     console.log(vacancies);
@@ -25,20 +29,23 @@ const Vacancy = ({ vacancies, title, auth }) => {
 
         setIsLoading(true);
 
-        axios.get(`/vacancylist?page=${index}`)
-            .then(res => {
+        axios
+            .get(`/vacancylist?page=${index}`)
+            .then((res) => {
                 if (res.data.data.length) {
-                    setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data])
+                    setVacancyList((prevVacancyList) => [
+                        ...prevVacancyList,
+                        ...res.data.data,
+                    ]);
                     // setIsLoading(false);
                 } else {
                     return;
                 }
             })
             .catch((err) => console.log(err))
-            .finally(() => setIsLoading(false))
+            .finally(() => setIsLoading(false));
 
         setIndex((prevIndex) => prevIndex + 1);
-
     }, [index, isLoading]);
 
     useEffect(() => {
@@ -61,9 +68,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 }
             };
         }
-
     }, [loaderRef, vacancyList]);
-
 
     useEffect(() => {
         if (!vacancies) {
@@ -71,28 +76,26 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 setIsLoading(true);
                 try {
                     const response = await axios.get(`/vacancylist?page=1`);
-                    setVacancyList(response.data.data)
+                    setVacancyList(response.data.data);
                 } catch (error) {
                     console.log(error);
                 }
                 setIsLoading(false);
-
             };
 
             getData();
         }
-
     }, []);
 
-
     return (
-        <MainLayout user={user} className={'app_light_theme'}>
+        <MainLayout user={user} className={"app_light_theme"}>
             <AppPage>
                 <div className="filterContainer">
                     <form action="">
                         <AppText text="Тип занятости" bold />
-                        {employmentType.map(item => <Checkbox key={item} label={item} />)}
-
+                        {employmentType.map((item) => (
+                            <Checkbox key={item} label={item} />
+                        ))}
                     </form>
                 </div>
                 <AppText
@@ -102,50 +105,45 @@ const Vacancy = ({ vacancies, title, auth }) => {
                     className="m-[20px]"
                 />
                 <div className="flex flex-col gap-[20px] mb-[20px]">
-                    {vacancyList.map(vac =>
+                    {vacancyList.map((vac) => (
                         <AppLink
-                            path={'vacancy.show'}
+                            path={"vacancy.show"}
                             param={vac.id}
                             key={vac.payment}
                         >
                             <AppCard
-                                width={'100%'}
-                                height={'200px'}
-                                variant='primary'
+                                width={"100%"}
+                                height={"200px"}
+                                variant="primary"
                                 shadow
                                 borderLeft
                                 borderRadius
-                                className={'flex flex-col items-start p-5'}
+                                className={"flex flex-col items-start p-5"}
                             >
+                                <AppText title={vac.title} />
+                                <AppText text={`от ${vac.payment} руб.`} />
                                 <AppText
-                                    title={vac.title}
-                                />
-                                <AppText
-                                    text={`от ${vac.payment} руб.`}
-                                />
-                                <AppText
-                                    size='s'
-                                    variant='notaccented'
+                                    size="s"
+                                    variant="notaccented"
                                     text={`Опыт работы от ${vac.experience} лет`}
                                 />
                                 <AppButton
-                                    className={'px-[12px] mt-auto rounded-[20px]'}
-                                    width='auto'
-                                    height='32px'
+                                    className={
+                                        "px-[12px] mt-auto rounded-[20px]"
+                                    }
+                                    width="auto"
+                                    height="32px"
                                 >
                                     Откликнуться
                                 </AppButton>
                             </AppCard>
                         </AppLink>
-                    )}
-
+                    ))}
                 </div>
-                <div ref={loaderRef}>
-                    {isLoading && <Loader />}
-                </div>
+                <div ref={loaderRef}>{isLoading && <Loader />}</div>
             </AppPage>
         </MainLayout>
-    )
-}
+    );
+};
 
 export default Vacancy;

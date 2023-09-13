@@ -1,7 +1,7 @@
 import s from "./MainLayout.module.css";
-import { Header } from "@/8Shared/Header/Header";
-import { Navbar } from "@/8Shared/Navbar/Navbar";
-import { Footer } from "@/8Shared/Footer/Footer";
+import { Header } from "@/4Widgets/Header/Header";
+import { Navbar } from "@/4Widgets/Navbar/Navbar";
+import { Footer } from "@/4Widgets/Footer/Footer";
 import { PropTypes } from "prop-types";
 import cn from "classnames";
 
@@ -13,6 +13,7 @@ const MainLayout = (porps) => {
             <Header>
                 <Navbar user={user} />
             </Header>
+
             <main>{children}</main>
             <Footer />
         </div>

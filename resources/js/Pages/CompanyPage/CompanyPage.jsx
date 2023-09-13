@@ -5,16 +5,16 @@ import PropTypes from "prop-types";
 import CompanyPageBody from "@/Pages/CompanyPage/CompanyPageBody.jsx";
 import { CompanyPageMockData } from "@/Pages/CompanyPage/CompanyPageMockData.js";
 
-function CompanyPage({auth}) {
+function CompanyPage({ auth }) {
     const user = auth?.user;
-    const data = CompanyPageMockData()
+    const data = CompanyPageMockData();
 
     return (
         <MainLayout className={"app_light_theme"} user={user}>
             <Head>
                 <title>Компания</title>
             </Head>
-            <CompanyPageBody {...data}/>
+            <CompanyPageBody {...data} />
         </MainLayout>
     );
 }
