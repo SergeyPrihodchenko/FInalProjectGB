@@ -11,9 +11,10 @@
 
 .mainLayout > header {
     grid-area: header;
+}
+.header {
     background-color: var(--header-color);
 }
-
 .mainLayout > main {
     grid-area: main;
     min-height: calc(100vh - var(--header-height) - var(--footer-height));

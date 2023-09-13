@@ -13,13 +13,13 @@ import data from "../../data.json";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout.jsx";
 import { Head } from "@inertiajs/react";
 import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
-import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage(props) {
     const { auth, vacancy } = props;
     const user = auth?.user;
-    console.log("vacancy", vacancy);
+    console.log("VacancyPage.jsx vacancy", vacancy);
+    console.log("VacancyPage.jsx props", props);
 
     return (
         <MainLayout className="app_light_theme" user={user}>
@@ -32,7 +32,6 @@ function VacancyPage(props) {
                             }
                         }
                     )} */}
-                <VacanyNav />
                 {/* <AppInput label="123" placeholder="placeholder"  /> */}
                 <AppPage>
                     <div className={s.vacancyPage}>
@@ -54,7 +53,7 @@ function VacancyPage(props) {
                             height="60px"
                             className={s.btn}
                         >
-                            <AppText text="Откликнуться" />
+                            Откликнуться
                         </AppButton>
                         <VacancyPageReviews className={s.reviews} />
                     </div>

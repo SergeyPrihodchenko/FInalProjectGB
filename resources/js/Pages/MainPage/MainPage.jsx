@@ -24,9 +24,11 @@ const cardsInfo = [...Array(12)].map(() => {
     };
 });
 
-const MainPage = ({ auth, categories, className, vacancies }) => {
+const MainPage = (props) => {
+    const { auth, categories, className, vacancies} = props;
     const user = auth?.user;
-    console.log(vacancies);
+    // console.log("MainPage.jsx vacancies", vacancies);
+
     return (
         <MainLayout className={"app_light_theme"} user={user}>
             <Head title="Home" />

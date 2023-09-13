@@ -1,0 +1,21 @@
+.secondNav {
+    width: 100%;
+    background-color: var(--accent);
+    height: var(--second-header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.conatiner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navLinkList {
+    display: flex;
+    justify-content: space-between;
+}
+.navItem {
+    padding: 20px;
+}

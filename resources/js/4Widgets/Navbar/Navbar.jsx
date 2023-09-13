@@ -7,10 +7,11 @@ import { BootstrapIcon } from "../../8Shared/Icon/BootstrapIcon";
 import { Logo } from "../../8Shared/Logo/Logo";
 import mainlogo from "@/8Shared/assets/icons/mainlogo.svg";
 import AppText from "@/8Shared/ui/AppText/AppText";
+import SecondNav from "../SecondNav/SecondNav";
 
 export const Navbar = (props) => {
     const { user } = props;
-    console.log("Navbar.jsx user", user);
+    // console.log("Navbar.jsx user", user);
 
     return (
         <nav className={s.navBg}>
