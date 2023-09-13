@@ -68,7 +68,6 @@ const MainPage = ({ auth, categories, className, vacancies }) => {
                                     height={"200px"}
                                     shadow
                                     borderRadius
-                                    borderLeft
                                     className={s.cardPadding}
                                 >
                                     <AppText title={cat.title} size="m" />
@@ -97,7 +96,6 @@ const MainPage = ({ auth, categories, className, vacancies }) => {
                                     height={"200px"}
                                     variant="primary"
                                     shadow
-                                    borderLeft
                                     borderRadius
                                     className={s.vacancyCard}
                                 >
@@ -108,13 +106,13 @@ const MainPage = ({ auth, categories, className, vacancies }) => {
                                         variant="notaccented"
                                         text={`Опыт работы от ${vac.experience} лет`}
                                     />
-                                    <AppButton
+                                    {/* <AppButton
                                         className={s.vacancyBtn}
                                         width="auto"
                                         height="32px"
                                     >
                                         Откликнуться
-                                    </AppButton>
+                                    </AppButton> */}
                                 </AppCard>
                             </AppLink>
                         ))}

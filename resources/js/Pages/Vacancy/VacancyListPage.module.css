@@ -12,4 +12,8 @@
     margin-bottom: 13px;
 }
 
-.vacancyListCard {}
+
+
+.page {
+    min-height: calc(100vh - var(--header-height));
+}

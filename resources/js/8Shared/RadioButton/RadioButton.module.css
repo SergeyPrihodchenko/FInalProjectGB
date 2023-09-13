@@ -19,17 +19,24 @@
     border: 1px solid var(--checkbox-color);
     outline: none;
     cursor: pointer;
+    color: #fff;
 
 }
 
 input[type="radio"]:focus,
 input[type="radio"]:focus:checked {
     box-shadow: none;
-    border: none;
+    /* border: none; */
+    border-color: var(--accent);
+    border-width: 6px;
+
 }
 
-input[type="radio"]:checked.checked {
-    background-color: var(--accent);
+input[type="radio"]:checked {
+    border-color: var(--accent);
+    border-width: 6px;
     position: relative;
-    border: none;
+    background-image: none;
+
+
 }
