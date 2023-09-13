@@ -6,64 +6,93 @@ import { ProfilePageNav } from "@/8Shared/ProfilePageNav/ProfilePageNav";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 
+const arrayEucation = [
+    'Среднее', 
+    'Среднее специальное',
+    'Неоконченное высшее',
+    'Высшее',
+    'Бакалавр',
+    'Магистр',
+    'Кандидат наук',
+    'Доктор наук', 
+]
+
 function ResumePage() {
-    return (
-        <MainLayout className={"app_light_theme"}>
-            <ProfilePageNav />
-            <AppPage>
-                <container>
-                    <div className={s.basiceData}>
-                        <AppText title={"Профессия"} bold size={"s"} />
-                        <select>
-                            <option>вывод из массива профессий</option>
-                        </select>
-                        <AppText title={"Фамилия"} bold size={"s"} />
-                        <input type="text" placeholder="Фамилия" />
-                        <AppText title={"Имя"} bold size={"s"} />
-                        <input type="text" placeholder="Имя" />
-                        <AppText title={"Пол"} bold size={"s"} />
-                        <input type="radio" value="man" checked name="gender" />
-                        мужской
-                        <input type="radio" value="woman" name="gender" />
-                        женский
-                        <AppText
-                            title={"Город или регион проживания"}
-                            bold
-                            size={"s"}
-                        />
-                        <input type="text" placeholder="Москва" />
-                        <AppText title={"Дата рождения"} bold size={"s"} />
-                        <input type="date" value="2023-09-01" />
-                        <AppText title={"Номер телефона"} bold size={"s"} />
-                        <input type="phone" placeholder="+7 (999) 999-99-99" />
-                        <AppText title={"Гражданство"} bold size={"s"} />
-                        <input type="text" placeholder="Россия" />
-                        <AppText
-                            title={"Разрешение на работу"}
-                            bold
-                            size={"s"}
-                        />
-                        <input type="text" placeholder="Россия" />
-                    </div>
+     return (
+            <MainLayout className={"app_light_theme"}>
+                <ProfilePageNav/>
+                <AppPage>
+                    <container className={s.createResumePage}>
+                        <main className={s.mainCreateResume}>
+                            <div className={s.basiceData}>
+                                
+                                <AppText title={"Профессия"} bold size={"s"} className={s.textTitle}/>
+                                <input type="text" placeholder="Дизайнер" className={s.inputBasiceData}/>
+                               
+                                <AppText title={"Фамилия"} bold size={"s"} className={s.textTitle}/>
+                                <input type="text" placeholder="Фамилия" className={s.inputBasiceData}/>
+                                
+                                <AppText title={"Имя"} bold size={"s"} className={s.textTitle}/>
+                                <input type="text" placeholder="Имя" className={s.inputBasiceData}/>
 
-                    <div className={s.levelOfEucation}>
-                        <AppText
-                            title={"Уровень образования"}
-                            bold
-                            size={"s"}
-                        />
+                                <AppText title={"Пол"} bold size={"s"} className={s.textTitle}/>
+                                
+                                <div className={s.inputRadioBasiceData}>
+                                    <input type="radio" value="man" checked name="gender"/> 
+                                    <AppText text={"Мужской"} size={"m"} className={s.textInputRadio}/>
+                                    <input type="radio" value="woman" name="gender"/>
+                                    <AppText text={"Женский"} size={"m"} className={s.textInputRadio}/> 
+                                </div>
 
-                        <input type="radio" checked />
-                        <AppText title={"Вывод из массива"} size={"s"} />
-                    </div>
+                                <AppText title={"Город или регион проживания"} bold size={"s"} className={s.textTitle}/>
+                                <input type="text" placeholder="Москва" className={s.inputBasiceData}/>
 
-                    <div className={s.education}></div>
+                                <AppText title={"Дата рождения"} bold size={"s"} className={s.textTitle}/>
+                                <input type="date" value="2023-09-01"/>
 
-                    <div className={s.experience}></div>
-                </container>
-            </AppPage>
-        </MainLayout>
-    );
+
+                                <AppText title={"Номер телефона"} bold size={"s"} className={s.textTitle}/>
+                                <input type="phone" placeholder="+7 (999) 999-99-99"className={s.inputBasiceData}/>
+
+                                <AppText title={"Гражданство"} bold size={"s"} className={s.textTitle}/>
+                                <input type="text" placeholder="Россия" className={s.inputBasiceData}/>
+
+                                <AppText title={"Разрешение на работу"} bold size={"s"} className={s.textTitle}/>
+                                <input type="text" placeholder="Россия" className={s.inputBasiceData}/>
+                            </div>
+
+                            <div className={s.levelOfEucation}>
+                                <AppText title={"Уровень образования"} bold size={"s"} className={s.textTitle}/>
+                                
+                                <div className={s.typeEucation}>
+                                    {
+                                        arrayEucation.map((el)=> {
+                                            // console.log(el);
+                                            return (
+                                                <div className={s.inputRadioBasiceData}>
+                                                    <input type="radio"/>
+                                                    <AppText text={el} size={"m"} className={s.textInputRadio}/>        
+                                                </div> 
+                                            )
+                                        }) 
+                                    }
+                                </div>
+                            </div>
+
+
+                            <div className={s.education}>
+
+                            </div>
+
+                            <div className={s.experience}>
+
+                            </div>
+
+                        </main>
+                    </container>
+                </AppPage>
+            </MainLayout>
+    );        
 }
 
 //ProfilePage.propTypes = {}
