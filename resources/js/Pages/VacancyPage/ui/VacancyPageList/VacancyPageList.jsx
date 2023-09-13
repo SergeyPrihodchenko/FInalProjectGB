@@ -7,9 +7,9 @@ import AppCard from "@/8Shared/ui/AppCard/AppCard";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 
 export default function VacancyPageList(props) {
+    // console.log(props);
     const { vacancyPageList, className } = props;
     const { vacancyList, description, skills, contacts } = vacancyPageList;
-
     return (
         <div className={cn(s.vacancyPageList, className)}>
             {vacancyPageList.description && (

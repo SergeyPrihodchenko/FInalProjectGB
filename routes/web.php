@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
-Route::post('/searchSort', [MainController::class, 'afterSearchSort']);
+Route::get('/searchSort', [MainController::class, 'afterSearchSort']);
 Route::get('/category/search', [MainController::class, 'searchSort'])->name('category.sort');
 
 Route::get('/testPageCompany', function () {

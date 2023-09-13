@@ -13,30 +13,32 @@ export const Search = ({ placeholder, vacancies }) => {
     const [suggestionsActive, setSuggestionsActive] = useState(false);
     const [value, setValue] = useState("");
 
-    const [sortVacancy, SetSortVacancy] = useState([]);
+    const [sortVacancies, SetSortVacancy] = useState([]);
 
-    const request = async (str) => {
-        const request = await fetch('/searchSort', {
-            method: 'POST',
-            body: {str: str}
-        });
-
-        const response = await request.json();
-        console.log(response);
-    } 
+    const request = (str) => {
+        if(str.length >= 3) {
+            axios.get(`/searchSort?str=${str}`)
+            .then(res => {
+                console.log(res.data);
+                SetSortVacancy(res.data);
+            })
+            .catch((err) => console.log(err))
+        }
+    }
     
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         request(query);
         setValue(query);
         if (query.length > 0) {
-            const filterSuggestions = vacancies.filter(
-                (suggestion) => {
-                    return (suggestion.title.toLowerCase().indexOf(query) > -1 && suggestion.title.toLowerCase().startsWith(query[0])
-                    )
-                }
-            );
-            setSuggestions(filterSuggestions);
+            // const filterSuggestions = sortVacancies.filter(
+            //     (suggestion) => {
+            //         return (suggestion.title.toLowerCase().indexOf(query) > -1 && suggestion.title.toLowerCase().startsWith(query[0])
+            //         )
+            //     }
+            // );
+            // console.log(filterSuggestions);
+            setSuggestions(sortVacancies);
             setSuggestionsActive(true);
             console.log(query);
         } else {
