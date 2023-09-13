@@ -61,7 +61,7 @@ export const Navbar = (props) => {
                                     <Link
                                         href={route("register")}
                                         className={cn(s.navLink, [
-                                            "font-semibold text-gray-600 hover:text-whitedark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
+                                            "font-semibold text-gray-600 hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
                                         ])}
                                     >
                                         Регистрация
