@@ -16,13 +16,14 @@ import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 const navList = ["Мои резюме", "Отклики", "Помощь"];
-function VacancyPage({ auth }) {
+function VacancyPage(props) {
+    const { auth, vacancy } = props;
     const user = auth?.user;
-    <Head>
-        <title>Вакансия</title>
-    </Head>;
+    console.log("vacancy", vacancy);
+
     return (
         <MainLayout className="app_light_theme" user={user}>
+            <Head title="VacancyPage" />
             <div className={s.vacancyPage}>
                 {/* {Object.entries(AppRoutesByPathPattern).forEach(
                         ([patter, route]) => {

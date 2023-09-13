@@ -27,7 +27,7 @@ class VacancyController
 
     public function create(): \Inertia\Response
     {
-        return Inertia::render('Vacancy/CreateVacancy');
+        return Inertia::render('CreateVacancyPage/ui/CreateVacancyPage/CreateVacancyPage');
     }
 
     public function store(StoreRequest $request)
