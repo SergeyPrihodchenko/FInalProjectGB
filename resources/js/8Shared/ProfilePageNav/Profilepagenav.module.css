@@ -1,26 +1,23 @@
 .navProfilePage {
-    background-color: #0FC3FC;
+    background-color:  var(--accent);
     height: 100px;
 }
 
 .nav {
-    margin: 0;
-    padding: 0;
-
     display: flex;
     justify-content: start;
 }
 
 .navMenu {
-    color: black; 
+    color: var(--primary-text); 
     display: flex;
     flex-grow: 1;
-
+    list-style-type: none;
+    text-decoration: none; 
 }
 
 .navMenuSerch {
-    display: flex;
-    
+    display: flex;   
 }
 
 .navLink {

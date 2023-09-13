@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 class VacancyController
 {
-    public function index():\Inertia\Response
+    public function index(): \Inertia\Response
     {
         //VacancyPage/ui/VacancyPageList/VacancyPageList
         //В странице Vacancy/Index больше не нужны дынные из БД в этом свойтве
@@ -17,15 +17,15 @@ class VacancyController
         ]);
     }
 
-    public function show(Vacancy $vacancy):\Inertia\Response
+    public function show(Vacancy $vacancy): \Inertia\Response
     {
         //VacancyPage/ui/VacancyPage/VacancyPage
-        return Inertia::render('Vacancy/Show', [
+        return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
             'vacancy' => $vacancy
         ]);
     }
 
-    public function create():\Inertia\Response
+    public function create(): \Inertia\Response
     {
         return Inertia::render('Vacancy/CreateVacancy');
     }

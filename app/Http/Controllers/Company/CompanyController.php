@@ -28,7 +28,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Company');
+
     }
 
     /**
@@ -38,13 +39,16 @@ class CompanyController extends Controller
     {
         $date = $request->only([
             'name',
-            'email' ,
-            'website',
-            'phone_number' ,
-            'address' ,
-            'created_at',
-            'updated_at']);
+//            'email' ,
+//            'website',
+//            'phone_number' ,
+//            'address' ,
+          ]
+);
         $company = Company::create($date);
+        return Inertia::render('Company/company_detail', [
+            'company'=>$company
+        ]);
     }
 
     /**
@@ -63,7 +67,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return Inertia::render('Company/Edit');
     }
 
     /**
@@ -88,6 +92,6 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
     }
 }

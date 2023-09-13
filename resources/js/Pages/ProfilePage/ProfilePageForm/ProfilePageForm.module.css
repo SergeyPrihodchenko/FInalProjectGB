@@ -3,35 +3,66 @@
 }
 
 .formProfile {
-    font-size: 24px;
     padding: 50px 50px;
     text-align: center;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--not-accented);
 }
 
 .textForm {
-    height: 100px;
-    width: 33.333%;  
+    width: 30%;  
     float: left;    
 }
 
-.inputFormProfile {
+.inputFormProfile,
+.inputFormProfileUpdate,
+.inputForm {
     border: none;
     width: 400px;
     height: 40px;
     background-color: #CFF3FE;
     padding-right: 100px;
+    padding-bottom: 20px;
 }
 
-.inputFormProfile::placeholder {
+.inputFormProfile::placeholder,
+.inputFormProfileUpdate::placeholder,
+.inputForm::placeholder  {
     font-size: 20px;
-    color: black;
-    font-family: 'Times New Roman';
-    text-align: center;
-    font-family: consolas;
+    color: var( --not-accented);
 }
 
 .btnFormProfile {
+    margin-top: 10px;
     border: none;
     background-color: #CFF3FE;
+    padding-left: 100px;
+}
+
+/* .hidden {
+    display:none;
+}
+
+.open {
+    display: block;
+} */
+
+.divLeft {
+    float: right;
+    width: 30%; 
+}
+
+.inputFormProfileUpdate {
+    margin-right: 200px;
+}
+
+.inputForm {
+    border: none;
+    width: 300px;
+    height: 40px;
+    background-color: #CFF3FE;
+}
+.inputFormProfile::placeholder
+  {
+    font-size: 20px;
+    color: var( --not-accented);
 }
