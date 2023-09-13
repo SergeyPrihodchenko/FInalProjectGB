@@ -12,10 +12,10 @@ import Loader from "@/8Shared/Loader/Loader";
 const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
 
 const Vacancy = ({ vacancies, title, auth }) => {
-    console.log(vacancies);
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(2);
+    const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
 
     const user = auth?.user;
@@ -28,9 +28,8 @@ const Vacancy = ({ vacancies, title, auth }) => {
         axios.get(`/vacancylist?page=${index}`)
             .then(res => {
                 if (res.data.data.length) {
-                    setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data])
+                    setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data]);
                     setIsLoading(false);
-                    console.log(res.data.data);
                 } else {
                     return;
                 }
@@ -44,24 +43,27 @@ const Vacancy = ({ vacancies, title, auth }) => {
 
     useEffect(() => {
         if (!vacancies) {
-            const observer = new IntersectionObserver((entries) => {
-                const target = entries[0];
-                if (target.isIntersecting) {
-                    fetchVacancyCards();
-                    setIsLoading(false);
-                }
-            });
+            if (vacancyList.length != total) {
+                const observer = new IntersectionObserver((entries) => {
+                    const target = entries[0];
+                    if (target.isIntersecting) {
+                        fetchVacancyCards();
+                    }
+                });
 
-            if (loaderRef.current) {
-                observer.observe(loaderRef.current);
+                if (loaderRef.current) {
+                    observer.observe(loaderRef.current);
+                }
+
+                return () => {
+                    if (loaderRef.current) {
+                        observer.unobserve(loaderRef.current);
+                        setIsLoading(false);
+                    }
+                };
+
             }
 
-            return () => {
-                if (loaderRef.current) {
-                    observer.unobserve(loaderRef.current);
-                    setIsLoading(false);
-                }
-            };
         }
 
     }, [loaderRef, vacancyList]);
@@ -74,6 +76,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 try {
                     const response = await axios.get(`/vacancylist?page=1`);
                     setVacancyList(response.data.data)
+                    setTotal(response.data.total);
                 } catch (error) {
                     console.log(error);
                 }
