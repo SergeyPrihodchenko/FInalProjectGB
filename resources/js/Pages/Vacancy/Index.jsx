@@ -12,6 +12,7 @@ import s from './VacancyListPage.module.css'
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import cn from "classnames"
 
+
 const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
 const workSchedule = ['Полный день', 'Сменный график', 'Гибкий график', 'Удаленная работа', 'Вахтовый метод'];
 const workExperience = ['Не имеет значения', 'Нет опыта', '1-3 года', '3-6 лет', 'более 6 лет'];
@@ -30,9 +31,11 @@ const Vacancy = ({ vacancies, title, auth }) => {
 
         setIsLoading(true);
 
-        axios.get(`/vacancylist?page=${index}`)
-            .then(res => {
+        axios
+            .get(`/vacancylist?page=${index}`)
+            .then((res) => {
                 if (res.data.data.length) {
+
                     setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data]);
                     setIsLoading(false);
                 } else {
@@ -40,10 +43,9 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 }
             })
             .catch((err) => console.log(err))
-            .finally(() => setIsLoading(false))
+            .finally(() => setIsLoading(false));
 
         setIndex((prevIndex) => prevIndex + 1);
-
     }, [index, isLoading]);
 
     useEffect(() => {
@@ -70,9 +72,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
             }
 
         }
-
     }, [loaderRef, vacancyList]);
-
 
     useEffect(() => {
         if (!vacancies) {
@@ -80,20 +80,18 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 setIsLoading(true);
                 try {
                     const response = await axios.get(`/vacancylist?page=1`);
+
                     setVacancyList(response.data.data)
                     setTotal(response.data.total);
                 } catch (error) {
                     console.log(error);
                 }
                 setIsLoading(false);
-
             };
 
             getData();
         }
-
     }, []);
-
 
     return (
         <MainLayout user={user} className={'app_light_theme'}>
@@ -159,10 +157,9 @@ const Vacancy = ({ vacancies, title, auth }) => {
                     </div>
 
                 </div>
-
             </AppPage>
         </MainLayout>
-    )
-}
+    );
+};
 
 export default Vacancy;

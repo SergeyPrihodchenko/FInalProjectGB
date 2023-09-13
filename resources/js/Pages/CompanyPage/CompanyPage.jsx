@@ -13,6 +13,10 @@ import CompanyPageVacanciesItem from "@/Pages/CompanyPage/CompanyPageVacanciesIt
 
 function CompanyPage({ auth }) {
     const user = auth?.user;
+  // libertycode
+    const data = CompanyPageMockData();
+
+
     const [rating, setRating] = useState(2);
     const [vacancyOpen, setVacancyOpen] = useState(true)
     const mockCountReview = 2;
@@ -100,6 +104,9 @@ function CompanyPage({ auth }) {
             <Head>
                 <title>Компания</title>
             </Head>
+// libertycode
+            <CompanyPageBody {...data} />
+
             <div className={cn(s.companyPageContainer)}>
                 <div className={cn(s.companyPageLeft)}>
                     <section className={cn(s.companyPageLeftCard)}>

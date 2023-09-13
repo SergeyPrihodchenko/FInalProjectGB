@@ -3,8 +3,8 @@ import { Link } from "@inertiajs/react";
 import s from "./Navbar.module.css";
 import PropTypes from "prop-types";
 import cn from "classnames";
-import { BootstrapIcon } from "../Icon/BootstrapIcon";
-import { Logo } from "../Logo/Logo";
+import { BootstrapIcon } from "../../8Shared/Icon/BootstrapIcon";
+import { Logo } from "../../8Shared/Logo/Logo";
 import mainlogo from "@/8Shared/assets/icons/mainlogo.svg";
 
 export const Navbar = (props) => {
@@ -20,12 +20,12 @@ export const Navbar = (props) => {
                         <li>
                             <Link className={s.navLink}>Создать резюме</Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link className={s.navLink}>Соискателям</Link>
                         </li>
                         <li>
                             <Link className={s.navLink}>Работодателям</Link>
-                        </li>
+                        </li> */}
                         <li>
                             <Link
                                 className={s.navLink}

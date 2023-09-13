@@ -44,8 +44,8 @@ export const ProfilePageNav = () => {
                                                 title={"Создать резюме"}
                                             />
                                         </AppButton>
-                                </div></a>
-                                
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     }
