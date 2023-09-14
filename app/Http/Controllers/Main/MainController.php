@@ -41,10 +41,10 @@ class MainController extends Controller
         ]);
     }
 
-    public function afterSearchSort(CategoryRequest $request) 
+    public function beforeSearchSort(CategoryRequest $request) 
     {
         $data = $request->validated();
         $searchStr = $data['str'];
-        return Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
+        return Vacancy::where('title', 'like', '%'.$searchStr.'%')->distinct()->get('title');
     }
 }
