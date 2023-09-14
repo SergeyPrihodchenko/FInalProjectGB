@@ -11,10 +11,12 @@ import Loader from "@/8Shared/Loader/Loader";
 import s from './VacancyListPage.module.css'
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import cn from "classnames"
+import { Search } from "@/8Shared/Search/Search";
 
 const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
 const workSchedule = ['Полный день', 'Сменный график', 'Гибкий график', 'Удаленная работа', 'Вахтовый метод'];
 const workExperience = ['Не имеет значения', 'Нет опыта', '1-3 года', '3-6 лет', 'более 6 лет'];
+const payment = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽'];
 
 const Vacancy = ({ vacancies, title, auth }) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
@@ -22,6 +24,8 @@ const Vacancy = ({ vacancies, title, auth }) => {
     const [index, setIndex] = useState(2);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
+
+    const [selected, setSelected] = useState([]);
 
     const user = auth?.user;
 
@@ -94,21 +98,41 @@ const Vacancy = ({ vacancies, title, auth }) => {
 
     }, []);
 
+    const handleCheckboxRadioChange = (event) => {
+        const { value, checked, name } = event.target;
+        if (checked) {
+            setSelected([...selected, value]);
+        }
+        console.log(event);
+        console.log(value, checked);
+
+    }
+    console.log(selected);
+
 
     return (
         <MainLayout user={user} className={'app_light_theme'}>
             <AppPage className={s.page}>
+                <div className='mt-[20px]'>
+                    <Search />
+                </div>
+
                 <div className={s.vacancyWrapper}>
                     <div className="filterContainer">
                         <form action="">
                             <AppText text="Тип занятости" bold className={s.vacancyFilterTitle} />
                             {employmentType.map(item =>
                                 <Checkbox
+                                    name={'employmentType'}
                                     key={item}
                                     label={item}
+                                    value={item}
+                                    onChange={handleCheckboxRadioChange}
                                 />)}
                             <AppText text="Опыт работы" bold className={s.vacancyFilterTitle} />
                             {workExperience.map(item => <RadioButton name={'work_experience'} label={item} value={item} />)}
+                            <AppText text="Уровень дохода" bold className={s.vacancyFilterTitle} />
+                            {payment.map(item => <RadioButton name={'payment'} label={item} value={item} />)}
 
                             <AppText text="График работы" bold className={s.vacancyFilterTitle} />
                             {workSchedule.map(item => <Checkbox key={item} label={item} />)}
@@ -116,7 +140,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                         </form>
                     </div>
                     <div className={s.vacancyList}>
-                        <div className="flex flex-col gap-[20px] mb-[20px]">
+                        <div className="flex flex-col gap-[20px] mb-[30px]">
                             {vacancyList.map(vac =>
                                 <AppLink
                                     path={'vacancy.show'}
@@ -125,7 +149,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                                 >
                                     <AppCard
                                         width={'auto'}
-                                        height={'200px'}
+                                        height={'260px'}
                                         shadow
                                         className={cn('flex flex-col items-start p-5', s.vacancyListCard)}
                                     >
@@ -136,9 +160,16 @@ const Vacancy = ({ vacancies, title, auth }) => {
                                             text={`от ${vac.payment} руб.`}
                                         />
                                         <AppText
+                                            text={`Компания ${vac.conditions}.`}
+                                        />
+                                        <AppText
+                                            text={vac.employment}
+                                        />
+                                        <AppText
                                             size='s'
                                             variant='notaccented'
                                             text={`Опыт работы от ${vac.experience} лет`}
+                                            className="p-[12px]"
                                         />
                                         <AppButton
                                             className={'px-[12px] mt-auto rounded-[20px]'}

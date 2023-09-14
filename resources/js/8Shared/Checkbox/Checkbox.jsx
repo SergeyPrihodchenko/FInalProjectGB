@@ -3,7 +3,7 @@ import s from "./Checkbox.module.css"
 import cn from "classnames"
 
 
-const Checkbox = ({ label, checked, className, ...props }) => {
+const Checkbox = ({ label, checked, value, className, ...props }) => {
     const defaultState = checked ? checked : false;
     const [isChecked, setIsChecked] = useState(defaultState);
 
@@ -14,11 +14,12 @@ const Checkbox = ({ label, checked, className, ...props }) => {
                     type="checkbox"
                     name=""
                     id=""
-                    checked={isChecked}
-                    onChange={() => setIsChecked(!isChecked)}
-                    className={cn(className, {
-                        [s.checked]: isChecked
-                    })}
+                    value={value}
+                    // checked={isChecked}
+                    // onChange={() => setIsChecked(!isChecked)}
+                    // className={cn(className, {
+                    //     [s.checked]: isChecked
+                    // })}
                     {...props}
                 />
                 <span>{label}</span>
