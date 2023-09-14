@@ -1,0 +1,28 @@
+.buttonYearsExperience {
+    padding-top: 57px;
+    transform: none;
+}
+
+.experienceWork {
+    width: 760px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputEndingWork {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkboxEndingWork {
+    width: 26px;
+    height: 26px;
+    background: var(--light-bg);
+    border: 1px solid var(--not-accented);
+    border-radius: 5px;
+
+}
+
+.textTitleEnding {
+    padding-left: 10px;
+}
