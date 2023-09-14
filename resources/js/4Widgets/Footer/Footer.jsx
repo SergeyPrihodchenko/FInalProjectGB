@@ -1,10 +1,10 @@
 import s from "./Footer.module.css";
 import { AppPage } from "../../5Layouts/AppPage/AppPage";
-import { Typography } from "../Typography/Typography";
-import { SocialLinksWidget } from "../../4Widgets/SocialLinksWidget/SocialLinksWidget";
-import { BootstrapIcon } from "../Icon/BootstrapIcon";
-import AppText from "../ui/AppText/AppText";
-
+import { Typography } from "../../8Shared/Typography/Typography";
+import { SocialLinksWidget } from "../SocialLinksWidget/SocialLinksWidget";
+import { BootstrapIcon } from "../../8Shared/Icon/BootstrapIcon";
+import AppText from "../../8Shared/ui/AppText/AppText";
+import cn from "classnames";
 const socialList = [
     {
         name: "telegram",
@@ -18,9 +18,9 @@ const socialList = [
     },
 ];
 
-export const Footer = ({ children }) => {
+export const Footer = ({ children, className }) => {
     return (
-        <footer className={s.footer}>
+        <footer className={cn(s.footer, className)}>
             <AppPage>
                 <div className={s.footerTop}>
                     <div className={s.footerTopList}>

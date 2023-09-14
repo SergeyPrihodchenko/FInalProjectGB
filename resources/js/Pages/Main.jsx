@@ -3,8 +3,12 @@ import "../1App/styles/index.css";
 import cn from "classnames";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 
-export default function Main({ auth, categories, vacancies, className }) {
+export default function Main(props) {
+    const { auth, categories, vacancies, className } = props;
     const user = auth?.user;
+
+
+    console.log("Main.jsx props", props);
     return (
         <MainPage
             categories={categories}

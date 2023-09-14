@@ -4,14 +4,32 @@ import cn from "classnames";
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
 
-function AppLink({ path = "main", param, className, children }) {
+function AppLink(props) {
+    const {
+        path = "main",
+        param,
+        className,
+        children,
+        sizeText = "m",
+        bold,
+    } = props;
     return (
-        <Link href={route(path, param)} className={cn(s.appLink, className)}>
+        <Link
+            href={route(path, param)}
+            className={cn(
+                s.appLink,
+                s[sizeText],
+                { [s.bold]: bold },
+                className
+            )}
+        >
             {children}
         </Link>
     );
 }
 
-AppLink.propTypes = {};
+AppLink.propTypes = {
+    sizeText: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
+};
 
 export default AppLink;

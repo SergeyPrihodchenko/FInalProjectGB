@@ -2,6 +2,7 @@
     background-color: #242424;
     padding: 30px;
     color: #fff;
+    height: var(--footer-height);
 }
 
 .footerTop {

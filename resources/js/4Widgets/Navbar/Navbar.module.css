@@ -4,7 +4,6 @@
     justify-content: space-between;
 }
 
-
 .navList {
     display: flex;
     justify-content: flex-end;
@@ -13,7 +12,14 @@
 }
 
 .navLink {
-    display: block;
+    display: flex;
+    align-items: center;
     color: var(--accent);
     padding: 10px 0;
+}
+.navLink .name p {
+    margin-right: 5px;
+}
+.navLink:hover .name p {
+    color: var(--secondary-text);
 }

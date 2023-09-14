@@ -29,7 +29,8 @@
     /* xxl */
     --font-size-xxl: 48px;
     --font-line-xxl: 56px;
-    --font-xxl: var(--font-size-xxl) / var(--font-line-xxl) var(--font-family-main);
+    --font-xxl: var(--font-size-xxl) / var(--font-line-xxl)
+        var(--font-family-main);
 
     /* Transition delay */
     --transition-delay: 0.3s;
@@ -39,7 +40,9 @@
 
     /* Sizes */
     --header-height: 75px;
-    --footer-height: 365px;
+    --second-header-height: 100px;
+    --footer-height: 380px;
+
     --sidebar-width: 0px;
 
     /* z-index */

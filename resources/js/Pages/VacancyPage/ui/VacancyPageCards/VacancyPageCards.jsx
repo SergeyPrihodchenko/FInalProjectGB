@@ -5,7 +5,6 @@ import cn from "classnames";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
-import AppLink from "@/8Shared/ui/AppLink/AppLink";
 function VacancyPageCards(props) {
     const { children, className } = props;
     return (
@@ -30,9 +29,7 @@ function VacancyPageCards(props) {
                     />
                     <AppText text=" 3 человека" variant="error" />
                 </div>
-                <AppButton className={s.btn}>
-                    <AppText text="Откликнуться" />
-                </AppButton>
+                <AppButton className={s.btn}>Откликнуться</AppButton>
             </AppCard>
             <AppCard className={s.aboutCompany}>
                 <AppText size="m" title="ООО Станок и Бабина" />
