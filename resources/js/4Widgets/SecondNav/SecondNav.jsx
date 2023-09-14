@@ -29,6 +29,7 @@ function SecondNav(props) {
                     width="200px"
                     height="50px"
                     variant="outline"
+                    colorType="normal"
                     rounded
                     sizeText="m"
                 >
