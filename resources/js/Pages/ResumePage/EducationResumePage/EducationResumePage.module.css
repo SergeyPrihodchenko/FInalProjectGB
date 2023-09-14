@@ -1,0 +1,13 @@
+.inputYearsEducation {
+    width: 100px;
+    height: 60px;
+}
+
+.buttonYearsEducation,
+.buttonYearsExperience {
+    border:none;
+    color: var(--accent);
+    background-color: var(--light-bg);
+    transform: translate(177px,-50px)
+
+}

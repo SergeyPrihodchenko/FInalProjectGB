@@ -1,0 +1,72 @@
+.textTitle {
+    padding: 20px 10px 10px 0px;
+}
+
+.inputBasiceData,
+.inputYearsEducation,
+.inputDataBasiceData,
+.textareaBasiceData {
+    box-sizing: border-box;
+    width: 760px;
+    height: 60px;
+    
+    background: var(--light-bg);
+    border: 1px solid var(--light-skeleton-shadow);
+    border-radius: 5px;
+
+}
+
+.inputBasiceData::placeholder,
+.textareaBasiceData::placeholder
+{
+    padding-left: 10px;
+    font-family: var(--font-family-main);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+
+    color: var(--not-accented);
+}
+
+
+.inputBasiceData:focus,
+.textareaBasiceData:focus
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    box-sizing: border-box;
+    background: var(--light-bg);
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+    color: var(--accent);
+
+}
+
+.inputDataBasiceData {
+    padding-left: 10px;
+    width: 140px;
+    height: 60px;
+}
+
+.inputRadioBasiceData {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.textInputRadio {
+    padding: 0px 20px 0px 10px;
+}
+
+.textareaBasiceData {
+    height: 138px;
+}
+
+.textareaBasiceData::-webkit-resizer {
+    resize: horizontal;
+}
