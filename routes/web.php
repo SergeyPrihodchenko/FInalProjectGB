@@ -3,7 +3,7 @@
 use App\Http\Controllers\Company\CompanyController;
 
 use App\Http\Controllers\Category\CategoryController;
-
+use App\Http\Controllers\Vacancy\FilterVacanciesController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vacancy\VacancyController;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
-Route::get('/searchSort', [MainController::class, 'afterSearchSort']);
+Route::get('/searchSort', [MainController::class, 'beforeSearchSort']);
 Route::get('/category/search', [MainController::class, 'searchSort'])->name('category.sort');
 
 Route::get('/testPageCompany', function () {
@@ -44,5 +44,7 @@ Route::get('/vacancylist', function () {
     return Vacancy::paginate(3);
 });
 
+Route::get('/vacancies/filter', [FilterVacanciesController::class, 'index']);
+Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
 Route::resource('company', CompanyController::class);
 

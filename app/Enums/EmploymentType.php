@@ -3,7 +3,7 @@ namespace App\Enums;
 
 enum EmploymentType: string
 {
-    case fullTimeJob = 'Полная занятость';
+    case fullTimeJob = 'Полный день';
     case shiftWork = 'Сменный график';
     case flexibleSchedule = 'Гибкий график';
     case distantWork = 'Удаленая работа';
