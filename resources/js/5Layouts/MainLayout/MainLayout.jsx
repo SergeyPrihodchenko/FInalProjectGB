@@ -9,7 +9,7 @@ import SecondNav from "@/4Widgets/SecondNav/SecondNav";
 
 const MainLayout = (porps) => {
     const { children, user, className } = porps;
-    console.log("MainLayout.jsx porps", porps);
+    // console.log("MainLayout.jsx porps", porps);
     const locationPath = window.location.pathname;
     return (
         <div className={cn(s.mainLayout, className)}>

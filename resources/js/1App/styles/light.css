@@ -2,6 +2,8 @@
     /* main colors */
     --light-bg: #fff;
     --dark-bg: #242424;
+    --secondary-bg: rgb(240, 240, 240);
+
     --primary-text: #000;
     --secondary-text: #fff;
 
@@ -9,6 +11,7 @@
     --cancel: #ff0000cc;
     --error: #ff0000cc;
     --save: #62de85;
+    --hint: ;
     --not-accented: rgba(0, 0, 0, 0.56);
 
     /* skeleton */
@@ -24,6 +27,10 @@
     /* listBox */
     /* --list-bg: #d5d5d7; */
     --header-color: #000;
+
+    /* shadow */
+    --shadow-dark: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    --shadow--hover: 0px 4px 10px var(--accent);
 
     /* Checkbox */
     --checkbox-color: #242424;

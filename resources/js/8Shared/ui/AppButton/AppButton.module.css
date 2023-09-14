@@ -1,7 +1,7 @@
 .appButton {
     outline-style: none;
 }
-
+/* Clear */
 .clear {
     padding: 0;
     border: none;
@@ -10,46 +10,49 @@
     color: inherit;
     transition: var(--transition-delay) linear;
 }
+.clear.cancel {
+    color: var(--cancel);
+}
+.clear:hover {
+    color: var(--accent);
+}
 
+/* Outline */
 .outline {
     outline: none;
     background: none;
-    border: 2px solid var(--primary-text);
-    border-radius: 8px;
+    border-radius: var(--border-radius-s);
     font-weight: 700;
-    color: var(--primary-text);
     transition: var(--transition-delay) linear;
 }
-.outline:hover {
+.outline.normal {
+    border: 2px solid var(--primary-text);
+    color: var(--primary-text);
+}
+.normal:hover {
     border: 2px solid var(--secondary-text);
     transition: var(--transition-delay) linear;
     color: var(--secondary-text);
 }
-.accentOutline {
-    outline: none;
-    background: none;
+.outline.accent {
     border: 2px solid var(--accent);
-    border-radius: 8px;
-    font-weight: 700;
     color: var(--accent);
-    transition: var(--transition-delay) linear;
 }
-.accentOutline:hover {
+.accent:hover {
+    border: 2px solid var(--accent);
+    color: var(--secondary-text);
     background: var(--accent);
 
     transition: var(--transition-delay) linear;
-    color: var(--secondary-text);
 }
 
+/* Filled */
 .filled {
     border: 2px solid var(--accent);
     outline: none;
     border-radius: 8px;
-    /* background: rgba(15, 195, 252, 0.9); */
     background: var(--accent);
     color: var(--secondary-text);
-
-    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
     transition: var(--transition-delay) linear;
 }
 
@@ -62,10 +65,8 @@
     transition: var(--transition-delay) linear;
     color: var(--accent);
 }
-.rounded {
-    border-radius: 33px;
-}
-/* Text sizws */
+
+/* Text sizes */
 .xs {
     font: var(--font-xs);
 }
@@ -89,4 +90,9 @@
 /* Bold */
 .bold {
     font-weight: 700;
+}
+
+/* Border radius */
+.rounded {
+    border-radius: 33px;
 }
