@@ -7,7 +7,7 @@ import AppButton from '../ui/AppButton/AppButton';
 import axios from 'axios';
 import useDebounce from './useDebounce';
 
-export const Search = ({ placeholder, vacancies }) => {
+export const Search = ({ placeholder, vacancies, method = 'get' }) => {
     const [param, setParam] = useState('');
     const [suggestions, setSuggestions] = useState([]); //список предложенных вакансий
     const [suggestionIndex, setSuggestionIndex] = useState(0);
@@ -17,7 +17,7 @@ export const Search = ({ placeholder, vacancies }) => {
     const [sortVacancies, SetSortVacancy] = useState([]);
 
     const debouncedVac = useDebounce(value, 500);
-    console.log(debouncedVac);
+    // console.log(debouncedVac);
 
     useEffect(() => {
         if (!debouncedVac || debouncedVac.length <= 2) return;
@@ -118,7 +118,7 @@ export const Search = ({ placeholder, vacancies }) => {
     };
     return (
         <div className={s.searchBlock}>
-            <form method='GET' action={route('category.sort')} className='w-full flex gap-4'>
+            <form method={method} action={route('category.sort')} className='w-full flex gap-4'>
                 <InputLabel className='w-full'>
                     <TextInput
                         autoComplete='off'
