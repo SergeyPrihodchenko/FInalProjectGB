@@ -108,7 +108,11 @@ function ResumePage() {
                                 size={"s"}
                                 className={s.textTitle}
                             />
-                            <input type="date" value="2023-09-01" />
+                            <input 
+                                type="date" 
+                                value="2023-09-01"
+                                className={s.inputDataBasiceData}
+                            />
 
                             <AppText
                                 title={"Номер телефона"}
@@ -172,9 +176,159 @@ function ResumePage() {
                             </div>
                         </div>
 
-                        <div className={s.education}></div>
+                        <div className={s.education}>
+                            <div>
+                                <AppText
+                                    title={"Название учебного заведения"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Название"
+                                    className={s.inputBasiceData}
+                                />
 
-                        <div className={s.experience}></div>
+                                <AppText
+                                    title={"Факультет"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    className={s.inputBasiceData}
+                                />
+
+                                <AppText
+                                    title={"Специализация"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    className={s.inputBasiceData}
+                                />
+
+                                <AppText
+                                    title={"Год окончания"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    className={s.inputYearsEducation}
+                                />
+                                <AppText
+                                    title={
+                                        <input
+                                            type="button"
+                                            value="Добавить учебное заведение"
+                                            className={s.buttonYearsEducation}
+                                        />}
+                                    bold
+                                    size={"s"}
+                                />     
+                            </div>
+                        </div>
+
+                        <div className={s.experience}>
+                                <AppText
+                                    title={"В какой компании вы работали?"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Название компании"
+                                    className={s.inputBasiceData}
+                                />
+
+                                <AppText
+                                    title={"На какой должности?"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    className={s.inputBasiceData}
+                                />
+
+                                <AppText
+                                    title={"Расскажите о ваших обязанностях и достижениях"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <textarea
+                                    className={s.textareaBasiceData}
+                                    placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
+                                />
+                            <div className={s.experienceWork}>
+                                
+                                <div className={s.experienceBeginningWork}>
+                                    <AppText
+                                        title={"Начало работы"}
+                                        bold
+                                        size={"s"}
+                                        className={s.textTitle}
+                                    />
+                                    <input 
+                                        type="date" 
+                                        value="2023-09-01"
+                                        className={s.inputDataBasiceData}
+                                    />
+                                </div>
+
+                                <div className={s.experienceEndingWork}>
+                                    <AppText
+                                        title={"Окончание"}
+                                        bold
+                                        size={"s"}
+                                        className={s.textTitle}
+                                    />
+                                    <div className={s.inputEndingWork}>
+                                        <input 
+                                            type="checkbox"
+                                            className={s.checkboxEndingWork} 
+                                        />
+                                        <AppText
+                                            title={"По настоящее время"}
+                                            size={"s"}
+                                            className={s.textTitleEnding}
+                                        />
+                                    </div>
+                                    
+                                </div>
+
+                                <AppText
+                                    title={
+                                        <input
+                                            type="button"
+                                            value="Добавить еще опыт работы"
+                                            className={s.buttonYearsExperience}
+                                        />}
+                                    bold
+                                    size={"s"}
+                                /> 
+                                
+                            </div>    
+                            <AppText
+                                title={"Ключевые навыки"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                            <textarea
+                                className={s.textareaBasiceData}
+                            />
+
+                        </div>
                     </main>
                 </container>
             </AppPage>

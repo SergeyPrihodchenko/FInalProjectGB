@@ -13,7 +13,10 @@
 }
 
 .inputBasiceData,
-.selectBasiceData {
+.selectBasiceData,
+.inputYearsEducation,
+.inputDataBasiceData,
+.textareaBasiceData {
     box-sizing: border-box;
     width: 760px;
     height: 60px;
@@ -24,9 +27,9 @@
 
 }
 
-.inputBasiceData::placeholder, 
-.selectBasiceData, 
-.selectBasiceData::after {
+.inputBasiceData::placeholder,
+.textareaBasiceData::placeholder
+{
     padding-left: 10px;
     font-family: var(--font-family-main);
     font-style: normal;
@@ -39,14 +42,10 @@
     color: var(--not-accented);
 }
 
-.selectBasiceData {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    color: var(--not-accented);
-}
 
-.selectBasiceData:active {
+.inputBasiceData:focus,
+.textareaBasiceData:focus
+{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -59,23 +58,69 @@
 
 }
 
+.inputDataBasiceData {
+    padding-left: 10px;
+    width: 140px;
+    height: 60px;
+}
+
 .inputRadioBasiceData {
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-
-    /* width: 26px;
-    height: 26px;
-
-    border: 1px solid #767676;
-    background: #FFFFFF;
-    border: 5px solid #0FC3FC; */
-
 }
 
 .textInputRadio {
     padding: 0px 20px 0px 10px;
 }
 
+.inputYearsEducation {
+    width: 100px;
+    height: 60px;
+}
 
+.buttonYearsEducation,
+.buttonYearsExperience {
+    border:none;
+    color: var(--accent);
+    background-color: var(--light-bg);
+    transform: translate(177px,-50px)
 
+}
+
+.textareaBasiceData {
+    height: 138px;
+}
+
+.textareaBasiceData::-webkit-resizer {
+    resize: horizontal;
+}
+
+.buttonYearsExperience {
+    padding-top: 57px;
+    transform: none;
+}
+
+.experienceWork {
+    width: 760px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputEndingWork {
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkboxEndingWork {
+    width: 26px;
+    height: 26px;
+    background: var(--light-bg);
+    border: 1px solid var(--not-accented);
+    border-radius: 5px;
+
+}
+
+.textTitleEnding {
+    padding-left: 10px;
+}
