@@ -14,71 +14,9 @@ import cn from "classnames"
 import { Search } from "@/8Shared/Search/Search";
 
 
-const employmentType = [
-    {
-        id: 1,
-        name: 'Полная занятость',
-        checked: false
-    },
-    {
-        id: 2,
-        name: 'Частичная занятость',
-        checked: false
-    },
-    {
-        id: 3,
-        name: 'Стажировка',
-        checked: false
-    },
-
-];
-const workExperience = [
-    {
-        id: 1,
-        name: 'Не имеет значения'
-    },
-    {
-        id: 2,
-        name: 'Нет опыта'
-    },
-    {
-        id: 3,
-        name: '1-3 года'
-    },
-    {
-        id: 4,
-        name: '3-6 лет'
-    },
-    {
-        id: 5,
-        name: 'более 6 лет'
-    },
-];
-const workSchedule = [
-    {
-        id: 1,
-        name: 'Полный день',
-        checked: false
-    },
-    {
-        id: 2,
-        name: 'Сменный график',
-        checked: false
-    },
-    {
-        id: 3,
-        name: 'Гибкий график',
-        checked: false
-    },
-    {
-        id: 4,
-        name: 'Удаленная работа',
-        checked: false
-    },
-];
 const payment = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽'];
 
-const Vacancy = ({ vacancies, title, auth }) => {
+const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(2);
@@ -86,13 +24,10 @@ const Vacancy = ({ vacancies, title, auth }) => {
     const loaderRef = useRef(null);
 
 
-    const [empType, setEmpType] = useState(employmentType);
-
-    const [filterObject, setFilterObject] = useState({
+    const [filterData, setFilterData] = useState({
         employmentType: [],
         workExperience: '',
         workSchedule: []
-
     });
 
     const user = auth?.user;
@@ -164,35 +99,44 @@ const Vacancy = ({ vacancies, title, auth }) => {
         }
     }, []);
 
-    const handleChange = (id) => {
-        // const { value, checked, name, type } = event.target;
-        const updateCheckStatus = empType.map((item, index) => {
-            index + 1 === id ? { ...item, checked: !item.checked } : item
-        });
+    const handleChange = (event) => {
+        const { value, checked, name, type } = event.target;
 
-        setEmpType(updateCheckStatus);
+        switch (type) {
+            case "checkbox":
+                let copy = { ...filterData };
+                checked ? copy[name].push(value) : copy[name].splice(copy[name].indexOf(value), 1);
+                setFilterData(copy)
+                break;
+            case "radio":
+                if (checked) {
+                    setFilterData(() =>
+                    ({
+                        ...filterData,
+                        [name]: value
+                    })
+                    );
+                }
+                break;
 
-        // const item = type === 'checkbox' ? checked : value;
-        // setFilterObject({
-        //     ...filterObject,
-        //     [name]: item
-        // });
+            default:
+                setFilterData(filterData)
+                break;
 
-
+        }
     }
 
-    console.log(empType);
 
     useEffect(() => {
         axios
-            .post("/vacancies/filter", { test: filterObject })
+            .post("/vacancies/filter", { test: filterData })
             .then((response) => {
                 console.log(response.data);
             })
             .catch((error) => {
                 console.error(error);
             });
-    }, [filterObject]);
+    }, [filterData]);
 
 
     return (
@@ -206,35 +150,33 @@ const Vacancy = ({ vacancies, title, auth }) => {
                     <div className="filterContainer">
                         <form action="">
                             <AppText text="Тип занятости" bold className={s.vacancyFilterTitle} />
-                            {employmentType.map(({ id, name, checked }) =>
+                            {employment.map((item, index) =>
                                 <Checkbox
                                     name={'employmentType'}
-                                    key={name}
-                                    label={name}
-                                    value={name}
-                                    checked={checked}
+                                    key={item}
+                                    label={item}
+                                    value={index + 1}
                                     onChange={handleChange}
+
                                 />)}
                             <AppText text="Опыт работы" bold className={s.vacancyFilterTitle} />
-                            {workExperience.map(item =>
+                            {experience.map((item, index) =>
                                 <RadioButton
-                                    key={item.name}
+                                    key={item}
                                     name={'workExperience'}
-                                    label={item.name}
-                                    value={item.id}
+                                    label={item}
+                                    value={index + 1}
                                     onChange={handleChange}
                                 />)}
-                            {/* <AppText text="Уровень дохода" bold className={s.vacancyFilterTitle} />
-                            {payment.map(item => <RadioButton name={'payment'} label={item} value={item} />)}
-                            */}
+
 
                             <AppText text="График работы" bold className={s.vacancyFilterTitle} />
-                            {workSchedule.map(item =>
+                            {schedule.map((item, index) =>
                                 <Checkbox
                                     name={'workSchedule'}
-                                    key={item.name}
-                                    label={item.name}
-                                    value={item.id}
+                                    key={item}
+                                    label={item}
+                                    value={index + 1}
                                     onChange={handleChange}
                                 />)}
 
@@ -246,7 +188,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                                 <AppLink
                                     path={'vacancy.show'}
                                     param={vac.id}
-                                    key={vac.payment}
+                                    key={vac.id}
                                 >
                                     <AppCard
                                         width={'auto'}
@@ -265,12 +207,6 @@ const Vacancy = ({ vacancies, title, auth }) => {
                                         />
                                         <AppText
                                             text={vac.employment}
-                                        />
-                                        <AppText
-                                            size='s'
-                                            variant='notaccented'
-                                            text={`Опыт работы от ${vac.experience} лет`}
-                                            className="p-[12px]"
                                         />
                                         <AppButton
                                             className={'px-[12px] mt-auto rounded-[20px]'}
