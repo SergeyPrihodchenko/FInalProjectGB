@@ -16,9 +16,7 @@ class Company extends Model
         'email' ,
         'website',
         'phone_number' ,
-        'address' ,
-        'created_at',
-        'updated_at',
+        'address'
     ];
 
     public function vacancies()

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\Vacancy\VacancyController;
 use App\Models\Vacancy;
+use App\Models\Company;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
