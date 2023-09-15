@@ -14,7 +14,7 @@
 
 .textBtnDelete {
     text-align: center;
-    color: #066B8B;
+    color: var(--accent);
 }
 
 .btnDelete {
@@ -35,11 +35,11 @@
     border-radius: 30px;
     width: 400px;
     height: 40px;
-    border: 2px solid #066B8B;
+    border: 2px solid var(--accent);
 }
 
 .inputFormProfileDelete::placeholder {
     font-size: 20px;
-    color: #00000090;
+    color: var(--dark-bg);
     padding-left: 90px;
 }

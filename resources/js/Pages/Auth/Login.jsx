@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import Checkbox from "@/Components/Checkbox";
-import GuestLayout from "@/5Layouts/GuestLayout";
+import GuestLayout from "@/5Layouts/GuestLayout/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
+import s from "./LoginPage.module.css";
+import cn from "classnames";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
@@ -36,6 +39,7 @@ export default function Login({ status, canResetPassword }) {
             )}
 
             <form onSubmit={submit}>
+                {/* <AppInput label="Email" fullWidth /> */}
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 
@@ -94,9 +98,15 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                    <AppButton
+                        className={cn(s.btn)}
+                        sizeText="s"
+                        // disabled={processing}
+                        width="80px"
+                        height="34px"
+                    >
+                        Войти
+                    </AppButton>
                 </div>
             </form>
         </GuestLayout>

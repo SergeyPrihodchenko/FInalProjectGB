@@ -8,74 +8,9 @@
     margin: 10px 0px 30px 15px;    
 }
 
-.textTitle {
-    padding: 20px 10px 10px 0px;
-}
+.buttonSaveResumePage {
+    margin: 10px 10px 0px 875px; 
 
-.inputBasiceData,
-.selectBasiceData {
-    box-sizing: border-box;
-    width: 760px;
-    height: 60px;
-    
-    background: var(--light-bg);
-    border: 1px solid var(--light-skeleton-shadow);
-    border-radius: 5px;
+/*     transform: translate(830px,-50px) */
 
 }
-
-.inputBasiceData::placeholder, 
-.selectBasiceData, 
-.selectBasiceData::after {
-    padding-left: 10px;
-    font-family: var(--font-family-main);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    display: flex;
-    align-items: center;
-
-    color: var(--not-accented);
-}
-
-.selectBasiceData {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    color: var(--not-accented);
-}
-
-.selectBasiceData:active {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    
-    box-sizing: border-box;
-    background: var(--light-bg);
-    border: 1px solid var(--accent);
-    border-radius: 5px;
-    color: var(--accent);
-
-}
-
-.inputRadioBasiceData {
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
-
-    /* width: 26px;
-    height: 26px;
-
-    border: 1px solid #767676;
-    background: #FFFFFF;
-    border: 5px solid #0FC3FC; */
-
-}
-
-.textInputRadio {
-    padding: 0px 20px 0px 10px;
-}
-
-
-
