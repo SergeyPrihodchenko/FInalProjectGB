@@ -28,6 +28,7 @@ export const Navbar = (props) => {
                         <li>
                             <Link
                                 className={cn(s.navLink, ["hover:text-white "])}
+                                href={route("resume.create")}
                             >
                                 Создать резюме
                             </Link>
