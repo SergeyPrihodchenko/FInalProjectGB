@@ -7,6 +7,7 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import BasiceDataResumePage from "./BasiceDataResumePage/BasiceDataResumePage";
 import EducationResumePage from "./EducationResumePage/EducationResumePage";
 import ExperienceResumePage from "./ExperienceResumePage/ExperienceResumePage";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
 function ResumePage() {
@@ -15,11 +16,18 @@ function ResumePage() {
             <AppPage>
                 <container className={s.createResumePage}>
                     <main className={s.mainCreateResume}>
-
+                    <form>
                         <BasiceDataResumePage/>
                         <EducationResumePage/>
                         <ExperienceResumePage/>
-
+                        
+                        <AppButton 
+                        bold 
+                        sizeText = "m"
+                        className={s.buttonSaveResumePage}>
+                            <span>Сохранить</span>
+                        </AppButton>
+                    </form>
                     </main>
                 </container>
             </AppPage>
