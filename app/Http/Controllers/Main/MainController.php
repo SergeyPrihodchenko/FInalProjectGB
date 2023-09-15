@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Enums\EmploymentType;
+use App\Enums\Experience;
+use App\Enums\ScheduleType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
@@ -14,6 +17,7 @@ class MainController extends Controller
 {
     public function index() 
     {
+        
         $categories = Category::all();
         $vacancies = Vacancy::all()->take(3);
             return Inertia::render('Main', [
@@ -26,13 +30,21 @@ class MainController extends Controller
 
     public function searchSort(CategoryRequest $request) 
     {
+        $employment = EmploymentType::all();
+        $schedule = ScheduleType::all();
+        $experience = Experience::all();
+        
         $data = $request->validated();
         $searchStr = $data['vacancy'];
         $vacancies = Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
         if (count($vacancies) !== 0) {
             return Inertia::render('Vacancy/Index', [
                 'title' => 'Вакансии',
-                'vacancies' => $vacancies
+                'vacancies' => $vacancies,
+                'employment' => $employment,
+                'schedule' => $schedule,
+                'experience' => $experience
+
             ]);
         }
         return Inertia::render('Vacancy/Index', [

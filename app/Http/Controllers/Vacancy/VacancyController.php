@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Vacancy;
 
+use App\Enums\EmploymentType;
+use App\Enums\Experience;
+use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\Vacancy;
 use Inertia\Inertia;
@@ -12,8 +15,18 @@ class VacancyController
     {
         //VacancyPage/ui/VacancyPageList/VacancyPageList
         //В странице Vacancy/Index больше не нужны дынные из БД в этом свойтве
+        // return Inertia::render('Vacancy/Index', [
+        //     'title' => 'Вакансии'
+        // ]);
+        $employment = EmploymentType::all();
+        $schedule = ScheduleType::all();
+        $experience = Experience::all();
+
         return Inertia::render('Vacancy/Index', [
-            'title' => 'Вакансии'
+            'title' => 'Вакансии',
+            'employment' => $employment,
+            'schedule' => $schedule,
+            'experience' => $experience
         ]);
     }
 
