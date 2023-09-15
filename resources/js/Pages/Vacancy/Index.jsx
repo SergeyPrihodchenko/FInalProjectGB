@@ -175,7 +175,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
                                     onChange={handleChange}
                                 />
-                            ))}
+                            )}
                         </form>
                     </div>
                     <div className={s.vacancyList}>
@@ -204,35 +204,22 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                                         <AppText
                                             text={vac.employment}
                                         />
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Опыт работы от ${vac.experience} лет`}
+                                            className="p-[12px]"
+                                        />
                                         <AppButton
-                                            className={'px-[12px] mt-auto rounded-[20px]'}
-                                            width='auto'
-                                            height='32px'
+                                            className={" mt-auto"}
+                                            width="auto"
                                         >
-                                            <AppText title={vac.title} />
-                                            <AppText
-                                                text={`от ${vac.payment} руб.`}
-                                            />
-                                            <AppText
-                                                text={`Компания ${vac.conditions}.`}
-                                            />
-                                            <AppText text={vac.employment} />
-                                            <AppText
-                                                size="s"
-                                                variant="notaccented"
-                                                text={`Опыт работы от ${vac.experience} лет`}
-                                                className="p-[12px]"
-                                            />
-                                            <AppButton
-                                                className={" mt-auto"}
-                                                width="auto"
-                                            >
-                                                Откликнуться
-                                            </AppButton>
-                                        </AppCard>
-                                    </AppLink>
-                                );
-                            })}
+                                            Откликнуться
+                                        </AppButton>
+                                    </AppCard>
+                                </AppLink>
+                            )
+                            }
                         </div>
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
