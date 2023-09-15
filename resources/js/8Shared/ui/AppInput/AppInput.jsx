@@ -8,8 +8,9 @@ function AppInput(props) {
         label,
         placeholder = "",
         type = "text",
-        borderRadius = "radiusNone",
+        borderRadius = "radiusS",
         border,
+        fullWidth,
         className,
     } = props;
     return (
@@ -18,7 +19,9 @@ function AppInput(props) {
             <input
                 type={type}
                 placeholder={placeholder}
-                className={cn(s.input, s[borderRadius])}
+                className={cn(s.input, s[borderRadius], {
+                    [s.fullWidth]: fullWidth,
+                })}
             />
         </div>
     );
@@ -35,6 +38,7 @@ AppInput.propTypes = {
         "radiusNone",
     ]),
     border: PropTypes.oneOf(["l", "m", "s", "none"]),
+    fullWidth: PropTypes.bool,
 };
 
 export default AppInput;
