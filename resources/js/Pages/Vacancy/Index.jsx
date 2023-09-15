@@ -8,14 +8,29 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import axios from "axios";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import Loader from "@/8Shared/Loader/Loader";
-import s from './VacancyListPage.module.css'
+import s from "./VacancyListPage.module.css";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
-import cn from "classnames"
+import cn from "classnames";
 
-
-const employmentType = ['Полная занятость', 'Частичная занятость', 'Стажировка'];
-const workSchedule = ['Полный день', 'Сменный график', 'Гибкий график', 'Удаленная работа', 'Вахтовый метод'];
-const workExperience = ['Не имеет значения', 'Нет опыта', '1-3 года', '3-6 лет', 'более 6 лет'];
+const employmentType = [
+    "Полная занятость",
+    "Частичная занятость",
+    "Стажировка",
+];
+const workSchedule = [
+    "Полный день",
+    "Сменный график",
+    "Гибкий график",
+    "Удаленная работа",
+    "Вахтовый метод",
+];
+const workExperience = [
+    "Не имеет значения",
+    "Нет опыта",
+    "1-3 года",
+    "3-6 лет",
+    "более 6 лет",
+];
 
 const Vacancy = ({ vacancies, title, auth }) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
@@ -35,8 +50,10 @@ const Vacancy = ({ vacancies, title, auth }) => {
             .get(`/vacancylist?page=${index}`)
             .then((res) => {
                 if (res.data.data.length) {
-
-                    setVacancyList((prevVacancyList) => [...prevVacancyList, ...res.data.data]);
+                    setVacancyList((prevVacancyList) => [
+                        ...prevVacancyList,
+                        ...res.data.data,
+                    ]);
                     setIsLoading(false);
                 } else {
                     return;
@@ -68,9 +85,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                         setIsLoading(false);
                     }
                 };
-
             }
-
         }
     }, [loaderRef, vacancyList]);
 
@@ -81,7 +96,7 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 try {
                     const response = await axios.get(`/vacancylist?page=1`);
 
-                    setVacancyList(response.data.data)
+                    setVacancyList(response.data.data);
                     setTotal(response.data.total);
                 } catch (error) {
                     console.log(error);
@@ -94,68 +109,80 @@ const Vacancy = ({ vacancies, title, auth }) => {
     }, []);
 
     return (
-        <MainLayout user={user} className={'app_light_theme'}>
+        <MainLayout user={user} className={"app_light_theme"}>
             <AppPage className={s.page}>
                 <div className={s.vacancyWrapper}>
                     <div className="filterContainer">
                         <form action="">
-                            <AppText text="Тип занятости" bold className={s.vacancyFilterTitle} />
-                            {employmentType.map(item =>
-                                <Checkbox
-                                    key={item}
+                            <AppText
+                                text="Тип занятости"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            {employmentType.map((item) => (
+                                <Checkbox key={item} label={item} />
+                            ))}
+                            <AppText
+                                text="Опыт работы"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            {workExperience.map((item) => (
+                                <RadioButton
+                                    name={"work_experience"}
                                     label={item}
-                                />)}
-                            <AppText text="Опыт работы" bold className={s.vacancyFilterTitle} />
-                            {workExperience.map(item => <RadioButton name={'work_experience'} label={item} value={item} />)}
+                                    value={item}
+                                />
+                            ))}
 
-                            <AppText text="График работы" bold className={s.vacancyFilterTitle} />
-                            {workSchedule.map(item => <Checkbox key={item} label={item} />)}
-
+                            <AppText
+                                text="График работы"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            {workSchedule.map((item) => (
+                                <Checkbox key={item} label={item} />
+                            ))}
                         </form>
                     </div>
                     <div className={s.vacancyList}>
                         <div className="flex flex-col gap-[20px] mb-[20px]">
-                            {vacancyList.map(vac =>
+                            {vacancyList.map((vac) => (
                                 <AppLink
-                                    path={'vacancy.show'}
+                                    path={"vacancy.show"}
                                     param={vac.id}
                                     key={vac.payment}
                                 >
                                     <AppCard
-                                        width={'auto'}
-                                        height={'200px'}
+                                        width={"auto"}
+                                        height={"200px"}
                                         shadow
-                                        className={cn('flex flex-col items-start p-5', s.vacancyListCard)}
+                                        className={cn(
+                                            "flex flex-col items-start p-5",
+                                            s.vacancyListCard
+                                        )}
                                     >
-                                        <AppText
-                                            title={vac.title}
-                                        />
+                                        <AppText title={vac.title} />
                                         <AppText
                                             text={`от ${vac.payment} руб.`}
                                         />
                                         <AppText
-                                            size='s'
-                                            variant='notaccented'
+                                            size="s"
+                                            variant="notaccented"
                                             text={`Опыт работы от ${vac.experience} лет`}
                                         />
                                         <AppButton
-                                            className={'px-[12px] mt-auto rounded-[20px]'}
-                                            width='auto'
-                                            height='32px'
+                                            className={" mt-auto"}
+                                            width="auto"
                                         >
                                             Откликнуться
                                         </AppButton>
                                     </AppCard>
                                 </AppLink>
-
-                            )}
-
+                            ))}
                         </div>
-                        <div ref={loaderRef}>
-                            {isLoading && <Loader />}
-                        </div>
+                        <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
-
                 </div>
             </AppPage>
         </MainLayout>

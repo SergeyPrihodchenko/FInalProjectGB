@@ -8,6 +8,8 @@ import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import s from "./LoginPage.module.css";
 import cn from "classnames";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
@@ -37,7 +39,8 @@ export default function Login({ status, canResetPassword }) {
             )}
 
             <form onSubmit={submit}>
-                <div>
+                {/* <AppInput label="Email" fullWidth />
+                <div> */}
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
@@ -95,9 +98,15 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <PrimaryButton className={cn(s.btn)} disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                    <AppButton
+                        className={cn(s.btn)}
+                        sizeText="s"
+                        // disabled={processing}
+                        width="80px"
+                        height="34px"
+                    >
+                        Войти
+                    </AppButton>
                 </div>
             </form>
         </GuestLayout>
