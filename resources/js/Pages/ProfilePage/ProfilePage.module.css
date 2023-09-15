@@ -32,7 +32,6 @@
 }
 
 .inputFormProfileDelete {
-    margin-left: 50px;
     border-radius: 30px;
     width: 400px;
     height: 40px;
@@ -41,6 +40,6 @@
 
 .inputFormProfileDelete::placeholder {
     font-size: 20px;
-    color: var(--not-accented);
+    color: var(--dark-bg);
     padding-left: 90px;
 }

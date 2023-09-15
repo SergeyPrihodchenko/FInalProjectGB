@@ -17,12 +17,3 @@ body {
 .app {
     font-family: var(--font-family-main);
 }
-*::-webkit-scrollbar {
-    width: 12px;
-    /* ширина scrollbar */
-    height: 8px;
-}
-
-/* 
-
-*/

@@ -1,28 +1,98 @@
 .appButton {
     outline-style: none;
 }
-
+/* Clear */
 .clear {
     padding: 0;
     border: none;
     background: none;
     outline: none;
     color: inherit;
+    transition: var(--transition-delay) linear;
+}
+.clear.cancel {
+    color: var(--cancel);
+}
+.clear:hover {
+    color: var(--accent);
 }
 
+/* Outline */
 .outline {
     outline: none;
     background: none;
+    border-radius: var(--border-radius-s);
+    font-weight: 700;
+    transition: var(--transition-delay) linear;
+}
+.outline.normal {
     border: 2px solid var(--primary-text);
-    border-radius: 33px;
-    font-size: var(--font-size-s);
+    color: var(--primary-text);
+}
+.normal:hover {
+    border: 2px solid var(--secondary-text);
+    transition: var(--transition-delay) linear;
+    color: var(--secondary-text);
+}
+.outline.accent {
+    border: 2px solid var(--accent);
+    color: var(--accent);
+}
+.accent:hover {
+    border: 2px solid var(--accent);
+    color: var(--secondary-text);
+    background: var(--accent);
+
+    transition: var(--transition-delay) linear;
+}
+
+/* Filled */
+.filled {
+    border: 2px solid var(--accent);
+    outline: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
+}
+
+.filled:hover {
+    background-color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
+    color: var(--accent);
+}
+.filled:hover p {
+    transition: var(--transition-delay) linear;
+    color: var(--accent);
+}
+
+/* Text sizes */
+.xs {
+    font: var(--font-xs);
+}
+
+.s {
+    font: var(--font-s);
+}
+
+.m {
+    font: var(--font-m);
+}
+
+.l {
+    font: var(--font-l);
+}
+
+.xl {
+    font: var(--font-xl);
+}
+
+/* Bold */
+.bold {
     font-weight: 700;
 }
 
-.filled {
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    background: rgba(15, 195, 252, 0.9);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+/* Border radius */
+.rounded {
+    border-radius: 33px;
 }

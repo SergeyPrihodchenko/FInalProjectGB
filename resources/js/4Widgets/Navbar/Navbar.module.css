@@ -1,0 +1,25 @@
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navList {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+    padding: 10px 0;
+}
+.navLink .name p {
+    margin-right: 5px;
+}
+.navLink:hover .name p {
+    color: var(--secondary-text);
+}

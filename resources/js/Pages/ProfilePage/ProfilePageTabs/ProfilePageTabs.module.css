@@ -5,26 +5,23 @@
 }
 
 .navSettings {
-    border: none;
     list-style-type: none;
-    border-bottom: 2px solid var(--primary-text);
+    border-bottom: 2px solid var(--dark-bg);
     margin-bottom: 50px;
 }
 
 .navLink {
-    display: block;
     padding-bottom: 15px;
     padding-right: 50px;
-    
-}
-
-.textDesc {
-    list-style-type: none;
-}
-
-.navText {
-    border: none;
-    background-color: var(--secondary-text);
+    display: block;
     text-decoration: none;
+}
+
+.ulCategoties {
     list-style-type: none;
+}
+
+.tabCategories {
+    border: none;
+    background-color: var(--light-bg);
 }

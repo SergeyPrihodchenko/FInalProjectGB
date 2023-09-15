@@ -13,22 +13,21 @@
     float: left;    
 }
 
-.inputFormProfile,
-.inputFormProfileUpdate,
-.inputForm {
+.inputFormProfile {
     border: none;
-    width: 400px;
+    width: 392px;
     height: 40px;
     background-color: #CFF3FE;
     padding-right: 100px;
     padding-bottom: 20px;
 }
 
-.inputFormProfile::placeholder,
-.inputFormProfileUpdate::placeholder,
-.inputForm::placeholder  {
+.inputFormProfile::placeholder  {
     font-size: 20px;
-    color: var( --not-accented);
+    color: var(--dark-bg);
+    text-align: center;
+    font-family: var(--font-family-main); 
+    padding-right: 110px;
 }
 
 .btnFormProfile {
@@ -52,17 +51,17 @@
 }
 
 .inputFormProfileUpdate {
-    margin-right: 200px;
-}
-
-.inputForm {
     border: none;
-    width: 300px;
+    width: 400px;
     height: 40px;
     background-color: #CFF3FE;
+    padding-right: 100px;
+    padding-bottom: 20px;
+    margin-right: 285px;
 }
-.inputFormProfile::placeholder
-  {
+
+.inputFormProfileUpdate::placeholder {
     font-size: 20px;
-    color: var( --not-accented);
+    color: var(--dark-bg);
+    padding-left: 20px;
 }

@@ -59,6 +59,15 @@ function ProfilePageForm({ auth }) {
     post(route("profile.update"));
   };
 
+  // function handClick() {
+  //   let div = document.getElementById('passwordSet');
+  //   console.log(div.classList)
+  //   return(
+  //    div.classList.toggle([s.hidden])
+  //    )
+     
+  // };
+
   return (
     <div>
     {arrayForm.map((el)=> {
@@ -104,6 +113,29 @@ function ProfilePageForm({ auth }) {
     }
 
   <UpdatePasswordForm/>
+    {/* {
+       
+  //     <div className={s.formProfilePage}>
+  //       <AppText size='s' text={
+  //         <div className={s.formProfile}>
+  //           <lable className={s.textForm}>Пароль</lable>
+  //           <input 
+  //             className={s.inputFormProfile} 
+  //             type="text"
+  //             /> 
+            
+  //           <input
+  //             onClick={handClick}
+  //             className={s.btnFormProfile} 
+  //             type="submit" 
+  //             value="Изменить"/>
+  //         </div>
+  //       }/>
+  //       <div id = 'passwordSet' className={s.hidden}>
+  //         <UpdatePasswordForm/>
+  //       </div>
+  //     </div>
+  //   } */}
    </div>
 //  ProfilePage.propTypes = {}
 )}

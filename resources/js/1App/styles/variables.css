@@ -39,8 +39,10 @@
     --opacity70: 0.7;
 
     /* Sizes */
-    --header-height: 50px;
-    --footer-height: 365px;
+    --header-height: 75px;
+    --second-header-height: 100px;
+    --footer-height: 380px;
+
     --sidebar-width: 0px;
 
     /* z-index */
