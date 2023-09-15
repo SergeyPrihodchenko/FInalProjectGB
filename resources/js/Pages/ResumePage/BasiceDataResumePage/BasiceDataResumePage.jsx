@@ -1,6 +1,7 @@
 import React from "react";
 //import PropTypes from 'prop-types'
 import s from "./BasiceDataResumePage.module.css";
+import style from "../EducationResumePage/EducationResumePage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 
 
@@ -54,25 +55,34 @@ function BasiceDataResumePage() {
                 <div className={s.inputRadioBasiceData}>
                     <input
                         type="radio"
-                         value="man"
+                        value="man"
                         checked
                         name="gender"
+                        id="genderMen"
+                        className={style.genderBasiceData}
                     />
-                    <AppText
-                        text={"Мужской"}
-                        size={"m"}
-                        className={s.textInputRadio}
-                    />
+                    <label for="genderMen">
+                        <AppText
+                            text={"Мужской"}
+                            size={"m"}
+                            className={s.textInputRadio}
+                        />
+                    </label>
+                    
                     <input
                         type="radio"
                         value="woman"
                         name="gender"
+                        id="genderWoman"
+                        className={style.genderBasiceData}
                     />
-                    <AppText
-                            text={"Женский"}
-                        size={"m"}
-                        className={s.textInputRadio}
-                    />
+                    <label for="genderWoman">
+                        <AppText
+                                text={"Женский"}
+                            size={"m"}
+                            className={s.textInputRadio}
+                        />
+                    </label>    
                 </div>
 
                 <AppText

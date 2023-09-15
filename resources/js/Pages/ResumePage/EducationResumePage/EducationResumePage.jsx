@@ -4,7 +4,7 @@ import style from "../BasiceDataResumePage/BasiceDataResumePage.module.css";
 import s from "./EducationResumePage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 
-const arrayEucation = [
+const arrayEducation = [
     "Среднее",
     "Среднее специальное",
     "Неоконченное высшее",
@@ -17,7 +17,7 @@ const arrayEucation = [
 
 function EducationResumePage() {
     return (
-        <div className={s.EducationResumePage}>
+        <div className={s.educationResumePage}>
             <div className={s.levelOfEucation}>
                 <AppText
                     title={"Уровень образования"}
@@ -26,17 +26,19 @@ function EducationResumePage() {
                     className={style.textTitle}
                 />
 
-                <div className={s.typeEucation}>
-                    {arrayEucation.map((el) => {
+                <div className={s.education}>
+                    {arrayEducation.map((el) => {
                         // console.log(el);
                         return (
                             <div className={style.inputRadioBasiceData}>
-                                <input type="radio" />
-                                <AppText
-                                    text={el}
-                                    size={"m"}
-                                    className={style.textInputRadio}
-                                />
+                                <input type="checkbox" className={s.educationCheckbox} id={el}/>
+                                <label for={el}>
+                                    <AppText
+                                        text={el}
+                                        size={"m"}
+                                        className={style.textInputRadio}
+                                    />
+                                </label>
                             </div>
                         );
                     })}
@@ -94,7 +96,7 @@ function EducationResumePage() {
                             <input
                                 type="button"
                                 value="Добавить учебное заведение"
-                                className={style.buttonYearsEducation}
+                                className={s.buttonYearsEducation}
                             />}
                         bold
                         size={"s"}

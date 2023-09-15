@@ -2,6 +2,7 @@ import React from "react";
 //import PropTypes from 'prop-types'
 import s from "./ExperienceResumePage.module.css";
 import style from "../BasiceDataResumePage/BasiceDataResumePage.module.css";
+import style2 from "../EducationResumePage/EducationResumePage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 
 
@@ -67,13 +68,17 @@ function ExperienceResumePage() {
                     <div className={s.inputEndingWork}>
                         <input 
                             type="checkbox"
-                            className={s.checkboxEndingWork} 
+                            className={style2.checkboxEndingWork} 
+                            id="checkboxEndingWork"
                         />
-                        <AppText
-                            title={"По настоящее время"}
-                            size={"s"}
-                            className={s.textTitleEnding}
-                        />
+                        <label for="checkboxEndingWork">
+                            <AppText
+                                title={"По настоящее время"}
+                                size={"s"}
+                                className={s.textTitleEnding}
+                            />
+                        </label>
+                        
                     </div>
                                     
                 </div>
@@ -83,7 +88,7 @@ function ExperienceResumePage() {
                         <input
                              type="button"
                             value="Добавить еще опыт работы"
-                            className={s.buttonYearsExperience}
+                            className={style2.buttonYearsExperience}
                         />}
                     bold
                     size={"s"}
