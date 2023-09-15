@@ -8,6 +8,6 @@
     border:none;
     color: var(--accent);
     background-color: var(--light-bg);
-    transform: translate(177px,-50px)
+    transform: translate(177px,-50px);
 
 }

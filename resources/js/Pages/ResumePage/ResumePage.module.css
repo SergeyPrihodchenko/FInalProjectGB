@@ -7,3 +7,7 @@
 .mainCreateResume {
     margin: 10px 0px 30px 15px;    
 }
+
+.buttonSaveResumePage {
+    transform: translate(830px,-50px)
+}
