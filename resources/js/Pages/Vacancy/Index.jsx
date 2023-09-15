@@ -192,14 +192,9 @@ const Vacancy = ({ vacancies, title, auth }) => {
                 console.error(error);
             });
     }, [filterObject]);
-
     return (
-        <MainLayout user={user} className={"app_light_theme"}>
-            <AppPage className={s.page}>
-                <div className="mt-[20px]">
-                    <Search />
-                </div>
-
+        <MainLayout className={"app_light_theme"} user={user}>
+            <AppPage>
                 <div className={s.vacancyWrapper}>
                     <div className="filterContainer">
                         <form action="">
@@ -232,9 +227,18 @@ const Vacancy = ({ vacancies, title, auth }) => {
                                     onChange={handleChange}
                                 />
                             ))}
-                            {/* <AppText text="Уровень дохода" bold className={s.vacancyFilterTitle} />
-                            {payment.map(item => <RadioButton name={'payment'} label={item} value={item} />)}
-                            */}
+                            <AppText
+                                text="Уровень дохода"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            {payment.map((item) => (
+                                <RadioButton
+                                    name={"payment"}
+                                    label={item}
+                                    value={item}
+                                />
+                            ))}
 
                             <AppText
                                 text="График работы"
@@ -250,57 +254,50 @@ const Vacancy = ({ vacancies, title, auth }) => {
                                     onChange={handleChange}
                                 />
                             ))}
-
-                            <AppText
-                                text="График работы"
-                                bold
-                                className={s.vacancyFilterTitle}
-                            />
-                            {workSchedule.map((item) => (
-                                <Checkbox key={item} label={item} />
-                            ))}
                         </form>
                     </div>
                     <div className={s.vacancyList}>
                         <div className="flex flex-col gap-[20px] mb-[30px]">
-                            {vacancyList.map((vac) => (
-                                <AppLink
-                                    path={"vacancy.show"}
-                                    param={vac.id}
-                                    key={vac.payment}
-                                >
-                                    <AppCard
-                                        width={"auto"}
-                                        height={"260px"}
-                                        shadow
-                                        className={cn(
-                                            "flex flex-col items-start p-5",
-                                            s.vacancyListCard
-                                        )}
+                            {vacancyList.map((vac) => {
+                                return (
+                                    <AppLink
+                                        path={"vacancy.show"}
+                                        param={vac.id}
+                                        key={vac.payment}
                                     >
-                                        <AppText title={vac.title} />
-                                        <AppText
-                                            text={`от ${vac.payment} руб.`}
-                                        />
-                                        <AppText
-                                            text={`Компания ${vac.conditions}.`}
-                                        />
-                                        <AppText text={vac.employment} />
-                                        <AppText
-                                            size="s"
-                                            variant="notaccented"
-                                            text={`Опыт работы от ${vac.experience} лет`}
-                                            className="p-[12px]"
-                                        />
-                                        <AppButton
-                                            className={" mt-auto"}
-                                            width="auto"
+                                        <AppCard
+                                            width={"auto"}
+                                            height={"260px"}
+                                            shadow
+                                            className={cn(
+                                                "flex flex-col items-start p-5",
+                                                s.vacancyListCard
+                                            )}
                                         >
-                                            Откликнуться
-                                        </AppButton>
-                                    </AppCard>
-                                </AppLink>
-                            ))}
+                                            <AppText title={vac.title} />
+                                            <AppText
+                                                text={`от ${vac.payment} руб.`}
+                                            />
+                                            <AppText
+                                                text={`Компания ${vac.conditions}.`}
+                                            />
+                                            <AppText text={vac.employment} />
+                                            <AppText
+                                                size="s"
+                                                variant="notaccented"
+                                                text={`Опыт работы от ${vac.experience} лет`}
+                                                className="p-[12px]"
+                                            />
+                                            <AppButton
+                                                className={" mt-auto"}
+                                                width="auto"
+                                            >
+                                                Откликнуться
+                                            </AppButton>
+                                        </AppCard>
+                                    </AppLink>
+                                );
+                            })}
                         </div>
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
