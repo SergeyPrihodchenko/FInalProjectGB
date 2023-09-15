@@ -1,7 +1,6 @@
 import React from "react";
 //import PropTypes from 'prop-types'
 import s from "./BasiceDataResumePage.module.css";
-import style from "../EducationResumePage/EducationResumePage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 
 
@@ -59,7 +58,7 @@ function BasiceDataResumePage() {
                         checked
                         name="gender"
                         id="genderMen"
-                        className={style.genderBasiceData}
+                        className={s.genderBasiceData}
                     />
                     <label for="genderMen">
                         <AppText
@@ -74,7 +73,7 @@ function BasiceDataResumePage() {
                         value="woman"
                         name="gender"
                         id="genderWoman"
-                        className={style.genderBasiceData}
+                        className={s.genderBasiceData}
                     />
                     <label for="genderWoman">
                         <AppText

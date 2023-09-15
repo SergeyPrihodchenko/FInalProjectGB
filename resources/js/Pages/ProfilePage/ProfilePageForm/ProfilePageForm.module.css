@@ -5,7 +5,7 @@
 .formProfile {
     padding: 50px 50px;
     text-align: center;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--not-accented);
 }
 
 .textForm {
@@ -15,7 +15,7 @@
 
 .inputFormProfile {
     border: none;
-    width: 400px;
+    width: 392px;
     height: 40px;
     background-color: #CFF3FE;
     padding-right: 100px;
@@ -24,9 +24,10 @@
 
 .inputFormProfile::placeholder  {
     font-size: 20px;
-    color: black;
+    color: var(--dark-bg);
     text-align: center;
-    font-family: consolas; 
+    font-family: var(--font-family-main); 
+    padding-right: 110px;
 }
 
 .btnFormProfile {
@@ -56,11 +57,11 @@
     background-color: #CFF3FE;
     padding-right: 100px;
     padding-bottom: 20px;
-    margin-right: 300px;
+    margin-right: 285px;
 }
 
 .inputFormProfileUpdate::placeholder {
     font-size: 20px;
-    color: black;
-    padding-left: 75px;
+    color: var(--dark-bg);
+    padding-left: 20px;
 }
