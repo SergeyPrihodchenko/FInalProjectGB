@@ -6,6 +6,7 @@ use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Vacancy\FilterVacanciesController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\Vacancy\VacancyController;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Route;
@@ -27,12 +28,23 @@ Route::get('/testResumePage', function () {
     return Inertia::render('ResumePage/ResumePage');
 })->name('resumePage');
 
+
+
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('myresumes', [ResumeController::class, 'index'])->name('resume.index');
+    Route::get('resume/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+    Route::get('resume', [ResumeController::class, 'create'])->name('resume.create');
+    Route::post('resume', [ResumeController::class, 'store'])->name('resume.store');
+    Route::put('resume/{resume}', [ResumeController::class, 'update'])->name('resume.update');
+    Route::delete('resume/{resume}', [ResumeController::class, 'destroy'])->name('resume.destroy');
 });
 
 require __DIR__ . '/auth.php';

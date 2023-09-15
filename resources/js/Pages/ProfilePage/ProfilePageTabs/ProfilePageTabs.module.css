@@ -6,7 +6,7 @@
 
 .navSettings {
     list-style-type: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--dark-bg);
     margin-bottom: 50px;
 }
 
@@ -15,4 +15,13 @@
     padding-right: 50px;
     display: block;
     text-decoration: none;
+}
+
+.ulCategoties {
+    list-style-type: none;
+}
+
+.tabCategories {
+    border: none;
+    background-color: var(--light-bg);
 }

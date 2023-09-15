@@ -1,0 +1,15 @@
+.experienceWork {
+    width: 760px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputEndingWork {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textTitleEnding {
+    padding-left: 20px;
+} 
