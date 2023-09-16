@@ -163,8 +163,6 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                                     value={index + 1}
                                     onChange={handleChange}
                                 />)}
-
-
                             <AppText text="График работы" bold className={s.vacancyFilterTitle} />
                             {schedule.map((item, index) =>
                                 <Checkbox
@@ -172,7 +170,6 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                                     key={item}
                                     label={item}
                                     value={index + 1}
-
                                     onChange={handleChange}
                                 />
                             )}
