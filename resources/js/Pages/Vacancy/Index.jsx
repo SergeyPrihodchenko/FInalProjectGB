@@ -21,11 +21,10 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
     const [index, setIndex] = useState(2);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
-
     const [filterData, setFilterData] = useState({
-        employmentType: [],
-        workExperience: '',
-        workSchedule: []
+        employment: [],
+        schedule: [],
+        experience: '',
     });
 
     const user = auth?.user;
@@ -127,7 +126,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
     useEffect(() => {
         axios
-            .post("/vacancies/filter", { test: filterData })
+            .post("/vacancies/filter", { filterData: filterData })
             .then((response) => {
                 console.log(response.data);
             })
@@ -147,10 +146,10 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                             <AppText text="Тип занятости" bold className={s.vacancyFilterTitle} />
                             {employment.map((item, index) =>
                                 <Checkbox
-                                    name={'employmentType'}
+                                    name={'employment'}
                                     key={item}
                                     label={item}
-                                    value={index + 1}
+                                    value={item}
                                     onChange={handleChange}
 
                                 />)}
@@ -158,9 +157,9 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                             {experience.map((item, index) =>
                                 <RadioButton
                                     key={item}
-                                    name={'workExperience'}
+                                    name={'experience'}
                                     label={item}
-                                    value={index + 1}
+                                    value={item}
                                     onChange={handleChange}
                                 />)}
 
@@ -168,10 +167,10 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                             <AppText text="График работы" bold className={s.vacancyFilterTitle} />
                             {schedule.map((item, index) =>
                                 <Checkbox
-                                    name={'workSchedule'}
+                                    name={'schedule'}
                                     key={item}
                                     label={item}
-                                    value={index + 1}
+                                    value={item}
 
                                     onChange={handleChange}
                                 />

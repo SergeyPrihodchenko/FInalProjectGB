@@ -27,7 +27,6 @@ class VacancySeeder extends Seeder
                 'payment' => fake()->numberBetween(1000, 12000),
                 'employment' => EmploymentType::fullTimeJob->value,
                 'description' => fake('ru_RU')->text(),
-                'experience' => fake()->numberBetween(0, 10),
                 'contacts' => fake()->phoneNumber(),
                 'requirements' => fake('ru_RU')->text,
                 'responsibilities' => fake('ru_RU')->text,
