@@ -1,154 +1,144 @@
-.companyPageContainer{
+.companyPageContainer {
     max-width: 1200px;
     margin: 25px auto 0;
     display: flex;
-
 }
-.companyPageLeft{
+.companyPageLeft {
     margin: 0 10px;
     background-color: #fafafa;
     height: fit-content;
 }
-.companyPageLeftCard{
+.companyPageLeftCard {
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-.companyPageLeftCardLogo{
+.companyPageLeftCardLogo {
     display: flex;
     align-items: center;
     height: 170px;
 }
-.companyPageLeftCardInfo{
+.companyPageLeftCardInfo {
     margin-top: 16px;
-
 }
-.companyPageLeftCardInfoCard{
+.companyPageLeftCardInfoCard {
     font-size: 14px;
     line-height: 1.43;
     margin-top: 15px;
-
 }
-.companyPageLeftCardInfoCard:first-child{
+.companyPageLeftCardInfoCard:first-child {
     margin-top: 0;
 }
-.companyPageLeftCardInfoText{
+.companyPageLeftCardInfoText {
     color: #303233;
 }
-.companyPageLeftCardInfoLink{
+.companyPageLeftCardInfoLink {
     color: #3c9df2;
 }
-.companyPageStrong{
+.companyPageStrong {
     font-weight: 700;
 }
-.companyPageLeftToolbar{
+.companyPageLeftToolbar {
     margin-top: 30px;
 }
-.companyPageLeftToolbarButton{
-    border: 1px solid #babdbf;
-    background-color: #fafafa;
-    border-radius: 5px;
-}
-.companyPageLeftToolbarButton:first-child{
+
+.companyPageLeftToolbarButton:first-child {
     margin-bottom: 10px;
 }
 
 .companyPageRight {
     padding: 0 10px;
 }
-.companyPageHeader{
-
+.companyPageHeader {
 }
-.CompanyPageRightHeaderPosition{
+.CompanyPageRightHeaderPosition {
     line-height: 1.43;
     font-size: 14px;
 }
-.CompanyPageRightHeaderTitle{
+.CompanyPageRightHeaderTitle {
     font-size: 32px;
     line-height: 1.12;
     font-weight: 700;
     margin-bottom: 16px;
 }
-.CompanyPageRightHeaderRating{
+.CompanyPageRightHeaderRating {
     display: flex;
     align-items: center;
 }
-.CompanyPageRightHeaderTitleText{
+.CompanyPageRightHeaderTitleText {
     margin-right: 8px;
 }
-.CompanyPageRightHeaderRatingText{
+.CompanyPageRightHeaderRatingText {
     line-height: 1.4;
     font-size: 20px;
     font-weight: 700;
     margin-right: 5px;
 }
-.companyPageRatingLink{
+.companyPageRatingLink {
     margin-left: 8px;
 }
-.companyPageRightInfo{
+.companyPageRightInfo {
     margin-top: 16px;
     display: grid;
     grid-row-gap: 16px;
     line-height: 1.5;
     font-size: 16px;
 }
-.companyPageRightInfoContacts{
+.companyPageRightInfoContacts {
     line-height: 1.5;
     font-size: 16px;
     display: grid;
     grid-row-gap: 8px;
 }
-.companyPageReview{
+.companyPageReview {
     margin-top: 48px;
     border-top: 1px solid #babdbf;
     padding-top: 28px;
 }
-.companyPageReview:last-child{
+.companyPageReview:last-child {
     padding-bottom: 48px;
     margin-bottom: 48px;
 }
-.companyPageReviewCard{
+.companyPageReviewCard {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.companyPageReviewCardItem{
+.companyPageReviewCardItem {
     margin-top: 16px;
     min-width: 210px;
 }
-.companyPageReviewCardItemCount{
+.companyPageReviewCardItemCount {
     font-size: 32px;
     line-height: 1.12;
     font-weight: 700;
     color: #1785e5;
 }
-.companyPageReviewCardItemSubtitle{
+.companyPageReviewCardItemSubtitle {
     color: #1785e5;
     font-size: 14px;
     line-height: 1.43;
     margin-left: 8px;
 }
-.companyPageReviewButtonCard{
+.companyPageReviewButtonCard {
     box-shadow: 0 8px 20px #30323314, inset 0 0.5px 1px #3032330f;
     background-color: #fff;
-    border-radius: 10px;
     padding: 24px;
     margin-left: 16px;
 }
-.companyPageReviewButtonCardButton{
+.companyPageReviewButtonCardButton {
     display: block;
     margin-top: 8px;
-
 }
-.companyPageEmployeeReviewCards{
+.companyPageEmployeeReviewCards {
     margin-top: 16px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 16px;
 }
-.companyPageEmployeeReviewCardItem{
+.companyPageEmployeeReviewCardItem {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -157,60 +147,59 @@
     box-shadow: 0 8px 20px #30323314, inset 0 0.5px 1px #3032330f;
     background-color: #fff;
 }
-.companyPageEmployeeReviewCardItemTitle{
+.companyPageEmployeeReviewCardItemTitle {
     margin-bottom: 8px;
 }
-.companyPageEmployeeReviewCardItemRating{
+.companyPageEmployeeReviewCardItemRating {
     display: flex;
     align-items: center;
     margin-bottom: 8px;
 }
-.companyPageEmployeeReviewCardItemRatingDate{
-    color:#6e7173;
+.companyPageEmployeeReviewCardItemRatingDate {
+    color: #6e7173;
     margin-left: 8px;
 }
-.companyPageVacancies{
-
+.companyPageVacancies {
 }
-.companyPageVacanciesTitleDecorate{
+.companyPageVacanciesTitleDecorate {
     text-underline-offset: 3px;
-    text-decoration-thickness: 1px!important;
-    text-decoration-style: dashed!important;
+    text-decoration-thickness: 1px !important;
+    text-decoration-style: dashed !important;
     cursor: pointer;
     text-decoration: underline;
     color: #3c9df2;
 }
-.companyPageVacanciesInfo{
+.companyPageVacanciesInfo {
     font-size: 18px;
     margin-top: 16px;
 }
-.companyPageVacanciesTitleCount{
+.companyPageVacanciesTitleCount {
     color: #959799;
     font-size: 14px;
     margin-left: 8px;
     text-decoration: none;
 }
-.companyPageVacanciesInfoItem{
+.companyPageVacanciesInfoItem {
     font-size: 14px;
     margin-left: 20px;
 }
-.companyPageVacanciesItemDropdown{
+.companyPageVacanciesItemDropdown {
     margin-top: 15px;
     margin-left: 20px;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
     border-bottom: 1px solid #babdbf;
 }
-.companyPageVacanciesItemDropdownInfo{
+.companyPageVacanciesItemDropdownInfo {
     display: flex;
     flex-direction: column;
 }
-.companyPageVacanciesItemDropdownTitle{
+.companyPageVacanciesItemDropdownTitle {
     font-size: 18px;
     color: #1785e5;
 }
-.companyPageVacanciesItemDropdownSubtitle{
+.companyPageVacanciesItemDropdownSubtitle {
     margin: 16px 0;
     font-size: 14px;
-    color:#6e7173;
+    color: #6e7173;
 }

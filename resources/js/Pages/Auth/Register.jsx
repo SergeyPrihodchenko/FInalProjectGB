@@ -5,6 +5,9 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import cn from "classnames";
+import s from "./RegisterPage.module.css";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -115,9 +118,13 @@ export default function Register() {
                         Already registered?
                     </Link>
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
+                    <AppButton
+                        className={cn(s.btn)}
+                        sizeText="s"
+                        // disabled={processing}
+                    >
+                        Зарегистрироваться
+                    </AppButton>
                 </div>
             </form>
         </GuestLayout>

@@ -9,8 +9,8 @@ function AppButton(props) {
         className,
         variant = "filled",
         sizeText = "m",
-        width = "240px",
-        height = "40px",
+        width,
+        height,
         bold,
         disabled,
         colorType,
@@ -48,7 +48,13 @@ AppButton.propTypes = {
     height: PropTypes.string,
     children: PropTypes.any,
     variant: PropTypes.oneOf(["filled", "outline", "clear"]),
-    colorType: PropTypes.oneOf(["normal", "succes", "cancel", "accent"]),
+    colorType: PropTypes.oneOf([
+        "normal",
+        "succes",
+        "cancel",
+        "accent",
+        "notAccent",
+    ]),
     sizeText: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
 };
 export default AppButton;

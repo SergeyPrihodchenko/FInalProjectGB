@@ -54,8 +54,8 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
-    {
+    public function show(Company $company) {
+    //{ dd($company);
         return Inertia::render('Company/company_detail', [
             'company' => $company
         ]);
@@ -92,6 +92,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        $company->delete();
+        dd($company->delete());
+
     }
 }
