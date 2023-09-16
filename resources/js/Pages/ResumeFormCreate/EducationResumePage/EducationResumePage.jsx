@@ -90,17 +90,18 @@ function EducationResumePage() {
                         type="text"
                         className={s.inputYearsEducation}
                     />
-                    <AppText
-                        title={
-                            <input
-                                type="button"
-                                value="Добавить учебное заведение"
-                                className={s.buttonYearsEducation}
-                            />}
-                        bold
-                        size={"s"}
-                    />     
+                        
                 </div>
+                <AppText
+                    title={
+                        <input
+                            type="button"
+                            value="Добавить учебное заведение"
+                            className={s.buttonYearsEducation}
+                        />}
+                    bold
+                    size={"s"}
+                /> 
             </div>
 </div>
                         

@@ -6,14 +6,13 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 
 function BasiceDataResumePage() {
     return (
-        
-        <div className={s.basiceData}>
-            <AppText
-                title={"Профессия"}
-                bold
-                size={"s"}
-                className={s.textTitle}
-            />
+            <div className={s.basiceData}>
+                <AppText
+                    title={"Профессия"}
+                    bold
+                    size={"s"}
+                    className={s.textTitle}
+                />
                 <input
                     type="text"
                     placeholder="Дизайнер"

@@ -25,7 +25,7 @@ function SecondNav(props) {
                         );
                     })}
                 </div>
-                <form method="LINK" action={route("resumePage")}>
+                <form method="LINK" action={route("resumeForm")}>
 
                 <AppButton
                     width="200px"
