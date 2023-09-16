@@ -29,72 +29,72 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
     const user = auth?.user;
 
-    const fetchVacancyCards = useCallback(async () => {
-        if (isLoading) return;
+    // const fetchVacancyCards = useCallback(async () => {
+    //     if (isLoading) return;
 
-        setIsLoading(true);
+    //     setIsLoading(true);
 
-        axios
-            .get(`/vacancylist?page=${index}`)
-            .then((res) => {
-                if (res.data.data.length) {
-                    setVacancyList((prevVacancyList) => [
-                        ...prevVacancyList,
-                        ...res.data.data,
-                    ]);
-                    setIsLoading(false);
-                } else {
-                    return;
-                }
-            })
-            .catch((err) => console.log(err))
-            .finally(() => setIsLoading(false));
+    //     axios
+    //         .get(`/vacancylist?page=${index}`)
+    //         .then((res) => {
+    //             if (res.data.data.length) {
+    //                 setVacancyList((prevVacancyList) => [
+    //                     ...prevVacancyList,
+    //                     ...res.data.data,
+    //                 ]);
+    //                 setIsLoading(false);
+    //             } else {
+    //                 return;
+    //             }
+    //         })
+    //         .catch((err) => console.log(err))
+    //         .finally(() => setIsLoading(false));
 
-        setIndex((prevIndex) => prevIndex + 1);
-    }, [index, isLoading]);
+    //     setIndex((prevIndex) => prevIndex + 1);
+    // }, [index, isLoading]);
 
-    useEffect(() => {
-        if (!vacancies) {
-            if (vacancyList.length != total) {
-                const observer = new IntersectionObserver((entries) => {
-                    const target = entries[0];
-                    if (target.isIntersecting) {
-                        fetchVacancyCards();
-                    }
-                });
+    // useEffect(() => {
+    //     if (!vacancies) {
+    //         if (vacancyList.length != total) {
+    //             const observer = new IntersectionObserver((entries) => {
+    //                 const target = entries[0];
+    //                 if (target.isIntersecting) {
+    //                     fetchVacancyCards();
+    //                 }
+    //             });
 
-                if (loaderRef.current) {
-                    observer.observe(loaderRef.current);
-                }
+    //             if (loaderRef.current) {
+    //                 observer.observe(loaderRef.current);
+    //             }
 
-                return () => {
-                    if (loaderRef.current) {
-                        observer.unobserve(loaderRef.current);
-                        setIsLoading(false);
-                    }
-                };
-            }
-        }
-    }, [loaderRef, vacancyList]);
+    //             return () => {
+    //                 if (loaderRef.current) {
+    //                     observer.unobserve(loaderRef.current);
+    //                     setIsLoading(false);
+    //                 }
+    //             };
+    //         }
+    //     }
+    // }, [loaderRef, vacancyList]);
 
-    useEffect(() => {
-        if (!vacancies) {
-            const getData = async () => {
-                setIsLoading(true);
-                try {
-                    const response = await axios.get(`/vacancylist?page=1`);
+    // useEffect(() => {
+    //     if (!vacancies) {
+    //         const getData = async () => {
+    //             setIsLoading(true);
+    //             try {
+    //                 const response = await axios.get(`/vacancylist?page=1`);
 
-                    setVacancyList(response.data.data);
-                    setTotal(response.data.total);
-                } catch (error) {
-                    console.log(error);
-                }
-                setIsLoading(false);
-            };
+    //                 setVacancyList(response.data.data);
+    //                 setTotal(response.data.total);
+    //             } catch (error) {
+    //                 console.log(error);
+    //             }
+    //             setIsLoading(false);
+    //         };
 
-            getData();
-        }
-    }, []);
+    //         getData();
+    //     }
+    // }, []);
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
@@ -128,17 +128,20 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
         axios
             .post("/vacancies/filter", { filterData: filterData })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
+                const list = Object.values(response.data.post);
+                setVacancyList(list);
+
             })
             .catch((error) => {
                 console.error(error);
             });
     }, [filterData]);
 
-
+    console.log(vacancyList);
 
     return (
-        <MainLayout className={"app_light_theme"} user={user}>
+        <MainLayout className={"app_light_theme"}>
             <AppPage>
                 <div className={s.vacancyWrapper}>
                     <div className="filterContainer">
@@ -200,6 +203,9 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                                         />
                                         <AppText
                                             text={vac.employment}
+                                        />
+                                        <AppText
+                                            text={vac.schedule}
                                         />
                                         <AppText
                                             size="s"
