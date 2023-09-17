@@ -24,3 +24,6 @@
 .fullWidth {
     width: 100%;
 }
+.textBold {
+    font-weight: 700;
+}

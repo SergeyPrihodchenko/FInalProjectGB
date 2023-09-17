@@ -11,6 +11,9 @@
     color: inherit;
     transition: var(--transition-delay) linear;
 }
+.clear.hint {
+    color: var(--hint);
+}
 .clear.cancel {
     color: var(--cancel);
 }
