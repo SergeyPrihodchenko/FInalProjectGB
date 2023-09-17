@@ -41,9 +41,10 @@ class Vacancy extends Model
 
     public function filterBuildQuery(array $arr)
     {
-
         $vacancy = Vacancy::all();
+        
         foreach ($arr as $key => $value) {
+            
             if(is_array($value) && !empty($value)) {
                 $vacancy = $vacancy->whereIn($key, $value);
                 } elseif(!is_array($value) && !empty($value)) {
