@@ -3,12 +3,13 @@
     padding: 0;    
 }
 .mainResumePage {
-    margin-top: 30px;
+    margin: 30px 0px 40px 0px;
 }
 
 .linkResumePage,
 .userEmailText,
-.specialityName{
+.specialityName,
+.linkCompanyPage{
     color: var( --accent);
     border: none;
     background: var(--light-bg);
@@ -31,23 +32,29 @@
     width: 770px;
 }
 
-/* .userPhoto{
-    width: 440px;
-} */
-
 .userDataForm, 
 .userAddress, 
 .employment, 
 .schedule,
 .userEmail,
-.userExperienceTitle{
+.workExperienceTitle,
+.aboutUserTitle,
+.educationTitle,
+.workConditionsTitle{
     display: flex;
 }
 
 .userData, 
 .userContacts, 
 .userBaceAddress, 
-.userSearchArea {
+.userSearchArea,
+.workExperienceTitle,
+.aboutUserTitle,
+.company,
+.keySkills,
+.aboutUserTextAll,
+.educationTitle,
+.workConditionsTitle{
     padding-bottom: 20px;
 }
 
@@ -70,16 +77,18 @@
 }
 
 .userSpeciality {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .speciality{
     padding: 20px 0px 10px 0px;
     display: flex;
 }
+
 .specializationText {
     padding: 0px 0px 10px 20px;
 }
+
 .specialityName{
     padding: 6px 0px 0px 10px;
 }
@@ -90,6 +99,42 @@
     margin-right: 20px;
 }
 
-.userExperienceTitle {
-    margin-bottom: 10px;
+.userWorkPeriod,
+.userEducationPeriod{
+    width: 310px;
+    padding-top: 7px;
+}
+
+.workPeriods,
+.educationPeriods{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+}
+
+.descriptionExperience,
+.descriptionEducation{
+    padding-left: 20px;
+}
+
+.keySkillsTitle{
+    display: flex;
+    padding-bottom: 13px;
+}
+
+.keySkillsTextAll{
+    display: flex;
+    justify-content:space-between;
+    margin-right: 200px;
+}
+.keySkillsText{
+    width: 226px;
+    height: 33px;
+
+    background: var(--light-skeleton-shadow);
+    border: 1px solid var(--dark-bg);
+    border-radius: var(--border-radius-s);
+    text-align: center;
+
+    padding-top: 5px;
 }

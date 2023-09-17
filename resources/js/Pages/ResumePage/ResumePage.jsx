@@ -110,19 +110,145 @@ function ResumePage() {
                                 <AppText text={", удаленная работа"} size="s"/>
                             </div>    
                         </div>
-                        <div className={s.userExperience}>
-                            <div className={s.userExperienceTitle}>
-                                <AppText bold title={"Опыт работы 4 года 9 месяцев"} size="s"/>
+                        <div className={s.workExperience}>
+                            <div className={s.workExperienceTitle}>
+                                <AppText 
+                                    bold 
+                                    title={"Опыт работы 4 года 9 месяцев"} 
+                                    size="s"
+                                />
                                 <a href="#" className={s.specialityName}>Редактировать</a>
                             </div>
-                                <AppText text={"Январь 2019 — по настоящее время 4 года 9 месяцев"} size="s"/>
-                            <div>
-
+                            <div className={s.workPeriods}>
+                                <div className={s.userWorkPeriod}>
+                                    <AppText 
+                                        text={"Январь 2019 — по настоящее время"} 
+                                        size="s"
+                                    />
+                                    <AppText 
+                                        text={"4 года 9 месяцев"} 
+                                        size="s"
+                                    />
+                                </div>
+                                                            
+                                <div className={s.descriptionExperience}>
+                                    <div className={s.company}>
+                                        <AppText 
+                                            title=
+                                                {
+                                                    <span className={s.userEmailText}>
+                                                        Мосводосток, ГУП
+                                                    </span>
+                                                } 
+                                            size="m"    
+                                        />
+                                        <AppText text={"Москва"} size="s"/>
+                                        <AppText text={"ЖКХ"} size="s"/>
+                                        <a href="#" className={s.linkResumePage}>Показать ещё</a>
+                                    </div>
+                                    <div className={s.responsibilities}>
+                                        <AppText 
+                                            bold 
+                                            title={"Инженер 1 категории"} 
+                                            size="s"
+                                        />
+                                        <AppText 
+                                            size="s"
+                                            text={"1. Контроль за выполнением строительно-монтажных работ."}
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                            <div>
 
+                            <div className={s.keySkills}>
+                                <div className={s.keySkillsTitle}>
+                                    <AppText 
+                                        bold 
+                                        title={"Ключевые навыки"} 
+                                        size="s"
+                                    />
+                                    <a href="#" className={s.specialityName}>Редактировать</a>
+                                </div>
+                                <div className={s.keySkillsTextAll}>
+                                    <AppText text={"Исполнительность"} size="s" className={s.keySkillsText}/>
+                                    <AppText text={"Доброжелательность"} size="s" className={s.keySkillsText}/>
+                                    <AppText text={"Коммуникабельность"} size="s" className={s.keySkillsText}/>
+                                    <AppText text={"Внимательность"} size="s" className={s.keySkillsText}/>
+                                </div>
                             </div>
+
+                            <div className={s.aboutUser}>
+                                <div className={s.aboutUserTitle}>
+                                    <AppText 
+                                        bold 
+                                        title={"Обо мне"} 
+                                        size="s"
+                                    />
+                                    <a href="#" className={s.specialityName}>Редактировать</a>
+                                </div>
+
+                                <div className={s.aboutUserTextAll}>
+                                    <AppText 
+                                        text=
+                                            {
+                                                "Усидчивый, внимательный, целеустремленный, легко вливаюсь в коллектив. Инженер систем водоснабжения и водоотведения. Ищу работу для получения опыта и получение более обширных знаний в этой сфере. Готов к любой работе"
+                                            }
+                                        size="s" 
+                                        className={s.aboutUserText}    
+                                    />  
+                                </div>
+                            </div>
+
+                            <div className={s.education}>
+                                <div className={s.educationTitle}>
+                                    <AppText 
+                                        bold 
+                                        title={"Высшее образование (Бакалавр)"} 
+                                        size="s"
+                                    />
+                                    <a href="#" className={s.specialityName}>Редактировать</a>
+                                </div>
                                 
+                                <div className={s.educationPeriods}>
+                                    <div className={s.userEducationPeriod}>
+                                        <AppText 
+                                            text={"2013-2017 года"} 
+                                            size="s"
+                                        />
+                                    </div>
+                                                                
+                                    <div className={s.descriptionEducation}> 
+                                        <AppText 
+                                            size="s"
+                                            text={"Российский государственный инженерный университет инженеров"}
+                                        />    
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={s.workConditions}>
+                                <div className={s.workConditionsTitle}>
+                                    <AppText 
+                                        bold 
+                                        title={"Гражданство, время пути до работы"} 
+                                        size="s"
+                                    />
+                                    <a href="#" className={s.specialityName}>Редактировать</a>
+                                </div>
+
+                                <div className={s.employment}>
+                                    <AppText text={"Гражданство"} size="s"/>
+                                    <AppText text={": Россия"} size="s"/>
+                                </div>
+                                <div className={s.employment}>
+                                    <AppText text={"Разрешение на работу"} size="s"/>
+                                    <AppText text={": Россия"} size="s"/>
+                                </div>
+                                <div className={s.employment}>
+                                    <AppText text={"Желательное время в пути до работы"} size="s"/>
+                                    <AppText text={": не имеет значения"} size="s"/>
+                                </div>
+                            </div>    
                         </div>
                         
                     </main>
