@@ -1,5 +1,95 @@
 .containerResumePage {
     margin: 0;
-    padding: 0;
-    
+    padding: 0;    
+}
+.mainResumePage {
+    margin-top: 30px;
+}
+
+.linkResumePage,
+.userEmailText,
+.specialityName{
+    color: var( --accent);
+    border: none;
+    background: var(--light-bg);
+    font: var(--font-s);
+}
+
+.baceData{
+    padding: 20px 0px 30px 0px;
+
+    display: flex;
+    justify-content: space-between;
+
+    background: var(--light-bg);
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: var(--primary-text);  
+}
+
+.userBaceData {
+    width: 770px;
+}
+
+/* .userPhoto{
+    width: 440px;
+} */
+
+.userDataForm, 
+.userAddress, 
+.employment, 
+.schedule,
+.userEmail,
+.userExperienceTitle{
+    display: flex;
+}
+
+.userData, 
+.userContacts, 
+.userBaceAddress, 
+.userSearchArea {
+    padding-bottom: 20px;
+}
+
+.userContactsPhone{
+    width: 160px;
+    border-bottom: 1px solid var(--primary-text);
+}
+
+.userEmailText{
+    width: 160px;
+    border-bottom: 1px solid var(--accent);
+}
+
+.imgUserPhoto{
+    width: 200px;
+    height: 183px;
+
+    border: none;
+    /* transform: translate(177px,0px); */
+}
+
+.userSpeciality {
+    margin-bottom: 30px;
+}
+
+.speciality{
+    padding: 20px 0px 10px 0px;
+    display: flex;
+}
+.specializationText {
+    padding: 0px 0px 10px 20px;
+}
+.specialityName{
+    padding: 6px 0px 0px 10px;
+}
+
+.userPhoto {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.userExperienceTitle {
+    margin-bottom: 10px;
 }
