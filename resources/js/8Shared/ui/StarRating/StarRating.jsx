@@ -11,9 +11,9 @@ import { AppIcon } from "../AppIcon";
 
 const stars = [1, 2, 3, 4, 5];
 
-export const StarRating = memo((props) => {
+export const StarRating =(props) => {
     const { className, onSelect, size = 30, selectedStars = 0 } = props;
-    const { t } = useTranslation();
+
     const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
     const onHover = (starsCount) => () => {
@@ -63,4 +63,4 @@ export const StarRating = memo((props) => {
             })}
         </div>
     );
-});
+};
