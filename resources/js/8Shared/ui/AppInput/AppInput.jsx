@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import s from "./AppInput.module.css";
 import cn from "classnames";
@@ -12,8 +12,17 @@ function AppInput(props) {
         fullWidth,
         width = "760px",
         textBold = true,
+        isFocused = false,
+        ref,
         className,
     } = props;
+    const input = ref ? ref : useRef();
+    useEffect(() => {
+        if (isFocused) {
+            input.current.focus();
+        }
+    }, []);
+
     return (
         <div className={cn(s.appInput, className)}>
             {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
@@ -24,6 +33,8 @@ function AppInput(props) {
                     [s.fullWidth]: fullWidth,
                 })}
                 style={{ width: width }}
+                ref={input}
+                {...props}
             />
         </div>
     );
@@ -43,6 +54,7 @@ AppInput.propTypes = {
     fullWidth: PropTypes.bool,
     width: PropTypes.string,
     textBold: PropTypes.bool,
+    isFocused: PropTypes.bool,
 };
 
 export default AppInput;

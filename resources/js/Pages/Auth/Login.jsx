@@ -39,9 +39,19 @@ export default function Login({ status, canResetPassword }) {
             )}
 
             <form onSubmit={submit}>
-                {/* <AppInput label="Email" fullWidth /> */}
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <AppInput
+                        id="email"
+                        type="email"
+                        name="email"
+                        width="100%"
+                        label="Почта"
+                        value={data.email}
+                        autoComplete="username"
+                        isFocused={true}
+                        onChange={(e) => setData("email", e.target.value)}
+                    />
+                    {/* <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
                         id="email"
@@ -52,13 +62,23 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData("email", e.target.value)}
-                    />
+                    /> */}
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <AppInput
+                        id="password"
+                        type="password"
+                        name="password"
+                        width="100%"
+                        label="Пароль"
+                        value={data.password}
+                        autoComplete="current-password"
+                        onChange={(e) => setData("password", e.target.value)}
+                    />
+                    {/* <InputLabel htmlFor="password" value="Password" />
 
                     <TextInput
                         id="password"
@@ -68,7 +88,7 @@ export default function Login({ status, canResetPassword }) {
                         className="mt-1 block w-full"
                         autoComplete="current-password"
                         onChange={(e) => setData("password", e.target.value)}
-                    />
+                    /> */}
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
@@ -83,7 +103,7 @@ export default function Login({ status, canResetPassword }) {
                             }
                         />
                         <span className="ml-2 text-sm text-gray-600">
-                            Remember me
+                            Запомнить меня
                         </span>
                     </label>
                 </div>
@@ -94,7 +114,7 @@ export default function Login({ status, canResetPassword }) {
                             href={route("password.request")}
                             className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            Forgot your password?
+                            Восстановить пароль?
                         </Link>
                     )}
 

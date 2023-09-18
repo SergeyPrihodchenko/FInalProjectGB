@@ -1,4 +1,6 @@
 import GuestLayout from "@/5Layouts/GuestLayout/GuestLayout";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
@@ -32,7 +34,17 @@ export default function ForgotPassword({ status }) {
             )}
 
             <form onSubmit={submit}>
-                <TextInput
+                <AppInput
+                    id="email"
+                    type="email"
+                    name="email"
+                    width="100%"
+                    value={data.email}
+                    isFocused={true}
+                    onChange={(e) => setData("email", e.target.value)}
+                    required
+                />
+                {/* <TextInput
                     id="email"
                     type="email"
                     name="email"
@@ -40,14 +52,15 @@ export default function ForgotPassword({ status }) {
                     className="mt-1 block w-full"
                     isFocused={true}
                     onChange={(e) => setData("email", e.target.value)}
-                />
+                /> */}
 
                 <InputError message={errors.email} className="mt-2" />
 
                 <div className="flex items-center justify-end mt-4">
-                    <PrimaryButton className="ml-4" disabled={processing}>
+                    <AppButton sizeText="s" disabled={processing}>Сборсить пароль</AppButton>
+                    {/* <PrimaryButton className="ml-4">
                         Email Password Reset Link
-                    </PrimaryButton>
+                    </PrimaryButton> */}
                 </div>
             </form>
         </GuestLayout>

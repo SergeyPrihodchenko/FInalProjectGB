@@ -8,6 +8,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import cn from "classnames";
 import s from "./RegisterPage.module.css";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -35,7 +36,19 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <AppInput
+                        id="name"
+                        name="name"
+                        width="100%"
+                        label="Имя"
+                        value={data.name}
+                        autoComplete="name"
+                        isFocused={true}
+                        onChange={(e) => setData("name", e.target.value)}
+                        required
+                    />
+
+                    {/* <InputLabel htmlFor="name" value="Name" />
 
                     <TextInput
                         id="name"
@@ -46,13 +59,24 @@ export default function Register() {
                         isFocused={true}
                         onChange={(e) => setData("name", e.target.value)}
                         required
-                    />
+                    /> */}
 
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+                    <AppInput
+                        id="email"
+                        type="email"
+                        name="email"
+                        width="100%"
+                        label="Почта"
+                        value={data.email}
+                        autoComplete="username"
+                        onChange={(e) => setData("email", e.target.value)}
+                        required
+                    />
+                    {/* <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
                         id="email"
@@ -63,13 +87,24 @@ export default function Register() {
                         autoComplete="username"
                         onChange={(e) => setData("email", e.target.value)}
                         required
-                    />
+                    /> */}
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <AppInput
+                        id="password"
+                        type="password"
+                        name="password"
+                        width="100%"
+                        label="Пароль"
+                        value={data.password}
+                        autoComplete="new-password"
+                        onChange={(e) => setData("password", e.target.value)}
+                        required
+                    />
+                    {/* <InputLabel htmlFor="password" value="Password" />
 
                     <TextInput
                         id="password"
@@ -80,13 +115,26 @@ export default function Register() {
                         autoComplete="new-password"
                         onChange={(e) => setData("password", e.target.value)}
                         required
-                    />
+                    /> */}
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel
+                    <AppInput
+                        id="password_confirmation"
+                        type="password"
+                        name="password_confirmation"
+                        width="100%"
+                        label="Подтвердить пароль"
+                        value={data.password_confirmation}
+                        autoComplete="new-password"
+                        onChange={(e) =>
+                            setData("password_confirmation", e.target.value)
+                        }
+                        required
+                    />
+                    {/* <InputLabel
                         htmlFor="password_confirmation"
                         value="Confirm Password"
                     />
@@ -102,7 +150,7 @@ export default function Register() {
                             setData("password_confirmation", e.target.value)
                         }
                         required
-                    />
+                    /> */}
 
                     <InputError
                         message={errors.password_confirmation}
@@ -115,13 +163,13 @@ export default function Register() {
                         href={route("login")}
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Already registered?
+                        Уже зарегестрирован?
                     </Link>
 
                     <AppButton
                         className={cn(s.btn)}
                         sizeText="s"
-                        // disabled={processing}
+                        disabled={processing}
                     >
                         Зарегистрироваться
                     </AppButton>

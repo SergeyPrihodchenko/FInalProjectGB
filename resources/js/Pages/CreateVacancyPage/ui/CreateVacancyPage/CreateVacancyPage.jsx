@@ -45,7 +45,7 @@ function CreateVacancyPage(props) {
                     <form action="#">
                         <AppInput
                             label="Название вакакнсии"
-                            className={s.title}
+                            placeholder="Должность"
                         />
                         <AppInput
                             label="Где искать сотрудника"
@@ -76,7 +76,6 @@ function CreateVacancyPage(props) {
                             label="Где будет рабоать сотрудник"
                             width="760px"
                         />
-
                         {experience && (
                             <>
                                 <AppText text="Опыт работы" />
@@ -93,7 +92,6 @@ function CreateVacancyPage(props) {
                                 ))}
                             </>
                         )}
-
                         {schedule && (
                             <>
                                 <AppText text="График работы" />
