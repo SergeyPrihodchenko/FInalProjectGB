@@ -34,23 +34,23 @@ class Vacancy extends Model
         return $this->belongsToMany(Category::class, 'category_vacancy', 'vacancy_id', 'category_id');
     }
 
-    public function company():BelongsTo
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
 
-    static public function filterBuildQuery(array $arr)
+    public function filterBuildQuery(array $arr = [])
     {
-        $vacancy = Vacancy::all();
-        $filterVacancy = '';
+
+        $vacancy = Vacancy::query();
         foreach ($arr as $key => $value) {
-            
-            if(is_array($value) && !empty($value)) {
-                $filterVacancy = $vacancy->whereIn($key, $value);
-                } elseif(!is_array($value) && !empty($value)) {
-                $filterVacancy = $vacancy->where($key, $value);
+            if (is_array($value) && !empty($value)) {
+                $vacancy = $vacancy->whereIn($key, $value);
+            } elseif (!is_array($value) && !empty($value)) {
+                $vacancy = $vacancy->where($key, $value);
             }
         }
-        return $filterVacancy;
+        return $vacancy->paginate(3)->toArray();
+
     }
 }
