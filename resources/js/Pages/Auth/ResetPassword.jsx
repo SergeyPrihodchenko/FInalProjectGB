@@ -6,6 +6,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, useForm } from "@inertiajs/react";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 export default function ResetPassword({ token, email }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,6 +34,7 @@ export default function ResetPassword({ token, email }) {
 
             <form onSubmit={submit}>
                 <div>
+                 
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
