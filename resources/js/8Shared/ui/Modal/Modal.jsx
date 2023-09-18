@@ -43,7 +43,7 @@ export const Modal = (props) => {
     return (
         <Portal element={document.getElementById("app") ?? document.body}>
             <div>
-                <Overlay onClick={close} />
+                {/* <Overlay onClick={close} />` */}
                 <div className={s.content}>{children}</div>
             </div>
         </Portal>
