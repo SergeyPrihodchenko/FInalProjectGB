@@ -43,6 +43,7 @@ export default function ForgotPassword({ status }) {
                     isFocused={true}
                     onChange={(e) => setData("email", e.target.value)}
                     required
+                    errorMessage={errors.email}
                 />
                 {/* <TextInput
                     id="email"
@@ -54,10 +55,12 @@ export default function ForgotPassword({ status }) {
                     onChange={(e) => setData("email", e.target.value)}
                 /> */}
 
-                <InputError message={errors.email} className="mt-2" />
+                {/* <InputError message={errors.email} className="mt-2" /> */}
 
                 <div className="flex items-center justify-end mt-4">
-                    <AppButton sizeText="s" disabled={processing}>Сборсить пароль</AppButton>
+                    <AppButton sizeText="s" disabled={processing}>
+                        Сборсить пароль
+                    </AppButton>
                     {/* <PrimaryButton className="ml-4">
                         Email Password Reset Link
                     </PrimaryButton> */}

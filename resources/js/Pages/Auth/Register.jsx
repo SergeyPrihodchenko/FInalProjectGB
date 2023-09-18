@@ -46,6 +46,7 @@ export default function Register() {
                         isFocused={true}
                         onChange={(e) => setData("name", e.target.value)}
                         required
+                        errorMessage={errors.name}
                     />
 
                     {/* <InputLabel htmlFor="name" value="Name" />
@@ -61,7 +62,7 @@ export default function Register() {
                         required
                     /> */}
 
-                    <InputError message={errors.name} className="mt-2" />
+                    {/* <InputError message={errors.name} className="mt-2" /> */}
                 </div>
 
                 <div className="mt-4">
@@ -75,6 +76,7 @@ export default function Register() {
                         autoComplete="username"
                         onChange={(e) => setData("email", e.target.value)}
                         required
+                        errorMessage={errors.email}
                     />
                     {/* <InputLabel htmlFor="email" value="Email" />
 
@@ -89,7 +91,7 @@ export default function Register() {
                         required
                     /> */}
 
-                    <InputError message={errors.email} className="mt-2" />
+                    {/* <InputError message={errors.email} className="mt-2" /> */}
                 </div>
 
                 <div className="mt-4">
@@ -103,6 +105,7 @@ export default function Register() {
                         autoComplete="new-password"
                         onChange={(e) => setData("password", e.target.value)}
                         required
+                        errorMessage={errors.password}
                     />
                     {/* <InputLabel htmlFor="password" value="Password" />
 
@@ -117,7 +120,7 @@ export default function Register() {
                         required
                     /> */}
 
-                    <InputError message={errors.password} className="mt-2" />
+                    {/* <InputError message={errors.password} className="mt-2" /> */}
                 </div>
 
                 <div className="mt-4">
@@ -133,6 +136,7 @@ export default function Register() {
                             setData("password_confirmation", e.target.value)
                         }
                         required
+                        errorMessage={errors.password_confirmation}
                     />
                     {/* <InputLabel
                         htmlFor="password_confirmation"
@@ -152,10 +156,10 @@ export default function Register() {
                         required
                     /> */}
 
-                    <InputError
+                    {/* <InputError
                         message={errors.password_confirmation}
                         className="mt-2"
-                    />
+                    /> */}
                 </div>
 
                 <div className="flex items-center justify-end mt-4">

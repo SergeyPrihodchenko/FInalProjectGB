@@ -58,8 +58,7 @@ function CreateVacancyPage(props) {
                             />
                             <div className={s.paymentContainer}>
                                 <div className={s.payment}>
-                                    <AppInput width="260px" placeholder="От" />
-                                    <AppInput width="260px" placeholder="До" />
+                                    <AppInput width="520px" type="number" />
                                 </div>
 
                                 <div className={s.checkbox}>
@@ -74,11 +73,11 @@ function CreateVacancyPage(props) {
                         <AppInput
                             textBold
                             label="Где будет рабоать сотрудник"
-                            width="760px"
+                            placeholder="Адрес"
                         />
                         {experience && (
                             <>
-                                <AppText text="Опыт работы" />
+                                <AppText title="Опыт работы" />
                                 {experience?.map((item, index) => (
                                     <RadioButton
                                         key={index}
@@ -94,7 +93,7 @@ function CreateVacancyPage(props) {
                         )}
                         {schedule && (
                             <>
-                                <AppText text="График работы" />
+                                <AppText title="График работы" />
                                 {schedule?.map((item, index) => (
                                     <Checkbox
                                         key={index}
@@ -110,7 +109,7 @@ function CreateVacancyPage(props) {
                         )}
                         {schedule && (
                             <>
-                                <AppText text="Тип занятости" />
+                                <AppText title="Тип занятости" />
                                 {schedule?.map((item, index) => (
                                     <Checkbox
                                         key={index}

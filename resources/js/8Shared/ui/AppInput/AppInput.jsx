@@ -13,6 +13,7 @@ function AppInput(props) {
         width = "760px",
         textBold = true,
         isFocused = false,
+        errorMessage,
         ref,
         className,
     } = props;
@@ -36,6 +37,7 @@ function AppInput(props) {
                 ref={input}
                 {...props}
             />
+            {errorMessage && <p className={s.error}>{errorMessage}</p>}
         </div>
     );
 }
@@ -44,6 +46,7 @@ AppInput.propTypes = {
     placeholder: PropTypes.string,
     type: PropTypes.string,
     label: PropTypes.string,
+    errorMessage: PropTypes.string,
     borderRadius: PropTypes.oneOf([
         "radiusL",
         "radiusM",

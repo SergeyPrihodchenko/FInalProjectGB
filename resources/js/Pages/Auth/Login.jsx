@@ -50,6 +50,7 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData("email", e.target.value)}
+                        errorMessage={errors.email}
                     />
                     {/* <InputLabel htmlFor="email" value="Email" />
 
@@ -64,7 +65,7 @@ export default function Login({ status, canResetPassword }) {
                         onChange={(e) => setData("email", e.target.value)}
                     /> */}
 
-                    <InputError message={errors.email} className="mt-2" />
+                    {/* <InputError message={errors.email} className="mt-2" /> */}
                 </div>
 
                 <div className="mt-4">
@@ -77,6 +78,7 @@ export default function Login({ status, canResetPassword }) {
                         value={data.password}
                         autoComplete="current-password"
                         onChange={(e) => setData("password", e.target.value)}
+                        errorMessage={errors.password}
                     />
                     {/* <InputLabel htmlFor="password" value="Password" />
 
@@ -90,7 +92,7 @@ export default function Login({ status, canResetPassword }) {
                         onChange={(e) => setData("password", e.target.value)}
                     /> */}
 
-                    <InputError message={errors.password} className="mt-2" />
+                    {/* <InputError message={errors.password} className="mt-2" /> */}
                 </div>
 
                 <div className="block mt-4">
