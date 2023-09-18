@@ -44,13 +44,12 @@ class Vacancy extends Model
         $vacancy = Vacancy::all();
         $filterVacancy = '';
         foreach ($arr as $key => $value) {
-            
             if(is_array($value) && !empty($value)) {
-                $filterVacancy = $vacancy->whereIn($key, $value);
+                $vacancy = $vacancy->whereIn($key, $value);
                 } elseif(!is_array($value) && !empty($value)) {
-                $filterVacancy = $vacancy->where($key, $value);
+                $vacancy = $vacancy->where($key, $value);
             }
         }
-        return $filterVacancy;
+        return $vacancy;
     }
 }
