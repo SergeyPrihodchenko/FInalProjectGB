@@ -125,20 +125,23 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
 
     useEffect(() => {
-        axios
-            .post("/vacancies/filter", { filterData: filterData })
-            .then((response) => {
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+
+        if(!vacancies) {
+            const getFilterData = async () => {
+                const response = await axios.post("/vacancies/filter", { filterData: filterData });
+                const list = Object.values(response.data);
+                console.log(list);
+                setVacancyList(list);
+            }
+            getFilterData();
+        }
+    
     }, [filterData]);
 
-
+    console.log(vacancyList);
 
     return (
-        <MainLayout className={"app_light_theme"} user={user}>
+        <MainLayout className={"app_light_theme"}>
             <AppPage>
                 <div className={s.vacancyWrapper}>
                     <div className="filterContainer">
@@ -162,8 +165,6 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                                     value={item}
                                     onChange={handleChange}
                                 />)}
-
-
                             <AppText text="График работы" bold className={s.vacancyFilterTitle} />
                             {schedule.map((item, index) =>
                                 <Checkbox
@@ -202,6 +203,9 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                                         />
                                         <AppText
                                             text={vac.employment}
+                                        />
+                                        <AppText
+                                            text={vac.schedule}
                                         />
                                         <AppText
                                             size="s"

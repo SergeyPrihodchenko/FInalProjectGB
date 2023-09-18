@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import s from "./AppInput.module.css";
 import cn from "classnames";
@@ -9,20 +9,35 @@ function AppInput(props) {
         placeholder = "",
         type = "text",
         borderRadius = "radiusS",
-        border,
         fullWidth,
+        width = "760px",
+        textBold = true,
+        isFocused = false,
+        errorMessage,
+        ref,
         className,
     } = props;
+    const input = ref ? ref : useRef();
+    useEffect(() => {
+        if (isFocused) {
+            input.current.focus();
+        }
+    }, []);
+
     return (
         <div className={cn(s.appInput, className)}>
-            {label && <p>{label}</p>}
+            {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
             <input
                 type={type}
                 placeholder={placeholder}
                 className={cn(s.input, s[borderRadius], {
                     [s.fullWidth]: fullWidth,
                 })}
+                style={{ width: width }}
+                ref={input}
+                {...props}
             />
+            {errorMessage && <p className={s.error}>{errorMessage}</p>}
         </div>
     );
 }
@@ -31,6 +46,7 @@ AppInput.propTypes = {
     placeholder: PropTypes.string,
     type: PropTypes.string,
     label: PropTypes.string,
+    errorMessage: PropTypes.string,
     borderRadius: PropTypes.oneOf([
         "radiusL",
         "radiusM",
@@ -39,6 +55,9 @@ AppInput.propTypes = {
     ]),
     border: PropTypes.oneOf(["l", "m", "s", "none"]),
     fullWidth: PropTypes.bool,
+    width: PropTypes.string,
+    textBold: PropTypes.bool,
+    isFocused: PropTypes.bool,
 };
 
 export default AppInput;

@@ -51,5 +51,6 @@ class Vacancy extends Model
             }
         }
         return $vacancy->paginate(3)->toArray();
+
     }
 }

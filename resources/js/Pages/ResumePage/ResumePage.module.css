@@ -1,5 +1,140 @@
 .containerResumePage {
     margin: 0;
-    padding: 0;
-    
+    padding: 0;    
+}
+.mainResumePage {
+    margin: 30px 0px 40px 0px;
+}
+
+.linkResumePage,
+.userEmailText,
+.specialityName,
+.linkCompanyPage{
+    color: var( --accent);
+    border: none;
+    background: var(--light-bg);
+    font: var(--font-s);
+}
+
+.baceData{
+    padding: 20px 0px 30px 0px;
+
+    display: flex;
+    justify-content: space-between;
+
+    background: var(--light-bg);
+    border-width: 0px 1px 1px 0px;
+    border-style: solid;
+    border-color: var(--primary-text);  
+}
+
+.userBaceData {
+    width: 770px;
+}
+
+.userDataForm, 
+.userAddress, 
+.employment, 
+.schedule,
+.userEmail,
+.workExperienceTitle,
+.aboutUserTitle,
+.educationTitle,
+.workConditionsTitle{
+    display: flex;
+}
+
+.userData, 
+.userContacts, 
+.userBaceAddress, 
+.userSearchArea,
+.workExperienceTitle,
+.aboutUserTitle,
+.company,
+.keySkills,
+.aboutUserTextAll,
+.educationTitle,
+.workConditionsTitle{
+    padding-bottom: 20px;
+}
+
+.userContactsPhone{
+    width: 160px;
+    border-bottom: 1px solid var(--primary-text);
+}
+
+.userEmailText{
+    width: 160px;
+    border-bottom: 1px solid var(--accent);
+}
+
+.imgUserPhoto{
+    width: 200px;
+    height: 183px;
+
+    border: none;
+    /* transform: translate(177px,0px); */
+}
+
+.userSpeciality {
+    margin-bottom: 40px;
+}
+
+.speciality{
+    padding: 20px 0px 10px 0px;
+    display: flex;
+}
+
+.specializationText {
+    padding: 0px 0px 10px 20px;
+}
+
+.specialityName{
+    padding: 6px 0px 0px 10px;
+}
+
+.userPhoto {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.userWorkPeriod,
+.userEducationPeriod{
+    width: 310px;
+    padding-top: 7px;
+}
+
+.workPeriods,
+.educationPeriods{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+}
+
+.descriptionExperience,
+.descriptionEducation{
+    padding-left: 20px;
+}
+
+.keySkillsTitle{
+    display: flex;
+    padding-bottom: 13px;
+}
+
+.keySkillsTextAll{
+    display: flex;
+    justify-content:space-between;
+    margin-right: 200px;
+}
+.keySkillsText{
+    width: 226px;
+    height: 33px;
+
+    background: var(--light-skeleton-shadow);
+    border: 1px solid var(--dark-bg);
+    border-radius: var(--border-radius-s);
+    text-align: center;
+
+    padding-top: 5px;
 }

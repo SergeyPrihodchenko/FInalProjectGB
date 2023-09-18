@@ -1,0 +1,10 @@
+.paymentContainer {
+    display: flex;
+    width: 760px;
+    align-items: center;
+}
+.payment {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+}

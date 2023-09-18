@@ -13,8 +13,8 @@ class FilterVacanciesController extends Controller
     {
         $filterData = $request->post('filterData');
 
-        $filtredData = (new Vacancy())->filterBuildQuery($filterData);
+        $filtredData = Vacancy::FilterBuildQuery($filterData);
 
-        return \response()->json(['post' => $filtredData]);
+        return \response($filtredData);
     }
 }
