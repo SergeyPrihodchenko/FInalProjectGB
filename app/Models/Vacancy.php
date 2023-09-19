@@ -34,7 +34,7 @@ class Vacancy extends Model
         return $this->belongsToMany(Category::class, 'category_vacancy', 'vacancy_id', 'category_id');
     }
 
-    public function company():BelongsTo
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }

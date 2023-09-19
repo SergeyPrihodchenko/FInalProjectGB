@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             CategoryVacancySeeder::class,
             CompanySeeder::class,
             ReviewsOfCompanySeeder::class,
+            SitiesSeed::class
+
         ]);
     }
 }

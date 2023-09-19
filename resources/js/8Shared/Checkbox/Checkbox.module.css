@@ -7,7 +7,6 @@
     display: flex;
     align-items: center;
 }
-
 .checkboxWrapper input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
@@ -26,7 +25,7 @@ input[type="checkbox"]:focus:checked {
     border: none;
 }
 
-input[type="checkbox"]:checked.checked {
+input[type="checkbox"]:checked {
     background-color: var(--accent);
     position: relative;
     border: none;

@@ -51,6 +51,7 @@ AppButton.propTypes = {
     colorType: PropTypes.oneOf([
         "normal",
         "succes",
+        "hint",
         "cancel",
         "accent",
         "notAccent",

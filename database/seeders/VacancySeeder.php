@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Enums\EmploymentType;
+use App\Enums\Experience;
+use App\Enums\ScheduleType;
 use App\Models\Company;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,13 +23,23 @@ class VacancySeeder extends Seeder
     public function getData(): array
     {
         $data = [];
-        for ($i = 0; $i < 20; $i++) {
+        $n = 0;
+        $k = 0;
+        $y = 0;
+        $employment = EmploymentType::all();
+        $schedule = ScheduleType::all();
+        $experience = Experience::all();
+        for ($i = 0; $i < 30; $i++) {
+            $n = rand(0, 4);
+            $y = rand(0, 4);
+            $k = rand(0, 15);
             $data[] = [
                 'title' => fake('ru_RU')->jobTitle,
                 'payment' => fake()->numberBetween(1000, 12000),
-                'employment' => EmploymentType::fullTimeJob->value,
+                'employment' => $employment[$n],
+                'schedule' => $schedule[$y],
+                'experience' => $k,
                 'description' => fake('ru_RU')->text(),
-                'experience' => fake()->numberBetween(0, 10),
                 'contacts' => fake()->phoneNumber(),
                 'requirements' => fake('ru_RU')->text,
                 'responsibilities' => fake('ru_RU')->text,
