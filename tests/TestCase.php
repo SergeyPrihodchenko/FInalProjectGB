@@ -25,7 +25,7 @@ abstract class TestCase extends BaseTestCase
            'payment' => '200',
            'employment' => EmploymentType::fullTimeJob->value,
            'description' => '007 desciption post vacancy',
-           'experience' => '1',
+           'experience' => 1,
            'contacts' => '89990-01',
            'requirements' => 'быть трезвым',
            'responsibilities' => 'any',

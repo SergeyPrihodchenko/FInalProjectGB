@@ -33,7 +33,7 @@ class VacancyTest extends TestCase
         $this->get(route('vacancy.show', $this->vacancy->id))
             ->assertInertia(
                 fn (Assert $page) => $page
-                    ->component('Vacancy/Show')
+                    ->component('VacancyPage/ui/VacancyPage/VacancyPage')
                     ->has(
                         'vacancy',
                         fn (Assert $page) => $page
@@ -77,7 +77,7 @@ class VacancyTest extends TestCase
         $this->get(route('vacancy.show', $vacancy[0]->id))
             ->assertInertia(
                 fn (Assert $page) => $page
-                    ->component('Vacancy/Show')
+                    ->component('VacancyPage/ui/VacancyPage/VacancyPage')
                     ->has(
                         'vacancy',
                         fn (Assert $page) => $page
@@ -114,7 +114,7 @@ class VacancyTest extends TestCase
     {
         $this->get(route('vacancy.create'))->assertInertia(
             fn (Assert $page) => $page
-                ->component('Vacancy/CreateVacancy')
+                ->component('CreateVacancyPage/ui/CreateVacancyPage/CreateVacancyPage')
         );
     }
 }
