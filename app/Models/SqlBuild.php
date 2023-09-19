@@ -11,7 +11,7 @@ class SqlBuild
             if(is_array($value) && !empty($value)) {
                 $vacancy = $vacancy->whereIn($key, $value);
                 } elseif(!is_array($value) && !empty($value)) {
-                $vacancy = $vacancy->where($key, $value);
+                $vacancy = $vacancy->where($key, '>=' , $value);
             }
         }
         return $vacancy->paginate(3);
