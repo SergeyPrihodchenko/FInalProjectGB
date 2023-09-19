@@ -35,7 +35,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
         setIsLoading(true);
 
         axios
-            .get(`/vacancylist?page=${index}`)
+            .post(`/vacancies/filter?page=${index}`, { filterData: filterData })
             .then((res) => {
                 if (res.data.data.length) {
                     setVacancyList((prevVacancyList) => [
@@ -51,11 +51,11 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
             .finally(() => setIsLoading(false));
 
         setIndex((prevIndex) => prevIndex + 1);
-    }, [index, isLoading]);
+    }, [index, isLoading, filterData]);
 
     useEffect(() => {
         if (!vacancies) {
-            if (vacancyList.length != total) {
+            if (vacancyList.length !== total) {
                 const observer = new IntersectionObserver((entries) => {
                     const target = entries[0];
                     if (target.isIntersecting) {
@@ -77,24 +77,23 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
         }
     }, [loaderRef, vacancyList]);
 
-    useEffect(() => {
-        if (!vacancies) {
-            const getData = async () => {
-                setIsLoading(true);
-                try {
-                    const response = await axios.get(`/vacancylist?page=1`);
+    // useEffect(() => {
+    //     if (!vacancies) {
+    //         const getData = async () => {
+    //             setIsLoading(true);
+    //             try {
+    //                 const response = await axios.post(`/vacancies/filter?page=1`, { filterData: {} });
+    //                 setVacancyList(response.data.data);
+    //                 setTotal(response.data.total);
+    //             } catch (error) {
+    //                 console.log(error);
+    //             }
+    //             setIsLoading(false);
+    //         };
 
-                    setVacancyList(response.data.data);
-                    setTotal(response.data.total);
-                } catch (error) {
-                    console.log(error);
-                }
-                setIsLoading(false);
-            };
-
-            getData();
-        }
-    }, []);
+    //         getData();
+    //     }
+    // }, []);
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
@@ -126,19 +125,22 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
     useEffect(() => {
 
-        if(!vacancies) {
+        if (!vacancies) {
             const getFilterData = async () => {
                 const response = await axios.post("/vacancies/filter", { filterData: filterData });
-                const {data} = response.data;
-                console.log(data);
+                const { data } = response.data;
                 setVacancyList(data);
+                setTotal(response.data.total)
             }
             getFilterData();
         }
-    
+
     }, [filterData]);
 
-    console.log(vacancyList);
+    console.log('total', total);
+    console.log('filterData', filterData);
+    console.log('vacancyList', vacancyList);
+    console.log('experience', experience);
 
     return (
         <MainLayout className={"app_light_theme"}>
@@ -210,7 +212,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                                         <AppText
                                             size="s"
                                             variant="notaccented"
-                                            text={`Опыт работы от ${vac.experience} лет`}
+                                            text={`Опыт работы: ${vac.experience}`}
                                             className="p-[12px]"
                                         />
                                         <AppButton
