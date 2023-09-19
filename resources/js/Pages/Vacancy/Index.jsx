@@ -35,7 +35,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
         setIsLoading(true);
 
         axios
-            .post(`/vacancies/filter?page=${index}`)
+            .post(`/vacancies/filter?page=${index}`, { filterData: filterData })
             .then((res) => {
                 if (res.data.data.length) {
                     setVacancyList((prevVacancyList) => [
@@ -55,7 +55,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
     useEffect(() => {
         if (!vacancies) {
-            if (vacancyList.length != total) {
+            if (vacancyList.length !== total) {
                 const observer = new IntersectionObserver((entries) => {
                     const target = entries[0];
                     if (target.isIntersecting) {
@@ -115,9 +115,9 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                 }
                 break;
 
-            // default:
-            //     setFilterData(filterData)
-            //     break;
+            default:
+                setFilterData(filterData)
+                break;
 
         }
     }
@@ -129,17 +129,18 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
             const getFilterData = async () => {
                 const response = await axios.post("/vacancies/filter", { filterData: filterData });
                 const { data } = response.data;
-                console.log(data);
                 setVacancyList(data);
+                setTotal(response.data.total)
             }
             getFilterData();
         }
 
     }, [filterData]);
 
-    console.log(total);
-    console.log(filterData);
-    console.log(vacancyList);
+    console.log('total', total);
+    console.log('filterData', filterData);
+    console.log('vacancyList', vacancyList);
+    console.log('experience', experience);
 
     return (
         <MainLayout className={"app_light_theme"}>
