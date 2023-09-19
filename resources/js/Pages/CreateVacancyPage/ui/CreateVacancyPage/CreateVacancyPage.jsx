@@ -11,7 +11,7 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 function CreateVacancyPage(props) {
-    const { auth, vacancy } = props;
+    const { auth, vacancy, btn } = props;
     const user = auth?.user;
     console.log("CreateVacancyPage props", props);
     const experience = [
@@ -39,6 +39,8 @@ function CreateVacancyPage(props) {
         <MainLayout className="app_light_theme" user={user}>
             <Head title="CreateVacancyPage" />
             <AppPage>
+                {btn}
+
                 <AppText
                     title="Создание вакансии"
                     size="l"
