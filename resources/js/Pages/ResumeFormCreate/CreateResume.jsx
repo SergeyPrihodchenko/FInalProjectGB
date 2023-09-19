@@ -4,8 +4,20 @@ import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
 import s from "./BasiceDataResumePage/BasiceDataResumePage.module.css";
+import style from "./ExperienceResumePage/ExperienceResumePage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import BasiceDataResumePage from "./BasiceDataResumePage/BasiceDataResumePage";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+
+const arrayEducation = [
+    "Среднее",
+    "Среднее специальное",
+    "Неоконченное высшее",
+    "Высшее образование",
+    "Бакалавр",
+    "Магистр",
+    "Кандидат наук",
+    "Доктор наук",
+];
 
 function CreateResume(){
 
@@ -50,106 +62,95 @@ function CreateResume(){
             <MainLayout className={"app_light_theme"}>
                 <AppPage>
                     <form onSubmit={saveResume}>
-                        <BasiceDataResumePage/>
-{/*                         
+                        
+                  
                         <div className={s.basiceData}>
-                            <div>
-                                <AppText
-                                    title={"Профессия"}
-                                    bold
-                                    size={"s"}
-                                    className={s.textTitle}
-                                />
-                                <input 
-                                    value={data.profession} 
-                                    onChange={e => setData('profession', e.target.value)} 
-                                    type="text" 
-                                    placeholder="Дизайнер"
-                                    className={s.inputBasiceData}
-                                />
-                                <div style={{color: "red"}}>{errors.profession}</div>
-                            </div>
-              
-                            <div>
-                                <AppText
-                                    title={"Фамилия"}
-                                    bold
-                                    size={"s"}
-                                    className={s.textTitle}
-                                />
-                                <input 
-                                    value={data.last_name} 
-                                    onChange={e => setData('last_name', e.target.value)} 
-                                    type="text" 
-                                    placeholder="Фамилия"
-                                    className={s.inputBasiceData}
-                                />
-                                <div style={{color: "red"}}>{errors.last_name}</div>
-                            </div>
+                            <AppText
+                                title={"Профессия"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                            <input 
+                                value={data.profession} 
+                                onChange={e => setData('profession', e.target.value)} 
+                                type="text" 
+                                placeholder="Дизайнер"
+                                className={s.inputBasiceData}
+                            />
+                            <div style={{color: "red"}}>{errors.profession}</div>
+                            
+                            <AppText
+                                title={"Фамилия"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                            <input 
+                                value={data.last_name} 
+                                onChange={e => setData('last_name', e.target.value)} 
+                                type="text" 
+                                placeholder="Фамилия"
+                                className={s.inputBasiceData}
+                            />
+                            <div style={{color: "red"}}>{errors.last_name}</div>
+                            
+                            <AppText
+                                title={"Имя"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                            <input 
+                                value={data.first_name} 
+                                onChange={e => setData('first_name', e.target.value)} 
+                                type="text" 
+                                placeholder="Имя"
+                                className={s.inputBasiceData}
+                            />
+                            <div style={{color: "red"}}>{errors.first_name}</div>
+                            
+                            <AppText
+                                title={"Пол"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
 
-                            <div>
-                                <AppText
-                                    title={"Имя"}
-                                    bold
-                                    size={"s"}
-                                    className={s.textTitle}
+                            <div className={s.inputRadioBasiceData}>
+                                <input
+                                    onChange={e => setData('gender', e.target.value)}
+                                    value="Мужской"
+                                    type="radio"
+                                    name="gender"
+                                    id="genderMen"
+                                    className={s.genderBasiceData}
                                 />
-                                <input 
-                                    value={data.first_name} 
-                                    onChange={e => setData('first_name', e.target.value)} 
-                                    type="text" 
-                                    placeholder="Имя"
-                                    className={s.inputBasiceData}
-                                />
-                                <div style={{color: "red"}}>{errors.first_name}</div>
-                            </div>
-
-                            <div>
-                                <AppText
-                                    title={"Пол"}
-                                    bold
-                                    size={"s"}
-                                    className={s.textTitle}
-                                />
-
-                                <div className={s.inputRadioBasiceData}>
-                                    <input
-                                        onChange={e => setData('gender', e.target.value)}
-                                        value="Мужской"
-                                        type="radio"
-                                        //value="man"
-                                        //checked
-                                        name="gender"
-                                        id="genderMen"
-                                        className={s.genderBasiceData}
+                                <label htmlFor="genderMen">
+                                    <AppText
+                                        text={"Мужской"}
+                                        size={"m"}
+                                        className={s.textInputRadio}
                                     />
-                                    <label htmlFor="genderMen">
-                                        <AppText
-                                            text={"Мужской"}
-                                            size={"m"}
-                                            className={s.textInputRadio}
-                                        />
-                                    </label>
+                                </label>
                                                     
-                                    <input
-                                        onChange={e => setData('gender', e.target.value)}
-                                        value="Женский"
-                                        type="radio"
-                                        //value="woman"
-                                        name="gender"
-                                        id="genderWoman"
-                                        className={s.genderBasiceData}
-
+                                <input
+                                    onChange={e => setData('gender', e.target.value)}
+                                    value="Женский"
+                                    type="radio"
+                                    name="gender"
+                                    id="genderWoman"
+                                    className={s.genderBasiceData}
+                                />
+                                <label htmlFor="genderWoman">
+                                    <AppText
+                                        text={"Женский"}
+                                        size={"m"}
+                                        className={s.textInputRadio}
                                     />
-                                    <label htmlFor="genderWoman">
-                                        <AppText
-                                            text={"Женский"}
-                                            size={"m"}
-                                            className={s.textInputRadio}
-                                        />
-                                    </label> 
-                                    <div style={{color: "red"}}>{errors.gender}</div>   
-                                </div>
+                                </label> 
+                                <div style={{color: "red"}}>{errors.gender}</div>   
+                              
                             </div>
                             {/* <select name="gender" id="gender"
                                 onChange={e => setData('gender', e.target.value)}
@@ -159,10 +160,9 @@ function CreateResume(){
                                 <option value="Мужской">Мужской</option>
                                 <option value="Женский">Женский</option>
                             </select>
-                            <div style={{color: "red"}}>{errors.gender}</div> 
-                         </div> 
+                            <div style={{color: "red"}}>{errors.gender}</div>*/} 
+                                            
 
-                         <div>
                             <AppText
                                 title={"Город или регион проживания"}
                                 bold
@@ -177,9 +177,7 @@ function CreateResume(){
                                 className={s.inputBasiceData} 
                             />
                             <div style={{color: "red"}}>{errors.region}</div>
-                        </div> */} 
 
-                        <div>
                             <AppText
                                 title={"Дата рождения"}
                                 bold
@@ -193,9 +191,7 @@ function CreateResume(){
                                 className={s.inputDataBasiceData}
                             />
                             <div style={{color: "red"}}>{errors.date_of_birth}</div>
-                        </div>
-
-                        <div>
+                        
                             <AppText
                                 title={"Номер телефона"}
                                 bold
@@ -210,9 +206,7 @@ function CreateResume(){
                                 className={s.inputBasiceData} 
                             />
                             <div style={{color: "red"}}>{errors.phone}</div>
-                        </div>
-
-                        <div>
+                      
                             <AppText
                                 title={"Гражданство"}
                                 bold
@@ -227,15 +221,13 @@ function CreateResume(){
                                 className={s.inputBasiceData} 
                             />
                             <div style={{color: "red"}}>{errors.citizenship}</div>
-                        </div>
-
-                        <div>
-                        <AppText
-                            title={"Разрешение на работу"}
-                            bold
-                            size={"s"}
-                            className={s.textTitle}
-                />
+                    
+                            <AppText
+                                title={"Разрешение на работу"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
                             <input 
                                 value={data.work_permit} 
                                 onChange={e => setData('work_permit', e.target.value)} 
@@ -244,11 +236,46 @@ function CreateResume(){
                                 className={s.inputBasiceData} 
                             />
                             <div style={{color: "red"}}>{errors.work_permit}</div>
-                        </div>
+                       
+                        </div> 
 
-                        <div>
-                            <label>Образование</label>
-                            <select name="education" id="education"
+                        <div className={s.educationResumePage}>
+                            <div className={s.levelOfEucation}>
+                                <AppText
+                                    title={"Уровень образования"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <div className={s.education}>
+                                    {arrayEducation.map((el) => {
+                                        // console.log(el);
+                                        return (
+                                            <div className={s.inputRadioBasiceData}>
+                                                <input 
+                                                    name="education"
+                                                    id={el}
+                                                    onChange={e => setData('education', e.target.value)}
+                                                    value={el}
+                                                    type="checkbox" 
+                                                    className={s.educationCheckbox} 
+                                                    />
+                                                <label for={el}>
+                                                    <AppText
+                                                        text={el}
+                                                        size={"m"}
+                                                        className={s.textInputRadio}
+                                                    />
+                                                </label>
+                                                <div style={{color: "red"}}>{errors.education}</div>
+                                            </div>
+                                            
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* <select name="education" id="education"
                                 onChange={e => setData('education', e.target.value)}
                                 value={data.education}
                             >
@@ -263,26 +290,72 @@ function CreateResume(){
                                 <option value="Доктор наук">Доктор наук</option>
                             </select>
                             <div style={{color: "red"}}>{errors.education}</div>
+                         */}
+
+                            <div className={s.education}>
+                                <div>
+                                    <AppText
+                                        title={"Название учебного заведения"}
+                                        bold
+                                        size={"s"}
+                                        className={s.textTitle}
+                                    />
+                                    <input
+                                        type="text"
+                                        placeholder="Название"
+                                        className={s.inputBasiceData}
+                                    />
+
+                                    <AppText
+                                        title={"Факультет"}
+                                        bold
+                                        size={"s"}
+                                        className={s.textTitle}
+                                    />
+                                    <input
+                                        type="text"
+                                        className={s.inputBasiceData}
+                                    />
+
+                                    <AppText
+                                        title={"Специализация"}
+                                        bold
+                                        size={"s"}
+                                        className={s.textTitle}
+                                    />
+                                    <input
+                                        type="text"
+                                        className={s.inputBasiceData}
+                                    />
+
+                                    <AppText
+                                        title={"Год окончания"}
+                                        bold
+                                        size={"s"}
+                                        className={s.textTitle}
+                                    />
+                                    <input
+                                        type="text"
+                                        className={s.inputYearsEducation}
+                                    />
+                                        
+                                </div>
+
+                                <AppText
+                                    title={
+                                        <input
+                                            type="button"
+                                            value="Добавить учебное заведение"
+                                            className={s.buttonYearsEducation}
+                                        />}
+                                    bold
+                                    size={"s"}
+                                />
+                            </div> 
                         </div>
 
-                        <div>
-                            <label>Ключевые навыки</label>
-                            {data.skills.map((skill, index) => {
-                                return <div className="px-4 py-2 bg-gray-100 rounded" key={index}>
-                                        <p>{skill}</p>
-                                        <button type="button" onClick={() => removeSkill(index)}>Удалить</button>
-                                    </div>
-                            })}
-                            <input
-                                type="text"
-                                onChange={e => setSkill(e.target.value)}
-                                value={skill} 
-                            />
-                            <button type="button" onClick={() => addSkill()}>Добавить</button>
-                            <div style={{color: "red"}}>{errors.skills}</div>
-                        </div>
-
-                        <div>
+                        <div className={s.experience}>
+                            
                             <label>Опыт работы</label>
                             <select name="experience" id="experience"
                                 onChange={e => setData('experience', e.target.value)}
@@ -294,14 +367,182 @@ function CreateResume(){
                                 <option value="от трех и выше">от трех и выше</option>
                             </select>
                             <div style={{color: "red"}}>{errors.experience}</div>
+                            
+                            <AppText
+                                title={"В какой компании вы работали?"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Название компании"
+                                className={s.inputBasiceData}
+                            />
+
+                            <AppText
+                                title={"На какой должности?"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                            <input
+                                type="text"
+                                className={s.inputBasiceData}
+                            />
+
+                            <AppText
+                                title={"Расскажите о ваших обязанностях и достижениях"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                                <textarea
+                                    className={s.textareaBasiceData}
+                                    placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
+                                />
+                            <div className={style.experienceWork}>
+                                                
+                                <div className={s.experienceBeginningWork}>
+                                    <AppText
+                                        title={"Начало работы"}
+                                        bold
+                                        size={"s"}
+                                        className={s.textTitle}
+                                    />
+                                    <input 
+                                        type="date" 
+                                        value="2023-09-01"
+                                        className={s.inputDataBasiceData}
+                                    />
+                                </div>
+
+                                <div className={s.experienceEndingWork}>
+                                    <AppText
+                                        title={"Окончание"}
+                                        bold
+                                        size={"s"}
+                                            className={s.textTitle}
+                                    />
+                                    <div className={style.inputEndingWork}>
+                                        <input 
+                                            type="checkbox"
+                                            className={s.checkboxEndingWork} 
+                                            id="checkboxEndingWork"
+                                        />
+                                        <label for="checkboxEndingWork">
+                                            <AppText
+                                                title={"По настоящее время"}
+                                                size={"s"}
+                                                className={style.textTitleEnding}
+                                            />
+                                        </label>
+                                        
+                                    </div>
+                                                    
+                                </div>
+
+                                <AppText
+                                    title={
+                                        <input
+                                            type="button"
+                                            value="Добавить еще опыт работы"
+                                            className={s.buttonYearsExperience}
+                                        />}
+                                    bold
+                                    size={"s"}
+                                /> 
+                            </div>
+                            
                         </div>
 
-                        <button
+                        
+                        
+                        
+                        <div className={style.skills}>
+                            <AppText
+                                    title={"Ключевые навыки"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                {data.skills.map((skill, index) => {
+                                    return <div className={style.keySkillsTextAll} key={index}>
+                                                                                                
+                                                {/* <p>{skill}</p> */}
+                                                {/* <button type="button" onClick={() => removeSkill(index)}>Удалить</button> */}
+                                                
+                                                <AppText
+                                                title={skill}
+                                                size={"s"}
+                                                className={style.textSkills}
+                                            />
+                                                
+                                                
+                                                <AppButton
+                                                    onClick={() => removeSkill(index)}
+                                                    variant = "outline"
+                                                    sizeText = "s"
+                                                    bold
+                                                    type="button"
+                                                    className={style.buttonSkill}
+                                                > Удалить
+                                                </AppButton>
+                                            
+                                            </div>
+                                    })}
+                                <input
+                                    type="text"
+                                    onChange={e => setSkill(e.target.value)}
+                                    value={skill}
+                                    className={s.textSkill} 
+                                />
+
+                                <AppButton
+                                    onClick={() => addSkill()}
+                                    variant = "outline"
+                                    sizeText = "m"
+                                    bold
+                                    type="button"
+                                    className={style.buttonSkill}
+                                > Добавить
+                                </AppButton>
+                                <div style={{color: "red"}}>{errors.skills}</div>
+                                    
+
+                            {/* <div>
+                                <label>Ключевые навыки</label>
+                                {data.skills.map((skill, index) => {
+                                    return <div className="px-4 py-2 bg-gray-100 rounded" key={index}>
+                                            <p>{skill}</p>
+                                            <button type="button" onClick={() => removeSkill(index)}>Удалить</button>
+                                        </div>
+                                })}
+                                <input
+                                    type="text"
+                                    onChange={e => setSkill(e.target.value)}
+                                    value={skill} 
+                                />
+                                <button type="button" onClick={() => addSkill()}>Добавить</button>
+                                <div style={{color: "red"}}>{errors.skills}</div>
+                            </div> */}
+
+                        </div>
+
+                        <AppButton 
+                            type="submit"
+                            bold 
+                            sizeText = "m"
+                            className={s.buttonSaveResumePage}>
+                                <span>Сохранить</span>
+                            </AppButton>
+
+                        {/* <button
                             type="submit"
                             className="px-4 py-2 text-black bg-gray-300 rounded"
                         >
                             Сохранить
-                        </button>
+                        </button> */}
              
                     </form>
                 </AppPage>

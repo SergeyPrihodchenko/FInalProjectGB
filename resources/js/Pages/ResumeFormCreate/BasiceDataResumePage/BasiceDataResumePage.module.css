@@ -5,7 +5,8 @@
 .inputBasiceData,
 .inputYearsEducation,
 .inputDataBasiceData,
-.textareaBasiceData {
+.textareaBasiceData,
+.textSkill {
     box-sizing: border-box;
     width: 760px;
     height: 60px;
@@ -16,9 +17,9 @@
 
 }
 
+.textSkill::placeholder,
 .inputBasiceData::placeholder,
-.textareaBasiceData::placeholder
-{
+.textareaBasiceData::placeholder{
     padding-left: 10px;
     font-family: var(--font-family-main);
     font-style: normal;
@@ -33,8 +34,8 @@
 
 
 .inputBasiceData:focus,
-.textareaBasiceData:focus
-{
+.textareaBasiceData:focus,
+.textSkill:focus{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -68,9 +69,10 @@
     height: 138px;
 }
 
-.textareaBasiceData::-webkit-resizer {
+.textareaBasiceData::-webkit-resizer,
+.textSkill::-webkit-resizer {
     resize: horizontal;
-}
+} 
 
 .inputYearsEducation {
     width: 100px;
@@ -211,4 +213,16 @@
 .checkboxEndingWork:checked + label:after,
 .educationCheckbox:checked + label:after{
     opacity: 1;
+}
+
+.textSkill {
+    box-sizing: border-box;
+    width: 226px;
+    height: 33px;
+
+    padding-top: 5px;
+}
+
+.buttonSaveResumePage {
+    margin: 10px 10px 0px 875px; 
 }
