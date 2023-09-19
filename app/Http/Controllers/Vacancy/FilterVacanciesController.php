@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vacancy;
 
 use App\Http\Controllers\Controller;
+use App\Models\SqlBuild;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,10 @@ class FilterVacanciesController extends Controller
     {
         $filterData = $request->post('filterData');
 
-        $filtredData = (new Vacancy)->FilterBuildQuery($filterData);
+
+        // $filtredData = (new Vacancy)->FilterBuildQuery($filterData);
+
+        $filtredData = SqlBuild::filterQueryBuild($filterData);
 
         return \response($filtredData);
     }

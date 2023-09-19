@@ -128,11 +128,9 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
         if (!vacancies) {
             const getFilterData = async () => {
                 const response = await axios.post("/vacancies/filter", { filterData: filterData });
-                console.log(response.data);
-                setVacancyList(response.data.data);
-                setTotal(response.data.total);
-                // const list = Object.values(response.data);
-                // setVacancyList(list);
+                const { data } = response.data;
+                console.log(data);
+                setVacancyList(data);
             }
             getFilterData();
         }
