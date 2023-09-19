@@ -39,17 +39,21 @@ class Vacancy extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function filterBuildQuery(array $arr = [])
+    public function filterBuildQuery(?array $arr)
     {
 
         $vacancy = Vacancy::query();
-        foreach ($arr as $key => $value) {
-            if (is_array($value) && !empty($value)) {
-                $vacancy = $vacancy->whereIn($key, $value);
-            } elseif (!is_array($value) && !empty($value)) {
-                $vacancy = $vacancy->where($key, $value);
+        if(!is_null($arr)){
+            foreach ($arr as $key => $value) {
+                if (is_array($value) && !empty($value)) {
+                    $vacancy = $vacancy->whereIn($key, $value);
+                } elseif (!is_array($value) && !empty($value)) {
+                    $vacancy = $vacancy->where($key, $value);
+                }
             }
+            
         }
-        return $vacancy->paginate(3)->toArray();
+        return $vacancy->paginate(5)->toArray();
+
     }
 }

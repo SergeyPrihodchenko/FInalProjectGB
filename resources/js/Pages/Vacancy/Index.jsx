@@ -29,61 +29,60 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
     const user = auth?.user;
 
-    // const fetchVacancyCards = useCallback(async () => {
-    //     if (isLoading) return;
+    const fetchVacancyCards = useCallback(async () => {
+        if (isLoading) return;
 
-    //     setIsLoading(true);
+        setIsLoading(true);
 
-    //     axios
-    //         .get(`/vacancylist?page=${index}`)
-    //         .then((res) => {
-    //             if (res.data.data.length) {
-    //                 setVacancyList((prevVacancyList) => [
-    //                     ...prevVacancyList,
-    //                     ...res.data.data,
-    //                 ]);
-    //                 setIsLoading(false);
-    //             } else {
-    //                 return;
-    //             }
-    //         })
-    //         .catch((err) => console.log(err))
-    //         .finally(() => setIsLoading(false));
+        axios
+            .post(`/vacancies/filter?page=${index}`)
+            .then((res) => {
+                if (res.data.data.length) {
+                    setVacancyList((prevVacancyList) => [
+                        ...prevVacancyList,
+                        ...res.data.data,
+                    ]);
+                    setIsLoading(false);
+                } else {
+                    return;
+                }
+            })
+            .catch((err) => console.log(err))
+            .finally(() => setIsLoading(false));
 
-    //     setIndex((prevIndex) => prevIndex + 1);
-    // }, [index, isLoading]);
+        setIndex((prevIndex) => prevIndex + 1);
+    }, [index, isLoading, filterData]);
 
-    // useEffect(() => {
-    //     if (!vacancies) {
-    //         if (vacancyList.length != total) {
-    //             const observer = new IntersectionObserver((entries) => {
-    //                 const target = entries[0];
-    //                 if (target.isIntersecting) {
-    //                     fetchVacancyCards();
-    //                 }
-    //             });
+    useEffect(() => {
+        if (!vacancies) {
+            if (vacancyList.length != total) {
+                const observer = new IntersectionObserver((entries) => {
+                    const target = entries[0];
+                    if (target.isIntersecting) {
+                        fetchVacancyCards();
+                    }
+                });
 
-    //             if (loaderRef.current) {
-    //                 observer.observe(loaderRef.current);
-    //             }
+                if (loaderRef.current) {
+                    observer.observe(loaderRef.current);
+                }
 
-    //             return () => {
-    //                 if (loaderRef.current) {
-    //                     observer.unobserve(loaderRef.current);
-    //                     setIsLoading(false);
-    //                 }
-    //             };
-    //         }
-    //     }
-    // }, [loaderRef, vacancyList]);
+                return () => {
+                    if (loaderRef.current) {
+                        observer.unobserve(loaderRef.current);
+                        setIsLoading(false);
+                    }
+                };
+            }
+        }
+    }, [loaderRef, vacancyList]);
 
     // useEffect(() => {
     //     if (!vacancies) {
     //         const getData = async () => {
     //             setIsLoading(true);
     //             try {
-    //                 const response = await axios.get(`/vacancylist?page=1`);
-
+    //                 const response = await axios.post(`/vacancies/filter?page=1`, { filterData: {} });
     //                 setVacancyList(response.data.data);
     //                 setTotal(response.data.total);
     //             } catch (error) {
@@ -116,9 +115,9 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                 }
                 break;
 
-            default:
-                setFilterData(filterData)
-                break;
+            // default:
+            //     setFilterData(filterData)
+            //     break;
 
         }
     }
@@ -129,15 +128,19 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
         if (!vacancies) {
             const getFilterData = async () => {
                 const response = await axios.post("/vacancies/filter", { filterData: filterData });
-                const list = Object.values(response.data);
-                console.log(list);
-                setVacancyList(list);
+                console.log(response.data);
+                setVacancyList(response.data.data);
+                setTotal(response.data.total);
+                // const list = Object.values(response.data);
+                // setVacancyList(list);
             }
             getFilterData();
         }
 
     }, [filterData]);
 
+    console.log(total);
+    console.log(filterData);
     console.log(vacancyList);
 
     return (

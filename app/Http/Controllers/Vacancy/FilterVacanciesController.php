@@ -13,7 +13,7 @@ class FilterVacanciesController extends Controller
     {
         $filterData = $request->post('filterData');
 
-        $filtredData = Vacancy::FilterBuildQuery($filterData);
+        $filtredData = (new Vacancy)->FilterBuildQuery($filterData);
 
         return \response($filtredData);
     }
