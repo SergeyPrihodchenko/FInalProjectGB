@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -26,10 +27,11 @@ class ReviewsOfCompanySeeder extends Seeder
                 'company_id' => Company::create([
                     'name' => fake('ru_RU')->company,
                 ])->id,
-                'user_id' => Company::create([
-                    'name' => fake('ru_RU')->user,
+                'user_id' => User::create([
+                    'name' => fake('ru_RU')->name,
+                    'email' => fake()->email,
+                    'password' => '12345678',
                 ])->id,
-                'name' => fake('ru_RU')->firstName,
                 'review' => fake('ru_RU')->text,
                 'created_at' => now(),
                 'updated_at' => now(),
