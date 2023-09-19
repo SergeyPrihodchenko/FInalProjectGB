@@ -9,15 +9,17 @@ import EducationResumePage from "./EducationResumePage/EducationResumePage";
 import ExperienceResumePage from "./ExperienceResumePage/ExperienceResumePage";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import BasiceDataResumePage from "./BasiceDataResumePage/BasiceDataResumePage";
+import CreateResume from "./CreateResume";
 
 
 function ResumeForm() {
     return (
-        <MainLayout className={"app_light_theme"}>
-            <AppPage>
+        // <MainLayout className={"app_light_theme"}>
+        //     <AppPage>
                 <container className={s.createResumePage}>
                     <main className={s.mainCreateResume}>
-                    <form>
+                        <CreateResume/>
+                    {/* <form>
                         <BasiceDataResumePage/>
                         <EducationResumePage/>
                         <ExperienceResumePage/>
@@ -31,11 +33,12 @@ function ResumeForm() {
                             </AppButton>
                         </form>
                         
-                    </form>
+                    </form> */}
+                    
                     </main>
                 </container>
-            </AppPage>
-        </MainLayout>
+        //     </AppPage>
+        // </MainLayout>
     );
 }
 
