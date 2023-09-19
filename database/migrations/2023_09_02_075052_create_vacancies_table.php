@@ -23,8 +23,7 @@ return new class extends Migration
             $table->enum('schedule', ScheduleType::all());
             $table->index('schedule');
             $table->text('description')->nullable();
-            $table->enum('experience', Experience::all());
-            $table->index('experience');
+            $table->integer('experience');
             $table->string('contacts')->nullable();
             $table->text('requirements')->nullable();
             $table->text('responsibilities')->nullable();
