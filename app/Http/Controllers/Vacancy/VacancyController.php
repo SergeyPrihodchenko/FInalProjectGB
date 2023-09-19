@@ -6,7 +6,9 @@ use App\Enums\EmploymentType;
 use App\Enums\Experience;
 use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
+use App\Models\Company;
 use App\Models\Vacancy;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class VacancyController
@@ -40,7 +42,12 @@ class VacancyController
 
     public function create(): \Inertia\Response
     {
-        return Inertia::render('CreateVacancyPage/ui/CreateVacancyPage/CreateVacancyPage');
+        //return Inertia::render('CreateVacancyPage/ui/CreateVacancyPage/CreateVacancyPage');
+        $companies = Company::all();
+
+        return Inertia::render('Vacancy/VacancyCreate', [
+            'companies' => $companies
+        ]);
     }
 
     public function store(StoreRequest $request)
@@ -49,9 +56,11 @@ class VacancyController
 
         $vacancy = Vacancy::create($data);
 
-        return Inertia::render('Vacancy/Show', [
-            'vacancy' => $vacancy
-        ]);
+        return Redirect::route('vacancy.index');
+
+//        return Inertia::render('Vacancy/Show', [
+//            'vacancy' => $vacancy
+//        ]);
     }
 
     public function update(Vacancy $vacancy, StoreRequest $request)
