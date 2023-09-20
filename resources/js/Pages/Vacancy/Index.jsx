@@ -50,7 +50,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
             .catch((err) => console.log(err))
             .finally(() => setIsLoading(false));
 
-        setIndex((prevIndex) => prevIndex + 1);
+        setIndex((prevIndex) => {return ++prevIndex});
     }, [index, isLoading, filterData]);
 
     useEffect(() => {
