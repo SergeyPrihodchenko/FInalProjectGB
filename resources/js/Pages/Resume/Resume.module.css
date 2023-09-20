@@ -6,32 +6,21 @@
 .inputYearsEducation,
 .inputDataBasiceData,
 .textareaBasiceData,
-.textSkill {
+.textSkill,
+.inputResumeDataBasice {
     box-sizing: border-box;
     width: 760px;
     height: 60px;
     
     background: var(--light-bg);
     border: 1px solid var(--light-skeleton-shadow);
-    border-radius: 5px;
+    border-radius: var(--border-radius-s);
 
 }
 
-.textSkill::placeholder,
-.inputBasiceData::placeholder,
-.textareaBasiceData::placeholder{
-    padding-left: 10px;
-    font-family: var(--font-family-main);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    display: flex;
-    align-items: center;
-
-    color: var(--not-accented);
+.inputResumeDataBasice{
+    width: 150px;
 }
-
 
 .inputBasiceData:focus,
 .textareaBasiceData:focus,
@@ -43,12 +32,12 @@
     box-sizing: border-box;
     background: var(--light-bg);
     border: 1px solid var(--accent);
-    border-radius: 5px;
+    border-radius: var(--border-radius-s);
     color: var(--accent);
 
 }
 
-.inputDataBasiceData {
+.inputDataBasice {
     padding-left: 10px;
     width: 140px;
     height: 60px;
@@ -93,29 +82,26 @@
     transform: none;
 }
 
-.genderBasiceData,
-.checkboxEndingWork,
-.educationCheckbox:checked, 
-.educationCheckbox:not(:checked){
+.inputRadioCreateResume,
+.checkboxEndingWork{
     position: absolute;
     left: 0;
     opacity: 0.01;
 }
 
-.genderBasiceData:checked + label,
-.genderBasiceData:not(:checked) + label,
+.inputRadioCreateResume:checked + label,
+.inputRadioCreateResume:not(:checked) + label,
 .checkboxEndingWork:checked + label,
-.checkboxEndingWork:not(:checked) + label,
-.educationCheckbox:checked + label, 
-.educationCheckbox:not(:checked) + label { 
+.checkboxEndingWork:not(:checked) + label { 
     position: relative;
     padding-left: 20px;
+    padding-top: 5px;
     line-height: 1.7;
     cursor: pointer;
 }
 
-.genderBasiceData:checked + label:before,
-.genderBasiceData:not(:checked) + label:before {
+.inputRadioCreateResume:checked + label:before,
+.inputRadioCreateResume:not(:checked) + label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -139,44 +125,14 @@
     height: 26px;
     border: 1px solid var(--light-skeleton-shadow);
     background: var(--light-bg);
-    border-radius: 5px;
+    border-radius: var(--border-radius-s);
     -webkit-transition: all .275s;
     transition: all .275s;
 }
-
-.educationCheckbox:checked + label:before,
-.educationCheckbox:not(:checked) + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--light-skeleton-shadow);
-    background: var(--light-bg);
-    border-radius: 5px;
-    -webkit-transition: all .275s;
-    transition: all .275s;
-}
-/* .educationCheckbox:checked + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--accent);
-    background: var(--light-bg);
-    border-radius: 30px;
-    -webkit-transition: all .275s;
-    transition: all .275s;
-    border: 1px solid var(--accent);
-} */
 
 .checkboxEndingWork:checked + label:after,
-.checkboxEndingWork:not(:checked) + label:after,
-.educationCheckbox:checked + label:after, 
-.educationCheckbox:not(:checked) + label:after {
+.checkboxEndingWork:not(:checked) + label:after
+ {
     content: '✓';
     position: absolute;
     top: .525em;
@@ -188,12 +144,12 @@
     transition: all .2s;
 }
 
-.genderBasiceData:checked + label:after,
-.genderBasiceData:not(:checked) + label:after {
+.inputRadioCreateResume:checked + label:after,
+.inputRadioCreateResume:not(:checked) + label:after {
     content: '';
     position: absolute;
     top: 5px;
-    left: 6px;
+    left: 5px;
     color: var(--accent);
     line-height: 0;
     -webkit-transition: all .2s;
@@ -203,15 +159,13 @@
     background: var(--light-bg);
 }
 
-.genderBasiceData:not(:checked) + label:after,
-.checkboxEndingWork:not(:checked) + label:after,
-.educationCheckbox:not(:checked) + label:after{
+.inputRadioCreateResume:not(:checked) + label:after,
+.checkboxEndingWork:not(:checked) + label:after{
     opacity: 0;
 }
 
-.genderBasiceData:checked + label:after,
-.checkboxEndingWork:checked + label:after,
-.educationCheckbox:checked + label:after{
+.inputRadioCreateResume:checked + label:after,
+.checkboxEndingWork:checked + label:after{
     opacity: 1;
 }
 
@@ -223,6 +177,60 @@
     padding-top: 5px;
 }
 
-.buttonSaveResumePage {
-    margin: 10px 10px 0px 875px; 
+.experienceWork {
+    width: 760px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputEndingWork {
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textTitleEnding{
+    padding-left: 20px;
+    margin-top: -5px;
+} 
+
+.skills{
+    margin-bottom: 30px;
+}
+
+.keySkillsTextAll{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.textSkills {
+    padding-top: 5px;
+    padding-left: 20px;
+} 
+
+.buttonDelete,
+.buttonAdd {
+    border:none;
+    color: var(--cancel);
+    background-color: var(--light-bg);
+   
+    margin: 0px 0px 0px 10px;
+}
+
+.buttonAdd {  
+    color: var(--accent);
+}
+
+.buttonSave {
+    margin: 10px 10px 40px 875px; 
+}
+
+.buttonDeleteResume,
+.buttonDeleteResume:hover{
+    color: var(--cancel);
+    margin-left: 10px;
+}
+
+.buttonResume{
+    margin: 10px 10px 40px 875px;
 }
