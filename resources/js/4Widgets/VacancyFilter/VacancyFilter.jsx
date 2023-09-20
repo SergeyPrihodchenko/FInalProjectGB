@@ -13,7 +13,6 @@ export const VacancyFilter = (props) => {
         className,
         handleChange
     } = props;
-    console.log(employment);
     return (
         <div className={cn(s.filterContainer, className)}>
             <form action="">

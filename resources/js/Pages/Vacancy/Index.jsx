@@ -16,7 +16,14 @@ import { VacancyFilter } from "@/4Widgets/VacancyFilter/VacancyFilter";
 
 const payment = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽'];
 
-const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) => {
+const Vacancy = ({
+    vacancies,
+    title,
+    auth,
+    experience,
+    schedule,
+    employment
+}) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);

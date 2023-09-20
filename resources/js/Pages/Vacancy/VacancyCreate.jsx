@@ -1,14 +1,14 @@
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
-import {AppPage} from "@/5Layouts/AppPage/AppPage";
-import React, {useState} from "react";
-import {Inertia} from '@inertiajs/inertia';
-import {useForm} from "@inertiajs/react";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
+import React, { useState } from "react";
+// import {Inertia} from '@inertiajs/inertia';
+import { useForm } from "@inertiajs/react";
 
-const Vacancy = ({auth, companies}) => {
+const Vacancy = ({ auth, companies }) => {
     console.log('companies', companies)
     const user = auth?.user;
 
-    const {data, setData, post, errors} = useForm({
+    const { data, setData, post, errors } = useForm({
         title: '',
         payment: '',
         experience: '',

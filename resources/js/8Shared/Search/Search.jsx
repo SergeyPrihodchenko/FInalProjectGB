@@ -5,13 +5,13 @@ import AppButton from '../ui/AppButton/AppButton';
 import axios from 'axios';
 import useDebounce from './useDebounce';
 import AppInput from '../ui/AppInput/AppInput';
+import PropTypes from "prop-types";
 
 export const Search = ({
     placeholder,
     width,
     uri,
     className,
-    vacancies,
     method = 'get'
 }) => {
     const [param, setParam] = useState('');

@@ -17,7 +17,7 @@ const CategoryPage = ({ auth, vacancies, titleCat }) => {
                     title={`${titleCat}`}
                     size="l"
                     bold
-                    className="m-[20px]"
+                    className={s.categoryPageTitle}
                 />
 
                 <div className="flex flex-col gap-[20px] mb-[20px]">
@@ -32,9 +32,7 @@ const CategoryPage = ({ auth, vacancies, titleCat }) => {
                                 height={"200px"}
                                 variant="primary"
                                 shadow
-                                borderLeft
-                                borderRadius
-                                className={"flex flex-col items-start p-5"}
+                                className={s.categoryPageCard}
                             >
                                 <AppText title={vac.title} />
                                 <AppText text={`от ${vac.payment} руб.`} />
@@ -44,9 +42,7 @@ const CategoryPage = ({ auth, vacancies, titleCat }) => {
                                     text={`Опыт работы от ${vac.experience} лет`}
                                 />
                                 <AppButton
-                                    className={
-                                        "px-[12px] mt-auto rounded-[20px]"
-                                    }
+                                    className={s.categoryPageCardBtn}
                                     width="auto"
                                     height="32px"
                                 >
