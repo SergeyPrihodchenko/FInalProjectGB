@@ -25,7 +25,7 @@ const cardsInfo = [...Array(12)].map(() => {
 });
 
 const MainPage = (props) => {
-    const { auth, categories, className, vacancies} = props;
+    const { auth, categories, className, vacancies } = props;
     const user = auth?.user;
     // console.log("MainPage.jsx vacancies", vacancies);
 
@@ -44,6 +44,7 @@ const MainPage = (props) => {
                         className={s.bannerTitle}
                     />
                     <Search
+                        width={'680px'}
                         placeholder={"Профессия, должность, компания"}
                         vacancies={vacancies}
                     />

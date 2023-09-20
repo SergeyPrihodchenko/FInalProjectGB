@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react';
-import InputLabel from '@/Components/InputLabel';
 import s from './Search.module.css';
-import TextInput from "@/Components/TextInput"
 import cn from 'classnames';
 import AppButton from '../ui/AppButton/AppButton';
 import axios from 'axios';
 import useDebounce from './useDebounce';
+import AppInput from '../ui/AppInput/AppInput';
 
-export const Search = ({ placeholder, vacancies, method = 'get' }) => {
+export const Search = ({
+    placeholder,
+    width,
+    uri,
+    className,
+    vacancies,
+    method = 'get'
+}) => {
     const [param, setParam] = useState('');
     const [suggestions, setSuggestions] = useState([]); //список предложенных вакансий
     const [suggestionIndex, setSuggestionIndex] = useState(0);
     const [suggestionsActive, setSuggestionsActive] = useState(false); // показать список
     const [value, setValue] = useState(""); // состояние инпута
 
-    const [sortVacancies, SetSortVacancy] = useState([]);
+    // const [sortVacancies, SetSortVacancy] = useState([]);
 
     const debouncedVac = useDebounce(value, 500);
     // console.log(debouncedVac);
@@ -24,7 +30,6 @@ export const Search = ({ placeholder, vacancies, method = 'get' }) => {
 
         axios.get(`/searchSort?str=${debouncedVac}`)
             .then((res) => {
-                // SetSortVacancy(res.data);
                 setSuggestions(res.data);
                 console.log(res.data);
 
@@ -32,49 +37,16 @@ export const Search = ({ placeholder, vacancies, method = 'get' }) => {
             .catch((err) => console.log(err))
     }, [debouncedVac]);
 
-    // const request = (str) => {
-    //     if (str.length >= 3) {
-    //         axios.get(`/searchSort?str=${str}`)
-    //             .then(res => {
-    //                 console.log(res.data);
-    //                 SetSortVacancy(res.data);
-    //             })
-    //             .catch((err) => console.log(err))
-    //     }
-    // }
-
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
-        // request(query);
-
         setValue(query);
-
-
-
-
-
-
-        // if (query.length > 0) {
-        // const filterSuggestions = sortVacancies.filter(
-        //     (suggestion) => {
-        //         return (suggestion.title.toLowerCase().indexOf(query) > -1 && suggestion.title.toLowerCase().startsWith(query[0])
-        //         )
-        //     }
-        // );
-        // console.log(filterSuggestions);
-        // setSuggestions([...suggestions, ...sortVacancies]);
-        // setSuggestionsActive(true);
-        // console.log(query);
-        // } else {
-        // setSuggestionsActive(false);
-        // }
     };
+
     const handleClick = (e) => {
         setSuggestions([]);
         setValue(e.target.innerText);
         setSuggestionsActive(false);
     }
-
 
     const handleKeyDown = (e) => {
         if (e.keyCode === 38) {
@@ -96,10 +68,16 @@ export const Search = ({ placeholder, vacancies, method = 'get' }) => {
             setSuggestionsActive(false);
         }
     };
+    const handleSuggestionsActive = () => {
+        setSuggestionsActive(!suggestionsActive)
+    }
 
-    const Suggestions = () => {
+    const Suggestions = ({ width }) => {
         return (
-            <ul className={s.suggestions}>
+            <ul
+                style={{ width: width }}
+                className={cn(s.suggestions)}
+            >
                 {suggestions.map((suggestion, index) => {
                     return (
                         <li
@@ -118,24 +96,27 @@ export const Search = ({ placeholder, vacancies, method = 'get' }) => {
     };
     return (
         <div className={s.searchBlock}>
-            <form method={method} action={route('category.sort')} className='w-full flex gap-4'>
-                <InputLabel className='w-full'>
-                    <TextInput
-                        autoComplete='off'
-                        name={'vacancy'}
-                        value={value}
-                        placeholder={placeholder}
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                        onClick={() => setSuggestionsActive(!suggestionsActive)}
-                    />
-                </InputLabel>
+            <form
+                method={method}
+                action={route('category.sort')}
+                className={cn(s.searchForm)}>
+                <AppInput
+                    autoComplete='off'
+                    name={'vacancy'}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    onClick={handleSuggestionsActive}
+                    width={width}
+                    isFocused
+                />
                 <AppButton className={s.searchBtn}>
                     Найти
                 </AppButton>
 
             </form>
-            {suggestionsActive && <Suggestions />}
+            {suggestionsActive && <Suggestions width={width} />}
         </div>
     )
 }

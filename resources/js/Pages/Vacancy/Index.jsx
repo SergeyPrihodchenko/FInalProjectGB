@@ -12,6 +12,7 @@ import s from "./VacancyListPage.module.css";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import cn from "classnames";
 import { Search } from "@/8Shared/Search/Search";
+import { VacancyFilter } from "@/4Widgets/VacancyFilter/VacancyFilter";
 
 const payment = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽'];
 
@@ -146,57 +147,14 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
+                <Search width={'500px'} />
                 <div className={s.vacancyWrapper}>
-                    <div className="filterContainer">
-                        <form action="">
-                            <AppText text="Тип занятости" bold className={s.vacancyFilterTitle} />
-                            {employment.map((item, index) =>
-                                <Checkbox
-                                    name={'employment'}
-                                    key={item}
-                                    label={item}
-                                    value={item}
-                                    onChange={handleChange}
-
-                                />)}
-                            <AppText text="Опыт работы" bold className={s.vacancyFilterTitle} />
-                            <RadioButton
-                                name={'experience'}
-                                value={experience[0]}
-                                label={'Нет опыта'}
-                                onChange={handleChange}
-                            />
-                            <RadioButton
-                                name={'experience'}
-                                value={experience[1]}
-                                label={'от 1 года до 3 лет'}
-                                onChange={handleChange}
-                            />
-                            <RadioButton
-                                name={'experience'}
-                                value={experience[2]}
-                                label={'от 3 до 6 лет'}
-                                onChange={handleChange}
-                            />
-                            <RadioButton
-                                name={'experience'}
-                                value={experience[3]}
-                                label={'более 6 лет'}
-                                onChange={handleChange}
-                            />
-                            <AppText text="График работы" bold className={s.vacancyFilterTitle} />
-                            {schedule.map((item, index) =>
-                                <Checkbox
-                                    name={'schedule'}
-                                    key={item}
-                                    label={item}
-                                    value={item}
-
-                                    onChange={handleChange}
-                                />
-                            )}
-                        </form>
-                    </div>
+                    <VacancyFilter
+                        handleChange={handleChange}
+                        employment={employment}
+                        schedule={schedule}
+                        experience={experience}
+                    />
                     <div className={s.vacancyList}>
                         {vacancyList.map(vac =>
                             <AppLink
