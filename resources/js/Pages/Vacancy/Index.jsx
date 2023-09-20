@@ -16,7 +16,14 @@ import { VacancyFilter } from "@/4Widgets/VacancyFilter/VacancyFilter";
 
 const payment = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽'];
 
-const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) => {
+const Vacancy = ({
+    vacancies,
+    title,
+    auth,
+    experience,
+    schedule,
+    employment
+}) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
@@ -107,11 +114,13 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                 break;
             case "radio":
                 if (checked) {
-                    setFilterData(() =>
-                    ({
-                        ...filterData,
-                        [name]: value
-                    })
+                    setFilterData((prevState) => {
+                        return {
+                            ...prevState,
+                            [name]: value
+                        }
+                    }
+
                     );
                 }
                 break;
@@ -154,6 +163,7 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                         employment={employment}
                         schedule={schedule}
                         experience={experience}
+                        className={s.vacancyFilterSidebar}
                     />
                     <div className={s.vacancyList}>
                         {vacancyList.map(vac =>

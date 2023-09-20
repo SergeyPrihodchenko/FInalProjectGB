@@ -1,0 +1,17 @@
+.categoryPageTitle {
+    margin: 30px 0;
+}
+
+.categoryPageCard {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.categoryPageCardBtn {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
