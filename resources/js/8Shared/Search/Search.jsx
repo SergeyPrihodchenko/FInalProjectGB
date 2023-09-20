@@ -109,7 +109,6 @@ export const Search = ({
                     onKeyDown={handleKeyDown}
                     onClick={handleSuggestionsActive}
                     width={width}
-                    isFocused
                 />
                 <AppButton className={s.searchBtn}>
                     Найти

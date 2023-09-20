@@ -114,11 +114,13 @@ const Vacancy = ({
                 break;
             case "radio":
                 if (checked) {
-                    setFilterData(() =>
-                    ({
-                        ...filterData,
-                        [name]: value
-                    })
+                    setFilterData((prevState) => {
+                        return {
+                            ...prevState,
+                            [name]: value
+                        }
+                    }
+
                     );
                 }
                 break;
@@ -161,6 +163,7 @@ const Vacancy = ({
                         employment={employment}
                         schedule={schedule}
                         experience={experience}
+                        className={s.vacancyFilterSidebar}
                     />
                     <div className={s.vacancyList}>
                         {vacancyList.map(vac =>

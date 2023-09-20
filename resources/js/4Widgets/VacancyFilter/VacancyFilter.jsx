@@ -31,30 +31,16 @@ export const VacancyFilter = (props) => {
 
                     />)}
                 <AppText text="Опыт работы" bold className={s.vacancyFilterTitle} />
-                <RadioButton
-                    name={'experience'}
-                    value={experience[0]}
-                    label={'Нет опыта'}
-                    onChange={handleChange}
-                />
-                <RadioButton
-                    name={'experience'}
-                    value={experience[1]}
-                    label={'от 1 года до 3 лет'}
-                    onChange={handleChange}
-                />
-                <RadioButton
-                    name={'experience'}
-                    value={experience[2]}
-                    label={'от 3 до 6 лет'}
-                    onChange={handleChange}
-                />
-                <RadioButton
-                    name={'experience'}
-                    value={experience[3]}
-                    label={'более 6 лет'}
-                    onChange={handleChange}
-                />
+                {experience.map((item) =>
+                    <RadioButton
+                        key={item}
+                        name={'experience'}
+                        value={item}
+                        label={item}
+                        onChange={handleChange}
+                    />)
+                }
+
                 <AppText
                     text="График работы"
                     bold
