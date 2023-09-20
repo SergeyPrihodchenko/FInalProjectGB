@@ -4,18 +4,18 @@ namespace App\Enums;
 
 enum Experience: string
 {
-    case null = '0';
-    case one = '1';
-    case three = '3';
-    case six = '6';
+    case no_experiance = 'нет опыта';
+    case one_to_three = 'от 1 до 3 лет';
+    case three_to_six = 'от 3 до 6 лет';
+    case more_six = 'более 6 лет';
 
     public static function all(): array
     {
         return [
-            self::null->value,
-            self::one->value,
-            self::three->value,
-            self::six->value,
+            self::no_experiance->value,
+            self::one_to_three->value,
+            self::three_to_six->value,
+            self::more_six->value,
         ];
     }
 }
