@@ -15,8 +15,6 @@ class FilterVacanciesController extends Controller
         $filterData = $request->post('filterData');
 
 
-        // $filtredData = (new Vacancy)->FilterBuildQuery($filterData);
-
         $filtredData = SqlBuild::filterQueryBuild($filterData);
 
         return \response($filtredData);

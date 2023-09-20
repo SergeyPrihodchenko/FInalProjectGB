@@ -12,13 +12,14 @@ import s from "./VacancyListPage.module.css";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import cn from "classnames";
 import { Search } from "@/8Shared/Search/Search";
+import { VacancyFilter } from "@/4Widgets/VacancyFilter/VacancyFilter";
 
 const payment = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽'];
 
 const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
-    const [index, setIndex] = useState(2);
+    const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
     const [filterData, setFilterData] = useState({
@@ -50,8 +51,8 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
             .catch((err) => console.log(err))
             .finally(() => setIsLoading(false));
 
-        setIndex((prevIndex) => {return ++prevIndex});
-    }, [index, isLoading, filterData]);
+        setIndex((prevIndex) => prevIndex + 1);
+    }, [index, isLoading]);
 
     useEffect(() => {
         if (!vacancies) {
@@ -114,7 +115,6 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
                     );
                 }
                 break;
-
             default:
                 setFilterData(filterData)
                 break;
@@ -127,10 +127,11 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
 
         if (!vacancies) {
             const getFilterData = async () => {
-                const response = await axios.post("/vacancies/filter", { filterData: filterData });
+                const response = await axios.post(`/vacancies/filter?page=1`, { filterData: filterData });
                 const { data } = response.data;
                 setVacancyList(data);
-                setTotal(response.data.total)
+                setTotal(response.data.total);
+                setIndex(2);
             }
             getFilterData();
         }
@@ -138,96 +139,67 @@ const Vacancy = ({ vacancies, title, auth, experience, schedule, employment }) =
     }, [filterData]);
 
     console.log('total', total);
-    console.log('filterData', filterData);
-    console.log('vacancyList', vacancyList);
-    console.log('experience', experience);
+    // console.log('filterData', filterData);
+    // console.log('vacancyList', vacancyList);
+    console.log('index', index);
+    // console.log('vacancies', vacancies);
 
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
+                <Search width={'500px'} />
                 <div className={s.vacancyWrapper}>
-                    <div className="filterContainer">
-                        <form action="">
-                            <AppText text="Тип занятости" bold className={s.vacancyFilterTitle} />
-                            {employment.map((item, index) =>
-                                <Checkbox
-                                    name={'employment'}
-                                    key={item}
-                                    label={item}
-                                    value={item}
-                                    onChange={handleChange}
-
-                                />)}
-                            <AppText text="Опыт работы" bold className={s.vacancyFilterTitle} />
-                            {experience.map((item, index) =>
-                                <RadioButton
-                                    key={item}
-                                    name={'experience'}
-                                    label={item}
-                                    value={item}
-                                    onChange={handleChange}
-                                />)}
-                            <AppText text="График работы" bold className={s.vacancyFilterTitle} />
-                            {schedule.map((item, index) =>
-                                <Checkbox
-                                    name={'schedule'}
-                                    key={item}
-                                    label={item}
-                                    value={item}
-
-                                    onChange={handleChange}
-                                />
-                            )}
-                        </form>
-                    </div>
+                    <VacancyFilter
+                        handleChange={handleChange}
+                        employment={employment}
+                        schedule={schedule}
+                        experience={experience}
+                    />
                     <div className={s.vacancyList}>
-                        <div className="flex flex-col gap-[20px] mb-[30px]">
-                            {vacancyList.map(vac =>
-                                <AppLink
-                                    path={'vacancy.show'}
-                                    param={vac.id}
-                                    key={vac.id}
+                        {vacancyList.map(vac =>
+                            <AppLink
+                                path={'vacancy.show'}
+                                param={vac.id}
+                                key={vac.id}
+                            >
+                                <AppCard
+                                    width={'auto'}
+                                    height={'260px'}
+                                    shadow
+                                    className={cn(s.vacancyListCard)}
                                 >
-                                    <AppCard
-                                        width={'auto'}
-                                        height={'260px'}
-                                        shadow
-                                        className={cn('flex flex-col items-start p-5', s.vacancyListCard)}
+                                    <AppText
+                                        title={vac.title}
+                                    />
+                                    <AppText
+                                        text={`от ${vac.payment} руб.`}
+                                    />
+                                    <AppText
+                                        text={`Компания ${vac.conditions}.`}
+                                    />
+                                    <AppText
+                                        text={vac.employment}
+                                    />
+                                    <AppText
+                                        text={vac.schedule}
+                                    />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Опыт работы: ${vac.experience}`}
+                                    />
+                                    <AppButton
+                                        className={s.vacancyListCardBtn}
+                                        width="auto"
                                     >
-                                        <AppText
-                                            title={vac.title}
-                                        />
-                                        <AppText
-                                            text={`от ${vac.payment} руб.`}
-                                        />
-                                        <AppText
-                                            text={`Компания ${vac.conditions}.`}
-                                        />
-                                        <AppText
-                                            text={vac.employment}
-                                        />
-                                        <AppText
-                                            text={vac.schedule}
-                                        />
-                                        <AppText
-                                            size="s"
-                                            variant="notaccented"
-                                            text={`Опыт работы: ${vac.experience}`}
-                                            className="p-[12px]"
-                                        />
-                                        <AppButton
-                                            className={" mt-auto"}
-                                            width="auto"
-                                        >
-                                            Откликнуться
-                                        </AppButton>
-                                    </AppCard>
-                                </AppLink>
-                            )
-                            }
-                        </div>
+                                        Откликнуться
+                                    </AppButton>
+                                </AppCard>
+                            </AppLink>
+                        )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
+
                 </div>
             </AppPage>
         </MainLayout>

@@ -3,7 +3,14 @@
 }
 
 .searchBtn {
-    color: var(--secondary-text)
+    color: var(--secondary-text);
+    margin-top: 12px;
+}
+
+.searchForm {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 
@@ -28,9 +35,11 @@
 
 .suggestions {
     position: absolute;
-    top: 44px;
-    width: 635px;
+    top: 56px;
+    width: 100%;
+    /* width: 635px; */
     border-radius: 8px;
+
 
 
     background-color: #f2f2f2;
