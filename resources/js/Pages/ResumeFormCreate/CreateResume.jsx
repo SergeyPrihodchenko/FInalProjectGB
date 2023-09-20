@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
-import s from "./BasiceDataResumePage/BasiceDataResumePage.module.css";
-import style from "./ExperienceResumePage/ExperienceResumePage.module.css";
+import s from "./CreateResume.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
@@ -18,6 +17,13 @@ const arrayEducation = [
     "Кандидат наук",
     "Доктор наук",
 ];
+
+const arrayExperience = [
+    "менее года",
+    "от года до трех",
+    "от трех и выше",
+
+]
 
 function CreateResume(){
 
@@ -124,7 +130,7 @@ function CreateResume(){
                                     type="radio"
                                     name="gender"
                                     id="genderMen"
-                                    className={s.genderBasiceData}
+                                    className={s.inputRadioCreateResume}
                                 />
                                 <label htmlFor="genderMen">
                                     <AppText
@@ -140,7 +146,7 @@ function CreateResume(){
                                     type="radio"
                                     name="gender"
                                     id="genderWoman"
-                                    className={s.genderBasiceData}
+                                    className={s.inputRadioCreateResume}
                                 />
                                 <label htmlFor="genderWoman">
                                     <AppText
@@ -257,8 +263,8 @@ function CreateResume(){
                                                     id={el}
                                                     onChange={e => setData('education', e.target.value)}
                                                     value={el}
-                                                    type="checkbox" 
-                                                    className={s.educationCheckbox} 
+                                                    type="radio" 
+                                                    className={s.inputRadioCreateResume} 
                                                     />
                                                 <label for={el}>
                                                     <AppText
@@ -355,8 +361,39 @@ function CreateResume(){
                         </div>
 
                         <div className={s.experience}>
-                            
-                            <label>Опыт работы</label>
+                            <div className={s.education}>
+                                <AppText
+                                    title={"Опыт работы"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                {arrayExperience.map((el) => {
+                                    // console.log(el);
+                                    return (
+                                        <div className={s.inputRadioBasiceData}>
+                                            <input 
+                                                name="experience"
+                                                id={el}
+                                                onChange={e => setData('experience', e.target.value)}
+                                                value={el}
+                                                type="radio" 
+                                                className={s.inputRadioCreateResume} 
+                                            />
+                                            <label for={el}>
+                                                <AppText
+                                                    text={el}
+                                                    size={"m"}
+                                                    className={s.textInputRadio}
+                                                />
+                                            </label>
+                                            <div style={{color: "red"}}>{errors.experience}</div>
+                                        </div>
+                                                
+                                            );
+                                        })}
+                                    </div>
+                            {/* <label>Опыт работы</label>
                             <select name="experience" id="experience"
                                 onChange={e => setData('experience', e.target.value)}
                                 value={data.experience}
@@ -366,7 +403,7 @@ function CreateResume(){
                                 <option value="от года до трех">от года до трех</option>
                                 <option value="от трех и выше">от трех и выше</option>
                             </select>
-                            <div style={{color: "red"}}>{errors.experience}</div>
+                            <div style={{color: "red"}}>{errors.experience}</div> */}
                             
                             <AppText
                                 title={"В какой компании вы работали?"}
@@ -401,7 +438,7 @@ function CreateResume(){
                                     className={s.textareaBasiceData}
                                     placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
                                 />
-                            <div className={style.experienceWork}>
+                            <div className={s.experienceWork}>
                                                 
                                 <div className={s.experienceBeginningWork}>
                                     <AppText
@@ -412,7 +449,6 @@ function CreateResume(){
                                     />
                                     <input 
                                         type="date" 
-                                        value="2023-09-01"
                                         className={s.inputDataBasiceData}
                                     />
                                 </div>
@@ -424,7 +460,7 @@ function CreateResume(){
                                         size={"s"}
                                             className={s.textTitle}
                                     />
-                                    <div className={style.inputEndingWork}>
+                                    <div className={s.inputEndingWork}>
                                         <input 
                                             type="checkbox"
                                             className={s.checkboxEndingWork} 
@@ -434,7 +470,7 @@ function CreateResume(){
                                             <AppText
                                                 title={"По настоящее время"}
                                                 size={"s"}
-                                                className={style.textTitleEnding}
+                                                className={s.textTitleEnding}
                                             />
                                         </label>
                                         
@@ -459,7 +495,7 @@ function CreateResume(){
                         
                         
                         
-                        <div className={style.skills}>
+                        <div className={s.skills}>
                             <AppText
                                     title={"Ключевые навыки"}
                                     bold
@@ -467,7 +503,7 @@ function CreateResume(){
                                     className={s.textTitle}
                                 />
                                 {data.skills.map((skill, index) => {
-                                    return <div className={style.keySkillsTextAll} key={index}>
+                                    return <div className={s.keySkillsTextAll} key={index}>
                                                                                                 
                                                 {/* <p>{skill}</p> */}
                                                 {/* <button type="button" onClick={() => removeSkill(index)}>Удалить</button> */}
@@ -475,7 +511,7 @@ function CreateResume(){
                                                 <AppText
                                                 title={skill}
                                                 size={"s"}
-                                                className={style.textSkills}
+                                                className={s.textSkills}
                                             />
                                                 
                                                 
@@ -485,7 +521,7 @@ function CreateResume(){
                                                     sizeText = "s"
                                                     bold
                                                     type="button"
-                                                    className={style.buttonSkill}
+                                                    className={s.buttonSkill}
                                                 > Удалить
                                                 </AppButton>
                                             
@@ -504,7 +540,7 @@ function CreateResume(){
                                     sizeText = "m"
                                     bold
                                     type="button"
-                                    className={style.buttonSkill}
+                                    className={s.buttonSkill}
                                 > Добавить
                                 </AppButton>
                                 <div style={{color: "red"}}>{errors.skills}</div>
