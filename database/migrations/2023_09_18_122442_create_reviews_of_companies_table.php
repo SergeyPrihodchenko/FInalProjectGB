@@ -24,15 +24,15 @@ return new class extends Migration
             $table->index('company_id');
 
             // Создание внешнего ключа юзера
-//            $table->unsignedBigInteger('user_id');
-//            $table->foreign('user_id')
-//                ->references('id')
-//                ->on('users')
-//                ->onDelete('cascade')
-//                ->onUpdate('cascade');
-//            $table->index('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->index('user_id');
 
-            $table->string('name', 100);
+           // $table->string('name', 100);
             $table->text('review')->nullable();
 
             $table->timestamps();
