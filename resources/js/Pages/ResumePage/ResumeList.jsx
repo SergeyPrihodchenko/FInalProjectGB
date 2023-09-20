@@ -82,7 +82,8 @@ function ResumePage({resumes}){
                                         />
                                     </div>
                                     <div class={s.userPhoto}>
-                                        <img src="#" className={s.imgUserPhoto}/>
+                                        НЕТ ФОТО
+                                        {/* <img src="#" className={s.imgUserPhoto}/> */}
                                     </div>
 
                                 </div>

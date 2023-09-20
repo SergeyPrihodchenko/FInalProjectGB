@@ -42,12 +42,24 @@
     display: flex;
 }
 
-.imgUserPhoto{
+.userPhoto{
     width: 87px;
     height: 87px;
-
-    border: none;
+    color: var(--accent);
+    background-color: var( --light-bg);
+    border: 1px solid var(--accent);
+    border-radius: var(--border-radius-s);
+    padding-top: 30px;
+    text-align: center;
 }
+/* .imgUserPhoto{
+    width: 87px;
+    height: 87px;
+    color: var(--accent);
+    background-color: var( --light-bg);
+    border: 2px solid var(--accent);
+    border-radius: var(--border-radius-s);
+} */
 
 .linkViewResume{
     height: 60px;
