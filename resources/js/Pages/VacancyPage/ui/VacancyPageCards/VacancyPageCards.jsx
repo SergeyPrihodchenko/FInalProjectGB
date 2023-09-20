@@ -6,34 +6,70 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 function VacancyPageCards(props) {
-    const { children, className } = props;
+    const { children, className, vacancy } = props;
+    const {
+        title,
+        payment,
+        experience,
+        employment,
+        revievs,
+        conditions,
+        city,
+    } = vacancy;
+    // console.log("experience", experience);
+
     return (
         <div className={cn(s.vacancyCards, className)}>
             <AppCard shadow className={s.mainCard}>
-                <AppText title="Токарь фрезеровщик" bold={true} size="l" />
+                <AppText title={title} bold={true} size="l" />
                 <AppText
-                    text="от 150 000 до 300 000 ₽ на руки"
+                    text={`от ${payment} р.`}
                     size="m"
                     className={s.price}
                 />
                 <AppText
                     size="m"
-                    text="Требуемый опыт работы: 1-3 года"
+                    text={`Требуемый опыт работы: ${
+                        experience && experience !== "0" && experience == 0
+                            ? experience
+                            : "Не имеет значения"
+                    }`}
                     className={s.experience}
                 />
-                <AppText size="m" text="Полная занятость, сменный графики" />
+                <AppText
+                    size="m"
+                    text={`Тип занаятости:
+                    ${employment ? employment : "По договорённости"}`}
+                />
                 <div>
-                    <AppText
-                        text="Сейчас эту вакансию смотрят"
-                        className={s.view}
-                    />
-                    <AppText text=" 3 человека" variant="error" />
+                    {revievs ? (
+                        <>
+                            <AppText
+                                text="Сейчас эту вакансию смотрят"
+                                className={s.view}
+                            />
+                            <AppText
+                                text={`${revievs} человека`}
+                                variant="error"
+                            />
+                        </>
+                    ) : null}
                 </div>
                 <AppButton className={s.btn}>Откликнуться</AppButton>
             </AppCard>
             <AppCard className={s.aboutCompany}>
-                <AppText size="m" title="ООО Станок и Бабина" />
-                <AppText size="m" text="Москва" className={s.city} />
+                {conditions ? <AppText size="m" title={conditions} /> : null}
+                {city ? (
+                    <AppText size="m" title={city} />
+                ) : (
+                    <AppText
+                        size="xs"
+                        title={
+                            "напоминание Поле для города не существует в пропсах вакансии .Нужно добавить "
+                        }
+                        variant="error"
+                    />
+                )}
             </AppCard>
         </div>
     );

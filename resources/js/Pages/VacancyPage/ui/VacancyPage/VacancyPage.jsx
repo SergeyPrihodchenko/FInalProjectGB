@@ -19,7 +19,6 @@ function VacancyPage(props) {
     const { auth, vacancy } = props;
     const user = auth?.user;
     console.log("VacancyPage.jsx vacancy", vacancy);
-    console.log("VacancyPage.jsx props", props);
 
     return (
         <MainLayout className="app_light_theme" user={user}>
@@ -35,8 +34,12 @@ function VacancyPage(props) {
                 {/* <AppInput label="123" placeholder="placeholder"  /> */}
                 <AppPage>
                     <div className={s.vacancyPage}>
-                        <VacancyPageCards className={s.cards} />
+                        <VacancyPageCards
+                            className={s.cards}
+                            vacancy={vacancy}
+                        />
                         <VacancyPageList
+                            vacancy={vacancy}
                             vacancyPageList={data}
                             className={s.list}
                         />
