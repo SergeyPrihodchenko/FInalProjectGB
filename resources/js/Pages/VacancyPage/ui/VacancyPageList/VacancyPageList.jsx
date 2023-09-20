@@ -27,29 +27,6 @@ export default function VacancyPageList(props) {
                 </div>
             ) : null}
 
-            {vacancyList ? (
-                <div className={s.vacancyList}>
-                    {vacancyList?.map((vacancyItem, index) => {
-                        return (
-                            <div className={s.vacancyItem} key={index}>
-                                <AppText title={vacancyItem.title} bold />
-                                {vacancyItem.list &&
-                                    vacancyItem.list.map((item, index) => {
-                                        return (
-                                            <li
-                                                key={index + index + index}
-                                                className={s.list}
-                                            >
-                                                {item}
-                                            </li>
-                                        );
-                                    })}
-                            </div>
-                        );
-                    })}
-                </div>
-            ) : null}
-
             {/* Requirements */}
             {requirements ? (
                 typeof requirements === "string" ? (
