@@ -50,6 +50,9 @@ class VacancyController
         ]);
     }
 
+    
+
+
     public function store(StoreRequest $request)
     {
         $data = $request->validated();

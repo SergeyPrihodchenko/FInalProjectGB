@@ -11,7 +11,7 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 function CreateVacancyPage(props) {
-    const { auth, vacancy } = props;
+    const { auth, vacancy, btn } = props;
     const user = auth?.user;
     console.log("CreateVacancyPage props", props);
     const experience = [
@@ -39,9 +39,19 @@ function CreateVacancyPage(props) {
         <MainLayout className="app_light_theme" user={user}>
             <Head title="CreateVacancyPage" />
             <AppPage>
-                <AppText title="Создание вакансии" size="l" />
-                <AppText title="Основная информация" size="m" />
-                <div className={s.mainInfo}>
+                {btn}
+
+                <AppText
+                    title="Создание вакансии"
+                    size="l"
+                    className={s.item}
+                />
+                <AppText
+                    title="Основная информация"
+                    size="m"
+                    className={s.item}
+                />
+                <div className={cn(s.mainInfo, s.itme)}>
                     <form action="#">
                         <AppInput
                             label="Название вакакнсии"
@@ -77,25 +87,34 @@ function CreateVacancyPage(props) {
                         />
                         {experience && (
                             <>
-                                <AppText title="Опыт работы" />
-                                {experience?.map((item, index) => (
-                                    <RadioButton
-                                        key={index}
-                                        name={"experience"}
-                                        label={item}
-                                        value={item}
-                                        onChange={() =>
-                                            console.log("RadioButton", item)
-                                        }
-                                    />
-                                ))}
+                                <AppText
+                                    title="Опыт работы"
+                                    className={s.item}
+                                />
+                                <div className={s.item}>
+                                    {experience?.map((item, index) => (
+                                        <RadioButton
+                                            key={index}
+                                            name={"experience"}
+                                            label={item}
+                                            value={item}
+                                            onChange={() =>
+                                                console.log("RadioButton", item)
+                                            }
+                                        />
+                                    ))}
+                                </div>
                             </>
                         )}
                         {schedule && (
                             <>
-                                <AppText title="График работы" />
+                                <AppText
+                                    title="График работы"
+                                    className={s.item}
+                                />
                                 {schedule?.map((item, index) => (
                                     <Checkbox
+                                        className={s.item}
                                         key={index}
                                         name={"schedule"}
                                         label={item}
@@ -109,9 +128,13 @@ function CreateVacancyPage(props) {
                         )}
                         {schedule && (
                             <>
-                                <AppText title="Тип занятости" />
+                                <AppText
+                                    title="Тип занятости"
+                                    className={s.item}
+                                />
                                 {schedule?.map((item, index) => (
                                     <Checkbox
+                                        className={s.item}
                                         key={index}
                                         name={"employment"}
                                         label={item}
@@ -124,7 +147,7 @@ function CreateVacancyPage(props) {
                             </>
                         )}
                         {/* Требования */}
-                        <div className={s.responsibilities}>
+                        <div className={cn(s.responsibilities, s.item)}>
                             <AppInput label="Требования к соискателю" />
                             <AppButton
                                 variant="clear"
@@ -135,7 +158,7 @@ function CreateVacancyPage(props) {
                             </AppButton>
                         </div>
                         {/* Обязаность */}
-                        <div className={s.empolyments}>
+                        <div className={cn(s.empolyments, s.item)}>
                             <AppInput label="Обязаность сотрудника" />
                             <AppButton
                                 variant="clear"
@@ -146,7 +169,7 @@ function CreateVacancyPage(props) {
                             </AppButton>
                         </div>
                         {/* Условия */}
-                        <div className={s.conditions}>
+                        <div className={cn(s.conditions, s.item)}>
                             <AppInput label="Условия работы" />
                             <AppButton
                                 variant="clear"
@@ -157,7 +180,7 @@ function CreateVacancyPage(props) {
                             </AppButton>
                         </div>
                         {/* Навыки */}
-                        <div className={s.skills}>
+                        <div className={cn(s.skills, s.item)}>
                             <AppInput label="Ключевые навыки" />
                             <AppButton
                                 variant="clear"
@@ -168,9 +191,13 @@ function CreateVacancyPage(props) {
                             </AppButton>
                         </div>
                     </form>
-                    <AppText title="Контактные данные" size="m" />
+                    <AppText
+                        title="Контактные данные"
+                        size="m"
+                        className={s.item}
+                    />
                     <form action="#">
-                        <div className={s.tel}>
+                        <div className={cn(s.tel, s.item)}>
                             <AppInput label="Контакты" type="tel" />
                             <AppButton
                                 variant="clear"
@@ -182,7 +209,9 @@ function CreateVacancyPage(props) {
                         </div>
                     </form>
 
-                    <AppButton>Опубликовать</AppButton>
+                    <AppButton className={cn(s.btn, s.item)}>
+                        Опубликовать
+                    </AppButton>
                 </div>
             </AppPage>
         </MainLayout>

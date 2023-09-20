@@ -49,6 +49,14 @@ export const Navbar = (props) => {
                                 Создать вакансию
                             </Link>
                         </li>
+                        {/* <li>
+                            <Link
+                                className={cn(s.navLink, ["hover:text-white "])}
+                                href={route("vacancy.create")}
+                            >
+                                Создать вакансию front
+                            </Link>
+                        </li> */}
                         <Link
                             href={route("company")}
                             className={cn(s.navLink, [

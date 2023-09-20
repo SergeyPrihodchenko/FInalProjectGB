@@ -32,13 +32,13 @@ class VacancySeeder extends Seeder
         for ($i = 0; $i < 30; $i++) {
             $n = rand(0, 4);
             $y = rand(0, 4);
-            $k = rand(0, 15);
+            $k = rand(0, 3);
             $data[] = [
                 'title' => fake('ru_RU')->jobTitle,
                 'payment' => fake()->numberBetween(1000, 12000),
                 'employment' => $employment[$n],
                 'schedule' => $schedule[$y],
-                'experience' => $k,
+                'experience' => $experience[$k],
                 'description' => fake('ru_RU')->text(),
                 'contacts' => fake()->phoneNumber(),
                 'requirements' => fake('ru_RU')->text,

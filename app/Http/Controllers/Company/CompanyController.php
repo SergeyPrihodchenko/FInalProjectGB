@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Company\StoreCompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -28,23 +29,16 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Company');
-
+        return Inertia::render('Company/create_company');
+        //return view('company.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCompanyRequest $request)
     {
-        $date = $request->only([
-            'name',
-//            'email' ,
-//            'website',
-//            'phone_number' ,
-//            'address' ,
-          ]
-);
+        $date = $request->validated();
         $company = Company::create($date);
         return Inertia::render('Company/company_detail', [
             'company'=>$company
@@ -73,16 +67,9 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(StoreCompanyRequest $request, $id)
     {
-        $date = $request->only([
-            'name',
-            'email' ,
-            'website',
-            'phone_number' ,
-            'address' ,
-            'created_at',
-            'updated_at']);
+        $date = $request->validated();
         $company = Company::find($id);
         $company->update($date);
     }
@@ -92,7 +79,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        dd($company->delete());
+        $company->delete();
 
     }
 }
