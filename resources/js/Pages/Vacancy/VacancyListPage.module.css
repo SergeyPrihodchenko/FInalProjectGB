@@ -5,7 +5,23 @@
 }
 
 .vacancyList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     flex-grow: 1;
+    margin-bottom: 30px;
+
+}
+
+.vacancyListCard {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 15px 20px;
+}
+
+.vacancyListCardBtn {
+    margin-top: auto;
 }
 
 .vacancyFilterTitle {
