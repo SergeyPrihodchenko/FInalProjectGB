@@ -15,7 +15,7 @@ const arrayEducation = [
     "Бакалавр",
     "Магистр",
     "Кандидат наук",
-    "Доктор наук",
+    // "Доктор наук",
 ];
 
 const arrayExperience = [
@@ -195,7 +195,7 @@ function CreateResume(){
                                 value={data.date_of_birth} 
                                 onChange={e => setData('date_of_birth', e.target.value)} 
                                 type="date" 
-                                className={s.inputDataBasice}
+                                className={s.inputResumeDataBasice}
                             />
                             <div style={{color: "red"}}>{errors.date_of_birth}</div>
                         
@@ -450,7 +450,7 @@ function CreateResume(){
                                     />
                                     <input 
                                         type="date" 
-                                        className={s.inputDataBasice}
+                                        className={s.inputResumeDataBasice}
                                     />
                                 </div>
 
@@ -519,7 +519,7 @@ function CreateResume(){
                                                     sizeText = "s"
                                                     bold
                                                     type="button"
-                                                    className={s.buttonSkill}
+                                                    className={s.buttonSkillDelete}
                                                 > Удалить
                                                 </AppButton>
                                             
@@ -538,7 +538,7 @@ function CreateResume(){
                                     sizeText = "m"
                                     bold
                                     type="button"
-                                    className={s.buttonSkill}
+                                    className={s.buttonSkillAdd}
                                 > Добавить
                                 </AppButton>
                                 <div style={{color: "red"}}>{errors.skills}</div>
@@ -567,7 +567,7 @@ function CreateResume(){
                             type="submit"
                             bold 
                             sizeText = "m"
-                            className={s.buttonSaveResumePage}>
+                            className={s.buttonSave}>
                                 <span>Сохранить</span>
                             </AppButton>
 
