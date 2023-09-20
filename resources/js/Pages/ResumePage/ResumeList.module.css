@@ -1,8 +1,29 @@
+.mainResumeList{
+    margin: 0;
+    padding: 0;
+    width: 886px;
+}
+
 .titleResumeList{
     margin: 40px 0px 30px 0px;
 }
+
+.resumeList{
+    margin: 50px 0px 30px 0px;
+    padding: 10px 10px 10px 140px;
+
+    background: var( --light-bg);
+    box-shadow: var(--shadow-dark);
+}
+
+.resumeList:hover{
+    box-shadow: var(--shadow--hover);
+}
+
 .userResume{
-    margin: 0px 0px 30px 0px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .titleResume{
@@ -19,4 +40,32 @@
 
 .lastSkill{ 
     display: flex;
+}
+
+.imgUserPhoto{
+    width: 87px;
+    height: 87px;
+
+    border: none;
+}
+
+.linkViewResume{
+    height: 60px;
+}
+
+.linkResumeList{
+    font-family: var(--font-family-main);
+    padding: 10px;
+    color: var( --light-bg);
+    background-color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: var(--border-radius-s);
+}
+
+.linkResumeList:hover{
+    font-family: var(--font-family-main);
+    color: var(--accent);
+    background-color: var( --light-bg);
+    border: 1px solid var(--accent);
+    border-radius: var(--border-radius-s);
 }

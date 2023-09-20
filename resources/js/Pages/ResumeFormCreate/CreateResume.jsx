@@ -19,6 +19,7 @@ const arrayEducation = [
 ];
 
 const arrayExperience = [
+    // "без опыта",
     "менее года",
     "от года до трех",
     "от трех и выше",
@@ -194,7 +195,7 @@ function CreateResume(){
                                 value={data.date_of_birth} 
                                 onChange={e => setData('date_of_birth', e.target.value)} 
                                 type="date" 
-                                className={s.inputDataBasiceData}
+                                className={s.inputDataBasice}
                             />
                             <div style={{color: "red"}}>{errors.date_of_birth}</div>
                         
@@ -449,7 +450,7 @@ function CreateResume(){
                                     />
                                     <input 
                                         type="date" 
-                                        className={s.inputDataBasiceData}
+                                        className={s.inputDataBasice}
                                     />
                                 </div>
 
@@ -492,9 +493,6 @@ function CreateResume(){
                             
                         </div>
 
-                        
-                        
-                        
                         <div className={s.skills}>
                             <AppText
                                     title={"Ключевые навыки"}

@@ -48,7 +48,7 @@
 
 }
 
-.inputDataBasiceData {
+.inputDataBasice {
     padding-left: 10px;
     width: 140px;
     height: 60px;
@@ -227,5 +227,5 @@
 }
 
 .buttonSaveResumePage {
-    margin: 10px 10px 0px 875px; 
+    margin: 10px 10px 40px 875px; 
 }
