@@ -1,0 +1,22 @@
+.titleResumeList{
+    margin: 40px 0px 30px 0px;
+}
+.userResume{
+    margin: 0px 0px 30px 0px;
+}
+
+.titleResume{
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+}
+
+.salaryResume{
+    margin-top: 20px;
+}
+.skillUser{
+    border-bottom: 1px solid var(--primary-text);
+}
+
+.lastSkill{ 
+    display: flex;
+}
