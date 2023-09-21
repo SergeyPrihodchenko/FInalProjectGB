@@ -29,7 +29,9 @@ function AppInput(props) {
         <div className={cn(className, s.appInput)}>
             {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
             <input
+                {...props}
                 onChange={onChange}
+
                 type={type}
                 placeholder={placeholder}
                 className={cn(s.input, s[borderRadius], {

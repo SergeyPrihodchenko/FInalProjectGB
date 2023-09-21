@@ -5,6 +5,7 @@ import {useForm} from "@inertiajs/react";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./CreateCompany.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 const Company = ({auth}) => {
     const user = auth?.user;
@@ -35,15 +36,17 @@ const Company = ({auth}) => {
                     <button type="submit">Отправить</button> */}
 
                     <div className={s.basiceData}>
-                            <AppText
+                            {/* <AppText
                                 title={"Email"}
                                 bold
                                 size={"s"}
                                 className={s.textTitle}
-                            />
-                            <input 
+                            /> */}
+                            <AppInput 
+                                label={"Email"}
                                 type="text" 
                                 placeholder="Email"
+                                
                                 className={s.inputBasiceData}
                             />
                                                       
@@ -130,7 +133,19 @@ const Company = ({auth}) => {
                                 placeholder="+7 (999) 999-99-99"
                                 className={s.inputBasiceData} 
                             />
-                                                
+                            <AppText
+                                title={"Сай компании"}
+                                bold
+                                size={"s"}
+                                className={s.textTitle}
+                            />
+                            <input 
+                                type="text"
+                                placeholder="https://GoodJobs.ru/"
+                                className={s.inputBasiceData} 
+                            />
+
+
                             <AppText
                                 title={"Расскажите о вашей компании"}
                                 bold
@@ -142,13 +157,15 @@ const Company = ({auth}) => {
                                     placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
                                 />
                         </div> 
-                        <AppButton 
-                            type="submit"
-                            bold 
-                            sizeText = "m"
-                            className={s.buttonSave}>
-                                <span>Сохранить</span>
-                        </AppButton>
+                        <form method="LINK" action={route("companyList")}>
+                            <AppButton 
+                                // type="submit"
+                                bold 
+                                sizeText = "m"
+                                className={s.buttonSave}>
+                                    <span>Сохранить</span>
+                            </AppButton>
+                        </form>
                 </form>
             </AppPage>
         </MainLayout>
