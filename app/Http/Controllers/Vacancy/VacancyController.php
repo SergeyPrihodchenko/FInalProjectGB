@@ -45,7 +45,7 @@ class VacancyController
 
     public function create(): \Inertia\Response
     {
-        //return Inertia::render('CreateVacancyPage/ui/CreateVacancyPage/CreateVacancyPage');
+        //return Inertia::render('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate');
         $companies = Company::all();
 
         return Inertia::render('Vacancy/VacancyCreate', [

@@ -11,3 +11,6 @@
 .item {
     margin-top: 16px;
 }
+.requireItme {
+    display: flex;
+}

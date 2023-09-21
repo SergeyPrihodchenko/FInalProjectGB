@@ -4,19 +4,22 @@ import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { Head } from "@inertiajs/react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import s from "./CreateVacancyPage.module.css";
+import s from "./VacancyPageCreate.module.css";
 import cn from "classnames";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import { useState } from "react";
-function CreateVacancyPage(props) {
+function VacancyPageCreate(props) {
     const { auth, vacancy, btn } = props;
     const user = auth?.user;
-    // console.log("CreateVacancyPage props", props);
     const [requireInput, setRequireInput] = useState("");
-    const [requirements, setRequirements] = useState([]);
+    const [requirementsList, setRequirementsList] = useState([]);
+    console.log("requirementsList", requirementsList);
+    // console.log("VacancyPageCreate props", props);
+    // useEffect(() => {}, [requirementsList]);
+
     const experience = [
         "Нет опыта",
         "Не имеет значения",
@@ -40,7 +43,7 @@ function CreateVacancyPage(props) {
     ];
     return (
         <MainLayout className="app_light_theme" user={user}>
-            <Head title="CreateVacancyPage" />
+            <Head title="VacancyPageCreate" />
 
             <AppPage>
                 {btn}
@@ -158,18 +161,49 @@ function CreateVacancyPage(props) {
                                 value={requireInput}
                                 onChange={(e) => {
                                     setRequireInput(e.target.value);
-                                    console.log(requireInput);
                                 }}
                             />
-                            {requirements ? (
-                                <div className={s.requireItem}>
-                                    {/* {requirements?.map((requireItme, index) => {
-                                        return (
-                                            <div className={s.itme} key={index}>
-                                                {requireItme}
-                                            </div>
-                                        );
-                                    })} */}
+                            {requirementsList ? (
+                                <div className={s.requirementsList}>
+                                    {requirementsList?.map(
+                                        (requireItem, index) => {
+                                            return (
+                                                <div
+                                                    className={s.requireItme}
+                                                    key={index}
+                                                >
+                                                    <div> {requireItem}</div>
+                                                    <AppButton
+                                                        sizeText={"xs"}
+                                                        variant={"clear"}
+                                                        colorType={"cancel"}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            requirementsList.splice(
+                                                                index,
+                                                                1
+                                                            );
+                                                            const newRequirementsList =
+                                                                [
+                                                                    ...requirementsList,
+                                                                ];
+                                                            console.log(
+                                                                "newRequirementsList",
+                                                                newRequirementsList
+                                                            );
+                                                            setRequirementsList(
+                                                                [
+                                                                    ...newRequirementsList,
+                                                                ]
+                                                            );
+                                                        }}
+                                                    >
+                                                        Удалить
+                                                    </AppButton>
+                                                </div>
+                                            );
+                                        }
+                                    )}
                                 </div>
                             ) : null}
                             <AppButton
@@ -178,13 +212,14 @@ function CreateVacancyPage(props) {
                                 sizeText="s"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    setRequirements([
-                                        ...requirements,
-                                        requireInput,
-                                    ]);
+                                    if (requireInput) {
+                                        setRequirementsList([
+                                            ...requirementsList,
+                                            requireInput,
+                                        ]);
+                                    }
+
                                     setRequireInput("");
-                                    console.log("requireInput", requireInput);
-                                    console.log("requirements", requirements);
                                 }}
                             >
                                 Добавить требование
@@ -251,6 +286,6 @@ function CreateVacancyPage(props) {
     );
 }
 
-CreateVacancyPage.propTypes = {};
+VacancyPageCreate.propTypes = {};
 
-export default CreateVacancyPage;
+export default VacancyPageCreate;
