@@ -1,11 +1,7 @@
 .appLink {
-    color: var(--primary-text);
     transition: var(--transition-delay) linear;
 }
-.appLink:hover {
-    color: var(--secondary-text);
-    transition: var(--transition-delay) linear;
-}
+
 /* Text sizws */
 .xs {
     font: var(--font-xs);
@@ -28,4 +24,17 @@
 }
 .bold {
     font-weight: 700;
+}
+.primary {
+    color: var(--primary-text);
+}
+.secondary {
+    color: var(--secondary-text);
+}
+.accent {
+    color: var(--accent);
+}
+.appLink:hover {
+    color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
 }
