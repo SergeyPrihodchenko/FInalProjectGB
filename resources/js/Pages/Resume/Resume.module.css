@@ -1,34 +1,49 @@
+.titleResume{
+    margin-top: 30px;
+}
+
 .textTitle {
     padding: 20px 10px 10px 0px;
 }
 
-.inputBasiceData,
-.inputYearsEducation,
-.inputDataBasiceData,
-.textareaBasiceData,
-.textSkill,
-.inputResumeDataBasice,
-.inputResumeEducation {
+.basiceData{
+    margin-top: 30px;
+}
+
+.indentDownBasiceData{
+    margin-top: 20px;
+}
+
+.inputResumeDataBasice{
     box-sizing: border-box;
-    width: 760px;
-    height: 60px;
-    font-size: var(--font-size-m);
+    width: 170px;
+    height: 40px;
+    font-size: var(--font-size-xs);
     padding: 10px;
 
+    background: var(--light-bg);
+    border: 2px solid var(--light-skeleton-shadow);
+    border-radius: var(--border-radius-s);
+}
+
+.textareaBasiceData,
+.textSkill {
+    box-sizing: border-box;
+    width: 760px;
+    height: 138px;
+    font-size: var(--font-size-xs);
+    padding: 10px;
+    
     background: var(--light-bg);
     border: 1px solid var(--light-skeleton-shadow);
     border-radius: var(--border-radius-s);
 
 }
 
-.inputResumeDataBasice{
-    width: 170px;
-}
-.inputResumeEducation{
-    width: 380px;
-}
+.textareaBasiceData::-webkit-resizer{
+    resize: horizontal;
+} 
 
-.inputBasiceData:focus,
 .textareaBasiceData:focus,
 .textSkill:focus{
     -webkit-appearance: none;
@@ -39,13 +54,6 @@
     background: var(--light-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
-
-}
-
-.inputDataBasice {
-    padding-left: 10px;
-    width: 140px;
-    height: 60px;
 }
 
 .inputRadioBasiceData {
@@ -56,21 +64,7 @@
 
 .textInputRadio {
     margin-top: -5px;
-    padding: 0px 20px 0px 10px;
-}
-
-.textareaBasiceData {
-    height: 138px;
-}
-
-.textareaBasiceData::-webkit-resizer,
-.textSkill::-webkit-resizer {
-    resize: horizontal;
-} 
-
-.inputYearsEducation {
-    width: 100px;
-    height: 60px;
+    padding: 0px 20px 5px 10px;
 }
 
 .buttonYearsEducation,
@@ -115,7 +109,7 @@
     height: 22px;
     border: 1px solid var(--light-skeleton-shadow);
     background: var(--light-bg);
-    border-radius: 30px;
+    border-radius: var(--border-radius-l);
     -webkit-transition: all .275s;
     transition: all .275s;
 }
@@ -153,14 +147,14 @@
 .inputRadioCreateResume:not(:checked) + label:after {
     content: '';
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 6px;
+    left: 6px;
     color: var(--accent);
     line-height: 0;
     -webkit-transition: all .2s;
     transition: all .2s;
     border: 6px solid var(--accent);
-    border-radius: 30px;
+    border-radius: var(--border-radius-l);
     background: var(--light-bg);
 }
 
@@ -176,11 +170,12 @@
 
 .textSkill,
 .textSkills {
+
     box-sizing: border-box;
     width: 300px;
     height: 33px;
 
-    padding-top: 10px;
+    padding: 10px;
 }
 
 .experienceWork {
@@ -215,13 +210,21 @@
     padding-left: 20px;
 } 
 
-.buttonDelete,
-.buttonAdd {
+.buttonSkillDelete,
+.buttonSkillAdd {
     border:none;
     color: var(--cancel);
     background-color: var(--light-bg);
    
     margin: 0px 0px 0px 10px;
+}
+
+.buttonSkillAdd {  
+    color: var(--accent);
+}
+
+.buttonSave {
+    margin: 10px 10px 40px 875px; 
 }
 
 .buttonAdd {  

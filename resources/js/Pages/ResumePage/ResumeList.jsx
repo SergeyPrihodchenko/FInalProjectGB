@@ -38,18 +38,18 @@ function ResumePage({resumes}){
                                                 </span>
                                                 } 
                                             bold 
-                                            size="s"
+                                            size="xs"
                                         />
 
                                         <AppText 
                                             title={"90 000 ₽"} 
-                                            size="m"
+                                            size="s"
                                             bold
                                             className={s.salaryResume}
                                         />
                                         <AppText 
                                             text={"54 года"} 
-                                            size="s"
+                                            size="xs"
                                         />
                                         <AppText 
                                             text={
@@ -58,27 +58,27 @@ function ResumePage({resumes}){
                                                         Последнее место работы
                                                 </span>
                                             } 
-                                            size="s"
+                                            size="xs"
                                             
                                         />
                                         
                                         <div className={s.lastSkill}>
                                             <AppText 
                                                 text={"ИП Глизин"} 
-                                                size="s"
+                                                size="xs"
                                                 />
                                             <AppText 
                                                 text={", январь 2021"} 
-                                                size="s"
+                                                size="xs"
                                                 />
                                             <AppText 
                                                 text={"- по настоящее время"} 
-                                                size="s"
+                                                size="xs"
                                             />
                                         </div>
                                         <AppText 
                                             text={"11 лет 6 месяцев"} 
-                                            size="s"
+                                            size="xs"
                                         />
                                     </div>
                                     <div class={s.userPhoto}>
@@ -92,7 +92,7 @@ function ResumePage({resumes}){
                                                 path={'resume.show'}
                                                 param={resume.id}
                                                 key={resume.id}
-                                                sizeText = "s"
+                                                sizeText = "xs"
                                                 className={s.linkResumeList}
                                             > Просмотреть резюме</AppLink>
                                 </div>
