@@ -508,7 +508,7 @@ function CreateResume(){
                                                 
                                                 <AppText
                                                 title={skill}
-                                                size={"s"}
+                                                size={"m"}
                                                 className={s.textSkills}
                                             />
                                                 
