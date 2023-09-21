@@ -14,11 +14,29 @@ import { useState } from "react";
 function VacancyPageCreate(props) {
     const { auth, vacancy, btn } = props;
     const user = auth?.user;
-    const [requireInput, setRequireInput] = useState("");
-    const [requirementsList, setRequirementsList] = useState([]);
-    console.log("requirementsList", requirementsList);
     // console.log("VacancyPageCreate props", props);
-    // useEffect(() => {}, [requirementsList]);
+
+    // Требования
+    const [requirementsInput, setRequirementsInput] = useState("");
+    const [requirementsList, setRequirementsList] = useState([]);
+
+    //Обязаности
+    const [responsibilitiesInput, setResponsibilitiesInput] = useState("");
+    const [responsibilitiesList, setResponsibilitiesList] = useState([]);
+
+    // Условия
+    const [conditionsInput, setСonditionsInput] = useState("");
+    const [conditionsList, setConditionsList] = useState([]);
+
+    // Ключевые навыки
+    const [skillsInput, setSkillsInput] = useState("");
+    const [skillsList, setSkillsList] = useState([]);
+
+    // Контакты
+    const [contactsName, setContactsName] = useState("");
+    const [contactsPosition, setContactsPosition] = useState("");
+    const [contactsPhone, setContactsPhone] = useState("");
+    const [contactsList, setContactsList] = useState([]);
 
     const experience = [
         "Нет опыта",
@@ -41,6 +59,12 @@ function VacancyPageCreate(props) {
         "Удаленая работа",
         "Вахтовый метод",
     ];
+
+    const saveVacancy = (e) => {
+        e.preventDefault();
+
+        // post(route('vacancy.store'))
+    };
     return (
         <MainLayout className="app_light_theme" user={user}>
             <Head title="VacancyPageCreate" />
@@ -48,18 +72,18 @@ function VacancyPageCreate(props) {
             <AppPage>
                 {btn}
 
-                <AppText
-                    title="Создание вакансии"
-                    size="l"
-                    className={s.item}
-                />
-                <AppText
-                    title="Основная информация"
-                    size="m"
-                    className={s.item}
-                />
-                <div className={cn(s.mainInfo, s.itme)}>
-                    <form action="#">
+                <form onSubmit={saveVacancy}>
+                    <AppText
+                        title="Создание вакансии"
+                        size="l"
+                        className={s.item}
+                    />
+                    <AppText
+                        title="Основная информация"
+                        size="m"
+                        className={s.item}
+                    />
+                    <div className={cn(s.mainInfo, s.itme)}>
                         <AppInput
                             label="Название вакакнсии"
                             placeholder="Должность"
@@ -156,20 +180,13 @@ function VacancyPageCreate(props) {
                         )}
                         {/* Требования */}
                         <div className={cn(s.requirements, s.item)}>
-                            <AppInput
-                                label="Требования к соискателю"
-                                value={requireInput}
-                                onChange={(e) => {
-                                    setRequireInput(e.target.value);
-                                }}
-                            />
                             {requirementsList ? (
                                 <div className={s.requirementsList}>
                                     {requirementsList?.map(
                                         (requireItem, index) => {
                                             return (
                                                 <div
-                                                    className={s.requireItme}
+                                                    className={s.listItem}
                                                     key={index}
                                                 >
                                                     <div> {requireItem}</div>
@@ -206,81 +223,339 @@ function VacancyPageCreate(props) {
                                     )}
                                 </div>
                             ) : null}
+                            <AppInput
+                                label="Требования к соискателю"
+                                value={requirementsInput}
+                                onChange={(e) => {
+                                    setRequirementsInput(e.target.value);
+                                }}
+                            />
+
                             <AppButton
                                 variant="clear"
                                 colorType="hint"
                                 sizeText="s"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    if (requireInput) {
+                                    if (requirementsInput) {
                                         setRequirementsList([
                                             ...requirementsList,
-                                            requireInput,
+                                            requirementsInput,
                                         ]);
                                     }
 
-                                    setRequireInput("");
+                                    setRequirementsInput("");
                                 }}
                             >
                                 Добавить требование
                             </AppButton>
                         </div>
-                        {/* Обязаность */}
+
+                        {/* Обязаности */}
                         <div className={cn(s.empolyments, s.item)}>
-                            <AppInput label="Обязаность сотрудника" />
+                            {responsibilitiesList ? (
+                                <div className={s.responsibilitiesList}>
+                                    {responsibilitiesList?.map(
+                                        (responsibilitiesItem, index) => {
+                                            return (
+                                                <div
+                                                    className={s.listItem}
+                                                    key={index}
+                                                >
+                                                    <div>
+                                                        {responsibilitiesItem}
+                                                    </div>
+                                                    <AppButton
+                                                        sizeText={"xs"}
+                                                        variant={"clear"}
+                                                        colorType={"cancel"}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            responsibilitiesList.splice(
+                                                                index,
+                                                                1
+                                                            );
+                                                            const newResponsibilitiesList =
+                                                                [
+                                                                    ...responsibilitiesList,
+                                                                ];
+
+                                                            setResponsibilitiesList(
+                                                                [
+                                                                    ...newResponsibilitiesList,
+                                                                ]
+                                                            );
+                                                        }}
+                                                    >
+                                                        Удалить
+                                                    </AppButton>
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            ) : null}
+                            <AppInput
+                                label="Обязаность сотрудника"
+                                value={responsibilitiesInput}
+                                onChange={(e) => {
+                                    setResponsibilitiesInput(e.target.value);
+                                }}
+                            />
                             <AppButton
                                 variant="clear"
                                 colorType="hint"
                                 sizeText="s"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    if (responsibilitiesInput) {
+                                        setResponsibilitiesList([
+                                            ...responsibilitiesList,
+                                            responsibilitiesInput,
+                                        ]);
+                                    }
+
+                                    setResponsibilitiesInput("");
+                                }}
                             >
                                 Добавить обязаность
                             </AppButton>
                         </div>
                         {/* Условия */}
                         <div className={cn(s.conditions, s.item)}>
-                            <AppInput label="Условия работы" />
+                            {conditionsList ? (
+                                <div className={s.conditionsList}>
+                                    {conditionsList?.map(
+                                        (conditionsItem, index) => {
+                                            return (
+                                                <div
+                                                    className={s.listItem}
+                                                    key={index}
+                                                >
+                                                    <div>{conditionsItem}</div>
+                                                    <AppButton
+                                                        sizeText={"xs"}
+                                                        variant={"clear"}
+                                                        colorType={"cancel"}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            conditionsList.splice(
+                                                                index,
+                                                                1
+                                                            );
+                                                            const newConditionsList =
+                                                                [
+                                                                    ...conditionsList,
+                                                                ];
+
+                                                            setConditionsList([
+                                                                ...newConditionsList,
+                                                            ]);
+                                                        }}
+                                                    >
+                                                        Удалить
+                                                    </AppButton>
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            ) : null}
+                            <AppInput
+                                label="Условия работы"
+                                value={conditionsInput}
+                                onChange={(e) => {
+                                    setСonditionsInput(e.target.value);
+                                }}
+                            />
                             <AppButton
                                 variant="clear"
                                 colorType="hint"
                                 sizeText="s"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    if (conditionsInput) {
+                                        setConditionsList([
+                                            ...conditionsList,
+                                            conditionsInput,
+                                        ]);
+                                    }
+
+                                    setСonditionsInput("");
+                                }}
                             >
                                 Добавить условие
                             </AppButton>
                         </div>
                         {/* Навыки */}
+
+                        {skillsList ? (
+                            <div className={s.skillsList}>
+                                {skillsList?.map((skillsItem, index) => {
+                                    return (
+                                        <div className={s.listItem} key={index}>
+                                            <div>{skillsItem}</div>
+                                            <AppButton
+                                                sizeText={"xs"}
+                                                variant={"clear"}
+                                                colorType={"cancel"}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    skillsList.splice(index, 1);
+                                                    const newSkillsList = [
+                                                        ...skillsList,
+                                                    ];
+
+                                                    setSkillsList([
+                                                        ...newSkillsList,
+                                                    ]);
+                                                }}
+                                            >
+                                                Удалить
+                                            </AppButton>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        ) : null}
                         <div className={cn(s.skills, s.item)}>
-                            <AppInput label="Ключевые навыки" />
+                            <AppInput
+                                label="Ключевые навыки"
+                                value={skillsInput}
+                                onChange={(e) => {
+                                    setSkillsInput(e.target.value);
+                                }}
+                            />
                             <AppButton
                                 variant="clear"
                                 colorType="hint"
                                 sizeText="s"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    if (skillsInput) {
+                                        setSkillsList([
+                                            ...skillsList,
+                                            skillsInput,
+                                        ]);
+                                    }
+
+                                    setSkillsInput("");
+                                }}
                             >
                                 Добавить навык
                             </AppButton>
                         </div>
-                    </form>
-                    <AppText
-                        title="Контактные данные"
-                        size="m"
-                        className={s.item}
-                    />
-                    <form action="#">
-                        <div className={cn(s.tel, s.item)}>
-                            <AppInput label="Контакты" type="tel" />
+                        <AppText
+                            title="Контактные данные"
+                            size="m"
+                            className={s.item}
+                        />
+                        <div className={cn(s.contacts, s.item)}>
+                            {contactsList ? (
+                                <div className={s.contactsList}>
+                                    {contactsList?.map(
+                                        (contactsItem, index) => {
+                                            return (
+                                                <div
+                                                    className={s.listItem}
+                                                    key={index}
+                                                >
+                                                    <div>
+                                                        {contactsItem?.phone}
+                                                    </div>
+                                                    -
+                                                    <div>
+                                                        {contactsItem?.name}
+                                                    </div>/
+                                                    <div>
+                                                        {contactsItem?.position}
+                                                    </div>
+                                                    <AppButton
+                                                        sizeText={"xs"}
+                                                        variant={"clear"}
+                                                        colorType={"cancel"}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            contactsList.splice(
+                                                                index,
+                                                                1
+                                                            );
+                                                            const newContactsList =
+                                                                [
+                                                                    ...contactsList,
+                                                                ];
+
+                                                            setContactsList([
+                                                                ...newContactsList,
+                                                            ]);
+                                                        }}
+                                                    >
+                                                        Удалить
+                                                    </AppButton>
+                                                </div>
+                                            );
+                                        }
+                                    )}
+                                </div>
+                            ) : null}
+                            <AppInput
+                                label="Контакты"
+                                placeholder="Должность"
+                                value={contactsPosition}
+                                onChange={(e) => {
+                                    setContactsPosition(e.target.value);
+                                }}
+                            />
+                            <AppInput
+                                placeholder="Имя"
+                                value={contactsName}
+                                onChange={(e) => {
+                                    setContactsName(e.target.value);
+                                }}
+                            />
+                            <AppInput
+                                type="tel"
+                                placeholder="Номер телефона"
+                                value={contactsPhone}
+                                onChange={(e) => {
+                                    setContactsPhone(e.target.value);
+                                }}
+                            />
                             <AppButton
                                 variant="clear"
                                 colorType="hint"
                                 sizeText="s"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    if (
+                                        contactsPosition &&
+                                        contactsPhone &&
+                                        contactsName
+                                    ) {
+                                        setContactsList([
+                                            ...contactsList,
+                                            {
+                                                name: contactsName,
+                                                phone: contactsPhone,
+                                                position: contactsPosition,
+                                            },
+                                        ]);
+                                    }
+
+                                    setContactsName("");
+                                    setContactsPhone("");
+                                    setContactsPosition("");
+                                }}
                             >
-                                Добавить номер
+                                Добавить контакт
                             </AppButton>
                         </div>
-                    </form>
 
-                    <AppButton className={cn(s.btn, s.item)}>
-                        Опубликовать
-                    </AppButton>
-                </div>
+                        <AppButton className={cn(s.btn, s.item)}>
+                            Опубликовать
+                        </AppButton>
+                    </div>
+                </form>
             </AppPage>
         </MainLayout>
     );

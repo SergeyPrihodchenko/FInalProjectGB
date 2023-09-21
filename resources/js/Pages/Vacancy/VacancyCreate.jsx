@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useForm } from "@inertiajs/react";
 import { VacancyPageCreate } from "../VacancyPageCreate";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
-import { useEffect } from "react";
 
 const Vacancy = ({ auth, companies }) => {
     const [isShowContent, setIsShowContent] = useState(true);
