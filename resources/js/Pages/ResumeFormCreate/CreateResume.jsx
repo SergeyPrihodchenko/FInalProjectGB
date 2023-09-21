@@ -6,6 +6,7 @@ import { AuthContext } from "@/8Shared/store/AuthContext";
 import s from "./CreateResume.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 const arrayEducation = [
     "Среднее",
@@ -72,55 +73,40 @@ function CreateResume(){
                         
                   
                         <div className={s.basiceData}>
-                            <AppText
-                                title={"Профессия"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            <AppInput
+                                label={"Профессия"}
                                 value={data.profession} 
                                 onChange={e => setData('profession', e.target.value)} 
                                 type="text" 
                                 placeholder="Дизайнер"
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.profession} 
                             />
-                            <div style={{color: "red"}}>{errors.profession}</div>
-                            
-                            <AppText
-                                title={"Фамилия"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                                                       
+                            <AppInput 
+                                label={"Фамилия"}
                                 value={data.last_name} 
                                 onChange={e => setData('last_name', e.target.value)} 
                                 type="text" 
                                 placeholder="Фамилия"
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.last_name}
                             />
-                            <div style={{color: "red"}}>{errors.last_name}</div>
                             
-                            <AppText
-                                title={"Имя"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            <AppInput 
+                                label={"Имя"}
                                 value={data.first_name} 
                                 onChange={e => setData('first_name', e.target.value)} 
                                 type="text" 
                                 placeholder="Имя"
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.first_name}
                             />
-                            <div style={{color: "red"}}>{errors.first_name}</div>
-                            
+                           
                             <AppText
                                 title={"Пол"}
                                 bold
-                                size={"s"}
+                                size={"xs"}
                                 className={s.textTitle}
                             />
 
@@ -132,11 +118,12 @@ function CreateResume(){
                                     name="gender"
                                     id="genderMen"
                                     className={s.inputRadioCreateResume}
+                                    errorMessage={errors.gender}
                                 />
                                 <label htmlFor="genderMen">
                                     <AppText
                                         text={"Мужской"}
-                                        size={"m"}
+                                        size={"s"}
                                         className={s.textInputRadio}
                                     />
                                 </label>
@@ -148,16 +135,15 @@ function CreateResume(){
                                     name="gender"
                                     id="genderWoman"
                                     className={s.inputRadioCreateResume}
+                                    errorMessage={errors.gender}
                                 />
                                 <label htmlFor="genderWoman">
                                     <AppText
                                         text={"Женский"}
-                                        size={"m"}
+                                        size={"s"}
                                         className={s.textInputRadio}
                                     />
-                                </label> 
-                                <div style={{color: "red"}}>{errors.gender}</div>   
-                              
+                                </label>   
                             </div>
                             {/* <select name="gender" id="gender"
                                 onChange={e => setData('gender', e.target.value)}
@@ -170,80 +156,55 @@ function CreateResume(){
                             <div style={{color: "red"}}>{errors.gender}</div>*/} 
                                             
 
-                            <AppText
-                                title={"Город или регион проживания"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            <AppInput 
+                                label={"Город или регион проживания"}
                                 value={data.region} 
                                 onChange={e => setData('region', e.target.value)} 
                                 type="text"
                                 placeholder="Москва"
-                                className={s.inputBasiceData} 
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.region}
                             />
-                            <div style={{color: "red"}}>{errors.region}</div>
-
-                            <AppText
-                                title={"Дата рождения"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                           
+                            <AppInput
+                                label={"Дата рождения"} 
                                 value={data.date_of_birth} 
                                 onChange={e => setData('date_of_birth', e.target.value)} 
                                 type="date" 
-                                className={s.inputResumeDataBasice}
+                                width="140px"
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.date_of_birth}
                             />
-                            <div style={{color: "red"}}>{errors.date_of_birth}</div>
-                        
-                            <AppText
-                                title={"Номер телефона"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                                                   
+                            <AppInput
+                                label={"Номер телефона"}
                                 value={data.phone} 
                                 onChange={e => setData('phone', e.target.value)} 
                                 type="text"
                                 placeholder="+7 (999) 999-99-99"
-                                className={s.inputBasiceData} 
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.phone}    
                             />
-                            <div style={{color: "red"}}>{errors.phone}</div>
-                      
-                            <AppText
-                                title={"Гражданство"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                           
+                            <AppInput
+                                label={"Гражданство"}
                                 value={data.citizenship} 
                                 onChange={e => setData('citizenship', e.target.value)} 
                                 type="text"
                                 placeholder="Россия"
-                                className={s.inputBasiceData} 
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.citizenship}
                             />
-                            <div style={{color: "red"}}>{errors.citizenship}</div>
-                    
-                            <AppText
-                                title={"Разрешение на работу"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                           
+                            <AppInput
+                                label={"Разрешение на работу"} 
                                 value={data.work_permit} 
                                 onChange={e => setData('work_permit', e.target.value)} 
                                 type="text"
                                 placeholder="Россия"
-                                className={s.inputBasiceData} 
+                                className={s.indentDownBasiceData}
+                                errorMessage={errors.work_permit}
                             />
-                            <div style={{color: "red"}}>{errors.work_permit}</div>
-                       
                         </div> 
 
                         <div className={s.educationResumePage}>
@@ -251,7 +212,7 @@ function CreateResume(){
                                 <AppText
                                     title={"Уровень образования"}
                                     bold
-                                    size={"s"}
+                                    size={"xs"}
                                     className={s.textTitle}
                                 />
                                 <div className={s.education}>
@@ -270,7 +231,7 @@ function CreateResume(){
                                                 <label for={el}>
                                                     <AppText
                                                         text={el}
-                                                        size={"m"}
+                                                        size={"s"}
                                                         className={s.textInputRadio}
                                                     />
                                                 </label>
@@ -301,63 +262,44 @@ function CreateResume(){
 
                             <div className={s.education}>
                                 <div>
-                                    <AppText
-                                        title={"Название учебного заведения"}
-                                        bold
-                                        size={"s"}
-                                        className={s.textTitle}
-                                    />
-                                    <input
+                                    <AppInput
+                                        label={"Название учебного заведения"}
                                         type="text"
                                         placeholder="Название"
-                                        className={s.inputBasiceData}
+                                        className={s.indentDownBasiceData}
                                     />
 
-                                    <AppText
-                                        title={"Факультет"}
-                                        bold
-                                        size={"s"}
-                                        className={s.textTitle}
-                                    />
-                                    <input
+                                    <AppInput
+                                        label={"Факультет"}
                                         type="text"
-                                        className={s.inputBasiceData}
+                                        className={s.indentDownBasiceData}
                                     />
 
-                                    <AppText
-                                        title={"Специализация"}
-                                        bold
-                                        size={"s"}
-                                        className={s.textTitle}
-                                    />
-                                    <input
+                                    <AppInput
+                                        label={"Специализация"}
                                         type="text"
-                                        className={s.inputBasiceData}
+                                        className={s.indentDownBasiceData}
                                     />
 
-                                    <AppText
-                                        title={"Год окончания"}
-                                        bold
-                                        size={"s"}
-                                        className={s.textTitle}
-                                    />
-                                    <input
+                                    
+                                    <AppInput
+                                        label={"Год окончания"}
                                         type="text"
-                                        className={s.inputYearsEducation}
+                                        width="100px"
+                                        className={s.indentDownBasiceData}
                                     />
                                         
                                 </div>
 
-                                <AppText
-                                    title={
-                                        <input
-                                            type="button"
-                                            value="Добавить учебное заведение"
-                                            className={s.buttonYearsEducation}
-                                        />}
+                                <AppButton
+                                    variant = "outline"
+                                    sizeText = "s"
                                     bold
-                                    size={"s"}
-                                />
+                                    type="button"
+                                    className={s.buttonYearsEducation}
+                                > Добавить учебное заведение
+                                </AppButton>
+            
                             </div> 
                         </div>
 
@@ -366,7 +308,7 @@ function CreateResume(){
                                 <AppText
                                     title={"Опыт работы"}
                                     bold
-                                    size={"s"}
+                                    size={"xs"}
                                     className={s.textTitle}
                                 />
                                 {arrayExperience.map((el) => {
@@ -384,7 +326,7 @@ function CreateResume(){
                                             <label for={el}>
                                                 <AppText
                                                     text={el}
-                                                    size={"m"}
+                                                    size={"s"}
                                                     className={s.textInputRadio}
                                                 />
                                             </label>
@@ -406,51 +348,37 @@ function CreateResume(){
                             </select>
                             <div style={{color: "red"}}>{errors.experience}</div> */}
                             
-                            <AppText
-                                title={"В какой компании вы работали?"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input
+                            <AppInput
+                                label={"В какой компании вы работали?"}
                                 type="text"
                                 placeholder="Название компании"
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
                             />
 
-                            <AppText
-                                title={"На какой должности?"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input
+                            <AppInput
+                                label={"На какой должности?"}
                                 type="text"
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
                             />
 
                             <AppText
                                 title={"Расскажите о ваших обязанностях и достижениях"}
                                 bold
-                                size={"s"}
+                                size={"xs"}
                                 className={s.textTitle}
                             />
-                                <textarea
-                                    className={s.textareaBasiceData}
-                                    placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
-                                />
+                            <textarea
+                                className={s.textareaBasiceData}
+                                placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
+                            />
                             <div className={s.experienceWork}>
                                                 
-                                <div className={s.experienceBeginningWork}>
-                                    <AppText
-                                        title={"Начало работы"}
-                                        bold
-                                        size={"s"}
-                                        className={s.textTitle}
-                                    />
-                                    <input 
+                                <div className={s.experienceBeginningWork}>         
+                                    <AppInput 
+                                        label={"Начало работы"}
                                         type="date" 
-                                        className={s.inputResumeDataBasice}
+                                        width="140px"
+                                        className={s.indentDownBasiceData}
                                     />
                                 </div>
 
@@ -458,8 +386,8 @@ function CreateResume(){
                                     <AppText
                                         title={"Окончание"}
                                         bold
-                                        size={"s"}
-                                            className={s.textTitle}
+                                        size={"xs"}
+                                        className={s.textTitle}
                                     />
                                     <div className={s.inputEndingWork}>
                                         <input 
@@ -470,7 +398,7 @@ function CreateResume(){
                                         <label for="checkboxEndingWork">
                                             <AppText
                                                 title={"По настоящее время"}
-                                                size={"s"}
+                                                size={"xs"}
                                                 className={s.textTitleEnding}
                                             />
                                         </label>
@@ -479,16 +407,15 @@ function CreateResume(){
                                                     
                                 </div>
 
-                                <AppText
-                                    title={
-                                        <input
-                                            type="button"
-                                            value="Добавить еще опыт работы"
-                                            className={s.buttonYearsExperience}
-                                        />}
+                                <AppButton
+                                    variant = "outline"
+                                    sizeText = "s"
                                     bold
-                                    size={"s"}
-                                /> 
+                                    type="button"
+                                    className={s.buttonYearsExperience}
+                                > Добавить еще опыт работы
+                                </AppButton>
+
                             </div>
                             
                         </div>
@@ -497,7 +424,7 @@ function CreateResume(){
                             <AppText
                                     title={"Ключевые навыки"}
                                     bold
-                                    size={"s"}
+                                    size={"xs"}
                                     className={s.textTitle}
                                 />
                                 {data.skills.map((skill, index) => {
@@ -508,7 +435,7 @@ function CreateResume(){
                                                 
                                                 <AppText
                                                 title={skill}
-                                                size={"m"}
+                                                size={"xs"}
                                                 className={s.textSkills}
                                             />
                                                 
@@ -516,7 +443,7 @@ function CreateResume(){
                                                 <AppButton
                                                     onClick={() => removeSkill(index)}
                                                     variant = "outline"
-                                                    sizeText = "s"
+                                                    sizeText = "xs"
                                                     bold
                                                     type="button"
                                                     className={s.buttonSkillDelete}
@@ -535,7 +462,7 @@ function CreateResume(){
                                 <AppButton
                                     onClick={() => addSkill()}
                                     variant = "outline"
-                                    sizeText = "m"
+                                    sizeText = "s"
                                     bold
                                     type="button"
                                     className={s.buttonSkillAdd}
@@ -566,7 +493,7 @@ function CreateResume(){
                         <AppButton 
                             type="submit"
                             bold 
-                            sizeText = "m"
+                            sizeText = "s"
                             className={s.buttonSave}>
                                 <span>Сохранить</span>
                             </AppButton>

@@ -31,6 +31,7 @@ function AppInput(props) {
             {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
             <input
                 value={value}
+                {...props}
                 onChange={onChange}
                 type={type}
                 placeholder={placeholder}
