@@ -6,8 +6,9 @@ import { Link } from "@inertiajs/react";
 
 function AppLink(props) {
     const {
-        path = "main",
+        href,
         param,
+        path,
         className,
         children,
         sizeText = "s",
@@ -17,7 +18,7 @@ function AppLink(props) {
     return (
         <Link
             {...props}
-            href={route(path, param)}
+            href={href ? href : route(path, param)}
             className={cn(
                 s.appLink,
                 s[sizeText],

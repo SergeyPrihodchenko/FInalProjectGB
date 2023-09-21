@@ -27,7 +27,8 @@ export const Navbar = (props) => {
                             <AppLink colorType="accent" className={s.navLink}>Работодателям</AppLink>
                         </li> */}
                         <li>
-                            <AppLink colorType="accent"
+                            <AppLink
+                                colorType="accent"
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("resume.create")}
                             >
@@ -35,7 +36,8 @@ export const Navbar = (props) => {
                             </AppLink>
                         </li>
                         <li>
-                            <AppLink colorType="accent"
+                            <AppLink
+                                colorType="accent"
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("vacancy.index")}
                             >
@@ -43,7 +45,8 @@ export const Navbar = (props) => {
                             </AppLink>
                         </li>{" "}
                         <li>
-                            <AppLink colorType="accent"
+                            <AppLink
+                                colorType="accent"
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("vacancy.create")}
                             >
@@ -58,19 +61,22 @@ export const Navbar = (props) => {
                                 Создать вакансию front
                             </AppLink>
                         </li> */}
-                        <AppLink colorType="accent"
+                        <AppLink
+                            colorType="accent"
                             href={route("company")}
                             className={cn(s.navLink)}
                         >
                             Компания
                         </AppLink>
-                        <AppLink colorType="accent"
+                        <AppLink
+                            colorType="accent"
                             href={route("company.create")}
                             className={cn(s.navLink)}
                         >
                             back(Создать компанию)
                         </AppLink>
-                        <AppLink colorType="accent"
+                        <AppLink
+                            colorType="accent"
                             href={route("company.index")}
                             className={cn(s.navLink)}
                         >
@@ -79,7 +85,8 @@ export const Navbar = (props) => {
                         {!user ? (
                             <>
                                 <li>
-                                    <AppLink colorType="accent"
+                                    <AppLink
+                                        colorType="accent"
                                         href={route("register")}
                                         className={cn(s.navLink)}
                                     >
@@ -87,7 +94,8 @@ export const Navbar = (props) => {
                                     </AppLink>
                                 </li>
                                 <li>
-                                    <AppLink colorType="accent"
+                                    <AppLink
+                                        colorType="accent"
                                         href={route("login")}
                                         className={cn(s.navLink)}
                                     >
@@ -97,7 +105,8 @@ export const Navbar = (props) => {
                             </>
                         ) : (
                             <>
-                                <AppLink colorType="accent"
+                                <AppLink
+                                    colorType="accent"
                                     href={route("profilePage")}
                                     className={cn(s.navLink, [
                                         "hover:text-white ",
@@ -117,7 +126,8 @@ export const Navbar = (props) => {
                                     />
                                 </AppLink>
 
-                                <AppLink colorType="accent"
+                                <AppLink
+                                    colorType="accent"
                                     href={route("logout")}
                                     method="post"
                                     className={cn(s.navLink)}

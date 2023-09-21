@@ -1,6 +1,6 @@
-.appLink {
+/* .appLink {
     transition: var(--transition-delay) linear;
-}
+} */
 
 /* Text sizws */
 .xs {
@@ -27,14 +27,25 @@
 }
 .primary {
     color: var(--primary-text);
+    transition: var(--transition-delay) linear;
 }
 .secondary {
     color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
 }
 .accent {
     color: var(--accent);
+    transition: var(--transition-delay) linear;
 }
-.appLink:hover {
+.primary:hover {
+    color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
+}
+.secondary:hover {
+    color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
+}
+.accent:hover {
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
 }
