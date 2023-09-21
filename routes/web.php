@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Company\CompanyController;
 
-use App\Http\Controllers\ReviewsOfCompany\ReviewsOfCompanyController;
+
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Vacancy\FilterVacanciesController;
 use App\Http\Controllers\Main\MainController;
@@ -66,5 +66,5 @@ Route::get('/vacancylist', function () {
 Route::get('/vacancies/filter', [FilterVacanciesController::class, 'index']);
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
 Route::resource('company', CompanyController::class);
-Route::resource('company', ReviewsOfCompanyController::class);
+
 
