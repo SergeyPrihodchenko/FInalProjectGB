@@ -38,6 +38,7 @@ const Vacancy = ({
     });
 
     const user = auth?.user;
+    console.log(cities);
 
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
