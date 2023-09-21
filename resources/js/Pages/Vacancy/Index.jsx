@@ -22,7 +22,8 @@ const Vacancy = ({
     auth,
     experience,
     schedule,
-    employment
+    employment,
+    cities
 }) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
