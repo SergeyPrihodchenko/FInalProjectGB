@@ -14,6 +14,7 @@ function AppInput(props) {
         textBold = true,
         isFocused = false,
         errorMessage,
+        onChange,
         ref,
         className,
     } = props;
@@ -25,9 +26,10 @@ function AppInput(props) {
     }, []);
 
     return (
-        <div className={cn(s.appInput, className)}>
+        <div className={cn(className, s.appInput)}>
             {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
             <input
+                onChange={onChange}
                 type={type}
                 placeholder={placeholder}
                 className={cn(s.input, s[borderRadius], {
@@ -35,7 +37,6 @@ function AppInput(props) {
                 })}
                 style={{ width: width }}
                 ref={input}
-                {...props}
             />
             {errorMessage && <p className={s.error}>{errorMessage}</p>}
         </div>
@@ -58,6 +59,7 @@ AppInput.propTypes = {
     width: PropTypes.string,
     textBold: PropTypes.bool,
     isFocused: PropTypes.bool,
+    onChange: PropTypes.func,
 };
 
 export default AppInput;
