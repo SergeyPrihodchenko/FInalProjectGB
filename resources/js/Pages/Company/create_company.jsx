@@ -8,6 +8,7 @@ const Company = ({auth}) => {
 
     const {data, setData, post, errors} = useForm({
         name: '',
+        email: '',
     })
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,6 +23,8 @@ const Company = ({auth}) => {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="title">Имя:</label>
                     <input id="title" value={data.name} onChange={e => setData('name', e.target.value)} />
+                    <label htmlFor="title">Имя:</label>
+                    <input id="title" value={data.email} onChange={e => setData('email', e.target.value)} />
 
                     <button type="submit">Отправить</button>
                 </form>
