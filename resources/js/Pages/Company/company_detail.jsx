@@ -4,15 +4,11 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { Typography } from "@/8Shared/Typography/Typography";
 import React, { useState } from "react";
 
-
-
-
-
-
-const Company = ({ company }) => {
+const Company = ({ company, auth }) => {
+    const user = auth?.user;
     console.log("company", company);
     return (
-        <MainLayout>
+        <MainLayout className={"app_light_theme"} user={user}>
             <AppPage>
                 {company ? (
                     <div>
@@ -20,7 +16,6 @@ const Company = ({ company }) => {
                         почта <div>{company.email}</div>
                     </div>
                 ) : null}
-
             </AppPage>
         </MainLayout>
     );
