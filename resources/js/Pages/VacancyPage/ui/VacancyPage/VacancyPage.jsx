@@ -43,8 +43,21 @@ function VacancyPage(props) {
                             vacancyPageList={data}
                             className={s.list}
                         />
+                        {vacancy?.adress ? (
+                            <VacancyPageAdress
+                                className={s.adress}
+                                vacancy={vacancy}
+                            />
+                        ) : (
+                            <div className={s.adress}>
+                                <AppText title="Адрес" bold variant="error" />
+                                <AppText
+                                    title={"TODO адрес не передан в пропсах"}
+                                    variant="error"
+                                />
+                            </div>
+                        )}
 
-                        <VacancyPageAdress className={s.adress} />
                         <AppText
                             text="Вакансия опубликована 28 августа 2023 в Москве"
                             variant="notaccented"

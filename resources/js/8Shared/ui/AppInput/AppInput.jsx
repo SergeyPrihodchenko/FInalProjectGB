@@ -25,9 +25,10 @@ function AppInput(props) {
     }, []);
 
     return (
-        <div className={cn(s.appInput, className)}>
+        <div className={cn(className, s.appInput)}>
             {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
             <input
+                {...props}
                 type={type}
                 placeholder={placeholder}
                 className={cn(s.input, s[borderRadius], {
@@ -35,7 +36,6 @@ function AppInput(props) {
                 })}
                 style={{ width: width }}
                 ref={input}
-                {...props}
             />
             {errorMessage && <p className={s.error}>{errorMessage}</p>}
         </div>

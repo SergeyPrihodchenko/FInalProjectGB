@@ -7,7 +7,7 @@ import cn from "classnames";
 import Map from "./Map";
 
 function VacancyPageAdress(props) {
-    const { className } = props;
+    const { className, vacancy } = props;
     // MAP
     const [x, setX] = useState(55.70104408991864);
     const onXChange = (e) => setX(e.target.value);
@@ -42,19 +42,23 @@ function VacancyPageAdress(props) {
                 />
             </div> */}
 
-            <Map
-                className={s.map}
-                width={1200}
-                height={300}
-                options={options}
-            />
-            <AppButton variant="clear" width="content-width">
-                <AppText
-                    text="Показать на большой карте"
-                    variant="accent"
-                    size="s"
-                />
-            </AppButton>
+            {vacancy?.adress ? (
+                <>
+                    <Map
+                        className={s.map}
+                        width={1200}
+                        height={300}
+                        options={options}
+                    />
+                    <AppButton variant="clear" width="content-width">
+                        <AppText
+                            text="Показать на большой карте"
+                            variant="accent"
+                            size="s"
+                        />
+                    </AppButton>
+                </>
+            ) : null}
         </div>
     );
 }
