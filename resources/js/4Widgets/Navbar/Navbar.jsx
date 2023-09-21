@@ -57,6 +57,23 @@ export const Navbar = (props) => {
                         >
                             Компания
                         </Link>
+                        <Link
+                            href={route("company.create")}
+                            className={cn(s.navLink, [
+                                "font-semibold text-gray-600 hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
+                            ])}
+                        >
+                            back Создать компанию
+                        </Link>
+                        <Link
+                            href={route("company.index")}
+                            className={cn(s.navLink, [
+                                "font-semibold text-gray-600 hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
+                            ])}
+                        >
+                            back Список компаний
+                        </Link>
+
                         {!user ? (
                             <>
                                 <li>
