@@ -8,6 +8,7 @@ import { Logo } from "../../8Shared/Logo/Logo";
 import mainlogo from "@/8Shared/assets/icons/mainlogo.svg";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import SecondNav from "../SecondNav/SecondNav";
+import AppLink from "@/8Shared/ui/AppLink/AppLink";
 
 export const Navbar = (props) => {
     const { user } = props;
@@ -20,77 +21,92 @@ export const Navbar = (props) => {
                     <Logo src={mainlogo} alt={"Логотип"} href={route("main")} />
                     <ul className={s.navList}>
                         {/* <li>
-                            <Link className={s.navLink}>Соискателям</Link>
+                            <AppLink colorType="accent" className={s.navLink}>Соискателям</AppLink>
                         </li>
                         <li>
-                            <Link className={s.navLink}>Работодателям</Link>
+                            <AppLink colorType="accent" className={s.navLink}>Работодателям</AppLink>
                         </li> */}
                         <li>
-                            <Link
+                            <AppLink
+                                colorType="accent"
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("resume.create")}
                             >
                                 Создать резюме
-                            </Link>
+                            </AppLink>
                         </li>
                         <li>
-                            <Link
+                            <AppLink
+                                colorType="accent"
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("vacancy.index")}
                             >
                                 Вакансии
-                            </Link>
+                            </AppLink>
                         </li>{" "}
                         <li>
-                            <Link
+                            <AppLink
+                                colorType="accent"
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("vacancy.create")}
                             >
                                 Создать вакансию
-                            </Link>
+                            </AppLink>
                         </li>
                         {/* <li>
-                            <Link
+                            <AppLink colorType="accent"
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("vacancy.create")}
                             >
                                 Создать вакансию front
-                            </Link>
+                            </AppLink>
                         </li> */}
-                        <Link
+                        <AppLink
+                            colorType="accent"
                             href={route("company")}
-                            className={cn(s.navLink, [
-                                "font-semibold text-gray-600 hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
-                            ])}
+                            className={cn(s.navLink)}
                         >
                             Компания
-                        </Link>
+                        </AppLink>
+                        <AppLink
+                            colorType="accent"
+                            href={route("company.create")}
+                            className={cn(s.navLink)}
+                        >
+                            back(Создать компанию)
+                        </AppLink>
+                        <AppLink
+                            colorType="accent"
+                            href={route("company.index")}
+                            className={cn(s.navLink)}
+                        >
+                            back(Список компаний)
+                        </AppLink>
                         {!user ? (
                             <>
                                 <li>
-                                    <Link
+                                    <AppLink
+                                        colorType="accent"
                                         href={route("register")}
-                                        className={cn(s.navLink, [
-                                            "font-semibold text-gray-600 hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
-                                        ])}
+                                        className={cn(s.navLink)}
                                     >
                                         Регистрация
-                                    </Link>
+                                    </AppLink>
                                 </li>
                                 <li>
-                                    <Link
+                                    <AppLink
+                                        colorType="accent"
                                         href={route("login")}
-                                        className={cn(s.navLink, [
-                                            "font-semibold text-gray-600 hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
-                                        ])}
+                                        className={cn(s.navLink)}
                                     >
                                         Войти
-                                    </Link>
+                                    </AppLink>
                                 </li>
                             </>
                         ) : (
                             <>
-                                <Link
+                                <AppLink
+                                    colorType="accent"
                                     href={route("profilePage")}
                                     className={cn(s.navLink, [
                                         "hover:text-white ",
@@ -108,17 +124,16 @@ export const Navbar = (props) => {
                                         name={"BsPersonCircle"}
                                         size={30}
                                     />
-                                </Link>
+                                </AppLink>
 
-                                <Link
+                                <AppLink
+                                    colorType="accent"
                                     href={route("logout")}
                                     method="post"
-                                    className={cn(s.navLink, [
-                                        "font-semibold text-gray-600 hover:text-white dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500",
-                                    ])}
+                                    className={cn(s.navLink)}
                                 >
                                     Выйти
-                                </Link>
+                                </AppLink>
                             </>
                         )}
                         {/* <Link href={route('login')} className={s.navLink}>Войти</Link> */}

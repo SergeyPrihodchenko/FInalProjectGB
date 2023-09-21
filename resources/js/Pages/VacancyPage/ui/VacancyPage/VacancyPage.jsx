@@ -19,7 +19,6 @@ function VacancyPage(props) {
     const { auth, vacancy } = props;
     const user = auth?.user;
     console.log("VacancyPage.jsx vacancy", vacancy);
-    console.log("VacancyPage.jsx props", props);
 
     return (
         <MainLayout className="app_light_theme" user={user}>
@@ -35,13 +34,30 @@ function VacancyPage(props) {
                 {/* <AppInput label="123" placeholder="placeholder"  /> */}
                 <AppPage>
                     <div className={s.vacancyPage}>
-                        <VacancyPageCards className={s.cards} />
+                        <VacancyPageCards
+                            className={s.cards}
+                            vacancy={vacancy}
+                        />
                         <VacancyPageList
+                            vacancy={vacancy}
                             vacancyPageList={data}
                             className={s.list}
                         />
+                        {vacancy?.adress ? (
+                            <VacancyPageAdress
+                                className={s.adress}
+                                vacancy={vacancy}
+                            />
+                        ) : (
+                            <div className={s.adress}>
+                                <AppText title="Адрес" bold variant="error" />
+                                <AppText
+                                    title={"TODO адрес не передан в пропсах"}
+                                    variant="error"
+                                />
+                            </div>
+                        )}
 
-                        <VacancyPageAdress className={s.adress} />
                         <AppText
                             text="Вакансия опубликована 28 августа 2023 в Москве"
                             variant="notaccented"

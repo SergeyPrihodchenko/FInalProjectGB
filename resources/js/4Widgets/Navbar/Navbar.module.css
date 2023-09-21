@@ -22,4 +22,5 @@
 }
 .navLink:hover .name p {
     color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
 }

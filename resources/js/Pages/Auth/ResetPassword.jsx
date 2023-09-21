@@ -34,7 +34,6 @@ export default function ResetPassword({ token, email }) {
 
             <form onSubmit={submit}>
                 <div>
-                 
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput

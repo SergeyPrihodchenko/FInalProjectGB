@@ -10,10 +10,13 @@ import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
+import { useState } from "react";
 function CreateVacancyPage(props) {
     const { auth, vacancy, btn } = props;
     const user = auth?.user;
-    console.log("CreateVacancyPage props", props);
+    // console.log("CreateVacancyPage props", props);
+    const [requireInput, setRequireInput] = useState("");
+    const [requirements, setRequirements] = useState([]);
     const experience = [
         "Нет опыта",
         "Не имеет значения",
@@ -38,6 +41,7 @@ function CreateVacancyPage(props) {
     return (
         <MainLayout className="app_light_theme" user={user}>
             <Head title="CreateVacancyPage" />
+
             <AppPage>
                 {btn}
 
@@ -60,6 +64,7 @@ function CreateVacancyPage(props) {
                         <AppInput
                             label="Где искать сотрудника"
                             placeholder="Город"
+                            className={s.input}
                         />
                         <div>
                             <AppText
@@ -147,12 +152,40 @@ function CreateVacancyPage(props) {
                             </>
                         )}
                         {/* Требования */}
-                        <div className={cn(s.responsibilities, s.item)}>
-                            <AppInput label="Требования к соискателю" />
+                        <div className={cn(s.requirements, s.item)}>
+                            <AppInput
+                                label="Требования к соискателю"
+                                value={requireInput}
+                                onChange={(e) => {
+                                    setRequireInput(e.target.value);
+                                    console.log(requireInput);
+                                }}
+                            />
+                            {requirements ? (
+                                <div className={s.requireItem}>
+                                    {/* {requirements?.map((requireItme, index) => {
+                                        return (
+                                            <div className={s.itme} key={index}>
+                                                {requireItme}
+                                            </div>
+                                        );
+                                    })} */}
+                                </div>
+                            ) : null}
                             <AppButton
                                 variant="clear"
                                 colorType="hint"
                                 sizeText="s"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setRequirements([
+                                        ...requirements,
+                                        requireInput,
+                                    ]);
+                                    setRequireInput("");
+                                    console.log("requireInput", requireInput);
+                                    console.log("requirements", requirements);
+                                }}
                             >
                                 Добавить требование
                             </AppButton>

@@ -12,7 +12,8 @@ export const Search = ({
     width,
     uri,
     className,
-    method = 'get'
+    method = 'get',
+    filterChange
 }) => {
     const [param, setParam] = useState('');
     const [suggestions, setSuggestions] = useState([]); //список предложенных вакансий
@@ -31,7 +32,6 @@ export const Search = ({
         axios.get(`/searchSort?str=${debouncedVac}`)
             .then((res) => {
                 setSuggestions(res.data);
-                console.log(res.data);
 
             })
             .catch((err) => console.log(err))
@@ -40,6 +40,7 @@ export const Search = ({
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
+        filterChange(value);
     };
 
     const handleClick = (e) => {
