@@ -33,6 +33,7 @@ const Vacancy = ({
         employment: [],
         schedule: [],
         experience: '',
+        title: ''
     });
 
     const user = auth?.user;
@@ -103,6 +104,17 @@ const Vacancy = ({
     //     }
     // }, []);
 
+    const setValueChange = (value) => {
+        setFilterData((prevState) => {
+            return {
+                ...prevState,
+                'title': value
+            }
+        }
+        );
+        console.log(filterData.title);
+    }
+
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
 
@@ -111,6 +123,7 @@ const Vacancy = ({
                 let copy = { ...filterData };
                 checked ? copy[name].push(value) : copy[name].splice(copy[name].indexOf(value), 1);
                 setFilterData(copy)
+                console.log(setValueChange());
                 break;
             case "radio":
                 if (checked) {
@@ -124,6 +137,7 @@ const Vacancy = ({
                     );
                 }
                 break;
+                console.log(filterData);
             default:
                 setFilterData(filterData)
                 break;
@@ -156,7 +170,7 @@ const Vacancy = ({
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
-                <Search width={'500px'} />
+                <Search width={'500px'} filterChange={setValueChange} />
                 <div className={s.vacancyWrapper}>
                     <VacancyFilter
                         handleChange={handleChange}

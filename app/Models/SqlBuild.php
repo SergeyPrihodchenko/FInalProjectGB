@@ -26,6 +26,8 @@ class SqlBuild
                     // if($value == 6) {
                     //     $vacancy = $vacancy->where($key, '>=' , $value);
                     // }
+            } elseif($key == 'title' && !empty($value)) {
+                $vacancy = $vacancy->where($key, 'LIKE', '%'.$value.'%');
             }
         }
         return $vacancy->paginate(3);
