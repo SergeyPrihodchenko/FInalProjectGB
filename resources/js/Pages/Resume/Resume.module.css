@@ -7,11 +7,14 @@
 .inputDataBasiceData,
 .textareaBasiceData,
 .textSkill,
-.inputResumeDataBasice {
+.inputResumeDataBasice,
+.inputResumeEducation {
     box-sizing: border-box;
     width: 760px;
     height: 60px;
-    
+    font-size: var(--font-size-m);
+    padding: 10px;
+
     background: var(--light-bg);
     border: 1px solid var(--light-skeleton-shadow);
     border-radius: var(--border-radius-s);
@@ -19,7 +22,10 @@
 }
 
 .inputResumeDataBasice{
-    width: 150px;
+    width: 170px;
+}
+.inputResumeEducation{
+    width: 380px;
 }
 
 .inputBasiceData:focus,
@@ -33,7 +39,6 @@
     background: var(--light-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
-    color: var(--accent);
 
 }
 
@@ -169,12 +174,13 @@
     opacity: 1;
 }
 
-.textSkill {
+.textSkill,
+.textSkills {
     box-sizing: border-box;
-    width: 226px;
+    width: 300px;
     height: 33px;
 
-    padding-top: 5px;
+    padding-top: 10px;
 }
 
 .experienceWork {
@@ -199,6 +205,7 @@
 }
 
 .keySkillsTextAll{
+    margin-bottom: 10px;
     display: flex;
     justify-content: flex-start;
 }

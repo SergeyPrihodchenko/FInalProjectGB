@@ -10,7 +10,7 @@
 
 .resumeList{
     margin: 50px 0px 30px 0px;
-    padding: 10px 10px 10px 140px;
+    padding: 10px 10px 10px 10px;
 
     background: var( --light-bg);
     box-shadow: var(--shadow-dark);

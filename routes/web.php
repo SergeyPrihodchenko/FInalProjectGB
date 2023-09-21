@@ -26,16 +26,10 @@ Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
 })->middleware(['auth', 'verified'])->name('profilePage');
 
-//testResumePages
-Route::get('/testResumePageForm', function () {
-    return Inertia::render('ResumeFormCreate/ResumeFormCreate');
-})->name('resumeForm');
-
-Route::get('/testResumePage', function () {
-    return Inertia::render('ResumePage/ResumePage');
-})->name('resumePage');
-
-
+//testCompanyCreate
+Route::get('/testCompanyCreate', function () {
+    return Inertia::render('Company/CreateCompany');
+})->name('companyCreate');
 
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 

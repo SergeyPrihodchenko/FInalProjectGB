@@ -11,6 +11,8 @@
     box-sizing: border-box;
     width: 760px;
     height: 60px;
+    font-size: var(--font-size-m);
+    padding: 10px;
     
     background: var(--light-bg);
     border: 1px solid var(--light-skeleton-shadow);
@@ -19,21 +21,20 @@
 }
 
 .inputResumeDataBasice{
-    width: 150px;
+    width: 200px;
 }
 
 .textSkill::placeholder,
 .inputBasiceData::placeholder,
 .textareaBasiceData::placeholder{
-    padding-left: 10px;
+    
     font-family: var(--font-family-main);
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: var(--font-size-m);
     line-height: 23px;
     display: flex;
     align-items: center;
-
     color: var(--not-accented);
 }
 
@@ -49,8 +50,6 @@
     background: var(--light-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
-    color: var(--accent);
-
 }
 
 .inputDataBasice {
@@ -126,7 +125,7 @@
     height: 22px;
     border: 1px solid var(--light-skeleton-shadow);
     background: var(--light-bg);
-    border-radius: 30px;
+    border-radius: var(--border-radius-l);
     -webkit-transition: all .275s;
     transition: all .275s;
 }
@@ -164,14 +163,14 @@
 .inputRadioCreateResume:not(:checked) + label:after {
     content: '';
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 6px;
+    left: 6px;
     color: var(--accent);
     line-height: 0;
     -webkit-transition: all .2s;
     transition: all .2s;
     border: 6px solid var(--accent);
-    border-radius: 30px;
+    border-radius: var(--border-radius-l);
     background: var(--light-bg);
 }
 
@@ -185,12 +184,14 @@
     opacity: 1;
 }
 
-.textSkill {
+.textSkill,
+.textSkills {
+
     box-sizing: border-box;
-    width: 226px;
+    width: 300px;
     height: 33px;
 
-    padding-top: 5px;
+    padding: 10px;
 }
 
 .experienceWork {
@@ -215,6 +216,7 @@
 }
 
 .keySkillsTextAll{
+    margin-bottom: 10px;
     display: flex;
     justify-content: flex-start;
 }

@@ -359,7 +359,7 @@ function Resume({resume}){
                                 <select name="education" id="education"
                                     onChange={e => setData('education', e.target.value)}
                                     value={data.education}
-                                    className={s.inputResumeDataBasice}
+                                    className={s.inputResumeEducation}
                                 >
                                     <option value="Не выбрано">Не выбрано</option>
                                     <option value="Среднее">Среднее</option>
