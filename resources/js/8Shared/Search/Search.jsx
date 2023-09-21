@@ -40,7 +40,7 @@ export const Search = ({
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
-        filterChange(value);
+        filterChange(e.target.value);
     };
 
     const handleClick = (e) => {
