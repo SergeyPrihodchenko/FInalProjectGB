@@ -10,15 +10,18 @@ function AppLink(props) {
         param,
         className,
         children,
-        sizeText = "m",
+        sizeText = "s",
         bold,
+        colorType = "primary",
     } = props;
     return (
         <Link
+            {...props}
             href={route(path, param)}
             className={cn(
                 s.appLink,
                 s[sizeText],
+                s[colorType],
                 { [s.bold]: bold },
                 className
             )}
@@ -30,6 +33,7 @@ function AppLink(props) {
 
 AppLink.propTypes = {
     sizeText: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
+    colorType: PropTypes.oneOf(["accent", "primary", "secondary"]),
 };
 
 export default AppLink;

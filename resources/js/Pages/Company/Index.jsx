@@ -19,7 +19,21 @@ const Company = ({ companies, name, auth }) => {
         return (
             <MainLayout>
                 <AppPage>
-                    <Typography variant={"h2"}>Здесь должен отобразится список всех компаний</Typography>
+                    {companies
+                        ? companies.map((compnayItem, index) => {
+                            return (
+                                <div>
+                                    <AppLink
+                                        path={"company.show"}
+                                        param={compnayItem.id}
+                                        key={compnayItem.id}
+                                    >
+                                        {compnayItem.name}
+                                    </AppLink>
+                                </div>
+                            );
+                        })
+                        : null}
                 </AppPage>
             </MainLayout>
         );

@@ -14,7 +14,13 @@ const Company = ({ company }) => {
     return (
         <MainLayout>
             <AppPage>
-                <Typography variant={"h2"}>Здесь отображается конкретная компания</Typography>
+                {company ? (
+                    <div>
+                        имя <div>{company.name}</div>
+                        почта <div>{company.email}</div>
+                    </div>
+                ) : null}
+
             </AppPage>
         </MainLayout>
     );
