@@ -6,6 +6,7 @@ import { AuthContext } from "@/8Shared/store/AuthContext";
 import s from "./CreateResume.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 const arrayEducation = [
     "Среднее",
@@ -72,18 +73,19 @@ function CreateResume(){
                         
                   
                         <div className={s.basiceData}>
-                            <AppText
+                            {/* <AppText
                                 title={"Профессия"}
                                 bold
                                 size={"s"}
                                 className={s.textTitle}
-                            />
-                            <input 
+                            /> */}
+                            <AppInput
+                                label= {"Профессия"}
                                 value={data.profession} 
                                 onChange={e => setData('profession', e.target.value)} 
                                 type="text" 
                                 placeholder="Дизайнер"
-                                className={s.inputBasiceData}
+                                // className={s.inputBasiceData}
                             />
                             <div style={{color: "red"}}>{errors.profession}</div>
                             

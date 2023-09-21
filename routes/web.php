@@ -29,6 +29,9 @@ Route::get('/profilePage', function () {
 Route::get('/testCompanyCreate', function () {
     return Inertia::render('Company/CreateCompany');
 })->name('companyCreate');
+Route::get('/testCompanyList', function () {
+    return Inertia::render('Company/CompanyList');
+})->name('companyList');
 
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
