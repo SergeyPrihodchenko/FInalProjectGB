@@ -19,6 +19,20 @@ const Company = ({auth}) => {
         post(route('company.store'))
     }
 
+    // file.change(function(){
+    //     // Если файл прикрепили то заносим значение value в переменную
+    //     let fileResult = $(this).val();
+    //     // И дальше передаем значение в инпут который под загрузчиком
+    //     $(this).parent().find('.fileLoad').find('input').val(fileResult);
+    // });
+
+    // /* Добавляем новый класс кнопке если инпут файл получил фокус */
+    // $('#file').hover(function(){
+    //     $(this).parent().find('button').addClass('button-hover');
+    // }, function(){
+    //     $(this).parent().find('button').removeClass('button-hover');
+    // });
+    
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
@@ -65,7 +79,30 @@ const Company = ({auth}) => {
                                 size={"xs"}
                                 className={s.textTitle}
                             />
-                            <form>
+
+                            <div className={s.logoCompanyUpload}>
+                                <div className={s.fileLoadBlock}>
+                                    <input 
+                                        type="file" 
+                                        value="" 
+                                        id="file"
+                                        className={s.fileCompany}
+                                    />
+                                    <div className={s.inputlogoUpload}>
+                                        <input 
+                                            type="text"
+                                            className={s.textFileCompany}
+                                        />
+                                        <AppButton 
+                                            type="submit"
+                                            bold 
+                                            sizeText = "xs"
+                                        ><span>Загрузить</span>
+                                        </AppButton>
+                                    </div>
+                                </div>
+                            </div>
+                         {/* <form>
                                 <div className={s.logoUpload}>
                                     <input
                                         type="file"
@@ -80,7 +117,7 @@ const Company = ({auth}) => {
                                             <span>Загрузить</span>
                                         </AppButton>
                                 </div>
-                            </form>  
+                            </form>   */}
                            
                             <AppInput 
                                 label={"Город или регион расположения"} 

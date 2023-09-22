@@ -88,25 +88,32 @@ function ResumePage({resumes}){
                                     </div>
 
                                 </div>
-                                <div className={s.linkViewResume}>
+                            <div className={s.linkViewResume}>
 
                                 <form method="LINK" action={route("resumePage")}>
-
+                                
                                     <AppButton 
                                         sizeText="s"
+                                        height="60px"
                                     >Просмотреть резюме</AppButton>
 
                                 </form>
 
-                                    <AppLink
+                                    <AppButton
                                         path={'resume.show'}
                                         param={resume.id}
                                         key={resume.id}
                                         sizeText = "s"
                                         className={s.linkResumeList}
-                                    >Редактировать резюме</AppLink>
-                                </div>                            
-                            </div>     
+                                    >Редактировать резюме</AppButton>
+
+                                 {/* <AppText
+                                title={"Сделать активной кнопку редаткировать только для пользователя чье резюме открыто"}
+                                variant={"error"}
+                                />  */}
+                                    
+                            </div>                            
+                        </div>     
                             )
                         })}
                     </main>

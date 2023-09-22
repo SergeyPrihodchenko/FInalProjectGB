@@ -62,22 +62,11 @@
 } */
 
 .linkViewResume{
-    height: 60px;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .linkResumeList{
-    font-family: var(--font-family-main);
-    padding: 10px;
-    color: var( --light-bg);
-    background-color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: var(--border-radius-s);
-}
-
-.linkResumeList:hover{
-    font-family: var(--font-family-main);
-    color: var(--accent);
-    background-color: var( --light-bg);
-    border: 1px solid var(--accent);
-    border-radius: var(--border-radius-s);
+    margin-left: 10px;
+    padding-top: 18px;
 }
