@@ -6,7 +6,7 @@ import { VacancyPageCreate } from "../VacancyPageCreate";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 const Vacancy = ({ auth, companies }) => {
-    const [isShowContent, setIsShowContent] = useState(true);
+    const [isShowContent, setIsShowContent] = useState(false);
     console.log("companies", companies);
     const user = auth?.user;
 
