@@ -21,7 +21,11 @@ function ProfilePage({ auth }) {
                 <AppPage>
                     <container className={s.profilePage}>
                         <main className={s.mainProfilePage}>
-                            <AppText title={"Настройки"} size={"l"} />
+                            <AppText 
+                                title={"Настройки"} 
+                                size={"m"}
+                                bold 
+                            />
 
                             <ProfilePageTabs />
 

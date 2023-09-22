@@ -10,58 +10,40 @@
 
 .textForm {
     width: 30%;  
-    float: left;    
+    float: left;
+    font-size: var(--font-size-m);    
 }
 
-.inputFormProfile {
+.inputFormProfile,
+.inputFormProfileUpdate {
     border: none;
-    width: 392px;
+    width: 400px;
     height: 40px;
     background-color: #CFF3FE;
-    padding-right: 100px;
+    padding-right: 0px;
     padding-bottom: 20px;
+    margin-right: 200px;
 }
 
-.inputFormProfile::placeholder  {
-    font-size: 20px;
+.inputFormProfile::placeholder,
+.inputFormProfileUpdate::placeholder  {
+    font-size: var(--font-size-m);
     color: var(--dark-bg);
-    text-align: center;
     font-family: var(--font-family-main); 
-    padding-right: 110px;
+    padding-left: 10px;
+}
+
+.inputFormProfileUpdate{
+    margin-right: 300px;
 }
 
 .btnFormProfile {
     margin-top: 10px;
     border: none;
     background-color: #CFF3FE;
-    padding-left: 100px;
 }
-
-/* .hidden {
-    display:none;
-}
-
-.open {
-    display: block;
-} */
 
 .divLeft {
-    float: right;
-    width: 30%; 
-}
-
-.inputFormProfileUpdate {
-    border: none;
-    width: 400px;
-    height: 40px;
-    background-color: #CFF3FE;
-    padding-right: 100px;
-    padding-bottom: 20px;
-    margin-right: 285px;
-}
-
-.inputFormProfileUpdate::placeholder {
-    font-size: 20px;
-    color: var(--dark-bg);
-    padding-left: 20px;
+    float: right; 
+    margin-right: 12px; 
 }
