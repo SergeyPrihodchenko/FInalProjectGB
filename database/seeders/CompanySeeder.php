@@ -21,11 +21,14 @@ class CompanySeeder extends Seeder
         $response = [];
         for ($i = 0; $i < 10; $i++) {
             $response[] = [
-                'name' => fake('ru_RU')->company,
                 'email' => fake()->safeEmail,
+                'name' => fake('ru_RU')->company,
+                'business_profile' =>  fake('ru_RU')->title,
                 'website' => fake()->url,
+                'region_of_location' => fake('ru_RU')->city,
+                'date_create' => fake('ru_RU')->date,
                 'phone_number' => fake()->phoneNumber,
-                'address' =>  fake('ru_RU')->address,
+                'description' => fake('ru_RU')->text(),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

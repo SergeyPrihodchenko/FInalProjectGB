@@ -12,11 +12,14 @@ class Company extends Model
     protected $table = 'companies';
 
     protected $fillable = [
-        'name',
         'email' ,
+        'name',
+        'business_profile',
         'website',
-        'phone_number' ,
-        'address'
+        'region_of_location',
+        'date_create',
+        'phone_number',
+        'description',
     ];
 
     public function vacancies()
