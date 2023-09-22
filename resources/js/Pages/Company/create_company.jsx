@@ -41,7 +41,7 @@ const Company = ({ auth }) => {
                     <label htmlFor="region_of_location">Город или регион расположения:</label>
                     <input id="region_of_location" value={data.region_of_location} onChange={e => setData('region_of_location', e.target.value)} />
                     <label htmlFor="date_create">Дата основания:</label>
-                    <input id="date_create" value={data.date_create} onChange={e => setData('date_create', e.target.value)} />
+                    <input type="date" id="start" name="trip-start"   value={data.date_create} onChange={e => setData('date_create', e.target.value)} />
                     <label htmlFor="phone_number">Контактный номер телефона:</label>
                     <input id="phone_number" value={data.phone_number} onChange={e => setData('phone_number', e.target.value)} />
                     <label htmlFor="description">Раскажите о всоей компании:</label>
