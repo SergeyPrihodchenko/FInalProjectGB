@@ -1,9 +1,9 @@
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
-import {AppPage} from "@/5Layouts/AppPage/AppPage";
-import React, {useState} from "react";
-import {useForm} from "@inertiajs/react";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
+import React, { useState } from "react";
+import { useForm } from "@inertiajs/react";
 
-const Company = ({auth}) => {
+const Company = ({ auth }) => {
     const user = auth?.user;
 
     const {data, setData, post, errors} = useForm({
@@ -17,14 +17,15 @@ const Company = ({auth}) => {
         description: '',
         date_create: '',
     })
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route('company.store'))
-    }
+        post(route("company.store"));
+    };
 
     return (
-        <MainLayout className={"app_light_theme"}>
+        <MainLayout className={"app_light_theme"} user={user}>
             <AppPage>
                 <h1>Новая компания</h1>
                 <form onSubmit={handleSubmit}>
@@ -47,6 +48,7 @@ const Company = ({auth}) => {
                     <input id="description" value={data.description} onChange={e => setData('description', e.target.value)} />
 
 
+
                     <button type="submit">Отправить</button>
                 </form>
             </AppPage>
@@ -54,4 +56,3 @@ const Company = ({auth}) => {
     );
 };
 export default Company;
-

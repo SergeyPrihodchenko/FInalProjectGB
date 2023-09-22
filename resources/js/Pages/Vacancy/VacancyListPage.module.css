@@ -35,8 +35,9 @@
 }
 
 .vacancyFilterSidebar {
-    position: sticky;
+    width: 200px;
+    /* position: sticky; */
     top: 0;
     left: 0;
-    height: 80vh;
+    /* height: 80vh; */
 }

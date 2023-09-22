@@ -6,6 +6,7 @@ use App\Enums\EmploymentType;
 use App\Enums\Experience;
 use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
+use App\Models\City;
 use App\Models\Company;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Redirect;
@@ -23,12 +24,14 @@ class VacancyController
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
+        $cities = City::all(['id', 'title']);
 
         return Inertia::render('Vacancy/Index', [
             'title' => 'Вакансии',
             'employment' => $employment,
             'schedule' => $schedule,
-            'experience' => $experience
+            'experience' => $experience,
+            'cities' => $cities
         ]);
     }
 

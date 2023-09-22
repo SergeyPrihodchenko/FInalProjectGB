@@ -6,7 +6,6 @@ const Checkbox = ({
     label,
     isChecked,
     checkHandler,
-    defaultChecked,
     value,
     variant,
     className,
@@ -19,7 +18,6 @@ const Checkbox = ({
                     type="checkbox"
                     name=""
                     id=""
-                    defaultChecked={defaultChecked}
                     value={value}
                     checked={isChecked}
                     onChange={checkHandler}

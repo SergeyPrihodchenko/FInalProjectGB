@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('conditions')->nullable();
             $table->text('skills')->nullable();
             $table->text('reviews')->nullable();
+            $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('cities');
 
             // Создание внешнего ключа компании
             $table->unsignedBigInteger('company_id');

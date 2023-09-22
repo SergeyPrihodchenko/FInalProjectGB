@@ -13,8 +13,7 @@ import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import cn from "classnames";
 import { Search } from "@/8Shared/Search/Search";
 import { VacancyFilter } from "@/4Widgets/VacancyFilter/VacancyFilter";
-
-const payment = ['Не имеет значения', 'от 45 000 ₽', 'от 90 000 ₽', 'от 140 000 ₽'];
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 const Vacancy = ({
     vacancies,
@@ -22,7 +21,8 @@ const Vacancy = ({
     auth,
     experience,
     schedule,
-    employment
+    employment,
+    cities
 }) => {
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
@@ -123,7 +123,7 @@ const Vacancy = ({
                 let copy = { ...filterData };
                 checked ? copy[name].push(value) : copy[name].splice(copy[name].indexOf(value), 1);
                 setFilterData(copy)
-                console.log(setValueChange());
+                // console.log(setValueChange());
                 break;
             case "radio":
                 if (checked) {
@@ -146,6 +146,7 @@ const Vacancy = ({
     }
 
 
+
     useEffect(() => {
 
         if (!vacancies) {
@@ -164,7 +165,7 @@ const Vacancy = ({
     console.log('total', total);
     // console.log('filterData', filterData);
     // console.log('vacancyList', vacancyList);
-    console.log('index', index);
+    // console.log('index', index);
     // console.log('vacancies', vacancies);
 
     return (
@@ -177,6 +178,7 @@ const Vacancy = ({
                         employment={employment}
                         schedule={schedule}
                         experience={experience}
+                        cities={cities}
                         className={s.vacancyFilterSidebar}
                     />
                     <div className={s.vacancyList}>

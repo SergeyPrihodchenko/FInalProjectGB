@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            CitiesSeed::class,
             VacancySeeder::class,
             CategorySeeder::class,
             CategoryVacancySeeder::class,
             CompanySeeder::class,
             // ReviewsOfCompanySeeder::class,
-            SitiesSeed::class
 
         ]);
     }

@@ -28,7 +28,6 @@ const MainPage = (props) => {
     const { auth, categories, className, vacancies } = props;
     const user = auth?.user;
     // console.log("MainPage.jsx vacancies", vacancies);
-
     return (
         <MainLayout className={"app_light_theme"} user={user}>
             <Head title="Home" />
@@ -46,7 +45,6 @@ const MainPage = (props) => {
                     <Search
                         width={'680px'}
                         placeholder={"Профессия, должность, компания"}
-                        vacancies={vacancies}
                     />
                 </AppPage>
             </Banner>

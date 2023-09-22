@@ -41,6 +41,7 @@ function CreateVacancyPage(props) {
     return (
         <MainLayout className="app_light_theme" user={user}>
             <Head title="CreateVacancyPage" />
+
             <AppPage>
                 {btn}
 
@@ -63,6 +64,7 @@ function CreateVacancyPage(props) {
                         <AppInput
                             label="Где искать сотрудника"
                             placeholder="Город"
+                            className={s.input}
                         />
                         <div>
                             <AppText

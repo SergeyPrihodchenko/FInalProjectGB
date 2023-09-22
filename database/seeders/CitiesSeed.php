@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Sity;
+use App\Models\City;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SitiesSeed extends Seeder
+class CitiesSeed extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Sity::insert($this->getData());
+        City::insert($this->getData());
     }
 
     public function getData(): array

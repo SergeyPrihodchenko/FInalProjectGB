@@ -26,6 +26,7 @@ class VacancySeeder extends Seeder
         $n = 0;
         $k = 0;
         $y = 0;
+        $r = 0;
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
@@ -33,6 +34,7 @@ class VacancySeeder extends Seeder
             $n = rand(0, 4);
             $y = rand(0, 4);
             $k = rand(0, 3);
+            $r = rand(0, 200);
             $data[] = [
                 'title' => fake('ru_RU')->jobTitle,
                 'payment' => fake()->numberBetween(1000, 12000),
@@ -49,6 +51,7 @@ class VacancySeeder extends Seeder
                 'company_id' => Company::create([
                     'name' => fake('ru_RU')->company,
                 ])->id,
+                'city_id' => $r
             ];
         }
 

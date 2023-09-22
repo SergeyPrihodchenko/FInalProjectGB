@@ -25,19 +25,24 @@ function SecondNav(props) {
                         );
                     })}
                 </div>
-                <form method="LINK" action={route("resumeForm")}>
+                
+                <form method="LINK" action={route("companyCreate")}>
 
                 <AppButton
-                    width="200px"
+                    width="250px"
+                    // width="200px"
                     height="50px"
                     variant="outline"
                     colorType="normal"
                     rounded
                     sizeText="m"
                 >
-                    Создать резюме
+                    {/* Создать резюме */}
+                    Создать компанию
                 </AppButton>
+
                   </form>
+                  
             </AppPage>
         </div>
     );

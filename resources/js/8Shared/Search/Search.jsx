@@ -21,7 +21,6 @@ export const Search = ({
     const [suggestionsActive, setSuggestionsActive] = useState(false); // показать список
     const [value, setValue] = useState(""); // состояние инпута
 
-    // const [sortVacancies, SetSortVacancy] = useState([]);
 
     const debouncedVac = useDebounce(value, 500);
     // console.log(debouncedVac);
@@ -40,7 +39,7 @@ export const Search = ({
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
-        filterChange(value);
+        filterChange(e.target.value);
     };
 
     const handleClick = (e) => {

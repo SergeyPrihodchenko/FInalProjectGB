@@ -4,7 +4,6 @@
 
 .searchBtn {
     color: var(--secondary-text);
-    margin-top: 12px;
 }
 
 .searchForm {
@@ -35,7 +34,7 @@
 
 .suggestions {
     position: absolute;
-    top: 56px;
+    top: 48px;
     width: 100%;
     /* width: 635px; */
     border-radius: 8px;

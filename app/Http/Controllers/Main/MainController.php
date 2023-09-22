@@ -37,7 +37,7 @@ class MainController extends Controller
         $data = $request->validated();
         $searchStr = $data['vacancy'];
         $vacancies = Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
-        if (count($vacancies) !== 0) {
+        if (!empty($vacancies)) {
             return Inertia::render('Vacancy/Index', [
                 'title' => 'Вакансии',
                 'vacancies' => $vacancies,
