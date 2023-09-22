@@ -2,7 +2,7 @@ import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useState } from "react";
 import { useForm } from "@inertiajs/react";
-import { CreateVacancyPage } from "../CreateVacancyPage";
+import { VacancyPageCreate } from "../VacancyPageCreate";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 const Vacancy = ({ auth, companies }) => {
@@ -23,7 +23,7 @@ const Vacancy = ({ auth, companies }) => {
     };
     if (isShowContent) {
         return (
-            <CreateVacancyPage
+            <VacancyPageCreate
                 btn={
                     <AppButton
                         onClick={() => setIsShowContent(!isShowContent)}
@@ -37,7 +37,7 @@ const Vacancy = ({ auth, companies }) => {
     }
     return (
         <>
-            <MainLayout className={"app_light_theme"}>
+            <MainLayout className={"app_light_theme"} user={user}>
                 <AppPage>
                     <AppButton
                         onClick={() => setIsShowContent(!isShowContent)}

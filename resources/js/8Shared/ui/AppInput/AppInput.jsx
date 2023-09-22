@@ -17,6 +17,7 @@ function AppInput(props) {
         onChange,
         ref,
         className,
+        value,
     } = props;
     const input = ref ? ref : useRef();
     useEffect(() => {
@@ -29,9 +30,9 @@ function AppInput(props) {
         <div className={cn(className, s.appInput)}>
             {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
             <input
+                value={value}
                 {...props}
                 onChange={onChange}
-
                 type={type}
                 placeholder={placeholder}
                 className={cn(s.input, s[borderRadius], {
