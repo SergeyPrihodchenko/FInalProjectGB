@@ -7,9 +7,7 @@
 }
 
 .linkResumePage,
-.userEmailText,
-.specialityName,
-.linkCompanyPage{
+.userEmailText{
     color: var( --accent);
     border: none;
     background: var(--light-bg);
@@ -37,10 +35,7 @@
 .employment, 
 .schedule,
 .userEmail,
-.workExperienceTitle,
-.aboutUserTitle,
-.educationTitle,
-.workConditionsTitle{
+.aboutUserTitle{
     display: flex;
 }
 
@@ -48,13 +43,10 @@
 .userContacts, 
 .userBaceAddress, 
 .userSearchArea,
-.workExperienceTitle,
 .aboutUserTitle,
 .company,
 .keySkills,
-.aboutUserTextAll,
-.educationTitle,
-.workConditionsTitle{
+.aboutUserTextAll{
     padding-bottom: 20px;
 }
 
@@ -80,17 +72,8 @@
     margin: 20px 0px 40px 0px;
 }
 
-.speciality{
-    padding: 20px 0px 10px 0px;
-    display: flex;
-}
-
 .specializationText {
     padding: 0px 0px 10px 20px;
-}
-
-.specialityName{
-    padding: 6px 0px 0px 10px;
 }
 
 .userPhoto {
@@ -140,5 +123,5 @@
 }
 
 .buttonSave {
-    margin: 10px 10px 40px 1040px; 
+    margin: 10px 10px 40px 1030px; 
 }

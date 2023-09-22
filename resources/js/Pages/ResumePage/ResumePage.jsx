@@ -16,11 +16,10 @@ function ResumePage() {
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
                         
-                        <form method="LINK" action={route("resumePage")}>
+                        <form method="LINK" action={route("resume.index")}>
 
                             <AppButton
                                 variant = "clear"
-                                sizeText="s"
                                 className={s.linkResumePage}
                             >К списку моих резюме</AppButton>
 
@@ -55,7 +54,7 @@ function ResumePage() {
                                 <div className={s.userContacts}>
                                     <AppText 
                                         title={"Контакты"} 
-                                        size="m"
+                                        size="s"
                                     />
                                     <AppText 
                                         text={"+7 (999) 999-99-99"}  
@@ -342,13 +341,15 @@ function ResumePage() {
                                 </div>
                             </div>    
                         </div>
-                        <AppButton 
-                            type="submit"
-                            bold 
-                            sizeText = "s"
-                            className={s.buttonSave}>
-                                <span>Редактировать</span>
-                        </AppButton>
+                       
+                            <AppButton 
+                                type="submit"
+                                bold 
+                                sizeText = "s"
+                                className={s.buttonSave}>
+                                    <span>Редактировать</span>
+                            </AppButton>
+                       
                         {/* <AppLink
                             path={'resume.show'}
                             param={resume.id}
