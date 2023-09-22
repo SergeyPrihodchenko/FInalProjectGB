@@ -114,7 +114,7 @@ class VacancyTest extends TestCase
     {
         $this->get(route('vacancy.create'))->assertInertia(
             fn (Assert $page) => $page
-                ->component('CreateVacancyPage/ui/CreateVacancyPage/CreateVacancyPage')
+                ->component('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate')
         );
     }
 }
