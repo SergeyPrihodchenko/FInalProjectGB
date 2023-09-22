@@ -2,8 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 import s from "./AppButton.module.css";
+import { Link } from "@inertiajs/react";
 function AppButton(props) {
     const {
+        href,
+        param,
+        path,
         children,
         onClick,
         className,
@@ -17,26 +21,53 @@ function AppButton(props) {
         rounded,
         ...otherProps
     } = props;
+
     return (
-        <button
-            style={{ width: width, height: height }}
-            className={cn(
-                s.appButton,
-                className,
-                s[variant],
-                s[colorType],
-                s[sizeText],
-                {
-                    [s.rounded]: rounded,
-                    [s.bold]: bold,
-                    [s.disabled]: disabled,
-                }
+        <>
+            {href || (path && param) ? (
+                <Link
+                    {...props}
+                    href={href ? href : route(path, param)}
+                    style={{ width: width, height: height }}
+                    className={cn(
+                        s.appButton,
+                        className,
+                        s[variant],
+                        s[colorType],
+                        s[sizeText],
+                        {
+                            [s.rounded]: rounded,
+                            [s.bold]: bold,
+                            [s.disabled]: disabled,
+                        }
+                    )}
+                    {...otherProps}
+                    onClick={onClick}
+                >
+                    {children}
+                </Link>
+            ) : (
+                <button
+                    style={{ width: width, height: height }}
+                    className={cn(
+                        s.appButton,
+                        className,
+                        s[variant],
+                        s[colorType],
+                        s[sizeText],
+                        {
+                            [s.rounded]: rounded,
+                            [s.bold]: bold,
+                            [s.disabled]: disabled,
+                        }
+                    )}
+                    {...otherProps}
+                    onClick={onClick}
+                >
+                    {children}
+                </button>
             )}
-            {...otherProps}
-            onClick={onClick}
-        >
-            {children}
-        </button>
+        </>
     );
 }
 
