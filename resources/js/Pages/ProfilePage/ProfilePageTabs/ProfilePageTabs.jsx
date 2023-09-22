@@ -51,7 +51,7 @@ function ProfilePageTabs(props) {
                 {Object.keys(categories).map((category) => ( 
                   <Tab className={s.tabCategories}
                     key={category}>
-                      <AppText size={'m'} className={s.navLink} title={category}/>
+                      <AppText size={'s'} className={s.navLink} title={category}/>
                     </Tab>
                   ))}
                 </div>
@@ -66,7 +66,7 @@ function ProfilePageTabs(props) {
                   {posts.map((post) => (
                     <li
                       key={post.id}>
-                      <AppText size={'l'} className={s.navLink} text={post.desc}/>
+                      <AppText size={'s'} className={s.navLink} text={post.desc}/>
                     </li>
                   ))}
                 </ul>

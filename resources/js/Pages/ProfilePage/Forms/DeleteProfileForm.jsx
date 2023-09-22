@@ -34,19 +34,12 @@ function DeleteProfileForm() {
                 onChange={(e) => setData("password", e.target.value)}
             />
             <div className={style.divLeft}>
-                <AppText
-                    size={"m"}
-                    title={
-                        <AppButton
-                            variant="clear"
-                            colorType="cancel"
-                            sizeText="l"
-                            type="submit"
-                        >
-                            Удаление аккаунта
-                        </AppButton>
-                    }
-                />
+                <AppButton
+                    variant="clear"
+                    colorType="cancel"
+                    sizeText="m"
+                    type="submit"
+                >Удаление аккаунта</AppButton>
             </div>
         </form>
     );

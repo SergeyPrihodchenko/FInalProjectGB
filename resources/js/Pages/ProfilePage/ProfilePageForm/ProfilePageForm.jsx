@@ -1,9 +1,9 @@
 import React from 'react';
 //import PropTypes from 'prop-types'
 import s from '../ProfilePageForm/ProfilePageForm.module.css';
-import AppText from '@/8Shared/ui/AppText/AppText';
 import { usePage, useForm } from '@inertiajs/react';
 import UpdatePasswordForm from "../Forms/UpdatePasswordForm";
+import AppButton from '@/8Shared/ui/AppButton/AppButton';
 
 function ProfilePageForm({ auth }) {
   const user = usePage().props.auth.user;
@@ -22,12 +22,6 @@ function ProfilePageForm({ auth }) {
     type: 'text',
     set: 'name',
   },
-  // {
-  //   lable: 'Пароль',
-  //   placeholder: 'Текущий пароль',
-  //   type: 'password',
-  //   set: 'passwordSet',
-  // },
   {
     lable: 'Email',
     placeholder: data.email,
@@ -59,22 +53,13 @@ function ProfilePageForm({ auth }) {
     post(route("profile.update"));
   };
 
-  // function handClick() {
-  //   let div = document.getElementById('passwordSet');
-  //   console.log(div.classList)
-  //   return(
-  //    div.classList.toggle([s.hidden])
-  //    )
-     
-  // };
-
   return (
     <div>
     {arrayForm.map((el)=> {
      // console.log(el);
       return ( 
         <form onSubmit={submit} className={s.formProfilePage}>
-          <AppText size='s' text={
+          
               <div className={s.formProfile}>
                 <lable className={s.textForm}>{el.lable}</lable>
                 <input 
@@ -85,57 +70,21 @@ function ProfilePageForm({ auth }) {
                   onChange={(e) =>
                    setData(el.set, e.target.value)
                  }/>
-                <input
+                
+                <AppButton
                   id = {el.set}
-                  className={s.btnFormProfile} 
-                  type="submit" 
-                  value="Изменить"/>
+                  type="submit"
+                  variant="clear"
+                >Изменить</AppButton>
               </div>
-        }/>        
+        
+       
         </form> 
       )
     }) 
    }
     
-    {
-    arrayForm.forEach((el)=> {
-      // console.log(el);
-       return ( 
-         <form action="#" className={s.formProfilePage}>
-           <div className={s.formProfile}>
-             <lable className={s.textForm}>Имя</lable>
-             <input className={s.inputFormProfile} type="text" placeholder={el.placeholder}/>
-             <input className={s.btnFormProfile} type="submit" value="Изменить"/>
-           </div>
-         </form>
-        )
-     })
-    }
-
   <UpdatePasswordForm/>
-    {/* {
-       
-  //     <div className={s.formProfilePage}>
-  //       <AppText size='s' text={
-  //         <div className={s.formProfile}>
-  //           <lable className={s.textForm}>Пароль</lable>
-  //           <input 
-  //             className={s.inputFormProfile} 
-  //             type="text"
-  //             /> 
-            
-  //           <input
-  //             onClick={handClick}
-  //             className={s.btnFormProfile} 
-  //             type="submit" 
-  //             value="Изменить"/>
-  //         </div>
-  //       }/>
-  //       <div id = 'passwordSet' className={s.hidden}>
-  //         <UpdatePasswordForm/>
-  //       </div>
-  //     </div>
-  //   } */}
    </div>
 //  ProfilePage.propTypes = {}
 )}
