@@ -2,13 +2,16 @@
     padding: 20px 10px 10px 0px;
 }
 
-.inputBasiceData,
-.textareaBasiceData,
-.inputResumeDataBasice {
+.indentDownBasiceData{
+    margin-top: 20px;
+}
+
+
+.textareaBasiceData {
     box-sizing: border-box;
     width: 760px;
-    height: 60px;
-    font-size: var(--font-size-m);
+    height: 138px;
+    font-size: var(--font-size-s);
     padding: 10px;
     
     background: var(--light-bg);
@@ -17,25 +20,18 @@
 
 }
 
-.inputResumeDataBasice{
-    width: 200px;
-}
-
-.inputBasiceData::placeholder,
 .textareaBasiceData::placeholder{
     
     font-family: var(--font-family-main);
     font-style: normal;
     font-weight: 400;
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
     line-height: 23px;
     display: flex;
     align-items: center;
     color: var(--not-accented);
 }
 
-
-.inputBasiceData:focus,
 .textareaBasiceData:focus{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -45,10 +41,6 @@
     background: var(--light-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
-}
-
-.textareaBasiceData {
-    height: 138px;
 }
 
 .textareaBasiceData::-webkit-resizer{

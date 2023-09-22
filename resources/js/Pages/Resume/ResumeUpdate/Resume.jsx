@@ -182,7 +182,7 @@ function Resume({resume}){
                             value={data.date_of_birth} 
                             onChange={e => setData('date_of_birth', e.target.value)} 
                             type="date" 
-                            width="140px"
+                            width="200px"
                             className={s.indentDownBasiceData}
                             errorMessage={errors.date_of_birth}
                         /> 
@@ -321,7 +321,7 @@ function Resume({resume}){
                                <select name="education" id="education"
                                     onChange={e => setData('education', e.target.value)}
                                     value={data.education}
-                                    className={s.inputResumeEducation}
+                                    className={s.inputResumeDataBasice}
                                 >
                                     <option value="Не выбрано">Не выбрано</option>
                                     <option value="Среднее">Среднее</option>
@@ -472,7 +472,7 @@ function Resume({resume}){
                                 <AppInput 
                                         label={"Начало работы"}
                                         type="date" 
-                                        width="140px"
+                                        width="200px"
                                         className={s.indentDownBasiceData}
                                     />
                                 </div>

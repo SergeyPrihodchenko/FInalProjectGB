@@ -34,6 +34,12 @@ Route::get('/testCompanyList', function () {
     return Inertia::render('Company/CompanyList');
 })->name('companyList');
 
+//testResumePage
+Route::get('/testResumePage', function () {
+    return Inertia::render('ResumePage/ResumePage');
+})->name('resumePage');
+
+
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::middleware('auth')->group(function () {
