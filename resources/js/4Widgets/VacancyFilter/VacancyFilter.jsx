@@ -3,6 +3,9 @@ import s from "./VacancyFilter.module.css"
 import cn from "classnames"
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
 export const VacancyFilter = (props) => {
@@ -10,9 +13,30 @@ export const VacancyFilter = (props) => {
         experience,
         employment,
         schedule,
+        cities,
         className,
-        handleChange
+        handleChange,
+
     } = props;
+
+    const [cityInput, setCityInput] = useState('');
+    const [filterCityList, setFilterCityList] = useState(cities);
+
+    const handleCityInput = (e) => {
+        const value = e.target.value;
+        setCityInput(value);
+
+    }
+    useEffect(() => {
+        if (cityInput) {
+            const newList = cities.filter((city) => city.title.toLowerCase().startsWith(cityInput.toLocaleLowerCase()));
+            setFilterCityList(newList);
+
+        } else {
+            setFilterCityList(cities);
+        }
+
+    }, [cityInput]);
     return (
         <div className={cn(s.filterContainer, className)}>
             <form action="">
@@ -55,6 +79,29 @@ export const VacancyFilter = (props) => {
                         onChange={handleChange}
                     />
                 )}
+                <div>
+                    <AppText
+                        text="Город"
+                        bold
+                        className={s.vacancyFilterTitle}
+                    />
+                    <AppInput
+                        width={'auto'}
+                        className={s.citiesInput}
+                        value={cityInput}
+                        onChange={handleCityInput}
+                    />
+                    <ul className={s.citiesList}>
+                        {filterCityList.map(city =>
+                            <li key={city.title}>
+                                <Checkbox
+                                    value={city.title}
+                                    label={city.title}
+                                />
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </form>
         </div>
     )
