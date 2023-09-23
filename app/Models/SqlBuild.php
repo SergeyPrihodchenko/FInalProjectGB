@@ -30,6 +30,6 @@ class SqlBuild
                 $vacancy = $vacancy->where($key, 'LIKE', '%'.$value.'%');
             }
         }
-        return $vacancy->paginate(3);
+        return $vacancy->paginate(5);
     }
 }

@@ -16,7 +16,6 @@ export const VacancyFilter = (props) => {
         cities,
         className,
         handleChange,
-
     } = props;
 
     const [cityInput, setCityInput] = useState('');
@@ -95,8 +94,10 @@ export const VacancyFilter = (props) => {
                         {filterCityList.map(city =>
                             <li key={city.title}>
                                 <Checkbox
+                                    name={'cities'}
                                     value={city.title}
                                     label={city.title}
+                                    onChange={handleChange}
                                 />
                             </li>
                         )}

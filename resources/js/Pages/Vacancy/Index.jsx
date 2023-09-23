@@ -33,6 +33,7 @@ const Vacancy = ({
         employment: [],
         schedule: [],
         experience: '',
+        cities: [],
         title: ''
     });
 
