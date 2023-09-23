@@ -16,12 +16,21 @@ function CompanyList(){
                     <main className={s.mainCompanyList}>
                         <AppText 
                             title={"Ваши компании"} 
-                            size="m"
+                            size="s"
                             bold
                             className={s.titleCompanyList}
                         />
                         
                         <div class={s.companyList}> 
+                        
+                            {/* <AppLink
+                                path={'company.show'}
+                                param={company.id}
+                                key={company.id}
+                                sizeText = "xs"
+                                className={s.titleCompany}
+                            >ООО Газпром</AppLink> */}
+                            
                             <AppText 
                                 title={
                                     <span 
@@ -30,12 +39,12 @@ function CompanyList(){
                                     </span>
                                 } 
                                 bold 
-                                size="s"
+                                size="xs"
                             />
 
                             <AppText 
                                 title={"358 вакансий"} 
-                                size="m"
+                                size="xs"
                                 bold
                                 className={s.quantityCompany}
                             />        

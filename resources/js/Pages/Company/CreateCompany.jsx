@@ -19,6 +19,20 @@ const Company = ({auth}) => {
         post(route('company.store'))
     }
 
+    // file.change(function(){
+    //     // Если файл прикрепили то заносим значение value в переменную
+    //     let fileResult = $(this).val();
+    //     // И дальше передаем значение в инпут который под загрузчиком
+    //     $(this).parent().find('.fileLoad').find('input').val(fileResult);
+    // });
+
+    // /* Добавляем новый класс кнопке если инпут файл получил фокус */
+    // $('#file').hover(function(){
+    //     $(this).parent().find('button').addClass('button-hover');
+    // }, function(){
+    //     $(this).parent().find('button').removeClass('button-hover');
+    // });
+    
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
@@ -28,7 +42,7 @@ const Company = ({auth}) => {
                     size={"s"}
                     className={s.textTitle}
                 />
-                {/* <h1>Новая компания</h1> */}
+
                 <form onSubmit={handleSubmit}>
                     {/* <label htmlFor="title">Имя:</label>
                     <input id="title" value={data.name} onChange={e => setData('name', e.target.value)} />
@@ -36,53 +50,59 @@ const Company = ({auth}) => {
                     <button type="submit">Отправить</button> */}
 
                     <div className={s.basiceData}>
-                            {/* <AppText
-                                title={"Email"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            /> */}
                             <AppInput 
                                 label={"Email"}
                                 type="text" 
                                 placeholder="Email"
-                                
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
                             />
                                                       
-                            <AppText
-                                title={"Наименование"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            <AppInput 
+                                label={"Наименование"} 
                                 value={data.name} 
                                 onChange={e => setData('name', e.target.value)}
                                 type="text" 
                                 placeholder="Наименование"
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
                             />
                                                         
-                            <AppText
-                                title={"Сферы деятельности"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            <AppInput 
+                                label={"Сферы деятельности"} 
                                 type="text" 
                                 placeholder="IT, Металлургия, Услуги"
-                                className={s.inputBasiceData}
+                                className={s.indentDownBasiceData}
                             />
                                                        
                             <AppText
                                 title={"Логотип компании"}
                                 bold
-                                size={"s"}
+                                size={"xs"}
                                 className={s.textTitle}
                             />
-                            <form>
+
+                            <div className={s.logoCompanyUpload}>
+                                <div className={s.fileLoadBlock}>
+                                    <input 
+                                        type="file" 
+                                        value="" 
+                                        id="file"
+                                        className={s.fileCompany}
+                                    />
+                                    <div className={s.inputlogoUpload}>
+                                        <input 
+                                            type="text"
+                                            className={s.textFileCompany}
+                                        />
+                                        <AppButton 
+                                            type="submit"
+                                            bold 
+                                            sizeText = "xs"
+                                        ><span>Загрузить</span>
+                                        </AppButton>
+                                    </div>
+                                </div>
+                            </div>
+                         {/* <form>
                                 <div className={s.logoUpload}>
                                     <input
                                         type="file"
@@ -92,64 +112,46 @@ const Company = ({auth}) => {
                                     <AppButton 
                                         type="submit"
                                         bold 
-                                        sizeText = "m"
+                                        sizeText = "s"
                                         className={s.buttonUpload}>
                                             <span>Загрузить</span>
                                         </AppButton>
                                 </div>
-                            </form>  
-                            
-                            <AppText
-                                title={"Город или регион расположения"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            </form>   */}
+                           
+                            <AppInput 
+                                label={"Город или регион расположения"} 
                                 type="text"
                                 placeholder="Москва"
-                                className={s.inputBasiceData} 
+                                className={s.indentDownBasiceData} 
                             />
                             
-                            <AppText
-                                title={"Дата создания"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            <AppInput 
+                                label={"Город или регион расположения"} 
                                 type="date" 
-                                className={s.inputResumeDataBasice}
+                                width="140px"
+                                className={s.indentDownBasiceData}
                             />
                                                     
-                            <AppText
-                                title={"Контактный номер телефона"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                            <AppInput 
+                                label={"Контактный номер телефона"}  
                                 type="text"
                                 placeholder="+7 (999) 999-99-99"
-                                className={s.inputBasiceData} 
+                                className={s.indentDownBasiceData} 
                             />
-                            <AppText
-                                title={"Сай компании"}
-                                bold
-                                size={"s"}
-                                className={s.textTitle}
-                            />
-                            <input 
+                           
+                            <AppInput 
+                                label={"Сай компании"} 
                                 type="text"
                                 placeholder="https://GoodJobs.ru/"
-                                className={s.inputBasiceData} 
+                                className={s.indentDownBasiceData} 
                             />
 
 
                             <AppText
                                 title={"Расскажите о вашей компании"}
                                 bold
-                                size={"s"}
+                                size={"xs"}
                                 className={s.textTitle}
                             />
                                 <textarea
@@ -161,7 +163,7 @@ const Company = ({auth}) => {
                             <AppButton 
                                 // type="submit"
                                 bold 
-                                sizeText = "m"
+                                sizeText = "s"
                                 className={s.buttonSave}>
                                     <span>Сохранить</span>
                             </AppButton>

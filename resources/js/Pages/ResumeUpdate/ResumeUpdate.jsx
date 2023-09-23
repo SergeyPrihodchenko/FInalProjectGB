@@ -3,7 +3,7 @@ import { router, useForm, usePage } from "@inertiajs/react";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
-import s from "./Resume.module.css";
+import s from "./ResumeUpdate.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
@@ -43,11 +43,87 @@ function Resume({resume}){
         citizenship: resume.citizenship,
         work_permit: resume.work_permit,
         education: resume.education,
+        educational_institute: resume.educational_institute,
+        companies: resume.companies,
         skills: resume.skills,
         experience: resume.experience
     })
 
     const [skill, setSkill] = useState('');
+
+    // educational institute array
+    const [institute, setInstitute] = useState({})
+
+    const [title, setTitle] = useState('');
+
+    const [faculty, setFaculty] = useState('');
+
+    const [specialization, setSpecialization] = useState('');
+    
+    const [graduation_year, setGraduation_year] = useState('');
+
+    // add and remove institute object to array educational_insitute
+    const addInstitute = () => {
+        
+        institute.title = title,
+        institute.faculty = faculty,
+        institute.specialization = specialization,
+        institute.graduation_year = graduation_year,
+
+        setData('educational_institute', [...data.educational_institute, institute])
+
+        setInstitute({})
+
+        setTitle('')
+        setFaculty('')
+        setSpecialization('')
+        setGraduation_year('')
+    }
+
+    const removeInstitute = (index) => {
+
+        data.educational_institute.splice(index, 1)
+
+        setData('educational_institute', [...data.educational_institute])
+    }
+
+    // company array
+    const [company, setCompany] = useState({});
+
+    const [name, setName] = useState('');
+
+    const [position, setPosition] = useState('');
+
+    const [achievements, setAchievements] = useState('');
+
+    const [start_date, setStart_date] = useState('');
+
+    const [end_date, setEnd_date] = useState('');
+
+    // add and remove company object to array company
+    const addCompany = () => {
+        company.name = name,
+        company.position = position,
+        company.achievements = achievements,
+        company.start_date = start_date,
+        company.end_date = end_date
+
+        setData('companies', [...data.companies, company])
+
+        setCompany({})
+
+        setName('')
+        setPosition('')
+        setAchievements('')
+        setStart_date('')
+        setEnd_date('')
+    }
+
+    const removeCompany = (index) => {
+        data.companies.splice(index, 1)
+
+        setData('companies', [...data.companies])
+    }
 
     const destroy = () => {
         router.delete(route("resume.destroy", resume.id ));
@@ -66,12 +142,10 @@ function Resume({resume}){
     const saveResume = (e) => {
         e.preventDefault()
 
-        console.log(resume.id);
-
         put(route('resume.update', resume.id))
     }
 
-
+    console.log(errors);
 
     return(
         <AuthContext.Provider value={{user}}>
@@ -182,7 +256,7 @@ function Resume({resume}){
                             value={data.date_of_birth} 
                             onChange={e => setData('date_of_birth', e.target.value)} 
                             type="date" 
-                            width="140px"
+                            width="200px"
                             className={s.indentDownBasiceData}
                             errorMessage={errors.date_of_birth}
                         /> 
@@ -321,7 +395,7 @@ function Resume({resume}){
                                <select name="education" id="education"
                                     onChange={e => setData('education', e.target.value)}
                                     value={data.education}
-                                    className={s.inputResumeEducation}
+                                    className={s.inputResumeDataBasice}
                                 >
                                     <option value="Не выбрано">Не выбрано</option>
                                     <option value="Среднее">Среднее</option>
@@ -359,47 +433,152 @@ function Resume({resume}){
                                 })} */}
                             </div>
                         </div>
+
+                        {
+                            data.educational_institute.map((el, index) => {
+                                return(
+                                    <div className={s.education}>
+                                    <div>
+                                        <AppText
+                                            title={"Название учебного заведения"}
+                                            bold
+                                            size={"s"}
+                                            className={s.textTitle}
+                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="Название"
+                                            value={el.title}
+                                            readOnly
+                                            className={s.inputBasiceData}
+                                        />
+
+                                        <AppText
+                                            title={"Факультет"}
+                                            bold
+                                            size={"s"}
+                                            className={s.textTitle}
+                                        />
+                                        <input
+                                            type="text"
+                                            className={s.inputBasiceData}
+                                            value={el.faculty}
+                                            readOnly
+                                        />
+
+                                        <AppText
+                                            title={"Специализация"}
+                                            bold
+                                            size={"s"}
+                                            className={s.textTitle}
+                                        />
+                                        <input
+                                            type="text"
+                                            className={s.inputBasiceData}
+                                            value={el.specialization}
+                                            readOnly
+                                        />
+
+                                        <AppText
+                                            title={"Год окончания"}
+                                            bold
+                                            size={"s"}
+                                            className={s.textTitle}
+                                        />
+                                        <input
+                                            type="date"
+                                            className={s.inputYearsEducation}
+                                            value={el.graduation_year}
+                                            readOnly
+                                        />
+                                    </div>
+
+                                    <AppText
+                                        title={
+                                            <input
+                                                type="button"
+                                                onClick={() => removeInstitute(index)}
+                                                value="Удалить"
+                                                className={s.buttonYearsEducation}
+                                            />}
+                                        bold
+                                        size={"s"}
+                                    />
+                                </div> 
+                                )
+                            })
+                        }        
+
                         <div className={s.education}>
                             <div>
-                            <AppInput
-                                        label={"Название учебного заведения"}
-                                        type="text"
-                                        className={s.indentDownBasiceData}
-                                    />
+                                <AppText
+                                    title={"Название учебного заведения"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    value={title}
+                                    onChange={(e)=> setTitle(e.target.value)}
+                                    className={s.inputBasiceData}
+                                />
 
-                                    <AppInput
-                                        label={"Факультет"}
-                                        type="text"
-                                        className={s.indentDownBasiceData}
-                                    />
+                                <AppText
+                                    title={"Факультет"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    value={faculty}
+                                    onChange={(e)=> setFaculty(e.target.value)}
+                                    className={s.inputBasiceData}
+                                />
 
-                                    <AppInput
-                                        label={"Специализация"}
-                                        type="text"
-                                        className={s.indentDownBasiceData}
-                                    />
+                                <AppText
+                                    title={"Специализация"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="text"
+                                    value={specialization}
+                                    onChange={(e)=> setSpecialization(e.target.value)}
+                                    className={s.inputBasiceData}
+                                />
 
-                                    
-                                    <AppInput
-                                        label={"Год окончания"}
-                                        type="text"
-                                        width="100px"
-                                        className={s.indentDownBasiceData}
-                                    />
-
+                                <AppText
+                                    title={"Год окончания"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input
+                                    type="date"
+                                    value={graduation_year}
+                                    onChange={(e)=> setGraduation_year(e.target.value)}
+                                    className={s.inputYearsEducation}
+                                />
                             </div>
 
-                            <AppButton
-                                variant = "outline"
-                                sizeText = "s"
+                            <AppText
+                                title={
+                                    <input
+                                        type="button"
+                                        value="Добавить учебное заведение"
+                                        className={s.buttonYearsEducation}
+                                        onClick={addInstitute}
+                                    />}
                                 bold
                                 type="button"
                                 className={s.buttonYearsEducation}
-                            > Добавить учебное заведение
-                            </AppButton>
-
+                            /> Добавить учебное заведение
                         </div> 
                     </div>
+
                     <div className={s.experience}>
                         <div className={s.education}>
                             <AppText
@@ -445,37 +624,188 @@ function Resume({resume}){
                                 );
                             })} */}
                         </div>
+
+                        <div className={s.education}>
+                            {
+                                data.companies.map((el, index) => {
+                                    return(
+                                        <>
+                                            <AppText
+                                                title={"В какой компании вы работали?"}
+                                                bold
+                                                size={"s"}
+                                                className={s.textTitle}
+                                            />
+                                            <input
+                                                type="text"
+                                                value={el.name}
+                                                readOnly
+                                                className={s.inputBasiceData}
+                                            />
+
+                                            <AppText
+                                                title={"На какой должности?"}
+                                                bold
+                                                size={"s"}
+                                                className={s.textTitle}
+                                            />
+                                            <input
+                                                type="text"
+                                                value={el.position}
+                                                readOnly
+                                                className={s.inputBasiceData}
+                                            />
+
+                                            <AppText
+                                                title={"Расскажите о ваших обязанностях и достижениях"}
+                                                bold
+                                                size={"s"}
+                                                className={s.textTitle}
+                                            />
+                                            <textarea
+                                                value={el.achievements}
+                                                readOnly
+                                                className={s.textareaBasiceData}
+                                            />
+                                            <div className={s.experienceWork}>
+                                                <div className={s.experienceBeginningWork}>
+                                                    <AppText
+                                                        title={"Начало работы"}
+                                                        bold
+                                                        size={"s"}
+                                                        className={s.textTitle}
+                                                    />
+                                                    <input 
+                                                        type="date" 
+                                                        value={el.start_date}
+                                                        readOnly
+                                                        className={s.inputResumeDataBasice}
+                                                    />
+                                                </div>
+
+                                                <div className={s.experienceEndingWork}>
+                                                    <AppText
+                                                        title={"Окончание"}
+                                                        bold
+                                                        size={"s"}
+                                                        className={s.textTitle}
+                                                    />
+                                                    <input 
+                                                        type="date" 
+                                                        value={el.end_date}
+                                                        readOnly
+                                                        className={s.inputResumeDataBasice}
+                                                    />
+                                                </div>
+
+                                                <div className={s.experienceEndingWork}>
+                                                    <AppText
+                                                        title={"Окончание"}
+                                                        bold
+                                                        size={"s"}
+                                                        className={s.textTitle}
+                                                    />
+                                                    <div className={s.inputEndingWork}>
+                                                        <input 
+                                                            type="checkbox"
+                                                            className={s.checkboxEndingWork} 
+                                                            id="checkboxEndingWork"
+                                                        />
+                                                        <label for="checkboxEndingWork">
+                                                            <AppText
+                                                                title={"По настоящее время"}
+                                                                size={"s"}
+                                                                className={s.textTitleEnding}
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <AppText
+                                                    title={
+                                                        <input
+                                                            type="button"
+                                                            value="Удалить компанию"
+                                                            onClick={() => removeCompany(index)}
+                                                            className={s.buttonYearsExperience}
+                                                        />}
+                                                    bold
+                                                    size={"s"}
+                                                /> 
+                                            </div>
+                                        </>
+                                    )
+                                })
+                            }
+                        </div>
                                         
-                        <AppInput
-                                label={"В какой компании вы работали?"}
-                                type="text"
-                                className={s.indentDownBasiceData}
-                            />
+                        <AppText
+                            title={"В какой компании вы работали?"}
+                            bold
+                            size={"s"}
+                            className={s.textTitle}
+                        />
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e)=>setName(e.target.value)}
+                            className={s.inputBasiceData}
+                        />
 
-                            <AppInput
-                                label={"На какой должности?"}
-                                type="text"
-                                className={s.indentDownBasiceData}
-                            />
+                        <AppText
+                            title={"На какой должности?"}
+                            bold
+                            size={"s"}
+                            className={s.textTitle}
+                        />
+                        <input
+                            type="text"
+                            value={position}
+                            onChange={(e)=>setPosition(e.target.value)}
+                            className={s.inputBasiceData}
+                        />
 
-                            <AppText
-                                title={"Расскажите о ваших обязанностях и достижениях"}
-                                bold
-                                size={"xs"}
-                                className={s.textTitle}
-                            />
-                            <textarea
-                                className={s.textareaBasiceData}
-                            />
+                        <AppText
+                            title={"Расскажите о ваших обязанностях и достижениях"}
+                            bold
+                            size={"s"}
+                            className={s.textTitle}
+                        />
+                        <textarea
+                            value={achievements}
+                            onChange={(e)=>setAchievements(e.target.value)}
+                            className={s.textareaBasiceData}
+                        />
                         <div className={s.experienceWork}>
                             <div className={s.experienceBeginningWork}>
-                                <AppInput 
-                                        label={"Начало работы"}
-                                        type="date" 
-                                        width="140px"
-                                        className={s.indentDownBasiceData}
-                                    />
-                                </div>
+                                <AppText
+                                    title={"Начало работы"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input 
+                                    type="date" 
+                                    value={start_date}
+                                    onChange={(e)=>setStart_date(e.target.value)}
+                                    className={s.inputResumeDataBasice}
+                                />
+                            </div>
+
+                            <div className={s.experienceEndingWork}>
+                                <AppText
+                                    title={"Окончание работы"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <input 
+                                    type="date" 
+                                    value={end_date}
+                                    onChange={(e)=>setEnd_date(e.target.value)}
+                                    className={s.inputResumeDataBasice}
+                                />
+                            </div>
 
                             <div className={s.experienceEndingWork}>
                                 <AppText
@@ -500,14 +830,18 @@ function Resume({resume}){
                                 </div>
                             </div>
 
-                            <AppButton
-                                variant = "outline"
-                                sizeText = "s"
+                            <AppText
+                                title={
+                                    <input
+                                        type="button"
+                                        value="Добавить еще опыт работы"
+                                        onClick={addCompany}
+                                        className={s.buttonYearsExperience}
+                                    />}
                                 bold
                                 type="button"
                                 className={s.buttonYearsExperience}
-                            > Добавить еще опыт работы
-                            </AppButton>
+                            /> Добавить еще опыт работы
                         </div>
                     </div>
 

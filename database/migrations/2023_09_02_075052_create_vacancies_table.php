@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('experience', Experience::all());
             $table->index('experience');
-            $table->string('contacts')->nullable();
+            $table->text('contacts')->nullable();
             $table->text('requirements')->nullable();
             $table->text('responsibilities')->nullable();
             $table->string('conditions')->nullable();
@@ -33,6 +33,8 @@ return new class extends Migration
             $table->text('reviews')->nullable();
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities');
+            $table->unsignedBigInteger('city_work_id');
+            $table->foreign('city_work_id')->references('id')->on('cities');
 
             // Создание внешнего ключа компании
             $table->unsignedBigInteger('company_id');

@@ -2,13 +2,16 @@
     padding: 20px 10px 10px 0px;
 }
 
-.inputBasiceData,
-.textareaBasiceData,
-.inputResumeDataBasice {
+.indentDownBasiceData{
+    margin-top: 20px;
+}
+
+
+.textareaBasiceData {
     box-sizing: border-box;
     width: 760px;
-    height: 60px;
-    font-size: var(--font-size-m);
+    height: 138px;
+    font-size: var(--font-size-s);
     padding: 10px;
     
     background: var(--light-bg);
@@ -17,25 +20,18 @@
 
 }
 
-.inputResumeDataBasice{
-    width: 200px;
-}
-
-.inputBasiceData::placeholder,
 .textareaBasiceData::placeholder{
     
     font-family: var(--font-family-main);
     font-style: normal;
     font-weight: 400;
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
     line-height: 23px;
     display: flex;
     align-items: center;
     color: var(--not-accented);
 }
 
-
-.inputBasiceData:focus,
 .textareaBasiceData:focus{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -45,10 +41,6 @@
     background: var(--light-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
-}
-
-.textareaBasiceData {
-    height: 138px;
 }
 
 .textareaBasiceData::-webkit-resizer{
@@ -63,38 +55,42 @@
     margin: 10px;
 }
 
-/* .inputlogoUpload{
-    position: absolute;
-    left: 0;
-    opacity: 0.01;
+.inputlogoUpload{
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.inputlogoUpload {
-    box-sizing: border-box;
-    width: 260px;
-    height: 60px;
-    font-size: var(--font-size-m);
-    padding: 10px;
-    
-    background: var(--light-bg);
-    border: 1px solid var(--light-skeleton-shadow);
-    border-radius: var(--border-radius-s);
-
+.fileLoadBlock {
+	
+	height: 60px;
+	overflow: hidden;
+	position: relative;
 }
 
-.inputlogoUpload:checked,
-.inputlogoUpload:not(:checked) { 
-    position: relative;
-    padding-left: 20px;
-    padding-top: 5px;
-    line-height: 1.7;
-    cursor: pointer;
+.fileCompany {
+	opacity: 0;
+	filter: alpha(opacity=0);
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	height: 60px;
+	z-index: 2;
+	cursor: pointer;
+	width: auto;
 }
 
-.inputlogoUpload:not(:checked){
-    opacity: 0;
+.textFileCompany {
+	z-index: 1;
+    width: 240px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    -o-text-overflow: ellipsis;
+    padding: 0px 0px 10px 10px;
+    border-radius: 5px;
 }
-
-.inputlogoUpload:checked{
-    opacity: 1;
-} */

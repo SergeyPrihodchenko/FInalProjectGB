@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import s from '../ProfilePageForm/ProfilePageForm.module.css';
 import { useForm } from '@inertiajs/react';
-import AppText from '@/8Shared/ui/AppText/AppText';
+import AppButton from '@/8Shared/ui/AppButton/AppButton';
 
 function UpdatePasswordForm(){
 
@@ -38,8 +38,7 @@ function UpdatePasswordForm(){
         <div className={s.formProfilePage}>
             <form onSubmit={updatePassword} className={s.formProfile}>
                 <div>
-                    <AppText size='s' text={'Текущий пароль'} className={s.textForm}/>
-                        {/* <lable className={s.textForm}>Текущий пароль</lable> */}
+                    <lable className={s.textForm}>Текущий пароль</lable>
                     <input
                         id="current_password"
                         ref={currentPasswordInput}
@@ -53,11 +52,14 @@ function UpdatePasswordForm(){
                 </div>
                     
                 <div className={s.divLeft}>
-                    <input className={s.btnFormProfile} type="submit" value="Изменить"/>
+                    <AppButton
+                        type="submit"
+                        variant="clear"
+                    >Изменить</AppButton>
                 </div>
+
                 <div>
-                    <AppText size='s' text={'Новый пароль'} className={s.textForm}/>
-                    {/* <lable className={s.textForm}>Новый пароль</lable> */}
+                    <lable className={s.textForm}>Новый пароль</lable>
                     <input
                         id="password"
                         ref={passwordInput}
@@ -69,9 +71,9 @@ function UpdatePasswordForm(){
                     />
                     <div style={{color: "red"}}>{errors.password}</div>
                 </div>
+
                 <div>
-                    <AppText size='s' text={'Подтвердить пароль'} className={s.textForm}/>
-                    {/* <lable className={s.textForm}>Подтвердить пароль</lable> */}
+                    <lable className={s.textForm}>Подтвердить пароль</lable>
                     <input
                         id="password_confirmation"
                         value={data.password_confirmation}

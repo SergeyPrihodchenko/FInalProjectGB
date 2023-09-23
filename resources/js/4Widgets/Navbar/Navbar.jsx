@@ -16,7 +16,7 @@ export const Navbar = (props) => {
 
     return (
         <nav className={s.navBg}>
-            <AppPage>
+            <AppPage className={s.appPage}>
                 <div className={s.navBar}>
                     <Logo src={mainlogo} alt={"Логотип"} href={route("main")} />
                     <ul className={s.navList}>

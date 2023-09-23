@@ -1,17 +1,20 @@
+import React from "react";
+import PropTypes from "prop-types";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
+import { Head } from "@inertiajs/react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
-import React, { useState } from "react";
-import { useForm } from "@inertiajs/react";
-import { VacancyPageCreate } from "../VacancyPageCreate";
-import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppText from "@/8Shared/ui/AppText/AppText";
+import s from "./VacancyPageCreate.module.css";
 import cn from "classnames";
-import s from "@/Pages/VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate.module.css";
-import AppInput from "@/8Shared/ui/AppInput/AppInput.jsx";
-import AppText from "@/8Shared/ui/AppText/AppText.jsx";
-
-const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule, employment}) => {
-    const [isShowContent, setIsShowContent] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('');
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
+import Checkbox from "@/8Shared/Checkbox/Checkbox";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import RadioButton from "@/8Shared/RadioButton/RadioButton";
+import { useState } from "react";
+function VacancyPageCreate(props) {
+    const { auth, vacancy, btn } = props;
+    const user = auth?.user;
+    // console.log("VacancyPageCreate props", props);
 
     // Требования
     const [requirementsInput, setRequirementsInput] = useState("");
@@ -22,7 +25,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
     const [responsibilitiesList, setResponsibilitiesList] = useState([]);
 
     // Условия
-    const [conditionsInput, setConditionsInput] = useState("");
+    const [conditionsInput, setСonditionsInput] = useState("");
     const [conditionsList, setConditionsList] = useState([]);
 
     // Ключевые навыки
@@ -35,120 +38,150 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
     const [contactsPhone, setContactsPhone] = useState("");
     const [contactsList, setContactsList] = useState([]);
 
-    const user = auth?.user;
+    const experience = [
+        "Нет опыта",
+        "Не имеет значения",
+        "1-3 года",
+        "3-6 лет",
+        "более 6 лет",
+    ];
+    const schedule = [
+        "Полная занятость",
+        "Частичная занятость",
+        "Проектная работа или разовое задание",
+        "Волонтерство",
+        "Стажировка",
+    ];
+    const employment = [
+        "Полный день",
+        "ЧСменный график",
+        "Гибкий график",
+        "Удаленая работа",
+        "Вахтовый метод",
+    ];
 
-    const { data, setData, post, errors } = useForm({
-        title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
-        city_id : "1",
-        payment: "1000",
-        city_work_id: "1",
-        experience: "нет опыта",
-        company_id: companies[0].id,
-        schedule: "Полная занятость",
-        employment: employment[0],
-        requirements: requirementsList,
-        responsibilities: responsibilitiesList,
-        conditions: conditionsList,
-        skills: skillsList,
-        contacts: contactsList,
-    });
-    const handleSubmit = (e) => {
+    const saveVacancy = (e) => {
         e.preventDefault();
 
-        post(route("vacancy.store"));
+        // post(route('vacancy.store'))
     };
-
-
-
-    if (isShowContent) {
-        return (
-            <VacancyPageCreate
-                btn={
-                    <AppButton
-                        onClick={() => setIsShowContent(!isShowContent)}
-                        width="100%"
-                    >
-                        Скрыть вёрстку
-                    </AppButton>
-                }
-            />
-        );
-    }
     return (
-        <>
-            <MainLayout className={"app_light_theme"} user={user}>
-                <AppPage>
-                    <AppButton
-                        onClick={() => setIsShowContent(!isShowContent)}
-                        width="100%"
-                    >
-                        Показать вёрстку
-                    </AppButton>
-                    <h1>Создание вакансии</h1>
-                    <form onSubmit={handleSubmit}>
-                        {/*Название вакансии*/}
-                        <label htmlFor="title">Имя:</label>
-                        <input
-                            id="title"
-                            value={data.title}
-                            onChange={(e) => setData("title", e.target.value)}
+        <MainLayout className="app_light_theme" user={user}>
+            <Head title="VacancyPageCreate" />
+
+            <AppPage>
+                {btn}
+
+                <form onSubmit={saveVacancy}>
+                    <AppText
+                        title="Создание вакансии"
+                        size="l"
+                        className={s.item}
+                    />
+                    <AppText
+                        title="Основная информация"
+                        size="m"
+                        className={s.item}
+                    />
+                    <div className={cn(s.mainInfo, s.itme)}>
+                        <AppInput
+                            label="Название вакакнсии"
+                            placeholder="Должность"
                         />
-
-                        {/*Город*/}
-                        <label htmlFor="city_id">Город</label>
-                        <select id='city_id' name='city_id' value={data.city_id} onChange={(e) => setData("city_id", e.target.value)}>
-                            {cities.map((city, index) => (
-                            <option key={index} value={city.id}>{city.title}</option>))}
-                        </select>
-
-                        {/*Зарплата*/}
-                        <label htmlFor="payment">Зарплата</label>
-                        <input
-                            id="payment"
-                            value={data.payment}
-                            onChange={(e) => setData("payment", e.target.value)}
+                        <AppInput
+                            label="Где искать сотрудника"
+                            placeholder="Город"
+                            className={s.input}
                         />
-
-                        {/*Город где работать*/}
-                        <label htmlFor="city_work_id">Город где будет работать сотрудник</label>
-                        <select id='city_work_id' name='city_work_id' value={data.city_work_id} onChange={(e) => setData("city_work_id", e.target.value)}>
-                            {citiesForWork.map((cityForWork, index) => (
-                                <option key={cityForWork.title} value={cityForWork.id}>{cityForWork.title}</option>))}
-                        </select>
-
-                        {/*Опыт*/}
-                        <label htmlFor="experience">Expa:</label>
-                        <select id='experience' name='experience' value={data.experience} onChange={(e) => setData("experience", e.target.value)}>
-                            {experience.map((expItem, index) => (
-                                <option key={index} value={expItem}>{expItem}</option>))}
-                        </select>
-
-                        {/*График работы*/}
-                        <label htmlFor="schedule">рАПИСАНИЕ РАБОТЫ</label>
-                        <select id='schedule' name='schedule' value={data.schedule} onChange={(e) => setData("schedule", e.target.value)}>
-                            {schedule.map((item, index) => (
-                                <option key={index} value={item}>{item}</option>))}
-                        </select>
-
-                        {/*Тип занянтости*/}
-                        <label htmlFor="employment">Тип занятости</label>
-                        <select id='employment' name='employment' value={data.employment} onChange={(e) => setData("employment", e.target.value)}>
-                            {employment.map((item, index) => (
-                                <option key={index} value={item}>{item}</option>))}
-                        </select>
-
-                        {/*Зарплата*/}
-                        <label htmlFor="payment">Зарплата</label>
-                        <input
-                            id="payment"
-                            value={data.payment}
-                            onChange={(e) => setData("payment", e.target.value)}
-                        />
-
-                        {/* Требования */}
                         <div>
+                            <AppText
+                                text="Предполагаемый уровень дохода в месяц или за объем работ"
+                                bold
+                            />
+                            <div className={s.paymentContainer}>
+                                <div className={s.payment}>
+                                    <AppInput width="520px" type="number" />
+                                </div>
+
+                                <div className={s.checkbox}>
+                                    <Checkbox
+                                        defaultChecked={true}
+                                        label={"До вычета налогов"}
+                                    />
+                                    <Checkbox label={"На руки"} />
+                                </div>
+                            </div>
+                        </div>
+                        <AppInput
+                            textBold
+                            label="Где будет рабоать сотрудник"
+                            placeholder="Адрес"
+                        />
+                        {experience && (
+                            <>
+                                <AppText
+                                    title="Опыт работы"
+                                    className={s.item}
+                                />
+                                <div className={s.item}>
+                                    {experience?.map((item, index) => (
+                                        <RadioButton
+                                            key={index}
+                                            name={"experience"}
+                                            label={item}
+                                            value={item}
+                                            onChange={() =>
+                                                console.log("RadioButton", item)
+                                            }
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        )}
+                        {schedule && (
+                            <>
+                                <AppText
+                                    title="График работы"
+                                    className={s.item}
+                                />
+                                {schedule?.map((item, index) => (
+                                    <Checkbox
+                                        className={s.item}
+                                        key={index}
+                                        name={"schedule"}
+                                        label={item}
+                                        value={item}
+                                        onChange={() =>
+                                            console.log("RadioButton", item)
+                                        }
+                                    />
+                                ))}
+                            </>
+                        )}
+                        {schedule && (
+                            <>
+                                <AppText
+                                    title="Тип занятости"
+                                    className={s.item}
+                                />
+                                {schedule?.map((item, index) => (
+                                    <Checkbox
+                                        className={s.item}
+                                        key={index}
+                                        name={"employment"}
+                                        label={item}
+                                        value={item}
+                                        onChange={() =>
+                                            console.log("RadioButton", item)
+                                        }
+                                    />
+                                ))}
+                            </>
+                        )}
+                        {/* Требования */}
+                        <div className={cn(s.requirements, s.item)}>
                             {requirementsList ? (
-                                <div>
+                                <div className={s.requirementsList}>
                                     {requirementsList?.map(
                                         (requireItem, index) => {
                                             return (
@@ -180,9 +213,6 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                                                     ...newRequirementsList,
                                                                 ]
                                                             );
-                                                            setData("requirements", [
-                                                                ...requirementsList,
-                                                            ])
                                                         }}
                                                     >
                                                         Удалить
@@ -212,10 +242,6 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                             ...requirementsList,
                                             requirementsInput,
                                         ]);
-                                        setData("requirements", [
-                                            ...requirementsList,
-                                            requirementsInput,
-                                        ])
                                     }
 
                                     setRequirementsInput("");
@@ -226,9 +252,9 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                         </div>
 
                         {/* Обязаности */}
-                        <div>
+                        <div className={cn(s.empolyments, s.item)}>
                             {responsibilitiesList ? (
-                                <div>
+                                <div className={s.responsibilitiesList}>
                                     {responsibilitiesList?.map(
                                         (responsibilitiesItem, index) => {
                                             return (
@@ -255,11 +281,6 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                                                 ];
 
                                                             setResponsibilitiesList(
-                                                                [
-                                                                    ...newResponsibilitiesList,
-                                                                ]
-                                                            );
-                                                            setData('responsibilities',
                                                                 [
                                                                     ...newResponsibilitiesList,
                                                                 ]
@@ -291,11 +312,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                         setResponsibilitiesList([
                                             ...responsibilitiesList,
                                             responsibilitiesInput,
-                                        ])
-                                        setData("responsibilities", [
-                                            ...responsibilitiesList,
-                                            responsibilitiesInput,
-                                        ])
+                                        ]);
                                     }
 
                                     setResponsibilitiesInput("");
@@ -304,11 +321,10 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                 Добавить обязаность
                             </AppButton>
                         </div>
-
                         {/* Условия */}
-                        <div>
+                        <div className={cn(s.conditions, s.item)}>
                             {conditionsList ? (
-                                <div>
+                                <div className={s.conditionsList}>
                                     {conditionsList?.map(
                                         (conditionsItem, index) => {
                                             return (
@@ -334,10 +350,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
 
                                                             setConditionsList([
                                                                 ...newConditionsList,
-                                                            ])
-                                                            setData("conditions", [
-                                                                ...newConditionsList,
-                                                            ])
+                                                            ]);
                                                         }}
                                                     >
                                                         Удалить
@@ -352,7 +365,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                 label="Условия работы"
                                 value={conditionsInput}
                                 onChange={(e) => {
-                                    setConditionsInput(e.target.value);
+                                    setСonditionsInput(e.target.value);
                                 }}
                             />
                             <AppButton
@@ -366,19 +379,14 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                             ...conditionsList,
                                             conditionsInput,
                                         ]);
-                                        setData("conditions", [
-                                            ...conditionsList,
-                                            conditionsInput,
-                                        ])
                                     }
 
-                                    setConditionsInput("");
+                                    setСonditionsInput("");
                                 }}
                             >
                                 Добавить условие
                             </AppButton>
                         </div>
-
                         {/* Навыки */}
 
                         {skillsList ? (
@@ -401,9 +409,6 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                                     setSkillsList([
                                                         ...newSkillsList,
                                                     ]);
-                                                    setData("skills",[
-                                                        ...newSkillsList,
-                                                    ])
                                                 }}
                                             >
                                                 Удалить
@@ -432,10 +437,6 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                             ...skillsList,
                                             skillsInput,
                                         ]);
-                                        setData("skills", [
-                                            ...skillsList,
-                                            skillsInput,
-                                        ]);
                                     }
 
                                     setSkillsInput("");
@@ -444,20 +445,19 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                 Добавить навык
                             </AppButton>
                         </div>
-
-                        {/*Контакты*/}
                         <AppText
                             title="Контактные данные"
                             size="m"
                             className={s.item}
                         />
-                        <div>
+                        <div className={cn(s.contacts, s.item)}>
                             {contactsList ? (
-                                <div>
+                                <div className={s.contactsList}>
                                     {contactsList?.map(
                                         (contactsItem, index) => {
                                             return (
                                                 <div
+                                                    className={s.listItem}
                                                     key={index}
                                                 >
                                                     <div>
@@ -540,14 +540,6 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                                                 position: contactsPosition,
                                             },
                                         ]);
-                                        setData("contacts", [
-                                            ...contactsList,
-                                            {
-                                                name: contactsName,
-                                                phone: contactsPhone,
-                                                position: contactsPosition,
-                                            },
-                                        ]);
                                     }
 
                                     setContactsName("");
@@ -559,20 +551,16 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                             </AppButton>
                         </div>
 
-
-
-                        <label htmlFor="company_id">Company</label>
-                        <select id='company_id' name='company_id' value={data.company_id} onChange={(e) => setData("employment", e.target.value)}>
-                            {companies.map((item, index) => (
-                                <option key={index} value={item.id}>{item.name}</option>))}
-                        </select>
-
-
-                        <button type="submit">Отправить</button>
-                    </form>
-                </AppPage>
-            </MainLayout>
-        </>
+                        <AppButton className={cn(s.btn, s.item)}>
+                            Опубликовать
+                        </AppButton>
+                    </div>
+                </form>
+            </AppPage>
+        </MainLayout>
     );
-};
-export default Vacancy;
+}
+
+VacancyPageCreate.propTypes = {};
+
+export default VacancyPageCreate;

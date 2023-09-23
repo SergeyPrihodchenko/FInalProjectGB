@@ -6,6 +6,7 @@ import { AuthContext } from "@/8Shared/store/AuthContext";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./ResumeList.module.css";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
 function ResumePage({resumes}){
@@ -87,30 +88,32 @@ function ResumePage({resumes}){
                                     </div>
 
                                 </div>
-                                <div className={s.linkViewResume}>
-                                    <AppLink
-                                                path={'resume.show'}
-                                                param={resume.id}
-                                                key={resume.id}
-                                                sizeText = "xs"
-                                                className={s.linkResumeList}
-                                            > Просмотреть резюме</AppLink>
-                                </div>
+                            <div className={s.linkViewResume}>
+
+                                <form method="LINK" action={route("resumePage")}>
+                                
+                                    <AppButton 
+                                        sizeText="s"
+                                        height="60px"
+                                    >Просмотреть резюме</AppButton>
+
+                                </form>
+
+                                    <AppButton
+                                        path={'resume.show'}
+                                        param={resume.id}
+                                        key={resume.id}
+                                        sizeText = "s"
+                                        className={s.linkResumeList}
+                                    >Редактировать резюме</AppButton>
+
+                                 {/* <AppText
+                                title={"Сделать активной кнопку редаткировать только для пользователя чье резюме открыто"}
+                                variant={"error"}
+                                />  */}
                                     
-                                    
-                                        
-                        
-                
-                                    {/* <li  className="px-4 py-2 text-black bg-gray-300 rounded">
-                                        <lable><b>{resume.profession}</b></lable> 
-                                        <AppLink
-                                            path={'resume.show'}
-                                            param={resume.id}
-                                            key={resume.id}
-                                        > Просмотреть резюме</AppLink>
-                                    </li> */}
-                            
-                            </div>     
+                            </div>                            
+                        </div>     
                             )
                         })}
                     </main>

@@ -23,6 +23,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => ['required'],
+            'city_id' => ['sometimes'],
+            'city_work_id' => ['sometimes'],
             'payment' => ['sometimes'], // зарплата
             'employment' => ['sometimes'], // тип работы (полный день...)
             'description' => ['sometimes'], // описание
@@ -33,7 +35,8 @@ class StoreRequest extends FormRequest
             'conditions' => ['sometimes',], // условия
             'skills' => ['sometimes'], // навыки
             'reviews' => ['sometimes'], // отзывы
-            'company_id' => ['sometimes'] // компания
+            'company_id' => ['sometimes'], // компания
+            'schedule' => ['sometimes'], //график работы
         ];
     }
 }

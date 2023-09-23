@@ -1,7 +1,3 @@
-.titleResume{
-    margin-top: 30px;
-}
-
 .textTitle {
     padding: 20px 10px 10px 0px;
 }
@@ -14,24 +10,12 @@
     margin-top: 20px;
 }
 
-.inputResumeDataBasice{
-    box-sizing: border-box;
-    width: 170px;
-    height: 40px;
-    font-size: var(--font-size-xs);
-    padding: 10px;
-
-    background: var(--light-bg);
-    border: 2px solid var(--light-skeleton-shadow);
-    border-radius: var(--border-radius-s);
-}
-
 .textareaBasiceData,
 .textSkill {
     box-sizing: border-box;
     width: 760px;
     height: 138px;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-s);
     padding: 10px;
     
     background: var(--light-bg);
@@ -43,6 +27,20 @@
 .textareaBasiceData::-webkit-resizer{
     resize: horizontal;
 } 
+
+
+.textSkill::placeholder,
+.textareaBasiceData::placeholder{
+    
+    font-family: var(--font-family-main);
+    font-style: normal;
+    font-weight: 400;
+    font-size: var(--font-size-s);
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: var(--not-accented);
+}
 
 .textareaBasiceData:focus,
 .textSkill:focus{
@@ -105,8 +103,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border: 1px solid var(--light-skeleton-shadow);
     background: var(--light-bg);
     border-radius: var(--border-radius-l);
@@ -120,8 +118,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     border: 1px solid var(--light-skeleton-shadow);
     background: var(--light-bg);
     border-radius: var(--border-radius-s);
@@ -147,13 +145,13 @@
 .inputRadioCreateResume:not(:checked) + label:after {
     content: '';
     position: absolute;
-    top: 6px;
-    left: 6px;
+    top: 5px;
+    left: 5px;
     color: var(--accent);
     line-height: 0;
     -webkit-transition: all .2s;
     transition: all .2s;
-    border: 6px solid var(--accent);
+    border: 5px solid var(--accent);
     border-radius: var(--border-radius-l);
     background: var(--light-bg);
 }
@@ -225,22 +223,4 @@
 
 .buttonSave {
     margin: 10px 10px 40px 875px; 
-}
-
-.buttonAdd {  
-    color: var(--accent);
-}
-
-.buttonSave {
-    margin: 10px 10px 40px 875px; 
-}
-
-.buttonDeleteResume,
-.buttonDeleteResume:hover{
-    color: var(--cancel);
-    margin-left: 10px;
-}
-
-.buttonResume{
-    margin: 10px 10px 40px 875px;
 }
