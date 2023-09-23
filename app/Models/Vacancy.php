@@ -27,7 +27,10 @@ class Vacancy extends Model
         'conditions', // условия
         'skills', // навыки
         'reviews', // отзывы
-        'company_id' // компания
+        'company_id', // компания
+        'city_id', // город
+        'city_work_id', //город работы
+        'schedule', // график работы
     ];
 
     public function categories(): belongsToMany
@@ -43,5 +46,5 @@ class Vacancy extends Model
     public function city(): HasOne
     {
         return $this->hasOne(City::class, 'id', 'city_id');
-    } 
+    }
 }
