@@ -29,6 +29,7 @@
     color: var(--primary-text);
     transition: var(--transition-delay) linear;
 }
+
 .secondary {
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
@@ -36,6 +37,9 @@
 .accent {
     color: var(--accent);
     transition: var(--transition-delay) linear;
+}
+.accent.active {
+    color: var(--secondary-text);
 }
 .primary:hover {
     color: var(--secondary-text);
