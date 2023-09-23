@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CitiesSeed::class,
-            VacancySeeder::class,
             CategorySeeder::class,
+            VacancySeeder::class,
             CategoryVacancySeeder::class,
             CompanySeeder::class,
             // ReviewsOfCompanySeeder::class,
