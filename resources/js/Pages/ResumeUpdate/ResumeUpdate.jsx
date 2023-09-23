@@ -3,7 +3,7 @@ import { router, useForm, usePage } from "@inertiajs/react";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
-import s from "./Resume.module.css";
+import s from "./ResumeUpdate.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";

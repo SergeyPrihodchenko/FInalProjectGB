@@ -26,4 +26,10 @@ class Company extends Model
     {
         return $this->hasMany(Vacancy::class);
     }
+
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y',
+        'date_create' => 'datetime:d/m/Y',
+    ];
 }

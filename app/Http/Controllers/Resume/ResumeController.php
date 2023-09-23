@@ -22,7 +22,7 @@ class ResumeController extends Controller
 
         $resumes = DB::table('resumes')->where('user_id', $user->id)->get();
 
-        return Inertia::render('ResumePage/ResumeList', [
+        return Inertia::render('ResumeList/ResumeList', [
             'title' => 'Мои резюме',
             'resumes' => $resumes
         ]);
@@ -33,7 +33,7 @@ class ResumeController extends Controller
      */
     public function create(Request $request): Response
     {
-        return Inertia::render('Resume/ResumeCreate/CreateResume', [
+        return Inertia::render('ResumeCreate/CreateResume', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status')
         ]);
@@ -57,7 +57,7 @@ class ResumeController extends Controller
      */
     public function show(Resume $resume)
     {
-        return Inertia::render('Resume/ResumeUpdate/Resume', [
+        return Inertia::render('ResumeUpdate/ResumeUpdate', [
             'title' => $resume->profession,
             'resume' => $resume
         ]);
