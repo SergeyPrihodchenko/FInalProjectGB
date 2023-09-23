@@ -3,6 +3,7 @@ import s from "./AppLink.module.css";
 import cn from "classnames";
 import PropTypes from "prop-types";
 import { Link } from "@inertiajs/react";
+import { useState } from "react";
 
 function AppLink(props) {
     const {
@@ -15,6 +16,7 @@ function AppLink(props) {
         bold,
         colorType = "primary",
     } = props;
+
     return (
         <Link
             {...props}

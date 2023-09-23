@@ -63,6 +63,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
     if (isShowContent) {
         return (
             <VacancyPageCreate
+                auth={auth}
                 btn={
                     <AppButton
                         onClick={() => setIsShowContent(!isShowContent)}
