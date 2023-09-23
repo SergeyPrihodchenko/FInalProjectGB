@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\EmploymentType;
 use App\Enums\Experience;
 use App\Enums\ScheduleType;
+use App\Models\City;
 use App\Models\Company;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -51,7 +52,12 @@ class VacancySeeder extends Seeder
                 'company_id' => Company::create([
                     'name' => fake('ru_RU')->company,
                 ])->id,
-                'city_id' => $r
+                'city_id' => City::create([
+                    'title' => 'Фэйковая город проживания'
+                ])->id,
+                'city_work_id' => City::create([
+                    'title' => 'Фэйковая город работы'
+                ])->id,
             ];
         }
 
