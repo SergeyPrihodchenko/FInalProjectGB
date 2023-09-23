@@ -38,6 +38,17 @@ class ResumeStoreRequest extends FormRequest
             'education' => ['required', new Enum(EducationLevel::class)],
             'skills' => ['required', 'array'],
             'experience' => ['required', 'string'],
+            'educational_institute' => ['required', 'array'],
+            'educational_institute.*.title' => ['required', 'string', 'min: 5'],
+            'educational_institute.*.faculty' => ['required', 'string', 'min: 2'],
+            'educational_institute.*.specialization' => ['required', 'string', 'min: 3'],
+            'educational_institute.*.graduation_year' => ['required'],
+            'companies' => ['nullable', 'array'],
+            'companies.*.name' => ['required', 'string', 'min: 2', 'max: 100'],
+            'companies.*.position' => ['required', 'string', 'min: 2', 'max: 50'],
+            'companies.*.achievements' => ['required', 'string'],
+            'companies.*.start_date' => ['required'],
+            'companies.*.end_date' => ['nullable'],
         ];
     }
 }

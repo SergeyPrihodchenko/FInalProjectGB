@@ -13,7 +13,9 @@ class Resume extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'skills' => 'array'
+        'skills' => 'array',
+        'educational_institute' => 'array',
+        'companies' => 'array'
     ];
 
     public function user(): BelongsTo
