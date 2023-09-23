@@ -11,6 +11,7 @@ use App\Models\Company;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use function Symfony\Component\String\u;
 
 class VacancyController
 {
@@ -38,6 +39,21 @@ class VacancyController
     public function show(Vacancy $vacancy): \Inertia\Response
     {
         //VacancyPage/ui/VacancyPage/VacancyPage
+        $vacancy['requirements'] = explode('--;', $vacancy['requirements']);
+        $vacancy['responsibilities'] = explode('--;', $vacancy['responsibilities']);
+        $vacancy['conditions'] = explode('--;', $vacancy['conditions']);
+        $vacancy['skills'] = explode('--;', $vacancy['skills']);
+
+        $newContacts = [];
+        $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
+        if($vacancy['contacts'] && is_array($vacancy['contacts'])) {
+            foreach ($vacancy['contacts'] as $index=>$arItem) {
+                $newContacts[] = explode(';', $arItem);
+            }
+            $vacancy['contacts'] = $newContacts;
+        }
+
+
         return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
             'vacancy' => $vacancy
         ]);
