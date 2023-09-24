@@ -19,20 +19,7 @@ const Company = ({auth}) => {
         post(route('company.store'))
     }
 
-    // file.change(function(){
-    //     // Если файл прикрепили то заносим значение value в переменную
-    //     let fileResult = $(this).val();
-    //     // И дальше передаем значение в инпут который под загрузчиком
-    //     $(this).parent().find('.fileLoad').find('input').val(fileResult);
-    // });
-
-    // /* Добавляем новый класс кнопке если инпут файл получил фокус */
-    // $('#file').hover(function(){
-    //     $(this).parent().find('button').addClass('button-hover');
-    // }, function(){
-    //     $(this).parent().find('button').removeClass('button-hover');
-    // });
-    
+  
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
@@ -102,22 +89,7 @@ const Company = ({auth}) => {
                                     </div>
                                 </div>
                             </div>
-                         {/* <form>
-                                <div className={s.logoUpload}>
-                                    <input
-                                        type="file"
-                                        multiple accept="image/*,image/jpeg, image/png"
-                                        className={s.inputlogoUpload}
-                                    />
-                                    <AppButton 
-                                        type="submit"
-                                        bold 
-                                        sizeText = "s"
-                                        className={s.buttonUpload}>
-                                            <span>Загрузить</span>
-                                        </AppButton>
-                                </div>
-                            </form>   */}
+
                            
                             <AppInput 
                                 label={"Город или регион расположения"} 

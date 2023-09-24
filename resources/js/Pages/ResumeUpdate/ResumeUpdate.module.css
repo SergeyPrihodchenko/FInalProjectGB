@@ -11,7 +11,8 @@
 }
 
 .indentDownBasiceData{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .inputResumeDataBasice{
@@ -37,7 +38,16 @@
     background: var(--light-bg);
     border: 1px solid var(--light-skeleton-shadow);
     border-radius: var(--border-radius-s);
+}
 
+.textSkill,
+.textSkills {
+    width: 300px;
+    height: 33px;
+}
+
+.textSkills {
+    padding: 10px;
 }
 
 .textareaBasiceData::-webkit-resizer{
@@ -62,34 +72,25 @@
     box-sizing: border-box;
 }
 
-.textInputRadio {
-    margin-top: -5px;
-    padding: 0px 20px 5px 10px;
-}
-
 .buttonYearsEducation,
 .buttonYearsExperience {
     border:none;
     color: var(--accent);
     background-color: var(--light-bg);
-    transform: translate(177px,-50px);
-
+    transform: translate(177px,-30px);
 }
 
 .buttonYearsExperience {
-    padding-top: 72px;
+    padding-top: 30px;
     transform: none;
 }
 
-.inputRadioCreateResume,
 .checkboxEndingWork{
     position: absolute;
     left: 0;
     opacity: 0.01;
 }
 
-.inputRadioCreateResume:checked + label,
-.inputRadioCreateResume:not(:checked) + label,
 .checkboxEndingWork:checked + label,
 .checkboxEndingWork:not(:checked) + label { 
     position: relative;
@@ -97,21 +98,6 @@
     padding-top: 5px;
     line-height: 1.7;
     cursor: pointer;
-}
-
-.inputRadioCreateResume:checked + label:before,
-.inputRadioCreateResume:not(:checked) + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 22px;
-    height: 22px;
-    border: 1px solid var(--light-skeleton-shadow);
-    background: var(--light-bg);
-    border-radius: var(--border-radius-l);
-    -webkit-transition: all .275s;
-    transition: all .275s;
 }
 
 .checkboxEndingWork:checked + label:before,
@@ -122,7 +108,7 @@
     top: 0;
     width: 26px;
     height: 26px;
-    border: 1px solid var(--light-skeleton-shadow);
+    border: 2px solid var(--light-skeleton-shadow);
     background: var(--light-bg);
     border-radius: var(--border-radius-s);
     -webkit-transition: all .275s;
@@ -143,39 +129,12 @@
     transition: all .2s;
 }
 
-.inputRadioCreateResume:checked + label:after,
-.inputRadioCreateResume:not(:checked) + label:after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    color: var(--accent);
-    line-height: 0;
-    -webkit-transition: all .2s;
-    transition: all .2s;
-    border: 6px solid var(--accent);
-    border-radius: var(--border-radius-l);
-    background: var(--light-bg);
-}
-
-.inputRadioCreateResume:not(:checked) + label:after,
 .checkboxEndingWork:not(:checked) + label:after{
     opacity: 0;
 }
 
-.inputRadioCreateResume:checked + label:after,
 .checkboxEndingWork:checked + label:after{
     opacity: 1;
-}
-
-.textSkill,
-.textSkills {
-
-    box-sizing: border-box;
-    width: 300px;
-    height: 33px;
-
-    padding: 10px;
 }
 
 .experienceWork {
@@ -185,14 +144,13 @@
 }
 
 .inputEndingWork {
-    padding-top: 15px;
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
 }
 
 .textTitleEnding{
     padding-left: 20px;
-    margin-top: -5px;
 } 
 
 .skills{
@@ -204,11 +162,6 @@
     display: flex;
     justify-content: flex-start;
 }
-
-.textSkills {
-    padding-top: 5px;
-    padding-left: 20px;
-} 
 
 .buttonSkillDelete,
 .buttonSkillAdd {
@@ -223,24 +176,12 @@
     color: var(--accent);
 }
 
-.buttonSave {
-    margin: 10px 10px 40px 875px; 
-}
-
-.buttonAdd {  
-    color: var(--accent);
-}
-
-.buttonSave {
-    margin: 10px 10px 40px 875px; 
-}
-
 .buttonDeleteResume,
 .buttonDeleteResume:hover{
     color: var(--cancel);
     margin-left: 10px;
 }
 
-.buttonResume{
+.buttonUpdateResume{
     margin: 10px 10px 40px 875px;
 }

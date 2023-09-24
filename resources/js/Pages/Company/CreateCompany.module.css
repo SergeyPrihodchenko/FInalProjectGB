@@ -62,7 +62,7 @@
 }
 
 .fileLoadBlock {
-	
+	width: 350px;
 	height: 60px;
 	overflow: hidden;
 	position: relative;
