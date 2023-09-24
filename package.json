@@ -29,7 +29,9 @@
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.14.8",
         "@mui/material": "^5.14.8",
+        "@reduxjs/toolkit": "^1.9.5",
         "2gis-maps": "^3.7.3",
-        "moment": "^2.29.4"
+        "moment": "^2.29.4",
+        "react-redux": "^8.1.2"
     }
 }
