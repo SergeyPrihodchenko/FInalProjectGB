@@ -510,20 +510,14 @@ function CreateResume(){
                                                 />
                                                 
                                                 <div className={s.experienceEndingWork}>
-                                                    {/* <AppText
-                                                        title={"Окончание"}
-                                                        bold
-                                                        size={"xs"}
-                                                        className={s.textTitle}
-                                                    /> */}
                                                     <div className={s.inputEndingWork}>
                                                         <input 
                                                             type="checkbox"
                                                             readOnly
                                                             className={s.checkboxEndingWork} 
-                                                            id="checkboxEndingWork"
+                                                            id="checkboxEnding"
                                                         />
-                                                        <label for="checkboxEndingWork">
+                                                        <label for="checkboxEnding">
                                                             <AppText
                                                                 title="По настоящее время"
                                                                 size="xs"
