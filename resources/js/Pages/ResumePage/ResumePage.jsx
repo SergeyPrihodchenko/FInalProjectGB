@@ -5,7 +5,6 @@ import s from "./ResumePage.module.css";
 import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
