@@ -1,5 +1,5 @@
 .textTitle {
-    padding: 20px 10px 10px 0px;
+    padding: 0px 10px 10px 0px;
 }
 
 .basiceData{
@@ -7,11 +7,12 @@
 }
 
 .indentDownBasiceData{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom:10px;
 }
 
 .textareaBasiceData,
-.textSkill {
+.textSkill{
     box-sizing: border-box;
     width: 760px;
     height: 138px;
@@ -24,14 +25,22 @@
 
 }
 
+.textSkill,
+.textSkills {
+    width: 300px;
+    height: 33px;
+}
+
+.textSkills{
+    padding: 10px;
+}
+
 .textareaBasiceData::-webkit-resizer{
     resize: horizontal;
 } 
 
-
-.textSkill::placeholder,
-.textareaBasiceData::placeholder{
-    
+.textareaBasiceData::placeholder,
+.textSkill::placeholder{
     font-family: var(--font-family-main);
     font-style: normal;
     font-weight: 400;
@@ -69,13 +78,11 @@
 .buttonYearsExperience {
     border:none;
     color: var(--accent);
-    background-color: var(--light-bg);
-    transform: translate(177px,-50px);
-
+    transform: translate(177px,-35px);
 }
 
 .buttonYearsExperience {
-    padding-top: 72px;
+    padding-top: 27px;
     transform: none;
 }
 
@@ -120,7 +127,7 @@
     top: 0;
     width: 24px;
     height: 24px;
-    border: 1px solid var(--light-skeleton-shadow);
+    border: 2px solid var(--light-skeleton-shadow);
     background: var(--light-bg);
     border-radius: var(--border-radius-s);
     -webkit-transition: all .275s;
@@ -166,16 +173,6 @@
     opacity: 1;
 }
 
-.textSkill,
-.textSkills {
-
-    box-sizing: border-box;
-    width: 300px;
-    height: 33px;
-
-    padding: 10px;
-}
-
 .experienceWork {
     width: 760px;
     display: flex;
@@ -183,14 +180,14 @@
 }
 
 .inputEndingWork {
-    padding-top: 15px;
+    padding-top: 40px;
     display: flex;
     justify-content: space-between;
 }
 
 .textTitleEnding{
-    padding-left: 20px;
-    margin-top: -5px;
+    padding-left: 20px; 
+    margin-top: -3px; 
 } 
 
 .skills{
@@ -202,11 +199,6 @@
     display: flex;
     justify-content: flex-start;
 }
-
-.textSkills {
-    padding-top: 5px;
-    padding-left: 20px;
-} 
 
 .buttonSkillDelete,
 .buttonSkillAdd {

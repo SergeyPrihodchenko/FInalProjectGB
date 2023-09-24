@@ -27,7 +27,7 @@
 
 .inputFormProfile::placeholder,
 .inputFormProfileUpdate::placeholder  {
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-s);
     color: var(--dark-bg);
     font-family: var(--font-family-main); 
     padding-left: 10px;
