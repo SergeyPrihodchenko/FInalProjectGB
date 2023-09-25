@@ -21,6 +21,9 @@ Route::get('/category/search', [MainController::class, 'searchSort'])->name('cat
 Route::get('/testPageCompany', function () {
     return Inertia::render('CompanyPage/CompanyPage');
 })->name('company');
+Route::get('/testPageUserResponses', function () {
+    return Inertia::render('UserResponsesListPage/UserResponsesListPage');
+})->name('userResponses');
 
 Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
@@ -50,7 +53,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('myresumes', [ResumeController::class, 'index'])->name('resume.index');
-    Route::get('resume/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+    Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+    Route::get('resume/update/{resume}', [ResumeController::class, 'edit'])->name('resume.edit');
     Route::get('resume', [ResumeController::class, 'create'])->name('resume.create');
     Route::post('resume', [ResumeController::class, 'store'])->name('resume.store');
     Route::put('resume/{resume}', [ResumeController::class, 'update'])->name('resume.update');

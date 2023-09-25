@@ -54,7 +54,7 @@ function VacancyPageCreate(props) {
     ];
     const employment = [
         "Полный день",
-        "ЧСменный график",
+        "Сменный график",
         "Гибкий график",
         "Удаленая работа",
         "Вахтовый метод",
@@ -466,7 +466,8 @@ function VacancyPageCreate(props) {
                                                     -
                                                     <div>
                                                         {contactsItem?.name}
-                                                    </div>/
+                                                    </div>
+                                                    /
                                                     <div>
                                                         {contactsItem?.position}
                                                     </div>

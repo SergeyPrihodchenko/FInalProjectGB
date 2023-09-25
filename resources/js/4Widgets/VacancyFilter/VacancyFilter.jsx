@@ -92,7 +92,7 @@ export const VacancyFilter = (props) => {
                     />
                     <ul className={s.citiesList}>
                         {filterCityList.map(city =>
-                            <li key={city.title}>
+                            <li key={city.id}>
                                 <Checkbox
                                     name={'cities'}
                                     value={city.id}

@@ -19,20 +19,17 @@ const Company = ({auth}) => {
         post(route('company.store'))
     }
 
-    // file.change(function(){
-    //     // Если файл прикрепили то заносим значение value в переменную
-    //     let fileResult = $(this).val();
-    //     // И дальше передаем значение в инпут который под загрузчиком
-    //     $(this).parent().find('.fileLoad').find('input').val(fileResult);
-    // });
+    //Ввод данных компании
+    const [emailCompanyInput, setEmailCompanyInput] = useState("");
+    const [nameCompanyInput, setNameCompanyInput ] = useState("");
+    const [areasActivityCompanyInput, setAreasActivityCompanyInput] = useState("");
+    const [regionLocationCompanyInput, setRegionLocationCompanyInput] = useState("");
+    const [foundationDateCompanyInput, setFoundationDateCompanyInput] = useState("");
+    const [phoneCompanyInput, setPhoneCompanyInput] = useState("");
+    const [siteCompanyInput, setSiteCompanyInput] = useState("");
+    const [aboutCompamyTextarea, setAboutCompanyTextarea] = useState("");
 
-    // /* Добавляем новый класс кнопке если инпут файл получил фокус */
-    // $('#file').hover(function(){
-    //     $(this).parent().find('button').addClass('button-hover');
-    // }, function(){
-    //     $(this).parent().find('button').removeClass('button-hover');
-    // });
-    
+  
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
@@ -49,8 +46,11 @@ const Company = ({auth}) => {
 
                     <button type="submit">Отправить</button> */}
 
+                    {/* Ввод данных компании */}
                     <div className={s.basiceData}>
                             <AppInput 
+                                value={emailCompanyInput}
+                                onChange={(e) => setEmailCompanyInput(e.target.value)}
                                 label={"Email"}
                                 type="text" 
                                 placeholder="Email"
@@ -58,15 +58,19 @@ const Company = ({auth}) => {
                             />
                                                       
                             <AppInput 
-                                label={"Наименование"} 
-                                value={data.name} 
-                                onChange={e => setData('name', e.target.value)}
+                                value={nameCompanyInput}
+                                onChange={(e) => setNameCompanyInput(e.target.value)}
+                                // value={data.name} 
+                                // onChange={e => setData('name', e.target.value)}
+                                label={"Наименование"}
                                 type="text" 
                                 placeholder="Наименование"
                                 className={s.indentDownBasiceData}
                             />
                                                         
                             <AppInput 
+                                value={areasActivityCompanyInput}
+                                onChange={(e) => setAreasActivityCompanyInput(e.target.value)}
                                 label={"Сферы деятельности"} 
                                 type="text" 
                                 placeholder="IT, Металлургия, Услуги"
@@ -84,7 +88,6 @@ const Company = ({auth}) => {
                                 <div className={s.fileLoadBlock}>
                                     <input 
                                         type="file" 
-                                        value="" 
                                         id="file"
                                         className={s.fileCompany}
                                     />
@@ -102,24 +105,11 @@ const Company = ({auth}) => {
                                     </div>
                                 </div>
                             </div>
-                         {/* <form>
-                                <div className={s.logoUpload}>
-                                    <input
-                                        type="file"
-                                        multiple accept="image/*,image/jpeg, image/png"
-                                        className={s.inputlogoUpload}
-                                    />
-                                    <AppButton 
-                                        type="submit"
-                                        bold 
-                                        sizeText = "s"
-                                        className={s.buttonUpload}>
-                                            <span>Загрузить</span>
-                                        </AppButton>
-                                </div>
-                            </form>   */}
+
                            
                             <AppInput 
+                                value={regionLocationCompanyInput}
+                                onChange={(e) => setRegionLocationCompanyInput(e.value.target)}
                                 label={"Город или регион расположения"} 
                                 type="text"
                                 placeholder="Москва"
@@ -127,13 +117,17 @@ const Company = ({auth}) => {
                             />
                             
                             <AppInput 
-                                label={"Город или регион расположения"} 
+                                value={foundationDateCompanyInput}
+                                onChange={(e) => setFoundationDateCompanyInput(e.value.target)}
+                                label={"Дата основания"} 
                                 type="date" 
                                 width="140px"
                                 className={s.indentDownBasiceData}
                             />
                                                     
                             <AppInput 
+                                value={phoneCompanyInput}
+                                onChange={(e) => setPhoneCompanyInput(e.value.target)}
                                 label={"Контактный номер телефона"}  
                                 type="text"
                                 placeholder="+7 (999) 999-99-99"
@@ -141,7 +135,9 @@ const Company = ({auth}) => {
                             />
                            
                             <AppInput 
-                                label={"Сай компании"} 
+                                value={siteCompanyInput}
+                                onChange={(e) => setSiteCompanyInput(e.value.target)}
+                                label={"Сайт компании"} 
                                 type="text"
                                 placeholder="https://GoodJobs.ru/"
                                 className={s.indentDownBasiceData} 
@@ -155,19 +151,22 @@ const Company = ({auth}) => {
                                 className={s.textTitle}
                             />
                                 <textarea
+                                    value={aboutCompamyTextarea}
+                                    onChange={(e) => setAboutCompanyTextarea(e.value.target)}
                                     className={s.textareaBasiceData}
                                     placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
                                 />
                         </div> 
-                        <form method="LINK" action={route("companyList")}>
-                            <AppButton 
-                                // type="submit"
+                        
+                            <AppButton
+                                href={route("companyList")}
+                                type="button"
                                 bold 
                                 sizeText = "s"
                                 className={s.buttonSave}>
                                     <span>Сохранить</span>
                             </AppButton>
-                        </form>
+                       
                 </form>
             </AppPage>
         </MainLayout>

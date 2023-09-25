@@ -86,34 +86,32 @@ function ResumePage({resumes}){
                                         НЕТ ФОТО
                                         {/* <img src="#" className={s.imgUserPhoto}/> */}
                                     </div>
-
                                 </div>
-                            <div className={s.linkViewResume}>
-
-                                <form method="LINK" action={route("resumePage")}>
-                                
+                                <div className={s.linkViewResume}>
                                     <AppButton 
+                                        path={'resume.show'}
+                                        param={resume.id}
+                                        key={resume.id}
                                         sizeText="s"
                                         height="60px"
+                                        className={s.linkResumeList}
                                     >Просмотреть резюме</AppButton>
-
-                                </form>
-
+                                    
                                     <AppButton
-                                        path={'resume.show'}
+                                        path={'resume.edit'}
                                         param={resume.id}
                                         key={resume.id}
                                         sizeText = "s"
                                         className={s.linkResumeList}
                                     >Редактировать резюме</AppButton>
 
-                                 {/* <AppText
-                                title={"Сделать активной кнопку редаткировать только для пользователя чье резюме открыто"}
-                                variant={"error"}
-                                />  */}
-                                    
-                            </div>                            
-                        </div>     
+                                    {
+                                        /* Сделать активной кнопку редаткировать 
+                                        только для пользователя чье резюме открыто
+                                        */
+                                    }                                    
+                                </div>                            
+                            </div>     
                             )
                         })}
                     </main>
