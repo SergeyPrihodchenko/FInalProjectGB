@@ -12,20 +12,6 @@ class SqlBuild
                 $vacancy = $vacancy->whereIn($key, $value);
                 } elseif(!is_array($value) && !empty($value)) {
                     $vacancy = $vacancy->where($key, $value);
-                    // if($value == 0) {
-                    //     $vacancy = $vacancy->where($key, '=' , $value);
-                    // }
-
-                    // if($value == 1) {
-                    //     $vacancy = $vacancy->where($key, '>=' , $value)->where($key, '<=', 3);
-                    // }
-
-                    // if($value == 3) {
-                    //     $vacancy = $vacancy->where($key, '>=' , $value)->where($key, '<=', 6);
-                    // }
-                    // if($value == 6) {
-                    //     $vacancy = $vacancy->where($key, '>=' , $value);
-                    // }
             } elseif($key == 'title' && !empty($value)) {
                 $vacancy = $vacancy->where('vacancies.title', 'LIKE', '%'.$value.'%');
             }
