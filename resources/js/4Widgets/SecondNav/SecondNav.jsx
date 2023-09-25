@@ -12,20 +12,38 @@ function SecondNav(props) {
             <AppPage className={s.conatiner}>
                 <div className={s.navLinkList}>
                     {navList.map((navItem, index) => {
-                        return (
-                            <AppLink
-                                key={index}
-                                href="#"
-                                bold
-                                sizeText="l"
-                                className={s.navItem}
-                            >
-                                {navItem}
-                            </AppLink>
-                        );
+                        switch (navItem){
+                            case "Отклики":{
+                                return (
+                                    <AppLink
+                                        key={index}
+                                        href={route('userResponses')}
+                                        bold
+                                        sizeText="l"
+                                        className={s.navItem}
+                                    >
+                                        {navItem}
+                                    </AppLink>
+                                    )
+                            }
+                            default:{
+                                return (
+                                    <AppLink
+                                        key={index}
+                                        href="#"
+                                        bold
+                                        sizeText="l"
+                                        className={s.navItem}
+                                    >
+                                        {navItem}
+                                    </AppLink>
+                                );
+                            }
+                        }
+
                     })}
                 </div>
-                
+
                 <form method="LINK" action={route("companyCreate")}>
 
                 <AppButton
@@ -42,7 +60,7 @@ function SecondNav(props) {
                 </AppButton>
 
                   </form>
-                  
+
             </AppPage>
         </div>
     );

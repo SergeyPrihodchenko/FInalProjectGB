@@ -21,6 +21,9 @@ Route::get('/category/search', [MainController::class, 'searchSort'])->name('cat
 Route::get('/testPageCompany', function () {
     return Inertia::render('CompanyPage/CompanyPage');
 })->name('company');
+Route::get('/testPageUserResponses', function () {
+    return Inertia::render('UserResponsesListPage/UserResponsesListPage');
+})->name('userResponses');
 
 Route::get('/profilePage', function () {
     return Inertia::render('ProfilePage/ProfilePage');
