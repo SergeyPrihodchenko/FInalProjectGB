@@ -19,6 +19,16 @@ const Company = ({auth}) => {
         post(route('company.store'))
     }
 
+    //Ввод данных компании
+    const [emailCompanyInput, setEmailCompanyInput] = useState("");
+    const [nameCompanyInput, setNameCompanyInput ] = useState("");
+    const [areasActivityCompanyInput, setAreasActivityCompanyInput] = useState("");
+    const [regionLocationCompanyInput, setRegionLocationCompanyInput] = useState("");
+    const [foundationDateCompanyInput, setFoundationDateCompanyInput] = useState("");
+    const [phoneCompanyInput, setPhoneCompanyInput] = useState("");
+    const [siteCompanyInput, setSiteCompanyInput] = useState("");
+    const [aboutCompamyTextarea, setAboutCompanyTextarea] = useState("");
+
   
     return (
         <MainLayout className={"app_light_theme"}>
@@ -36,8 +46,11 @@ const Company = ({auth}) => {
 
                     <button type="submit">Отправить</button> */}
 
+                    {/* Ввод данных компании */}
                     <div className={s.basiceData}>
                             <AppInput 
+                                value={emailCompanyInput}
+                                onChange={(e) => setEmailCompanyInput(e.target.value)}
                                 label={"Email"}
                                 type="text" 
                                 placeholder="Email"
@@ -45,15 +58,19 @@ const Company = ({auth}) => {
                             />
                                                       
                             <AppInput 
-                                label={"Наименование"} 
-                                value={data.name} 
-                                onChange={e => setData('name', e.target.value)}
+                                value={nameCompanyInput}
+                                onChange={(e) => setNameCompanyInput(e.target.value)}
+                                // value={data.name} 
+                                // onChange={e => setData('name', e.target.value)}
+                                label={"Наименование"}
                                 type="text" 
                                 placeholder="Наименование"
                                 className={s.indentDownBasiceData}
                             />
                                                         
                             <AppInput 
+                                value={areasActivityCompanyInput}
+                                onChange={(e) => setAreasActivityCompanyInput(e.target.value)}
                                 label={"Сферы деятельности"} 
                                 type="text" 
                                 placeholder="IT, Металлургия, Услуги"
@@ -91,6 +108,8 @@ const Company = ({auth}) => {
 
                            
                             <AppInput 
+                                value={regionLocationCompanyInput}
+                                onChange={(e) => setRegionLocationCompanyInput(e.value.target)}
                                 label={"Город или регион расположения"} 
                                 type="text"
                                 placeholder="Москва"
@@ -98,13 +117,17 @@ const Company = ({auth}) => {
                             />
                             
                             <AppInput 
-                                label={"Город или регион расположения"} 
+                                value={foundationDateCompanyInput}
+                                onChange={(e) => setFoundationDateCompanyInput(e.value.target)}
+                                label={"Дата основания"} 
                                 type="date" 
                                 width="140px"
                                 className={s.indentDownBasiceData}
                             />
                                                     
                             <AppInput 
+                                value={phoneCompanyInput}
+                                onChange={(e) => setPhoneCompanyInput(e.value.target)}
                                 label={"Контактный номер телефона"}  
                                 type="text"
                                 placeholder="+7 (999) 999-99-99"
@@ -112,7 +135,9 @@ const Company = ({auth}) => {
                             />
                            
                             <AppInput 
-                                label={"Сай компании"} 
+                                value={siteCompanyInput}
+                                onChange={(e) => setSiteCompanyInput(e.value.target)}
+                                label={"Сайт компании"} 
                                 type="text"
                                 placeholder="https://GoodJobs.ru/"
                                 className={s.indentDownBasiceData} 
@@ -126,6 +151,8 @@ const Company = ({auth}) => {
                                 className={s.textTitle}
                             />
                                 <textarea
+                                    value={aboutCompamyTextarea}
+                                    onChange={(e) => setAboutCompanyTextarea(e.value.target)}
                                     className={s.textareaBasiceData}
                                     placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
                                 />
