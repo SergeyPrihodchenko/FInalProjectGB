@@ -90,9 +90,12 @@ function ResumePage({resumes}){
                                 </div>
                             <div className={s.linkViewResume}>
 
-                                <form method="LINK" action={route("resumePage")}>
+                                <form method="LINK">
                                 
                                     <AppButton 
+                                        path={'resume.show'}
+                                        param={resume.id}
+                                        key={resume.id}
                                         sizeText="s"
                                         height="60px"
                                     >Просмотреть резюме</AppButton>
@@ -100,7 +103,7 @@ function ResumePage({resumes}){
                                 </form>
 
                                     <AppButton
-                                        path={'resume.show'}
+                                        path={'resume.edit'}
                                         param={resume.id}
                                         key={resume.id}
                                         sizeText = "s"

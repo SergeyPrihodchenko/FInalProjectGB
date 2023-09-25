@@ -50,7 +50,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('myresumes', [ResumeController::class, 'index'])->name('resume.index');
-    Route::get('resume/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+    Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+    Route::get('resume/update/{resume}', [ResumeController::class, 'edit'])->name('resume.edit');
     Route::get('resume', [ResumeController::class, 'create'])->name('resume.create');
     Route::post('resume', [ResumeController::class, 'store'])->name('resume.store');
     Route::put('resume/{resume}', [ResumeController::class, 'update'])->name('resume.update');

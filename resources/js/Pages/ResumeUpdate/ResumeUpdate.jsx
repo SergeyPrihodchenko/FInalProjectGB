@@ -87,7 +87,7 @@ function Resume({resume}){
         company.position = position,
         company.achievements = achievements,
         company.start_date = start_date,
-        company.end_date = end_date
+        company.end_date = checkbox ? null : end_date
 
         setData('companies', [...data.companies, company])
 
@@ -106,12 +106,15 @@ function Resume({resume}){
         setData('companies', [...data.companies])
     }
 
+    const [checkbox, setCheckbox] = useState(false);
+
     const destroy = () => {
         router.delete(route("resume.destroy", resume.id ));
     }
 
     const addSkill = () => {
         setData('skills', [...data.skills, skill])
+        setSkill('')
     }
 
     const removeSkill = (index) => {
@@ -431,29 +434,26 @@ function Resume({resume}){
                                                     className={s.indentDownBasiceData}
                                                 />
 
-                                                <AppInput 
-                                                    value={el.end_date}
-                                                    readOnly
-                                                    label="Окончание работы"
-                                                    type="date"
-                                                    width="140px"
-                                                    className={s.indentDownBasiceData}
-                                                />
-                                               
-                                                <div className={s.inputEndingWork}>
-                                                    <input 
-                                                        id="checkboxEndingWork"
-                                                        type="checkbox"
-                                                        className={s.checkboxEndingWork} 
-                                                    />
-                                                    <label for="checkboxEndingWork">
-                                                        <AppText
-                                                            title={"По настоящее время"}
-                                                            size={"xs"}
-                                                            className={s.textTitleEnding}
-                                                        />
-                                                    </label>
-                                                </div>
+                                                {
+                                                    el.end_date ? 
+                                                        <AppInput 
+                                                            value={el.end_date}
+                                                            readOnly
+                                                            label="Окончание работы"
+                                                            type="date"
+                                                            width="140px"
+                                                            className={s.indentDownBasiceData}
+                                                        /> : 
+                                                        <div className={s.inputEndingWork}>
+                                                            <label for="checkboxEndingWork">
+                                                                <AppText
+                                                                title={"По настоящее время"}
+                                                                size={"xs"}
+                                                                className={s.textTitleEnding}
+                                                                />
+                                                            </label>
+                                                        </div>
+                                                }
                                                
                                                 <AppButton
                                                     onClick={() => removeCompany(index)} 
@@ -506,19 +506,24 @@ function Resume({resume}){
                                 width="140px" 
                                 className={s.indentDownBasiceData}
                             />
+                            {
+                                !checkbox ? 
+                                    <AppInput 
+                                        onChange={(e)=>setEnd_date(e.target.value)}
+                                        value={end_date}
+                                        label="Окончание работы"
+                                        type="date"
+                                        width="140px"
+                                        className={s.indentDownBasiceData}
+                                    /> : null
+                            }
                             
-                            <AppInput 
-                                onChange={(e)=>setEnd_date(e.target.value)}
-                                value={end_date}
-                                label="Окончание работы"
-                                type="date"
-                                width="140px"
-                                className={s.indentDownBasiceData}
-                            />
                             
                             <div className={s.inputEndingWork}>
                                 <input 
                                     id="checkboxEndingWork"
+                                    value={checkbox}
+                                    onChange={() => setCheckbox(!checkbox)}
                                     type="checkbox"
                                     className={s.checkboxEndingWork} 
                                 />

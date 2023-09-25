@@ -9,7 +9,10 @@ import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
-function ResumePage() {
+function ResumePage({resume}) {
+
+    console.log(resume);
+    
     return (
         <MainLayout className={"app_light_theme"}>
             <AppPage>
