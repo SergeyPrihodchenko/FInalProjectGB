@@ -10,7 +10,6 @@ import VacancyPageAdress from "../VacancyPageAdress/VacancyPageAdress";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 import data from "../../data.json";
-import MainLayout from "@/5Layouts/MainLayout/MainLayout.jsx";
 import { Head } from "@inertiajs/react";
 import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
 
@@ -21,7 +20,7 @@ function VacancyPage(props) {
     console.log("VacancyPage.jsx vacancy", vacancy);
 
     return (
-        <MainLayout className="app_light_theme" user={user}>
+        <>
             <Head title="VacancyPage" />
             <div className={s.vacancyPage}>
                 {/* {Object.entries(AppRoutesByPathPattern).forEach(
@@ -75,7 +74,7 @@ function VacancyPage(props) {
                     </div>
                 </AppPage>
             </div>
-        </MainLayout>
+        </>
     );
 }
 

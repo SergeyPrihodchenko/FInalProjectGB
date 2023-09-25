@@ -1,6 +1,6 @@
 import s from "./CategoryPage.module.css";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
+
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
@@ -10,7 +10,7 @@ import { Head } from "@inertiajs/react";
 const CategoryPage = ({ auth, vacancies, titleCat }) => {
     const user = auth?.user;
     return (
-        <MainLayout className="app_light_theme" user={user}>
+        <>
             <Head title={`${titleCat}`} />
             <AppPage>
                 <AppText
@@ -53,7 +53,7 @@ const CategoryPage = ({ auth, vacancies, titleCat }) => {
                     ))}
                 </div>
             </AppPage>
-        </MainLayout>
+        </>
     );
 };
 export default CategoryPage;
