@@ -25,6 +25,7 @@ const Vacancy = ({
     employment,
     cities
 }) => {
+    const user = auth?.user;
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
@@ -37,6 +38,7 @@ const Vacancy = ({
         city_id: [],
         title: ''
     });
+
 
     const [cityInput, setCityInput] = useState('');
     const [filterCityList, setFilterCityList] = useState(cities);
@@ -57,7 +59,7 @@ const Vacancy = ({
 
     }, [cityInput]);
 
-    const user = auth?.user;
+
 
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
@@ -152,12 +154,9 @@ const Vacancy = ({
                             ...prevState,
                             [name]: value
                         }
-                    }
-
-                    );
+                    });
                 }
                 break;
-                console.log(filterData);
             default:
                 setFilterData(filterData)
                 break;
@@ -200,20 +199,27 @@ const Vacancy = ({
                             <List
                                 list={employment}
                                 renderItem={(item) =>
-                                    <Checkbox
-                                        key={item}
-                                        label={item}
-                                        name={'employment'}
-                                        checkHandler={handleChange}
-                                        value={item}
-                                    />}
-
+                                    <li key={item}>
+                                        <Checkbox
+                                            label={item}
+                                            name={'employment'}
+                                            checkHandler={handleChange}
+                                            value={item}
+                                        />
+                                    </li>
+                                }
                             />
                             <AppText
                                 text="Опыт работы"
                                 bold
                                 className={s.vacancyFilterTitle}
                             />
+                            <RadioButton
+                                name={'experience'}
+                                label={'Не имеет значения'}
+                                value={''}
+                                onChange={handleChange} />
+
                             <List
                                 list={experience}
                                 renderItem={(item) =>
@@ -262,7 +268,7 @@ const Vacancy = ({
                                     <Checkbox
                                         key={city.id}
                                         label={city.title}
-                                        name={'cities'}
+                                        name={'city_id'}
                                         value={city.id}
                                         checkHandler={handleChange}
                                     />

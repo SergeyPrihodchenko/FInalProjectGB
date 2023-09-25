@@ -20,6 +20,7 @@ class SqlBuild
             ->join('cities', 'vacancies.city_id', '=', 'cities.id')
             ->join('companies', 'vacancies.company_id', '=', 'companies.id')
             ->select('vacancies.id as id', 'vacancies.title as title', 'vacancies.payment as payment', 'vacancies.employment as employment', 'vacancies.schedule as schedule', 'vacancies.experience as experience', 'companies.name as conditions', 'cities.title as city');
+            
         return $vacancy->paginate(3);
     }
 }

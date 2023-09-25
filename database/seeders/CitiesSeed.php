@@ -20,7 +20,6 @@ class CitiesSeed extends Seeder
     {
         $data = [];
         $syties = [
-            [
                 "Абаза",
                 "Абакан",
                 "Абдулино",
@@ -1155,7 +1154,6 @@ class CitiesSeed extends Seeder
                 "Сестрорецк",
                 "Троицк",
                 "Щербинка",
-            ]
         ];
         foreach ($syties as $value) {
             $data[] = ['title' => $value];
