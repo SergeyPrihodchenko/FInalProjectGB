@@ -4,6 +4,7 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./CompanyList.module.css";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
 function CompanyList(){
@@ -41,16 +42,38 @@ function CompanyList(){
                                 bold 
                                 size="xs"
                             />
-
                             <AppText 
                                 title={"358 вакансий"} 
                                 size="xs"
                                 bold
                                 className={s.quantityCompany}
                             />        
-                        </div> 
-                               
-                            
+                         
+                            <div className={s.linkViewCompany}>
+                                    <AppButton 
+                                        // path={}
+                                        // param={}
+                                        // key={}
+                                        sizeText="s"
+                                        height="60px"
+                                        className={s.linkListCompany}
+                                    >Просмотреть</AppButton>
+                                    
+                                    <AppButton
+                                        // path={}
+                                        // param={}
+                                        // key={}
+                                        sizeText = "s"
+                                        className={s.linkListCompany}
+                                    >Редактировать</AppButton>
+
+                                    {
+                                        /* Сделать активной кнопку редаткировать 
+                                        только для пользователя чье резюме открыто
+                                        */
+                                    }                                    
+                                </div>
+                            </div>         
                     </main>
                 </AppPage>
             </MainLayout>

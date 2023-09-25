@@ -321,35 +321,34 @@ function CreateResume(){
                                 data.educational_institute.map((el, index) => {
                                     return(
                                     <div className={s.education}>
-                                        <div>
-                                            <AppInput
-                                                label="Название учебного заведения"
-                                                type="text"
-                                                placeholder="Название"
-                                                className={s.indentDownBasiceData}
-                                                value={el.title}
-                                                readOnly
-                                                
-                                            />
+                                        
+                                        <AppInput
+                                            label="Название учебного заведения"
+                                            type="text"
+                                            placeholder="Название"
+                                            className={s.indentDownBasiceData}
+                                            value={el.title}
+                                            readOnly                                
+                                        />
 
-                                            <AppInput
-                                                label="Факультет"
-                                                type="text"
-                                                placeholder="Факультет"
-                                                className={s.indentDownBasiceData}
-                                                value={el.faculty}
-                                                readOnly
-                                            />
+                                        <AppInput
+                                            label="Факультет"
+                                            type="text"
+                                            placeholder="Факультет"
+                                            className={s.indentDownBasiceData}
+                                            value={el.faculty}
+                                            readOnly
+                                        />
 
-                                            <AppInput
-                                                label={"Специализация"}
-                                                type="text"
-                                                placeholder="Специализация"
-                                                className={s.indentDownBasiceData}
-                                                value={el.specialization}
-                                                readOnly
-                                            />
-
+                                        <AppInput
+                                            label={"Специализация"}
+                                            type="text"
+                                            placeholder="Специализация"
+                                            className={s.indentDownBasiceData}
+                                            value={el.specialization}
+                                            readOnly
+                                        />
+                                        <div  className={s.educationUser}>
                                             <AppInput
                                                 label={"Дата окончания"}
                                                 type="date"
@@ -358,50 +357,49 @@ function CreateResume(){
                                                 value={el.graduation_year}
                                                 readOnly
                                             />
-                                        </div>
-
-                                        <AppButton
-                                            onClick={() => removeInstitute(index)}
-                                            variant="clear"
-                                            type="button"
-                                            sizeText="s"
-                                            bold
-                                            className={s.buttonYearsEducation}
-                                        >Удалить учебное заведение</AppButton>
+                                       
+                                            <AppButton
+                                                onClick={() => removeInstitute(index)}
+                                                variant="clear"
+                                                type="button"
+                                                sizeText="s"
+                                                bold
+                                                className={s.buttonYearsEducation}
+                                            >Удалить учебное заведение</AppButton>
+                                         </div>
                                     </div> 
                                     )
                                 })
                             }
 
                             <div className={s.education}>
-                                <div>
-                                    <AppInput
-                                        onChange={e => setTitle(e.target.value)}
-                                        value={title}
-                                        label={"Название учебного заведения"}
-                                        type="text"
-                                        placeholder="Название"
-                                        className={s.indentDownBasiceData}
-                                    />
+                                <AppInput
+                                    onChange={e => setTitle(e.target.value)}
+                                    value={title}
+                                    label={"Название учебного заведения"}
+                                    type="text"
+                                    placeholder="Название"
+                                    className={s.indentDownBasiceData}
+                                 />
 
-                                    <AppInput
-                                        onChange={e => setFaculty(e.target.value)}
-                                        value={faculty}
-                                        label={"Факультет"}
-                                        type="text"
-                                        placeholder="Факультет"
-                                        className={s.indentDownBasiceData}
-                                    />
+                                <AppInput
+                                    onChange={e => setFaculty(e.target.value)}
+                                    value={faculty}
+                                    label={"Факультет"}
+                                    type="text"
+                                    placeholder="Факультет"
+                                    className={s.indentDownBasiceData}
+                                />
 
-                                    <AppInput
-                                        onChange={e => setSpecialization(e.target.value)}
-                                        value={specialization}
-                                        label={"Специализация"}
-                                        type="text"
-                                        placeholder="Специализация"
-                                        className={s.indentDownBasiceData}
-                                    />
-
+                                <AppInput
+                                    onChange={e => setSpecialization(e.target.value)}
+                                    value={specialization}
+                                    label={"Специализация"}
+                                    type="text"
+                                    placeholder="Специализация"
+                                    className={s.indentDownBasiceData}
+                                />
+                                <div  className={s.educationUser}>
                                     <AppInput
                                         onChange={e => setGraduation_year(e.target.value)}
                                         value={graduation_year}
@@ -410,16 +408,16 @@ function CreateResume(){
                                         width="140px"
                                         className={s.indentDownBasiceData}
                                     />        
+                                
+                                    <AppButton
+                                        onClick={addInstitute}  
+                                        variant="clear"
+                                        sizeText="s"
+                                        type="button"
+                                        bold
+                                        className={s.buttonYearsEducation}
+                                    >Добавить учебное заведение</AppButton>
                                 </div>
-
-                                <AppButton
-                                    onClick={addInstitute}  
-                                    variant="clear"
-                                    sizeText="s"
-                                    type="button"
-                                    bold
-                                    className={s.buttonYearsEducation}
-                                >Добавить учебное заведение</AppButton>
                             </div> 
                         </div>
 
@@ -605,7 +603,7 @@ function CreateResume(){
                                             id="checkboxEndingWork"
                                             type="checkbox"
                                             value={checkbox}
-                                            onClick={() => setCheckbox(!checkbox)} 
+                                            // onClick={() => setCheckbox(!checkbox)} 
                                             className={s.checkboxEndingWork} 
                                         />
                                         <label for="checkboxEndingWork">

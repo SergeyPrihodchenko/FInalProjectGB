@@ -86,11 +86,11 @@
 	z-index: 1;
     width: 240px;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
     border: 1px solid #ccc;
     background: #fff;
     color: #000;
-    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
     padding: 0px 0px 10px 10px;
     border-radius: 5px;
 }
