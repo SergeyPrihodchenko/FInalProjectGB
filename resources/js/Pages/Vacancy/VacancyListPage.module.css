@@ -41,3 +41,16 @@
     left: 0;
     /* height: 80vh; */
 }
+
+.vacancyFilterTitle {
+    margin-bottom: 13px;
+}
+
+.citiesList {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.citiesInput {
+    margin-bottom: 15px;
+}

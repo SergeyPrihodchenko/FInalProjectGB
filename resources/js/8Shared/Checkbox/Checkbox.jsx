@@ -4,7 +4,6 @@ import cn from "classnames";
 
 const Checkbox = ({
     label,
-    isChecked,
     checkHandler,
     value,
     variant,
@@ -19,7 +18,6 @@ const Checkbox = ({
                     name=""
                     id=""
                     value={value}
-                    checked={isChecked}
                     onChange={checkHandler}
                     {...props}
                 />
