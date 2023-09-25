@@ -34,7 +34,7 @@ const Vacancy = ({
         employment: [],
         schedule: [],
         experience: '',
-        cities: [],
+        city_id: [],
         title: ''
     });
 
@@ -262,7 +262,7 @@ const Vacancy = ({
                                     <Checkbox
                                         key={city.id}
                                         label={city.title}
-                                        name={'cities'}
+                                        name={'city_id'}
                                         value={city.id}
                                         checkHandler={handleChange}
                                     />
