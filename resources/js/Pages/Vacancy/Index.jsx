@@ -123,7 +123,7 @@ const Vacancy = ({
             case "checkbox":
                 let copy = { ...filterData };
                 checked ? copy[name].push(value) : copy[name].splice(copy[name].indexOf(value), 1);
-                setFilterData(copy)
+                setFilterData(copy);
                 // console.log(setValueChange());
                 break;
             case "radio":

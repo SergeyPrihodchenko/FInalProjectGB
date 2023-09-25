@@ -95,7 +95,7 @@ export const VacancyFilter = (props) => {
                             <li key={city.title}>
                                 <Checkbox
                                     name={'cities'}
-                                    value={city.title}
+                                    value={city.id}
                                     label={city.title}
                                     onChange={handleChange}
                                 />
