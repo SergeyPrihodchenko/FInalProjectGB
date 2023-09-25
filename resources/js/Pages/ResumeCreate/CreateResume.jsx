@@ -142,6 +142,7 @@ function CreateResume(){
 
     const addSkill = () => {
         setData('skills', [...data.skills, skill])
+        setSkill('')
     }
 
     const removeSkill = (index) => {
@@ -499,33 +500,30 @@ function CreateResume(){
                                                     readOnly
                                                     value={el.start_date}
                                                 />
-                                                 
-                                                <AppInput
-                                                    label="Окончание работы" 
-                                                    type="date" 
-                                                    width="140px"
-                                                    className={s.indentDownBasiceData}
-                                                    readOnly
-                                                    value={el.end_date}
-                                                />
-                                                
-                                                <div className={s.experienceEndingWork}>
-                                                    <div className={s.inputEndingWork}>
-                                                        <input 
-                                                            type="checkbox"
+
+                                                {
+                                                    el.end_date ? 
+                                                        <AppInput
+                                                            label="Окончание работы" 
+                                                            type="date" 
+                                                            width="140px"
+                                                            className={s.indentDownBasiceData}
                                                             readOnly
-                                                            className={s.checkboxEndingWork} 
-                                                            id="checkboxEnding"
+                                                            value={el.end_date}
                                                         />
-                                                        <label for="checkboxEnding">
-                                                            <AppText
-                                                                title="По настоящее время"
-                                                                size="xs"
-                                                                className={s.textTitleEnding}
-                                                            />
-                                                        </label>
-                                                    </div>         
-                                                </div>
+                                                        : 
+                                                        <div className={s.experienceEndingWork}>
+                                                            <div className={s.inputEndingWork}>
+                                                                <label for="checkboxEndingWork">
+                                                                    <AppText
+                                                                        title="По настоящее время"
+                                                                        size="xs"
+                                                                        className={s.textTitleEnding}
+                                                                    />
+                                                                </label>
+                                                            </div> 
+                                                        </div>
+                                                }
                 
                                                 <AppButton
                                                     onClick={e => removeCompany(index)}
@@ -581,14 +579,18 @@ function CreateResume(){
                                     className={s.indentDownBasiceData}   
                                 />
                                
-                                <AppInput
-                                    onChange={(e)=>setEnd_date(e.target.value)}
-                                    value={end_date} 
-                                    label="Окончание работы" 
-                                    type="date"
-                                    width="140px"
-                                    className={s.indentDownBasiceData} 
-                                />
+                               {
+                                !checkbox ? 
+                                    <AppInput
+                                        onChange={(e)=>setEnd_date(e.target.value)}
+                                        value={end_date} 
+                                        label="Окончание работы" 
+                                        type="date"
+                                        width="140px"
+                                        className={s.indentDownBasiceData} 
+                                    /> : null
+                               }
+                                
                                 
 
                                 <div className={s.experienceEndingWork}>
@@ -600,10 +602,10 @@ function CreateResume(){
                                     /> */}
                                     <div className={s.inputEndingWork}>
                                         <input
-                                            onClick={() => setCheckbox(!checkbox)} 
                                             id="checkboxEndingWork"
                                             type="checkbox"
                                             value={checkbox}
+                                            onClick={() => setCheckbox(!checkbox)} 
                                             className={s.checkboxEndingWork} 
                                         />
                                         <label for="checkboxEndingWork">

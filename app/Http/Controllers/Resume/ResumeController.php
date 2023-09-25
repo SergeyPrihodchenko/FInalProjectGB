@@ -57,7 +57,7 @@ class ResumeController extends Controller
      */
     public function show(Resume $resume)
     {
-        return Inertia::render('ResumeUpdate/ResumeUpdate', [
+        return Inertia::render('ResumePage/ResumePage', [
             'title' => $resume->profession,
             'resume' => $resume
         ]);
@@ -66,9 +66,12 @@ class ResumeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Resume $resume)
     {
-        //
+        return Inertia::render('ResumeUpdate/ResumeUpdate', [
+            'title' => $resume->profession,
+            'resume' => $resume
+        ]);
     }
 
     /**
