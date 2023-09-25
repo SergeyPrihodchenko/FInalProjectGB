@@ -71,7 +71,6 @@ const Company = ({auth}) => {
                                 <div className={s.fileLoadBlock}>
                                     <input 
                                         type="file" 
-                                        value="" 
                                         id="file"
                                         className={s.fileCompany}
                                     />
@@ -131,15 +130,16 @@ const Company = ({auth}) => {
                                     placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
                                 />
                         </div> 
-                        <form method="LINK" action={route("companyList")}>
-                            <AppButton 
-                                // type="submit"
+                        
+                            <AppButton
+                                href={route("companyList")}
+                                type="button"
                                 bold 
                                 sizeText = "s"
                                 className={s.buttonSave}>
                                     <span>Сохранить</span>
                             </AppButton>
-                        </form>
+                       
                 </form>
             </AppPage>
         </MainLayout>
