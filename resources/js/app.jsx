@@ -12,11 +12,23 @@ import { AuthProvider } from "./1App/providers/AuthProvider/AuthProvider";
 const appName = import.meta.env.VITE_APP_NAME;
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) =>
-        resolvePageComponent(
-            `./Pages/${name}.jsx`,
-            import.meta.glob("./Pages/**/*.jsx")
-        ),
+    resolve: (name, props) => {
+        const pages = import.meta.glob("./Pages/**/*.jsx", { eager: true });
+        let page = pages[`./Pages/${name}.jsx`];
+        page.default.layout =
+            page.default.layout ||
+            ((page) => {
+                return (
+                    <MainLayout
+                        user={page.props.auth.user}
+                        className={"app_light_theme"}
+                    >
+                        {page}
+                    </MainLayout>
+                );
+            });
+        return page;
+    },
 
     setup({ el, App, props }) {
         const root = createRoot(el);
@@ -32,9 +44,9 @@ createInertiaApp({
         root.render(
             <>
                 {/* <AuthProvider auth={auth} {...props}></AuthProvider> */}
-                {/* <MainLayout className={"app_light_theme"} user={auth}> */}
+                {/* <  user={auth}> */}
                 <App {...props} id="root"></App>
-                {/* </MainLayout> */}
+                {/* </> */}
             </>
         );
     },

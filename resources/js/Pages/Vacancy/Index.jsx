@@ -1,4 +1,3 @@
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import AppText from "@/8Shared/ui/AppText/AppText";
@@ -23,7 +22,7 @@ const Vacancy = ({
     experience,
     schedule,
     employment,
-    cities
+    cities,
 }) => {
     const user = auth?.user;
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
@@ -131,12 +130,11 @@ const Vacancy = ({
         setFilterData((prevState) => {
             return {
                 ...prevState,
-                'title': value
-            }
-        }
-        );
+                title: value,
+            };
+        });
         console.log(filterData.title);
-    }
+    };
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
@@ -144,8 +142,11 @@ const Vacancy = ({
         switch (type) {
             case "checkbox":
                 let copy = { ...filterData };
-                checked ? copy[name].push(value) : copy[name].splice(copy[name].indexOf(value), 1);
+                checked
+                    ? copy[name].push(value)
+                    : copy[name].splice(copy[name].indexOf(value), 1);
                 setFilterData(copy);
+                // console.log(setValueChange());
                 break;
             case "radio":
                 if (checked) {
@@ -154,40 +155,40 @@ const Vacancy = ({
                             ...prevState,
                             [name]: value
                         }
+
                     });
                 }
                 break;
             default:
-                setFilterData(filterData)
+                setFilterData(filterData);
                 break;
-
         }
     }
 
     useEffect(() => {
-
         if (!vacancies) {
             const getFilterData = async () => {
-                const response = await axios.post(`/vacancies/filter?page=1`, { filterData: filterData });
+                const response = await axios.post(`/vacancies/filter?page=1`, {
+                    filterData: filterData,
+                });
                 const { data } = response.data;
                 setVacancyList(data);
                 setTotal(response.data.total);
                 setIndex(2);
                 console.log(filterData);
                 console.log(data);
-            }
+            };
             getFilterData();
         }
-
     }, [filterData]);
 
     console.log('total', total);
 
     return (
-        <MainLayout className={"app_light_theme"}>
+        <>
             <Head title="Вакансии" />
             <AppPage>
-                <Search width={'500px'} filterChange={setValueChange} />
+                <Search width={"500px"} filterChange={setValueChange} />
                 <div className={s.vacancyWrapper}>
                     <div className={s.filterContainer}>
                         <form action="">
@@ -278,33 +279,25 @@ const Vacancy = ({
                     </div>
 
                     <div className={s.vacancyList}>
-                        {vacancyList.map(vac =>
+                        {vacancyList.map((vac) => (
                             <AppLink
-                                path={'vacancy.show'}
+                                path={"vacancy.show"}
                                 param={vac.id}
                                 key={vac.id}
                             >
                                 <AppCard
-                                    width={'auto'}
-                                    height={'260px'}
+                                    width={"auto"}
+                                    height={"260px"}
                                     shadow
                                     className={cn(s.vacancyListCard)}
                                 >
-                                    <AppText
-                                        title={vac.title}
-                                    />
-                                    <AppText
-                                        text={`от ${vac.payment} руб.`}
-                                    />
+                                    <AppText title={vac.title} />
+                                    <AppText text={`от ${vac.payment} руб.`} />
                                     <AppText
                                         text={`Компания ${vac.conditions}.`}
                                     />
-                                    <AppText
-                                        text={vac.employment}
-                                    />
-                                    <AppText
-                                        text={vac.schedule}
-                                    />
+                                    <AppText text={vac.employment} />
+                                    <AppText text={vac.schedule} />
                                     <AppText
                                         size="s"
                                         variant="notaccented"
@@ -323,13 +316,12 @@ const Vacancy = ({
                                     </AppButton>
                                 </AppCard>
                             </AppLink>
-                        )}
+                        ))}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
-
                 </div>
             </AppPage>
-        </MainLayout>
+        </>
     );
 };
 export default Vacancy;
