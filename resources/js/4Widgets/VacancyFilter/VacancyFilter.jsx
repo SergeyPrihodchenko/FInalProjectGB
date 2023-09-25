@@ -6,6 +6,7 @@ import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import { useState } from "react";
 import { useEffect } from "react";
+import List from "@/8Shared/List/List";
 
 
 export const VacancyFilter = (props) => {
@@ -43,6 +44,10 @@ export const VacancyFilter = (props) => {
                     text="Тип занятости"
                     bold
                     className={s.vacancyFilterTitle}
+                />
+                <List
+                    list={employment}
+                    render={(item) => <Checkbox value={item} name={'employment'} />}
                 />
                 {employment.map((item) =>
                     <Checkbox
