@@ -11,8 +11,9 @@ import s from "./VacancyListPage.module.css";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import cn from "classnames";
 import { Search } from "@/8Shared/Search/Search";
-import { VacancyFilter } from "@/4Widgets/VacancyFilter/VacancyFilter";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
+import List from "@/8Shared/List/List";
+import { Head } from "@inertiajs/react";
 
 const Vacancy = ({
     vacancies,
@@ -34,6 +35,25 @@ const Vacancy = ({
         experience: "",
         title: "",
     });
+
+    const [cityInput, setCityInput] = useState('');
+    const [filterCityList, setFilterCityList] = useState(cities);
+
+    const handleCityInput = (e) => {
+        const value = e.target.value;
+        setCityInput(value);
+
+    }
+    useEffect(() => {
+        if (cityInput) {
+            const newList = cities.filter((city) => city.title.toLowerCase().startsWith(cityInput.toLocaleLowerCase()));
+            setFilterCityList(newList);
+
+        } else {
+            setFilterCityList(cities);
+        }
+
+    }, [cityInput]);
 
     const user = auth?.user;
 
@@ -140,7 +160,7 @@ const Vacancy = ({
                 setFilterData(filterData);
                 break;
         }
-    };
+    }
 
     useEffect(() => {
         if (!vacancies) {
@@ -159,25 +179,95 @@ const Vacancy = ({
         }
     }, [filterData]);
 
-    console.log("total", total);
-    // console.log('filterData', filterData);
-    // console.log('vacancyList', vacancyList);
-    // console.log('index', index);
-    // console.log('vacancies', vacancies);
+    console.log('total', total);
 
     return (
         <>
+            <Head title="Вакансии" />
             <AppPage>
                 <Search width={"500px"} filterChange={setValueChange} />
                 <div className={s.vacancyWrapper}>
-                    <VacancyFilter
-                        handleChange={handleChange}
-                        employment={employment}
-                        schedule={schedule}
-                        experience={experience}
-                        cities={cities}
-                        className={s.vacancyFilterSidebar}
-                    />
+                    <div className={s.filterContainer}>
+                        <form action="">
+                            <AppText
+                                text="Тип занятости"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            <List
+                                list={employment}
+                                renderItem={(item) =>
+                                    <Checkbox
+                                        key={item}
+                                        label={item}
+                                        name={'employment'}
+                                        checkHandler={handleChange}
+                                        value={item}
+                                    />}
+
+                            />
+                            <AppText
+                                text="Опыт работы"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            <List
+                                list={experience}
+                                renderItem={(item) =>
+                                    <RadioButton
+                                        key={item}
+                                        label={item}
+                                        name={'experience'}
+                                        onChange={handleChange}
+                                        value={item}
+                                    />}
+
+                            />
+                            <AppText
+                                text="График работы"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            <List
+                                list={schedule}
+                                renderItem={(item) =>
+                                    <Checkbox
+                                        key={item}
+                                        label={item}
+                                        name={'schedule'}
+                                        checkHandler={handleChange}
+                                        value={item}
+                                    />}
+
+
+                            />
+                            <AppText
+                                text="Город"
+                                bold
+                                className={s.vacancyFilterTitle}
+                            />
+                            <AppInput
+                                width={'auto'}
+                                className={s.citiesInput}
+                                value={cityInput}
+                                onChange={handleCityInput}
+                            />
+                            <List
+                                className={s.citiesList}
+                                list={filterCityList}
+                                renderItem={(city) =>
+                                    <Checkbox
+                                        key={city.id}
+                                        label={city.title}
+                                        name={'city_id'}
+                                        value={city.id}
+                                        checkHandler={handleChange}
+                                    />
+                                }
+                            />
+                        </form>
+                    </div>
+
                     <div className={s.vacancyList}>
                         {vacancyList.map((vac) => (
                             <AppLink
