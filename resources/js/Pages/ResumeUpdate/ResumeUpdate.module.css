@@ -72,17 +72,24 @@
     box-sizing: border-box;
 }
 
+.educationUser{
+    display: flex;
+    justify-content: flex-start;
+}
+
 .buttonYearsEducation,
 .buttonYearsExperience {
     border:none;
     color: var(--accent);
     background-color: var(--light-bg);
-    transform: translate(177px,-30px);
 }
 
 .buttonYearsExperience {
     padding-top: 30px;
-    transform: none;
+}
+
+.buttonYearsEducation {
+    margin: 15px 0px 0px 177px;
 }
 
 .checkboxEndingWork{

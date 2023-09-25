@@ -74,16 +74,23 @@
     padding: 0px 20px 5px 10px;
 }
 
+.educationUser{
+    display: flex;
+    justify-content: flex-start;
+}
+
 .buttonYearsEducation,
 .buttonYearsExperience {
     border:none;
     color: var(--accent);
-    transform: translate(177px,-35px);
 }
 
 .buttonYearsExperience {
     padding-top: 27px;
-    transform: none;
+}
+
+.buttonYearsEducation {
+    margin: 15px 0px 0px 177px;
 }
 
 .inputRadioCreateResume,

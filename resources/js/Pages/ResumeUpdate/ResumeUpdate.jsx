@@ -275,32 +275,31 @@ function Resume({resume}){
                             data.educational_institute.map((el, index) => {
                                 return(
                                     <div className={s.education}>
-                                        <div>
-                                            <AppInput
-                                                value={el.title}
-                                                readOnly
-                                                label="Название учебного заведения"
-                                                type="text"
-                                                placeholder="Название"
-                                                className={s.indentDownBasiceData}
-                                            />
+                                        <AppInput
+                                            value={el.title}
+                                            readOnly
+                                            label="Название учебного заведения"
+                                            type="text"
+                                            placeholder="Название"
+                                            className={s.indentDownBasiceData}
+                                        />
 
-                                            <AppInput
-                                                value={el.faculty}
-                                                readOnly
-                                                label="Факультет"
-                                                type="text"
-                                                className={s.indentDownBasiceData}    
-                                            />
+                                        <AppInput
+                                            value={el.faculty}
+                                            readOnly
+                                            label="Факультет"
+                                            type="text"
+                                            className={s.indentDownBasiceData}    
+                                        />
 
-                                            <AppInput
-                                                value={el.specialization}
-                                                readOnly
-                                                label="Специализация"
-                                                type="text"
-                                                className={s.indentDownBasiceData}
-                                            />
-
+                                        <AppInput
+                                            value={el.specialization}
+                                            readOnly
+                                            label="Специализация"
+                                            type="text"
+                                            className={s.indentDownBasiceData}
+                                        />
+                                        <div  className={s.educationUser}>
                                             <AppInput
                                                 value={el.graduation_year}
                                                 readOnly
@@ -309,46 +308,46 @@ function Resume({resume}){
                                                 width="140px"
                                                 className={s.inputYearsEducation}
                                             />
+                                        
+                                            <AppButton
+                                                onClick={() => removeInstitute(index)} 
+                                                variant="clear"
+                                                sizeText="s"
+                                                type="button"
+                                                bold
+                                                className={s.buttonYearsEducation}
+                                            >Удалить учебное заведение</AppButton>
                                         </div>
-                                        <AppButton
-                                            onClick={() => removeInstitute(index)} 
-                                            variant="clear"
-                                            sizeText="s"
-                                            type="button"
-                                            bold
-                                            className={s.buttonYearsEducation}
-                                        >Удалить учебное заведение</AppButton>
                                 </div> 
                                 )
                             })
                         }        
 
                         <div className={s.education}>
-                            <div>
-                                <AppInput
-                                    onChange={(e)=> setTitle(e.target.value)}
-                                    value={title}
-                                    label="Название учебного заведения"
-                                    type="text"
-                                    className={s.indentDownBasiceData}
-                                />
+                           <AppInput
+                                onChange={(e)=> setTitle(e.target.value)}
+                                value={title}
+                                label="Название учебного заведения"
+                                type="text"
+                                className={s.indentDownBasiceData}
+                            />
 
-                                <AppInput
-                                    onChange={(e)=> setFaculty(e.target.value)}
-                                    value={faculty}
-                                    label="Факультет"
-                                    type="text"
-                                    className={s.indentDownBasiceData}
-                                />
+                            <AppInput
+                                onChange={(e)=> setFaculty(e.target.value)}
+                                value={faculty}
+                                label="Факультет"
+                                type="text"
+                                className={s.indentDownBasiceData}
+                            />
 
-                                <AppInput
-                                    onChange={(e)=> setSpecialization(e.target.value)}
-                                    value={specialization}
-                                    label="Специализация"
-                                    type="text"
-                                    className={s.indentDownBasiceData}
-                                />
-
+                            <AppInput
+                                onChange={(e)=> setSpecialization(e.target.value)}
+                                value={specialization}
+                                label="Специализация"
+                                type="text"
+                                className={s.indentDownBasiceData}
+                            />
+                            <div  className={s.educationUser}>
                                 <AppInput
                                     onChange={(e)=> setGraduation_year(e.target.value)}
                                     value={graduation_year}
@@ -357,15 +356,16 @@ function Resume({resume}){
                                     width="140px"
                                     className={s.inputYearsEducation}
                                 />
+                           
+                                <AppButton
+                                    onClick={addInstitute} 
+                                    variant="clear"
+                                    sizeText="s"
+                                    type="button"
+                                    bold
+                                    className={s.buttonYearsEducation}
+                                >Добавить учебное заведение</AppButton>
                             </div>
-                            <AppButton
-                                onClick={addInstitute} 
-                                variant="clear"
-                                sizeText="s"
-                                type="button"
-                                bold
-                                className={s.buttonYearsEducation}
-                            >Добавить учебное заведение</AppButton>
                         </div> 
                     </div>
 
