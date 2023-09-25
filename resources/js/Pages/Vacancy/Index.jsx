@@ -156,6 +156,8 @@ const Vacancy = ({
                 setVacancyList(data);
                 setTotal(response.data.total);
                 setIndex(2);
+                console.log(filterData);
+                console.log(data);
             }
             getFilterData();
         }
@@ -213,6 +215,11 @@ const Vacancy = ({
                                         size="s"
                                         variant="notaccented"
                                         text={`Опыт работы: ${vac.experience}`}
+                                    />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Город: ${vac.city}`}
                                     />
                                     <AppButton
                                         className={s.vacancyListCardBtn}
