@@ -31,7 +31,7 @@ const Company = ({auth}) => {
 
   
     return (
-        <MainLayout className={"app_light_theme"}>
+        // <MainLayout className={"app_light_theme"}>
             <AppPage>
                 <AppText
                     title={"Новая компания"}
@@ -40,7 +40,7 @@ const Company = ({auth}) => {
                     className={s.textTitle}
                 />
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className={s.formCreateCompany}>
                     {/* <label htmlFor="title">Имя:</label>
                     <input id="title" value={data.name} onChange={e => setData('name', e.target.value)} />
 
@@ -169,7 +169,7 @@ const Company = ({auth}) => {
                        
                 </form>
             </AppPage>
-        </MainLayout>
+        // </MainLayout>
     );
 };
 export default Company;
