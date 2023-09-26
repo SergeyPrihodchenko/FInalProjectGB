@@ -27,7 +27,7 @@ class VacancyController
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
 
-        return Inertia::render('Vacancy/Index', [
+        return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',
             'employment' => $employment,
             'schedule' => $schedule,
@@ -69,7 +69,7 @@ class VacancyController
         $schedule = ScheduleType::all();
         $employment = EmploymentType::all();
 
-        return Inertia::render('Vacancy/VacancyCreate', [
+        return Inertia::render('VacancyListPage/VacancyCreate', [
             'companies' => $companies,
             'cities' => $cities,
             'citiesForWork' => $citiesForWork,
@@ -112,7 +112,7 @@ class VacancyController
 
         $vacancy->update($data);
 
-        return Inertia::render('Vacancy/Show', [
+        return Inertia::render('VacancyListPage/Show', [
             'vacancy' => $vacancy
         ]);
     }

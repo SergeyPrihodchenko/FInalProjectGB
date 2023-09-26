@@ -26,7 +26,7 @@ export const Search = ({
     // console.log(debouncedVac);
 
     useEffect(() => {
-        if (!debouncedVac || debouncedVac.length <= 2) return;
+        if (!debouncedVac) return;
 
         axios.get(`/searchSort?str=${debouncedVac}`)
             .then((res) => {
@@ -39,7 +39,7 @@ export const Search = ({
     const handleChange = (e) => {
         const query = e.target.value.toLowerCase();
         setValue(query);
-        filterChange(e.target.value);
+        // filterChange(e.target.value);
     };
 
     const handleClick = (e) => {
@@ -94,6 +94,7 @@ export const Search = ({
             </ul>
         );
     };
+    console.log('suggestionsActive', suggestionsActive)
     return (
         <div className={s.searchBlock}>
             <form
