@@ -27,7 +27,7 @@ class VacancyController
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
 
-        return Inertia::render('VacancyListPage/VacancyListPage', [
+        return Inertia::render('Vacancy/Index', [
             'title' => 'Вакансии',
             'employment' => $employment,
             'schedule' => $schedule,
@@ -69,7 +69,7 @@ class VacancyController
         $schedule = ScheduleType::all();
         $employment = EmploymentType::all();
 
-        return Inertia::render('VacancyListPage/VacancyCreate', [
+        return Inertia::render('Vacancy/VacancyCreate', [
             'companies' => $companies,
             'cities' => $cities,
             'citiesForWork' => $citiesForWork,
@@ -78,9 +78,6 @@ class VacancyController
             'employment' => $employment,
         ]);
     }
-
-
-
 
     public function store(StoreRequest $request)
     {
@@ -106,13 +103,35 @@ class VacancyController
 //        ]);
     }
 
+    public function edit(Vacancy $vacancy): \Inertia\Response
+    {
+        //return Inertia::render('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate');
+        $companies = Company::all();
+        $cities = City::all();
+        $citiesForWork = City::all();
+        $experience = Experience::all();
+        $schedule = ScheduleType::all();
+        $employment = EmploymentType::all();
+
+        return Inertia::render('Vacancy/VacancyUpdate', [
+            'vacancy' => $vacancy,
+            'companies' => $companies,
+            'cities' => $cities,
+            'citiesForWork' => $citiesForWork,
+            'experience' => $experience,
+            'schedule' => $schedule,
+            'employment' => $employment,
+        ]);
+    }
+
+
     public function update(Vacancy $vacancy, StoreRequest $request)
     {
         $data = $request->validated();
 
         $vacancy->update($data);
 
-        return Inertia::render('VacancyListPage/Show', [
+        return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
             'vacancy' => $vacancy
         ]);
     }

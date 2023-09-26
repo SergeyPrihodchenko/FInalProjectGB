@@ -31,6 +31,7 @@ class VacancySeeder extends Seeder
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
+
         for ($i = 0; $i < 30; $i++) {
             $n = rand(0, 4);
             $y = rand(0, 4);
