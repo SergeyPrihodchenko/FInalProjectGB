@@ -10,10 +10,12 @@ class SqlBuild
         foreach ($arr as $key => $value) {
             if (is_array($value) && !empty($value)) {
                 $vacancy = $vacancy->whereIn($key, $value);
-            } elseif (!is_array($value) && !empty($value)) {
+            } elseif ($key == 'experience' && !empty($value)) {
                 $vacancy = $vacancy->where($key, $value);
             } elseif ($key == 'title' && !empty($value)) {
                 $vacancy = $vacancy->where('vacancies.title', 'LIKE', '%' . $value . '%');
+            } elseif ($key == 'payment' && !empty($value)) {
+                $vacancy = $vacancy->where($key, '>=', $value);
             }
         }
         $vacancy = $vacancy

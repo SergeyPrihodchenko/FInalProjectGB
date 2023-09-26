@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vacancy;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FilterRequest;
 use App\Models\SqlBuild;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 class FilterVacanciesController extends Controller
 {
 
-    public function filterVacancy(Request $request) 
+    public function filterVacancy(FilterRequest $request) 
     {
         $filterData = $request->post('filterData');
 
