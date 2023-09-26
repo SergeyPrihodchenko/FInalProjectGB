@@ -1,4 +1,3 @@
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import AppText from "@/8Shared/ui/AppText/AppText";
@@ -14,7 +13,7 @@ const Company = ({ companies, name, auth }) => {
     console.log("companies", companies);
     const user = auth?.user;
     return (
-        <MainLayout className={"app_light_theme"} user={user}>
+        <>
             <AppPage>
                 {companies
                     ? companies.map((compnayItem, index) => {
@@ -32,7 +31,7 @@ const Company = ({ companies, name, auth }) => {
                       })
                     : null}
             </AppPage>
-        </MainLayout>
+        </>
     );
 };
 
