@@ -30,7 +30,7 @@ const VacancyListPage = ({
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
-    console.log(vacancies);
+    console.log(vacancyList);
     const [filterData, setFilterData] = useState({
         employment: [],
         schedule: [],
@@ -191,7 +191,6 @@ const VacancyListPage = ({
             getFilterData();
         }
     }, [filterData]);
-
     return (
         <>
             <Head title="Вакансии" />
@@ -241,49 +240,46 @@ const VacancyListPage = ({
                         ) : (
                             <AppText bold text={`Ничего не найдено`} />
                         )}
-                        {vacancyList.map((vac) => {
-                            return (
-                                <div>1</div>
-                                // <AppLink
-                                //     path={"vacancy.show"}
-                                //     param={vac.id}
-                                //     key={vac.id}
-                                // >
-                                //     <AppCard
-                                //         width={"auto"}
-                                //         height={"260px"}
-                                //         shadow
-                                //         className={cn(s.vacancyListCard)}
-                                //     >
-                                //         <AppText title={vac.title} />
-                                //         <AppText
-                                //             text={`от ${vac.payment} руб.`}
-                                //         />
-                                //         <AppText
-                                //             text={`Компания ${vac.conditions}.`}
-                                //         />
-                                //         <AppText text={vac.employment} />
-                                //         <AppText text={vac.schedule} />
-                                //         <AppText
-                                //             size="s"
-                                //             variant="notaccented"
-                                //             text={`Опыт работы: ${vac.experience}`}
-                                //         />
-                                //         <AppText
-                                //             size="s"
-                                //             variant="notaccented"
-                                //             text={`Город: ${vac.city}`}
-                                //         />
-                                //         <AppButton
-                                //             className={s.vacancyListCardBtn}
-                                //             width="auto"
-                                //         >
-                                //             Откликнуться
-                                //         </AppButton>
-                                //     </AppCard>
-                                // </AppLink>
-                            );
-                        })}
+                        {vacancyList.map((vac) => 
+                                <AppLink
+                                    path={"vacancy.show"}
+                                    param={vac.id}
+                                    key={vac.id}
+                                >
+                                    <AppCard
+                                        width={"auto"}
+                                        height={"260px"}
+                                        shadow
+                                        className={cn(s.vacancyListCard)}
+                                    >
+                                        <AppText title={vac.title} />
+                                        <AppText
+                                            text={`от ${vac.payment} руб.`}
+                                        />
+                                        <AppText
+                                            text={`Компания ${vac.conditions}.`}
+                                        />
+                                        <AppText text={vac.employment} />
+                                        <AppText text={vac.schedule} />
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Опыт работы: ${vac.experience}`}
+                                        />
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Город: ${vac.city}`}
+                                        />
+                                        <AppButton
+                                            className={s.vacancyListCardBtn}
+                                            width="auto"
+                                        >
+                                            Откликнуться
+                                        </AppButton>
+                                    </AppCard>
+                                </AppLink>
+                        )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
                 </div>

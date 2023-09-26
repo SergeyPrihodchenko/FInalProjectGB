@@ -27,7 +27,7 @@ class VacancyController
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
 
-        return Inertia::render('Vacancy/Index', [
+        return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',
             'employment' => $employment,
             'schedule' => $schedule,
