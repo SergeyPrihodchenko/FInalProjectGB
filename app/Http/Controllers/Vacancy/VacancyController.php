@@ -40,14 +40,14 @@ class VacancyController
     {
         //VacancyPage/ui/VacancyPage/VacancyPage
         $vacancy['requirements'] = explode('--;', $vacancy['requirements']);
-        $vacancy['responsibilities'] = explode('--;', $vacancy['responsibilities']);
-        $vacancy['conditions'] = explode('--;', $vacancy['conditions']);
-        $vacancy['skills'] = explode('--;', $vacancy['skills']);
+        // $vacancy['responsibilities'] = explode('--;', $vacancy['responsibilities']);
+        // $vacancy['conditions'] = explode('--;', $vacancy['conditions']);
+        // $vacancy['skills'] = explode('--;', $vacancy['skills']);
 
-        $newContacts = [];
-        $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
-        if($vacancy['contacts'] && is_array($vacancy['contacts'])) {
-            foreach ($vacancy['contacts'] as $index=>$arItem) {
+        // $newContacts = [];
+        // $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
+        if ($vacancy['contacts'] && is_array($vacancy['contacts'])) {
+            foreach ($vacancy['contacts'] as $index => $arItem) {
                 $newContacts[] = explode(';', $arItem);
             }
             $vacancy['contacts'] = $newContacts;
@@ -98,9 +98,9 @@ class VacancyController
 
         return Redirect::route('vacancy.index');
 
-//        return Inertia::render('Vacancy/Show', [
-//            'vacancy' => $vacancy
-//        ]);
+        //        return Inertia::render('Vacancy/Show', [
+        //            'vacancy' => $vacancy
+        //        ]);
     }
 
     public function edit(Vacancy $vacancy): \Inertia\Response
