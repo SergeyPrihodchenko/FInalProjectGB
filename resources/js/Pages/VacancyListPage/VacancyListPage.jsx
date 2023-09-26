@@ -1,4 +1,3 @@
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import AppText from "@/8Shared/ui/AppText/AppText";
@@ -31,6 +30,11 @@ const VacancyListPage = ({
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
 
+    const [extendedDescription, setExtendedDescription] = useState(false);
+
+    const [payment, setPayment] = useState(''); // состояние инпута зарплаты 
+    const debouncedPayment = useDebounce(payment, 500);
+
     const [filterData, setFilterData] = useState({
         employment: [],
         schedule: [],
@@ -39,7 +43,6 @@ const VacancyListPage = ({
         title: '',
         payment: '',
     });
-
     //поиск по названию вакансии
     const [vacancySearchInput, setVacancySearchInput] = useState(''); // состояние инпута поиска по названию вакансии
     const [suggestions, setSuggestions] = useState([]);
@@ -50,6 +53,14 @@ const VacancyListPage = ({
         const { value } = e.target;
         setVacancySearchInput(value);
 
+    }
+    const handlePayment = () => {
+        setFilterData((prevState) => {
+            return {
+                ...prevState,
+                payment: Number(payment)
+            }
+        })
     }
 
     useEffect(() => {
@@ -68,11 +79,16 @@ const VacancyListPage = ({
         })
 
     }, [debouncedVacancySearch]);
+
+
     const handleSuggestionClick = (e) => {
         setSuggestions([]);
         setVacancySearchInput(e.target.innerText);
         setSuggestionsActive(false);
     }
+
+
+
 
 
     const fetchVacancyCards = useCallback(async () => {
@@ -171,6 +187,15 @@ const VacancyListPage = ({
                     });
                 }
                 break;
+            case "text":
+                const pattern = /^\d+$/;
+                if (pattern.test(value)) {
+                    setPayment(value);
+
+                } else {
+                    setPayment('');
+                }
+                break;
             default:
                 setFilterData(filterData)
                 break;
@@ -195,14 +220,13 @@ const VacancyListPage = ({
     }, [filterData]);
 
     return (
-        <MainLayout className={"app_light_theme"}>
+        <>
             <Head title="Вакансии" />
             <AppPage>
-                {/* <Search width={'500px'} filterChange={setValueChange} /> */}
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
-                            autocomplete="off"
+                            autoComplete="off"
                             width={'550px'}
                             name={'title'}
                             placeholder={'Поиск вакансии'}
@@ -216,7 +240,11 @@ const VacancyListPage = ({
                             className={s.serachFilterSuggestions}
                             list={suggestions}
                             renderItem={(suggestion) =>
-                                <li className={s.serachFilterSuggestion} onClick={handleSuggestionClick}>
+                                <li
+                                    key={suggestion.id}
+                                    className={s.serachFilterSuggestion}
+                                    onClick={handleSuggestionClick}
+                                >
                                     {suggestion.title}
                                 </li>
                             }
@@ -227,13 +255,30 @@ const VacancyListPage = ({
                 <div className={s.vacancyWrapper}>
                     <VacancyListPageFilters
                         employment={employment}
+                        payment={payment}
                         cities={cities}
                         schedule={schedule}
                         experience={experience}
                         handleChange={handleChange}
+                        handlePayment={handlePayment}
                     />
 
                     <div className={s.vacancyList}>
+                        <div className={s.toggleBtn}>
+                            <AppButton
+                                variant={'notaccent'}
+                                onClick={() => setExtendedDescription(false)}
+                            >
+                                not extended
+                            </AppButton>
+                            <AppButton
+                                variant={'notaccent'}
+                                onClick={() => setExtendedDescription(true)}
+                            >
+                                extended
+                            </AppButton>
+
+                        </div>
                         {vacancyList.length > 0 ?
                             <AppText bold text={`Найдено ${total} вакансии`} /> :
                             <AppText bold text={`Ничего не найдено`} />}
@@ -245,7 +290,7 @@ const VacancyListPage = ({
                             >
                                 <AppCard
                                     width={'auto'}
-                                    height={'260px'}
+                                    height={'auto'}
                                     shadow
                                     className={cn(s.vacancyListCard)}
                                 >
@@ -274,6 +319,13 @@ const VacancyListPage = ({
                                         variant="notaccented"
                                         text={`Город: ${vac.city}`}
                                     />
+                                    {extendedDescription &&
+                                        <AppText
+                                            size={'xs'}
+                                            text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
+                                            className={s.vacancyListCardDesc}
+                                        />
+                                    }
                                     <AppButton
                                         className={s.vacancyListCardBtn}
                                         width="auto"
@@ -288,7 +340,7 @@ const VacancyListPage = ({
 
                 </div>
             </AppPage>
-        </MainLayout >
+        </>
     );
 };
 export default VacancyListPage;
