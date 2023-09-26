@@ -30,7 +30,7 @@ const VacancyListPage = ({
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
-
+    console.log(vacancies);
     const [filterData, setFilterData] = useState({
         employment: [],
         schedule: [],
@@ -195,7 +195,7 @@ const VacancyListPage = ({
     }, [filterData]);
 
     return (
-        <MainLayout className={"app_light_theme"}>
+        <>
             <Head title="Вакансии" />
             <AppPage>
                 {/* <Search width={'500px'} filterChange={setValueChange} /> */}
@@ -288,7 +288,7 @@ const VacancyListPage = ({
 
                 </div>
             </AppPage>
-        </MainLayout >
+        </>
     );
 };
 export default VacancyListPage;
