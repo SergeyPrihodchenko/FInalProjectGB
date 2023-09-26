@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use function Laravel\Prompts\select;
+
 class MainController extends Controller
 {
     public function index() 
@@ -36,9 +38,9 @@ class MainController extends Controller
         
         $data = $request->validated();
         $searchStr = $data['vacancy'];
-        $vacancies = Vacancy::where('title', 'like', '%'.$searchStr.'%')->get();
+        $vacancies = Vacancy::where('vacancies.title', 'like', '%'.$searchStr.'%')->get();
         if (!empty($vacancies)) {
-            return Inertia::render('Vacancy/Index', [
+            return Inertia::render('VacancyListPage/VacancyListPage', [
                 'title' => 'Вакансии',
                 'vacancies' => $vacancies,
                 'employment' => $employment,
@@ -47,7 +49,7 @@ class MainController extends Controller
 
             ]);
         }
-        return Inertia::render('Vacancy/Index', [
+        return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Такой вакансии нет' . $request->get('title'),
             'vacancies' => []
         ]);

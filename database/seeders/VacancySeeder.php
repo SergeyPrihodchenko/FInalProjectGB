@@ -56,9 +56,7 @@ class VacancySeeder extends Seeder
                 // 'city_id' => City::create([
                 //     'title' => 'Фэйковая город проживания'
                 // ])->id,
-                'city_work_id' => City::create([
-                    'title' => 'Фэйковая город работы'
-                ])->id,
+                'city_work_id' => $r
             ];
         }
 
