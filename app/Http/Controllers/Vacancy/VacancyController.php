@@ -46,8 +46,8 @@ class VacancyController
 
         $newContacts = [];
         $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
-        if($vacancy['contacts'] && is_array($vacancy['contacts'])) {
-            foreach ($vacancy['contacts'] as $index=>$arItem) {
+        if ($vacancy['contacts'] && is_array($vacancy['contacts'])) {
+            foreach ($vacancy['contacts'] as $index => $arItem) {
                 $newContacts[] = explode(';', $arItem);
             }
             $vacancy['contacts'] = $newContacts;
@@ -69,7 +69,7 @@ class VacancyController
         $schedule = ScheduleType::all();
         $employment = EmploymentType::all();
 
-        return Inertia::render('VacancyListPage/VacancyCreate', [
+        return Inertia::render('Vacancy/VacancyCreate', [
             'companies' => $companies,
             'cities' => $cities,
             'citiesForWork' => $citiesForWork,
@@ -78,9 +78,6 @@ class VacancyController
             'employment' => $employment,
         ]);
     }
-
-
-
 
     public function store(StoreRequest $request)
     {
@@ -101,10 +98,32 @@ class VacancyController
 
         return Redirect::route('vacancy.index');
 
-//        return Inertia::render('Vacancy/Show', [
-//            'vacancy' => $vacancy
-//        ]);
+        //        return Inertia::render('Vacancy/Show', [
+        //            'vacancy' => $vacancy
+        //        ]);
     }
+
+    public function edit(Vacancy $vacancy): \Inertia\Response
+    {
+        //return Inertia::render('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate');
+        $companies = Company::all();
+        $cities = City::all();
+        $citiesForWork = City::all();
+        $experience = Experience::all();
+        $schedule = ScheduleType::all();
+        $employment = EmploymentType::all();
+
+        return Inertia::render('Vacancy/VacancyUpdate', [
+            'vacancy' => $vacancy,
+            'companies' => $companies,
+            'cities' => $cities,
+            'citiesForWork' => $citiesForWork,
+            'experience' => $experience,
+            'schedule' => $schedule,
+            'employment' => $employment,
+        ]);
+    }
+
 
     public function update(Vacancy $vacancy, StoreRequest $request)
     {
@@ -112,7 +131,7 @@ class VacancyController
 
         $vacancy->update($data);
 
-        return Inertia::render('VacancyListPage/Show', [
+        return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
             'vacancy' => $vacancy
         ]);
     }

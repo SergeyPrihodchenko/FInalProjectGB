@@ -218,7 +218,6 @@ const VacancyListPage = ({
         }
 
     }, [filterData]);
-
     return (
         <>
             <Head title="Вакансии" />

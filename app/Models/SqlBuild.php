@@ -14,6 +14,8 @@ class SqlBuild
                 $vacancy = $vacancy->where($key, $value);
             } elseif ($key == 'title' && !empty($value)) {
                 $vacancy = $vacancy->where('vacancies.title', 'LIKE', '%' . $value . '%');
+            } elseif ($key == 'payment' && !empty($value)) {
+                $vacancy = $vacancy->where($key, '>=', $value);
             }
         }
         $vacancy = $vacancy

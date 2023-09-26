@@ -9,7 +9,9 @@ import s from "@/Pages/VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate.
 import AppInput from "@/8Shared/ui/AppInput/AppInput.jsx";
 import AppText from "@/8Shared/ui/AppText/AppText.jsx";
 
-const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule, employment}) => {
+const Vacancy = ({ vacancy, auth, companies, cities, citiesForWork, experience, schedule, employment}) => {
+    console.log(vacancy, 'vacancy');
+
     const [isShowContent, setIsShowContent] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -37,7 +39,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
 
     const user = auth?.user;
 
-    const { data, setData, post, errors } = useForm({
+    const { data, setData, patch, errors } = useForm({
         title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
         city_id : "1",
         payment: "1000",
@@ -55,7 +57,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route("vacancy.store"));
+        patch(route('vacancy.update', vacancy.id));
     };
 
 
@@ -99,7 +101,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                         <label htmlFor="city_id">Город</label>
                         <select id='city_id' name='city_id' value={data.city_id} onChange={(e) => setData("city_id", e.target.value)}>
                             {cities.map((city, index) => (
-                            <option key={index} value={city.id}>{city.title}</option>))}
+                                <option key={index} value={city.id}>{city.title}</option>))}
                         </select>
 
                         {/*Зарплата*/}
@@ -114,7 +116,7 @@ const Vacancy = ({ auth, companies, cities, citiesForWork, experience, schedule,
                         <label htmlFor="city_work_id">Город где будет работать сотрудник</label>
                         <select id='city_work_id' name='city_work_id' value={data.city_work_id} onChange={(e) => setData("city_work_id", e.target.value)}>
                             {citiesForWork.map((cityForWork, index) => (
-                                <option key={cityForWork.id} value={cityForWork.id}>{cityForWork.title}</option>))}
+                                <option key={cityForWork.title} value={cityForWork.id}>{cityForWork.title}</option>))}
                         </select>
 
                         {/*Опыт*/}
