@@ -3,31 +3,31 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useState } from "react";
 import { useForm } from "@inertiajs/react";
 
-const Company = ({ auth, cities }) => {
+const Company = ({ company, auth }) => {
     const user = auth?.user;
 
-    const {data, setData, post, errors} = useForm({
-//форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
-        email: 'all@mail.ru',
-        name: '1',
-        business_profile: '1',
-        website: 'www.1',
+    const {data, setData, put, errors} = useForm({
+        //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+        email: 'al@mail.ru',
+        name: '2',
+        business_profile: '2',
+        website: '2',
         region_of_location: '',
-        phone_number: '111-111-11-11',
-        description: '1',
-        date_create: '2000-11-01',
+        phone_number: '2',
+        description: '2',
+        date_create: '2012-12-12',
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route("company.store"));
+       put(route("company.update", company.id)); //определится с методом
     };
 
     return (
         <MainLayout className={"app_light_theme"} user={user}>
             <AppPage>
-                <h1>Новая компания</h1>
+                <h1>Редактирование компании</h1>
                 <form onSubmit={handleSubmit}>
 
                     <label htmlFor="email">E-mail:</label>
@@ -42,13 +42,12 @@ const Company = ({ auth, cities }) => {
                     <label htmlFor="website">Сайт:</label>
                     <input id="website" value={data.website} onChange={e => setData('website', e.target.value)} />
 
-                    <label htmlFor="city_id">Город или регион расположения</label>
-                    <select id='region_of_location' name='region_of_location' value={data.region_of_location} onChange={(e) => setData("region_of_location", e.target.value)}>
-                        {cities.map((city, index) => (
-                            <option key={index} value={city.title}>{city.title}</option>))}
-                    </select>
-                    {/*<label htmlFor="region_of_location">Город или регион расположения:</label>*/}
-                    {/*<input id="region_of_location" value={data.region_of_location} onChange={e => setData('region_of_location', e.target.value)} />*/}
+                    {/*<select id='region_of_location' name='region_of_location' value={data.region_of_location} onChange={(e) => setData("region_of_location", e.target.value)}>*/}
+                    {/*    {cities.map((city, index) => (*/}
+                    {/*        <option key={index} value={city.title}>{city.title}</option>))}*/}
+                    {/*</select>*/}
+                    <label htmlFor="region_of_location">Город или регион расположения:</label>
+                    <input id="region_of_location" value={data.region_of_location} onChange={e => setData('region_of_location', e.target.value)} />
 
                     <label htmlFor="date_create">Дата основания:</label>
                     <input type="date" id="start" name="trip-start"   value={data.date_create} onChange={e => setData('date_create', e.target.value)} />
