@@ -6,16 +6,16 @@ import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import axios from "axios";
-import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import Loader from "@/8Shared/Loader/Loader";
 import s from "./VacancyListPage.module.css";
-import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import cn from "classnames";
-import { Search } from "@/8Shared/Search/Search";
-import { VacancyFilter } from "@/4Widgets/VacancyFilter/VacancyFilter";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
+import { Head } from "@inertiajs/react";
+import VacancyListPageFilters from "./ui/VacancyListPageFilters/VacancyListPageFilters";
+import useDebounce from "@/8Shared/Search/useDebounce";
+import List from "@/8Shared/List/List";
 
-const Vacancy = ({
+const VacancyListPage = ({
     vacancies,
     title,
     auth,
@@ -24,19 +24,56 @@ const Vacancy = ({
     employment,
     cities
 }) => {
+    const user = auth?.user;
     const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
+    console.log(vacancies);
     const [filterData, setFilterData] = useState({
         employment: [],
         schedule: [],
         experience: '',
-        title: ''
+        city_id: [],
+        title: '',
+        payment: '',
     });
 
-    const user = auth?.user;
+    //поиск по названию вакансии
+    const [vacancySearchInput, setVacancySearchInput] = useState(''); // состояние инпута поиска по названию вакансии
+    const [suggestions, setSuggestions] = useState([]);
+    const debouncedVacancySearch = useDebounce(vacancySearchInput, 500);
+    const [suggestionsActive, setSuggestionsActive] = useState(false);
+
+    const handleVacancySearchInput = (e) => {
+        const { value } = e.target;
+        setVacancySearchInput(value);
+
+    }
+
+    useEffect(() => {
+        if (!debouncedVacancySearch) return;
+
+        axios.get(`/searchSort?str=${debouncedVacancySearch}`)
+            .then((res) => {
+                setSuggestions(res.data);
+            })
+            .catch((err) => console.log(err))
+        setFilterData((prevState) => {
+            return {
+                ...prevState,
+                title: debouncedVacancySearch
+            }
+        })
+
+    }, [debouncedVacancySearch]);
+    const handleSuggestionClick = (e) => {
+        setSuggestions([]);
+        setVacancySearchInput(e.target.innerText);
+        setSuggestionsActive(false);
+    }
+
 
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
@@ -122,8 +159,7 @@ const Vacancy = ({
             case "checkbox":
                 let copy = { ...filterData };
                 checked ? copy[name].push(value) : copy[name].splice(copy[name].indexOf(value), 1);
-                setFilterData(copy)
-                // console.log(setValueChange());
+                setFilterData(copy);
                 break;
             case "radio":
                 if (checked) {
@@ -132,20 +168,15 @@ const Vacancy = ({
                             ...prevState,
                             [name]: value
                         }
-                    }
-
-                    );
+                    });
                 }
                 break;
-                console.log(filterData);
             default:
                 setFilterData(filterData)
                 break;
 
         }
     }
-
-
 
     useEffect(() => {
 
@@ -156,32 +187,56 @@ const Vacancy = ({
                 setVacancyList(data);
                 setTotal(response.data.total);
                 setIndex(2);
+                console.log(data);
             }
             getFilterData();
         }
 
     }, [filterData]);
 
-    console.log('total', total);
-    // console.log('filterData', filterData);
-    // console.log('vacancyList', vacancyList);
-    // console.log('index', index);
-    // console.log('vacancies', vacancies);
-
     return (
-        <MainLayout className={"app_light_theme"}>
+        <>
+            <Head title="Вакансии" />
             <AppPage>
-                <Search width={'500px'} filterChange={setValueChange} />
+                {/* <Search width={'500px'} filterChange={setValueChange} /> */}
+                <div className={s.filterSearchVacancy}>
+                    <form action="" className={s.vacancySearch}>
+                        <AppInput
+                            autocomplete="off"
+                            width={'550px'}
+                            name={'title'}
+                            placeholder={'Поиск вакансии'}
+                            value={vacancySearchInput}
+                            onChange={handleVacancySearchInput}
+                            onClick={() => setSuggestionsActive(!suggestionsActive)}
+                        />
+                    </form>
+                    {suggestionsActive &&
+                        <List
+                            className={s.serachFilterSuggestions}
+                            list={suggestions}
+                            renderItem={(suggestion) =>
+                                <li className={s.serachFilterSuggestion} onClick={handleSuggestionClick}>
+                                    {suggestion.title}
+                                </li>
+                            }
+                        />
+                    }
+
+                </div>
                 <div className={s.vacancyWrapper}>
-                    <VacancyFilter
-                        handleChange={handleChange}
+                    <VacancyListPageFilters
                         employment={employment}
+                        cities={cities}
                         schedule={schedule}
                         experience={experience}
-                        cities={cities}
-                        className={s.vacancyFilterSidebar}
+                        handleChange={handleChange}
                     />
+
                     <div className={s.vacancyList}>
+                        {vacancyList.length > 0 ?
+                            <AppText bold text={`Найдено ${total} вакансии`} /> :
+                            <AppText bold text={`Ничего не найдено`} />}
                         {vacancyList.map(vac =>
                             <AppLink
                                 path={'vacancy.show'}
@@ -214,6 +269,11 @@ const Vacancy = ({
                                         variant="notaccented"
                                         text={`Опыт работы: ${vac.experience}`}
                                     />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Город: ${vac.city}`}
+                                    />
                                     <AppButton
                                         className={s.vacancyListCardBtn}
                                         width="auto"
@@ -228,7 +288,7 @@ const Vacancy = ({
 
                 </div>
             </AppPage>
-        </MainLayout>
+        </>
     );
 };
-export default Vacancy;
+export default VacancyListPage;

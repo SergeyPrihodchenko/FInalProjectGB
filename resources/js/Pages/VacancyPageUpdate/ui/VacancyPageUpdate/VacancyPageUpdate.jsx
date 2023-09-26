@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 import { Head } from "@inertiajs/react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import s from "./VacancyPageCreate.module.css";
+import s from "./VacancyPageUpdate.module.css";
 import cn from "classnames";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import { useState } from "react";
-function VacancyPageCreate(props) {
+function VacancyPageUpdate(props) {
     const { auth, vacancy, btn } = props;
     const user = auth?.user;
-    // console.log("VacancyPageCreate props", props);
+    // console.log("VacancyPageUpdate props", props);
 
     // Требования
     const [requirementsInput, setRequirementsInput] = useState("");
@@ -67,7 +67,7 @@ function VacancyPageCreate(props) {
     };
     return (
         <>
-            <Head title="VacancyPageCreate" />
+            <Head title="VacancyPageUpdate" />
 
             <AppPage>
                 {btn}
@@ -562,6 +562,6 @@ function VacancyPageCreate(props) {
     );
 }
 
-VacancyPageCreate.propTypes = {};
+VacancyPageUpdate.propTypes = {};
 
-export default VacancyPageCreate;
+export default VacancyPageUpdate;

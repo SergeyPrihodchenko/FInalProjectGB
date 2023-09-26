@@ -5,7 +5,7 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, useForm } from "@inertiajs/react";
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
+
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 export default function ResetPassword({ token, email }) {

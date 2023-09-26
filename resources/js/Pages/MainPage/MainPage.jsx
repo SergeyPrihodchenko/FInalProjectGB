@@ -1,7 +1,7 @@
 import s from "./MainPage.module.css";
 import { fakerRU as faker } from "@faker-js/faker";
 import propTypes from "prop-types";
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
+
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { Banner } from "@/8Shared/Banner/Banner";
 import { Search } from "@/8Shared/Search/Search";
@@ -29,7 +29,7 @@ const MainPage = (props) => {
     const user = auth?.user;
     // console.log("MainPage.jsx vacancies", vacancies);
     return (
-        <MainLayout className={"app_light_theme"} user={user}>
+        <>
             <Head title="Home" />
             <Banner
                 imageUrl={`https://static.tildacdn.com/tild6138-6338-4363-a435-383636663665/b_591bf35ac97a1.jpg`}
@@ -43,7 +43,7 @@ const MainPage = (props) => {
                         className={s.bannerTitle}
                     />
                     <Search
-                        width={'680px'}
+                        width={"680px"}
                         placeholder={"Профессия, должность, компания"}
                     />
                 </AppPage>
@@ -120,7 +120,7 @@ const MainPage = (props) => {
                     </div>
                 </div>
             </AppPage>
-        </MainLayout>
+        </>
     );
 };
 

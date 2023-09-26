@@ -2,7 +2,6 @@ import React from "react";
 //import PropTypes from 'prop-types'
 import s from "./ProfilePage.module.css";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 
 // import { BtnDelete } from '@/Shared/ProfileButton/BtnDeleteProfilePage';
 import AppText from "@/8Shared/ui/AppText/AppText";
@@ -17,15 +16,11 @@ function ProfilePage({ auth }) {
 
     return (
         <AuthContext.Provider value={{ user }}>
-            <MainLayout className={"app_light_theme"} user={user}>
+            <>
                 <AppPage>
                     <container className={s.profilePage}>
                         <main className={s.mainProfilePage}>
-                            <AppText 
-                                title={"Настройки"} 
-                                size={"m"}
-                                bold 
-                            />
+                            <AppText title={"Настройки"} size={"m"} bold />
 
                             <ProfilePageTabs />
 
@@ -36,7 +31,7 @@ function ProfilePage({ auth }) {
                         </main>
                     </container>
                 </AppPage>
-            </MainLayout>
+            </>
         </AuthContext.Provider>
     );
 }

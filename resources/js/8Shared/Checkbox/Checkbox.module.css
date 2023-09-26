@@ -1,12 +1,13 @@
-.checkboxField {
+/* .checkboxField {
     display: flex;
-    margin-bottom: 10px;
-}
+} */
 
 .checkboxWrapper {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
+
 .checkboxWrapper input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
