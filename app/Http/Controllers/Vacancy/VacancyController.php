@@ -27,7 +27,7 @@ class VacancyController
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
 
-        return Inertia::render('Vacancy/Index', [
+        return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',
             'employment' => $employment,
             'schedule' => $schedule,
@@ -46,8 +46,8 @@ class VacancyController
 
         $newContacts = [];
         $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
-        if($vacancy['contacts'] && is_array($vacancy['contacts'])) {
-            foreach ($vacancy['contacts'] as $index=>$arItem) {
+        if ($vacancy['contacts'] && is_array($vacancy['contacts'])) {
+            foreach ($vacancy['contacts'] as $index => $arItem) {
                 $newContacts[] = explode(';', $arItem);
             }
             $vacancy['contacts'] = $newContacts;
@@ -98,9 +98,9 @@ class VacancyController
 
         return Redirect::route('vacancy.index');
 
-//        return Inertia::render('Vacancy/Show', [
-//            'vacancy' => $vacancy
-//        ]);
+        //        return Inertia::render('Vacancy/Show', [
+        //            'vacancy' => $vacancy
+        //        ]);
     }
 
     public function edit(Vacancy $vacancy): \Inertia\Response

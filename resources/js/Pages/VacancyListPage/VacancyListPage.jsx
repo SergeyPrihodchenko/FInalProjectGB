@@ -30,7 +30,7 @@ const VacancyListPage = ({
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
-    console.log(vacancies);
+    console.log(vacancyList);
     const [filterData, setFilterData] = useState({
         employment: [],
         schedule: [],
@@ -193,7 +193,6 @@ const VacancyListPage = ({
         }
 
     }, [filterData]);
-
     return (
         <>
             <Head title="Вакансии" />
