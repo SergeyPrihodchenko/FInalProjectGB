@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
+import cn from "classnames"
+import s from "./List.module.css"
 
 
-const List = ({ list, renderItem, as, ...rest }) => {
+const List = ({ list, renderItem, as, className, ...rest }) => {
     const Component = as ?? 'ul';
     return (
 
-        <Component {...rest}>
+        <Component className={cn(s.list, className)} {...rest}>
             {
-                list.map(renderItem)
+                list?.map(renderItem)
             }
         </Component >
     )
