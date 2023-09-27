@@ -22,7 +22,6 @@ const VacancyListPage = ({
     schedule,
     employment,
     cities,
-    test
 }) => {
     const user = auth?.user;
     const [vacancyList, setVacancyList] = useState([]);
@@ -42,7 +41,7 @@ const VacancyListPage = ({
         experience: "",
         city_id: [],
         title: vacancies ? vacancies : '',
-        payment: "",
+        payment: 0,
     });
     //поиск по названию вакансии
     const [vacancySearchInput, setVacancySearchInput] = useState(""); // состояние инпута поиска по названию вакансии
@@ -217,7 +216,7 @@ const VacancyListPage = ({
     }, [filterData]);
     return (
         <>
-            <Head title="Вакансии" />
+            <Head title={title} />
             <AppPage>
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
