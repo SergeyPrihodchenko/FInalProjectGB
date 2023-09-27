@@ -248,10 +248,10 @@ const VacancyListPage = ({
                                     onClick={handleSuggestionClick}
                                 >
                                     {suggestion.title}
-                                </li>
-                            )}
+                                </li>}
+                            
                         />
-                    )}
+                     ) }
                 </div>
                 <div className={s.vacancyWrapper}>
                     <VacancyListPageFilters
@@ -332,6 +332,7 @@ const VacancyListPage = ({
                                         className={s.vacancyListCardBtn}
                                         width="auto"
                                     >
+                                        </AppButton>
                                         <AppText title={vac.title} />
                                         <AppText
                                             text={`от ${vac.payment} руб.`}
