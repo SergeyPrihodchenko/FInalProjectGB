@@ -21,10 +21,11 @@ const VacancyListPage = ({
     experience,
     schedule,
     employment,
-    cities
+    cities,
+    test
 }) => {
     const user = auth?.user;
-    const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
+    const [vacancyList, setVacancyList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
@@ -38,13 +39,13 @@ const VacancyListPage = ({
     const [filterData, setFilterData] = useState({
         employment: [],
         schedule: [],
-        experience: '',
+        experience: "",
         city_id: [],
-        title: '',
-        payment: '',
+        title: vacancies ? vacancies : '',
+        payment: "",
     });
     //поиск по названию вакансии
-    const [vacancySearchInput, setVacancySearchInput] = useState(''); // состояние инпута поиска по названию вакансии
+    const [vacancySearchInput, setVacancySearchInput] = useState(""); // состояние инпута поиска по названию вакансии
     const [suggestions, setSuggestions] = useState([]);
     const debouncedVacancySearch = useDebounce(vacancySearchInput, 500);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
@@ -52,6 +53,7 @@ const VacancyListPage = ({
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
+
 
     }
     const handlePayment = () => {
@@ -66,18 +68,18 @@ const VacancyListPage = ({
     useEffect(() => {
         if (!debouncedVacancySearch) return;
 
-        axios.get(`/searchSort?str=${debouncedVacancySearch}`)
+        axios
+            .get(`/searchSort?str=${debouncedVacancySearch}`)
             .then((res) => {
                 setSuggestions(res.data);
             })
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
         setFilterData((prevState) => {
             return {
                 ...prevState,
-                title: debouncedVacancySearch
-            }
-        })
-
+                title: debouncedVacancySearch,
+            };
+        });
     }, [debouncedVacancySearch]);
 
 
@@ -112,26 +114,24 @@ const VacancyListPage = ({
     }, [index, isLoading]);
 
     useEffect(() => {
-        if (!vacancies) {
-            if (vacancyList.length !== total) {
-                const observer = new IntersectionObserver((entries) => {
-                    const target = entries[0];
-                    if (target.isIntersecting) {
-                        fetchVacancyCards();
-                    }
-                });
-
-                if (loaderRef.current) {
-                    observer.observe(loaderRef.current);
+        if (vacancyList.length !== total) {
+            const observer = new IntersectionObserver((entries) => {
+                const target = entries[0];
+                if (target.isIntersecting) {
+                    fetchVacancyCards();
                 }
+            });
 
-                return () => {
-                    if (loaderRef.current) {
-                        observer.unobserve(loaderRef.current);
-                        setIsLoading(false);
-                    }
-                };
+            if (loaderRef.current) {
+                observer.observe(loaderRef.current);
             }
+
+            return () => {
+                if (loaderRef.current) {
+                    observer.unobserve(loaderRef.current);
+                    setIsLoading(false);
+                }
+            };
         }
     }, [loaderRef, vacancyList]);
 
@@ -157,12 +157,11 @@ const VacancyListPage = ({
         setFilterData((prevState) => {
             return {
                 ...prevState,
-                'title': value
-            }
-        }
-        );
+                title: value,
+            };
+        });
         console.log(filterData.title);
-    }
+    };
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
@@ -170,7 +169,9 @@ const VacancyListPage = ({
         switch (type) {
             case "checkbox":
                 let copy = { ...filterData };
-                checked ? copy[name].push(value) : copy[name].splice(copy[name].indexOf(value), 1);
+                checked
+                    ? copy[name].push(value)
+                    : copy[name].splice(copy[name].indexOf(value), 1);
                 setFilterData(copy);
                 break;
             case "radio":
@@ -178,8 +179,8 @@ const VacancyListPage = ({
                     setFilterData((prevState) => {
                         return {
                             ...prevState,
-                            [name]: value
-                        }
+                            [name]: value,
+                        };
                     });
                 }
                 break;
@@ -193,26 +194,23 @@ const VacancyListPage = ({
                 }
                 break;
             default:
-                setFilterData(filterData)
+                setFilterData(filterData);
                 break;
-
         }
-    }
+    };
 
     useEffect(() => {
-
-        if (!vacancies) {
-            const getFilterData = async () => {
-                const response = await axios.post(`/vacancies/filter?page=1`, { filterData: filterData });
-                const { data } = response.data;
-                setVacancyList(data);
-                setTotal(response.data.total);
-                setIndex(2);
-                console.log(data);
-            }
-            getFilterData();
-        }
-
+        const getFilterData = async () => {
+            const response = await axios.post(`/vacancies/filter?page=1`, {
+                filterData: filterData,
+            });
+            const { data } = response.data;
+            setVacancyList(data);
+            setTotal(response.data.total);
+            setIndex(2);
+            console.log(data);
+        };
+        getFilterData();
     }, [filterData]);
     return (
         <>
@@ -221,16 +219,19 @@ const VacancyListPage = ({
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
+
                             autoComplete="off"
                             width={'550px'}
                             name={'title'}
                             placeholder={'Поиск вакансии'}
                             value={vacancySearchInput}
                             onChange={handleVacancySearchInput}
-                            onClick={() => setSuggestionsActive(!suggestionsActive)}
+                            onClick={() =>
+                                setSuggestionsActive(!suggestionsActive)
+                            }
                         />
                     </form>
-                    {suggestionsActive &&
+                    {suggestionsActive && (
                         <List
                             className={s.serachFilterSuggestions}
                             list={suggestions}
@@ -241,11 +242,10 @@ const VacancyListPage = ({
                                     onClick={handleSuggestionClick}
                                 >
                                     {suggestion.title}
-                                </li>
-                            }
-                        />
-                    }
+                                </li>}
 
+                        />
+                    )}
                 </div>
                 <div className={s.vacancyWrapper}>
                     <VacancyListPageFilters
@@ -348,6 +348,7 @@ const VacancyListPage = ({
                                             className={s.vacancyListCardDesc}
                                         />
                                     }
+
                                     <AppButton
                                         className={s.vacancyListCardBtn}
                                         width="auto"
@@ -359,7 +360,6 @@ const VacancyListPage = ({
                         )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
-
                 </div>
             </AppPage>
         </>

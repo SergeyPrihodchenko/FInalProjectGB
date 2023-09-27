@@ -8,6 +8,7 @@ import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import { useState } from "react";
 import { useEffect } from "react";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
 const VacancyListPageFilters = ({
     payment,
@@ -95,10 +96,16 @@ const VacancyListPageFilters = ({
                         onChange={handleChange}
                     />
                     <AppButton
+                        colorType={'accent'}
+                        variant={'outline'}
                         type='button'
                         onClick={handlePayment}
+                        className={s.paymentBtn}
                     >
-                        Найти
+                        <BootstrapIcon
+                            name={'BsSearch'}
+                            size={20}
+                        />
                     </AppButton>
 
                 </div>

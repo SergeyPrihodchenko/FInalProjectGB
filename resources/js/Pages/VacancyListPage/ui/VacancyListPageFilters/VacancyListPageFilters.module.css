@@ -26,4 +26,11 @@
 .paymentBlock {
     display: flex;
     align-items: center;
+    gap: 10px;
+}
+
+.paymentBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
