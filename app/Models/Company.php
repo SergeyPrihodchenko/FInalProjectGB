@@ -28,8 +28,15 @@ class Company extends Model
     }
 
     protected $casts = [
-        'created_at' => 'datetime:d/m/Y',
-        'updated_at' => 'datetime:d/m/Y',
+//        'created_at' => 'datetime:Y-m-d',
+//        'updated_at' => 'datetime:d/m/Y',
         'date_create' => 'datetime:d/m/Y',
     ];
+
+//protected $dates = ['date_create'];
+//    public function setYourDateFieldAttribut($value) {
+//        $this->attribut['date_create'] = Carbon\Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y);
+//    }
+
+
 }
