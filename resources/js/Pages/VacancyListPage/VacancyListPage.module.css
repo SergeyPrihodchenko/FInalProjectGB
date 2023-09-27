@@ -1,0 +1,61 @@
+.vacancyWrapper {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.vacancySearch {
+    margin-top: 20px;
+}
+
+.vacancyList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex-grow: 1;
+    margin-bottom: 30px;
+
+}
+
+.vacancyListCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+}
+
+.vacancyListCardDesc {
+    width: 100%;
+    overflow: hidden;
+}
+
+.vacancyListCardBtn {
+    margin-top: auto;
+}
+
+.page {
+    min-height: calc(100vh - var(--header-height));
+}
+
+.filterSearchVacancy {
+    position: relative;
+}
+
+.serachFilterSuggestions {
+    position: absolute;
+    width: 550px;
+    border-radius: 5px;
+    background-color: var(--secondary-bg);
+}
+
+.serachFilterSuggestion {
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color .2s ease-in;
+    border-radius: 5px;
+}
+
+.serachFilterSuggestion:hover {
+    background-color: var(--accent);
+    transition: background-color .2s ease-in;
+}

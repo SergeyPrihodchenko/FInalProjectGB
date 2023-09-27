@@ -9,9 +9,12 @@ import mainlogo from "@/8Shared/assets/icons/mainlogo.svg";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import SecondNav from "../SecondNav/SecondNav";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
+import { useState } from "react";
 
 export const Navbar = (props) => {
     const { user } = props;
+    const [navbarVariantForEmployers, setNavbarVariantForEmployers] =
+        useState(false);
     // console.log("Navbar.jsx user", user);
 
     return (

@@ -1,40 +1,38 @@
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
-import {AppPage} from "@/5Layouts/AppPage/AppPage";
-import React, {useState} from "react";
-import {useForm} from "@inertiajs/react";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
+import React, { useState } from "react";
+import { useForm } from "@inertiajs/react";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./CreateCompany.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
-const Company = ({auth}) => {
+const Company = ({ auth }) => {
     const user = auth?.user;
 
-    const {data, setData, post, errors} = useForm({
-        name: '',
-    })
+    const { data, setData, post, errors } = useForm({
+        name: "",
+    });
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route('company.store'))
-    }
+        post(route("company.store"));
+    };
 
-    // file.change(function(){
-    //     // Если файл прикрепили то заносим значение value в переменную
-    //     let fileResult = $(this).val();
-    //     // И дальше передаем значение в инпут который под загрузчиком
-    //     $(this).parent().find('.fileLoad').find('input').val(fileResult);
-    // });
+    //Ввод данных компании
+    const [emailCompanyInput, setEmailCompanyInput] = useState("");
+    const [nameCompanyInput, setNameCompanyInput] = useState("");
+    const [areasActivityCompanyInput, setAreasActivityCompanyInput] =
+        useState("");
+    const [regionLocationCompanyInput, setRegionLocationCompanyInput] =
+        useState("");
+    const [foundationDateCompanyInput, setFoundationDateCompanyInput] =
+        useState("");
+    const [phoneCompanyInput, setPhoneCompanyInput] = useState("");
+    const [siteCompanyInput, setSiteCompanyInput] = useState("");
+    const [aboutCompamyTextarea, setAboutCompanyTextarea] = useState("");
 
-    // /* Добавляем новый класс кнопке если инпут файл получил фокус */
-    // $('#file').hover(function(){
-    //     $(this).parent().find('button').addClass('button-hover');
-    // }, function(){
-    //     $(this).parent().find('button').removeClass('button-hover');
-    // });
-    
     return (
-        <MainLayout className={"app_light_theme"}>
+        <>
             <AppPage>
                 <AppText
                     title={"Новая компания"}
@@ -49,129 +47,141 @@ const Company = ({auth}) => {
 
                     <button type="submit">Отправить</button> */}
 
+                    {/* Ввод данных компании */}
                     <div className={s.basiceData}>
-                            <AppInput 
-                                label={"Email"}
-                                type="text" 
-                                placeholder="Email"
-                                className={s.indentDownBasiceData}
-                            />
-                                                      
-                            <AppInput 
-                                label={"Наименование"} 
-                                value={data.name} 
-                                onChange={e => setData('name', e.target.value)}
-                                type="text" 
-                                placeholder="Наименование"
-                                className={s.indentDownBasiceData}
-                            />
-                                                        
-                            <AppInput 
-                                label={"Сферы деятельности"} 
-                                type="text" 
-                                placeholder="IT, Металлургия, Услуги"
-                                className={s.indentDownBasiceData}
-                            />
-                                                       
-                            <AppText
-                                title={"Логотип компании"}
-                                bold
-                                size={"xs"}
-                                className={s.textTitle}
-                            />
+                        <AppInput
+                            value={emailCompanyInput}
+                            onChange={(e) =>
+                                setEmailCompanyInput(e.target.value)
+                            }
+                            label={"Email"}
+                            type="text"
+                            placeholder="Email"
+                            className={s.indentDownBasiceData}
+                        />
 
-                            <div className={s.logoCompanyUpload}>
-                                <div className={s.fileLoadBlock}>
-                                    <input 
-                                        type="file" 
-                                        value="" 
-                                        id="file"
-                                        className={s.fileCompany}
+                        <AppInput
+                            value={nameCompanyInput}
+                            onChange={(e) =>
+                                setNameCompanyInput(e.target.value)
+                            }
+                            // value={data.name}
+                            // onChange={e => setData('name', e.target.value)}
+                            label={"Наименование"}
+                            type="text"
+                            placeholder="Наименование"
+                            className={s.indentDownBasiceData}
+                        />
+
+                        <AppInput
+                            value={areasActivityCompanyInput}
+                            onChange={(e) =>
+                                setAreasActivityCompanyInput(e.target.value)
+                            }
+                            label={"Сферы деятельности"}
+                            type="text"
+                            placeholder="IT, Металлургия, Услуги"
+                            className={s.indentDownBasiceData}
+                        />
+
+                        <AppText
+                            title={"Логотип компании"}
+                            bold
+                            size={"xs"}
+                            className={s.textTitle}
+                        />
+
+                        <div className={s.logoCompanyUpload}>
+                            <div className={s.fileLoadBlock}>
+                                <input
+                                    type="file"
+                                    id="file"
+                                    className={s.fileCompany}
+                                />
+                                <div className={s.inputlogoUpload}>
+                                    <input
+                                        type="text"
+                                        className={s.textFileCompany}
                                     />
-                                    <div className={s.inputlogoUpload}>
-                                        <input 
-                                            type="text"
-                                            className={s.textFileCompany}
-                                        />
-                                        <AppButton 
-                                            type="submit"
-                                            bold 
-                                            sizeText = "xs"
-                                        ><span>Загрузить</span>
-                                        </AppButton>
-                                    </div>
+                                    <AppButton type="submit" bold sizeText="xs">
+                                        <span>Загрузить</span>
+                                    </AppButton>
                                 </div>
                             </div>
-                         {/* <form>
-                                <div className={s.logoUpload}>
-                                    <input
-                                        type="file"
-                                        multiple accept="image/*,image/jpeg, image/png"
-                                        className={s.inputlogoUpload}
-                                    />
-                                    <AppButton 
-                                        type="submit"
-                                        bold 
-                                        sizeText = "s"
-                                        className={s.buttonUpload}>
-                                            <span>Загрузить</span>
-                                        </AppButton>
-                                </div>
-                            </form>   */}
-                           
-                            <AppInput 
-                                label={"Город или регион расположения"} 
-                                type="text"
-                                placeholder="Москва"
-                                className={s.indentDownBasiceData} 
-                            />
-                            
-                            <AppInput 
-                                label={"Город или регион расположения"} 
-                                type="date" 
-                                width="140px"
-                                className={s.indentDownBasiceData}
-                            />
-                                                    
-                            <AppInput 
-                                label={"Контактный номер телефона"}  
-                                type="text"
-                                placeholder="+7 (999) 999-99-99"
-                                className={s.indentDownBasiceData} 
-                            />
-                           
-                            <AppInput 
-                                label={"Сай компании"} 
-                                type="text"
-                                placeholder="https://GoodJobs.ru/"
-                                className={s.indentDownBasiceData} 
-                            />
+                        </div>
 
+                        <AppInput
+                            value={regionLocationCompanyInput}
+                            onChange={(e) =>
+                                setRegionLocationCompanyInput(e.value.target)
+                            }
+                            label={"Город или регион расположения"}
+                            type="text"
+                            placeholder="Москва"
+                            className={s.indentDownBasiceData}
+                        />
 
-                            <AppText
-                                title={"Расскажите о вашей компании"}
-                                bold
-                                size={"xs"}
-                                className={s.textTitle}
-                            />
-                                <textarea
-                                    className={s.textareaBasiceData}
-                                    placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
-                                />
-                        </div> 
-                        <form method="LINK" action={route("companyList")}>
-                            <AppButton 
-                                // type="submit"
-                                bold 
-                                sizeText = "s"
-                                className={s.buttonSave}>
-                                    <span>Сохранить</span>
-                            </AppButton>
-                        </form>
+                        <AppInput
+                            value={foundationDateCompanyInput}
+                            onChange={(e) =>
+                                setFoundationDateCompanyInput(e.value.target)
+                            }
+                            label={"Дата основания"}
+                            type="date"
+                            width="140px"
+                            className={s.indentDownBasiceData}
+                        />
+
+                        <AppInput
+                            value={phoneCompanyInput}
+                            onChange={(e) =>
+                                setPhoneCompanyInput(e.value.target)
+                            }
+                            label={"Контактный номер телефона"}
+                            type="text"
+                            placeholder="+7 (999) 999-99-99"
+                            className={s.indentDownBasiceData}
+                        />
+
+                        <AppInput
+                            value={siteCompanyInput}
+                            onChange={(e) =>
+                                setSiteCompanyInput(e.value.target)
+                            }
+                            label={"Сайт компании"}
+                            type="text"
+                            placeholder="https://GoodJobs.ru/"
+                            className={s.indentDownBasiceData}
+                        />
+
+                        <AppText
+                            title={"Расскажите о вашей компании"}
+                            bold
+                            size={"xs"}
+                            className={s.textTitle}
+                        />
+                        <textarea
+                            value={aboutCompamyTextarea}
+                            onChange={(e) =>
+                                setAboutCompanyTextarea(e.value.target)
+                            }
+                            className={s.textareaBasiceData}
+                            placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
+                        />
+                    </div>
+
+                    <AppButton
+                        href={route("companyList")}
+                        type="button"
+                        bold
+                        sizeText="s"
+                        className={s.buttonSave}
+                    >
+                        <span>Сохранить</span>
+                    </AppButton>
                 </form>
             </AppPage>
-        </MainLayout>
+        </>
     );
 };
 export default Company;
-

@@ -31,6 +31,7 @@ class VacancySeeder extends Seeder
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
+
         for ($i = 0; $i < 30; $i++) {
             $n = rand(0, 4);
             $y = rand(0, 4);
@@ -52,12 +53,11 @@ class VacancySeeder extends Seeder
                 'company_id' => Company::create([
                     'name' => fake('ru_RU')->company,
                 ])->id,
-                'city_id' => City::create([
-                    'title' => 'Фэйковая город проживания'
-                ])->id,
-                'city_work_id' => City::create([
-                    'title' => 'Фэйковая город работы'
-                ])->id,
+                'city_id' => $r,
+                // 'city_id' => City::create([
+                //     'title' => 'Фэйковая город проживания'
+                // ])->id,
+                'city_work_id' => $r
             ];
         }
 

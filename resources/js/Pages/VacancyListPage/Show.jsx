@@ -1,15 +1,13 @@
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import React, { useState } from "react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { Head } from "@inertiajs/react";
 
-
 const Vacancy = ({ vacancy }) => {
     console.log(vacancy);
     return (
-        <MainLayout className={"app_light_theme"} user={user}>
+        <>
             <Head title={`${vacancy.title}`} />
             <AppPage>
                 <div className="flex justify-between">
@@ -40,7 +38,7 @@ const Vacancy = ({ vacancy }) => {
                     </AppCard>
                 </div>
             </AppPage>
-        </MainLayout>
+        </>
     );
 };
 

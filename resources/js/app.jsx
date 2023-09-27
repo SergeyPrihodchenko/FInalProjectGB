@@ -8,15 +8,30 @@ import MainLayout from "./5Layouts/MainLayout/MainLayout";
 import { AuthContext } from "./8Shared/store/AuthContext";
 import { useEffect } from "react";
 import { AuthProvider } from "./1App/providers/AuthProvider/AuthProvider";
+import { StoreProvider } from "./1App/providers/StoreProvider/StoreProvider";
 
 const appName = import.meta.env.VITE_APP_NAME;
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) =>
-        resolvePageComponent(
-            `./Pages/${name}.jsx`,
-            import.meta.glob("./Pages/**/*.jsx")
-        ),
+    resolve: (name) => {
+        const pages = import.meta.glob("./Pages/**/*.jsx", { eager: true });
+        let page = pages[`./Pages/${name}.jsx`];
+        page.default.layout =
+            page.default.layout ||
+            ((page) => {
+                return (
+                    <StoreProvider>
+                        <MainLayout
+                            user={page?.props?.auth?.user}
+                            className={"app_light_theme"}
+                        >
+                            {page}
+                        </MainLayout>
+                    </StoreProvider>
+                );
+            });
+        return page;
+    },
 
     setup({ el, App, props }) {
         const root = createRoot(el);
@@ -32,9 +47,9 @@ createInertiaApp({
         root.render(
             <>
                 {/* <AuthProvider auth={auth} {...props}></AuthProvider> */}
-                {/* <MainLayout className={"app_light_theme"} user={auth}> */}
+                {/* <  user={auth}> */}
                 <App {...props} id="root"></App>
-                {/* </MainLayout> */}
+                {/* </> */}
             </>
         );
     },
