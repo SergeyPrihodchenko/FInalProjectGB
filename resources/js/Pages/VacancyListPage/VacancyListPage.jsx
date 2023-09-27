@@ -87,10 +87,7 @@ const VacancyListPage = ({
         setSuggestions([]);
         setVacancySearchInput(e.target.innerText);
         setSuggestionsActive(false);
-    };
-
-
-
+    }
 
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
@@ -117,25 +114,25 @@ const VacancyListPage = ({
     }, [index, isLoading]);
 
     useEffect(() => {
-            if (vacancyList.length !== total) {
-                const observer = new IntersectionObserver((entries) => {
-                    const target = entries[0];
-                    if (target.isIntersecting) {
-                        fetchVacancyCards();
-                    }
-                });
-
-                if (loaderRef.current) {
-                    observer.observe(loaderRef.current);
+        if (vacancyList.length !== total) {
+            const observer = new IntersectionObserver((entries) => {
+                const target = entries[0];
+                if (target.isIntersecting) {
+                    fetchVacancyCards();
                 }
+            });
 
-                return () => {
-                    if (loaderRef.current) {
-                        observer.unobserve(loaderRef.current);
-                        setIsLoading(false);
-                    }
-                };
+            if (loaderRef.current) {
+                observer.observe(loaderRef.current);
             }
+
+            return () => {
+                if (loaderRef.current) {
+                    observer.unobserve(loaderRef.current);
+                    setIsLoading(false);
+                }
+            };
+        }
     }, [loaderRef, vacancyList]);
 
     // useEffect(() => {
@@ -203,17 +200,17 @@ const VacancyListPage = ({
     };
 
     useEffect(() => {
-            const getFilterData = async () => {
-                const response = await axios.post(`/vacancies/filter?page=1`, {
-                    filterData: filterData,
-                });
-                const { data } = response.data;
-                setVacancyList(data);
-                setTotal(response.data.total);
-                setIndex(2);
-                console.log(data);
-            };
-            getFilterData();
+        const getFilterData = async () => {
+            const response = await axios.post(`/vacancies/filter?page=1`, {
+                filterData: filterData,
+            });
+            const { data } = response.data;
+            setVacancyList(data);
+            setTotal(response.data.total);
+            setIndex(2);
+            console.log(data);
+        };
+        getFilterData();
     }, [filterData]);
     return (
         <>
@@ -246,9 +243,9 @@ const VacancyListPage = ({
                                 >
                                     {suggestion.title}
                                 </li>}
-                            
+
                         />
-                     ) }
+                    )}
                 </div>
                 <div className={s.vacancyWrapper}>
                     <VacancyListPageFilters
@@ -262,25 +259,39 @@ const VacancyListPage = ({
                     />
 
                     <div className={s.vacancyList}>
+                        <div className={s.descBlock}>
+                            {vacancyList.length > 0 ?
+                                <AppText bold text={`Найдено ${total} вакансии`} /> :
+                                <AppText bold text={`Ничего не найдено`} />
+                            }
+                            <div className={s.toggleDescBtn}>
+                                <AppButton
+                                    width={'40px'}
+                                    height={'40px'}
+                                    variant='clear'
+                                    onClick={() => setExtendedDescription(false)}
+                                    className={cn(s.hideDescBtn, {
+                                        [s.pressed]: !extendedDescription
+                                    })}
+                                >
+                                    <span></span>
 
-                        <div className={s.toggleBtn}>
-                            <AppButton
-                                variant={'notaccent'}
-                                onClick={() => setExtendedDescription(false)}
-                            >
-                                not extended
-                            </AppButton>
-                            <AppButton
-                                variant={'notaccent'}
-                                onClick={() => setExtendedDescription(true)}
-                            >
-                                extended
-                            </AppButton>
+                                </AppButton>
+                                <AppButton
+                                    width={'40px'}
+                                    height={'40px'}
+                                    variant='clear'
+                                    onClick={() => setExtendedDescription(true)}
+                                    className={cn(s.showDescBtn, {
+                                        [s.pressed]: extendedDescription
+                                    })}
+                                >
+                                    <span></span>
+                                </AppButton>
+
+                            </div>
 
                         </div>
-                        {vacancyList.length > 0 ?
-                            <AppText bold text={`Найдено ${total} вакансии`} /> :
-                            <AppText bold text={`Ничего не найдено`} />}
                         {vacancyList.map(vac =>
                             <AppLink
                                 path={'vacancy.show'}
@@ -289,11 +300,47 @@ const VacancyListPage = ({
                             >
                                 <AppCard
                                     width={'auto'}
-                                    height={'auto'}
+                                    height={extendedDescription ? `300px` : `260px`}
                                     shadow
                                     className={cn(s.vacancyListCard)}
                                 >
-                                 
+                                    <AppText
+                                        title={vac.title}
+                                    />
+                                    <AppText
+                                        text={`от ${vac.payment} руб.`}
+                                    />
+                                    <AppText
+                                        text={`Компания ${vac.conditions}.`}
+                                    />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Город: ${vac.city}`}
+                                    />
+
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Опыт работы: ${vac.experience}`}
+                                        className={s.vacancyListCardExp}
+                                    />
+                                    <div className={s.vacancyListCardParam}>
+                                        <AppText
+                                            size={'s'}
+                                            variant={'secondary'}
+                                            text={vac.employment}
+                                            className={s.vacancyListCardEmployment}
+                                        />
+                                        <AppText
+                                            size={'s'}
+                                            variant={'secondary'}
+                                            text={vac.schedule}
+                                            className={s.vacancyListCardSchedule}
+
+                                        />
+
+                                    </div>
                                     {extendedDescription &&
                                         <AppText
                                             size={'xs'}
@@ -301,33 +348,15 @@ const VacancyListPage = ({
                                             className={s.vacancyListCardDesc}
                                         />
                                     }
-                                        <AppText title={vac.title} />
-                                        <AppText
-                                            text={`от ${vac.payment} руб.`}
-                                        />
-                                        <AppText
-                                            text={`Компания ${vac.conditions}.`}
-                                        />
-                                        <AppText text={vac.employment} />
-                                        <AppText text={vac.schedule} />
-                                        <AppText
-                                            size="s"
-                                            variant="notaccented"
-                                            text={`Опыт работы: ${vac.experience}`}
-                                        />
-                                        <AppText
-                                            size="s"
-                                            variant="notaccented"
-                                            text={`Город: ${vac.city}`}
-                                        />
-                                        <AppButton
-                                            className={s.vacancyListCardBtn}
-                                            width="auto"
-                                        >
-                                            Откликнуться
-                                        </AppButton>
-                                    </AppCard>
-                                </AppLink>
+
+                                    <AppButton
+                                        className={s.vacancyListCardBtn}
+                                        width="auto"
+                                    >
+                                        Откликнуться
+                                    </AppButton>
+                                </AppCard>
+                            </AppLink>
                         )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
