@@ -38,7 +38,7 @@ const VacancyListPageFilters = ({
 
     }, [cityInput]);
     return (
-        <div className={cn(s.filterContainer, className)}>
+        <div className={cn(s.vacancyFilterSidebar, className)}>
             <form action="">
                 <AppText
                     text="Тип занятости"
@@ -86,15 +86,22 @@ const VacancyListPageFilters = ({
                     bold
                     className={s.vacancyFilterTitle}
                 />
-                <AppInput
-                    name={'payment'}
-                    width={'100%'}
-                    className={s.citiesInput}
-                    placeholder={'от 100000'}
-                    value={payment}
-                    onChange={handleChange}
-                />
-                <AppButton type='button' onClick={handlePayment}>Найти</AppButton>
+                <div className={s.paymentBlock}>
+                    <AppInput
+                        name={'payment'}
+                        width={'100%'}
+                        placeholder={'от 100000'}
+                        value={payment}
+                        onChange={handleChange}
+                    />
+                    <AppButton
+                        type='button'
+                        onClick={handlePayment}
+                    >
+                        Найти
+                    </AppButton>
+
+                </div>
                 <AppText
                     text="График работы"
                     bold

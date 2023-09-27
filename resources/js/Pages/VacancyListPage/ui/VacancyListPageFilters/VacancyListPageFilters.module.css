@@ -1,9 +1,8 @@
 .vacancyFilterSidebar {
-    width: 200px;
-    /* position: sticky; */
-    top: 0;
-    left: 0;
-    /* height: 80vh; */
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
 }
 
 .vacancyFilterTitle {
@@ -22,4 +21,9 @@
 
 .vacancyFilterTitle {
     margin-bottom: 13px;
+}
+
+.paymentBlock {
+    display: flex;
+    align-items: center;
 }

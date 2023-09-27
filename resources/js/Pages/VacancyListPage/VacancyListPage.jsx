@@ -87,10 +87,6 @@ const VacancyListPage = ({
         setSuggestionsActive(false);
     }
 
-
-
-
-
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
 
@@ -263,24 +259,39 @@ const VacancyListPage = ({
                     />
 
                     <div className={s.vacancyList}>
-                        <div className={s.toggleBtn}>
-                            <AppButton
-                                variant={'notaccent'}
-                                onClick={() => setExtendedDescription(false)}
-                            >
-                                not extended
-                            </AppButton>
-                            <AppButton
-                                variant={'notaccent'}
-                                onClick={() => setExtendedDescription(true)}
-                            >
-                                extended
-                            </AppButton>
+                        <div className={s.descBlock}>
+                            {vacancyList.length > 0 ?
+                                <AppText bold text={`Найдено ${total} вакансии`} /> :
+                                <AppText bold text={`Ничего не найдено`} />
+                            }
+                            <div className={s.toggleDescBtn}>
+                                <AppButton
+                                    width={'40px'}
+                                    height={'40px'}
+                                    variant='clear'
+                                    onClick={() => setExtendedDescription(false)}
+                                    className={cn(s.hideDescBtn, {
+                                        [s.pressed]: !extendedDescription
+                                    })}
+                                >
+                                    <span></span>
+
+                                </AppButton>
+                                <AppButton
+                                    width={'40px'}
+                                    height={'40px'}
+                                    variant='clear'
+                                    onClick={() => setExtendedDescription(true)}
+                                    className={cn(s.showDescBtn, {
+                                        [s.pressed]: extendedDescription
+                                    })}
+                                >
+                                    <span></span>
+                                </AppButton>
+
+                            </div>
 
                         </div>
-                        {vacancyList.length > 0 ?
-                            <AppText bold text={`Найдено ${total} вакансии`} /> :
-                            <AppText bold text={`Ничего не найдено`} />}
                         {vacancyList.map(vac =>
                             <AppLink
                                 path={'vacancy.show'}
@@ -289,7 +300,7 @@ const VacancyListPage = ({
                             >
                                 <AppCard
                                     width={'auto'}
-                                    height={'auto'}
+                                    height={extendedDescription ? `300px` : `260px`}
                                     shadow
                                     className={cn(s.vacancyListCard)}
                                 >
@@ -303,21 +314,33 @@ const VacancyListPage = ({
                                         text={`Компания ${vac.conditions}.`}
                                     />
                                     <AppText
-                                        text={vac.employment}
-                                    />
-                                    <AppText
-                                        text={vac.schedule}
-                                    />
-                                    <AppText
-                                        size="s"
-                                        variant="notaccented"
-                                        text={`Опыт работы: ${vac.experience}`}
-                                    />
-                                    <AppText
                                         size="s"
                                         variant="notaccented"
                                         text={`Город: ${vac.city}`}
                                     />
+
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Опыт работы: ${vac.experience}`}
+                                        className={s.vacancyListCardExp}
+                                    />
+                                    <div className={s.vacancyListCardParam}>
+                                        <AppText
+                                            size={'s'}
+                                            variant={'secondary'}
+                                            text={vac.employment}
+                                            className={s.vacancyListCardEmployment}
+                                        />
+                                        <AppText
+                                            size={'s'}
+                                            variant={'secondary'}
+                                            text={vac.schedule}
+                                            className={s.vacancyListCardSchedule}
+
+                                        />
+
+                                    </div>
                                     {extendedDescription &&
                                         <AppText
                                             size={'xs'}
