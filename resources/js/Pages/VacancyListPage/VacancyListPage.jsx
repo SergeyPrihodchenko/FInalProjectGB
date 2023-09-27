@@ -296,31 +296,7 @@ const VacancyListPage = ({
                                     shadow
                                     className={cn(s.vacancyListCard)}
                                 >
-                                    <AppText
-                                        title={vac.title}
-                                    />
-                                    <AppText
-                                        text={`от ${vac.payment} руб.`}
-                                    />
-                                    <AppText
-                                        text={`Компания ${vac.conditions}.`}
-                                    />
-                                    <AppText
-                                        text={vac.employment}
-                                    />
-                                    <AppText
-                                        text={vac.schedule}
-                                    />
-                                    <AppText
-                                        size="s"
-                                        variant="notaccented"
-                                        text={`Опыт работы: ${vac.experience}`}
-                                    />
-                                    <AppText
-                                        size="s"
-                                        variant="notaccented"
-                                        text={`Город: ${vac.city}`}
-                                    />
+                                 
                                     {extendedDescription &&
                                         <AppText
                                             size={'xs'}
@@ -328,11 +304,6 @@ const VacancyListPage = ({
                                             className={s.vacancyListCardDesc}
                                         />
                                     }
-                                    <AppButton
-                                        className={s.vacancyListCardBtn}
-                                        width="auto"
-                                    >
-                                        </AppButton>
                                         <AppText title={vac.title} />
                                         <AppText
                                             text={`от ${vac.payment} руб.`}
