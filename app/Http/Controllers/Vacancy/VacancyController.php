@@ -40,12 +40,12 @@ class VacancyController
     {
         //VacancyPage/ui/VacancyPage/VacancyPage
         $vacancy['requirements'] = explode('--;', $vacancy['requirements']);
-        $vacancy['responsibilities'] = explode('--;', $vacancy['responsibilities']);
-        $vacancy['conditions'] = explode('--;', $vacancy['conditions']);
-        $vacancy['skills'] = explode('--;', $vacancy['skills']);
+        // $vacancy['responsibilities'] = explode('--;', $vacancy['responsibilities']);
+        // $vacancy['conditions'] = explode('--;', $vacancy['conditions']);
+        // $vacancy['skills'] = explode('--;', $vacancy['skills']);
 
-        $newContacts = [];
-        $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
+        // $newContacts = [];
+        // $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
         if ($vacancy['contacts'] && is_array($vacancy['contacts'])) {
             foreach ($vacancy['contacts'] as $index => $arItem) {
                 $newContacts[] = explode(';', $arItem);
