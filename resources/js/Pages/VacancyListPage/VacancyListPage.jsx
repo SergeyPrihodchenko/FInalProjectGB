@@ -1,4 +1,3 @@
-import MainLayout from "@/5Layouts/MainLayout/MainLayout";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import AppText from "@/8Shared/ui/AppText/AppText";
@@ -30,7 +29,12 @@ const VacancyListPage = ({
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
-    console.log(vacancyList);
+
+    const [extendedDescription, setExtendedDescription] = useState(false);
+
+    const [payment, setPayment] = useState(''); // состояние инпута зарплаты 
+    const debouncedPayment = useDebounce(payment, 500);
+
     const [filterData, setFilterData] = useState({
         employment: [],
         schedule: [],
@@ -39,7 +43,6 @@ const VacancyListPage = ({
         title: "",
         payment: "",
     });
-
     //поиск по названию вакансии
     const [vacancySearchInput, setVacancySearchInput] = useState(""); // состояние инпута поиска по названию вакансии
     const [suggestions, setSuggestions] = useState([]);
@@ -49,7 +52,17 @@ const VacancyListPage = ({
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
-    };
+
+
+    }
+    const handlePayment = () => {
+        setFilterData((prevState) => {
+            return {
+                ...prevState,
+                payment: Number(payment)
+            }
+        })
+    }
 
     useEffect(() => {
         if (!debouncedVacancySearch) return;
@@ -67,11 +80,16 @@ const VacancyListPage = ({
             };
         });
     }, [debouncedVacancySearch]);
+
+
     const handleSuggestionClick = (e) => {
         setSuggestions([]);
         setVacancySearchInput(e.target.innerText);
         setSuggestionsActive(false);
     };
+
+
+
 
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
@@ -170,6 +188,15 @@ const VacancyListPage = ({
                     });
                 }
                 break;
+            case "text":
+                const pattern = /^\d+$/;
+                if (pattern.test(value)) {
+                    setPayment(value);
+
+                } else {
+                    setPayment('');
+                }
+                break;
             default:
                 setFilterData(filterData);
                 break;
@@ -195,14 +222,14 @@ const VacancyListPage = ({
         <>
             <Head title="Вакансии" />
             <AppPage>
-                {/* <Search width={'500px'} filterChange={setValueChange} /> */}
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
-                            autocomplete="off"
-                            width={"550px"}
-                            name={"title"}
-                            placeholder={"Поиск вакансии"}
+
+                            autoComplete="off"
+                            width={'550px'}
+                            name={'title'}
+                            placeholder={'Поиск вакансии'}
                             value={vacancySearchInput}
                             onChange={handleVacancySearchInput}
                             onClick={() =>
@@ -214,8 +241,9 @@ const VacancyListPage = ({
                         <List
                             className={s.serachFilterSuggestions}
                             list={suggestions}
-                            renderItem={(suggestion) => (
+                            renderItem={(suggestion) =>
                                 <li
+                                    key={suggestion.id}
                                     className={s.serachFilterSuggestion}
                                     onClick={handleSuggestionClick}
                                 >
@@ -228,29 +256,81 @@ const VacancyListPage = ({
                 <div className={s.vacancyWrapper}>
                     <VacancyListPageFilters
                         employment={employment}
+                        payment={payment}
                         cities={cities}
                         schedule={schedule}
                         experience={experience}
                         handleChange={handleChange}
+                        handlePayment={handlePayment}
                     />
 
                     <div className={s.vacancyList}>
-                        {vacancyList.length > 0 ? (
-                            <AppText bold text={`Найдено ${total} вакансии`} />
-                        ) : (
-                            <AppText bold text={`Ничего не найдено`} />
-                        )}
-                        {vacancyList.map((vac) => 
-                                <AppLink
-                                    path={"vacancy.show"}
-                                    param={vac.id}
-                                    key={vac.id}
+
+                        <div className={s.toggleBtn}>
+                            <AppButton
+                                variant={'notaccent'}
+                                onClick={() => setExtendedDescription(false)}
+                            >
+                                not extended
+                            </AppButton>
+                            <AppButton
+                                variant={'notaccent'}
+                                onClick={() => setExtendedDescription(true)}
+                            >
+                                extended
+                            </AppButton>
+
+                        </div>
+                        {vacancyList.length > 0 ?
+                            <AppText bold text={`Найдено ${total} вакансии`} /> :
+                            <AppText bold text={`Ничего не найдено`} />}
+                        {vacancyList.map(vac =>
+                            <AppLink
+                                path={'vacancy.show'}
+                                param={vac.id}
+                                key={vac.id}
+                            >
+                                <AppCard
+                                    width={'auto'}
+                                    height={'auto'}
+                                    shadow
+                                    className={cn(s.vacancyListCard)}
                                 >
-                                    <AppCard
-                                        width={"auto"}
-                                        height={"260px"}
-                                        shadow
-                                        className={cn(s.vacancyListCard)}
+                                    <AppText
+                                        title={vac.title}
+                                    />
+                                    <AppText
+                                        text={`от ${vac.payment} руб.`}
+                                    />
+                                    <AppText
+                                        text={`Компания ${vac.conditions}.`}
+                                    />
+                                    <AppText
+                                        text={vac.employment}
+                                    />
+                                    <AppText
+                                        text={vac.schedule}
+                                    />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Опыт работы: ${vac.experience}`}
+                                    />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Город: ${vac.city}`}
+                                    />
+                                    {extendedDescription &&
+                                        <AppText
+                                            size={'xs'}
+                                            text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
+                                            className={s.vacancyListCardDesc}
+                                        />
+                                    }
+                                    <AppButton
+                                        className={s.vacancyListCardBtn}
+                                        width="auto"
                                     >
                                         <AppText title={vac.title} />
                                         <AppText

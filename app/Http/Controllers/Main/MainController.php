@@ -8,6 +8,7 @@ use App\Enums\ScheduleType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ class MainController extends Controller
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
+        $cities = City::all();
         
         $data = $request->validated();
         $searchStr = $data['vacancy'];
@@ -44,6 +46,7 @@ class MainController extends Controller
                 'title' => 'Вакансии',
                 'vacancies' => $vacancies,
                 'employment' => $employment,
+                'cities' => $cities,
                 'schedule' => $schedule,
                 'experience' => $experience
 
