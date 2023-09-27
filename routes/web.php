@@ -65,12 +65,6 @@ require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
 
-// пагинация
-Route::get('/vacancylist', function () {
-    return Vacancy::paginate(3);
-});
-
-Route::get('/vacancies/filter', [FilterVacanciesController::class, 'index']);
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
 Route::resource('company', CompanyController::class);
 

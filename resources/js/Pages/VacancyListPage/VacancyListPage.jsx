@@ -22,9 +22,10 @@ const VacancyListPage = ({
     schedule,
     employment,
     cities,
+    test
 }) => {
     const user = auth?.user;
-    const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
+    const [vacancyList, setVacancyList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
@@ -40,7 +41,7 @@ const VacancyListPage = ({
         schedule: [],
         experience: "",
         city_id: [],
-        title: "",
+        title: vacancies ? vacancies : '',
         payment: "",
     });
     //поиск по названию вакансии
@@ -116,7 +117,6 @@ const VacancyListPage = ({
     }, [index, isLoading]);
 
     useEffect(() => {
-        if (!vacancies) {
             if (vacancyList.length !== total) {
                 const observer = new IntersectionObserver((entries) => {
                     const target = entries[0];
@@ -136,7 +136,6 @@ const VacancyListPage = ({
                     }
                 };
             }
-        }
     }, [loaderRef, vacancyList]);
 
     // useEffect(() => {
@@ -204,7 +203,6 @@ const VacancyListPage = ({
     };
 
     useEffect(() => {
-        if (!vacancies) {
             const getFilterData = async () => {
                 const response = await axios.post(`/vacancies/filter?page=1`, {
                     filterData: filterData,
@@ -216,7 +214,6 @@ const VacancyListPage = ({
                 console.log(data);
             };
             getFilterData();
-        }
     }, [filterData]);
     return (
         <>
