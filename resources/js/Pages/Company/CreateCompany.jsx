@@ -22,9 +22,12 @@ const Company = ({auth}) => {
     //Ввод данных компании
     const [emailCompanyInput, setEmailCompanyInput] = useState("");
     const [nameCompanyInput, setNameCompanyInput ] = useState("");
-    const [areasActivityCompanyInput, setAreasActivityCompanyInput] = useState("");
-    const [regionLocationCompanyInput, setRegionLocationCompanyInput] = useState("");
-    const [foundationDateCompanyInput, setFoundationDateCompanyInput] = useState("");
+    const [areasActivityCompanyInput, setAreasActivityCompanyInput] = 
+        useState("");
+    const [regionLocationCompanyInput, setRegionLocationCompanyInput] = 
+        useState("");
+    const [foundationDateCompanyInput, setFoundationDateCompanyInput] = 
+        useState("");
     const [phoneCompanyInput, setPhoneCompanyInput] = useState("");
     const [siteCompanyInput, setSiteCompanyInput] = useState("");
     const [aboutCompamyTextarea, setAboutCompanyTextarea] = useState("");
