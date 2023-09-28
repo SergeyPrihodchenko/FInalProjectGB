@@ -216,7 +216,7 @@ function ResumePage({ resume }) {
                                     const dayFormat = new Date(date);
                                     const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
                                     const dateDst = dateSrc.split(".").join(" ");
-                                    const present = " - по настоящее время";
+                                    const present = " по настоящее время";
                                     if(date == null){
                                         return present
                                     }else{
