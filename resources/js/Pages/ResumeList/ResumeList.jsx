@@ -42,7 +42,10 @@ function ResumePage({ resumes }) {
                                     // skills: resume.skills,
                                     // experience: resume.experience,
                                 });
-                            
+
+                                const dataCompaieis =data.companies;
+                                
+                                
                                 //высчитываем из даты рождения сколько полных лет
                                 const dateOfBirth = data.date_of_birth;
                                 function declOfNum(number, titles) {
@@ -61,7 +64,6 @@ function ResumePage({ resumes }) {
 
                             return (
                                 <div class={s.resumeList}>
-                                    
                                     <div class={s.userResume}>
                                         <div className={s.userData}>
                                             <AppText
@@ -83,6 +85,7 @@ function ResumePage({ resumes }) {
                                                 size="s"
                                                 bold
                                                 className={s.salaryResume}
+                                                variant={"error"}
                                             />
                                             <AppText
                                                 text={Yers}
@@ -112,16 +115,19 @@ function ResumePage({ resumes }) {
                                                 <AppText
                                                     text={"ИП Глизин"}
                                                     size="xs"
+                                                    variant={"error"}
                                                 />
                                                 <AppText
                                                     text={", январь 2021"}
                                                     size="xs"
+                                                    variant={"error"}
                                                 />
                                                 <AppText
                                                     text={
                                                         "- по настоящее время"
                                                     }
                                                     size="xs"
+                                                    variant={"error"}
                                                 />
                                             </div>
 
@@ -130,6 +136,7 @@ function ResumePage({ resumes }) {
                                             <AppText
                                                 text={"11 лет 6 месяцев"}
                                                 size="xs"
+                                                variant={"error"}
                                             />
                                         </div>
                                         <div class={s.userPhoto}>
