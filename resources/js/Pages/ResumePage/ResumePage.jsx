@@ -7,6 +7,7 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
+
 function ResumePage({ resume }) {
     //console.log(resume);
     const user = usePage().props.auth.user;
