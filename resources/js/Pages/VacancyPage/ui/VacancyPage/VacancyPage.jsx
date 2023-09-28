@@ -12,6 +12,7 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import data from "../../data.json";
 import { Head } from "@inertiajs/react";
 import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
+import { useSelector } from "react-redux";
 
 const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage(props) {
