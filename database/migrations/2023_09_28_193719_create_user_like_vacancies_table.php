@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('user_like_vacancies', function (Blueprint $table) {
+            $table->id();
 
-        Schema::create('user_like_vacancy',  static function (Blueprint $table): void {
-            
-        $table->id();
-
-        // Создание внешнего ключа юзера
+            // Создание внешнего ключа юзера
         $table->unsignedBigInteger('user_id');
         $table->foreign('user_id')
             ->references('id')
@@ -33,8 +31,8 @@ return new class extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
         $table->index('vacancy_id');
-
-        $table->timestamps();
+        
+            $table->timestamps();
         });
     }
 
@@ -43,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_like_vacancy');
+        Schema::dropIfExists('user_like_vacancies');
     }
 };

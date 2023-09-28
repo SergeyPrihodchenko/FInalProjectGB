@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\LikeVacancy;
+use App\Models\SqlBuild;
+use App\Models\User_like_vacancy;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -32,9 +33,14 @@ class DevCommand extends Command
 
     private function addLikes()
     {
-        $test = new LikeVacancy;
-        $test->user_id = 1;
-        $test->vacancy_id = 3;
-        $test->save();
+        SqlBuild::filterQueryVacancyBuild([
+            'employment' => [],
+        'schedule' => [],
+        'experience' => "",
+        'city_id' => [],
+        'title' => '',
+        'payment' => 0,
+        ]);
+        
     }
 }
