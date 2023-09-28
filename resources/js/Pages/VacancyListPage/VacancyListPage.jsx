@@ -1,5 +1,6 @@
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { router } from '@inertiajs/react'
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
@@ -13,6 +14,8 @@ import { Head } from "@inertiajs/react";
 import VacancyListPageFilters from "./ui/VacancyListPageFilters/VacancyListPageFilters";
 import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "@/1App/providers/counterSlice/counterSlice";
 
 const VacancyListPage = ({
     vacancies,
@@ -44,17 +47,20 @@ const VacancyListPage = ({
         payment: 0,
     });
     //поиск по названию вакансии
-    const [vacancySearchInput, setVacancySearchInput] = useState(""); // состояние инпута поиска по названию вакансии
+    const [vacancySearchInput, setVacancySearchInput] = useState(vacancies ? vacancies : ''); // состояние инпута поиска по названию вакансии
     const [suggestions, setSuggestions] = useState([]);
     const debouncedVacancySearch = useDebounce(vacancySearchInput, 500);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
 
+
+    const [favourites, setIsFavourites] = useState([]);
+
+    console.log(favourites);
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
-
-
     }
+
     const handlePayment = () => {
         setFilterData((prevState) => {
             return {
@@ -64,8 +70,49 @@ const VacancyListPage = ({
         })
     }
 
+    const toggleFavourites = async (id) => {
+        if (!favourites.length) {
+            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+            setIsFavourites([...favourites, id]);
+        } else {
+            if (favourites.includes(id)) {
+                await axios.post('/deleteLike', { id: { vacancy_id: id } });
+                setIsFavourites(favourites.filter((favourite) => favourite !== id))
+
+            } else {
+                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+                setIsFavourites([...favourites, id]);
+
+            }
+        }
+
+
+    }
+    // const getFilterData = async () => {
+    //     const response = await axios.post(`/vacancies/filter?page=1`, {
+    //         filterData: filterData,
+    //     });
+    //     const { data } = response.data;
+    //     setVacancyList(data);
+    //     setTotal(response.data.total);
+    //     setIndex((prevIndex) => prevIndex + 1);
+    //     console.log(data);
+    // };
+    // getFilterData();
+
+
     useEffect(() => {
-        if (!debouncedVacancySearch) return;
+        // if (!debouncedVacancySearch) return;
+        if (!debouncedVacancySearch) {
+            setFilterData((prevState) => {
+                return {
+                    ...prevState,
+                    title: '',
+                };
+            });
+            setSuggestions([]);
+            return;
+        };
 
         axios
             .get(`/searchSort?str=${debouncedVacancySearch}`)
@@ -152,18 +199,19 @@ const VacancyListPage = ({
     //     }
     // }, []);
 
-    const setValueChange = (value) => {
-        setFilterData((prevState) => {
-            return {
-                ...prevState,
-                title: value,
-            };
-        });
-        console.log(filterData.title);
-    };
+    // const setValueChange = (value) => {
+    //     setFilterData((prevState) => {
+    //         return {
+    //             ...prevState,
+    //             title: value,
+    //         };
+    //     });
+    //     console.log(filterData.title);
+    // };
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
+        setIndex(1);
 
         switch (type) {
             case "checkbox":
@@ -206,15 +254,30 @@ const VacancyListPage = ({
             const { data } = response.data;
             setVacancyList(data);
             setTotal(response.data.total);
-            setIndex(2);
+            setIndex((prevIndex) => prevIndex + 1);
             console.log(data);
         };
         getFilterData();
     }, [filterData]);
+
+    // ---------- Redux ----------
+    // const counter = useSelector((state) => state.counter.value);
+    // const dispatch = useDispatch();
+    // const handlIncrement = () => {
+    //     dispatch(increment());
+    // }
+    // const handlDecrement = () => {
+    //     dispatch(decrement());
+    // }
+
     return (
         <>
             <Head title={title} />
             <AppPage>
+                {/* Redux */}
+                {/* <button onClick={handlIncrement}>+</button>
+                <button onClick={handlDecrement}>-</button>
+                <b>count: {counter}</b> */}
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
@@ -292,70 +355,80 @@ const VacancyListPage = ({
 
                         </div>
                         {vacancyList.map(vac =>
-                            <AppLink
-                                path={'vacancy.show'}
-                                param={vac.id}
-                                key={vac.id}
-                            >
-                                <AppCard
-                                    width={'auto'}
-                                    height={extendedDescription ? `300px` : `260px`}
-                                    shadow
-                                    className={cn(s.vacancyListCard)}
+                            <div className={s.vacancyListCardWrapper}>
+                                <AppLink
+
+                                    path={'vacancy.show'}
+                                    param={vac.id}
+                                    key={vac.id}
                                 >
-                                    <AppText
-                                        title={vac.title}
-                                    />
-                                    <AppText
-                                        text={`от ${vac.payment} руб.`}
-                                    />
-                                    <AppText
-                                        text={`Компания ${vac.conditions}.`}
-                                    />
-                                    <AppText
-                                        size="s"
-                                        variant="notaccented"
-                                        text={`Город: ${vac.city}`}
-                                    />
-
-                                    <AppText
-                                        size="s"
-                                        variant="notaccented"
-                                        text={`Опыт работы: ${vac.experience}`}
-                                        className={s.vacancyListCardExp}
-                                    />
-                                    <div className={s.vacancyListCardParam}>
-                                        <AppText
-                                            size={'s'}
-                                            variant={'secondary'}
-                                            text={vac.employment}
-                                            className={s.vacancyListCardEmployment}
-                                        />
-                                        <AppText
-                                            size={'s'}
-                                            variant={'secondary'}
-                                            text={vac.schedule}
-                                            className={s.vacancyListCardSchedule}
-
-                                        />
-
-                                    </div>
-                                    {extendedDescription &&
-                                        <AppText
-                                            size={'xs'}
-                                            text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
-                                            className={s.vacancyListCardDesc}
-                                        />
-                                    }
-
-                                    <AppButton
-                                        className={s.vacancyListCardBtn}
-                                        width="auto"
+                                    <AppCard
+                                        width={'auto'}
+                                        height={extendedDescription ? `300px` : `260px`}
+                                        shadow
+                                        className={cn(s.vacancyListCard)}
                                     >
-                                        Откликнуться
-                                    </AppButton>
-                                </AppCard>
-                            </AppLink>
+                                        <AppText
+                                            title={vac.title}
+                                        />
+                                        <AppText
+                                            text={`от ${vac.payment} руб.`}
+                                        />
+                                        <AppText
+                                            text={`Компания ${vac.conditions}.`}
+                                        />
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Город: ${vac.city}`}
+                                        />
+
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Опыт работы: ${vac.experience}`}
+                                            className={s.vacancyListCardExp}
+                                        />
+                                        <div className={s.vacancyListCardParam}>
+                                            <AppText
+                                                size={'s'}
+                                                variant={'secondary'}
+                                                text={vac.employment}
+                                                className={s.vacancyListCardEmployment}
+                                            />
+                                            <AppText
+                                                size={'s'}
+                                                variant={'secondary'}
+                                                text={vac.schedule}
+                                                className={s.vacancyListCardSchedule}
+
+                                            />
+
+                                        </div>
+                                        {extendedDescription &&
+                                            <AppText
+                                                size={'xs'}
+                                                text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
+                                                className={s.vacancyListCardDesc}
+                                            />
+                                        }
+
+                                        <AppButton
+                                            className={s.vacancyListCardBtn}
+                                            width="auto"
+                                        >
+                                            Откликнуться
+                                        </AppButton>
+
+                                    </AppCard>
+                                </AppLink>
+                                <button
+                                    className={s.addToFavouriteBtn}
+                                    onClick={() => toggleFavourites(vac.id)}
+                                >
+                                    Like
+                                </button>
+                            </div>
                         )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>

@@ -57,9 +57,12 @@ class ResumeController extends Controller
      */
     public function show(Resume $resume)
     {
+        $author = $resume->user;
+
         return Inertia::render('ResumePage/ResumePage', [
             'title' => $resume->profession,
-            'resume' => $resume
+            'resume' => $resume,
+            'author' => $author
         ]);
     }
 
