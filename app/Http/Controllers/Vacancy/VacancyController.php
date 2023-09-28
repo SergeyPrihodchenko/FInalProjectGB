@@ -69,7 +69,7 @@ class VacancyController
         $schedule = ScheduleType::all();
         $employment = EmploymentType::all();
 
-        return Inertia::render('Vacancy/VacancyCreate', [
+        return Inertia::render('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate', [
             'companies' => $companies,
             'cities' => $cities,
             'citiesForWork' => $citiesForWork,
