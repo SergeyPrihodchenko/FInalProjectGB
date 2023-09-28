@@ -685,6 +685,7 @@ function Resume({ resume }) {
                             </AppButton>
                             <div style={{ color: "red" }}>{errors.skills}</div>
                         </div>
+                        
                         <div className={s.buttonUpdateResume}>
                             <AppButton sizeText="s" bold type="submit">
                                 Изменить

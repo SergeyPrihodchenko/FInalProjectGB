@@ -4,6 +4,7 @@ use App\Http\Controllers\Company\CompanyController;
 
 
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Vacancy\FilterVacanciesController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
@@ -59,6 +60,9 @@ Route::middleware('auth')->group(function () {
     Route::post('resume', [ResumeController::class, 'store'])->name('resume.store');
     Route::put('resume/{resume}', [ResumeController::class, 'update'])->name('resume.update');
     Route::delete('resume/{resume}', [ResumeController::class, 'destroy'])->name('resume.destroy');
+
+    Route::post('addLike', [LikeController::class, 'store'])->name('addLike');
+    Route::post('deleteLike', [LikeController::class, 'destroy'])->name('deleteLike');
 });
 
 require __DIR__ . '/auth.php';
@@ -67,5 +71,3 @@ Route::resource('vacancy', VacancyController::class);
 
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
 Route::resource('company', CompanyController::class);
-
-
