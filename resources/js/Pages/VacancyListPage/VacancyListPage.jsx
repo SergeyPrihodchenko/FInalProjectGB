@@ -25,7 +25,6 @@ const VacancyListPage = ({
     schedule,
     employment,
     cities,
-    test
 }) => {
     const user = auth?.user;
     const [vacancyList, setVacancyList] = useState([]);
@@ -45,7 +44,7 @@ const VacancyListPage = ({
         experience: "",
         city_id: [],
         title: vacancies ? vacancies : '',
-        payment: "",
+        payment: 0,
     });
     //поиск по названию вакансии
     const [vacancySearchInput, setVacancySearchInput] = useState(vacancies ? vacancies : ''); // состояние инпута поиска по названию вакансии
@@ -241,7 +240,7 @@ const VacancyListPage = ({
 
     return (
         <>
-            <Head title="Вакансии" />
+            <Head title={title} />
             <AppPage>
                 {/* Redux */}
                 {/* <button onClick={handlIncrement}>+</button>
