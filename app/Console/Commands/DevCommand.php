@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\LikeVacancy;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class DevCommand extends Command
 {
@@ -11,7 +13,7 @@ class DevCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:dev-command';
+    protected $signature = 'devStart';
 
     /**
      * The console command description.
@@ -25,6 +27,14 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        //
+        $this->addLikes();
+    }
+
+    private function addLikes()
+    {
+        $test = new LikeVacancy;
+        $test->user_id = 1;
+        $test->vacancy_id = 3;
+        $test->save();
     }
 }
