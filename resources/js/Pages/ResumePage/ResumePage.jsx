@@ -10,6 +10,7 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 function ResumePage({ resume }) {
     //console.log(resume);
     const user = usePage().props.auth.user;
+    const userEmail = usePage().props.auth.user.email;
 
     const { data } = useForm({
         user_id: user.id,
@@ -42,8 +43,8 @@ function ResumePage({ resume }) {
             age = n.getFullYear() - b.getFullYear();
         return n.setFullYear(1970) < b.setFullYear(1970) ? age - 1 : age;
       }
-      const Yers = (declOfNum(birthDateToAge(dateOfBirth), ['год', 'года', 'лет']));
-    //  console.log(Yers);
+      const Years = (declOfNum(birthDateToAge(dateOfBirth), ['год', 'года', 'лет']));
+    //  console.log(Years);
 
     //переводим из падежа в существительное gender пользователя
     const dataGender = data.gender;
@@ -90,7 +91,7 @@ function ResumePage({ resume }) {
                                 />
                                 <AppText 
                                     size="s"
-                                    text={genderOfUser.concat(", ", Yers, ", ", dateOfBirthUser, " года рождения")}
+                                    text={genderOfUser.concat(", ", Years, ", ", dateOfBirthUser, " года рождения")}
                                 />
                                 <div className={s.userContacts}>
                                     <AppText title={"Контакты"} size="s" />
@@ -100,24 +101,22 @@ function ResumePage({ resume }) {
                                         className={s.userContactsPhone}
                                     />
                                     <div className={s.userEmail}>
-{/* не знаю как прокинуть email */}
                                         <AppText
                                             text={
-                                                // <span
-                                                //     className={s.userEmailText}
-                                                // >
-                                                    "IvanovIvan@mail.ru"
-                                                // </span>
-
+                                                <span
+                                                className={s.userEmailText}
+                                                >
+                                                { userEmail}
+                                                </span>
                                             }
-                                            size="s"
-                                            variant={"error"}
+                                            size="s"    
                                         />
                                         <AppText
                                             text={
                                                 " — предпочитаемый способ связи"
                                             }
                                             size="s"
+                                            className={s.emailLeftText}
                                         />
                                     </div>
                                 </div>
@@ -182,34 +181,10 @@ function ResumePage({ resume }) {
 
                         {
                             data.companies.map((el) => {
-
-                                //расчет стажа работы
+                                
+                                //дата начала и окончания работы
                                 let dataWorkBegin = el.start_date;
                                 let dataWorkEnd = el.end_date;
-                                
-                                //по настоящее время
-                                function declOfNum(number, titles) {
-                                let cases = [2, 0, 1, 1, 1, 2];
-                                    return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-                                }
-                                
-                                function worksExperience(b) {
-                                    var n = new Date(),
-                                        b = new Date(b),
-                                        age = n.getFullYear() - b.getFullYear(),
-                                        month = n.getMonth() - b.getMonth();
-                                        if (month < 0 || (month === 0 && n.getDate() < b.getDate())){
-                                            age--;
-                                         }   
-                                    return (
-                                        (declOfNum(n.setFullYear(1970) < b.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет'])) 
-                                            + " " 
-                                            + 
-                                        (declOfNum(n.setMonth() < b.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
-                                    )
-                                }
-                                const Yers = (worksExperience(dataWorkBegin));
-                                //console.log(Yers);
                                 
                                 //форматы даты и периода работы
                                 function dateFormatYearsMonch(date){
@@ -226,10 +201,46 @@ function ResumePage({ resume }) {
                                     }
                                 }
 
-                                
                                 const dataWorksBegin = dateFormatYearsMonch(dataWorkBegin);
                                 const dataWorksEnd = dateFormatYearsMonch(dataWorkEnd);
+
                                 
+                                
+                                //расчет стажа, кроме по настоящее время
+                                function declOfNum(number, titles) {
+                                let cases = [2, 0, 1, 1, 1, 2];
+                                    return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+                                }
+                                
+                                function worksExperience(endDate,startDate) {
+                                    let end, start, month, age;
+                                    start = new Date(startDate);
+                                    
+                                    if(endDate == null){
+                                        end = new Date();
+                                        month = (12 + end.getMonth()) - start.getMonth(); 
+                                        console.log(month);
+                                    }else{
+                                        end = new Date(endDate);
+                                        month = end.getMonth() - start.getMonth();
+                                        console.log(month);
+                                    }
+                                    
+                                    age = end.getFullYear() - start.getFullYear();
+                                    
+                                   // console.log(startDate);    
+                                    return (
+                                        (declOfNum(end.setFullYear(1970) < start.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет'])) 
+                                            + " " 
+                                            + 
+                                        (declOfNum(end.setMonth() < start.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
+                                    )
+                                }
+                                const Years = (worksExperience(dataWorkEnd, dataWorkBegin));
+                                
+
+                              //  console.log(dataWorkEnd);
+                                                                
                                 return (
                                     <>
                                         <div className={s.workPeriods}>
@@ -239,7 +250,7 @@ function ResumePage({ resume }) {
                                                     size="s"
                                                 />
                                                 <AppText
-                                                    text={Yers}
+                                                    text={Years}
                                                     size="s"
                                                 />
                                             </div>
