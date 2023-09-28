@@ -14,7 +14,7 @@ const UserResponsesListPage = ({ auth }) => {
             employment: "Москва",
             payment: "100000",
             experience: "от 3 до 6 лет",
-            schedule: "Уютный офис",
+            schedule: "Уверенный опыт в продажах",
             logo: "",
         },
         {
@@ -24,7 +24,7 @@ const UserResponsesListPage = ({ auth }) => {
             employment: "Москва",
             payment: "100000",
             experience: "от 3 до 6 лет",
-            schedule: "Уютный офис",
+            schedule: "Уверенный опыт в продажах",
             logo: "",
         },
         {
@@ -34,8 +34,8 @@ const UserResponsesListPage = ({ auth }) => {
             employment: "Москва",
             payment: "100000",
             experience: "от 3 до 6 лет",
-            schedule: "Уютный офис",
-            logo: "",
+            schedule: "Уверенный опыт в продажах",
+            logo: "https://img.hhcdn.ru/employer-logo/3381258.png",
         },
     ];
     return (

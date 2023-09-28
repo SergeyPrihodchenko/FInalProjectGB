@@ -15,5 +15,26 @@
     margin-top: auto;
 }
 .userResponsesPageCardLogo{
-    margin: auto 16px auto 0;
+    margin-right: 16px;
+}
+.userResponsesPageCardLogoImg{
+    width: 60px;
+    height: 60px;
+}
+.userResponsesPageCardMarginText{
+    margin-bottom: 8px;
+}
+.userResponsesPageCardIconBlock{
+    display: flex;
+    align-items: center;
+}
+.userResponsesPageCardIconBlockIcon{
+    color: #babdbf;
+    font-size: 20px;
+}
+.userResponsesPageCardIconBlockIconML{
+    margin-left: 5px;
+}
+.userResponsesPageCardIconBlockIconMR{
+    margin-right: 5px;
 }
