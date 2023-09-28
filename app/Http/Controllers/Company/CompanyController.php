@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\StoreCompanyRequest;
+use App\Models\City;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,14 +15,17 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $companies = Company::all();
         //dd($companies);
-
+        //dd($request->all());
+        //$date = $request->all();
         return Inertia::render('Company/Index', [
             'companies'=>$companies
+//
         ]);
+
     }
 
     /**
@@ -29,8 +33,10 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Company/create_company');
+        $cities = City::all();
+        return Inertia::render('Company/create_company', ['cities'=> $cities]);
         //return view('company.create');
+
     }
 
     /**
@@ -51,7 +57,7 @@ class CompanyController extends Controller
     public function show(Company $company) {
     //{ dd($company);
         return Inertia::render('Company/company_detail', [
-            'company' => $company
+            'company' => $company,
         ]);
 
     }
@@ -61,7 +67,9 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return Inertia::render('Company/Edit');
+
+        return Inertia::render('Company/edit',  ['company' => $company,
+           ]);
     }
 
     /**
@@ -69,9 +77,14 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, $id)
     {
+
         $date = $request->validated();
         $company = Company::find($id);
         $company->update($date);
+        return Inertia::render('Company/company_detail', [
+            'company' => $company,
+
+        ]);
     }
 
     /**

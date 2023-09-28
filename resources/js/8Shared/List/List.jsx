@@ -9,7 +9,7 @@ const List = ({ list, renderItem, as, className, ...rest }) => {
 
         <Component className={cn(s.list, className)} {...rest}>
             {
-                list.map(renderItem)
+                list?.map(renderItem)
             }
         </Component >
     )

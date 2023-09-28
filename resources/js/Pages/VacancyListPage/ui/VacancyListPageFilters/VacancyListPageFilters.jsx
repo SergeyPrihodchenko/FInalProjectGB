@@ -7,13 +7,17 @@ import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import { useState } from "react";
 import { useEffect } from "react";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
 const VacancyListPageFilters = ({
+    payment,
     employment,
     experience,
     schedule,
     cities,
     handleChange,
+    handlePayment,
     className
 }) => {
     const [cityInput, setCityInput] = useState('');
@@ -35,7 +39,7 @@ const VacancyListPageFilters = ({
 
     }, [cityInput]);
     return (
-        <div className={cn(s.filterContainer, className)}>
+        <div className={cn(s.vacancyFilterSidebar, className)}>
             <form action="">
                 <AppText
                     text="Тип занятости"
@@ -79,6 +83,33 @@ const VacancyListPageFilters = ({
 
                 />
                 <AppText
+                    text="Уровень дохода"
+                    bold
+                    className={s.vacancyFilterTitle}
+                />
+                <div className={s.paymentBlock}>
+                    <AppInput
+                        name={'payment'}
+                        width={'100%'}
+                        placeholder={'от 100000'}
+                        value={payment}
+                        onChange={handleChange}
+                    />
+                    <AppButton
+                        colorType={'accent'}
+                        variant={'outline'}
+                        type='button'
+                        onClick={handlePayment}
+                        className={s.paymentBtn}
+                    >
+                        <BootstrapIcon
+                            name={'BsSearch'}
+                            size={20}
+                        />
+                    </AppButton>
+
+                </div>
+                <AppText
                     text="График работы"
                     bold
                     className={s.vacancyFilterTitle}
@@ -102,7 +133,7 @@ const VacancyListPageFilters = ({
                     className={s.vacancyFilterTitle}
                 />
                 <AppInput
-                    width={'auto'}
+                    width={'100%'}
                     className={s.citiesInput}
                     placeholder={'Поиск города'}
                     value={cityInput}

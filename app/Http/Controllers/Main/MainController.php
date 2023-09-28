@@ -8,6 +8,7 @@ use App\Enums\ScheduleType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,23 +36,27 @@ class MainController extends Controller
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
+        $cities = City::all();
         
         $data = $request->validated();
-        $searchStr = $data['vacancy'];
-        $vacancies = Vacancy::where('vacancies.title', 'like', '%'.$searchStr.'%')->get();
+        $vacancies = $data['vacancy'];
         if (!empty($vacancies)) {
             return Inertia::render('VacancyListPage/VacancyListPage', [
                 'title' => 'Вакансии',
                 'vacancies' => $vacancies,
                 'employment' => $employment,
+                'cities' => $cities,
                 'schedule' => $schedule,
                 'experience' => $experience
 
             ]);
         }
         return Inertia::render('VacancyListPage/VacancyListPage', [
-            'title' => 'Такой вакансии нет' . $request->get('title'),
-            'vacancies' => []
+            'title' => 'Вакансии',
+            'employment' => $employment,
+            'cities' => $cities,
+            'schedule' => $schedule,
+            'experience' => $experience
         ]);
     }
 

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 import s from "./AppButton.module.css";
-import { useState } from "react";
 import { Link } from "@inertiajs/react";
 function AppButton(props) {
     const {
