@@ -99,6 +99,10 @@
 
 }
 
+.vacancyListCardWrapper {
+    position: relative;
+}
+
 .vacancyListCard {
     display: flex;
 
@@ -163,4 +167,11 @@
 .serachFilterSuggestion:hover {
     background-color: var(--accent);
     transition: background-color .2s ease-in;
+}
+
+.addToFavouriteBtn {
+    top: 0;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
 }

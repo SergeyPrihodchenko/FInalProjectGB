@@ -52,6 +52,10 @@ const VacancyListPage = ({
     const debouncedVacancySearch = useDebounce(vacancySearchInput, 500);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
 
+
+    const [favourites, setIsFavourites] = useState([]);
+
+    console.log(favourites);
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
@@ -65,9 +69,37 @@ const VacancyListPage = ({
             }
         })
     }
-    useEffect(() => {
 
-    }, [])
+    const toggleFavourites = async (id) => {
+        if (!favourites.length) {
+            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+            setIsFavourites([...favourites, id]);
+        } else {
+            if (favourites.includes(id)) {
+                await axios.post('/deleteLike', { id: { vacancy_id: id } });
+                setIsFavourites(favourites.filter((favourite) => favourite !== id))
+
+            } else {
+                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+                setIsFavourites([...favourites, id]);
+
+            }
+        }
+
+
+    }
+    // const getFilterData = async () => {
+    //     const response = await axios.post(`/vacancies/filter?page=1`, {
+    //         filterData: filterData,
+    //     });
+    //     const { data } = response.data;
+    //     setVacancyList(data);
+    //     setTotal(response.data.total);
+    //     setIndex((prevIndex) => prevIndex + 1);
+    //     console.log(data);
+    // };
+    // getFilterData();
+
 
     useEffect(() => {
         // if (!debouncedVacancySearch) return;
@@ -323,70 +355,80 @@ const VacancyListPage = ({
 
                         </div>
                         {vacancyList.map(vac =>
-                            <AppLink
-                                path={'vacancy.show'}
-                                param={vac.id}
-                                key={vac.id}
-                            >
-                                <AppCard
-                                    width={'auto'}
-                                    height={extendedDescription ? `300px` : `260px`}
-                                    shadow
-                                    className={cn(s.vacancyListCard)}
+                            <div className={s.vacancyListCardWrapper}>
+                                <AppLink
+
+                                    path={'vacancy.show'}
+                                    param={vac.id}
+                                    key={vac.id}
                                 >
-                                    <AppText
-                                        title={vac.title}
-                                    />
-                                    <AppText
-                                        text={`от ${vac.payment} руб.`}
-                                    />
-                                    <AppText
-                                        text={`Компания ${vac.conditions}.`}
-                                    />
-                                    <AppText
-                                        size="s"
-                                        variant="notaccented"
-                                        text={`Город: ${vac.city}`}
-                                    />
-
-                                    <AppText
-                                        size="s"
-                                        variant="notaccented"
-                                        text={`Опыт работы: ${vac.experience}`}
-                                        className={s.vacancyListCardExp}
-                                    />
-                                    <div className={s.vacancyListCardParam}>
-                                        <AppText
-                                            size={'s'}
-                                            variant={'secondary'}
-                                            text={vac.employment}
-                                            className={s.vacancyListCardEmployment}
-                                        />
-                                        <AppText
-                                            size={'s'}
-                                            variant={'secondary'}
-                                            text={vac.schedule}
-                                            className={s.vacancyListCardSchedule}
-
-                                        />
-
-                                    </div>
-                                    {extendedDescription &&
-                                        <AppText
-                                            size={'xs'}
-                                            text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
-                                            className={s.vacancyListCardDesc}
-                                        />
-                                    }
-
-                                    <AppButton
-                                        className={s.vacancyListCardBtn}
-                                        width="auto"
+                                    <AppCard
+                                        width={'auto'}
+                                        height={extendedDescription ? `300px` : `260px`}
+                                        shadow
+                                        className={cn(s.vacancyListCard)}
                                     >
-                                        Откликнуться
-                                    </AppButton>
-                                </AppCard>
-                            </AppLink>
+                                        <AppText
+                                            title={vac.title}
+                                        />
+                                        <AppText
+                                            text={`от ${vac.payment} руб.`}
+                                        />
+                                        <AppText
+                                            text={`Компания ${vac.conditions}.`}
+                                        />
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Город: ${vac.city}`}
+                                        />
+
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Опыт работы: ${vac.experience}`}
+                                            className={s.vacancyListCardExp}
+                                        />
+                                        <div className={s.vacancyListCardParam}>
+                                            <AppText
+                                                size={'s'}
+                                                variant={'secondary'}
+                                                text={vac.employment}
+                                                className={s.vacancyListCardEmployment}
+                                            />
+                                            <AppText
+                                                size={'s'}
+                                                variant={'secondary'}
+                                                text={vac.schedule}
+                                                className={s.vacancyListCardSchedule}
+
+                                            />
+
+                                        </div>
+                                        {extendedDescription &&
+                                            <AppText
+                                                size={'xs'}
+                                                text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
+                                                className={s.vacancyListCardDesc}
+                                            />
+                                        }
+
+                                        <AppButton
+                                            className={s.vacancyListCardBtn}
+                                            width="auto"
+                                        >
+                                            Откликнуться
+                                        </AppButton>
+
+                                    </AppCard>
+                                </AppLink>
+                                <button
+                                    className={s.addToFavouriteBtn}
+                                    onClick={() => toggleFavourites(vac.id)}
+                                >
+                                    Like
+                                </button>
+                            </div>
                         )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>
