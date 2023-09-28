@@ -1,5 +1,6 @@
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { router } from '@inertiajs/react'
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
@@ -13,6 +14,8 @@ import { Head } from "@inertiajs/react";
 import VacancyListPageFilters from "./ui/VacancyListPageFilters/VacancyListPageFilters";
 import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "@/1App/providers/counterSlice/counterSlice";
 
 const VacancyListPage = ({
     vacancies,
@@ -45,7 +48,7 @@ const VacancyListPage = ({
         payment: "",
     });
     //поиск по названию вакансии
-    const [vacancySearchInput, setVacancySearchInput] = useState(""); // состояние инпута поиска по названию вакансии
+    const [vacancySearchInput, setVacancySearchInput] = useState(vacancies ? vacancies : ''); // состояние инпута поиска по названию вакансии
     const [suggestions, setSuggestions] = useState([]);
     const debouncedVacancySearch = useDebounce(vacancySearchInput, 500);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
@@ -53,9 +56,8 @@ const VacancyListPage = ({
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
-
-
     }
+
     const handlePayment = () => {
         setFilterData((prevState) => {
             return {
@@ -64,9 +66,22 @@ const VacancyListPage = ({
             }
         })
     }
+    useEffect(() => {
+
+    }, [])
 
     useEffect(() => {
-        if (!debouncedVacancySearch) return;
+        // if (!debouncedVacancySearch) return;
+        if (!debouncedVacancySearch) {
+            setFilterData((prevState) => {
+                return {
+                    ...prevState,
+                    title: '',
+                };
+            });
+            setSuggestions([]);
+            return;
+        };
 
         axios
             .get(`/searchSort?str=${debouncedVacancySearch}`)
@@ -153,18 +168,19 @@ const VacancyListPage = ({
     //     }
     // }, []);
 
-    const setValueChange = (value) => {
-        setFilterData((prevState) => {
-            return {
-                ...prevState,
-                title: value,
-            };
-        });
-        console.log(filterData.title);
-    };
+    // const setValueChange = (value) => {
+    //     setFilterData((prevState) => {
+    //         return {
+    //             ...prevState,
+    //             title: value,
+    //         };
+    //     });
+    //     console.log(filterData.title);
+    // };
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
+        setIndex(1);
 
         switch (type) {
             case "checkbox":
@@ -207,15 +223,30 @@ const VacancyListPage = ({
             const { data } = response.data;
             setVacancyList(data);
             setTotal(response.data.total);
-            setIndex(2);
+            setIndex((prevIndex) => prevIndex + 1);
             console.log(data);
         };
         getFilterData();
     }, [filterData]);
+
+    // ---------- Redux ----------
+    // const counter = useSelector((state) => state.counter.value);
+    // const dispatch = useDispatch();
+    // const handlIncrement = () => {
+    //     dispatch(increment());
+    // }
+    // const handlDecrement = () => {
+    //     dispatch(decrement());
+    // }
+
     return (
         <>
             <Head title="Вакансии" />
             <AppPage>
+                {/* Redux */}
+                {/* <button onClick={handlIncrement}>+</button>
+                <button onClick={handlDecrement}>-</button>
+                <b>count: {counter}</b> */}
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
