@@ -9,25 +9,11 @@ import {
 } from "../../model/slice/vacancyPageCreateSlice";
 import cn from "classnames";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
-function VacancyCreateEmpolyments(props) {
+function VacancyCreateResponsibilities(props) {
     const dispatch = useDispatch();
-    const {
-        vacancyNameInput,
-        vacancyCityInput,
-        vacancyPaymentInput,
-        requirementsInput,
-        requirementsList,
-        responsibilitiesInput,
-        responsibilitiesList,
-        conditionsInput,
-        conditionsList,
-        skillsInput,
-        skillsList,
-        contactsNameInput,
-        contactsPositionInput,
-        contactsPhoneInput,
-        contactsList,
-    } = useSelector((state) => state.vacancyPageCreate);
+    const { responsibilitiesInput, responsibilitiesList } = useSelector(
+        (state) => state.vacancyPageCreate
+    );
 
     return (
         <div className={cn(s.empolyments, s.item)}>
@@ -98,6 +84,6 @@ function VacancyCreateEmpolyments(props) {
     );
 }
 
-VacancyCreateEmpolyments.propTypes = {};
+VacancyCreateResponsibilities.propTypes = {};
 
 export default VacancyCreateEmpolyments;
