@@ -13,10 +13,7 @@ class LikeController extends Controller
 
        $dataLike = $request->post('like');
        
-       $likeVacancy->user_id = $dataLike['user_id'];
-       $likeVacancy->vacancy_id = $dataLike['vacancy_id'];
-
-       $likeVacancy->save();
+       $likeVacancy->store($dataLike);
     }
 
     public function destroy(Request $request)
@@ -25,6 +22,6 @@ class LikeController extends Controller
 
         $id = $request->post('id');
         
-        $likeVacancy->where('vacancy_id', $id)->delete();    
+        $likeVacancy->destroy_like($id);
     }
 }

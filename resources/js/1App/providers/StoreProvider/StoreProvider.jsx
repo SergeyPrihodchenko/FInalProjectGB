@@ -1,4 +1,3 @@
-import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { createReduxStore } from "./store";
 export const StoreProvider = (props) => {
