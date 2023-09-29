@@ -1,0 +1,96 @@
+.textTitle {
+    padding: 20px 10px 10px 0px;
+}
+
+.indentDownBasiceData{
+    margin-top: 20px;
+}
+
+
+.textareaBasiceData {
+    box-sizing: border-box;
+    width: 760px;
+    height: 138px;
+    font-size: var(--font-size-s);
+    padding: 10px;
+    
+    background: var(--light-bg);
+    border: 1px solid var(--light-skeleton-shadow);
+    border-radius: var(--border-radius-s);
+
+}
+
+.textareaBasiceData::placeholder{
+    
+    font-family: var(--font-family-main);
+    font-style: normal;
+    font-weight: 400;
+    font-size: var(--font-size-s);
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: var(--not-accented);
+}
+
+.textareaBasiceData:focus{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    box-sizing: border-box;
+    background: var(--light-bg);
+    border: 1px solid var(--accent);
+    border-radius: var(--border-radius-s);
+}
+
+.textareaBasiceData::-webkit-resizer{
+    resize: horizontal;
+} 
+
+.buttonSave {
+    margin: 10px 10px 40px 875px; 
+}
+
+.buttonUpload{
+    margin: 10px;
+}
+
+.inputlogoUpload{
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fileLoadBlock {
+	width: 350px;
+	height: 60px;
+	overflow: hidden;
+	position: relative;
+}
+
+.fileCompany {
+	opacity: 0;
+	filter: alpha(opacity=0);
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	height: 60px;
+	z-index: 2;
+	cursor: pointer;
+	width: auto;
+}
+
+.textFileCompany {
+	z-index: 1;
+    width: 240px;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    text-overflow: ellipsis;
+    padding: 0px 0px 10px 10px;
+    border-radius: 5px;
+}
