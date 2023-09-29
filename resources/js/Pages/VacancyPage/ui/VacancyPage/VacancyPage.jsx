@@ -18,7 +18,7 @@ const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage(props) {
     const { auth, vacancy } = props;
     const user = auth?.user;
-    console.log("VacancyPage.jsx vacancy", vacancy);
+
 
     return (
         <>
