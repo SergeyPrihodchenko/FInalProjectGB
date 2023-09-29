@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Head } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./VacancyPageCreate.module.css";
@@ -11,10 +11,23 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 function VacancyPageCreate(props) {
-    const { auth, vacancy, btn } = props;
-    const user = auth?.user;
-    // console.log("VacancyPageCreate props", props);
+    const {
+        auth,
+        vacancy,
+        btn,
+        companies,
+        cities,
+        citiesForWork,
+        experience,
+        schedule,
+        employment,
+    } = props;
+
+    const [vacancyNameInput, setVacancyNameInput] = useState("");
+    const [vacancyCityInput, setVacancyCityInput] = useState("");
+    const [vacancyPaymentInput, setVacancyPaymentInput] = useState("");
 
     // Требования
     const [requirementsInput, setRequirementsInput] = useState("");
@@ -38,33 +51,51 @@ function VacancyPageCreate(props) {
     const [contactsPhone, setContactsPhone] = useState("");
     const [contactsList, setContactsList] = useState([]);
 
-    const experience = [
-        "Нет опыта",
-        "Не имеет значения",
-        "1-3 года",
-        "3-6 лет",
-        "более 6 лет",
-    ];
-    const schedule = [
-        "Полная занятость",
-        "Частичная занятость",
-        "Проектная работа или разовое задание",
-        "Волонтерство",
-        "Стажировка",
-    ];
-    const employment = [
-        "Полный день",
-        "Сменный график",
-        "Гибкий график",
-        "Удаленая работа",
-        "Вахтовый метод",
-    ];
+    // const experience = [
+    //     "Нет опыта",
+    //     "Не имеет значения",
+    //     "1-3 года",
+    //     "3-6 лет",
+    //     "более 6 лет",
+    // ];
+    // const schedule = [
+    //     "Полная занятость",
+    //     "Частичная занятость",
+    //     "Проектная работа или разовое задание",
+    //     "Волонтерство",
+    //     "Стажировка",
+    // ];
+    // const employment = [
+    //     "Полный день",
+    //     "Сменный график",
+    //     "Гибкий график",
+    //     "Удаленая работа",
+    //     "Вахтовый метод",
+    // ];
 
     const saveVacancy = (e) => {
         e.preventDefault();
-
-        // post(route('vacancy.store'))
+        post(route("vacancy.store"));
     };
+
+    const { data, setData, post, errors } = useForm({
+        title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+        city_id: "1",
+        payment: "1000",
+        city_work_id: "1",
+        experience: "нет опыта",
+        company_id: companies[0].id,
+        schedule: "Полная занятость",
+        employment: employment[0],
+        requirements: requirementsList,
+        responsibilities: responsibilitiesList,
+        conditions: conditionsList,
+        skills: skillsList,
+        contacts: contactsList,
+    });
+    // const { vacancyCityInput, vacancyCityInput, vacancyPaymentInput } =
+    //     useSelector((state) => state);
+
     return (
         <>
             <Head title="VacancyPageCreate" />
@@ -87,11 +118,19 @@ function VacancyPageCreate(props) {
                         <AppInput
                             label="Название вакакнсии"
                             placeholder="Должность"
+                            value={vacancyNameInput}
+                            onChange={(e) => {
+                                setVacancyNameInput(e.target.value);
+                            }}
                         />
                         <AppInput
                             label="Где искать сотрудника"
                             placeholder="Город"
                             className={s.input}
+                            value={vacancyCityInput}
+                            onChange={(e) => {
+                                setVacancyCityInput(e.target.value);
+                            }}
                         />
                         <div>
                             <AppText
@@ -100,7 +139,16 @@ function VacancyPageCreate(props) {
                             />
                             <div className={s.paymentContainer}>
                                 <div className={s.payment}>
-                                    <AppInput width="520px" type="number" />
+                                    <AppInput
+                                        width="520px"
+                                        type="number"
+                                        value={vacancyPaymentInput}
+                                        onChange={(e) => {
+                                            setVacancyPaymentInput(
+                                                e.target.value
+                                            );
+                                        }}
+                                    />
                                 </div>
 
                                 <div className={s.checkbox}>
@@ -158,13 +206,13 @@ function VacancyPageCreate(props) {
                                 ))}
                             </>
                         )}
-                        {schedule && (
+                        {employment && (
                             <>
                                 <AppText
                                     title="Тип занятости"
                                     className={s.item}
                                 />
-                                {schedule?.map((item, index) => (
+                                {employment?.map((item, index) => (
                                     <Checkbox
                                         className={s.item}
                                         key={index}
