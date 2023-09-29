@@ -45,6 +45,7 @@ const VacancyListPage = ({
         city_id: [],
         title: vacancies ? vacancies : '',
         payment: 0,
+        // user_id: user.id
     });
     //поиск по названию вакансии
     const [vacancySearchInput, setVacancySearchInput] = useState(vacancies ? vacancies : ''); // состояние инпута поиска по названию вакансии
