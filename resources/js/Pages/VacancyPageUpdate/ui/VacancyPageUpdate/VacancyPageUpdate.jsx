@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Head } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./VacancyPageUpdate.module.css";
@@ -10,64 +10,93 @@ import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
-import { useState } from "react";
-function VacancyPageUpdate(props) {
-    const { auth, vacancy, btn } = props;
-    const user = auth?.user;
-    // console.log("VacancyPageUpdate props", props);
+import { useDispatch, useSelector } from "react-redux";
 
-    // Требования
-    const [requirementsInput, setRequirementsInput] = useState("");
-    const [requirementsList, setRequirementsList] = useState([]);
+import VacancyCreateContacts from "../VacancyCreateContacts/VacancyCreateContacts";
+import VacancyCreateSkills from "../VacancyCreateSkills/VacancyCreateSkills";
+import VacancyCreateEmpolyments from "../VacancyCreateEmpolyments/VacancyCreateEmpolyments";
+import VacancyCreateConditions from "../VacancyCreateConditions/VacancyCreateConditions";
+import VacancyCreateRequirements from "../VacancyCreateRequirements/VacancyCreateRequirements";
+import VacancyCreateFilters from "../VacancyCreateFilters/VacancyCreateFilters";
+import VacancyCreateMainInfo from "../VacancyCreateMainInfo/VacancyCreateMainInfo";
+function VacancyPageCreate(props) {
+    const {
+        auth,
+        vacancy,
+        btn,
+        companies,
+        cities,
+        citiesForWork,
+        experience,
+        schedule,
+        employment,
+    } = props;
 
-    //Обязаности
-    const [responsibilitiesInput, setResponsibilitiesInput] = useState("");
-    const [responsibilitiesList, setResponsibilitiesList] = useState([]);
+    const dispatch = useDispatch();
+    const {
+        vacancyNameInput,
+        vacancyCityInput,
+        vacancyPaymentInput,
+        requirementsInput,
+        requirementsList,
+        responsibilitiesInput,
+        responsibilitiesList,
+        conditionsInput,
+        conditionsList,
+        skillsInput,
+        skillsList,
+        contactsNameInput,
+        contactsPositionInput,
+        contactsPhoneInput,
+        contactsList,
+    } = useSelector((state) => state.vacancyPageCreate);
 
-    // Условия
-    const [conditionsInput, setСonditionsInput] = useState("");
-    const [conditionsList, setConditionsList] = useState([]);
-
-    // Ключевые навыки
-    const [skillsInput, setSkillsInput] = useState("");
-    const [skillsList, setSkillsList] = useState([]);
-
-    // Контакты
-    const [contactsName, setContactsName] = useState("");
-    const [contactsPosition, setContactsPosition] = useState("");
-    const [contactsPhone, setContactsPhone] = useState("");
-    const [contactsList, setContactsList] = useState([]);
-
-    const experience = [
-        "Нет опыта",
-        "Не имеет значения",
-        "1-3 года",
-        "3-6 лет",
-        "более 6 лет",
-    ];
-    const schedule = [
-        "Полная занятость",
-        "Частичная занятость",
-        "Проектная работа или разовое задание",
-        "Волонтерство",
-        "Стажировка",
-    ];
-    const employment = [
-        "Полный день",
-        "Сменный график",
-        "Гибкий график",
-        "Удаленая работа",
-        "Вахтовый метод",
-    ];
+    // const experience = [
+    //     "Нет опыта",
+    //     "Не имеет значения",
+    //     "1-3 года",
+    //     "3-6 лет",
+    //     "более 6 лет",
+    // ];
+    // const schedule = [
+    //     "Полная занятость",
+    //     "Частичная занятость",
+    //     "Проектная работа или разовое задание",
+    //     "Волонтерство",
+    //     "Стажировка",
+    // ];
+    // const employment = [
+    //     "Полный день",
+    //     "Сменный график",
+    //     "Гибкий график",
+    //     "Удаленая работа",
+    //     "Вахтовый метод",
+    // ];
 
     const saveVacancy = (e) => {
         e.preventDefault();
-
-        // post(route('vacancy.store'))
+        post(route("vacancy.store"));
     };
+
+    const { data, setData, post, errors } = useForm({
+        title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+        city_id: "1",
+        payment: "1000",
+        city_work_id: "1",
+        experience: "нет опыта",
+        company_id: companies[0].id,
+        schedule: "Полная занятость",
+        employment: employment[0],
+        requirements: requirementsList,
+        responsibilities: responsibilitiesList,
+        conditions: conditionsList,
+        skills: skillsList,
+        contacts: contactsList,
+    });
+
     return (
         <>
-            <Head title="VacancyPageUpdate" />
+            <Head title="VacancyPageCreate" />
 
             <AppPage>
                 {btn}
@@ -83,475 +112,23 @@ function VacancyPageUpdate(props) {
                         size="m"
                         className={s.item}
                     />
-                    <div className={cn(s.mainInfo, s.itme)}>
-                        <AppInput
-                            label="Название вакакнсии"
-                            placeholder="Должность"
+                    <div className={cn(s.mainInfo, s.item)}>
+                        <VacancyCreateMainInfo />
+                        <VacancyCreateFilters
+                            experience={experience}
+                            schedule={schedule}
+                            employment={employment}
                         />
-                        <AppInput
-                            label="Где искать сотрудника"
-                            placeholder="Город"
-                            className={s.input}
-                        />
-                        <div>
-                            <AppText
-                                text="Предполагаемый уровень дохода в месяц или за объем работ"
-                                bold
-                            />
-                            <div className={s.paymentContainer}>
-                                <div className={s.payment}>
-                                    <AppInput width="520px" type="number" />
-                                </div>
-
-                                <div className={s.checkbox}>
-                                    <Checkbox
-                                        defaultChecked={true}
-                                        label={"До вычета налогов"}
-                                    />
-                                    <Checkbox label={"На руки"} />
-                                </div>
-                            </div>
-                        </div>
-                        <AppInput
-                            textBold
-                            label="Где будет рабоать сотрудник"
-                            placeholder="Адрес"
-                        />
-                        {experience && (
-                            <>
-                                <AppText
-                                    title="Опыт работы"
-                                    className={s.item}
-                                />
-                                <div className={s.item}>
-                                    {experience?.map((item, index) => (
-                                        <RadioButton
-                                            key={index}
-                                            name={"experience"}
-                                            label={item}
-                                            value={item}
-                                            onChange={() =>
-                                                console.log("RadioButton", item)
-                                            }
-                                        />
-                                    ))}
-                                </div>
-                            </>
-                        )}
-                        {schedule && (
-                            <>
-                                <AppText
-                                    title="График работы"
-                                    className={s.item}
-                                />
-                                {schedule?.map((item, index) => (
-                                    <Checkbox
-                                        className={s.item}
-                                        key={index}
-                                        name={"schedule"}
-                                        label={item}
-                                        value={item}
-                                        onChange={() =>
-                                            console.log("RadioButton", item)
-                                        }
-                                    />
-                                ))}
-                            </>
-                        )}
-                        {schedule && (
-                            <>
-                                <AppText
-                                    title="Тип занятости"
-                                    className={s.item}
-                                />
-                                {schedule?.map((item, index) => (
-                                    <Checkbox
-                                        className={s.item}
-                                        key={index}
-                                        name={"employment"}
-                                        label={item}
-                                        value={item}
-                                        onChange={() =>
-                                            console.log("RadioButton", item)
-                                        }
-                                    />
-                                ))}
-                            </>
-                        )}
-                        {/* Требования */}
-                        <div className={cn(s.requirements, s.item)}>
-                            {requirementsList ? (
-                                <div className={s.requirementsList}>
-                                    {requirementsList?.map(
-                                        (requireItem, index) => {
-                                            return (
-                                                <div
-                                                    className={s.listItem}
-                                                    key={index}
-                                                >
-                                                    <div> {requireItem}</div>
-                                                    <AppButton
-                                                        sizeText={"xs"}
-                                                        variant={"clear"}
-                                                        colorType={"cancel"}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            requirementsList.splice(
-                                                                index,
-                                                                1
-                                                            );
-                                                            const newRequirementsList =
-                                                                [
-                                                                    ...requirementsList,
-                                                                ];
-                                                            console.log(
-                                                                "newRequirementsList",
-                                                                newRequirementsList
-                                                            );
-                                                            setRequirementsList(
-                                                                [
-                                                                    ...newRequirementsList,
-                                                                ]
-                                                            );
-                                                        }}
-                                                    >
-                                                        Удалить
-                                                    </AppButton>
-                                                </div>
-                                            );
-                                        }
-                                    )}
-                                </div>
-                            ) : null}
-                            <AppInput
-                                label="Требования к соискателю"
-                                value={requirementsInput}
-                                onChange={(e) => {
-                                    setRequirementsInput(e.target.value);
-                                }}
-                            />
-
-                            <AppButton
-                                variant="clear"
-                                colorType="hint"
-                                sizeText="s"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (requirementsInput) {
-                                        setRequirementsList([
-                                            ...requirementsList,
-                                            requirementsInput,
-                                        ]);
-                                    }
-
-                                    setRequirementsInput("");
-                                }}
-                            >
-                                Добавить требование
-                            </AppButton>
-                        </div>
-
-                        {/* Обязаности */}
-                        <div className={cn(s.empolyments, s.item)}>
-                            {responsibilitiesList ? (
-                                <div className={s.responsibilitiesList}>
-                                    {responsibilitiesList?.map(
-                                        (responsibilitiesItem, index) => {
-                                            return (
-                                                <div
-                                                    className={s.listItem}
-                                                    key={index}
-                                                >
-                                                    <div>
-                                                        {responsibilitiesItem}
-                                                    </div>
-                                                    <AppButton
-                                                        sizeText={"xs"}
-                                                        variant={"clear"}
-                                                        colorType={"cancel"}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            responsibilitiesList.splice(
-                                                                index,
-                                                                1
-                                                            );
-                                                            const newResponsibilitiesList =
-                                                                [
-                                                                    ...responsibilitiesList,
-                                                                ];
-
-                                                            setResponsibilitiesList(
-                                                                [
-                                                                    ...newResponsibilitiesList,
-                                                                ]
-                                                            );
-                                                        }}
-                                                    >
-                                                        Удалить
-                                                    </AppButton>
-                                                </div>
-                                            );
-                                        }
-                                    )}
-                                </div>
-                            ) : null}
-                            <AppInput
-                                label="Обязаность сотрудника"
-                                value={responsibilitiesInput}
-                                onChange={(e) => {
-                                    setResponsibilitiesInput(e.target.value);
-                                }}
-                            />
-                            <AppButton
-                                variant="clear"
-                                colorType="hint"
-                                sizeText="s"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (responsibilitiesInput) {
-                                        setResponsibilitiesList([
-                                            ...responsibilitiesList,
-                                            responsibilitiesInput,
-                                        ]);
-                                    }
-
-                                    setResponsibilitiesInput("");
-                                }}
-                            >
-                                Добавить обязаность
-                            </AppButton>
-                        </div>
-                        {/* Условия */}
-                        <div className={cn(s.conditions, s.item)}>
-                            {conditionsList ? (
-                                <div className={s.conditionsList}>
-                                    {conditionsList?.map(
-                                        (conditionsItem, index) => {
-                                            return (
-                                                <div
-                                                    className={s.listItem}
-                                                    key={index}
-                                                >
-                                                    <div>{conditionsItem}</div>
-                                                    <AppButton
-                                                        sizeText={"xs"}
-                                                        variant={"clear"}
-                                                        colorType={"cancel"}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            conditionsList.splice(
-                                                                index,
-                                                                1
-                                                            );
-                                                            const newConditionsList =
-                                                                [
-                                                                    ...conditionsList,
-                                                                ];
-
-                                                            setConditionsList([
-                                                                ...newConditionsList,
-                                                            ]);
-                                                        }}
-                                                    >
-                                                        Удалить
-                                                    </AppButton>
-                                                </div>
-                                            );
-                                        }
-                                    )}
-                                </div>
-                            ) : null}
-                            <AppInput
-                                label="Условия работы"
-                                value={conditionsInput}
-                                onChange={(e) => {
-                                    setСonditionsInput(e.target.value);
-                                }}
-                            />
-                            <AppButton
-                                variant="clear"
-                                colorType="hint"
-                                sizeText="s"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (conditionsInput) {
-                                        setConditionsList([
-                                            ...conditionsList,
-                                            conditionsInput,
-                                        ]);
-                                    }
-
-                                    setСonditionsInput("");
-                                }}
-                            >
-                                Добавить условие
-                            </AppButton>
-                        </div>
-                        {/* Навыки */}
-
-                        {skillsList ? (
-                            <div className={s.skillsList}>
-                                {skillsList?.map((skillsItem, index) => {
-                                    return (
-                                        <div className={s.listItem} key={index}>
-                                            <div>{skillsItem}</div>
-                                            <AppButton
-                                                sizeText={"xs"}
-                                                variant={"clear"}
-                                                colorType={"cancel"}
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    skillsList.splice(index, 1);
-                                                    const newSkillsList = [
-                                                        ...skillsList,
-                                                    ];
-
-                                                    setSkillsList([
-                                                        ...newSkillsList,
-                                                    ]);
-                                                }}
-                                            >
-                                                Удалить
-                                            </AppButton>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        ) : null}
-                        <div className={cn(s.skills, s.item)}>
-                            <AppInput
-                                label="Ключевые навыки"
-                                value={skillsInput}
-                                onChange={(e) => {
-                                    setSkillsInput(e.target.value);
-                                }}
-                            />
-                            <AppButton
-                                variant="clear"
-                                colorType="hint"
-                                sizeText="s"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (skillsInput) {
-                                        setSkillsList([
-                                            ...skillsList,
-                                            skillsInput,
-                                        ]);
-                                    }
-
-                                    setSkillsInput("");
-                                }}
-                            >
-                                Добавить навык
-                            </AppButton>
-                        </div>
-                        <AppText
-                            title="Контактные данные"
-                            size="m"
-                            className={s.item}
-                        />
-                        <div className={cn(s.contacts, s.item)}>
-                            {contactsList ? (
-                                <div className={s.contactsList}>
-                                    {contactsList?.map(
-                                        (contactsItem, index) => {
-                                            return (
-                                                <div
-                                                    className={s.listItem}
-                                                    key={index}
-                                                >
-                                                    <div>
-                                                        {contactsItem?.phone}
-                                                    </div>
-                                                    -
-                                                    <div>
-                                                        {contactsItem?.name}
-                                                    </div>
-                                                    /
-                                                    <div>
-                                                        {contactsItem?.position}
-                                                    </div>
-                                                    <AppButton
-                                                        sizeText={"xs"}
-                                                        variant={"clear"}
-                                                        colorType={"cancel"}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            contactsList.splice(
-                                                                index,
-                                                                1
-                                                            );
-                                                            const newContactsList =
-                                                                [
-                                                                    ...contactsList,
-                                                                ];
-
-                                                            setContactsList([
-                                                                ...newContactsList,
-                                                            ]);
-                                                        }}
-                                                    >
-                                                        Удалить
-                                                    </AppButton>
-                                                </div>
-                                            );
-                                        }
-                                    )}
-                                </div>
-                            ) : null}
-                            <AppInput
-                                label="Контакты"
-                                placeholder="Должность"
-                                value={contactsPosition}
-                                onChange={(e) => {
-                                    setContactsPosition(e.target.value);
-                                }}
-                            />
-                            <AppInput
-                                placeholder="Имя"
-                                value={contactsName}
-                                onChange={(e) => {
-                                    setContactsName(e.target.value);
-                                }}
-                            />
-                            <AppInput
-                                type="tel"
-                                placeholder="Номер телефона"
-                                value={contactsPhone}
-                                onChange={(e) => {
-                                    setContactsPhone(e.target.value);
-                                }}
-                            />
-                            <AppButton
-                                variant="clear"
-                                colorType="hint"
-                                sizeText="s"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (
-                                        contactsPosition &&
-                                        contactsPhone &&
-                                        contactsName
-                                    ) {
-                                        setContactsList([
-                                            ...contactsList,
-                                            {
-                                                name: contactsName,
-                                                phone: contactsPhone,
-                                                position: contactsPosition,
-                                            },
-                                        ]);
-                                    }
-
-                                    setContactsName("");
-                                    setContactsPhone("");
-                                    setContactsPosition("");
-                                }}
-                            >
-                                Добавить контакт
-                            </AppButton>
-                        </div>
-
+                        {/*Requirements Требования */}
+                        <VacancyCreateRequirements />
+                        {/*Empolyments Обязаности */}
+                        <VacancyCreateEmpolyments />
+                        {/* Conditions Условия */}
+                        <VacancyCreateConditions />
+                        {/* Skills Навыки */}
+                        <VacancyCreateSkills />
+                        {/* Contacts контакты */}
+                        <VacancyCreateContacts />
                         <AppButton className={cn(s.btn, s.item)}>
                             Опубликовать
                         </AppButton>
@@ -562,6 +139,6 @@ function VacancyPageUpdate(props) {
     );
 }
 
-VacancyPageUpdate.propTypes = {};
+VacancyPageCreate.propTypes = {};
 
-export default VacancyPageUpdate;
+export default VacancyPageCreate;
