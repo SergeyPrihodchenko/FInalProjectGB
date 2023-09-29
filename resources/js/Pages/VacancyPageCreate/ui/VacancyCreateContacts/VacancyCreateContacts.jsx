@@ -25,6 +25,12 @@ function VacancyCreateContacts(props) {
             {contactsList ? (
                 <div className={s.contactsList}>
                     {contactsList?.map((contactsItem, index) => {
+                        console.log(
+                            "contactsItem",
+                            contactsItem,
+                            ", contactsItem-index",
+                            index
+                        );
                         return (
                             <div className={s.listItem} key={index}>
                                 <div>{contactsItem?.phone}</div>-
@@ -36,6 +42,11 @@ function VacancyCreateContacts(props) {
                                     colorType={"cancel"}
                                     onClick={(e) => {
                                         e.preventDefault();
+                                        console.log("delete-index", index);
+                                        console.log(
+                                            "contactsList-delete-item",
+                                            contactsList[index]
+                                        );
                                         contactsList.splice(index, 1);
                                         const newContactsList = [
                                             ...contactsList,

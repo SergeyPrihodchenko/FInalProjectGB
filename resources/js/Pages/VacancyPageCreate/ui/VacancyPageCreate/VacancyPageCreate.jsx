@@ -14,11 +14,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import VacancyCreateContacts from "../VacancyCreateContacts/VacancyCreateContacts";
 import VacancyCreateSkills from "../VacancyCreateSkills/VacancyCreateSkills";
-import VacancyCreateEmpolyments from "../VacancyCreateEmpolyments/VacancyCreateEmpolyments";
+import VacancyCreateResponsibilities from "../VacancyCreateResponsibilities/VacancyCreateResponsibilities";
 import VacancyCreateConditions from "../VacancyCreateConditions/VacancyCreateConditions";
 import VacancyCreateRequirements from "../VacancyCreateRequirements/VacancyCreateRequirements";
 import VacancyCreateFilters from "../VacancyCreateFilters/VacancyCreateFilters";
 import VacancyCreateMainInfo from "../VacancyCreateMainInfo/VacancyCreateMainInfo";
+import { useEffect } from "react";
 function VacancyPageCreate(props) {
     const {
         auth,
@@ -51,28 +52,7 @@ function VacancyPageCreate(props) {
         contactsList,
     } = useSelector((state) => state.vacancyPageCreate);
 
-    // const experience = [
-    //     "Нет опыта",
-    //     "Не имеет значения",
-    //     "1-3 года",
-    //     "3-6 лет",
-    //     "более 6 лет",
-    // ];
-    // const schedule = [
-    //     "Полная занятость",
-    //     "Частичная занятость",
-    //     "Проектная работа или разовое задание",
-    //     "Волонтерство",
-    //     "Стажировка",
-    // ];
-    // const employment = [
-    //     "Полный день",
-    //     "Сменный график",
-    //     "Гибкий график",
-    //     "Удаленая работа",
-    //     "Вахтовый метод",
-    // ];
-
+    console.log("contactsList", contactsList);
     const saveVacancy = (e) => {
         e.preventDefault();
         post(route("vacancy.store"));
@@ -121,8 +101,8 @@ function VacancyPageCreate(props) {
                         />
                         {/*Requirements Требования */}
                         <VacancyCreateRequirements />
-                        {/*Empolyments Обязаности */}
-                        <VacancyCreateEmpolyments />
+                        {/*Responsibilities Обязаности */}
+                        <VacancyCreateResponsibilities />
                         {/* Conditions Условия */}
                         <VacancyCreateConditions />
                         {/* Skills Навыки */}
