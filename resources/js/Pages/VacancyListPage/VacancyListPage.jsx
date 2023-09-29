@@ -16,6 +16,7 @@ import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "@/1App/providers/counterSlice/counterSlice";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
 const VacancyListPage = ({
     vacancies,
@@ -57,11 +58,12 @@ const VacancyListPage = ({
 
 
     const [favourites, setIsFavourites] = useState(likes);
-
+    console.log('vacancySearchInput', vacancySearchInput);
     console.log(favourites);
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
+
     }
 
     const handlePayment = () => {
@@ -75,23 +77,23 @@ const VacancyListPage = ({
 
     const toggleFavourites = async (id) => {
         if (!favourites.length) {
+            setIsFavourites([...favourites, id]);
             await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-            setIsFavourites([...favourites, { vacancy_id: id }]);
         } else {
-            const findId = favourites.some((favourite) => favourite.id === id);
-            if (findId) {
-                console.log(findId);
-                // await axios.post('/deleteLike', { id: { vacancy_id: id } });
-                setIsFavourites(favourites.filter((favourite) => favourite.vacancy_id !== id))
+            if (favourites.includes(id)) {
+                setIsFavourites(favourites.filter((favourite) => favourite !== id))
+                await axios.post('/deleteLike', { id: { vacancy_id: id } });
 
             } else {
-                // await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-                setIsFavourites([...favourites, { vacancy_id: id }]);
+                setIsFavourites([...favourites, id]);
+                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
 
             }
         }
 
-
+    }
+    const isInFavourite = (id, list) => {
+        return list.some(el => el === id)
     }
     // const getFilterData = async () => {
     //     const response = await axios.post(`/vacancies/filter?page=1`, {
@@ -427,12 +429,18 @@ const VacancyListPage = ({
 
                                     </AppCard>
                                 </AppLink>
-                                <button
-                                    className={s.addToFavouriteBtn}
+                                <AppButton
+                                    variant={'clear'}
+                                    className={cn(s.addToFavouriteBtn)}
                                     onClick={() => toggleFavourites(vac.id)}
                                 >
-                                    Like
-                                </button>
+                                    {isInFavourite(vac.id, favourites) ?
+                                        <BootstrapIcon name={'BsHeartFill'} size={28} />
+                                        :
+                                        <BootstrapIcon name={'BsHeart'} size={28} />
+
+                                    }
+                                </AppButton>
                             </div>
                         )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
