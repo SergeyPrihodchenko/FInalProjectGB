@@ -198,6 +198,25 @@ function CreateResume() {
                             />
 
                             <div className={s.inputRadioBasiceData}>
+                                <select
+                                    name="gender"
+                                    id="gender"
+                                    onChange={(e) =>
+                                        setData("gender", e.target.value)
+                                    }
+                                    value={data.gender}
+                                    className={s.inputResumeDataBasice}
+                                >
+                                    <option value="">Не выбран</option>
+                                    <option value="Мужской">Мужской</option>
+                                    <option value="Женский">Женский</option>
+                                </select>
+                                <div style={{ color: "red" }}>
+                                    {errors.gender}
+                                </div>
+                            </div>
+
+                            {/* <div className={s.inputRadioBasiceData}>
                                 <input
                                     onChange={(e) =>
                                         setData("gender", e.target.value)
@@ -235,7 +254,7 @@ function CreateResume() {
                                         className={s.textInputRadio}
                                     />
                                 </label>
-                            </div>
+                            </div> */}
                             <AppInput
                                 onChange={(e) =>
                                     setData("region", e.target.value)
@@ -306,6 +325,41 @@ function CreateResume() {
                                     className={s.textTitle}
                                 />
                                 <div className={s.education}>
+                                    <select
+                                        name="education"
+                                        id="education"
+                                        onChange={(e) =>
+                                            setData("education", e.target.value)
+                                        }
+                                        value={data.education}
+                                        className={s.inputResumeDataBasice}
+                                    >
+                                        <option value="Не выбрано">
+                                            Не выбрано
+                                        </option>
+                                        <option value="Среднее">Среднее</option>
+                                        <option value="Среднее специальное">
+                                            Среднее специальное
+                                        </option>
+                                        <option value="Неоконченное высшее">
+                                            Неоконченное высшее
+                                        </option>
+                                        <option value="Высшее образование">
+                                            Высшее образование
+                                        </option>
+                                        <option value="Бакалавр">
+                                            Бакалавр
+                                        </option>
+                                        <option value="Магистр">Магистр</option>
+                                        <option value="Кандидат наук">
+                                            Кандидат наук
+                                        </option>
+                                    </select>
+                                    <div style={{ color: "red" }}>
+                                        {errors.education}
+                                    </div>
+                                </div>
+                                {/* <div className={s.education}>
                                     {arrayEducation.map((el) => {
                                         // console.log(el);
                                         return (
@@ -344,7 +398,7 @@ function CreateResume() {
                                             </div>
                                         );
                                     })}
-                                </div>
+                                </div> */}
                             </div>
                             {data.educational_institute.map((el, index) => {
                                 return (
@@ -376,6 +430,13 @@ function CreateResume() {
                                             readOnly
                                         />
                                         <div className={s.educationUser}>
+                                            <AppInput
+                                                label="Дата начала"
+                                                type="date"
+                                                width="140px"
+                                                className={s.indentDownBasiceData}
+                                            />
+
                                             <AppInput
                                                 label={"Дата окончания"}
                                                 type="date"
@@ -437,6 +498,13 @@ function CreateResume() {
                                 />
                                 <div className={s.educationUser}>
                                     <AppInput
+                                        label="Дата начала"
+                                        type="date"
+                                        width="140px"
+                                        className={s.indentDownBasiceData}
+                                    />
+
+                                    <AppInput
                                         onChange={(e) =>
                                             setGraduation_year(e.target.value)
                                         }
@@ -462,46 +530,6 @@ function CreateResume() {
                         </div>
 
                         <div className={s.experience}>
-                            <div className={s.education}>
-                                <AppText
-                                    title={"Опыт работы"}
-                                    bold
-                                    size={"xs"}
-                                    className={s.textTitle}
-                                />
-                                {arrayExperience.map((el) => {
-                                    // console.log(el);
-                                    return (
-                                        <div className={s.inputRadioBasiceData}>
-                                            <input
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "experience",
-                                                        e.target.value
-                                                    )
-                                                }
-                                                value={el}
-                                                name="experience"
-                                                id={el}
-                                                type="radio"
-                                                className={
-                                                    s.inputRadioCreateResume
-                                                }
-                                            />
-                                            <label for={el}>
-                                                <AppText
-                                                    text={el}
-                                                    size={"s"}
-                                                    className={s.textInputRadio}
-                                                />
-                                            </label>
-                                            <div style={{ color: "red" }}>
-                                                {errors.experience}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
                             {data.companies.map((el, index) => {
                                 return (
                                     <>
@@ -751,6 +779,273 @@ function CreateResume() {
                                 Добавить
                             </AppButton>
                             <div style={{ color: "red" }}>{errors.skills}</div>
+                        </div>
+
+                        <div className={s.vacancyWishes}>
+                            <AppText
+                                title={"Пожелания к вакансии"}
+                                bold
+                                size={"xs"}
+                                className={s.textTitle}
+                            />
+                            <AppInput
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                                label={"Уровень дохода"}
+                                type="text"
+                                placeholder="Сумма на руки"
+                                width={"220px"}
+                                className={s.incomeLevel}
+                            />
+                            
+                            <div className={s.education}>
+                                <AppText
+                                    title={"Опыт работы"}
+                                    bold
+                                    size={"xs"}
+                                    className={s.textTitle}
+                                />
+                                <select
+                                    name="experience"
+                                    id="experience"
+                                    onChange={(e) =>
+                                        setData("experience", e.target.value)
+                                    }
+                                    value={data.experience}
+                                    className={s.inputResumeDataBasice}
+                                >
+                                    <option value="Не выбрано">
+                                        не имеет значения
+                                    </option>
+                                    <option value="Нет опыта">
+                                        нет опыта
+                                    </option>
+                                    <option value="Менее года">
+                                        менее года
+                                    </option>
+                                    <option value="От года до трех">
+                                        от 1 до 3 лет
+                                    </option>
+                                    <option value="От трех до 6 лет">
+                                        от 3 и 6 лет
+                                    </option>
+                                    <option value="Более 6 лет">
+                                        более 6 лет
+                                    </option>
+                                </select>
+                                <div style={{ color: "red" }}>
+                                    {errors.experience}
+                                </div>
+                                {/* {arrayExperience.map((el) => {
+                                    // console.log(el);
+                                    return (
+                                        <div className={s.inputRadioBasiceData}>
+                                            <input
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "experience",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                value={el}
+                                                name="experience"
+                                                id={el}
+                                                type="radio"
+                                                className={
+                                                    s.inputRadioCreateResume
+                                                }
+                                            />
+                                            <label for={el}>
+                                                <AppText
+                                                    text={el}
+                                                    size={"s"}
+                                                    className={s.textInputRadio}
+                                                />
+                                            </label>
+                                            <div style={{ color: "red" }}>
+                                                {errors.experience}
+                                            </div>
+                                        </div>
+                                    );
+                                })} */}
+                            </div>
+                            <div className={s.education}>
+                                <AppText
+                                    title={"Тип занятости"}
+                                    bold
+                                    size={"xs"}
+                                    className={s.textTitle}
+                                />
+                                <select
+                                    // name="experience"
+                                    // id="experience"
+                                    // onChange={(e) =>
+                                    //     setData("experience", e.target.value)
+                                    // }
+                                    // value={data.experience}
+                                    className={s.inputResumeDataBasice}
+                                >
+                                    <option value="Не выбрано">
+                                        Не выбрано
+                                    </option>
+                                    <option value="Любой">
+                                        Любой
+                                    </option>
+                                    <option value="Полный день">
+                                        Полный день
+                                    </option>
+                                    <option value="Сменный график">
+                                        Сменный график
+                                    </option>
+                                    <option value="Гибкий график">
+                                        Гибкий график
+                                    </option>
+                                    <option value="Удаленая работа">
+                                        Удаленая работа
+                                    </option>
+                                    <option value="Вахтовый метод">
+                                        Вахтовый метод
+                                    </option>
+                                </select>
+                                {/* <div style={{ color: "red" }}>
+                                    {errors.experience}
+                                </div> */}
+                            </div>
+                            <div className={s.education}>
+                                <AppText
+                                    title={"График работы"}
+                                    bold
+                                    size={"xs"}
+                                    className={s.textTitle}
+                                />
+                            <select
+                                    // name="experience"
+                                    // id="experience"
+                                    // onChange={(e) =>
+                                    //     setData("experience", e.target.value)
+                                    // }
+                                    // value={data.experience}
+                                    className={s.inputResumeDataBasice}
+                                >
+                                    <option value="Не выбрано">
+                                        Не выбрано
+                                    </option>
+                                    <option value="Любой">
+                                        Любой
+                                    </option>
+                                    <option value="Полная занятость">
+                                        Полная занятость
+                                    </option>
+                                    <option value="Частичная занятость">
+                                        Частичная занятость
+                                    </option>
+                                    <option value="Стажировка">
+                                        Стажировка
+                                    </option>
+                                    <option value="Проектная работа">
+                                        Проектная работа
+                                    </option>
+                                    <option value="Волонтерство">
+                                        Волонтерство
+                                    </option>
+                                </select>
+                                {/* <div style={{ color: "red" }}>
+                                    {errors.experience}
+                                </div> */}
+                            </div>
+                            <div className={s.education}>
+                                <AppText
+                                    title={"Готовность к переездам"}
+                                    bold
+                                    size={"xs"}
+                                    className={s.textTitle}
+                                />
+                            <select
+                                    // name="experience"
+                                    // id="experience"
+                                    // onChange={(e) =>
+                                    //     setData("experience", e.target.value)
+                                    // }
+                                    // value={data.experience}
+                                    className={s.inputResumeDataBasice}
+                                >
+                                    <option value="Не выбрано">
+                                        Не выбрано
+                                    </option>
+                                    <option value="Невозможено">
+                                        Невозможено
+                                    </option>
+                                    <option value="Возможено">
+                                        Возможено
+                                    </option>
+                                    <option value="Желательно">
+                                        Желательно
+                                    </option>
+                                </select>
+                                {/* <div style={{ color: "red" }}>
+                                    {errors.experience}
+                                </div> */}
+                            </div>
+                            <div className={s.education}>
+                                <AppText
+                                    title={"Готовность к командировкам"}
+                                    bold
+                                    size={"xs"}
+                                    className={s.textTitle}
+                                />
+                            <select
+                                    // name="experience"
+                                    // id="experience"
+                                    // onChange={(e) =>
+                                    //     setData("experience", e.target.value)
+                                    // }
+                                    // value={data.experience}
+                                    className={s.inputResumeDataBasice}
+                                >
+                                    <option value="Не выбрано">
+                                        Не выбрано
+                                    </option>
+                                    <option value="Никогда">
+                                        Никогда
+                                    </option>
+                                    <option value="Готов">
+                                        Готов
+                                    </option>
+                                    <option value="Иногда">
+                                        Иногда
+                                    </option>
+                                </select>
+                                {/* <div style={{ color: "red" }}>
+                                    {errors.experience}
+                                </div> */}
+                            </div>
+                        </div>
+
+                        <div className={s.aboutUser}>
+                            <AppText
+                                title={
+                                    "Дополнительная информация"
+                                }
+                                bold
+                                size={"xs"}
+                                className={s.textTitle}
+                            />
+                            <AppText
+                                title={
+                                    "Расскажите о себе"
+                                }
+                                bold
+                                size={"xs"}
+                                className={s.textTitle}
+                            />
+                            <textarea
+                                // onChange={(e) =>
+                                //     setAchievements(e.target.value)
+                                // }
+                                // value={achievements}
+                                className={s.textareaBasiceData}
+                                placeholder="Например, усидчивость, внимательность, целеустремленность, легко ли вливаетесь в коллектив. Ваша профессия. Ищите работу для получения опыта и получения более обширных знаний в этой сфере или готовы делиться своим опытом. Готовы к любой работе или есть конкретные пожелания к графику или уровню дохода"
+                            />
                         </div>
 
                         <AppButton

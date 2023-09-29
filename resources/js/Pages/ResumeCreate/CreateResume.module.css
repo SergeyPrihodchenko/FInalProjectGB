@@ -1,5 +1,6 @@
-.textTitle {
-    padding: 0px 10px 10px 0px;
+.textTitle,
+.incomeLevel {
+    padding: 10px 10px 10px 10px;
 }
 
 .basiceData{
@@ -9,6 +10,7 @@
 .indentDownBasiceData{
     margin-top: 10px;
     margin-bottom:10px;
+    margin-left: 10px;
 }
 
 .textareaBasiceData,
@@ -197,7 +199,9 @@
     margin-top: -3px; 
 } 
 
-.skills{
+.skills,
+.vacancyWishes,
+.aboutUser{
     margin-bottom: 30px;
 }
 
@@ -223,3 +227,21 @@
 .buttonSave {
     margin: 10px 10px 40px 875px; 
 }
+
+.inputResumeDataBasice{
+    box-sizing: border-box;
+    width: 220px;
+    height: 43px;
+    font-size: var(--font-size-s);
+    padding: 10px;
+    margin-left: 10px;
+
+    background: var(--light-bg);
+    border: 2px solid var(--light-skeleton-shadow);
+    border-radius: var(--border-radius-s);
+}
+
+.inputResumeDataBasice:focus{
+    border: 2px solid var(--accent);
+}
+

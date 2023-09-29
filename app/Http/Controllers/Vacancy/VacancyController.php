@@ -8,6 +8,7 @@ use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\City;
 use App\Models\Company;
+use App\Models\User_like_vacancy;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -26,13 +27,15 @@ class VacancyController
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
+        $likes = User_like_vacancy::getVacancyIdArray(auth()->id());
 
         return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',
             'employment' => $employment,
             'schedule' => $schedule,
             'experience' => $experience,
-            'cities' => $cities
+            'cities' => $cities,
+            'likes' => $likes
         ]);
     }
 

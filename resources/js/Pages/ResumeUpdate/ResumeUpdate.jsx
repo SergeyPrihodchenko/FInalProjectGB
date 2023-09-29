@@ -389,6 +389,7 @@ function Resume({ resume }) {
                                     className={s.indentDownBasiceData}
                                 />
                                 <div className={s.educationUser}>
+
                                     <AppInput
                                         onChange={(e) =>
                                             setGraduation_year(e.target.value)
