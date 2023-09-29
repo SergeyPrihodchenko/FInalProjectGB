@@ -8,12 +8,13 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
-function ResumePage({ resume }) {
+function ResumePage({ resume, author }) {
     //console.log(resume);
     const user = usePage().props.auth.user;
     const userEmail = usePage().props.auth.user.email;
 
     const { data } = useForm({
+        author_email: author.email,
         user_id: user.id,
         profession: resume.profession,
         first_name: resume.first_name,
@@ -33,6 +34,7 @@ function ResumePage({ resume }) {
 
     //высчитываем из даты рождения сколько полных лет
     const dateOfBirth = data.date_of_birth;
+
     function declOfNum(number, titles) {
        let cases = [2, 0, 1, 1, 1, 2];
         return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
@@ -58,14 +60,58 @@ function ResumePage({ resume }) {
         }
         return gender;
     }
-       
     const genderOfUser = dataGenderOfUser(dataGender);
     //console.log(genderOfUser);
-    
+
     //форматируем дату рождения
-        const dayOfBirth = new Date(dateOfBirth);
-        const dateSrc = dayOfBirth.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
-        const dateOfBirthUser = dateSrc.split(".").join(" ");
+    const dayOfBirth = new Date(dateOfBirth);
+    const dateSrc = dayOfBirth.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
+    const dateOfBirthUser = dateSrc.split(".").join(" ");
+
+    //форматы даты и периода работы
+    function dateFormatYearsMonch(date){
+        const dayFormat = new Date(date);
+        const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
+        const dateDst = dateSrc.split(".").join(" ");
+        const present = " по настоящее время";
+        if(date == null){
+            return present
+        }else{
+            return(
+                dateDst
+            )
+        }
+    }
+
+    //расчет стажа
+    function declOfNum(number, titles) {
+        let cases = [2, 0, 1, 1, 1, 2];
+            return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+        }
+        
+        function worksExperience(endDate,startDate) {
+            let end, start, month, age;
+            start = new Date(startDate);
+            
+            if(endDate == null){
+                end = new Date();
+                month = (12 + end.getMonth()) - start.getMonth(); 
+            }else{
+                end = new Date(endDate);
+                month = end.getMonth() - start.getMonth();
+            }
+            
+            age = end.getFullYear() - start.getFullYear();
+            
+            console.log(month);    
+            return (
+                (declOfNum(end.setFullYear(1970) < start.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет'])) 
+                    + " " 
+                    + 
+                (declOfNum(end.setMonth() < start.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
+            )
+        }
+          
     return (
         <>
             <AppPage>
@@ -107,7 +153,7 @@ function ResumePage({ resume }) {
                                                 <span
                                                 className={s.userEmailText}
                                                 >
-                                                { userEmail}
+                                                { data.author_email }
                                                 </span>
                                             }
                                             size="s"    
@@ -188,60 +234,12 @@ function ResumePage({ resume }) {
                                 let dataWorkEnd = el.end_date;
                                 
                                 //форматы даты и периода работы
-                                function dateFormatYearsMonch(date){
-                                    const dayFormat = new Date(date);
-                                    const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
-                                    const dateDst = dateSrc.split(".").join(" ");
-                                    const present = " по настоящее время";
-                                    if(date == null){
-                                        return present
-                                    }else{
-                                        return(
-                                            dateDst
-                                        )
-                                    }
-                                }
-
                                 const dataWorksBegin = dateFormatYearsMonch(dataWorkBegin);
                                 const dataWorksEnd = dateFormatYearsMonch(dataWorkEnd);
 
-                                
-                                
-                                //расчет стажа, кроме по настоящее время
-                                function declOfNum(number, titles) {
-                                let cases = [2, 0, 1, 1, 1, 2];
-                                    return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-                                }
-                                
-                                function worksExperience(endDate,startDate) {
-                                    let end, start, month, age;
-                                    start = new Date(startDate);
-                                    
-                                    if(endDate == null){
-                                        end = new Date();
-                                        month = (12 + end.getMonth()) - start.getMonth(); 
-                                        console.log(month);
-                                    }else{
-                                        end = new Date(endDate);
-                                        month = end.getMonth() - start.getMonth();
-                                        console.log(month);
-                                    }
-                                    
-                                    age = end.getFullYear() - start.getFullYear();
-                                    
-                                   // console.log(startDate);    
-                                    return (
-                                        (declOfNum(end.setFullYear(1970) < start.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет'])) 
-                                            + " " 
-                                            + 
-                                        (declOfNum(end.setMonth() < start.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
-                                    )
-                                }
+                                //расчет стажа
                                 const Years = (worksExperience(dataWorkEnd, dataWorkBegin));
-                                
-
-                              //  console.log(dataWorkEnd);
-                                                                
+                                                                                                
                                 return (
                                     <>
                                         <div className={s.workPeriods}>
