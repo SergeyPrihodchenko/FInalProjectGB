@@ -19,7 +19,7 @@ class User_like_vacancy extends Model
         $likes = self::where('user_id', $id)->get('vacancy_id');
         $arr = [];
         foreach ($likes as $value) {
-            $arr[] = $value->attributes['vacancy_id'];
+            $arr[] = $value->getAttributes()['vacancy_id'];
         }
         return $arr;
     }
