@@ -25,7 +25,9 @@ const VacancyListPage = ({
     schedule,
     employment,
     cities,
+    likes
 }) => {
+    console.log('likes', likes);
     const user = auth?.user;
     const [vacancyList, setVacancyList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +56,7 @@ const VacancyListPage = ({
     const [suggestionsActive, setSuggestionsActive] = useState(false);
 
 
-    const [favourites, setIsFavourites] = useState([]);
+    const [favourites, setIsFavourites] = useState(likes);
 
     console.log(favourites);
     const handleVacancySearchInput = (e) => {
@@ -74,15 +76,17 @@ const VacancyListPage = ({
     const toggleFavourites = async (id) => {
         if (!favourites.length) {
             await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-            setIsFavourites([...favourites, id]);
+            setIsFavourites([...favourites, { vacancy_id: id }]);
         } else {
-            if (favourites.includes(id)) {
-                await axios.post('/deleteLike', { id: { vacancy_id: id } });
-                setIsFavourites(favourites.filter((favourite) => favourite !== id))
+            const findId = favourites.some((favourite) => favourite.id === id);
+            if (findId) {
+                console.log(findId);
+                // await axios.post('/deleteLike', { id: { vacancy_id: id } });
+                setIsFavourites(favourites.filter((favourite) => favourite.vacancy_id !== id))
 
             } else {
-                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-                setIsFavourites([...favourites, id]);
+                // await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+                setIsFavourites([...favourites, { vacancy_id: id }]);
 
             }
         }
