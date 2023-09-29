@@ -86,4 +86,4 @@ function VacancyCreateResponsibilities(props) {
 
 VacancyCreateResponsibilities.propTypes = {};
 
-export default VacancyCreateEmpolyments;
+export default VacancyCreateResponsibilities;
