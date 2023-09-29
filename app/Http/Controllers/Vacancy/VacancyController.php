@@ -27,7 +27,7 @@ class VacancyController
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
-        $likes = User_like_vacancy::where('user_id', auth()->id())->get('vacancy_id');
+        $likes = User_like_vacancy::getVacancyIdArray(auth()->id());
 
         return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',

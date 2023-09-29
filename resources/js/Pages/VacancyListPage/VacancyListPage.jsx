@@ -25,6 +25,7 @@ const VacancyListPage = ({
     schedule,
     employment,
     cities,
+    likes
 }) => {
     const user = auth?.user;
     const [vacancyList, setVacancyList] = useState([]);
@@ -33,6 +34,7 @@ const VacancyListPage = ({
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
 
+    console.log(likes);
     const [extendedDescription, setExtendedDescription] = useState(false);
 
     const [payment, setPayment] = useState(''); // состояние инпута зарплаты 
@@ -72,7 +74,7 @@ const VacancyListPage = ({
 
     const toggleFavourites = async (id) => {
         if (!favourites.length) {
-            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+            const result = await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
             setIsFavourites([...favourites, id]);
         } else {
             if (favourites.includes(id)) {

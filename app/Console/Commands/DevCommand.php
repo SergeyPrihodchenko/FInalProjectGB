@@ -33,14 +33,6 @@ class DevCommand extends Command
 
     private function addLikes()
     {
-        SqlBuild::filterQueryVacancyBuild([
-            'employment' => [],
-        'schedule' => [],
-        'experience' => "",
-        'city_id' => [],
-        'title' => '',
-        'payment' => 0,
-        ]);
-        
+        User_like_vacancy::getVacancyIdArray(1);
     }
 }
