@@ -16,6 +16,7 @@ import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "@/1App/providers/counterSlice/counterSlice";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
 const VacancyListPage = ({
     vacancies,
@@ -27,6 +28,7 @@ const VacancyListPage = ({
     cities,
     likes
 }) => {
+    console.log('likes', likes);
     const user = auth?.user;
     const [vacancyList, setVacancyList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +36,6 @@ const VacancyListPage = ({
     const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
 
-    console.log(likes);
     const [extendedDescription, setExtendedDescription] = useState(false);
 
     const [payment, setPayment] = useState(''); // состояние инпута зарплаты 
@@ -47,6 +48,7 @@ const VacancyListPage = ({
         city_id: [],
         title: vacancies ? vacancies : '',
         payment: 0,
+        // user_id: user.id
     });
     //поиск по названию вакансии
     const [vacancySearchInput, setVacancySearchInput] = useState(vacancies ? vacancies : ''); // состояние инпута поиска по названию вакансии
@@ -55,12 +57,13 @@ const VacancyListPage = ({
     const [suggestionsActive, setSuggestionsActive] = useState(false);
 
 
-    const [favourites, setIsFavourites] = useState([]);
-
+    const [favourites, setIsFavourites] = useState(likes);
+    console.log('vacancySearchInput', vacancySearchInput);
     console.log(favourites);
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
+
     }
 
     const handlePayment = () => {
@@ -74,21 +77,23 @@ const VacancyListPage = ({
 
     const toggleFavourites = async (id) => {
         if (!favourites.length) {
-            const result = await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
             setIsFavourites([...favourites, id]);
+            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
         } else {
             if (favourites.includes(id)) {
-                await axios.post('/deleteLike', { id: { vacancy_id: id } });
                 setIsFavourites(favourites.filter((favourite) => favourite !== id))
+                await axios.post('/deleteLike', { id: { vacancy_id: id } });
 
             } else {
-                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
                 setIsFavourites([...favourites, id]);
+                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
 
             }
         }
 
-
+    }
+    const isInFavourite = (id, list) => {
+        return list.some(el => el === id)
     }
     // const getFilterData = async () => {
     //     const response = await axios.post(`/vacancies/filter?page=1`, {
@@ -424,12 +429,18 @@ const VacancyListPage = ({
 
                                     </AppCard>
                                 </AppLink>
-                                <button
-                                    className={s.addToFavouriteBtn}
+                                <AppButton
+                                    variant={'clear'}
+                                    className={cn(s.addToFavouriteBtn)}
                                     onClick={() => toggleFavourites(vac.id)}
                                 >
-                                    Like
-                                </button>
+                                    {isInFavourite(vac.id, favourites) ?
+                                        <BootstrapIcon name={'BsHeartFill'} size={28} />
+                                        :
+                                        <BootstrapIcon name={'BsHeart'} size={28} />
+
+                                    }
+                                </AppButton>
                             </div>
                         )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
