@@ -1,1 +1,1 @@
-export { default as VacancyPageUpdate } from "./ui/VacancyPageUpdate/VacancyPageUpdate";
+export { default as VacancyPageCreate } from "./ui/VacancyPageUpdate/VacancyPageUpdate";
