@@ -24,6 +24,19 @@ function SecondNav(props) {
                     <div className={s.navLinkList}>
                         {navListJobSeeker.map((navItem, index) => {
                             switch (navItem) {
+                                case "Мои резюме": {
+                                    return (
+                                        <AppLink
+                                            key={index}
+                                            href={route("resume.myresumes")}
+                                            bold
+                                            sizeText="l"
+                                            className={s.navItem}
+                                        >
+                                            {navItem.routeName}
+                                        </AppLink>
+                                    );
+                                }
                                 case "Отклики": {
                                     return (
                                         <AppLink
