@@ -25,7 +25,12 @@ class ProfileController extends Controller
         foreach ($like_vacancy as $value) {
             $likesArr[] = $value['vacancy_id'];
         }
-          $vacancies = Vacancy::whereIn('id',$likesArr)->get();
+
+        $vacancies = Vacancy::whereIn('vacancies.id',$likesArr)
+          ->join('cities', 'vacancies.city_id', '=', 'cities.id')
+            ->join('companies', 'vacancies.company_id', '=', 'companies.id')
+            ->select('vacancies.id as id', 'vacancies.title as title', 'vacancies.payment as payment', 'vacancies.employment as employment', 'vacancies.schedule as schedule', 'vacancies.experience as experience', 'companies.name as conditions', 'cities.title as city', 'vacancies.description as description')
+            ->get();
         return Inertia::render('ProfilePage/ProfilePage', ['favourite_vacancies' => $vacancies]);
     }
     /**
