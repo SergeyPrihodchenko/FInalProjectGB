@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\ProfileController;
 use App\Models\SqlBuild;
 use App\Models\User_like_vacancy;
 use Illuminate\Console\Command;
@@ -28,11 +29,7 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        $this->addLikes();
+        (new ProfileController())->index();
     }
 
-    private function addLikes()
-    {
-        User_like_vacancy::getVacancyIdArray(1);
-    }
 }
