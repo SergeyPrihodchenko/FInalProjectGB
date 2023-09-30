@@ -11,6 +11,8 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 function ResumePage({ resumes }) {
     const user = usePage().props.auth.user;
 
+    console.log(resumes);
+
     return (
         <AuthContext.Provider value={{ user }}>
             <>
