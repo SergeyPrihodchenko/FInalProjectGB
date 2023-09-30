@@ -26,9 +26,7 @@ Route::get('/testPageUserResponses', function () {
     return Inertia::render('UserResponsesListPage/UserResponsesListPage');
 })->name('userResponses');
 
-Route::get('/profilePage', function () {
-    return Inertia::render('ProfilePage/ProfilePage');
-})->middleware(['auth', 'verified'])->name('profilePage');
+Route::get('/profilePage',[ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profilePage');
 
 //testCompanyCreate
 Route::get('/testCompanyCreate', function () {
