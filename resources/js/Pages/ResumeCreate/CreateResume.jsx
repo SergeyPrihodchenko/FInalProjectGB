@@ -8,26 +8,45 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
-const arrayEducation = [
-    "Среднее",
-    "Среднее специальное",
-    "Неоконченное высшее",
-    "Высшее образование",
-    "Бакалавр",
-    "Магистр",
-    "Кандидат наук",
-    // "Доктор наук",
-];
+import { useDispatch, useSelector } from "react-redux";
+import { setUserId, addSkills, setSkills, removeSkills } from "./model/slice/resumePageSlice";
+import { useEffect } from "react";
 
-const arrayExperience = [
-    // "без опыта",
-    "менее года",
-    "от года до трех",
-    "от трех и выше",
-];
+// const arrayEducation = [
+//     "Среднее",
+//     "Среднее специальное",
+//     "Неоконченное высшее",
+//     "Высшее образование",
+//     "Бакалавр",
+//     "Магистр",
+//     "Кандидат наук",
+//     // "Доктор наук",
+// ];
+
+// const arrayExperience = [
+//     // "без опыта",
+//     "менее года",
+//     "от года до трех",
+//     "от трех и выше",
+// ];
+
+
 
 function CreateResume() {
+    const dispatch = useDispatch();
+
     const user = usePage().props.auth.user;
+    
+    
+    useEffect(() => {
+        if (user.id) {
+            dispatch(
+            setUserId(user.id));
+        }
+    }, [user.id]);
+
+    const {skill, skills} = useSelector(state => state.resumePageCreate);
+    console.log(skills);
 
     const { data, setData, post, errors } = useForm({
         user_id: user.id,
@@ -53,7 +72,7 @@ function CreateResume() {
         about_me: ""
     });
 
-    const [skill, setSkill] = useState("");
+   // const [skill, setSkill] = useState("");
 
     // educational institute array
     const [institute, setInstitute] = useState({});
@@ -89,7 +108,7 @@ function CreateResume() {
         setGraduation_year("");
     };
 
-    console.log(data.educational_institute);
+  //  console.log(data.educational_institute);
 
     // company array
     const [company, setCompany] = useState({});
@@ -136,7 +155,6 @@ function CreateResume() {
     };
 
     const [checkbox, setCheckbox] = useState(false);
-
     const saveResume = (e) => {
         e.preventDefault();
 
@@ -148,6 +166,7 @@ function CreateResume() {
         setSkill("");
     };
 
+    //dispatch(removeSkills(index))
     const removeSkill = (index) => {
         data.skills.splice(index, 1);
 
@@ -748,7 +767,7 @@ function CreateResume() {
                                 size={"xs"}
                                 className={s.textTitle}
                             />
-                            {data.skills.map((skill, index) => {
+                            {skills.map((skill, index) => {
                                 return (
                                     <div
                                         className={s.keySkillsTextAll}
@@ -761,9 +780,14 @@ function CreateResume() {
                                         />
 
                                         <AppButton
-                                            onClick={() => removeSkill(index)}
+                                            onClick={
+                                                (index) => {
+                                                  dispatch(removeSkills(index));
+                                                   //removeSkill(index)
+                                                }
+                                            }
                                             variant="outline"
-                                            sizeText="xs"
+                                            sizeText="999xs"
                                             bold
                                             type="button"
                                             className={s.buttonSkillDelete}
@@ -774,14 +798,21 @@ function CreateResume() {
                                 );
                             })}
                             <input
-                                onChange={(e) => setSkill(e.target.value)}
+                                onChange={(e) => {
+                                    dispatch(setSkills(e.target.value));
+                                    setSkill(e.target.value)}
+                                }
                                 value={skill}
                                 type="text"
                                 className={s.textSkill}
                             />
 
                             <AppButton
-                                onClick={() => addSkill()}
+                                onClick={() => {
+                                    dispatch(addSkills())
+                                    dispatch(setSkills(''))
+                                }
+                                }
                                 variant="outline"
                                 sizeText="s"
                                 bold
