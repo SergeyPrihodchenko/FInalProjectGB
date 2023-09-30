@@ -45,6 +45,12 @@ function CreateResume() {
         companies: [],
         skills: [],
         experience: "",
+        salary: "",
+        employment_type: "",
+        schedule_type: "",
+        relocation: "",
+        buisness_travel: "",
+        about_me: ""
     });
 
     const [skill, setSkill] = useState("");
@@ -58,6 +64,8 @@ function CreateResume() {
 
     const [specialization, setSpecialization] = useState("");
 
+    const [start_year, setStart_year] = useState("");
+
     const [graduation_year, setGraduation_year] = useState("");
 
     // add and remove institute object to array educational_insitute
@@ -65,6 +73,7 @@ function CreateResume() {
         (institute.title = title),
             (institute.faculty = faculty),
             (institute.specialization = specialization),
+            (institute.start_year = start_year),
             (institute.graduation_year = graduation_year),
             setData("educational_institute", [
                 ...data.educational_institute,
@@ -76,6 +85,7 @@ function CreateResume() {
         setTitle("");
         setFaculty("");
         setSpecialization("");
+        setStart_year("");
         setGraduation_year("");
     };
 
@@ -126,10 +136,6 @@ function CreateResume() {
     };
 
     const [checkbox, setCheckbox] = useState(false);
-
-    console.log(checkbox);
-
-    console.log(data.companies);
 
     const saveResume = (e) => {
         e.preventDefault();
@@ -435,6 +441,8 @@ function CreateResume() {
                                                 type="date"
                                                 width="140px"
                                                 className={s.indentDownBasiceData}
+                                                value={el.start_year}
+                                                readOnly
                                             />
 
                                             <AppInput
@@ -502,6 +510,10 @@ function CreateResume() {
                                         type="date"
                                         width="140px"
                                         className={s.indentDownBasiceData}
+                                        value={start_year}
+                                        onChange={(e) => {
+                                            setStart_year(e.target.value)
+                                        }}
                                     />
 
                                     <AppInput
@@ -789,8 +801,8 @@ function CreateResume() {
                                 className={s.textTitle}
                             />
                             <AppInput
-                                onChange={(e) => setName(e.target.value)}
-                                value={name}
+                                onChange={(e) => setData('salary', e.target.value)}
+                                value={data.salary}
                                 label={"Уровень дохода"}
                                 type="text"
                                 placeholder="Сумма на руки"
@@ -814,22 +826,19 @@ function CreateResume() {
                                     value={data.experience}
                                     className={s.inputResumeDataBasice}
                                 >
-                                    <option value="Не выбрано">
-                                        не имеет значения
+                                    <option value="не выбрано">
+                                        не выбрано
                                     </option>
-                                    <option value="Нет опыта">
+                                    <option value="нет опыта">
                                         нет опыта
                                     </option>
-                                    <option value="Менее года">
-                                        менее года
-                                    </option>
-                                    <option value="От года до трех">
+                                    <option value="от 1 до 3 лет">
                                         от 1 до 3 лет
                                     </option>
-                                    <option value="От трех до 6 лет">
+                                    <option value="От 3 до 6 лет">
                                         от 3 и 6 лет
                                     </option>
-                                    <option value="Более 6 лет">
+                                    <option value="более 6 лет">
                                         более 6 лет
                                     </option>
                                 </select>
@@ -877,20 +886,20 @@ function CreateResume() {
                                     className={s.textTitle}
                                 />
                                 <select
-                                    // name="experience"
-                                    // id="experience"
-                                    // onChange={(e) =>
-                                    //     setData("experience", e.target.value)
-                                    // }
-                                    // value={data.experience}
+                                    name="employment_type"
+                                    id="employment_type"
+                                    value={data.employment_type}
+                                    onChange={(e) =>
+                                        setData("employment_type", e.target.value)
+                                    }
                                     className={s.inputResumeDataBasice}
                                 >
                                     <option value="Не выбрано">
                                         Не выбрано
                                     </option>
-                                    <option value="Любой">
+                                    {/* <option value="Любой">
                                         Любой
-                                    </option>
+                                    </option> */}
                                     <option value="Полный день">
                                         Полный день
                                     </option>
@@ -907,9 +916,9 @@ function CreateResume() {
                                         Вахтовый метод
                                     </option>
                                 </select>
-                                {/* <div style={{ color: "red" }}>
-                                    {errors.experience}
-                                </div> */}
+                                <div style={{ color: "red" }}>
+                                    {errors.employment_type}
+                                </div>
                             </div>
                             <div className={s.education}>
                                 <AppText
@@ -918,21 +927,21 @@ function CreateResume() {
                                     size={"xs"}
                                     className={s.textTitle}
                                 />
-                            <select
-                                    // name="experience"
-                                    // id="experience"
-                                    // onChange={(e) =>
-                                    //     setData("experience", e.target.value)
-                                    // }
-                                    // value={data.experience}
+                                <select
+                                    name="schedule_type"
+                                    id="schedule_type"
+                                    value={data.schedule_type}
+                                    onChange={(e) =>
+                                        setData("schedule_type", e.target.value)
+                                    }
                                     className={s.inputResumeDataBasice}
                                 >
                                     <option value="Не выбрано">
                                         Не выбрано
                                     </option>
-                                    <option value="Любой">
+                                    {/* <option value="Любой">
                                         Любой
-                                    </option>
+                                    </option> */}
                                     <option value="Полная занятость">
                                         Полная занятость
                                     </option>
@@ -949,9 +958,9 @@ function CreateResume() {
                                         Волонтерство
                                     </option>
                                 </select>
-                                {/* <div style={{ color: "red" }}>
-                                    {errors.experience}
-                                </div> */}
+                                <div style={{ color: "red" }}>
+                                    {errors.schedule_type}
+                                </div>
                             </div>
                             <div className={s.education}>
                                 <AppText
@@ -960,20 +969,20 @@ function CreateResume() {
                                     size={"xs"}
                                     className={s.textTitle}
                                 />
-                            <select
-                                    // name="experience"
-                                    // id="experience"
-                                    // onChange={(e) =>
-                                    //     setData("experience", e.target.value)
-                                    // }
-                                    // value={data.experience}
+                                <select
+                                    name="relocation"
+                                    id="relocation"
+                                    value={data.relocation}
+                                    onChange={(e) =>
+                                        setData("relocation", e.target.value)
+                                    }
                                     className={s.inputResumeDataBasice}
                                 >
                                     <option value="Не выбрано">
                                         Не выбрано
                                     </option>
-                                    <option value="Невозможено">
-                                        Невозможено
+                                    <option value="Невозможно">
+                                        Невозможно
                                     </option>
                                     <option value="Возможено">
                                         Возможено
@@ -982,9 +991,9 @@ function CreateResume() {
                                         Желательно
                                     </option>
                                 </select>
-                                {/* <div style={{ color: "red" }}>
-                                    {errors.experience}
-                                </div> */}
+                                <div style={{ color: "red" }}>
+                                    {errors.relocation}
+                                </div>
                             </div>
                             <div className={s.education}>
                                 <AppText
@@ -993,13 +1002,13 @@ function CreateResume() {
                                     size={"xs"}
                                     className={s.textTitle}
                                 />
-                            <select
-                                    // name="experience"
-                                    // id="experience"
-                                    // onChange={(e) =>
-                                    //     setData("experience", e.target.value)
-                                    // }
-                                    // value={data.experience}
+                                <select
+                                    name="buisness_travel"
+                                    id="buisness_travel"
+                                    value={data.buisness_travel}
+                                    onChange={(e) =>
+                                        setData("buisness_travel", e.target.value)
+                                    }
                                     className={s.inputResumeDataBasice}
                                 >
                                     <option value="Не выбрано">
@@ -1015,9 +1024,9 @@ function CreateResume() {
                                         Иногда
                                     </option>
                                 </select>
-                                {/* <div style={{ color: "red" }}>
+                                <div style={{ color: "red" }}>
                                     {errors.experience}
-                                </div> */}
+                                </div>
                             </div>
                         </div>
 
@@ -1039,13 +1048,17 @@ function CreateResume() {
                                 className={s.textTitle}
                             />
                             <textarea
-                                // onChange={(e) =>
-                                //     setAchievements(e.target.value)
-                                // }
-                                // value={achievements}
+                                onChange={(e) =>
+                                    setData('about_me', e.target.value)
+                                }
+                                value={data.about_me}
                                 className={s.textareaBasiceData}
                                 placeholder="Например, усидчивость, внимательность, целеустремленность, легко ли вливаетесь в коллектив. Ваша профессия. Ищите работу для получения опыта и получения более обширных знаний в этой сфере или готовы делиться своим опытом. Готовы к любой работе или есть конкретные пожелания к графику или уровню дохода"
                             />
+
+                            <div style={{ color: "red" }}>
+                                {errors.about_me}
+                            </div>
                         </div>
 
                         <AppButton
