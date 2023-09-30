@@ -11,9 +11,9 @@ import DeleteProfileForm from "./Forms/DeleteProfileForm";
 
 import ProfilePageTabs from "./ProfilePageTabs/ProfilePageTabs";
 
-function ProfilePage({ auth , test}) {
+function ProfilePage({ auth , favourite_vacancies}) {
     const user = usePage().props.auth.user;
-    console.log(test);
+    console.log(favourite_vacancies);
     return (
         <AuthContext.Provider value={{ user }}>
             <>
