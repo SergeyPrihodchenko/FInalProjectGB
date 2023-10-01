@@ -6,7 +6,7 @@ const Company = ({ auth, cities }) => {
     const user = auth?.user;
 
     const {data, setData, post, errors} = useForm({
-//форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+//форма заполнена по умолчанию, чтобы не заполнять каждый раз, временно
         email: 'all@mail.ru',
         name: '1',
         business_profile: '1',

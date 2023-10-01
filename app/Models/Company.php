@@ -22,21 +22,23 @@ class Company extends Model
         'description',
     ];
 
-    public function vacancies()
-    {
-        return $this->hasMany(Vacancy::class);
-    }
-
     protected $casts = [
 //        'created_at' => 'datetime:Y-m-d',
 //        'updated_at' => 'datetime:d/m/Y',
         'date_create' => 'datetime:d/m/Y',
     ];
 
-//protected $dates = ['date_create'];
-//    public function setYourDateFieldAttribut($value) {
-//        $this->attribut['date_create'] = Carbon\Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y);
-//    }
+
+    public function vacancies()
+    {
+        return $this->hasMany(Vacancy::class);
+    }
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 
 
 }

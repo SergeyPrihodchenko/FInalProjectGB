@@ -27,6 +27,7 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
+
             ->post('/profile', [
                 'name' => 'Test User',
                 'email' => 'test@example.com',
@@ -41,7 +42,7 @@ class ProfileTest extends TestCase
 
         $user->refresh();
 
-        $this->assertSame('Test User', $user->name);
+        $this->assertSame('Test Subscription', $user->name);
         $this->assertSame('test@example.com', $user->email);
         $this->assertSame('89991112233', $user->phone);
         $this->assertSame('Test address', $user->address);
@@ -55,6 +56,7 @@ class ProfileTest extends TestCase
 
         $response = $this
             ->actingAs($user)
+
             ->post('/profile', [
                 'name' => 'Test User',
                 'email' => $user->email,
