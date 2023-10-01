@@ -30,6 +30,7 @@ function ResumePage({ resume, author }) {
         companies: resume.companies,
         skills: resume.skills,
         experience: resume.experience,
+        relocation: resume.relocation,
     });
 
     //высчитываем из даты рождения сколько полных лет
@@ -95,10 +96,14 @@ function ResumePage({ resume, author }) {
             
             if(endDate == null){
                 end = new Date();
-                month = (12 + end.getMonth()) - start.getMonth(); 
+                month = end.getMonth() - start.getMonth(); 
             }else{
                 end = new Date(endDate);
-                month = end.getMonth() - start.getMonth();
+                if(end.getMonth() > start.getMonth()) {
+                    month = end.getMonth() - start.getMonth();
+                }else{
+                    month = (12 + end.getMonth()) - start.getMonth();
+                }
             }
             
             age = end.getFullYear() - start.getFullYear();
@@ -118,7 +123,7 @@ function ResumePage({ resume, author }) {
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
                             <AppButton
-                                href={route("resume.index")}
+                                href={route("resume.myresumes")}
                                 variant="clear"
                                 className={s.linkResumePage}
                             >
@@ -167,13 +172,24 @@ function ResumePage({ resume, author }) {
                                         />
                                     </div>
                                 </div>
-{/* не знаю откуда тянуть эту информацию */}
+
                                 <AppText 
-                                    text={data.region.concat(", не готов к переезду", ", не готов к командировкам")} 
+                                    text={data.region} 
                                         size="s" 
-                                        variant={"error"}
                                     />
-                                <div className={s.userSearchArea}>
+                                    <AppText 
+                                    text={
+                                        "Готовность к переездам: ".concat(resume.relocation)
+                                    } 
+                                        size="s" 
+                                    />
+                                    <AppText 
+                                    text={
+                                        "Готовность к командировкам: ".concat( resume.buisness_travel)
+                                    } 
+                                        size="s" 
+                                    />
+                                {/* <div className={s.userSearchArea}>
                                     <AppText
                                         text={"Указан примерный район поиска работы"}
                                         size="s"
@@ -182,12 +198,12 @@ function ResumePage({ resume, author }) {
                                     <a href="#" className={s.linkResumePage}>
                                         Показать карту
                                     </a>
-                                </div>
+                                </div> */}
                             </div>
                             <div class={s.userPhoto}>
-                                <img src="#" className={s.imgUserPhoto} />
-                                {/* <a href="#" className={s.linkResumePage}>Изменить фото</a> */}
-                            </div>
+                                            НЕТ ФОТО
+                                            {/* <img src="#" className={s.imgUserPhoto}/> */}
+                                        </div>
                         </div>
 
                         <div className={s.userSpeciality}>
@@ -207,24 +223,22 @@ function ResumePage({ resume, author }) {
                                 }
                             </div> 
                                 <AppText 
-                                    text={"Занятость: полная занятость, стажировка"} 
+                                    text={"Занятость: ".concat(resume.employment_type) } 
                                     size="s" 
-                                    variant={"error"}
                                 />
 
                                 <AppText 
-                                    text={"График работы: полный день, сменный график, гибкий график, удаленная работа"} 
+                                    text={"График работы: ".concat(resume.schedule_type)} 
                                     size="s" 
-                                    variant={"error"}
                                 />   
                         </div>
                         <div className={s.workExperience}>
-                                    <AppText
+                                    {/* <AppText
                                         title={"4 года 9 месяцев"}
                                         size="s"
                                         bold
                                         variant={"error"}
-                                    />
+                                    /> */}
 
                         {
                             data.companies.map((el) => {
@@ -263,18 +277,6 @@ function ResumePage({ resume, author }) {
                                                         href="#"
                                                     >{el.name}
                                                     </AppButton>
-                                                       
-                                                    <AppText 
-                                                        text={"Москва"} 
-                                                        size="s" 
-                                                        variant={"error"}
-                                                    />
-                                                        
-                                                    <AppText 
-                                                        text={"ЖКХ"} 
-                                                        size="s" 
-                                                        variant={"error"}
-                                                    />
                                                 </div>
                                         
                                                 <div className={s.responsibilities}>
@@ -326,18 +328,15 @@ function ResumePage({ resume, author }) {
                                 bold 
                                 title={"Обо мне"} 
                                 size="s" 
-                                variant={"error"}
+
                             />
                             </div>
 {/* не знаю откуда тянуть эту информацию */}
                             <div className={s.aboutUserTextAll}>
                                 <AppText
-                                    text={
-                                        "Усидчивый, внимательный, целеустремленный, легко вливаюсь в коллектив. Инженер систем водоснабжения и водоотведения. Ищу работу для получения опыта и получение более обширных знаний в этой сфере. Готов к любой работе"
-                                    }
+                                    text={resume.about_me}
                                     size="s"
                                     className={s.aboutUserText}
-                                    variant={"error"}
                                 />
                             </div>
                         </div>
@@ -348,16 +347,19 @@ function ResumePage({ resume, author }) {
                                 title={data.education}
                                 size="s"
                             />
-{/* не знаю откуда взять данные по дате начала обучения */}                                
+                             
                             {
                                 data.educational_institute.map((el) => {
-                                    let yearsEducation = new Date(el.graduation_year);
-                                    let yearsEducationExit = yearsEducation.getFullYear();
+                                    let yearsEducationEnd = new Date(el.graduation_year);
+                                    let yearsEducationStart = new Date(el.start_year);
+                                    
+                                    let yearsEducationExit = yearsEducationEnd.getFullYear();
+                                    let yearsEducationBegin = yearsEducationStart.getFullYear();
                                     return (
                                         <div className={s.educationPeriods}>
                                             <div className={s.userEducationPeriod}>
                                                 <AppText
-                                                    text={yearsEducationExit}
+                                                    text={yearsEducationBegin + " - " + yearsEducationExit}
                                                     size="s"
                                                 />
                                             </div>
@@ -389,25 +391,26 @@ function ResumePage({ resume, author }) {
                                 size="s"
                             />
 {/* не знаю откуда тянуть эту информацию */}                                
-                            <AppText
+                            {/* <AppText
                                 text={"Желательное время в пути до работы".concat(": не имеет значения")}
                                 size="s"
                                 variant={"error"}
-                            />
+                            /> */}
                         </div>
                        
-
-                        <AppButton
-                            path={"resume.edit"}
-                            param={resume.id}
-                            key={resume.id}
-                            type="submit"
-                            bold
-                            sizeText="s"
-                            className={s.buttonSave}
-                        >
-                            <span>Редактировать</span>
-                        </AppButton>
+                        <div className={s.buttonSave}>
+                            <AppButton
+                                path={"resume.edit"}
+                                param={resume.id}
+                                key={resume.id}
+                                type="submit"
+                                bold
+                                sizeText="s"
+                                className={s.buttonSave}
+                            >
+                                <span>Редактировать</span>
+                            </AppButton>
+                        </div>
                     </main>
                 </container>
             </AppPage>
