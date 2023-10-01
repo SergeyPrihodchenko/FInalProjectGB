@@ -63,7 +63,7 @@ function VacancyPageCreate(props) {
         payment: "1000",
         city_work_id: "1",
         experience: "нет опыта",
-        company_id: companies[0].id,
+        company_id: companies[0]['id'],
         schedule: "Полная занятость",
         employment: employment[0],
         requirements: requirementsList,
