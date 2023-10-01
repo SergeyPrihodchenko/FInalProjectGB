@@ -54,12 +54,12 @@ function VacancyPageCreate(props) {
     };
 
     const { data, setData, post, errors } = useForm({
-        title: "adfasdf", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+        title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
         city_id: "1",
-        payment: "adfasdf",
-        city_work_id: "adfasdf",
+        payment: "1000",
+        city_work_id: "1",
         experience: "нет опыта",
-        company_id: companies[0]['id'],
+        company_id: companies[0]["id"],
         schedule: "Полная занятость",
         employment: employment[0],
         requirements: requirementsList,
