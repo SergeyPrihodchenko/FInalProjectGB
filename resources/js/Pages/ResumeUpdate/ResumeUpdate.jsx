@@ -48,12 +48,14 @@ function Resume({ resume }) {
 
     const [graduation_year, setGraduation_year] = useState("");
 
+    const [start_year, setStart_year] = useState("");
     // add and remove institute object to array educational_insitute
     const addInstitute = () => {
         (institute.title = title),
             (institute.faculty = faculty),
             (institute.specialization = specialization),
             (institute.graduation_year = graduation_year),
+            (institute.start_year = start_year),
             setData("educational_institute", [
                 ...data.educational_institute,
                 institute,
@@ -65,6 +67,7 @@ function Resume({ resume }) {
         setFaculty("");
         setSpecialization("");
         setGraduation_year("");
+        setStart_year("");
     };
 
     const removeInstitute = (index) => {
@@ -339,13 +342,24 @@ function Resume({ resume }) {
                                         />
                                         <div className={s.educationUser}>
                                             <AppInput
+                                                value={el.start_year}
+                                                readOnly
+                                                label="Дата начала"
+                                                type="date"
+                                                width="140px"
+                                                className={
+                                                    s.indentDownBasiceData
+                                                }
+                                            />
+
+                                            <AppInput
                                                 value={el.graduation_year}
                                                 readOnly
                                                 label="Дата окончания"
                                                 type="date"
                                                 width="140px"
                                                 className={
-                                                    s.inputYearsEducation
+                                                    s.indentDownBasiceData
                                                 }
                                             />
 
@@ -395,6 +409,16 @@ function Resume({ resume }) {
                                     className={s.indentDownBasiceData}
                                 />
                                 <div className={s.educationUser}>
+                                    <AppInput
+                                        label="Дата начала"
+                                        type="date"
+                                        width="140px"
+                                        className={s.indentDownBasiceData}
+                                        value={start_year}
+                                        onChange={(e) => {
+                                            setStart_year(e.target.value)
+                                        }}
+                                    />
 
                                     <AppInput
                                         onChange={(e) =>
@@ -404,7 +428,7 @@ function Resume({ resume }) {
                                         label="Дата окончания"
                                         type="date"
                                         width="140px"
-                                        className={s.inputYearsEducation}
+                                        className={s.indentDownBasiceData}
                                     />
 
                                     <AppButton
@@ -421,41 +445,7 @@ function Resume({ resume }) {
                             </div>
                         </div>
 
-                        <div className={s.experience}>
-                            <div className={s.education}>
-                                <AppText
-                                    title={"Опыт работы"}
-                                    bold
-                                    size={"xs"}
-                                    className={s.textTitle}
-                                />
-                                <select
-                                    name="experience"
-                                    id="experience"
-                                    onChange={(e) =>
-                                        setData("experience", e.target.value)
-                                    }
-                                    value={data.experience}
-                                    className={s.inputResumeDataBasice}
-                                >
-                                    <option value="Не выбрано">
-                                        Не выбрано
-                                    </option>
-                                    <option value="менее года">
-                                        менее года
-                                    </option>
-                                    <option value="от года до трех">
-                                        от года до трех
-                                    </option>
-                                    <option value="от трех и выше">
-                                        от трех и выше
-                                    </option>
-                                </select>
-                                <div style={{ color: "red" }}>
-                                    {errors.experience}
-                                </div>
-                            </div>
-
+                         <div className={s.experience}>
                             <div className={s.education}>
                                 {data.companies.map((el, index) => {
                                     return (

@@ -8,14 +8,9 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
-import { useDispatch, useSelector } from "react-redux";
-import {
-    setUserId,
-    addSkills,
-    setSkills,
-    removeSkills,
-} from "./model/slice/resumePageSlice";
-import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setUserId, addSkills, setSkills, removeSkills } from "./model/slice/resumePageSlice";
+// import { useEffect } from "react";
 
 // const arrayEducation = [
 //     "Среднее",
@@ -36,18 +31,20 @@ import { useEffect } from "react";
 // ];
 
 function CreateResume() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const user = usePage().props.auth.user;
+    
+    
+    // useEffect(() => {
+    //     if (user.id) {
+    //         dispatch(
+    //         setUserId(user.id));
+    //     }
+    // }, [user.id]);
 
-    useEffect(() => {
-        if (user.id) {
-            dispatch(setUserId(user.id));
-        }
-    }, [user.id]);
-
-    const { skill, skills } = useSelector((state) => state.resumePageCreate);
-    console.log(skills);
+    // const {skill, skills} = useSelector(state => state.resumePageCreate);
+    // console.log(skills);
 
     const { data, setData, post, errors } = useForm({
         user_id: user.id,
@@ -73,7 +70,7 @@ function CreateResume() {
         about_me: "",
     });
 
-    // const [skill, setSkill] = useState("");
+   const [skill, setSkill] = useState("");
 
     // educational institute array
     const [institute, setInstitute] = useState({});
@@ -770,7 +767,7 @@ function CreateResume() {
                                 size={"xs"}
                                 className={s.textTitle}
                             />
-                            {skills.map((skill, index) => {
+                            {data.skills.map((skill, index) => {
                                 return (
                                     <div
                                         className={s.keySkillsTextAll}
@@ -783,10 +780,13 @@ function CreateResume() {
                                         />
 
                                         <AppButton
-                                            onClick={() => {
-                                                dispatch(removeSkills(index));
-                                                //removeSkill(index)
-                                            }}
+                                            onClick={
+                                                (index) => {
+                                                //   dispatch(removeSkills(index));
+                                                   removeSkill(index)
+                                                }
+
+                                            }
                                             variant="outline"
                                             sizeText="999xs"
                                             bold
@@ -800,9 +800,9 @@ function CreateResume() {
                             })}
                             <input
                                 onChange={(e) => {
-                                    dispatch(setSkills(e.target.value));
-                                    setSkill(e.target.value);
-                                }}
+                                    // dispatch(setSkills(e.target.value));
+                                    setSkill(e.target.value)}
+                                }
                                 value={skill}
                                 type="text"
                                 className={s.textSkill}
@@ -810,9 +810,11 @@ function CreateResume() {
 
                             <AppButton
                                 onClick={() => {
-                                    dispatch(addSkills());
-                                    dispatch(setSkills(""));
-                                }}
+                                    // dispatch(addSkills())
+                                    addSkill()
+                                    // dispatch(setSkills(''))
+                                }
+                                }
                                 variant="outline"
                                 sizeText="s"
                                 bold

@@ -13,10 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        // \App\Models\Subscription::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
+        // \App\Models\Subscription::factory()->create([
+        //     'name' => 'Test Subscription',
         //     'email' => 'test@example.com',
         // ]);
 
@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             VacancySeeder::class,
             CategoryVacancySeeder::class,
             CompanySeeder::class,
+            CompanyUserSeeder::class,
             // ReviewsOfCompanySeeder::class,
 
         ]);

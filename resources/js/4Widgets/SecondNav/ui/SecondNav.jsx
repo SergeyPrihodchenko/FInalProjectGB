@@ -38,19 +38,29 @@ function SecondNav(props) {
                         })}
                     </div>
 
-                    <form method="LINK" action={route("resume.create")}>
-                        <AppButton
-                            width="250px"
-                            // width="200px"
-                            height="50px"
-                            variant="outline"
-                            colorType="normal"
-                            rounded
-                            sizeText="m"
-                        >
-                            Создать резюме
-                        </AppButton>
-                    </form>
+                    <AppButton
+                        width="250px"
+                        href={route("resume.create")}
+                        height="50px"
+                        variant="outline"
+                        colorType="normal"
+                        rounded
+                        sizeText="m"
+                    >
+                        Создать резюме
+                    </AppButton>
+
+                    <AppButton
+                        width="250px"
+                        href={route("companyCreate")}
+                        height="50px"
+                        variant="outline"
+                        colorType="normal"
+                        rounded
+                        sizeText="m"
+                    >
+                        Создать компанию
+                    </AppButton>
                 </AppPage>
             ) : (
                 <AppPage className={s.conatiner}>
@@ -72,27 +82,39 @@ function SecondNav(props) {
 
                     <form method="LINK" action={route("vacancy.create")}>
                         <AppButton
-                            width="250px"
+                            width="fit-content"
                             // width="200px"
                             height="50px"
                             variant="outline"
                             colorType="normal"
                             rounded
-                            sizeText="m"
+                            sizeText="s"
                         >
                             Создать вакансию
+                        </AppButton>
+                    </form>
+                    <form method="LINK" action={route("company.create")}>
+                        <AppButton
+                            width="fit-content"
+                            height="50px"
+                            variant="outline"
+                            colorType="normal"
+                            rounded
+                            sizeText="s"
+                        >
+                            back(Создать компанию)
                         </AppButton>
                     </form>
 
                     <form method="LINK" action={route("companyCreate")}>
                         <AppButton
-                            width="250px"
+                            width="fit-content"
                             // width="200px"
                             height="50px"
                             variant="outline"
                             colorType="normal"
                             rounded
-                            sizeText="m"
+                            sizeText="s"
                         >
                             Создать компанию
                         </AppButton>

@@ -5,22 +5,27 @@ import { AuthContext } from "@/8Shared/store/AuthContext";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./CompanyList.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import AppLink from "@/8Shared/ui/AppLink/AppLink.jsx";
 
-function CompanyList() {
+function CompanyList({companies}) {
+    console.log('companies', companies)
     return (
         <AuthContext.Provider>
-            <>
-                <AppPage>
-                    <main className={s.mainCompanyList}>
-                        <AppText
-                            title={"Ваши компании"}
-                            size="s"
-                            bold
-                            className={s.titleCompanyList}
-                        />
+            <AppPage>
+                {companies
+                    ? companies.map((company, index) => {
+                        return (
 
-                        <div class={s.companyList}>
-                            {/* <AppLink
+                                <main className={s.mainCompanyList}>
+                                    <AppText
+                                        title={"Ваши компании"}
+                                        size="s"
+                                        bold
+                                        className={s.titleCompanyList}
+                                    />
+
+                                    <div class={s.companyList}>
+                                        {/* <AppLink
                                 path={'company.show'}
                                 param={company.id}
                                 key={company.id}
@@ -28,52 +33,56 @@ function CompanyList() {
                                 className={s.titleCompany}
                             >ООО Газпром</AppLink> */}
 
-                            <AppText
-                                title={
-                                    <span className={s.titleCompany}>
+                                        <AppText
+                                            title={
+                                                <span className={s.titleCompany}>
                                         {"ООО Газпром"}
                                     </span>
-                                }
-                                bold
-                                size="xs"
-                            />
-                            <AppText
-                                title={"358 вакансий"}
-                                size="xs"
-                                bold
-                                className={s.quantityCompany}
-                            />
+                                            }
+                                            bold
+                                            size="xs"
+                                        />
+                                        <AppText
+                                            title={"358 вакансий"}
+                                            size="xs"
+                                            bold
+                                            className={s.quantityCompany}
+                                        />
 
-                            <div className={s.linkViewCompany}>
-                                <AppButton
-                                    // path={}
-                                    // param={}
-                                    // key={}
-                                    sizeText="s"
-                                    height="60px"
-                                    className={s.linkListCompany}
-                                >
-                                    Просмотреть
-                                </AppButton>
+                                        <div className={s.linkViewCompany}>
+                                            <AppButton
+                                                path={'company.show'}
+                                                param={company.id}
+                                                key={company.id}
+                                                sizeText="s"
+                                                height="60px"
+                                                className={s.linkListCompany}
+                                            >
+                                                Просмотреть
+                                            </AppButton>
 
-                                <AppButton
-                                    // path={}
-                                    // param={}
-                                    // key={}
-                                    sizeText="s"
-                                    className={s.linkListCompany}
-                                >
-                                    Редактировать
-                                </AppButton>
+                                            <AppButton
+                                                path={'company.edit'}
+                                                param={company.id}
+                                                key={company.id}
+                                                sizeText="s"
+                                                className={s.linkListCompany}
+                                            >
+                                                Редактировать
+                                            </AppButton>
 
-                                {/* Сделать активной кнопку редаткировать 
+                                            {/* Сделать активной кнопку редаткировать
                                         только для пользователя чье резюме открыто
                                         */}
-                            </div>
-                        </div>
-                    </main>
-                </AppPage>
-            </>
+                                        </div>
+                                    </div>
+                                </main>
+
+                        );
+                    })
+                    : null}
+
+            </AppPage>
         </AuthContext.Provider>
     );
 }

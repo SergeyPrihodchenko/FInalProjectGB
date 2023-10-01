@@ -3,7 +3,7 @@
 }
 
 .textTitle {
-    padding: 20px 10px 10px 0px;
+    padding: 10px;
 }
 
 .basiceData{
@@ -11,21 +11,26 @@
 }
 
 .indentDownBasiceData{
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
 .inputResumeDataBasice{
     box-sizing: border-box;
-    width: 200px;
-    height: 40px;
-    font-size: var(--font-size-xs);
+    width: 220px;
+    height: 43px;
+    font-size: var(--font-size-s);
     padding: 10px;
+    margin-left: 10px;
 
     background: var(--light-bg);
     border: 2px solid var(--light-skeleton-shadow);
     border-radius: var(--border-radius-s);
 }
+
+.inputResumeDataBasice:focus{
+    border: 2px solid var(--accent);
+}
+
 
 .textareaBasiceData,
 .textSkill {
