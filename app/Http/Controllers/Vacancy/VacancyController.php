@@ -23,6 +23,7 @@ class VacancyController
         // return Inertia::render('Vacancy/Index', [
         //     'title' => 'Вакансии'
         // ]);
+
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
@@ -35,33 +36,25 @@ class VacancyController
             'schedule' => $schedule,
             'experience' => $experience,
             'cities' => $cities,
-            'likes' => $likes
+            'likes' => $likes,
         ]);
     }
 
     public function show(Vacancy $vacancy): \Inertia\Response
     {
-        //VacancyPage/ui/VacancyPage/VacancyPage
-        $vacancy['requirements'] = explode('--;', $vacancy['requirements']);
-        // $vacancy['responsibilities'] = explode('--;', $vacancy['responsibilities']);
-        // $vacancy['conditions'] = explode('--;', $vacancy['conditions']);
-        // $vacancy['skills'] = explode('--;', $vacancy['skills']);
-
-        // $newContacts = [];
-        // $vacancy['contacts'] = explode('--;', $vacancy['contacts']);
-        if ($vacancy['contacts'] && is_array($vacancy['contacts'])) {
-            foreach ($vacancy['contacts'] as $index => $arItem) {
-                $newContacts[] = explode(';', $arItem);
-            }
-            $vacancy['contacts'] = $newContacts;
-        }
-
-
-        $cities = City::all();
+        $contacts = json_decode($vacancy->contacts);
+        $requirements = json_decode($vacancy->requirements);
+        $responsibilities = json_decode($vacancy->responsibilities);
+        $conditions = json_decode($vacancy->conditions);
+        $skills = json_decode($vacancy->skills);
 
         return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
             'vacancy' => $vacancy,
-            'cities' => $cities,
+            'contacts' => $contacts,
+            'requirements' => $requirements,
+            'responsibilities' => $responsibilities,
+            'conditions' => $conditions,
+            'skills' => $skills,
         ]);
     }
 
@@ -89,24 +82,25 @@ class VacancyController
     {
         $data = $request->validated();
 
-        $data['requirements'] = implode('--;', $data['requirements']);
-        $data['responsibilities'] = implode('--;', $data['responsibilities']);
-        $data['conditions'] = implode('--;', $data['conditions']);
-        $data['skills'] = implode('--;', $data['skills']);
-
-        $newContacts = [];
-        foreach ($data['contacts'] as &$arItem) {
-            $arItem = implode(';', $arItem);
+        if (isset($data['skills']) && is_array($data['skills'])) {
+            $data['skills'] = json_encode($data['skills']);
         }
-        $data['contacts'] = implode('--;', $data['contacts']);
+        if (isset($data['requirements']) && is_array($data['requirements'])) {
+            $data['requirements'] = json_encode($data['requirements']);
+        }
+        if (isset($data['responsibilities']) && is_array($data['responsibilities'])) {
+            $data['responsibilities'] = json_encode($data['responsibilities']);
+        }
+        if (isset($data['conditions']) && is_array($data['conditions'])) {
+            $data['conditions'] = json_encode($data['conditions']);
+        }
+        if (isset($data['contacts']) && is_array($data['contacts'])) {
+            $data['contacts'] = json_encode($data['contacts']);
+        }
 
         $vacancy = Vacancy::create($data);
 
         return Redirect::route('vacancy.index');
-
-        //        return Inertia::render('Vacancy/Show', [
-        //            'vacancy' => $vacancy
-        //        ]);
     }
 
     public function edit(Vacancy $vacancy): \Inertia\Response
@@ -134,6 +128,22 @@ class VacancyController
     public function update(Vacancy $vacancy, StoreRequest $request)
     {
         $data = $request->validated();
+
+        if (isset($data['skills']) && is_array($data['skills'])) {
+            $data['skills'] = json_encode($data['skills']);
+        }
+        if (isset($data['requirements']) && is_array($data['requirements'])) {
+            $data['requirements'] = json_encode($data['requirements']);
+        }
+        if (isset($data['responsibilities']) && is_array($data['responsibilities'])) {
+            $data['responsibilities'] = json_encode($data['responsibilities']);
+        }
+        if (isset($data['conditions']) && is_array($data['conditions'])) {
+            $data['conditions'] = json_encode($data['conditions']);
+        }
+        if (isset($data['contacts']) && is_array($data['contacts'])) {
+            $data['contacts'] = json_encode($data['contacts']);
+        }
 
         $vacancy->update($data);
 

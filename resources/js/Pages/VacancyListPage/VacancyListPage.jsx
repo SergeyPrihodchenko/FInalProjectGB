@@ -38,7 +38,7 @@ const VacancyListPage = ({
 
     const [extendedDescription, setExtendedDescription] = useState(false);
 
-    const [payment, setPayment] = useState(''); // состояние инпута зарплаты 
+    const [payment, setPayment] = useState(''); // состояние инпута зарплаты
     const debouncedPayment = useDebounce(payment, 500);
 
     const [filterData, setFilterData] = useState({
@@ -58,6 +58,7 @@ const VacancyListPage = ({
 
     const [favourites, setIsFavourites] = useState(likes);
     console.log('vacancySearchInput', vacancySearchInput);
+    console.log('vacancies', vacancies);
     console.log(favourites);
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;

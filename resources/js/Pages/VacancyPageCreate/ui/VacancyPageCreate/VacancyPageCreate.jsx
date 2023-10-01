@@ -52,39 +52,39 @@ function VacancyPageCreate(props) {
         e.preventDefault();
         post(route("vacancy.store"));
     };
-    useEffect(() => {
-        setData({
-            title: "adfasdf", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
-            city_id: "1",
-            payment: "adfasdf",
-            city_work_id: "adfasdf",
-            experience: "нет опыта",
-            company_id: companies[0],
-            schedule: "Полная занятость",
-            employment: ["adfasdf"],
-            requirements: ["adfasdf"],
-            responsibilities: ["adfasdf"],
-            conditions: ["adfasdf"],
-            skills: ["adfasdf"],
-            contacts: ["adfasdf"],
-        });
-    }, [
-        vacancyNameInput,
-        vacancyCityInput,
-        vacancyPaymentInput,
-        requirementsInput,
-        requirementsList,
-        responsibilitiesInput,
-        responsibilitiesList,
-        conditionsInput,
-        conditionsList,
-        skillsInput,
-        skillsList,
-        contactsNameInput,
-        contactsPositionInput,
-        contactsPhoneInput,
-        contactsList,
-    ]);
+    // useEffect(() => {
+    //     setData({
+    //         title: "adfasdf", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+    //         city_id: "1",
+    //         payment: "adfasdf",
+    //         city_work_id: "adfasdf",
+    //         experience: "нет опыта",
+    //         company_id: companies[0],
+    //         schedule: "Полная занятость",
+    //         employment: ["adfasdf"],
+    //         requirements: ["adfasdf"],
+    //         responsibilities: ["adfasdf"],
+    //         conditions: ["adfasdf"],
+    //         skills: ["adfasdf"],
+    //         contacts: ["adfasdf"],
+    //     });
+    // }, [
+    //     vacancyNameInput,
+    //     vacancyCityInput,
+    //     vacancyPaymentInput,
+    //     requirementsInput,
+    //     requirementsList,
+    //     responsibilitiesInput,
+    //     responsibilitiesList,
+    //     conditionsInput,
+    //     conditionsList,
+    //     skillsInput,
+    //     skillsList,
+    //     contactsNameInput,
+    //     contactsPositionInput,
+    //     contactsPhoneInput,
+    //     contactsList,
+    // ]);
     const { data, setData, post, errors } = useForm({
         title: "adfasdf", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
         city_id: "1",
@@ -99,6 +99,12 @@ function VacancyPageCreate(props) {
         conditions: ["adfasdf"],
         skills: ["adfasdf"],
         contacts: [{ name: "name", phone: "phone" }],
+        // employment: employment[0],
+        // requirements: requirementsList,
+        // responsibilities: responsibilitiesList,
+        // conditions: conditionsList,
+        // skills: skillsList,
+        // contacts: contactsList ,
     });
     console.log("errors", errors);
     return (
