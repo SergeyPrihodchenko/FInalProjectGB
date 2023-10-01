@@ -4,6 +4,7 @@ use App\Http\Controllers\Company\CompanyController;
 
 
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Subscription\SubscriptionController;
 use App\Http\Controllers\Vacancy\FilterVacanciesController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
@@ -73,5 +74,10 @@ Route::get('/vacancylist', function () {
 Route::get('/vacancies/filter', [FilterVacanciesController::class, 'index']);
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
 Route::resource('company', CompanyController::class);
+Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
 
-
+Route::get('subscribe/{userId}/{companyId}', [SubscriptionController::class, 'subscribe'])->name('subscribe');
+Route::get('unsubscribe/{userId}/{companyId}', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
+Route::get('checkSubscription/{userId}/{companyId}', [SubscriptionController::class, 'checkSubscription'])->name('checkSubscription');
+//Route::post('subscribe/{userId}/{companyId}', [CompanyController::class, 'store']);
+//Route::get('company/company_detail', [Company::class, 'show'];
