@@ -66,11 +66,10 @@ function SecondNav(props) {
                             }
                         })}
                     </div>
-
-                    <form method="LINK" action={route("companyCreate")}>
+                    <div>
                         <AppButton
                             width="250px"
-                            // width="200px"
+                            href={route("resume.create")}
                             height="50px"
                             variant="outline"
                             colorType="normal"
@@ -79,7 +78,30 @@ function SecondNav(props) {
                         >
                             Создать резюме
                         </AppButton>
-                    </form>
+                        
+                        <AppButton
+                            width="250px"
+                            href={route("company.create")}
+                            height="50px"
+                            variant="outline"
+                            colorType="normal"
+                            rounded
+                            sizeText="m"
+                        >
+                            back(Создать компанию)
+                        </AppButton>
+                        <AppButton
+                            width="250px"
+                            href={route("companyCreate")}
+                            height="50px"
+                            variant="outline"
+                            colorType="normal"
+                            rounded
+                            sizeText="m"
+                        >
+                            Создать компанию
+                        </AppButton>
+                    </div>
                 </AppPage>
             ) : (
                 <AppPage className={s.conatiner}>
