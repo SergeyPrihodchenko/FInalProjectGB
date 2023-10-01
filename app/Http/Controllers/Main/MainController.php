@@ -39,8 +39,7 @@ class MainController extends Controller
         $cities = City::all();
         
         $data = $request->validated();
-        $searchStr = $data['vacancy'];
-        $vacancies = Vacancy::where('vacancies.title', 'like', '%'.$searchStr.'%')->get();
+        $vacancies = $data['vacancy'];
         if (!empty($vacancies)) {
             return Inertia::render('VacancyListPage/VacancyListPage', [
                 'title' => 'Вакансии',
@@ -53,8 +52,11 @@ class MainController extends Controller
             ]);
         }
         return Inertia::render('VacancyListPage/VacancyListPage', [
-            'title' => 'Такой вакансии нет' . $request->get('title'),
-            'vacancies' => []
+            'title' => 'Вакансии',
+            'employment' => $employment,
+            'cities' => $cities,
+            'schedule' => $schedule,
+            'experience' => $experience
         ]);
     }
 

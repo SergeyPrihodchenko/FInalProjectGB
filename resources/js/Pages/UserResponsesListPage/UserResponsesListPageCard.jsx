@@ -6,6 +6,9 @@ import AppText from "@/8Shared/ui/AppText/AppText.jsx";
 import AppButton from "@/8Shared/ui/AppButton/AppButton.jsx";
 import AppLink from "@/8Shared/ui/AppLink/AppLink.jsx";
 import PropTypes from "prop-types";
+import {Tooltip} from "@mui/material";
+import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineSharp.js";
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 
 const UserResponsesListPageCard = ({id, title, payment, conditions, employment, schedule, experience, logo}) => {
     return (
@@ -22,25 +25,46 @@ const UserResponsesListPageCard = ({id, title, payment, conditions, employment, 
             >
                 <div>
                     <AppText
+                        variant="accent"
                         title={title}
                     />
                     <AppText
+                        size="l"
+                        className={s.userResponsesPageCardMarginText}
                         text={`от ${payment} руб.`}
                     />
+                    <div className={s.userResponsesPageCardIconBlock}>
+                        <AppText
+                            size="s"
+                            text={`Компания ${conditions}.`}
+                        />
+                        <Tooltip
+                            title="Компания прошла проверку на сайте"
+                            placement="top"
+                            arrow
+                        >
+                            <CheckCircleOutlineSharpIcon fontSize="20" className={cn(s.userResponsesPageCardIconBlockIcon,s.userResponsesPageCardIconBlockIconML)}  />
+                        </Tooltip>
+                    </div>
                     <AppText
-                        text={`Компания ${conditions}.`}
-                    />
-                    <AppText
+                        size="s"
+                        className={s.userResponsesPageCardMarginText}
                         text={employment}
                     />
                     <AppText
+                        size="s"
+                        className={s.userResponsesPageCardMarginText}
                         text={schedule}
                     />
-                    <AppText
-                        size="s"
-                        variant="notaccented"
-                        text={`Опыт работы: ${experience}`}
-                    />
+                    <div className={cn(s.userResponsesPageCardIconBlock,s.userResponsesPageCardMarginText)}>
+                        <WorkOutlineIcon fontSize="20" className={cn(s.userResponsesPageCardIconBlockIcon,s.userResponsesPageCardIconBlockIconMR)}  />
+                        <AppText
+                            size="s"
+                            variant="notaccented"
+                            text={`Опыт работы: ${experience}`}
+                        />
+                    </div>
+
                     <AppButton
                         className={s.userResponsesPageCardBtn}
                         width="auto"
@@ -48,9 +72,11 @@ const UserResponsesListPageCard = ({id, title, payment, conditions, employment, 
                         Подробнее
                     </AppButton>
                 </div>
-                <div className={s.userResponsesPageCardLogo}>
-                    <img alt="Лого" src={logo}/>
-                </div>
+                {logo && (
+                    <div className={s.userResponsesPageCardLogo}>
+                        <img className={s.userResponsesPageCardLogoImg} alt="Лого" src={logo}/>
+                    </div>
+                )}
             </AppCard>
         </AppLink>
     );

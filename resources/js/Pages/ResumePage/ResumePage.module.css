@@ -47,11 +47,12 @@
 .company,
 .keySkills,
 .aboutUserTextAll{
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .userContactsPhone{
-    width: 160px;
+    width: 100px;
     border-bottom: 1px solid var(--primary-text);
 }
 
@@ -100,16 +101,12 @@
     padding-left: 20px;
 }
 
-.keySkillsTitle{
-    display: flex;
-    padding-bottom: 13px;
-}
-
 .keySkillsTextAll{
-    display: flex;
-    justify-content:space-between;
-    margin-right: 200px;
-}
+    display:inline-block;
+    margin-right: 20px;
+    padding-bottom: 13px;
+} 
+
 .keySkillsText{
     width: 226px;
     height: 33px;
@@ -124,4 +121,8 @@
 
 .buttonSave {
     margin: 10px 10px 40px 1030px; 
+}
+
+.emailLeftText{
+    padding-left: 10px;
 }

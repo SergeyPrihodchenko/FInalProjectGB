@@ -8,6 +8,7 @@ use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\City;
 use App\Models\Company;
+use App\Models\User_like_vacancy;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -26,13 +27,15 @@ class VacancyController
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
+        $likes = User_like_vacancy::getVacancyIdArray(auth()->id());
 
         return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',
             'employment' => $employment,
             'schedule' => $schedule,
             'experience' => $experience,
-            'cities' => $cities
+            'cities' => $cities,
+            'likes' => $likes
         ]);
     }
 
@@ -54,8 +57,11 @@ class VacancyController
         }
 
 
+        $cities = City::all();
+
         return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
-            'vacancy' => $vacancy
+            'vacancy' => $vacancy,
+            'cities' => $cities,
         ]);
     }
 
@@ -69,7 +75,7 @@ class VacancyController
         $schedule = ScheduleType::all();
         $employment = EmploymentType::all();
 
-        return Inertia::render('Vacancy/VacancyCreate', [
+        return Inertia::render('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate', [
             'companies' => $companies,
             'cities' => $cities,
             'citiesForWork' => $citiesForWork,
@@ -113,7 +119,7 @@ class VacancyController
         $schedule = ScheduleType::all();
         $employment = EmploymentType::all();
 
-        return Inertia::render('Vacancy/VacancyUpdate', [
+        return Inertia::render('VacancyPageUpdate/ui/VacancyPageUpdate/VacancyPageUpdate', [
             'vacancy' => $vacancy,
             'companies' => $companies,
             'cities' => $cities,

@@ -2,8 +2,13 @@
 
 namespace App\Http\Requests\Resume;
 
+use App\Enums\BuisnessTravelStatus;
 use App\Enums\EducationLevel;
+use App\Enums\EmploymentType;
+use App\Enums\Experience;
 use App\Enums\GenderType;
+use App\Enums\RelocationStatus;
+use App\Enums\ScheduleType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
@@ -37,11 +42,12 @@ class ResumeStoreRequest extends FormRequest
             'work_permit' => ['required', 'string'],
             'education' => ['required', new Enum(EducationLevel::class)],
             'skills' => ['required', 'array'],
-            'experience' => ['required', 'string'],
+            'experience' => ['required', new Enum(Experience::class)],
             'educational_institute' => ['required', 'array'],
             'educational_institute.*.title' => ['required', 'string', 'min: 5'],
             'educational_institute.*.faculty' => ['required', 'string', 'min: 2'],
             'educational_institute.*.specialization' => ['required', 'string', 'min: 3'],
+            'educational_institute.*.start_year' => ['required'],
             'educational_institute.*.graduation_year' => ['required'],
             'companies' => ['nullable', 'array'],
             'companies.*.name' => ['required', 'string', 'min: 2', 'max: 100'],
@@ -49,6 +55,12 @@ class ResumeStoreRequest extends FormRequest
             'companies.*.achievements' => ['required', 'string'],
             'companies.*.start_date' => ['required'],
             'companies.*.end_date' => ['nullable'],
+            'salary' => ['nullable', 'max: 10'],
+            'employment_type' => ['required', new Enum(EmploymentType::class)],
+            'schedule_type' => ['required', new Enum(ScheduleType::class)],
+            'relocation' => ['required', new Enum(RelocationStatus::class)],
+            'buisness_travel' => ['required', new Enum(BuisnessTravelStatus::class)],
+            'about_me' => ['nullable', 'max: 250']
         ];
     }
 }

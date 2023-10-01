@@ -1,5 +1,6 @@
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { router } from '@inertiajs/react'
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
@@ -13,6 +14,9 @@ import { Head } from "@inertiajs/react";
 import VacancyListPageFilters from "./ui/VacancyListPageFilters/VacancyListPageFilters";
 import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "@/1App/providers/counterSlice/counterSlice";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
 const VacancyListPage = ({
     vacancies,
@@ -22,9 +26,11 @@ const VacancyListPage = ({
     schedule,
     employment,
     cities,
+    likes
 }) => {
+    console.log('likes', likes);
     const user = auth?.user;
-    const [vacancyList, setVacancyList] = useState(vacancies ? vacancies : []);
+    const [vacancyList, setVacancyList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
     const [total, setTotal] = useState(0);
@@ -40,21 +46,25 @@ const VacancyListPage = ({
         schedule: [],
         experience: "",
         city_id: [],
-        title: "",
-        payment: "",
+        title: vacancies ? vacancies : '',
+        payment: 0,
     });
     //поиск по названию вакансии
-    const [vacancySearchInput, setVacancySearchInput] = useState(""); // состояние инпута поиска по названию вакансии
+    const [vacancySearchInput, setVacancySearchInput] = useState(vacancies ? vacancies : ''); // состояние инпута поиска по названию вакансии
     const [suggestions, setSuggestions] = useState([]);
     const debouncedVacancySearch = useDebounce(vacancySearchInput, 500);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
 
+
+    const [favourites, setIsFavourites] = useState(likes);
+    console.log('vacancySearchInput', vacancySearchInput);
+    console.log(favourites);
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
 
-
     }
+
     const handlePayment = () => {
         setFilterData((prevState) => {
             return {
@@ -64,8 +74,51 @@ const VacancyListPage = ({
         })
     }
 
+    const toggleFavourites = async (id) => {
+        if (!favourites.length) {
+            setIsFavourites([...favourites, id]);
+            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+        } else {
+            if (favourites.includes(id)) {
+                setIsFavourites(favourites.filter((favourite) => favourite !== id))
+                await axios.post('/deleteLike', { id: { vacancy_id: id } });
+
+            } else {
+                setIsFavourites([...favourites, id]);
+                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+
+            }
+        }
+
+    }
+    const isInFavourite = (id, list) => {
+        return list.some(el => el === id)
+    }
+    // const getFilterData = async () => {
+    //     const response = await axios.post(`/vacancies/filter?page=1`, {
+    //         filterData: filterData,
+    //     });
+    //     const { data } = response.data;
+    //     setVacancyList(data);
+    //     setTotal(response.data.total);
+    //     setIndex((prevIndex) => prevIndex + 1);
+    //     console.log(data);
+    // };
+    // getFilterData();
+
+
     useEffect(() => {
-        if (!debouncedVacancySearch) return;
+        // if (!debouncedVacancySearch) return;
+        if (!debouncedVacancySearch) {
+            setFilterData((prevState) => {
+                return {
+                    ...prevState,
+                    title: '',
+                };
+            });
+            setSuggestions([]);
+            return;
+        };
 
         axios
             .get(`/searchSort?str=${debouncedVacancySearch}`)
@@ -86,10 +139,7 @@ const VacancyListPage = ({
         setSuggestions([]);
         setVacancySearchInput(e.target.innerText);
         setSuggestionsActive(false);
-    };
-
-
-
+    }
 
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
@@ -116,26 +166,24 @@ const VacancyListPage = ({
     }, [index, isLoading]);
 
     useEffect(() => {
-        if (!vacancies) {
-            if (vacancyList.length !== total) {
-                const observer = new IntersectionObserver((entries) => {
-                    const target = entries[0];
-                    if (target.isIntersecting) {
-                        fetchVacancyCards();
-                    }
-                });
-
-                if (loaderRef.current) {
-                    observer.observe(loaderRef.current);
+        if (vacancyList.length !== total) {
+            const observer = new IntersectionObserver((entries) => {
+                const target = entries[0];
+                if (target.isIntersecting) {
+                    fetchVacancyCards();
                 }
+            });
 
-                return () => {
-                    if (loaderRef.current) {
-                        observer.unobserve(loaderRef.current);
-                        setIsLoading(false);
-                    }
-                };
+            if (loaderRef.current) {
+                observer.observe(loaderRef.current);
             }
+
+            return () => {
+                if (loaderRef.current) {
+                    observer.unobserve(loaderRef.current);
+                    setIsLoading(false);
+                }
+            };
         }
     }, [loaderRef, vacancyList]);
 
@@ -157,18 +205,19 @@ const VacancyListPage = ({
     //     }
     // }, []);
 
-    const setValueChange = (value) => {
-        setFilterData((prevState) => {
-            return {
-                ...prevState,
-                title: value,
-            };
-        });
-        console.log(filterData.title);
-    };
+    // const setValueChange = (value) => {
+    //     setFilterData((prevState) => {
+    //         return {
+    //             ...prevState,
+    //             title: value,
+    //         };
+    //     });
+    //     console.log(filterData.title);
+    // };
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
+        setIndex(1);
 
         switch (type) {
             case "checkbox":
@@ -204,24 +253,37 @@ const VacancyListPage = ({
     };
 
     useEffect(() => {
-        if (!vacancies) {
-            const getFilterData = async () => {
-                const response = await axios.post(`/vacancies/filter?page=1`, {
-                    filterData: filterData,
-                });
-                const { data } = response.data;
-                setVacancyList(data);
-                setTotal(response.data.total);
-                setIndex(2);
-                console.log(data);
-            };
-            getFilterData();
-        }
+        const getFilterData = async () => {
+            const response = await axios.post(`/vacancies/filter?page=1`, {
+                filterData: filterData,
+            });
+            const { data } = response.data;
+            setVacancyList(data);
+            setTotal(response.data.total);
+            setIndex((prevIndex) => prevIndex + 1);
+            console.log(data);
+        };
+        getFilterData();
     }, [filterData]);
+
+    // ---------- Redux ----------
+    // const counter = useSelector((state) => state.counter.value);
+    // const dispatch = useDispatch();
+    // const handlIncrement = () => {
+    //     dispatch(increment());
+    // }
+    // const handlDecrement = () => {
+    //     dispatch(decrement());
+    // }
+
     return (
         <>
-            <Head title="Вакансии" />
+            <Head title={title} />
             <AppPage>
+                {/* Redux */}
+                {/* <button onClick={handlIncrement}>+</button>
+                <button onClick={handlDecrement}>-</button>
+                <b>count: {counter}</b> */}
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
@@ -249,9 +311,9 @@ const VacancyListPage = ({
                                 >
                                     {suggestion.title}
                                 </li>}
-                            
+
                         />
-                     ) }
+                    )}
                 </div>
                 <div className={s.vacancyWrapper}>
                     <VacancyListPageFilters
@@ -265,72 +327,120 @@ const VacancyListPage = ({
                     />
 
                     <div className={s.vacancyList}>
+                        <div className={s.descBlock}>
+                            {vacancyList.length > 0 ?
+                                <AppText bold text={`Найдено ${total} вакансии`} /> :
+                                <AppText bold text={`Ничего не найдено`} />
+                            }
+                            <div className={s.toggleDescBtn}>
+                                <AppButton
+                                    width={'40px'}
+                                    height={'40px'}
+                                    variant='clear'
+                                    onClick={() => setExtendedDescription(false)}
+                                    className={cn(s.hideDescBtn, {
+                                        [s.pressed]: !extendedDescription
+                                    })}
+                                >
+                                    <span></span>
 
-                        <div className={s.toggleBtn}>
-                            <AppButton
-                                variant={'notaccent'}
-                                onClick={() => setExtendedDescription(false)}
-                            >
-                                not extended
-                            </AppButton>
-                            <AppButton
-                                variant={'notaccent'}
-                                onClick={() => setExtendedDescription(true)}
-                            >
-                                extended
-                            </AppButton>
+                                </AppButton>
+                                <AppButton
+                                    width={'40px'}
+                                    height={'40px'}
+                                    variant='clear'
+                                    onClick={() => setExtendedDescription(true)}
+                                    className={cn(s.showDescBtn, {
+                                        [s.pressed]: extendedDescription
+                                    })}
+                                >
+                                    <span></span>
+                                </AppButton>
+
+                            </div>
 
                         </div>
-                        {vacancyList.length > 0 ?
-                            <AppText bold text={`Найдено ${total} вакансии`} /> :
-                            <AppText bold text={`Ничего не найдено`} />}
                         {vacancyList.map(vac =>
-                            <AppLink
-                                path={'vacancy.show'}
-                                param={vac.id}
-                                key={vac.id}
-                            >
-                                <AppCard
-                                    width={'auto'}
-                                    height={'auto'}
-                                    shadow
-                                    className={cn(s.vacancyListCard)}
+                            <div className={s.vacancyListCardWrapper}>
+                                <AppLink
+
+                                    path={'vacancy.show'}
+                                    param={vac.id}
+                                    key={vac.id}
                                 >
-                                 
-                                    {extendedDescription &&
+                                    <AppCard
+                                        width={'auto'}
+                                        height={extendedDescription ? `300px` : `260px`}
+                                        shadow
+                                        className={cn(s.vacancyListCard)}
+                                    >
                                         <AppText
-                                            size={'xs'}
-                                            text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
-                                            className={s.vacancyListCardDesc}
+                                            title={vac.title}
                                         />
-                                    }
-                                        <AppText title={vac.title} />
                                         <AppText
                                             text={`от ${vac.payment} руб.`}
                                         />
                                         <AppText
                                             text={`Компания ${vac.conditions}.`}
                                         />
-                                        <AppText text={vac.employment} />
-                                        <AppText text={vac.schedule} />
-                                        <AppText
-                                            size="s"
-                                            variant="notaccented"
-                                            text={`Опыт работы: ${vac.experience}`}
-                                        />
                                         <AppText
                                             size="s"
                                             variant="notaccented"
                                             text={`Город: ${vac.city}`}
                                         />
+
+                                        <AppText
+                                            size="s"
+                                            variant="notaccented"
+                                            text={`Опыт работы: ${vac.experience}`}
+                                            className={s.vacancyListCardExp}
+                                        />
+                                        <div className={s.vacancyListCardParam}>
+                                            <AppText
+                                                size={'s'}
+                                                variant={'secondary'}
+                                                text={vac.employment}
+                                                className={s.vacancyListCardEmployment}
+                                            />
+                                            <AppText
+                                                size={'s'}
+                                                variant={'secondary'}
+                                                text={vac.schedule}
+                                                className={s.vacancyListCardSchedule}
+
+                                            />
+
+                                        </div>
+                                        {extendedDescription &&
+                                            <AppText
+                                                size={'xs'}
+                                                text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
+                                                className={s.vacancyListCardDesc}
+                                            />
+                                        }
+
                                         <AppButton
                                             className={s.vacancyListCardBtn}
                                             width="auto"
                                         >
                                             Откликнуться
                                         </AppButton>
+
                                     </AppCard>
                                 </AppLink>
+                                <AppButton
+                                    variant={'clear'}
+                                    className={cn(s.addToFavouriteBtn)}
+                                    onClick={() => toggleFavourites(vac.id)}
+                                >
+                                    {isInFavourite(vac.id, favourites) ?
+                                        <BootstrapIcon name={'BsHeartFill'} size={28} />
+                                        :
+                                        <BootstrapIcon name={'BsHeart'} size={28} />
+
+                                    }
+                                </AppButton>
+                            </div>
                         )}
                         <div ref={loaderRef}>{isLoading && <Loader />}</div>
                     </div>

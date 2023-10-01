@@ -1,32 +1,54 @@
-import { AppPage } from "../../5Layouts/AppPage/AppPage";
-import { Link } from "@inertiajs/react";
+import { AppPage } from "../../../5Layouts/AppPage/AppPage";
 import s from "./Navbar.module.css";
 import PropTypes from "prop-types";
 import cn from "classnames";
-import { BootstrapIcon } from "../../8Shared/Icon/BootstrapIcon";
-import { Logo } from "../../8Shared/Logo/Logo";
+import { BootstrapIcon } from "../../../8Shared/Icon/BootstrapIcon";
+import { Logo } from "../../../8Shared/Logo/Logo";
 import mainlogo from "@/8Shared/assets/icons/mainlogo.svg";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import SecondNav from "../SecondNav/SecondNav";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
-import { useState } from "react";
+import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsEmployer } from "@/4Widgets/SecondNav/model/slice/secondNavSlice";
 
 export const Navbar = (props) => {
     const { user } = props;
-    const [navbarVariantForEmployers, setNavbarVariantForEmployers] =
-        useState(false);
-    // console.log("Navbar.jsx user", user);
+    const isEmployer = useSelector((state) => state.secondNav.isEmployer);
+    console.log("isEmployer", isEmployer);
 
+    // console.log("Navbar.jsx user", user);
+    const dispatch = useDispatch();
     return (
         <nav className={s.navBg}>
             <AppPage className={s.appPage}>
                 <div className={s.navBar}>
                     <Logo src={mainlogo} alt={"Логотип"} href={route("main")} />
+
+                    <AppButton
+                        variant={"clear"}
+                        colorType={"accent"}
+                        className={cn(s.toglleBtn, { [s.active]: !isEmployer })}
+                        onClick={() => {
+                            dispatch(setIsEmployer());
+                        }}
+                    >
+                        Соискателям
+                    </AppButton>
+                    <AppButton
+                        variant={"clear"}
+                        colorType={"accent"}
+                        className={cn(s.toglleBtn, { [s.active]: isEmployer })}
+                        onClick={() => {
+                            dispatch(setIsEmployer());
+                        }}
+                    >
+                        Работодателям
+                    </AppButton>
                     <ul className={s.navList}>
                         {/* <li>
                             <AppLink colorType="accent" className={s.navLink}>Соискателям</AppLink>
-                        </li>
-                        <li>
+                        </li> */}
+                        {/* <li>
                             <AppLink colorType="accent" className={s.navLink}>Работодателям</AppLink>
                         </li> */}
                         <li>

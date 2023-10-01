@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,7 +53,6 @@ class User extends Authenticatable
     ];
 
 
-
     public function companies()
     {
         return $this->belongsToMany(Company::class);
@@ -76,6 +76,12 @@ class User extends Authenticatable
     public function unsubscribeFromCompany(Company $company)
     {
         return $this->subscriptions()->detach($company);
+    }
+
+
+    public function resumes(): HasMany
+    {
+        return $this->hasMany(Resume::class);
     }
 
 }
