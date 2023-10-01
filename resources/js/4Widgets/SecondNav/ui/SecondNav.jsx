@@ -78,7 +78,18 @@ function SecondNav(props) {
                         >
                             Создать резюме
                         </AppButton>
-                       
+                        
+                        <AppButton
+                            width="250px"
+                            href={route("company.create")}
+                            height="50px"
+                            variant="outline"
+                            colorType="normal"
+                            rounded
+                            sizeText="m"
+                        >
+                            back(Создать компанию)
+                        </AppButton>
                         <AppButton
                             width="250px"
                             href={route("companyCreate")}
