@@ -59,9 +59,8 @@ function VacancyPageCreate(props) {
         payment: "adfasdf",
         city_work_id: "adfasdf",
         experience: "нет опыта",
-        company_id: companies[0],
+        company_id: companies[0]['id'],
         schedule: "Полная занятость",
-
         employment: employment[0],
         requirements: requirementsList,
         responsibilities: responsibilitiesList,
