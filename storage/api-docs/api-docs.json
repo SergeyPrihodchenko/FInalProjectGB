@@ -1,0 +1,292 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Документация по роутам",
+        "version": "0.1"
+    },
+    "paths": {
+        "/": {},
+        "/vacancy": {
+            "get": {
+                "tags": [
+                    "Вакансия"
+                ],
+                "summary": "Возвращает все вакансии",
+                "description": "Все вакансии",
+                "operationId": "endpoint",
+                "responses": {
+                    "200": {
+                        "description": "Возращает страницу с вакансиями"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Вакансия"
+                ],
+                "summary": "Создание вакансии",
+                "description": "Создание вакансии",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Дирижер"
+                                            },
+                                            "city_id": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "payment": {
+                                                "type": "string|int",
+                                                "example": 12000
+                                            },
+                                            "employment": {
+                                                "type": "string",
+                                                "example": "Полный день"
+                                            },
+                                            "experience": {
+                                                "type": "string",
+                                                "example": "нет опыта"
+                                            },
+                                            "contacts": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "jobTitle": {
+                                                            "type": "string",
+                                                            "example": "Бухгалтер"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Лариса"
+                                                        },
+                                                        "phone": {
+                                                            "type": "string",
+                                                            "example": "8-999-999-99-99"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "requirements": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Знания языков программирования"
+                                                }
+                                            },
+                                            "responsibilities": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Быть пунктуальным"
+                                                }
+                                            },
+                                            "conditions": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Хорошая заработная плата"
+                                                }
+                                            },
+                                            "skills": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Знания языков программирования PHP, Знания языков программирования JS"
+                                                }
+                                            },
+                                            "company_id": {
+                                                "type": "int|null",
+                                                "example": null
+                                            },
+                                            "schedule": {
+                                                "type": "string",
+                                                "example": "Полная занятость"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "All good"
+                    },
+                    "500": {
+                        "description": "Ошибка на сервере"
+                    }
+                }
+            }
+        },
+        "/vacancy/{id}": {
+            "get": {
+                "tags": [
+                    "Вакансия"
+                ],
+                "summary": "Возращает страницу о выбранной вакансии",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID вакансии",
+                        "required": true,
+                        "example": 2
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All good"
+                    },
+                    "404": {
+                        "description": "Страница не найдена"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Вакансия"
+                ],
+                "summary": "Удаление вакансии",
+                "description": "Удаление вакансии",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID вакансии",
+                        "required": true,
+                        "example": 2
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Удаление прошло успешно"
+                    },
+                    "404": {
+                        "description": "Страница не найдена"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Вакансия"
+                ],
+                "summary": "Редактирование вакансии",
+                "description": "Редактирование вакансии",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID вакансии",
+                        "required": true,
+                        "example": 2
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Дирижер"
+                                            },
+                                            "city_id": {
+                                                "type": "integer",
+                                                "example": 10
+                                            },
+                                            "payment": {
+                                                "type": "string|int",
+                                                "example": 12000
+                                            },
+                                            "employment": {
+                                                "type": "string",
+                                                "example": "Полный день"
+                                            },
+                                            "experience": {
+                                                "type": "string",
+                                                "example": "нет опыта"
+                                            },
+                                            "contacts": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "jobTitle": {
+                                                            "type": "string",
+                                                            "example": "Бухгалтер"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Лариса"
+                                                        },
+                                                        "phone": {
+                                                            "type": "string",
+                                                            "example": "8-999-999-99-99"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "requirements": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Знания языков программирования"
+                                                }
+                                            },
+                                            "responsibilities": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Быть пунктуальным"
+                                                }
+                                            },
+                                            "conditions": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Хорошая заработная плата"
+                                                }
+                                            },
+                                            "skills": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "Знания языков программирования PHP, Знания языков программирования JS"
+                                                }
+                                            },
+                                            "company_id": {
+                                                "type": "int|null",
+                                                "example": null
+                                            },
+                                            "schedule": {
+                                                "type": "string",
+                                                "example": "Полная занятость"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "All good"
+                    }
+                }
+            }
+        }
+    }
+}
