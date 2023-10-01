@@ -7,67 +7,38 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 const navListJobSeeker = [
-    { routeName: "Мои резюме", routePath: "" },
-    { routeName: "Отклики", routePath: "" },
+    { routeName: "Мои резюме", routePath: "resume.myresumes" },
+    { routeName: "Отклики", routePath: "resume.myresumes" },
 ];
 const navListEmployment = [
-    { routeName: "Мои компании", routePath: "" },
-    { routeName: "Мои вакансии", routePath: "" },
-    { routeName: "Кондидаты ", routePath: "" },
+    { routeName: "Мои компании", routePath: "resume.myresumes" },
+    { routeName: "Мои вакансии", routePath: "resume.myresumes" },
+    { routeName: "Кондидаты ", routePath: "resume.myresumes" },
 ];
+// href={route("userResponses")}
 function SecondNav(props) {
-    const isEmployer = useSelector((state) => state.secondNav.isEmployer);
+    const isEmployer = useSelector((state) => state.navabr.isEmployer);
     return (
         <div className={s.secondNav}>
             {!isEmployer ? (
                 <AppPage className={s.conatiner}>
                     <div className={s.navLinkList}>
                         {navListJobSeeker.map((navItem, index) => {
-                            switch (navItem) {
-                                case "Мои резюме": {
-                                    return (
-                                        <AppLink
-                                            key={index}
-                                            href={route("resume.myresumes")}
-                                            bold
-                                            sizeText="l"
-                                            className={s.navItem}
-                                        >
-                                            {navItem.routeName}
-                                        </AppLink>
-                                    );
-                                }
-                                case "Отклики": {
-                                    return (
-                                        <AppLink
-                                            key={index}
-                                            href={route("userResponses")}
-                                            bold
-                                            sizeText="l"
-                                            className={s.navItem}
-                                        >
-                                            {navItem.routeName}
-                                        </AppLink>
-                                    );
-                                }
-                                default: {
-                                    return (
-                                        <AppLink
-                                            key={index}
-                                            href="#"
-                                            bold
-                                            sizeText="l"
-                                            className={s.navItem}
-                                        >
-                                            {navItem.routeName}
-                                        </AppLink>
-                                    );
-                                }
-                            }
+                            return (
+                                <AppLink
+                                    key={index}
+                                    href={route(navItem.routePath)}
+                                    bold
+                                    sizeText="l"
+                                    className={s.navItem}
+                                >
+                                    {navItem.routeName}
+                                </AppLink>
+                            );
                         })}
                     </div>
 
-                    <form method="LINK" action={route("companyCreate")}>
+                    <form method="LINK" action={route("resume.create")}>
                         <AppButton
                             width="250px"
                             // width="200px"
@@ -85,38 +56,21 @@ function SecondNav(props) {
                 <AppPage className={s.conatiner}>
                     <div className={s.navLinkList}>
                         {navListEmployment.map((navItem, index) => {
-                            switch (navItem) {
-                                case "Отклики": {
-                                    return (
-                                        <AppLink
-                                            key={index}
-                                            href={route("userResponses")}
-                                            bold
-                                            sizeText="l"
-                                            className={s.navItem}
-                                        >
-                                            {navItem.routeName}
-                                        </AppLink>
-                                    );
-                                }
-                                default: {
-                                    return (
-                                        <AppLink
-                                            key={index}
-                                            href="#"
-                                            bold
-                                            sizeText="l"
-                                            className={s.navItem}
-                                        >
-                                            {navItem.routeName}
-                                        </AppLink>
-                                    );
-                                }
-                            }
+                            return (
+                                <AppLink
+                                    key={index}
+                                    href={route(navItem.routePath)}
+                                    bold
+                                    sizeText="l"
+                                    className={s.navItem}
+                                >
+                                    {navItem.routeName}
+                                </AppLink>
+                            );
                         })}
                     </div>
 
-                    <form method="LINK" action={route("companyCreate")}>
+                    <form method="LINK" action={route("vacancy.create")}>
                         <AppButton
                             width="250px"
                             // width="200px"
