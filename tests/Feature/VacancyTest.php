@@ -24,7 +24,7 @@ class VacancyTest extends TestCase
     {
         $this->get(route('vacancy.index'))->assertInertia(
             fn (Assert $page) => $page
-                ->component('Vacancy/Index')
+                ->component('VacancyListPage/VacancyListPage')
         );
     }
 

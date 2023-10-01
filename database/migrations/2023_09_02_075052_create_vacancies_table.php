@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('vacancies', static function (Blueprint $table): void {
             $table->id();
             $table->string('title', 100);
-            $table->string('payment', 100);
+            $table->string('payment', 100)->nullable();
             $table->enum('employment', EmploymentType::all());
             $table->index('employment');
             $table->enum('schedule', ScheduleType::all());
@@ -25,19 +25,19 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('experience', Experience::all());
             $table->index('experience');
-            $table->text('contacts')->nullable();
-            $table->text('requirements')->nullable();
-            $table->text('responsibilities')->nullable();
+            $table->json('contacts')->nullable();
+            $table->json('requirements')->nullable();
+            $table->json('responsibilities')->nullable();
             $table->string('conditions')->nullable();
-            $table->text('skills')->nullable();
-            $table->text('reviews')->nullable();
-            $table->unsignedBigInteger('city_id');
+            $table->json('skills')->nullable();
+            $table->json('reviews')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('cities');
-            $table->unsignedBigInteger('city_work_id');
+            $table->unsignedBigInteger('city_work_id')->nullable();
             $table->foreign('city_work_id')->references('id')->on('cities');
 
             // Создание внешнего ключа компании
-            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')
                 ->references('id')
                 ->on('companies')

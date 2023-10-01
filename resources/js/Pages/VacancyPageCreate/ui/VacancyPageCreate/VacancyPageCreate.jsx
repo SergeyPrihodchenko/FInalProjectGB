@@ -71,7 +71,7 @@ function VacancyPageCreate(props) {
         responsibilities: responsibilitiesList,
         conditions: conditionsList,
         skills: skillsList,
-        contacts: contactsList,
+        contacts: contactsList ,
     });
 
     return (
