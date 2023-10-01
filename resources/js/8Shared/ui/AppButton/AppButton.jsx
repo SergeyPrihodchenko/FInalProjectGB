@@ -31,6 +31,7 @@ function AppButton(props) {
                     style={{ width: width, height: height }}
                     className={cn(
                         s.appButton,
+                        s.appButtonLink,
                         s[variant],
                         s[colorType],
                         s[sizeText],

@@ -2,7 +2,6 @@ import { usePage } from "@inertiajs/react";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    
     user_id: "",
     profession: "",
     first_name: "",
@@ -25,22 +24,20 @@ export const resumePageCreate = createSlice({
     name: "resumePageCreate",
     initialState,
     reducers: {
-        setUserId: (state, { payload }) =>{
+        setUserId: (state, { payload }) => {
             state.user_id = payload;
         },
 
-        setSkills: (state, { payload }) =>{
-
-            
+        setSkills: (state, { payload }) => {
             state.skill = payload;
         },
 
-        addSkills: (state ) => {
+        addSkills: (state) => {
             state.skills = [...state.skills, state.skill];
         },
 
-        removeSkills: (state, action ) => {
-            state.skills.splice(action.payload.index, 1);
+        removeSkills: (state, action) => {
+            state.skills.splice(action.payload, 1);
             const newSkills = [...state.skills];
             state.skills = [...newSkills];
         },
@@ -52,6 +49,7 @@ export const resumePageCreate = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserId, setSkills, addSkills, removeSkills, clearSkill } = resumePageCreate.actions;
+export const { setUserId, setSkills, addSkills, removeSkills, clearSkill } =
+    resumePageCreate.actions;
 
 export default resumePageCreate.reducer;

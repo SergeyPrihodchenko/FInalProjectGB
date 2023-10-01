@@ -4,8 +4,8 @@ const initialState = {
     isEmployer: false,
 };
 
-export const secondNavSlice = createSlice({
-    name: "secondNavSlice",
+export const navbarSliceSlice = createSlice({
+    name: "navbarSliceSlice",
     initialState,
     reducers: {
         setIsEmployer: (state) => {
@@ -14,6 +14,6 @@ export const secondNavSlice = createSlice({
     },
 });
 
-export const { setIsEmployer } = secondNavSlice.actions;
+export const { setIsEmployer } = navbarSliceSlice.actions;
 
-export default secondNavSlice.reducer;
+export default navbarSliceSlice.reducer;

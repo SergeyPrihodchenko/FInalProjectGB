@@ -9,14 +9,13 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsEmployer } from "@/4Widgets/SecondNav/model/slice/secondNavSlice";
+import { setIsEmployer } from "../model/slice/navbarSlice";
 
 export const Navbar = (props) => {
     const { user } = props;
-    const isEmployer = useSelector((state) => state.secondNav.isEmployer);
+    const isEmployer = useSelector((state) => state.navabr.isEmployer);
     console.log("isEmployer", isEmployer);
 
-    // console.log("Navbar.jsx user", user);
     const dispatch = useDispatch();
     return (
         <nav className={s.navBg}>
@@ -45,21 +44,6 @@ export const Navbar = (props) => {
                         Работодателям
                     </AppButton>
                     <ul className={s.navList}>
-                        {/* <li>
-                            <AppLink colorType="accent" className={s.navLink}>Соискателям</AppLink>
-                        </li> */}
-                        {/* <li>
-                            <AppLink colorType="accent" className={s.navLink}>Работодателям</AppLink>
-                        </li> */}
-                        <li>
-                            <AppLink
-                                colorType="accent"
-                                className={cn(s.navLink, ["hover:text-white "])}
-                                href={route("resume.create")}
-                            >
-                                Создать резюме
-                            </AppLink>
-                        </li>
                         <li>
                             <AppLink
                                 colorType="accent"
@@ -69,23 +53,6 @@ export const Navbar = (props) => {
                                 Вакансии
                             </AppLink>
                         </li>{" "}
-                        <li>
-                            <AppLink
-                                colorType="accent"
-                                className={cn(s.navLink, ["hover:text-white "])}
-                                href={route("vacancy.create")}
-                            >
-                                Создать вакансию
-                            </AppLink>
-                        </li>
-                        {/* <li>
-                            <AppLink colorType="accent"
-                                className={cn(s.navLink, ["hover:text-white "])}
-                                href={route("vacancy.create")}
-                            >
-                                Создать вакансию front
-                            </AppLink>
-                        </li> */}
                         <AppLink
                             colorType="accent"
                             href={route("company")}
