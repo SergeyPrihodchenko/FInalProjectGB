@@ -13,12 +13,12 @@ function AppLink(props) {
         param,
         path,
         className,
+        variant = "filled",
         children,
         sizeText = "s",
         bold,
         colorType = "primary",
     } = props;
-
 
     // !!!!!!!!!!!!!!!!!! https://inertiajs.com/links
     // const active = url === window.location.pathname ? true : false;
@@ -33,6 +33,7 @@ function AppLink(props) {
             href={href ? href : route(path, param)}
             className={cn(
                 s.appLink,
+                s[variant],
                 s[sizeText],
                 s[colorType],
 
@@ -48,6 +49,7 @@ function AppLink(props) {
 AppLink.propTypes = {
     sizeText: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
     colorType: PropTypes.oneOf(["accent", "primary", "secondary"]),
+    variant: PropTypes.oneOf(["filled", "outline", "clear"]),
     bold: PropTypes.bool,
 };
 

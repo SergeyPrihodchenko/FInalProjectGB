@@ -52,7 +52,6 @@ function VacancyPageCreate(props) {
         contactsList,
     } = useSelector((state) => state.vacancyPageCreate);
 
-    console.log("contactsList", contactsList);
     const saveVacancy = (e) => {
         e.preventDefault();
         post(route("vacancy.store"));

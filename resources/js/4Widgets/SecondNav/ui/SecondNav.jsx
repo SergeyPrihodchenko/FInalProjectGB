@@ -126,7 +126,20 @@ function SecondNav(props) {
                             rounded
                             sizeText="m"
                         >
-                            {/* Создать резюме */}
+                            Создать вакансию
+                        </AppButton>
+                    </form>
+
+                    <form method="LINK" action={route("companyCreate")}>
+                        <AppButton
+                            width="250px"
+                            // width="200px"
+                            height="50px"
+                            variant="outline"
+                            colorType="normal"
+                            rounded
+                            sizeText="m"
+                        >
                             Создать компанию
                         </AppButton>
                     </form>
