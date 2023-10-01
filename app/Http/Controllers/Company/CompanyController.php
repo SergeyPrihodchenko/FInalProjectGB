@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Company;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\StoreCompanyRequest;
 use App\Models\City;
+use App\Models\CompamyUser;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use function Termwind\render;
 
@@ -21,7 +24,7 @@ class CompanyController extends Controller
         //dd($companies);
         //dd($request->all());
         //$date = $request->all();
-        return Inertia::render('Company/Index', [
+        return Inertia::render('Company/CompanyList', [
             'companies'=>$companies
 //
         ]);
@@ -46,18 +49,22 @@ class CompanyController extends Controller
     {
         $date = $request->validated();
         $company = Company::create($date);
-        return Inertia::render('Company/company_detail', [
-            'company'=>$company
-        ]);
+        CompamyUser::create(['company_id'=> $company->id, 'user_id' =>Auth::user()->id]);
+        $companies = Company::all();
+//        return Inertia::render('Company/company_detail', [
+//            'company'=>$company
+//        ]);
+        return Redirect::route('myCompanies');
     }
 
     /**
      * Display the specified resource.
      */
     public function show(Company $company) {
-    //{ dd($company);
         return Inertia::render('Company/company_detail', [
             'company' => $company,
+            //'userId' => $userId,
+            //'isSubscribed' => $isSubscribed,
         ]);
 
     }
