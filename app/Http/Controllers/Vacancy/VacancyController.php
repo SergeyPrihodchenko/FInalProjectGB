@@ -42,8 +42,19 @@ class VacancyController
 
     public function show(Vacancy $vacancy): \Inertia\Response
     {
+        $contacts = json_decode($vacancy->contacts);
+        $requirements = json_decode($vacancy->requirements);
+        $responsibilities = json_decode($vacancy->responsibilities);
+        $conditions = json_decode($vacancy->conditions);
+        $skills = json_decode($vacancy->skills);
+
         return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
-            'vacancy' => $vacancy
+            'vacancy' => $vacancy,
+            'contacts' => $contacts,
+            'requirements' => $requirements,
+            'responsibilities' => $responsibilities,
+            'conditions' => $conditions,
+            'skills' => $skills,
         ]);
     }
 
@@ -117,6 +128,22 @@ class VacancyController
     public function update(Vacancy $vacancy, StoreRequest $request)
     {
         $data = $request->validated();
+
+        if (isset($data['skills']) && is_array($data['skills'])) {
+            $data['skills'] = json_encode($data['skills']);
+        }
+        if (isset($data['requirements']) && is_array($data['requirements'])) {
+            $data['requirements'] = json_encode($data['requirements']);
+        }
+        if (isset($data['responsibilities']) && is_array($data['responsibilities'])) {
+            $data['responsibilities'] = json_encode($data['responsibilities']);
+        }
+        if (isset($data['conditions']) && is_array($data['conditions'])) {
+            $data['conditions'] = json_encode($data['conditions']);
+        }
+        if (isset($data['contacts']) && is_array($data['contacts'])) {
+            $data['contacts'] = json_encode($data['contacts']);
+        }
 
         $vacancy->update($data);
 
