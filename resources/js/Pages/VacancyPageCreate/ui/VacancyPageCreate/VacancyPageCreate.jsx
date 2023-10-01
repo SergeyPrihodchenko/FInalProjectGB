@@ -6,10 +6,7 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./VacancyPageCreate.module.css";
 import cn from "classnames";
-import AppInput from "@/8Shared/ui/AppInput/AppInput";
-import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
-import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import { useDispatch, useSelector } from "react-redux";
 
 import VacancyCreateContacts from "../VacancyCreateContacts/VacancyCreateContacts";
@@ -33,7 +30,6 @@ function VacancyPageCreate(props) {
         employment,
     } = props;
 
-    const dispatch = useDispatch();
     const {
         vacancyNameInput,
         vacancyCityInput,
@@ -56,23 +52,55 @@ function VacancyPageCreate(props) {
         e.preventDefault();
         post(route("vacancy.store"));
     };
-
+    useEffect(() => {
+        setData({
+            title: "adfasdf", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+            city_id: "1",
+            payment: "adfasdf",
+            city_work_id: "adfasdf",
+            experience: "нет опыта",
+            company_id: companies[0],
+            schedule: "Полная занятость",
+            employment: ["adfasdf"],
+            requirements: ["adfasdf"],
+            responsibilities: ["adfasdf"],
+            conditions: ["adfasdf"],
+            skills: ["adfasdf"],
+            contacts: ["adfasdf"],
+        });
+    }, [
+        vacancyNameInput,
+        vacancyCityInput,
+        vacancyPaymentInput,
+        requirementsInput,
+        requirementsList,
+        responsibilitiesInput,
+        responsibilitiesList,
+        conditionsInput,
+        conditionsList,
+        skillsInput,
+        skillsList,
+        contactsNameInput,
+        contactsPositionInput,
+        contactsPhoneInput,
+        contactsList,
+    ]);
     const { data, setData, post, errors } = useForm({
-        title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+        title: "adfasdf", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
         city_id: "1",
-        payment: "1000",
-        city_work_id: "1",
+        payment: "adfasdf",
+        city_work_id: "adfasdf",
         experience: "нет опыта",
-        company_id: companies[0].id,
+        company_id: companies[0],
         schedule: "Полная занятость",
-        employment: employment[0],
-        requirements: requirementsList,
-        responsibilities: responsibilitiesList,
-        conditions: conditionsList,
-        skills: skillsList,
-        contacts: contactsList,
+        employment: ["adfasdf"],
+        requirements: ["adfasdf"],
+        responsibilities: ["adfasdf"],
+        conditions: ["adfasdf"],
+        skills: ["adfasdf"],
+        contacts: [{ name: "name", phone: "phone" }],
     });
-
+    console.log("errors", errors);
     return (
         <>
             <Head title="VacancyPageCreate" />
@@ -92,7 +120,7 @@ function VacancyPageCreate(props) {
                         className={s.item}
                     />
                     <div className={cn(s.mainInfo, s.item)}>
-                        <VacancyCreateMainInfo />
+                        <VacancyCreateMainInfo errors={errors} />
                         <VacancyCreateFilters
                             experience={experience}
                             schedule={schedule}

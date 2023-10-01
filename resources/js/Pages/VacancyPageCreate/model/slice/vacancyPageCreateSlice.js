@@ -1,4 +1,3 @@
-import { useForm } from "@inertiajs/react";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -19,21 +18,6 @@ const initialState = {
     contactsList: [],
 };
 
-// const { data, setData, post, errors } = useForm({
-//     title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
-//     city_id: "1",
-//     payment: "1000",
-//     city_work_id: "1",
-//     experience: "нет опыта",
-//     company_id: companies[0].id,
-//     schedule: "Полная занятость",
-//     employment: employment[0],
-//     requirements: requirementsList,
-//     responsibilities: responsibilitiesList,
-//     conditions: conditionsList,
-//     skills: skillsList,
-//     contacts: contactsList,
-// });
 export const vacancyPageCreateSlice = createSlice({
     name: "vacancyPageCreate",
     initialState,
@@ -59,7 +43,6 @@ export const vacancyPageCreateSlice = createSlice({
             const newRequirements = [...state.requirementsList];
             state.requirementsList = [...newRequirements];
         },
-
         //Обязаности
         setResponsibilitiesInput: (state, action) => {
             state.responsibilitiesInput = action.payload;
@@ -67,10 +50,10 @@ export const vacancyPageCreateSlice = createSlice({
         setResponsibilitiesList: (state, action) => {
             state.responsibilitiesList = action.payload;
         },
-        removeRequirementsItem: (state, action) => {
-            state.requirementsList.splice(action.payload, 1);
-            const newRequirements = [...state.requirementsList];
-            state.requirementsList = [...newRequirements];
+        removeResponsibilitiesItem: (state, action) => {
+            state.responsibilitiesList.splice(action.payload, 1);
+            const newResponsibilities = [...state.responsibilitiesList];
+            state.responsibilitiesList = [...newResponsibilities];
         },
         //Условия
         setConditionsInput: (state, action) => {
@@ -79,12 +62,11 @@ export const vacancyPageCreateSlice = createSlice({
         setConditionsList: (state, action) => {
             state.conditionsList = action.payload;
         },
-        removeRequirementsItem: (state, action) => {
+        removeConditionsItem: (state, action) => {
             state.conditionsList.splice(action.payload, 1);
             const newConditions = [...state.conditionsList];
             state.conditionsList = [...newConditions];
         },
-
         // Ключевые навыки
         setSkillsInput: (state, action) => {
             state.skillsInput = action.payload;
@@ -92,12 +74,11 @@ export const vacancyPageCreateSlice = createSlice({
         setSkillsList: (state, action) => {
             state.skillsList = action.payload;
         },
-        removeRequirementsItem: (state, action) => {
+        removeSkillsItem: (state, action) => {
             state.skillsList.splice(action.payload, 1);
             const newSkills = [...state.skillsList];
             state.skillsList = [...newSkills];
         },
-
         // Контакты
         setContactsNameInput: (state, action) => {
             state.contactsNameInput = action.payload;
@@ -128,14 +109,18 @@ export const {
     removeRequirementsItem,
     setResponsibilitiesInput,
     setResponsibilitiesList,
+    removeResponsibilitiesItem,
     setConditionsInput,
     setConditionsList,
+    removeConditionsItem,
     setSkillsInput,
     setSkillsList,
+    removeSkillsItem,
     setContactsNameInput,
     setContactsPositionInput,
     setContactsPhoneInput,
     setContactsList,
+    removeContactsItem,
 } = vacancyPageCreateSlice.actions;
 
 export default vacancyPageCreateSlice.reducer;
