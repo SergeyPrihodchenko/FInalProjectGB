@@ -66,13 +66,25 @@ export const vacancyPageCreateSlice = createSlice({
         },
         setResponsibilitiesList: (state, action) => {
             state.responsibilitiesList = action.payload;
-        }, //Условия
+        },
+        removeRequirementsItem: (state, action) => {
+            state.requirementsList.splice(action.payload, 1);
+            const newRequirements = [...state.requirementsList];
+            state.requirementsList = [...newRequirements];
+        },
+        //Условия
         setConditionsInput: (state, action) => {
             state.conditionsInput = action.payload;
         },
         setConditionsList: (state, action) => {
             state.conditionsList = action.payload;
         },
+        removeRequirementsItem: (state, action) => {
+            state.conditionsList.splice(action.payload, 1);
+            const newConditions = [...state.conditionsList];
+            state.conditionsList = [...newConditions];
+        },
+
         // Ключевые навыки
         setSkillsInput: (state, action) => {
             state.skillsInput = action.payload;
@@ -80,6 +92,12 @@ export const vacancyPageCreateSlice = createSlice({
         setSkillsList: (state, action) => {
             state.skillsList = action.payload;
         },
+        removeRequirementsItem: (state, action) => {
+            state.skillsList.splice(action.payload, 1);
+            const newSkills = [...state.skillsList];
+            state.skillsList = [...newSkills];
+        },
+
         // Контакты
         setContactsNameInput: (state, action) => {
             state.contactsNameInput = action.payload;
@@ -92,6 +110,11 @@ export const vacancyPageCreateSlice = createSlice({
         },
         setContactsList: (state, action) => {
             state.contactsList = action.payload;
+        },
+        removeContactsItem: (state, action) => {
+            state.contactsList.splice(action.payload, 1);
+            const newContacts = [...state.contactsList];
+            state.contactsList = [...newContacts];
         },
     },
 });
