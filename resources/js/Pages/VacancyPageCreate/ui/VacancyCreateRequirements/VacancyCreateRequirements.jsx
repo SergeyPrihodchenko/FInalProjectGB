@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import {
+    removeRequirementsItem,
     setRequirementsInput,
     setRequirementsList,
 } from "../../model/slice/vacancyPageCreateSlice";
@@ -14,6 +15,7 @@ function VacancyCreateRequirements(props) {
     const { requirementsInput, requirementsList } = useSelector(
         (state) => state.vacancyPageCreate
     );
+    console.log("requirementsListStart", requirementsList);
     return (
         <div className={cn(s.requirements, s.item)}>
             {requirementsList ? (
@@ -27,19 +29,11 @@ function VacancyCreateRequirements(props) {
                                     variant={"clear"}
                                     colorType={"cancel"}
                                     onClick={(e) => {
-                                        e.preventDefault();
-                                        requirementsList.splice(index, 1);
-                                        const newRequirementsList = [
-                                            ...requirementsList,
-                                        ];
+                                        e.preventDefault()
+                                        dispatch(removeRequirementsItem(index));
                                         console.log(
-                                            "newRequirementsList",
-                                            newRequirementsList
-                                        );
-                                        dispatch(
-                                            setRequirementsList([
-                                                ...newRequirementsList,
-                                            ])
+                                            "requirementsListDelete",
+                                            requirementsList
                                         );
                                     }}
                                 >

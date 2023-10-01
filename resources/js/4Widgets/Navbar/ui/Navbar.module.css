@@ -24,3 +24,7 @@
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
 }
+.active {
+    color: var(--secondary-text);
+    font-size: 30px;
+}

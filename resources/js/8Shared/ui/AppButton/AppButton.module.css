@@ -3,6 +3,11 @@
     padding: 6px 12px;
     cursor: pointer;
 }
+.appButtonLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /* Clear */
 .clear {
     padding: 0;
@@ -12,6 +17,16 @@
     color: inherit;
     transition: var(--transition-delay) linear;
 }
+.clear.accent {
+    color: var(--accent);
+}
+.clear.accent:hover {
+    color: var(--secondary-text);
+    background: none;
+    border: none;
+    transition: var(--transition-delay) linear;
+}
+
 .clear.hint {
     color: var(--hint);
 }

@@ -1,6 +1,6 @@
 .textTitle,
 .incomeLevel {
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
 }
 
 .basiceData{
@@ -8,9 +8,7 @@
 }
 
 .indentDownBasiceData{
-    margin-top: 10px;
-    margin-bottom:10px;
-    margin-left: 10px;
+    margin: 10px;
 }
 
 .textareaBasiceData,

@@ -45,8 +45,7 @@
 .userSearchArea,
 .aboutUserTitle,
 .company,
-.keySkills,
-.aboutUserTextAll{
+.keySkills{
     padding-bottom: 10px;
     padding-top: 10px;
 }
@@ -120,9 +119,25 @@
 }
 
 .buttonSave {
-    margin: 10px 10px 40px 1030px; 
+    margin: 10px 10px 40px 1030px;
 }
 
 .emailLeftText{
     padding-left: 10px;
+}
+
+.userPhoto{
+    width: 200px;
+    height: 200px;
+    color: var(--accent);
+    background-color: var( --light-bg);
+    border: 1px solid var(--accent);
+    border-radius: var(--border-radius-s);
+    padding-top: 90px;
+    text-align: center;
+}
+
+.aboutUserTextAll{
+    padding-bottom: 30px;
+    padding-top: 10px;
 }

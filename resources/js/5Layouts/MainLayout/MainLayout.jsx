@@ -4,8 +4,8 @@ import { PropTypes } from "prop-types";
 import cn from "classnames";
 import { Header } from "@/4Widgets/Header/Header";
 import { Footer } from "@/4Widgets/Footer/Footer";
-import { Navbar } from "@/4Widgets/Navbar/Navbar";
-import SecondNav from "@/4Widgets/SecondNav/SecondNav";
+import { Navbar } from "@/4Widgets/Navbar/ui/Navbar";
+import SecondNav from "@/4Widgets/SecondNav/ui/SecondNav";
 
 const MainLayout = (porps) => {
     const { children, user, className } = porps;

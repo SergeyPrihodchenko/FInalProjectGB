@@ -54,6 +54,12 @@ export const vacancyPageCreateSlice = createSlice({
         setRequirementsList: (state, action) => {
             state.requirementsList = action.payload;
         },
+        removeRequirementsItem: (state, action) => {
+            state.requirementsList.splice(action.payload, 1);
+            const newRequirements = [...state.requirementsList];
+            state.requirementsList = [...newRequirements];
+        },
+
         //Обязаности
         setResponsibilitiesInput: (state, action) => {
             state.responsibilitiesInput = action.payload;
@@ -96,6 +102,7 @@ export const {
     setVacancyPaymentInput,
     setRequirementsInput,
     setRequirementsList,
+    removeRequirementsItem,
     setResponsibilitiesInput,
     setResponsibilitiesList,
     setConditionsInput,

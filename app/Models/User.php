@@ -3,6 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Concerns\HasRelationships;
+
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,8 +52,36 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class);
+    }
+
+    public function subscriptions(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class);
+    }
+
+    public function isSubscribedTo(Company $company)
+    {
+        return $this->subscriptions()->contains($company);
+    }
+
+    public function subscribeToCompany(Company $company)
+    {
+        return $this->subscriptions()->attach($company );
+    }
+
+    public function unsubscribeFromCompany(Company $company)
+    {
+        return $this->subscriptions()->detach($company);
+    }
+
+
     public function resumes(): HasMany
     {
         return $this->hasMany(Resume::class);
     }
+
 }

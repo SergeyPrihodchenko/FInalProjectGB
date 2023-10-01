@@ -28,25 +28,15 @@ function ResumePage({ resumes }) {
                         {
                             resumes.map((resume) => {
                                 const { data } = useForm({
-                                    // user_id: user.id,
                                     profession: resume.profession,
-                                    // first_name: resume.first_name,
-                                    // last_name: resume.last_name,
-                                    // gender: resume.gender,
-                                    // region: resume.region,
+                                    region: resume.region,
                                     date_of_birth: resume.date_of_birth,
-                                    // phone: resume.phone,
-                                    // citizenship: resume.citizenship,
-                                    // work_permit: resume.work_permit,
-                                    // education: resume.education,
-                                    // educational_institute: resume.educational_institute,
+                                    education: resume.education,
                                     companies: resume.companies,
-                                    // skills: resume.skills,
-                                    // experience: resume.experience,
+                                    skills: resume.skills,
+                                    experience: resume.experience,
+                                    salary: resume.salary,
                                 });
-
-                                const dataCompaieis =data.companies;
-                                
                                 
                                 //высчитываем из даты рождения сколько полных лет
                                 const dateOfBirth = data.date_of_birth;
@@ -83,64 +73,65 @@ function ResumePage({ resumes }) {
                                             />
 
                                             <AppText
-                                                title={"90 000 ₽"}
+                                                title={resume.salary.concat(" " , "₽")}
                                                 size="s"
                                                 bold
                                                 className={s.salaryResume}
-                                                variant={"error"}
                                             />
                                             <AppText
                                                 text={Yers}
                                                 size="xs"
                                             />
-                                            
+
                                             <AppText
                                                 text={
                                                     <span
                                                         className={s.skillUser}
                                                     >
-                                                        Последнее место работы
+                                                        Регион
                                                     </span>
                                                 }
                                                 size="xs"
                                             />
-{/* не могу прокинуть данные по компании вообще и по последней в частности: название, стаж работы */}
-                                {/* {
-                                    data.companies.map((el) => {
-                                        return (
-                                            console.log(el.name)
-                                        )
-                                    })
-                                } */}
                                             
-                                            <div className={s.lastSkill}>
-                                                <AppText
-                                                    text={"ИП Глизин"}
-                                                    size="xs"
-                                                    variant={"error"}
-                                                />
-                                                <AppText
-                                                    text={", январь 2021"}
-                                                    size="xs"
-                                                    variant={"error"}
-                                                />
-                                                <AppText
-                                                    text={
-                                                        "- по настоящее время"
-                                                    }
-                                                    size="xs"
-                                                    variant={"error"}
-                                                />
-                                            </div>
-
-                                                    
+                                            <AppText
+                                                text={resume.region}
+                                                size="xs"
+                                            />
 
                                             <AppText
-                                                text={"11 лет 6 месяцев"}
+                                                text={
+                                                    <span
+                                                        className={s.skillUser}
+                                                    >
+                                                        Образование
+                                                    </span>
+                                                }
                                                 size="xs"
-                                                variant={"error"}
+                                            />
+                                           
+                                            <AppText
+                                                text={resume.education}
+                                                size="xs"
+                                            />
+                                                
+                                            <AppText
+                                            text={
+                                                <span
+                                                        className={s.skillUser}
+                                                >
+                                                    Опыт работы
+                                                </span>
+                                            }
+                                                size="xs"
+                                            />
+                                           
+                                            <AppText
+                                                text={resume.experience}
+                                                size="xs"
                                             />
                                         </div>
+                                        
                                         <div class={s.userPhoto}>
                                             НЕТ ФОТО
                                             {/* <img src="#" className={s.imgUserPhoto}/> */}
@@ -151,8 +142,9 @@ function ResumePage({ resumes }) {
                                             path={"resume.show"}
                                             param={resume.id}
                                             key={resume.id}
+                                            type="button"
                                             sizeText="s"
-                                            height="60px"
+                                            height={"60px"}
                                             className={s.linkResumeList}
                                         >
                                             Просмотреть резюме
@@ -162,6 +154,8 @@ function ResumePage({ resumes }) {
                                             path={"resume.edit"}
                                             param={resume.id}
                                             key={resume.id}
+                                            type="button"
+                                            height={"60px"}
                                             sizeText="s"
                                             className={s.linkResumeList}
                                         >

@@ -4,6 +4,7 @@ use App\Http\Controllers\Company\CompanyController;
 
 
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Subscription\SubscriptionController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Vacancy\FilterVacanciesController;
 use App\Http\Controllers\Main\MainController;
@@ -26,9 +27,7 @@ Route::get('/testPageUserResponses', function () {
     return Inertia::render('UserResponsesListPage/UserResponsesListPage');
 })->name('userResponses');
 
-Route::get('/profilePage', function () {
-    return Inertia::render('ProfilePage/ProfilePage');
-})->middleware(['auth', 'verified'])->name('profilePage');
+Route::get('/profilePage',[ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profilePage');
 
 //testCompanyCreate
 Route::get('/testCompanyCreate', function () {
@@ -71,4 +70,15 @@ require __DIR__ . '/auth.php';
 Route::resource('vacancy', VacancyController::class);
 
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
+
 Route::resource('company', CompanyController::class);
+Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
+
+Route::get('subscribe/{userId}/{companyId}', [SubscriptionController::class, 'subscribe'])->name('subscribe');
+Route::get('unsubscribe/{userId}/{companyId}', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
+Route::get('checkSubscription/{userId}/{companyId}', [SubscriptionController::class, 'checkSubscription'])->name('checkSubscription');
+//Route::post('subscribe/{userId}/{companyId}', [CompanyController::class, 'store']);
+//Route::get('company/company_detail', [Company::class, 'show'];
+
+Route::resource('company', CompanyController::class);
+
