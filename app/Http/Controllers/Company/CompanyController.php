@@ -24,7 +24,7 @@ class CompanyController extends Controller
         //dd($companies);
         //dd($request->all());
         //$date = $request->all();
-        return Inertia::render('Company/CompanyList', [
+        return Inertia::render('CompanyListPage/ui/CompanyListPage/CompanyListPage', [
             'companies'=>$companies
 //
         ]);
@@ -37,7 +37,7 @@ class CompanyController extends Controller
     public function create()
     {
         $cities = City::all();
-        return Inertia::render('Company/create_company', ['cities'=> $cities]);
+        return Inertia::render('CompanyPageCreate/ui/CompanyPageCreate/CompanyPageCreate', ['cities'=> $cities]);
         //return view('company.create');
 
     }

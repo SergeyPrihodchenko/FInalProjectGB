@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "@inertiajs/react";
 import PropTypes from "prop-types";
 import s from "./CompanyPageCreate.module.css";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
@@ -7,17 +8,25 @@ import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import { useSelector } from "react-redux";
 
-function CompanyPageCreate({ auth }) {
+
+function CompanyPageCreate({ auth,  cities }) {
     const user = auth?.user;
   
-    console.log("emailCompany", emailCompany);
-
-    const { data, setData, post, errors } = useForm({
-        name: "",
-    });
+    const {data, setData, post, errors} = useForm({
+//форма заполнена по умолчанию, чтобы не заполнять каждый раз, временно
+        email: 'all@mail.ru',
+        name: '1',
+        business_profile: '1',
+        website: 'www.1',
+        region_of_location: '',
+        phone_number: '111-111-11-11',
+        description: '1',
+        date_create: '2000-11-01',
+    })
+        
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         post(route("company.store"));
     };
 
@@ -45,17 +54,14 @@ function CompanyPageCreate({ auth }) {
                 />
 
                 <form onSubmit={handleSubmit}>
-                    {/* <label htmlFor="title">Имя:</label>
-                    <input id="title" value={data.name} onChange={e => setData('name', e.target.value)} />
-
-                    <button type="submit">Отправить</button> */}
+                   
 
                     {/* Ввод данных компании */}
                     <div className={s.basiceData}>
                         <AppInput
-                            value={emailCompanyInput}
+                            value={data.email}
                             onChange={(e) =>
-                                setEmailCompanyInput(e.target.value)
+                                setData('email', e.target.value)
                             }
                             label={"Email"}
                             type="text"
@@ -64,12 +70,8 @@ function CompanyPageCreate({ auth }) {
                         />
 
                         <AppInput
-                            value={nameCompanyInput}
-                            onChange={(e) =>
-                                setNameCompanyInput(e.target.value)
-                            }
-                            // value={data.name}
-                            // onChange={e => setData('name', e.target.value)}
+                            value={data.name}
+                            onChange={(e) => setData('name', e.target.value)}
                             label={"Наименование"}
                             type="text"
                             placeholder="Наименование"
@@ -77,9 +79,9 @@ function CompanyPageCreate({ auth }) {
                         />
 
                         <AppInput
-                            value={areasActivityCompanyInput}
+                            value={data.business_profile}
                             onChange={(e) =>
-                                setAreasActivityCompanyInput(e.target.value)
+                                setData('business_profile', e.target.value)
                             }
                             label={"Сферы деятельности"}
                             type="text"
@@ -93,27 +95,31 @@ function CompanyPageCreate({ auth }) {
                             size={"xs"}
                             className={s.textTitle}
                         />
-
                         <div className={s.logoCompanyUpload}>
                             <div className={s.fileLoadBlock}>
-                                <input
-                                    type="file"
+                                <input 
+                                    type="file" 
                                     id="file"
                                     className={s.fileCompany}
                                 />
                                 <div className={s.inputlogoUpload}>
-                                    <input
+                                    <input 
                                         type="text"
                                         className={s.textFileCompany}
                                     />
-                                    <AppButton type="submit" bold sizeText="xs">
-                                        <span>Загрузить</span>
+                                    <AppButton 
+                                        type="submit"
+                                        bold 
+                                        sizeText = "xs"
+                                    ><span>Загрузить</span>
                                     </AppButton>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <AppInput
+                        
+
+                        {/* <AppInput
                             value={regionLocationCompanyInput}
                             onChange={(e) =>
                                 setRegionLocationCompanyInput(e.value.target)
@@ -122,12 +128,41 @@ function CompanyPageCreate({ auth }) {
                             type="text"
                             placeholder="Москва"
                             className={s.indentDownBasiceData}
-                        />
+                        /> */}
+                        <AppText
+                            title = {"Город или регион расположения"}
+                            bold
+                            size={"xs"}
+                            className={s.textTitle}
+                        >
+                        </AppText>
+                        {/* <label htmlFor="city_id">Город или регион расположения</label> */}
+                        <select 
+                            id='region_of_location' 
+                            name='region_of_location' 
+                            value={data.region_of_location} 
+                            onChange={
+                                (e) => setData("region_of_location", e.target.value)
+                            }
+                            className={s.textFileCompany}
+                        >
+                            {cities.map((city, index) => (
+                                <option 
+                                    key={index} 
+                                    value={city.title}
+                                    className={s.textTitle}
+                                >
+                                        {city.title}
+                                        
+                                        
+                                </option>
+                            ))}
+                        </select>
 
                         <AppInput
-                            value={foundationDateCompanyInput}
+                            value={data.date_create}
                             onChange={(e) =>
-                                setFoundationDateCompanyInput(e.value.target)
+                                setData('date_create', e.target.value)
                             }
                             label={"Дата основания"}
                             type="date"
@@ -136,9 +171,9 @@ function CompanyPageCreate({ auth }) {
                         />
 
                         <AppInput
-                            value={phoneCompanyInput}
+                            value={data.phone_number}
                             onChange={(e) =>
-                                setPhoneCompanyInput(e.value.target)
+                                setData('phone_number', e.target.value)
                             }
                             label={"Контактный номер телефона"}
                             type="text"
@@ -147,9 +182,9 @@ function CompanyPageCreate({ auth }) {
                         />
 
                         <AppInput
-                            value={siteCompanyInput}
+                            value={data.website}
                             onChange={(e) =>
-                                setSiteCompanyInput(e.value.target)
+                                setData('website', e.target.value)
                             }
                             label={"Сайт компании"}
                             type="text"
@@ -164,9 +199,9 @@ function CompanyPageCreate({ auth }) {
                             className={s.textTitle}
                         />
                         <textarea
-                            value={aboutCompamyTextarea}
+                            value={data.description}
                             onChange={(e) =>
-                                setAboutCompanyTextarea(e.value.target)
+                                setData('description', e.target.value)
                             }
                             className={s.textareaBasiceData}
                             placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
@@ -174,8 +209,7 @@ function CompanyPageCreate({ auth }) {
                     </div>
 
                     <AppButton
-                        href={route("companyList")}
-                        type="button"
+                        type="submit"
                         bold
                         sizeText="s"
                         className={s.buttonSave}
