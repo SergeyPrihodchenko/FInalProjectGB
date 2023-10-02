@@ -61,13 +61,12 @@
     border-radius: var(--border-radius-s);
 } */
 
-/* .linkViewResume{
+.linkViewResume{
     display: flex;
     justify-content: flex-start;
-} */
+}
 
 .linkResumeList{
-    height: 60px;
     margin-left: 10px;
     padding-top: 18px;
 }
