@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import {
+    removeResponsibilitiesItem,
     setResponsibilitiesInput,
     setResponsibilitiesList,
 } from "../../model/slice/vacancyPageCreateSlice";
@@ -30,19 +31,7 @@ function VacancyCreateResponsibilities(props) {
                                         colorType={"cancel"}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            responsibilitiesList.splice(
-                                                index,
-                                                1
-                                            );
-                                            const newResponsibilitiesList = [
-                                                ...responsibilitiesList,
-                                            ];
-
-                                            dispatch(
-                                                setResponsibilitiesList([
-                                                    ...newResponsibilitiesList,
-                                                ])
-                                            );
+                                            dispatch(removeResponsibilitiesItem(index));
                                         }}
                                     >
                                         Удалить

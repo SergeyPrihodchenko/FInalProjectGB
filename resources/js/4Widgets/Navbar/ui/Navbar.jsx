@@ -62,13 +62,6 @@ export const Navbar = (props) => {
                         </AppLink>
                         <AppLink
                             colorType="accent"
-                            href={route("company.create")}
-                            className={cn(s.navLink)}
-                        >
-                            back(Создать компанию)
-                        </AppLink>
-                        <AppLink
-                            colorType="accent"
                             href={route("company.index")}
                             className={cn(s.navLink)}
                         >
