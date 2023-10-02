@@ -14,7 +14,7 @@ function UserCompanyList({companies}) {
         <AuthContext.Provider>
             <AppPage>
                 <AppText
-                    title={"Ваши компании"}
+                    title={"Мои компании"}
                     size="s"
                     bold
                     className={s.titleCompanyList}
