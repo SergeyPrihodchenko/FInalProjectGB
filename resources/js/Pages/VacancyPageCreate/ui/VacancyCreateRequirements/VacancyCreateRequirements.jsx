@@ -29,12 +29,8 @@ function VacancyCreateRequirements(props) {
                                     variant={"clear"}
                                     colorType={"cancel"}
                                     onClick={(e) => {
-                                        e.preventDefault()
+                                        e.preventDefault();
                                         dispatch(removeRequirementsItem(index));
-                                        console.log(
-                                            "requirementsListDelete",
-                                            requirementsList
-                                        );
                                     }}
                                 >
                                     Удалить
