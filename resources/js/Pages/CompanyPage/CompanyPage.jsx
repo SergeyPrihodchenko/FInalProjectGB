@@ -3,7 +3,7 @@ import { Head } from "@inertiajs/react";
 import { CompanyPageMockData } from "./CompanyPageMockData";
 import CompanyPageBody from "./CompanyPageBody";
 
-function CompanyPage({ auth }) {
+function CompanyPage({ auth, company }) {
     const user = auth?.user;
     const data = CompanyPageMockData();
 

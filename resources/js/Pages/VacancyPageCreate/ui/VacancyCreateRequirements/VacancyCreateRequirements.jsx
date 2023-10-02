@@ -10,7 +10,7 @@ import {
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
 import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
-function VacancyCreateRequirements(props) {
+function VacancyCreateRequirements({ errors }) {
     const dispatch = useDispatch();
     const { requirementsInput, requirementsList } = useSelector(
         (state) => state.vacancyPageCreate
@@ -41,6 +41,7 @@ function VacancyCreateRequirements(props) {
                 </div>
             ) : null}
             <AppInput
+                errorMessage={errors}
                 label="Требования к соискателю"
                 value={requirementsInput}
                 onChange={(e) => {

@@ -31,7 +31,11 @@ function VacancyCreateResponsibilities(props) {
                                         colorType={"cancel"}
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            dispatch(removeResponsibilitiesItem(index));
+                                            dispatch(
+                                                removeResponsibilitiesItem(
+                                                    index
+                                                )
+                                            );
                                         }}
                                     >
                                         Удалить
@@ -43,6 +47,7 @@ function VacancyCreateResponsibilities(props) {
                 </div>
             ) : null}
             <AppInput
+                errorMessage={errors}
                 label="Обязаность сотрудника"
                 value={responsibilitiesInput}
                 onChange={(e) => {
