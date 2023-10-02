@@ -149,8 +149,8 @@ function CompanyPageUpdate({ company, auth }) {
                             </AppButton>
 
                             <AppButton
-                                // onClick={destroy}
-                                // id={company.id}
+                                onClick={company.destroy}
+                                id={company.id}
                                 type="button"
                                 sizeText="s"
                                 bold
