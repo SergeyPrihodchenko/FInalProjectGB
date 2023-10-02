@@ -32,19 +32,19 @@ function UserCompanyList({companies}) {
                                     <AppText
                                         title={
                                             <span className={s.titleCompany}>
-                                            {data.name}
+                                            {company.name}
                                             </span>
                                         }
                                         bold
                                         size="xs"
                                     />
                                     <AppText
-                                        text={"Сфера деятельности: ".concat(data.business_profile)}
+                                        text={"Сфера деятельности: ".concat(company.business_profile)}
                                         bold
                                         size="xs"
                                     />
                                     <AppText
-                                        text={"Сайт компании: ".concat(data.website)}
+                                        text={"Сайт компании: ".concat(company.website)}
                                         bold
                                         size="xs"
                                     />

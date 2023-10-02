@@ -14,14 +14,14 @@ function CompanyPageCreate({ auth,  cities }) {
   
     const {data, setData, post, errors} = useForm({
 //форма заполнена по умолчанию, чтобы не заполнять каждый раз, временно
-        email: 'all@mail.ru',
-        name: '1',
-        business_profile: '1',
-        website: 'www.1',
+        email: '',
+        name: '',
+        business_profile: '',
+        website: '',
         region_of_location: '',
-        phone_number: '111-111-11-11',
-        description: '1',
-        date_create: '2000-11-01',
+        phone_number: '',
+        description: '',
+        date_create: '',
     })
         
     const handleSubmit = (e) => {

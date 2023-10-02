@@ -75,7 +75,7 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
 
-        return Inertia::render('Company/edit',  ['company' => $company,
+        return Inertia::render('CompanyPageUpdate/ui/CompanyPageUpdate/CompanyPageUpdate',  ['company' => $company,
            ]);
     }
 
@@ -100,6 +100,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-
+        return Redirect::route('myCompanies');
     }
 }

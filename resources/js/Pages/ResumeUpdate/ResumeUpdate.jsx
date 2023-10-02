@@ -956,7 +956,11 @@ function Resume({ resume }) {
                         </div>
                         
                         <div className={s.buttonUpdateResume}>
-                            <AppButton sizeText="s" bold type="submit">
+                            <AppButton 
+                                sizeText="s" 
+                                bold 
+                                type="submit"
+                            >
                                 Изменить
                             </AppButton>
 
