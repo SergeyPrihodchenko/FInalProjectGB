@@ -10,7 +10,7 @@ import cn from "classnames";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
-function VacancyCreateConditions(props) {
+function VacancyCreateConditions({ errors }) {
     const dispatch = useDispatch();
     const { conditionsInput, conditionsList } = useSelector(
         (state) => state.vacancyPageCreate
@@ -41,6 +41,7 @@ function VacancyCreateConditions(props) {
                 </div>
             ) : null}
             <AppInput
+                errorMessage={errors.title}
                 label="Условия работы"
                 value={conditionsInput}
                 onChange={(e) => {

@@ -6,16 +6,9 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 function VacancyPageCards(props) {
-    const { children, className, vacancy } = props;
-    const {
-        title,
-        payment,
-        experience,
-        employment,
-        revievs,
-        conditions,
-        city,
-    } = vacancy;
+    const { children, className, vacancy, city } = props;
+    const { title, payment, experience, employment, revievs, conditions } =
+        vacancy;
     // console.log("experience", experience);
 
     return (
