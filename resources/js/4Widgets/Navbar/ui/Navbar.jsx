@@ -65,7 +65,7 @@ export const Navbar = (props) => {
                             href={route("company.index")}
                             className={cn(s.navLink)}
                         >
-                            back(Список компаний)
+                            Список всех компаний
                         </AppLink>
                         {!user ? (
                             <>

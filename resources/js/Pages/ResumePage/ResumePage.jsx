@@ -122,14 +122,16 @@ function ResumePage({ resume, author }) {
             <AppPage>
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
+                        <div className={s.buttonLinkResumeList}>
                             <AppButton
                                 href={route("resume.myresumes")}
                                 variant="clear"
                                 className={s.linkResumePage}
+                                sizeText = "s"
                             >
                                 К списку моих резюме
                             </AppButton>
-
+                        </div>
                         <div class={s.baceData}>
                             <div class={s.userBaceData}>
                                 <AppText 
@@ -281,7 +283,8 @@ function ResumePage({ resume, author }) {
                                         
                                                 <div className={s.responsibilities}>
                                                     <AppText
-                                                        bold                                                            title={el.position}
+                                                        bold                                                            
+                                                        title={el.position}
                                                         size="s"
                                                     />
 
@@ -331,7 +334,7 @@ function ResumePage({ resume, author }) {
 
                             />
                             </div>
-{/* не знаю откуда тянуть эту информацию */}
+                            
                             <div className={s.aboutUserTextAll}>
                                 <AppText
                                     text={resume.about_me}

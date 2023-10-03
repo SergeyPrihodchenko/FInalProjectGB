@@ -4,8 +4,9 @@ import cn from "classnames";
 import s from "@/Pages/UserResponsesListPage/UserResponsesListPage.module.css";
 import UserResponsesListPageCard from "@/Pages/UserResponsesListPage/UserResponsesListPageCard.jsx";
 
-const UserResponsesListPage = ({ auth }) => {
+const UserResponsesListPage = ({ auth, vacancies }) => {
     const user = auth?.user;
+    console.log(vacancies);
     const mockData = [
         {
             id: "1",

@@ -9,7 +9,6 @@ import AppLink from "@/8Shared/ui/AppLink/AppLink";
 const navListJobSeeker = [
     { routeName: "Мои резюме", routePath: "resume.myresumes" },
     { routeName: "Отклики", routePath: "resume.myresumes" },
-
 ];
 const navListEmployment = [
     { routeName: "Мои компании", routePath: "myCompanies" },
@@ -38,31 +37,7 @@ function SecondNav(props) {
                             );
                         })}
                     </div>
-                    <div className={s.secondNavButton}>
-                        <AppButton
-                            width="250px"
-                            href={route("resume.create")}
-                            height="50px"
-                            variant="outline"
-                            colorType="normal"
-                            rounded
-                            sizeText="m"
-                        >
-                            Создать резюме
-                        </AppButton>
 
-                        <AppButton
-                            width="250px"
-                            href={route("company.create")}
-                            height="50px"
-                            variant="outline"
-                            colorType="normal"
-                            rounded
-                            sizeText="m"
-                        >
-                            Создать компанию
-                        </AppButton>
-                    </div>
                     <AppButton
                         width="250px"
                         href={route("resume.create")}
@@ -95,34 +70,32 @@ function SecondNav(props) {
                     <div className={s.secondNavButton}>
                         <AppButton
                             href={route("vacancy.create")}
-                            width="fit-content"
-                            // width="200px"
+                            width="250px"
                             height="50px"
                             variant="outline"
                             colorType="normal"
                             rounded
-                            sizeText="s"
+                            sizeText="l"
                         >
                             Создать вакансию
                         </AppButton>
 
                         <AppButton
                             href={route("company.create")}
-                            width="fit-content"
-                            // width="200px"
+                            width="250px"
                             height="50px"
                             variant="outline"
                             colorType="normal"
                             rounded
-                            sizeText="s"
+                            sizeText="l"
                         >
                             Создать компанию
                         </AppButton>
-
-                    </div>
-                </AppPage>
-            )}
-        </div>
+                    </div >
+                </AppPage >
+            )
+            }
+        </div >
     );
 }
 

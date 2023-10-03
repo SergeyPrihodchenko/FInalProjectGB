@@ -21,6 +21,18 @@ return new class extends Migration
             $table->dateTime('date_create')->nullable();
             $table->string('phone_number', 100)->nullable();
             $table->text('description')->nullable();
+
+            // Создание внешнего ключа компании
+            $table->unsignedBigInteger('creator_id')->nullable();
+            $table->foreign('creator_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->index('creator_id');
+
+
+
             $table->timestamps();
 
         });

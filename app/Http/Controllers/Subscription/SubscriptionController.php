@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Inertia\Inertia;
 
 class SubscriptionController extends Controller
 {
@@ -45,6 +46,8 @@ class SubscriptionController extends Controller
         $user->subscribeToCompany($company);
 
         return redirect()->back()->with('success', 'Вы успешно подписались на компанию.');
+//        return Inertia::render('Company/CompanyList', [
+//            'companies'=>$companies
     }
 
     public function unsubscribe(Request $request, $userId, $companyId)
