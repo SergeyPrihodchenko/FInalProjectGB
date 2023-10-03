@@ -91,10 +91,11 @@ function SecondNav(props) {
                         >
                             Создать компанию
                         </AppButton>
-                    </div>
-                </AppPage>
-            )}
-        </div>
+                    </div >
+                </AppPage >
+            )
+            }
+        </div >
     );
 }
 

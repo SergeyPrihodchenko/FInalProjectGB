@@ -57,6 +57,7 @@ const VacancyListPage = ({
 
 
     const [favourites, setIsFavourites] = useState(likes);
+
     console.log('vacancySearchInput', vacancySearchInput);
     console.log('vacancies', vacancies);
     console.log(favourites);
@@ -94,6 +95,16 @@ const VacancyListPage = ({
     }
     const isInFavourite = (id, list) => {
         return list.some(el => el === id)
+    }
+    const handleAnswer = async (vacancy_id) => {
+        try {
+            await axios.post('/PageUserResponses/accept', {
+                user_id: user.id,
+                vacancy_id: vacancy_id
+            })
+        } catch (e) {
+            console.log(e.message);
+        }
     }
     // const getFilterData = async () => {
     //     const response = await axios.post(`/vacancies/filter?page=1`, {
@@ -421,6 +432,7 @@ const VacancyListPage = ({
                                         }
 
                                         <AppButton
+                                            onClick={handleAnswer(vac.id)}
                                             className={s.vacancyListCardBtn}
                                             width="auto"
                                         >

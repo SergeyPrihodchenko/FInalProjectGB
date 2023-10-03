@@ -24,7 +24,9 @@ class AcceptVacancyController extends Controller
             ->join('companies', 'vacancies.company_id', '=', 'companies.id')
             ->select('vacancies.id as id', 'vacancies.title as title', 'vacancies.payment as payment', 'vacancies.employment as employment', 'vacancies.schedule as schedule', 'vacancies.experience as experience', 'companies.name as conditions', 'cities.title as city', 'vacancies.description as description')
             ->get();
-        return Inertia::render('UserResponsesListPage/UserResponsesListPage', ['vacancies' => $vacancy]);
+        return Inertia::render('UserResponsesListPage/UserResponsesListPage', [
+            'vacancies' => $vacancy
+        ]);
     }
 
     public function store(Request $request)
