@@ -20,8 +20,8 @@ function VacancyPage(props) {
     const user = auth?.user;
     const city = cities?.[vacancy.city_id]?.title || "Город не указан";
 
-    console.log("vacancy", vacancy);
-    console.log("city", city);
+    // console.log("vacancy", vacancy);
+    // console.log("city", city);
     return (
         <>
             <Head title="VacancyPage" />

@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-
 }
 
 .profilePage {
@@ -40,6 +39,6 @@
 
 .inputFormProfileDelete::placeholder {
     font-size: var(--font-line-xs);
-    color: var(--dark-bg);
+    color: var(--additional-bg);
     padding-left: 90px;
 }
