@@ -53,9 +53,14 @@ class User extends Authenticatable
     ];
 
 
-    public function companies()
+//    public function companies()
+//    {
+//        return $this->belongsToMany(Company::class);
+//    }
+
+    public function createdCompanies()
     {
-        return $this->belongsToMany(Company::class);
+        return $this->hasMany(Company::class, 'creator_id');
     }
 
     public function subscriptions(): BelongsToMany

@@ -20,6 +20,7 @@ class Company extends Model
         'date_create',
         'phone_number',
         'description',
+        'creator_id'
     ];
 
     protected $casts = [
@@ -40,5 +41,9 @@ class Company extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function creater()
+    {
+        return $this->belongsTo(User::class, 'creator_id');
+    }
 
 }

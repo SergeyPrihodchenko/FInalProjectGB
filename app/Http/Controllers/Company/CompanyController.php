@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Company;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\StoreCompanyRequest;
 use App\Models\City;
-use App\Models\CompamyUser;
+use App\Models\CompanyUser;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,13 +47,14 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        $date = $request->validated();
-        $company = Company::create($date);
-        CompamyUser::create(['company_id'=> $company->id, 'user_id' =>Auth::user()->id]);
-        $companies = Company::all();
-//        return Inertia::render('Company/company_detail', [
-//            'company'=>$company
-//        ]);
+        $data = $request->validated();
+        $creatorId = Auth::user()->id;
+        $data['creator_id'] = $creatorId;
+        //dd($data);
+        $company = Company::create($data);
+        //dd($company);
+
+//
         return Redirect::route('myCompanies');
     }
 
@@ -61,7 +62,8 @@ class CompanyController extends Controller
      * Display the specified resource.
      */
     public function show(Company $company) {
-        return Inertia::render('Company/company_detail', [
+       //return Inertia::render('Company/company_detail', [
+        return Inertia::render('CompanyPage/CompanyPage', [
             'company' => $company,
             //'userId' => $userId,
             //'isSubscribed' => $isSubscribed,

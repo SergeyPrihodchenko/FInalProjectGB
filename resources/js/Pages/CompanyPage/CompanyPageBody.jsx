@@ -23,7 +23,8 @@ const CompanyPageBody = ({
                              companyPhone,
                              companyEmail,
                              companyImg,
-                             companyLocation
+                             companyLocation,
+                                company
 }) => {
     return (
         <div className={cn(s.companyPageContainer)}>
@@ -32,12 +33,12 @@ const CompanyPageBody = ({
             </AppCard>
             <div className={s.companyPageRight}>
                 <CompanyPageHeader
-                    title={companyName}
+                    title={company?.name || companyName}
                     initialRating={companyRating}
                     countReview={countReview}
                 />
                 <CompanyPageInfo
-                    title={companyInfo}
+                    title={company?.description || companyInfo}
                     tagline={companyTagline}
                     address={companyAddress}
                     contactPhone={companyPhone}
