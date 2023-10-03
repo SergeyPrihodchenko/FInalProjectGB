@@ -17,13 +17,15 @@ class AcceptVacancyController extends Controller
         foreach ($vacancies as $value) {
             $arrVacancies[] = $value['vacancy_id'];
         }
+        
         $vacancy = Vacancy::query();
         $vacancy->whereIn('vacancies.id', $arrVacancies);
+        
         $vacancy
             ->join('cities', 'vacancies.city_id', '=', 'cities.id')
             ->join('companies', 'vacancies.company_id', '=', 'companies.id')
-            ->select('vacancies.id as id', 'vacancies.title as title', 'vacancies.payment as payment', 'vacancies.employment as employment', 'vacancies.schedule as schedule', 'vacancies.experience as experience', 'companies.name as conditions', 'cities.title as city', 'vacancies.description as description')
-            ->get();
+            ->select('vacancies.id as id', 'vacancies.title as title', 'vacancies.payment as payment', 'vacancies.employment as employment', 'vacancies.schedule as schedule', 'vacancies.experience as experience', 'companies.name as conditions', 'cities.title as city', 'vacancies.description as description')->get();
+        
         return Inertia::render('UserResponsesListPage/UserResponsesListPage', [
             'vacancies' => $vacancy
         ]);

@@ -8,7 +8,7 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 const navListJobSeeker = [
     { routeName: "Мои резюме", routePath: "resume.myresumes" },
-    { routeName: "Отклики", routePath: "resume.myresumes" },
+    { routeName: "Отклики", routePath: "userResponses" },
 ];
 const navListEmployment = [
     { routeName: "Мои компании", routePath: "myCompanies" },
