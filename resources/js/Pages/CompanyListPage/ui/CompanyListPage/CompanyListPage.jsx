@@ -5,75 +5,59 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import { AuthContext } from "@/8Shared/store/AuthContext";
+import { useForm } from "@inertiajs/react";
 
-function CompanyListPage() {
+function CompanyListPage({companies}) {
     return (
         <AuthContext.Provider>
-            <>
-                <AppPage>
-                    <main className={s.mainCompanyList}>
-                        <AppText
-                            title={"Ваши компании"}
-                            size="s"
-                            bold
-                            className={s.titleCompanyList}
-                        />
-
-                        <div class={s.companyList}>
-                            {/* <AppLink
-                                path={'company.show'}
-                                param={company.id}
-                                key={company.id}
-                                sizeText = "xs"
-                                className={s.titleCompany}
-                            >ООО Газпром</AppLink> */}
-
-                            <AppText
-                                title={
-                                    <span className={s.titleCompany}>
-                                        {"ООО Газпром"}
-                                    </span>
-                                }
-                                bold
-                                size="xs"
-                            />
-                            <AppText
-                                title={"358 вакансий"}
-                                size="xs"
-                                bold
-                                className={s.quantityCompany}
-                            />
-
-                            <div className={s.linkViewCompany}>
-                                <AppButton
-                                    // path={}
-                                    // param={}
-                                    // key={}
-                                    sizeText="s"
-                                    height="60px"
-                                    className={s.linkListCompany}
-                                >
-                                    Просмотреть
-                                </AppButton>
-
-                                <AppButton
-                                    // path={}
-                                    // param={}
-                                    // key={}
-                                    sizeText="s"
-                                    className={s.linkListCompany}
-                                >
-                                    Редактировать
-                                </AppButton>
-
-                                {/* Сделать активной кнопку редаткировать 
-                                        только для пользователя чье резюме открыто
-                                        */}
+            <AppPage>
+                <AppText
+                    title={"Все компании"}
+                    size="s"
+                    bold
+                    className={s.titleCompanyList}
+                />
+                {companies
+                    ? companies.map((company) => {
+                        const { data } =useForm({
+                            name: company.name,
+                            business_profile: company.business_profile,
+                            website: company.website,    
+                        })
+                        // console.log(data);
+                        return (
+                            <div className={s.companyList}>
+                                <div className={s.buttonCompany}>
+                                    <AppButton
+                                        path={'company.show'}
+                                        param={company.id}
+                                        key={company.id}
+                                        sizeText="s"
+                                        bold
+                                        variant="clear"
+                                    >
+                                        <span className={s.titleCompany}>
+                                            {company.name}
+                                        </span>
+                                    </AppButton>
+                                </div>
+                                        
+                                <AppText
+                                    text={"Сфера деятельности: ".concat(company.business_profile)}
+                                    bold
+                                    size="xs"
+                                />
+                                <AppText
+                                    text={"Сайт компании: ".concat(company.website)}
+                                    bold
+                                    size="xs"
+                                />
                             </div>
-                        </div>
-                    </main>
-                </AppPage>
-            </>
+                        );
+                    })
+                : null}
+
+            </AppPage>
         </AuthContext.Provider>
     );
 }

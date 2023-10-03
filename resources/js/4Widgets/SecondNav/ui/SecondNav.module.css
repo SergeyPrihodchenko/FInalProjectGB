@@ -20,3 +20,8 @@
 .navItem {
     padding: 20px;
 }
+
+.secondNavButton{
+    display: flex;
+    justify-content: space-between;
+}

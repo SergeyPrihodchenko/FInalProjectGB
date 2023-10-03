@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_like_vacancies', function (Blueprint $table) {
             $table->id();
 
-            // Создание внешнего ключа юзера
+        // Создание внешнего ключа юзера
         $table->unsignedBigInteger('user_id');
         $table->foreign('user_id')
             ->references('id')
@@ -23,7 +23,7 @@ return new class extends Migration
             ->onUpdate('cascade');
         $table->index('user_id');    
 
-        // Создание внешнего ключа компании
+        // Создание внешнего ключа вакансии
         $table->unsignedBigInteger('vacancy_id');
         $table->foreign('vacancy_id')
             ->references('id')
@@ -32,7 +32,7 @@ return new class extends Migration
             ->onUpdate('cascade');
         $table->index('vacancy_id');
         
-            $table->timestamps();
+        $table->timestamps();
         });
     }
 

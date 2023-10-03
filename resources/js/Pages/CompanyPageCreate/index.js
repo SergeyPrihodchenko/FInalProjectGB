@@ -1,0 +1,1 @@
+export { default as CompanyPageCreate } from "./ui/CompanyPageCreate/CompanyPageCreate";

@@ -21,7 +21,7 @@ class MyCompaniesController
             $companies[] = Company::find($arrItem->company_id);
         }
 
-        return Inertia::render('Company/CompanyList', [
+        return Inertia::render('UserCompanyListPage/ui/UserCompanyListPage/UserCompanyListPage', [
             'companies' => $companies
 //
         ]);

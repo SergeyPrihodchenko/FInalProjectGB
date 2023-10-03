@@ -10,7 +10,8 @@ import {
     setVacancyPaymentInput,
 } from "../../model/slice/vacancyPageCreateSlice";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
-function VacancyCreateMainInfo(props) {
+function VacancyCreateMainInfo({ errors }) {
+    console.log("VacancyCreateMainInfo errors", errors);
     const dispatch = useDispatch();
     const { vacancyNameInput, vacancyCityInput, vacancyPaymentInput } =
         useSelector((state) => state.vacancyPageCreate);
@@ -23,6 +24,7 @@ function VacancyCreateMainInfo(props) {
                 onChange={(e) => {
                     dispatch(setVacancyNameInput(e.target.value));
                 }}
+                errorMessage={errors.title}
             />
             <AppInput
                 label="Где искать сотрудника"

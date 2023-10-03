@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcceptVacancyController;
 use App\Http\Controllers\Company\CompanyController;
 
 
@@ -24,10 +25,6 @@ Route::get('/testPageCompany', function () {
     return Inertia::render('CompanyPage/CompanyPage');
 })->name('company');
 
-Route::get('/testPageUserResponses', function () {
-    return Inertia::render('UserResponsesListPage/UserResponsesListPage');
-})->name('userResponses');
-
 Route::get('/profilePage',[ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profilePage');
 
 //testCompanyCreate
@@ -47,12 +44,6 @@ Route::get('/testResumePage', function () {
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::middleware('auth')->group(function () {
     Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
     Route::get('myresumes', [ResumeController::class, 'getByUser'])->name('resume.myresumes');
     Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
@@ -64,6 +55,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('addLike', [LikeController::class, 'store'])->name('addLike');
     Route::post('deleteLike', [LikeController::class, 'destroy'])->name('deleteLike');
+
+    Route::get('/PageUserResponses', [AcceptVacancyController::class, 'index'])->name('userResponses');
+    Route::post('/PageUserResponses/accept', [AcceptVacancyController::class, 'store'])->name('userVacancyAccept');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';
