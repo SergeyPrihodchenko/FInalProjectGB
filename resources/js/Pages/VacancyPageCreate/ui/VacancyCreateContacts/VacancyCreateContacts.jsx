@@ -11,7 +11,7 @@ import {
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import AppText from "@/8Shared/ui/AppText/AppText";
-function VacancyCreateContacts(props) {
+function VacancyCreateContacts({ errors }) {
     const {
         contactsNameInput,
         contactsPositionInput,
@@ -67,6 +67,7 @@ function VacancyCreateContacts(props) {
                 </div>
             ) : null}
             <AppInput
+                errorMessage={errors.title}
                 label="Контакты"
                 placeholder="Должность"
                 value={contactsPositionInput}
@@ -75,6 +76,7 @@ function VacancyCreateContacts(props) {
                 }}
             />
             <AppInput
+                errorMessage={errors.title}
                 placeholder="Имя"
                 value={contactsNameInput}
                 onChange={(e) => {
@@ -82,6 +84,7 @@ function VacancyCreateContacts(props) {
                 }}
             />
             <AppInput
+                errorMessage={errors.title}
                 type="tel"
                 placeholder="Номер телефона"
                 value={contactsPhoneInput}

@@ -68,6 +68,23 @@ function VacancyPageCreate(props) {
         skills: skillsList,
         contacts: contactsList,
     });
+
+    // const { data, setData, post, errors } = useForm({
+    //     title: vacancyNameInput,
+    //     city_id: "1",
+    //     payment: vacancyPaymentInput,
+    //     city_work_id: "1",
+    //     experience: "нет опыта",
+    //     company_id: companies[0]["id"],
+    //     schedule: "Полная занятость",
+    //     employment: employment[0],
+    //     requirements: requirementsList,
+    //     responsibilities: responsibilitiesList,
+    //     conditions: conditionsList,
+    //     skills: skillsList,
+    //     contacts: contactsList,
+    // });
+    console.log("errors", errors);
     return (
         <>
             <Head title="VacancyPageCreate" />

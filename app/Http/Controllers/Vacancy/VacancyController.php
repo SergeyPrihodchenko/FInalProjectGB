@@ -42,6 +42,7 @@ class VacancyController
 
     public function show(Vacancy $vacancy): \Inertia\Response
     {
+        $cities = City::all();
         $contacts = json_decode($vacancy->contacts);
         $requirements = json_decode($vacancy->requirements);
         $responsibilities = json_decode($vacancy->responsibilities);
@@ -55,6 +56,7 @@ class VacancyController
             'responsibilities' => $responsibilities,
             'conditions' => $conditions,
             'skills' => $skills,
+            'cities' => $cities,
         ]);
     }
 
