@@ -7,7 +7,7 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./VacancyPageCreate.module.css";
 import cn from "classnames";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import VacancyCreateContacts from "../VacancyCreateContacts/VacancyCreateContacts";
 import VacancyCreateSkills from "../VacancyCreateSkills/VacancyCreateSkills";
@@ -16,7 +16,7 @@ import VacancyCreateConditions from "../VacancyCreateConditions/VacancyCreateCon
 import VacancyCreateRequirements from "../VacancyCreateRequirements/VacancyCreateRequirements";
 import VacancyCreateFilters from "../VacancyCreateFilters/VacancyCreateFilters";
 import VacancyCreateMainInfo from "../VacancyCreateMainInfo/VacancyCreateMainInfo";
-import { useEffect } from "react";
+
 function VacancyPageCreate(props) {
     const {
         auth,
@@ -94,15 +94,15 @@ function VacancyPageCreate(props) {
                             employment={employment}
                         />
                         {/*Requirements Требования */}
-                        <VacancyCreateRequirements />
+                        <VacancyCreateRequirements errors={errors} />
                         {/*Responsibilities Обязаности */}
-                        <VacancyCreateResponsibilities />
+                        <VacancyCreateResponsibilities errors={errors} />
                         {/* Conditions Условия */}
-                        <VacancyCreateConditions />
+                        <VacancyCreateConditions errors={errors} />
                         {/* Skills Навыки */}
-                        <VacancyCreateSkills />
+                        <VacancyCreateSkills errors={errors} />
                         {/* Contacts контакты */}
-                        <VacancyCreateContacts />
+                        <VacancyCreateContacts errors={errors} />
                         <AppButton className={cn(s.btn, s.item)}>
                             Опубликовать
                         </AppButton>
