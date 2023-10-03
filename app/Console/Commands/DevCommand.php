@@ -30,11 +30,11 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        User_click_vacancy::create(['user_id' => 1, 'vacancy_id' => 2]);
-        User_click_vacancy::create(['user_id' => 1, 'vacancy_id' => 4]);
-        User_click_vacancy::create(['user_id' => 1, 'vacancy_id' => 7]);
-        User_click_vacancy::create(['user_id' => 1, 'vacancy_id' => 9]);
-        User_click_vacancy::create(['user_id' => 1, 'vacancy_id' => 12]);
+        User_click_vacancy::create(['user_id' => 20, 'vacancy_id' => 2]);
+        User_click_vacancy::create(['user_id' => 20, 'vacancy_id' => 4]);
+        User_click_vacancy::create(['user_id' => 20, 'vacancy_id' => 7]);
+        User_click_vacancy::create(['user_id' => 20, 'vacancy_id' => 8]);
+        User_click_vacancy::create(['user_id' => 20, 'vacancy_id' => 12]);
     }
 
 }

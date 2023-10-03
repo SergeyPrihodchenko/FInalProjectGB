@@ -31,7 +31,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->index('vacancy_id');
-
+            $table->unique(['user_id', 'vacancy_id']);
             $table->timestamps();
         });
     }
