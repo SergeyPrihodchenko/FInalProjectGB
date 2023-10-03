@@ -21,7 +21,10 @@ class ResumeController extends Controller
     {
         $resumes = Resume::all();
 
-        dd($resumes);
+        return Inertia::render('ResumeList/ResumeListAll', [
+            'title' => 'Резюме',
+            'resumes' => $resumes
+        ]);
     }
 
     public function getByUser(Request $request): Response
