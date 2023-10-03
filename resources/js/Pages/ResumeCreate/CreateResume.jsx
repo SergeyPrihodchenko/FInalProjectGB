@@ -1017,8 +1017,8 @@ function CreateResume() {
                                     <option value="Невозможно">
                                         Невозможно
                                     </option>
-                                    <option value="Возможено">
-                                        Возможено
+                                    <option value="Возможно">
+                                        Возможно
                                     </option>
                                     <option value="Желательно">
                                         Желательно

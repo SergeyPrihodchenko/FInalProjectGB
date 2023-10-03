@@ -42,7 +42,7 @@ class ProfileTest extends TestCase
 
         $user->refresh();
 
-        $this->assertSame('Test Subscription', $user->name);
+        $this->assertSame('Test User', $user->name);
         $this->assertSame('test@example.com', $user->email);
         $this->assertSame('89991112233', $user->phone);
         $this->assertSame('Test address', $user->address);
