@@ -44,7 +44,7 @@ class ResumeController extends Controller
      */
     public function create(Request $request): Response
     {
-        return Inertia::render('ResumeCreate/CreateResume', [
+        return Inertia::render('ResumePageCreate/ui/ResumePageCreate/ResumePageCreate', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status')
         ]);
@@ -82,7 +82,7 @@ class ResumeController extends Controller
      */
     public function edit(Resume $resume): Response
     {
-        return Inertia::render('ResumeUpdate/ResumeUpdate', [
+        return Inertia::render('ResumePageUpdate/ui/ResumePageUpdate/ResumePageUpdate', [
             'title' => $resume->profession,
             'resume' => $resume
         ]);

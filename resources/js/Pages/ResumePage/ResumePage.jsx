@@ -122,8 +122,8 @@ function ResumePage({ resume, author }) {
             <AppPage>
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
-                        <div className={s.buttonLinkResumeList}>
-{/* прописать кнопку не активной если просматривает не владелец резюме                             */}
+       {/*                <div className={s.buttonLinkResumeList}>
+ прописать кнопку не активной если просматривает не владелец резюме                            
                             <AppButton
                                 href={route("resume.myresumes")}
                                 variant="clear"
@@ -141,7 +141,7 @@ function ResumePage({ resume, author }) {
                             >
                                 К списку всех резюме
                             </AppButton>
-                        </div>
+                        </div> */}
                         <div class={s.baceData}>
                             <div class={s.userBaceData}>
 {/* прописать кнопку не активной если просматривает не владелец резюме */}
