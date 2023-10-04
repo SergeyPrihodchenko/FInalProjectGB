@@ -25,10 +25,9 @@ class CompanyController extends Controller
         //dd($request->all());
         //$date = $request->all();
         return Inertia::render('CompanyListPage/ui/CompanyListPage/CompanyListPage', [
-            'companies'=>$companies
-//
+            'companies' => $companies
+            //
         ]);
-
     }
 
     /**
@@ -37,7 +36,7 @@ class CompanyController extends Controller
     public function create()
     {
         $cities = City::all();
-        return Inertia::render('CompanyPageCreate/ui/CompanyPageCreate/CompanyPageCreate', ['cities'=> $cities]);
+        return Inertia::render('CompanyPageCreate/ui/CompanyPageCreate/CompanyPageCreate', ['cities' => $cities]);
         //return view('company.create');
 
     }
@@ -54,21 +53,21 @@ class CompanyController extends Controller
         $company = Company::create($data);
         //dd($company);
 
-//
+        //
         return Redirect::route('myCompanies');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Company $company) {
-       //return Inertia::render('Company/company_detail', [
-        return Inertia::render('CompanyPage/CompanyPage', [
+    public function show(Company $company)
+    {
+        //return Inertia::render('Company/company_detail', [
+        return Inertia::render('CompanyPage/ui/CompanyPage/CompanyPage', [
             'company' => $company,
             //'userId' => $userId,
             //'isSubscribed' => $isSubscribed,
         ]);
-
     }
 
     /**
@@ -77,8 +76,9 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
 
-        return Inertia::render('CompanyPageUpdate/ui/CompanyPageUpdate/CompanyPageUpdate',  ['company' => $company,
-           ]);
+        return Inertia::render('CompanyPageUpdate/ui/CompanyPageUpdate/CompanyPageUpdate',  [
+            'company' => $company,
+        ]);
     }
 
     /**
