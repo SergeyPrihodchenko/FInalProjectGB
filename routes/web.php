@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AcceptVacancyController;
+use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Http\Controllers\Company\CompanyController;
 
 
