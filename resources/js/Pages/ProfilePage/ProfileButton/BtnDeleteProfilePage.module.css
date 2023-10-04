@@ -2,14 +2,14 @@
     text-align: center;
     line-height: 72px;
     width: 310px;
-	background: #fff;
-	font-size: 32px;
+    background: #fff;
+    font-size: 32px;
     font-weight: 700;
     color: var(--accent);
 
-    border: 1px solid var(----light-bg);
-	border-radius: 50px;
-	
+    border: 1px solid var(----main-bg);
+    border-radius: 50px;
+
     margin-top: 75px;
     margin-bottom: 115px;
 }
