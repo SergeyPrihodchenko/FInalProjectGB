@@ -3,12 +3,11 @@ import { useForm, usePage } from "@inertiajs/react";
 
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
-import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import s from "./ResumeList.module.css";
+import s from "./UserResumeListPage.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
-function ResumePage({ resumes }) {
+function UserResumeListPage({ resumes }) {
     const user = usePage().props.auth.user;
 
     console.log(resumes);
@@ -139,4 +138,4 @@ function ResumePage({ resumes }) {
     );
 }
 
-export default ResumePage;
+export default UserResumeListPage;

@@ -1,9 +1,10 @@
-import { AppPage } from "@/5Layouts/AppPage/AppPage";
-import { AuthContext } from "@/8Shared/store/AuthContext";
-import { usePage } from "@inertiajs/react";
 import React from "react";
-import s from "./ResumeList.module.css";
+import { AuthContext } from "@/8Shared/store/AuthContext";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
+import { usePage } from "@inertiajs/react";
 import AppText from "@/8Shared/ui/AppText/AppText";
+import s from "./ResumeListPage.module.css"
+
 
 function ResumeListAll({resumes}){
 

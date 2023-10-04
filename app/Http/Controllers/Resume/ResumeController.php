@@ -21,7 +21,7 @@ class ResumeController extends Controller
     {
         $resumes = Resume::all();
 
-        return Inertia::render('ResumeList/ResumeListAll', [
+        return Inertia::render('ResumeListPage/ui/ResumeListPage/ResumeListPage', [
             'title' => 'Резюме',
             'resumes' => $resumes
         ]);
@@ -33,7 +33,7 @@ class ResumeController extends Controller
 
         $resumes = DB::table('resumes')->where('user_id', $user->id)->get();
 
-        return Inertia::render('ResumeList/ResumeList', [
+        return Inertia::render('UserResumeListPage/ui/UserResumeListPage/UserResumeListPage', [
             'title' => 'Мои резюме',
             'resumes' => $resumes
         ]);
