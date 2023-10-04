@@ -84,54 +84,19 @@ function ResumePage({ resumes }) {
                                             />
 
                                             <AppText
-                                                text={
-                                                    <span
-                                                        className={s.skillUser}
-                                                    >
-                                                        Регион
-                                                    </span>
-                                                }
+                                                text={"Регион: ".concat(resume.region)}
                                                 size="xs"
                                             />
+                                            <AppText
+                                                text={"Опыт работы: ".concat(resume.experience)}
+                                                size="xs"
+                                            />
+                                            <AppText
+                                                text={"Образование: ".concat(resume.education)}
+                                                size="xs"
+                                            />
+                                        </div>  
                                             
-                                            <AppText
-                                                text={resume.region}
-                                                size="xs"
-                                            />
-
-                                            <AppText
-                                                text={
-                                                    <span
-                                                        className={s.skillUser}
-                                                    >
-                                                        Образование
-                                                    </span>
-                                                }
-                                                size="xs"
-                                            />
-                                           
-                                            <AppText
-                                                text={resume.education}
-                                                size="xs"
-                                            />
-                                                
-                                            <AppText
-                                            text={
-                                                <span
-                                                        className={s.skillUser}
-                                                >
-                                                    Опыт работы
-                                                </span>
-                                            }
-                                                size="xs"
-                                            />
-                                           
-                                            <AppText
-                                                text={resume.experience}
-                                                size="xs"
-                                            />
-                                        </div>
-                                        
                                         <div class={s.userPhoto}>
                                             НЕТ ФОТО
                                             {/* <img src="#" className={s.imgUserPhoto}/> */}
