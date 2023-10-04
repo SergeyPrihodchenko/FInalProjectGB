@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
-use App\Models\User_like_vacancy;
+use App\Models\UserLikeVacancies;
 use App\Models\Vacancy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
@@ -20,7 +20,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user_id = auth()->id();
-        $like_vacancy = User_like_vacancy::where('user_id', $user_id)->get('vacancy_id')->toArray();
+        $like_vacancy = UserLikeVacancies::where('user_id', $user_id)->get('vacancy_id')->toArray();
         $likesArr = [];
         foreach ($like_vacancy as $value) {
             $likesArr[] = $value['vacancy_id'];

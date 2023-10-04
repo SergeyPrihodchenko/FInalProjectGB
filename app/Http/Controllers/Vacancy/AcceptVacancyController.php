@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User_click_vacancy;
+use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -12,7 +12,7 @@ class AcceptVacancyController extends Controller
     public function index()
     {
         $id = auth()->id();
-        $vacancies = User_click_vacancy::where('user_id', $id)->get('vacancy_id')->toArray();
+        $vacancies = UserResponseVacancies::where('user_id', $id)->get('vacancy_id')->toArray();
         $arrVacancies = [];
         foreach ($vacancies as $value) {
             $arrVacancies[] = $value['vacancy_id'];
@@ -34,6 +34,6 @@ class AcceptVacancyController extends Controller
         $user_id = $request['user_id'];
         $vacancy_id =$request['vacancy_id'];
 
-        User_click_vacancy::create(['user_id' => $user_id, 'vacancy_id' => $vacancy_id]);
+        UserResponseVacancies::create(['user_id' => $user_id, 'vacancy_id' => $vacancy_id]);
     }
 }
