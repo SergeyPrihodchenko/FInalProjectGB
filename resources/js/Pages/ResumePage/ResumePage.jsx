@@ -9,12 +9,12 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
 function ResumePage({ resume, author }) {
-    //console.log(resume);
+    //console.log(author.email);
     const user = usePage().props.auth.user;
-    const userEmail = usePage().props.auth.user.email;
-
+    //console.log(user.email);
     const { data } = useForm({
         author_email: author.email,
+        user_email: user.imail,
         user_id: user.id,
         profession: resume.profession,
         first_name: resume.first_name,
@@ -115,7 +115,7 @@ function ResumePage({ resume, author }) {
                     + 
                 (declOfNum(end.setMonth() < start.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
             )
-        }
+        }        
           
     return (
         <>
@@ -123,6 +123,7 @@ function ResumePage({ resume, author }) {
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
                         <div className={s.buttonLinkResumeList}>
+{/* прописать кнопку не активной если просматривает не владелец резюме                             */}
                             <AppButton
                                 href={route("resume.myresumes")}
                                 variant="clear"
@@ -131,13 +132,23 @@ function ResumePage({ resume, author }) {
                             >
                                 К списку моих резюме
                             </AppButton>
+
+                            <AppButton
+                                href={route("resume.index")}
+                                variant="clear"
+                                className={s.linkResumePage}
+                                sizeText = "s"
+                            >
+                                К списку всех резюме
+                            </AppButton>
                         </div>
                         <div class={s.baceData}>
                             <div class={s.userBaceData}>
-                                <AppText 
+{/* прописать кнопку не активной если просматривает не владелец резюме */}
+                                {/* <AppText 
                                     text={"Сейчас на сайте"} 
                                     size="s" 
-                                />
+                                /> */}
                                 <AppText
                                     title={data.last_name.concat(" ", data.first_name)}
                                     size="s"
@@ -400,8 +411,8 @@ function ResumePage({ resume, author }) {
                                 variant={"error"}
                             /> */}
                         </div>
-                       
-                        <div className={s.buttonSave}>
+{/* прописать кнопку не активной если просматривает не владелец резюме                        */}
+                        {/* <div className={s.buttonSave}>
                             <AppButton
                                 path={"resume.edit"}
                                 param={resume.id}
@@ -413,7 +424,7 @@ function ResumePage({ resume, author }) {
                             >
                                 <span>Редактировать</span>
                             </AppButton>
-                        </div>
+                        </div> */}
                     </main>
                 </container>
             </AppPage>

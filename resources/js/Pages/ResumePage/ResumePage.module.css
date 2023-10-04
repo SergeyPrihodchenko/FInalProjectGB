@@ -14,10 +14,16 @@
     font: var(--font-s);
 }
 
-.buttonLinkResumeList,
 .company{
     display: flex;
     justify-content: start;
+}
+
+.buttonLinkResumeList{
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .baceData{
