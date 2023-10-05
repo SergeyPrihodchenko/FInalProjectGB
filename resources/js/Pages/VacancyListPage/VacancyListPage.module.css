@@ -175,3 +175,13 @@
     right: 20px;
     z-index: 1000;
 }
+
+.addToFavouriteBtn:hover {
+    color: tomato;
+}
+
+.vacancyListCardBtnWrapper {
+    display: flex;
+    margin-top: auto;
+    gap: 10px;
+}

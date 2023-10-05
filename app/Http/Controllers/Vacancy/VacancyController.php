@@ -31,6 +31,14 @@ class VacancyController
         $cities = City::all(['id', 'title']);
         $likes = User_like_vacancy::getVacancyIdArray(auth()->id());
         $responsedVacancy = User_click_vacancy::where('user_id', auth()->id())->get('vacancy_id');
+        
+        if(!empty($responsedVacancy)){
+            $arr = [];
+            foreach($responsedVacancy as $value){
+                $arr[] = $value->getAttributes()['vacancy_id'];
+            }
+            $responsedVacancy = $arr;
+        }
 
         return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',

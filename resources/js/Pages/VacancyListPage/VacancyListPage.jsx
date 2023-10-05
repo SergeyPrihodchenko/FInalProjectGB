@@ -1,6 +1,5 @@
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { router } from '@inertiajs/react'
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
@@ -15,8 +14,10 @@ import VacancyListPageFilters from "./ui/VacancyListPageFilters/VacancyListPageF
 import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "@/1App/providers/counterSlice/counterSlice";
-import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
+import FavouriteButton from "@/8Shared/ui/FavouriteButton/FavouriteButton";
+import { fetchVacancyList, loadVacancyOnScroll, setFavouritesList, setPageIndex, setStatus, setVacancyList } from "./model/slice/vacancyListPageSlice";
+
+
 
 const VacancyListPage = ({
     vacancies,
@@ -29,12 +30,25 @@ const VacancyListPage = ({
     likes,
     responsedVacancy
 }) => {
-    console.log('responsedVacancy', responsedVacancy);
+
+    const dispatch = useDispatch();
+
+    const {
+        favouritesList,
+        vacancyList,
+        pageIndex,
+        total,
+        status,
+        error
+    } = useSelector((state) => state.vacancyListPage);
+    console.log('vacancyList', vacancyList);
+
+
     const user = auth?.user;
-    const [vacancyList, setVacancyList] = useState([]);
+    // const [vacancyList, setVacancyList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
-    const [total, setTotal] = useState(0);
+    // const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
 
     const [extendedDescription, setExtendedDescription] = useState(false);
@@ -58,10 +72,9 @@ const VacancyListPage = ({
 
 
     const [favourites, setIsFavourites] = useState(likes);
+    const [responsesIdList, setResponsesIdList] = useState(responsedVacancy);
 
-    console.log('vacancySearchInput', vacancySearchInput);
-    console.log('vacancies', vacancies);
-    console.log(favourites);
+
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
@@ -77,48 +90,26 @@ const VacancyListPage = ({
         })
     }
 
-    const toggleFavourites = async (id) => {
-        if (!favourites.length) {
-            setIsFavourites([...favourites, id]);
-            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-        } else {
-            if (favourites.includes(id)) {
-                setIsFavourites(favourites.filter((favourite) => favourite !== id))
-                await axios.post('/deleteLike', { id: { vacancy_id: id } });
-
-            } else {
-                setIsFavourites([...favourites, id]);
-                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-
-            }
-        }
-
-    }
-    const isInFavourite = (id, list) => {
-        return list.some(el => el === id)
-    }
     const handleAnswer = async (vacancy_id) => {
         try {
             await axios.post('/PageUserResponses/accept', {
                 user_id: user.id,
                 vacancy_id: vacancy_id
-            })
+            });
+            setResponsesIdList([...responsesIdList, vacancy_id]);
         } catch (e) {
             console.log(e.message);
         }
     }
-    // const getFilterData = async () => {
-    //     const response = await axios.post(`/vacancies/filter?page=1`, {
-    //         filterData: filterData,
-    //     });
-    //     const { data } = response.data;
-    //     setVacancyList(data);
-    //     setTotal(response.data.total);
-    //     setIndex((prevIndex) => prevIndex + 1);
-    //     console.log(data);
-    // };
-    // getFilterData();
+    const isResponsedVacancy = (id, list) => {
+        return list.some(el => el === id);
+    }
 
+
+
+    useEffect(() => {
+        dispatch(setFavouritesList(likes));
+    }, [favouritesList]);
 
     useEffect(() => {
         // if (!debouncedVacancySearch) return;
@@ -157,26 +148,32 @@ const VacancyListPage = ({
     const fetchVacancyCards = useCallback(async () => {
         if (isLoading) return;
 
-        setIsLoading(true);
+        // setIsLoading(true);
+        // dispatch(setStatus('loading'));
 
-        axios
-            .post(`/vacancies/filter?page=${index}`, { filterData: filterData })
-            .then((res) => {
-                if (res.data.data.length) {
-                    setVacancyList((prevVacancyList) => [
-                        ...prevVacancyList,
-                        ...res.data.data,
-                    ]);
-                    setIsLoading(false);
-                } else {
-                    return;
-                }
-            })
-            .catch((err) => console.log(err))
-            .finally(() => setIsLoading(false));
+        dispatch(loadVacancyOnScroll(filterData));
 
-        setIndex((prevIndex) => prevIndex + 1);
-    }, [index, isLoading]);
+
+        // axios
+        //     .post(`/vacancies/filter?page=${index}`, { filterData: filterData })
+        //     .then((res) => {
+        //         if (res.data.data.length) {
+        //             // setVacancyList((prevVacancyList) => [
+        //             //     ...prevVacancyList,
+        //             //     ...res.data.data,
+        //             // ]);
+        //             setIsLoading(false);
+        //         } else {
+        //             return;
+        //         }
+        //     })
+        //     .catch((err) => console.log(err))
+        //     .finally(() => setIsLoading(false));
+        // setIsLoading(false);
+        dispatch(setPageIndex(pageIndex + 1));
+        // dispatch(setStatus('rejected'));
+        // setIndex((prevIndex) => prevIndex + 1);
+    }, [pageIndex, isLoading]);
 
     useEffect(() => {
         if (vacancyList.length !== total) {
@@ -194,43 +191,19 @@ const VacancyListPage = ({
             return () => {
                 if (loaderRef.current) {
                     observer.unobserve(loaderRef.current);
-                    setIsLoading(false);
+                    // setIsLoading(false);
+                    // dispatch(setStatus('rejected'));
                 }
             };
         }
     }, [loaderRef, vacancyList]);
 
-    // useEffect(() => {
-    //     if (!vacancies) {
-    //         const getData = async () => {
-    //             setIsLoading(true);
-    //             try {
-    //                 const response = await axios.post(`/vacancies/filter?page=1`, { filterData: {} });
-    //                 setVacancyList(response.data.data);
-    //                 setTotal(response.data.total);
-    //             } catch (error) {
-    //                 console.log(error);
-    //             }
-    //             setIsLoading(false);
-    //         };
 
-    //         getData();
-    //     }
-    // }, []);
-
-    // const setValueChange = (value) => {
-    //     setFilterData((prevState) => {
-    //         return {
-    //             ...prevState,
-    //             title: value,
-    //         };
-    //     });
-    //     console.log(filterData.title);
-    // };
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
-        setIndex(1);
+        // setIndex(1);
+        dispatch(setPageIndex(1));
 
         switch (type) {
             case "checkbox":
@@ -266,37 +239,28 @@ const VacancyListPage = ({
     };
 
     useEffect(() => {
-        const getFilterData = async () => {
-            const response = await axios.post(`/vacancies/filter?page=1`, {
-                filterData: filterData,
-            });
-            const { data } = response.data;
-            setVacancyList(data);
-            setTotal(response.data.total);
-            setIndex((prevIndex) => prevIndex + 1);
-            console.log(data);
-        };
-        getFilterData();
-    }, [filterData]);
+        dispatch(fetchVacancyList(filterData));
+        // dispatch(setPageIndex(pageIndex + 1));
 
-    // ---------- Redux ----------
-    // const counter = useSelector((state) => state.counter.value);
-    // const dispatch = useDispatch();
-    // const handlIncrement = () => {
-    //     dispatch(increment());
-    // }
-    // const handlDecrement = () => {
-    //     dispatch(decrement());
-    // }
+
+        // const getFilterData = async (filterData) => {
+        //     const response = await axios.post(`/vacancies/filter?page=1`, {
+        //         filterData: filterData,
+        //     });
+        //     const { data } = response.data;
+        //     setVacancyList(data);
+        //     setTotal(response.data.total);
+        //     setIndex((prevIndex) => prevIndex + 1);
+        //     console.log(data);
+        // };
+        // getFilterData(filterData);
+    }, [filterData]);
 
     return (
         <>
             <Head title={title} />
             <AppPage>
-                {/* Redux */}
-                {/* <button onClick={handlIncrement}>+</button>
-                <button onClick={handlDecrement}>-</button>
-                <b>count: {counter}</b> */}
+                <button onClick={() => dispatch(setPageIndex(pageIndex + 1))}>btn</button>
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
@@ -341,7 +305,7 @@ const VacancyListPage = ({
 
                     <div className={s.vacancyList}>
                         <div className={s.descBlock}>
-                            {vacancyList.length > 0 ?
+                            {vacancyList?.length > 0 ?
                                 <AppText bold text={`Найдено ${total} вакансии`} /> :
                                 <AppText bold text={`Ничего не найдено`} />
                             }
@@ -373,7 +337,7 @@ const VacancyListPage = ({
                             </div>
 
                         </div>
-                        {vacancyList.map(vac =>
+                        {vacancyList?.map(vac =>
                             <div className={s.vacancyListCardWrapper}>
 
                                 <AppCard
@@ -434,32 +398,41 @@ const VacancyListPage = ({
                                             className={s.vacancyListCardDesc}
                                         />
                                     }
+                                    <div className={s.vacancyListCardBtnWrapper}>
+                                        <AppButton
+                                            onClick={() => handleAnswer(vac.id)}
+                                            className={s.vacancyListCardBtn}
+                                            width="auto"
+                                        >
+                                            Откликнуться
+                                        </AppButton>
+                                        <AppButton
+                                            path={'vacancy.show'}
+                                            param={vac.id}
+                                            variant='outline'
+                                            width="auto"
+                                            colorType="normal"
+                                        >
+                                            Посмотреть
+                                        </AppButton>
 
-                                    <AppButton
-                                        onClick={() => handleAnswer(vac.id)}
-                                        className={s.vacancyListCardBtn}
-                                        width="auto"
-                                    >
-                                        Откликнуться
-                                    </AppButton>
+                                    </div>
 
                                 </AppCard>
+                                {auth.user &&
+                                    <FavouriteButton
+                                        favourites={likes}
+                                        id={vac.id}
+                                        user={auth?.user}
+                                        className={s.addToFavouriteBtn}
+                                    />
 
-                                <AppButton
-                                    variant={'clear'}
-                                    className={cn(s.addToFavouriteBtn)}
-                                    onClick={() => toggleFavourites(vac.id)}
-                                >
-                                    {isInFavourite(vac.id, favourites) ?
-                                        <BootstrapIcon name={'BsHeartFill'} size={28} />
-                                        :
-                                        <BootstrapIcon name={'BsHeart'} size={28} />
+                                }
 
-                                    }
-                                </AppButton>
+
                             </div>
                         )}
-                        <div ref={loaderRef}>{isLoading && <Loader />}</div>
+                        <div ref={loaderRef}>{status === 'loading' && <Loader />}</div>
                     </div>
                 </div>
             </AppPage>

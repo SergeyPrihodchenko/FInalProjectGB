@@ -25,3 +25,9 @@
     border: none;
     background-color: var(--light-bg);
 }
+
+.favList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

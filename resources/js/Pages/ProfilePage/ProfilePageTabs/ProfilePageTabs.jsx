@@ -10,91 +10,79 @@ import List from '@/8Shared/List/List';
 import AppCard from '@/8Shared/ui/AppCard/AppCard';
 import AppLink from '@/8Shared/ui/AppLink/AppLink';
 import AppButton from '@/8Shared/ui/AppButton/AppButton';
-import { BootstrapIcon } from '@/8Shared/Icon/BootstrapIcon';
+
+
 
 function ProfilePageTabs(props) {
     const {
         favourite_vacancies
     } = props;
+
     const ProfilePageFormAll = <ProfilePageForm />;
 
     const favList = <List
+        className={s.favList}
         list={favourite_vacancies}
         renderItem={(vac) =>
-            <div className={s.vacancyListCardWrapper}>
-                <AppLink
-
-                    path={'vacancy.show'}
-                    param={vac.id}
-                    key={vac.id}
+            <AppLink
+                path={'vacancy.show'}
+                param={vac.id}
+                key={vac.id}
+            >
+                <AppCard
+                    width={'auto'}
+                    height={`260px`}
+                    shadow
+                    className={cn(s.vacancyListCard)}
                 >
-                    <AppCard
-                        width={'auto'}
-                        height={`260px`}
-                        shadow
-                        className={cn(s.vacancyListCard)}
+                    <AppText
+                        title={vac.title}
+                    />
+                    <AppText
+                        text={`от ${vac.payment} руб.`}
+                    />
+                    <AppText
+                        text={`Компания ${vac.conditions}.`}
+                    />
+                    <AppText
+                        size="s"
+                        variant="notaccented"
+                        text={`Город: ${vac.city}`}
+                    />
+
+                    <AppText
+                        size="s"
+                        variant="notaccented"
+                        text={`Опыт работы: ${vac.experience}`}
+                        className={s.vacancyListCardExp}
+                    />
+                    <div className={s.vacancyListCardParam}>
+                        <AppText
+                            size={'s'}
+                            variant={'secondary'}
+                            text={vac.employment}
+                            className={s.vacancyListCardEmployment}
+                        />
+                        <AppText
+                            size={'s'}
+                            variant={'secondary'}
+                            text={vac.schedule}
+                            className={s.vacancyListCardSchedule}
+
+                        />
+
+                    </div>
+
+                    <AppButton
+                        className={s.vacancyListCardBtn}
+                        width="auto"
                     >
-                        <AppText
-                            title={vac.title}
-                        />
-                        <AppText
-                            text={`от ${vac.payment} руб.`}
-                        />
-                        <AppText
-                            text={`Компания ${vac.conditions}.`}
-                        />
-                        <AppText
-                            size="s"
-                            variant="notaccented"
-                            text={`Город: ${vac.city}`}
-                        />
+                        Откликнуться
+                    </AppButton>
 
-                        <AppText
-                            size="s"
-                            variant="notaccented"
-                            text={`Опыт работы: ${vac.experience}`}
-                            className={s.vacancyListCardExp}
-                        />
-                        <div className={s.vacancyListCardParam}>
-                            <AppText
-                                size={'s'}
-                                variant={'secondary'}
-                                text={vac.employment}
-                                className={s.vacancyListCardEmployment}
-                            />
-                            <AppText
-                                size={'s'}
-                                variant={'secondary'}
-                                text={vac.schedule}
-                                className={s.vacancyListCardSchedule}
+                </AppCard>
+            </AppLink>}
 
-                            />
-
-                        </div>
-
-                        <AppButton
-                            className={s.vacancyListCardBtn}
-                            width="auto"
-                        >
-                            Откликнуться
-                        </AppButton>
-
-                    </AppCard>
-                </AppLink>
-                {/* <AppButton
-                    variant={'clear'}
-                    className={cn(s.addToFavouriteBtn)}
-                    onClick={() => toggleFavourites(vac.id)}
-                >
-                    {isInFavourite(vac.id, favourites) ?
-                        <BootstrapIcon name={'BsHeartFill'} size={28} />
-                        :
-                        <BootstrapIcon name={'BsHeart'} size={28} />
-
-                    }
-                </AppButton> */}
-            </div>
-        }
     />
 
     // console.log(ProfilePageFormAll);
@@ -117,7 +105,10 @@ function ProfilePageTabs(props) {
         'Избранное': [
             {
                 id: 1,
-                desc: favList,
+                desc: favourite_vacancies.length ? favList : <p>
+                    У вас нет избранных вакансий<br />
+                    Если вам понравилась вакансия, которую вы нашли в нашем поиске, вы можете добавить её в избранное, чтобы не потерять её и вернуться к ней позже
+                </p>,
             },
         ],
 
