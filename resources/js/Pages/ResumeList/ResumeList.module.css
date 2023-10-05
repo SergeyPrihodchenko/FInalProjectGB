@@ -1,14 +1,19 @@
 .mainResumeList {
     margin: 0;
     padding: 0;
-    width: 886px;
 }
 
 .titleResumeList {
     margin: 40px 0px 30px 0px;
 }
 
+.resumeListPage{
+    display: flex;
+}
+
 .resumeList {
+    width: 886px;
+    height: 213px;
     margin: 50px 0px 30px 0px;
     padding: 10px 10px 10px 10px;
 
@@ -53,3 +58,34 @@
     border: 2px solid var(--accent);
     border-radius: var(--border-radius-s);
 } */
+
+.checkboxResume{
+    display: flex;
+}
+
+.checkboxResumeEl{
+    width: 24px;
+    height: 24px;
+    margin-top: 10px;
+}
+
+.checkboxResumeText{
+    margin: 10px 0px 0px 10px;
+}
+
+.checkboxEnding{
+    width: 24px;
+    height: 24px;
+}
+
+.textTitleEnding {
+    padding: 3px 0px 0px 10px;
+}
+
+.textTitle{
+    margin: 10px 0px 10px 0px;
+}
+
+.incomeLevel{
+    font-size: var(--font-line-xs);
+}
