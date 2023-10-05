@@ -10,7 +10,7 @@ import {
 } from "../../model/slice/vacancyPageCreateSlice";
 import cn from "classnames";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
-function VacancyCreateResponsibilities(props) {
+function VacancyCreateResponsibilities({errors}) {
     const dispatch = useDispatch();
     const { responsibilitiesInput, responsibilitiesList } = useSelector(
         (state) => state.vacancyPageCreate
@@ -47,7 +47,7 @@ function VacancyCreateResponsibilities(props) {
                 </div>
             ) : null}
             <AppInput
-                errorMessage={errors}
+                 errorMessage={errors.title}
                 label="Обязаность сотрудника"
                 value={responsibilitiesInput}
                 onChange={(e) => {

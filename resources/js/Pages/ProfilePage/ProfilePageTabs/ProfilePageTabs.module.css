@@ -1,12 +1,11 @@
 .navProfilePage {
     margin-top: 23px;
     margin-bottom: 63px;
-
 }
 
 .navSettings {
     list-style-type: none;
-    border-bottom: 2px solid var(--dark-bg);
+    border-bottom: 2px solid var(--additional-bg);
     margin-bottom: 50px;
 }
 
@@ -23,6 +22,7 @@
 
 .tabCategories {
     border: none;
+<<<<<<< HEAD
     background-color: var(--light-bg);
 }
 
@@ -31,3 +31,7 @@
     flex-direction: column;
     gap: 20px;
 }
+=======
+    background-color: var(--main-bg);
+}
+>>>>>>> main

@@ -34,6 +34,7 @@ function VacancyCreateMainInfo({ errors }) {
                 onChange={(e) => {
                     dispatch(setVacancyCityInput(e.target.value));
                 }}
+                errorMessage={errors.title}
             />
             <div>
                 <AppText
@@ -51,6 +52,7 @@ function VacancyCreateMainInfo({ errors }) {
                                     setVacancyPaymentInput(e.target.value)
                                 );
                             }}
+                            errorMessage={errors.payment}
                         />
                     </div>
 

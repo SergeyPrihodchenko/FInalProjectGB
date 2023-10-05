@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AcceptVacancyController;
+use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Http\Controllers\Company\CompanyController;
 
 
@@ -22,7 +22,7 @@ Route::get('/searchSort', [MainController::class, 'beforeSearchSort']);
 Route::get('/category/search', [MainController::class, 'searchSort'])->name('category.sort');
 
 Route::get('/testPageCompany', function () {
-    return Inertia::render('CompanyPage/CompanyPage');
+    return Inertia::render('CompanyPage/ui/CompanyPage/CompanyPage');
 })->name('company');
 
 Route::get('/profilePage',[ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profilePage');

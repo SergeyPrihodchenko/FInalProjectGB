@@ -8,8 +8,8 @@ use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\City;
 use App\Models\Company;
-use App\Models\User_click_vacancy;
-use App\Models\User_like_vacancy;
+use App\Models\UserLikeVacancies;
+use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -29,8 +29,8 @@ class VacancyController
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
-        $likes = User_like_vacancy::getVacancyIdArray(auth()->id());
-        $responsedVacancy = User_click_vacancy::where('user_id', auth()->id())->get('vacancy_id');
+        $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
+        $responsedVacancy = UserResponseVacancies::where('user_id', auth()->id())->get('vacancy_id');
         
         if(!empty($responsedVacancy)){
             $arr = [];
@@ -53,6 +53,7 @@ class VacancyController
 
     public function show(Vacancy $vacancy): \Inertia\Response
     {
+        $cities = City::all();
         $contacts = json_decode($vacancy->contacts);
         $requirements = json_decode($vacancy->requirements);
         $responsibilities = json_decode($vacancy->responsibilities);
@@ -66,6 +67,7 @@ class VacancyController
             'responsibilities' => $responsibilities,
             'conditions' => $conditions,
             'skills' => $skills,
+            'cities' => $cities,
         ]);
     }
 

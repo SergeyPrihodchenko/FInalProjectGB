@@ -1,5 +1,5 @@
 .formProfilePage {
-    background-color: #CFF3FE;
+    background-color: #cff3fe;
 }
 
 .formProfile {
@@ -9,9 +9,9 @@
 }
 
 .textForm {
-    width: 30%;  
+    width: 30%;
     float: left;
-    font-size: var(--font-size-m);    
+    font-size: var(--font-size-m);
 }
 
 .inputFormProfile,
@@ -19,31 +19,31 @@
     border: none;
     width: 400px;
     height: 40px;
-    background-color: #CFF3FE;
+    background-color: #cff3fe;
     padding-right: 0px;
     padding-bottom: 20px;
     margin-right: 200px;
 }
 
 .inputFormProfile::placeholder,
-.inputFormProfileUpdate::placeholder  {
+.inputFormProfileUpdate::placeholder {
     font-size: var(--font-size-s);
-    color: var(--dark-bg);
-    font-family: var(--font-family-main); 
+    color: var(--additional-bg);
+    font-family: var(--font-family-main);
     padding-left: 10px;
 }
 
-.inputFormProfileUpdate{
+.inputFormProfileUpdate {
     margin-right: 300px;
 }
 
 .btnFormProfile {
     margin-top: 10px;
     border: none;
-    background-color: #CFF3FE;
+    background-color: #cff3fe;
 }
 
 .divLeft {
-    float: right; 
-    margin-right: 12px; 
+    float: right;
+    margin-right: 12px;
 }

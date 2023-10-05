@@ -16,10 +16,12 @@ import { useSelector } from "react-redux";
 
 const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage(props) {
-    const { auth, vacancy } = props;
+    const { auth, vacancy, cities } = props;
     const user = auth?.user;
+    const city = cities?.[vacancy.city_id]?.title || "Город не указан";
 
-
+    // console.log("vacancy", vacancy);
+    // console.log("city", city);
     return (
         <>
             <Head title="VacancyPage" />
@@ -37,6 +39,7 @@ function VacancyPage(props) {
                         <VacancyPageCards
                             className={s.cards}
                             vacancy={vacancy}
+                            city={city}
                         />
                         <VacancyPageList
                             vacancy={vacancy}

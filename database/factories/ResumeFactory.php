@@ -30,7 +30,13 @@ class ResumeFactory extends Factory
             'experience' => 'менее года',
             'skills' => ['Economy'],
             'educational_institute' => [],
-            'companies' => []
+            'companies' => [],
+            'salary' => $this->faker->numberBetween(20000, 250000),
+            'employment_type' => 'Удаленая работа',
+            'schedule_type' => 'Полная занятость',
+            'relocation' => 'Возможно',
+            'buisness_travel' => 'Готов',
+            'about_me' => 'Some text  about yourself'
         ];
     }
 }

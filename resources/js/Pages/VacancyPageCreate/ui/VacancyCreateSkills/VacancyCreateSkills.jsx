@@ -12,7 +12,7 @@ import {
 } from "../../model/slice/vacancyPageCreateSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-function VacancyCreateSkills(props) {
+function VacancyCreateSkills({ errors }) {
     const dispatch = useDispatch();
     const { skillsInput, skillsList } = useSelector(
         (state) => state.vacancyPageCreate
@@ -43,6 +43,7 @@ function VacancyCreateSkills(props) {
             ) : null}
             <div className={cn(s.skills, s.item)}>
                 <AppInput
+                    errorMessage={errors.title}
                     label="Ключевые навыки"
                     value={skillsInput}
                     onChange={(e) => {

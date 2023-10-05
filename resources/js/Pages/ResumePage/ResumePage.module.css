@@ -1,72 +1,71 @@
 .containerResumePage {
     margin: 0;
-    padding: 0;    
+    padding: 0;
 }
 .mainResumePage {
     margin: 30px 0px 40px 0px;
 }
 
 .linkResumePage,
-.userEmailText{
-    color: var( --accent);
+.userEmailText {
+    color: var(--accent);
     border: none;
-    background: var(--light-bg);
+    background: var(--main-bg);
     font: var(--font-s);
 }
 
 .buttonLinkResumeList,
-.company{
+.company {
     display: flex;
     justify-content: start;
 }
 
-.baceData{
+.baceData {
     padding: 20px 0px 30px 0px;
 
     display: flex;
     justify-content: space-between;
 
-    background: var(--light-bg);
+    background: var(--main-bg);
     border-width: 0px 1px 1px 0px;
     border-style: solid;
-    border-color: var(--primary-text);  
+    border-color: var(--primary-text);
 }
 
 .userBaceData {
     width: 770px;
 }
 
-.userDataForm, 
-.userAddress, 
-.employment, 
+.userDataForm,
+.userAddress,
+.employment,
 .schedule,
 .userEmail,
-.aboutUserTitle{
+.aboutUserTitle {
     display: flex;
 }
 
-.userData, 
-.userContacts, 
-.userBaceAddress, 
+.userData,
+.userContacts,
+.userBaceAddress,
 .userSearchArea,
 .aboutUserTitle,
 .company,
-.keySkills{
+.keySkills {
     padding-bottom: 10px;
     padding-top: 10px;
 }
 
-.userContactsPhone{
+.userContactsPhone {
     width: 100px;
     border-bottom: 1px solid var(--primary-text);
 }
 
-.userEmailText{
-    width: 160px;
+.userEmailText {
     border-bottom: 1px solid var(--accent);
 }
 
-.imgUserPhoto{
+.imgUserPhoto {
     width: 200px;
     height: 183px;
 
@@ -89,35 +88,35 @@
 }
 
 .userWorkPeriod,
-.userEducationPeriod{
+.userEducationPeriod {
     width: 310px;
     padding-top: 7px;
 }
 
 .workPeriods,
-.educationPeriods{
+.educationPeriods {
     display: flex;
     flex-direction: row;
     padding-bottom: 20px;
 }
 
 .descriptionExperience,
-.descriptionEducation{
+.descriptionEducation {
     padding-left: 20px;
 }
 
-.keySkillsTextAll{
-    display:inline-block;
+.keySkillsTextAll {
+    display: inline-block;
     margin-right: 20px;
     padding-bottom: 13px;
-} 
+}
 
-.keySkillsText{
+.keySkillsText {
     width: 226px;
     height: 33px;
 
     background: var(--light-skeleton-shadow);
-    border: 1px solid var(--dark-bg);
+    border: 1px solid var(--additional-bg);
     border-radius: var(--border-radius-s);
     text-align: center;
 
@@ -128,22 +127,22 @@
     margin: 10px 10px 40px 1030px;
 }
 
-.emailLeftText{
+.emailLeftText {
     padding-left: 10px;
 }
 
-.userPhoto{
+.userPhoto {
     width: 200px;
     height: 200px;
     color: var(--accent);
-    background-color: var( --light-bg);
+    background-color: var(--main-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
     padding-top: 90px;
     text-align: center;
 }
 
-.aboutUserTextAll{
+.aboutUserTextAll {
     padding-bottom: 30px;
     padding-top: 10px;
 }
