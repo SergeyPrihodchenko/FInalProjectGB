@@ -156,7 +156,6 @@
 
 .disabled {
     pointer-events: none;
-    border: 2px solid var(--secondary-bg);
-    background-color: var(--secondary-text);
-    color: var(--secondary-bg);
+    opacity: var(--opacity30);
+    transition: linear var(--transition-delay);
 }

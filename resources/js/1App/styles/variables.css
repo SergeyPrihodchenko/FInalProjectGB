@@ -37,6 +37,8 @@
 
     /* Opacity */
     --opacity70: 0.7;
+    --opacity50: 0.5;
+    --opacity30: 0.3;
 
     /* Sizes */
     --header-height: 75px;
@@ -56,4 +58,13 @@
     /* Border-radius */
     --border-radius-l: 33px;
     --border-radius-s: 8px;
+
+    /* Indent-Margin-Padding*/
+    --indent-xxs: 8px;
+    --indent-xs: 12px;
+    --indent-s: 16px;
+    --indent-l: 20px;
+    --indent-xl: 24px;
+    --indent-xxl: 32px;
+    --indent-xxxl: 40px;
 }

@@ -7,7 +7,7 @@ import cn from "classnames";
 import Map from "./Map";
 
 function VacancyPageAdress(props) {
-    const { className, vacancy } = props;
+    const { className, adress } = props;
     // MAP
     const [x, setX] = useState(55.70104408991864);
     const onXChange = (e) => setX(e.target.value);
@@ -29,11 +29,7 @@ function VacancyPageAdress(props) {
     return (
         <div className={cn(s.vacancyPageAdress, className)}>
             <AppText title="Адрес" bold />
-            <AppText
-                text="Москва, Южнопортовая улица, 21с7."
-                size="s"
-                className={s.text}
-            />
+            <AppText text={adress?.strAdress} size="m" className={s.text} />
             {/* <div className={s.mapStub}>
                 <AppText
                     title="Тут будет карта"
@@ -42,7 +38,7 @@ function VacancyPageAdress(props) {
                 />
             </div> */}
 
-            {vacancy?.adress ? (
+            {adress?.coordinates ? (
                 <>
                     <Map
                         className={s.map}

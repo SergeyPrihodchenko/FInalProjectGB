@@ -14,7 +14,7 @@ import { setIsEmployer } from "../model/slice/navbarSlice";
 export const Navbar = (props) => {
     const { user } = props;
     const isEmployer = useSelector((state) => state.navabr.isEmployer);
-    console.log("isEmployer", isEmployer);
+    // console.log("isEmployer", isEmployer);
 
     const dispatch = useDispatch();
     return (
@@ -53,13 +53,13 @@ export const Navbar = (props) => {
                                 Вакансии
                             </AppLink>
                         </li>{" "}
-                        <AppLink
+                        {/* <AppLink
                             colorType="accent"
                             href={route("company")}
                             className={cn(s.navLink)}
                         >
                             Компания
-                        </AppLink>
+                        </AppLink> */}
                         <AppLink
                             colorType="accent"
                             href={route("company.index")}
