@@ -3,10 +3,13 @@ import { Head } from "@inertiajs/react";
 import cn from "classnames";
 import s from "@/Pages/UserResponsesListPage/UserResponsesListPage.module.css";
 import UserResponsesListPageCard from "@/Pages/UserResponsesListPage/UserResponsesListPageCard.jsx";
+import { useState } from "react";
+import { AppPage } from "@/5Layouts/AppPage/AppPage";
+import AppText from "@/8Shared/ui/AppText/AppText";
 
 const UserResponsesListPage = ({ auth, vacancies }) => {
     const user = auth?.user;
-    console.log(vacancies);
+    const [responsesList, setResponsesList] = useState(vacancies);
     const mockData = [
         {
             id: "1",
@@ -44,21 +47,30 @@ const UserResponsesListPage = ({ auth, vacancies }) => {
             <Head>
                 <title>Отклики</title>
             </Head>
-            <div className={cn(s.userResponsesPageContainer)}>
-                {mockData?.map((item) => (
-                    <UserResponsesListPageCard
-                        key={item.id}
-                        id={item.id}
-                        title={item.title}
-                        conditions={item.conditions}
-                        employment={item.employment}
-                        payment={item.payment}
-                        experience={item.experience}
-                        schedule={item.schedule}
-                        logo={item.logo}
-                    />
-                ))}
-            </div>
+            <AppPage>
+                <AppText
+                    title={'Отклики и приглашения'}
+                    size={'m'}
+                    bold
+                    className={s.userResponsesPageTitle}
+                />
+                <div className={cn(s.userResponsesPageContainer)}>
+                    {responsesList?.map((item) => (
+                        <UserResponsesListPageCard
+                            key={item.id}
+                            id={item.id}
+                            title={item.title}
+                            conditions={item.conditions}
+                            employment={item.employment}
+                            payment={item.payment}
+                            experience={item.experience}
+                            schedule={item.schedule}
+                        // logo={item.logo}
+                        />
+                    ))}
+                    {responsesList.length === 0 && <p>У вас нет активных откликов.</p>}
+                </div>
+            </AppPage>
         </>
     );
 };

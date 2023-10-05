@@ -1,40 +1,53 @@
-.userResponsesPageContainer{
+.userResponsesPageContainer {
     max-width: 1200px;
     margin: 25px auto;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 24px;
 }
+
+.userResponsesPageTitle {
+    margin-top: 20px;
+}
+
 .userResponsesPageCard {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     padding: 15px 20px;
 }
+
 .userResponsesPageCardBtn {
     margin-top: auto;
 }
-.userResponsesPageCardLogo{
+
+.userResponsesPageCardLogo {
     margin-right: 16px;
 }
-.userResponsesPageCardLogoImg{
+
+.userResponsesPageCardLogoImg {
     width: 60px;
     height: 60px;
 }
-.userResponsesPageCardMarginText{
+
+.userResponsesPageCardMarginText {
     margin-bottom: 8px;
 }
-.userResponsesPageCardIconBlock{
+
+.userResponsesPageCardIconBlock {
     display: flex;
     align-items: center;
 }
-.userResponsesPageCardIconBlockIcon{
+
+.userResponsesPageCardIconBlockIcon {
     color: #babdbf;
     font-size: 20px;
 }
-.userResponsesPageCardIconBlockIconML{
+
+.userResponsesPageCardIconBlockIconML {
     margin-left: 5px;
 }
-.userResponsesPageCardIconBlockIconMR{
+
+.userResponsesPageCardIconBlockIconMR {
     margin-right: 5px;
 }
