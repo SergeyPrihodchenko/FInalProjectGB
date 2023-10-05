@@ -122,7 +122,7 @@ function ResumePage({ resume, author }) {
             <AppPage>
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
-                        <div className={s.buttonLinkResumeList}>
+                        {/* <div className={s.buttonLinkResumeList}>
                             <AppButton
                                 href={route("resume.myresumes")}
                                 variant="clear"
@@ -131,13 +131,13 @@ function ResumePage({ resume, author }) {
                             >
                                 К списку моих резюме
                             </AppButton>
-                        </div>
+                        </div> */}
                         <div class={s.baceData}>
                             <div class={s.userBaceData}>
-                                <AppText 
+                                {/* <AppText 
                                     text={"Сейчас на сайте"} 
                                     size="s" 
-                                />
+                                /> */}
                                 <AppText
                                     title={data.last_name.concat(" ", data.first_name)}
                                     size="s"
@@ -156,14 +156,10 @@ function ResumePage({ resume, author }) {
                                     />
                                     <div className={s.userEmail}>
                                         <AppText
-                                            text={
-                                                <span
-                                                className={s.userEmailText}
-                                                >
-                                                { data.author_email }
-                                                </span>
-                                            }
-                                            size="s"    
+                                            text={data.author_email}
+                                            size="s" 
+                                            variant="accent"
+                                            className={s.userEmailText}   
                                         />
                                         <AppText
                                             text={
@@ -401,7 +397,7 @@ function ResumePage({ resume, author }) {
                             /> */}
                         </div>
                        
-                        <div className={s.buttonSave}>
+                        {/* <div className={s.buttonSave}>
                             <AppButton
                                 path={"resume.edit"}
                                 param={resume.id}
@@ -413,8 +409,8 @@ function ResumePage({ resume, author }) {
                             >
                                 <span>Редактировать</span>
                             </AppButton>
-                        </div>
-                    </main>
+                        </div> */}
+                    </main> 
                 </container>
             </AppPage>
         </>

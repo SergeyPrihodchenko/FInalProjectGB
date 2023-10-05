@@ -59,15 +59,8 @@ function UserResumeListPage({ resumes }) {
                                     <div class={s.userResume}>
                                         <div className={s.userData}>
                                             <AppText
-                                                title={
-                                                    <span
-                                                        className={
-                                                            s.titleResume
-                                                        }
-                                                    >
-                                                        {resume.profession}
-                                                    </span>
-                                                }
+                                                title={resume.profession}
+                                                variant={"accent"}
                                                 bold
                                                 size="xs"
                                             />
@@ -83,51 +76,18 @@ function UserResumeListPage({ resumes }) {
                                                 size="xs"
                                             />
 
+<AppText
+                                                text={"Регион: ".concat(resume.region)}
+                                                size="xs"
+                                            />
+                                                                                           
                                             <AppText
-                                                text={
-                                                    <span
-                                                        className={s.skillUser}
-                                                    >
-                                                        Регион
-                                                    </span>
-                                                }
+                                                text={"Опыт работы: ".concat(resume.experience)}
                                                 size="xs"
                                             />
                                             
                                             <AppText
-                                                text={resume.region}
-                                                size="xs"
-                                            />
-
-                                            <AppText
-                                                text={
-                                                    <span
-                                                        className={s.skillUser}
-                                                    >
-                                                        Образование
-                                                    </span>
-                                                }
-                                                size="xs"
-                                            />
-                                           
-                                            <AppText
-                                                text={resume.education}
-                                                size="xs"
-                                            />
-                                                
-                                            <AppText
-                                            text={
-                                                <span
-                                                        className={s.skillUser}
-                                                >
-                                                    Опыт работы
-                                                </span>
-                                            }
-                                                size="xs"
-                                            />
-                                           
-                                            <AppText
-                                                text={resume.experience}
+                                                text={"Образование: ".concat(resume.education)}
                                                 size="xs"
                                             />
                                         </div>

@@ -34,13 +34,6 @@
 .salaryResume {
     margin-top: 20px;
 }
-.skillUser {
-    border-bottom: 1px solid var(--primary-text);
-}
-
-.lastSkill {
-    display: flex;
-}
 
 .userPhoto {
     width: 87px;
@@ -62,8 +55,9 @@
 } */
 
 .linkViewResume {
+    width: 400px;
     display: flex;
-    justify-content: flex-start;
+    justify-content:space-between;
 }
 
 .linkResumeList {

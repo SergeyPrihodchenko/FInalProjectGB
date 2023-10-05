@@ -26,20 +26,13 @@
     justify-content: space-between;
 }
 
-.titleResume {
-    color: var(--accent);
-    border-bottom: 1px solid var(--accent);
+.buttonResumeProfession {
+    display: flex;
+    justify-content: start;
 }
 
 .salaryResume {
     margin-top: 20px;
-}
-.skillUser {
-    border-bottom: 1px solid var(--primary-text);
-}
-
-.lastSkill {
-    display: flex;
 }
 
 .userPhoto {
@@ -60,13 +53,3 @@
     border: 2px solid var(--accent);
     border-radius: var(--border-radius-s);
 } */
-
-.linkViewResume {
-    display: flex;
-    justify-content: flex-start;
-}
-
-.linkResumeList {
-    margin-left: 10px;
-    padding-top: 18px;
-}
