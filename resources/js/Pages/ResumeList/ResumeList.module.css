@@ -1,14 +1,19 @@
 .mainResumeList {
     margin: 0;
     padding: 0;
-    width: 886px;
 }
 
 .titleResumeList {
     margin: 40px 0px 30px 0px;
 }
 
+.resumeListPage{
+    display: flex;
+}
+
 .resumeList {
+    width: 800px;
+    height: 213px;
     margin: 50px 0px 30px 0px;
     padding: 10px 10px 10px 10px;
 
@@ -53,3 +58,17 @@
     border: 2px solid var(--accent);
     border-radius: var(--border-radius-s);
 } */
+
+.checkboxResumeEl{
+    width: 24px;
+    height: 24px;
+    margin-top: 10px;
+}
+
+.textTitle{
+    margin: 10px 0px 10px 0px;
+}
+
+.vacancyWishes{
+    margin-bottom: 40px;
+}
