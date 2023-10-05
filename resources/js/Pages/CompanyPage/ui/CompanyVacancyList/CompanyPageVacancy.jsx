@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cn from "classnames";
-import s from "@/Pages/CompanyPage/CompanyPage.module.css";
+import s from "./CompanyPage.module.css";
 import { Typography } from "@/8Shared/Typography/Typography.jsx";
 import CompanyPageVacanciesItem from "@/Pages/CompanyPage/CompanyPageVacanciesItem.jsx";
 import PropTypes from "prop-types";
@@ -22,15 +22,15 @@ const CompanyPageVacancy = ({ companyName, companyVacancyList }) => {
             >
                 <span className={s.companyPageVacanciesTitleDecorate}>
                     Вакансии в текущем регионе: Россия
-                </span>{" "}
+                </span>
                 <span className={s.companyPageVacanciesTitleCount}>
                     {allVacanciesCount}
                 </span>
             </div>
             {vacancyOpen && (
                 <div>
-                    {companyVacancyList?.map((item) => (
-                        <CompanyPageVacanciesItem key={item.id} {...item} />
+                    {companyVacancyList?.map((item, index) => (
+                        <CompanyPageVacanciesItem key={index} {...item} />
                     ))}
                 </div>
             )}
