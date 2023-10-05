@@ -22,16 +22,5 @@
 
 .tabCategories {
     border: none;
-<<<<<<< HEAD
-    background-color: var(--light-bg);
-}
-
-.favList {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-=======
     background-color: var(--main-bg);
 }
->>>>>>> main
