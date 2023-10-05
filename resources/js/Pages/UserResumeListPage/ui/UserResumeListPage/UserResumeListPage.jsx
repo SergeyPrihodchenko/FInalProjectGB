@@ -8,7 +8,7 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./UserResumeListPage.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
-function ResumePage({ resumes }) {
+function UserResumeListPage({ resumes }) {
     const user = usePage().props.auth.user;
 
     console.log(resumes);
@@ -174,4 +174,4 @@ function ResumePage({ resumes }) {
     );
 }
 
-export default ResumePage;
+export default UserResumeListPage;
