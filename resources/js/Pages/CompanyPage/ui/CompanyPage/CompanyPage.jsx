@@ -5,7 +5,6 @@ import cn from "classnames";
 import s from "./CompanyPage.module.css";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 
-
 import CompanyPageAppCard from "../CompanyCard/CompanyPageAppCard";
 import CompanyPageHeader from "../CopmanyHeader/CompanyPageHeader";
 import CompanyPageInfo from "../CompanyInfo/CompanyPageInfo";
@@ -26,8 +25,9 @@ function CompanyPage({ auth, company }) {
             <div className={cn(s.companyPageContainer)}>
                 <AppCard>
                     <CompanyPageAppCard
-                        img={company?.companyImg  && data?.companyImg}
+                        img={company?.companyImg && data?.companyImg}
                         city={company?.companyLocation || data?.companyLocation}
+                        website={company?.website}
                     />
                 </AppCard>
                 <div className={s.companyPageRight}>
@@ -44,14 +44,12 @@ function CompanyPage({ auth, company }) {
                             company?.companyTagline || data?.companyTagline
                         }
                         address={
-                            company?.companyAddress || data?.companyAddress
+                            company?.region_of_location || data?.companyAddress
                         }
                         contactPhone={
                             company?.companyPhone || data?.companyPhone
                         }
-                        contactEmail={
-                            company?.companyEmail || data?.companyEmail
-                        }
+                        contactEmail={company?.email || data?.companyEmail}
                         infoList={
                             company?.companyInfoList || data?.companyInfoList
                         }

@@ -13,7 +13,13 @@
     margin-top: 40px;
 }
 .btn {
-    margin-top: 40px;
+    margin-top: 30px;
+}
+.cancelBtn {
+    margin-left: 16px;
+}
+.responseText {
+    margin-top: 12px;
 }
 .reviews {
     margin-top: 60px;
