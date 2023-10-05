@@ -9,6 +9,7 @@ use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\City;
 use App\Models\Company;
 use App\Models\UserLikeVacancies;
+use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -29,6 +30,15 @@ class VacancyController
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
         $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
+        $responsedVacancy = UserResponseVacancies::where('user_id', auth()->id())->get('vacancy_id');
+        
+        if(!empty($responsedVacancy)){
+            $arr = [];
+            foreach($responsedVacancy as $value){
+                $arr[] = $value->getAttributes()['vacancy_id'];
+            }
+            $responsedVacancy = $arr;
+        }
 
         return Inertia::render('VacancyListPage/VacancyListPage', [
             'title' => 'Вакансии',
@@ -37,6 +47,7 @@ class VacancyController
             'experience' => $experience,
             'cities' => $cities,
             'likes' => $likes,
+            'responsedVacancy' => $responsedVacancy
         ]);
     }
 
