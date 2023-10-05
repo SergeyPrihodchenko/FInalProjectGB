@@ -52,7 +52,7 @@ function VacancyCreateMainInfo({ errors }) {
                                     setVacancyPaymentInput(e.target.value)
                                 );
                             }}
-                            errorMessage={errors.title}
+                            errorMessage={errors.payment}
                         />
                     </div>
 
