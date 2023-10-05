@@ -67,6 +67,13 @@ export const Navbar = (props) => {
                         >
                             Список всех компаний
                         </AppLink>
+                        <AppLink
+                            colorType="accent"
+                            href={route("resume.index")}
+                            className={cn(s.navLink)}
+                        >
+                            Все резюме
+                        </AppLink>
                         {!user ? (
                             <>
                                 <li>
