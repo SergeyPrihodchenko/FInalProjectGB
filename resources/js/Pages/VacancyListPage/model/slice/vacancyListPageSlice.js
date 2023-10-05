@@ -96,10 +96,6 @@ export const vacacyListPageSlice = createSlice({
             state.vacancyList = [...state.vacancyList, ...action.payload]
         })
     }
-    // [fetchVacancyList.fulfilled]: (state, action) => {
-    //     state.vacancyList = action.payload;
-    //     console.log(action);
-    // }
 
 });
 
