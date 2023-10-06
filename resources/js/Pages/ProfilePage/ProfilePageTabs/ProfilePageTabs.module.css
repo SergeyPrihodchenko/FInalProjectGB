@@ -22,7 +22,6 @@
 
 .tabCategories {
     border: none;
-<<<<<<< HEAD
     background-color: var(--light-bg);
 }
 
@@ -31,7 +30,3 @@
     flex-direction: column;
     gap: 20px;
 }
-=======
-    background-color: var(--main-bg);
-}
->>>>>>> main

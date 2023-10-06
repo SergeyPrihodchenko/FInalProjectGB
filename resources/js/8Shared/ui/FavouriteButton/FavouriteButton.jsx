@@ -5,7 +5,8 @@ import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setFavouritesList } from "@/Pages/VacancyListPage/model/slice/VacancyListPageSlice";
+import { addToFavourites, deleteFromFavourites, setFavouritesList } from "@/Pages/VacancyListPage/model/slice/vacancyListPageSlice";
+import { useEffect } from "react";
 
 
 const FavouriteButton = ({
@@ -15,40 +16,54 @@ const FavouriteButton = ({
     className,
     ...rest
 }) => {
-    const [favouritesList, setFavouritesList] = useState(favourites);
-    // const dispatch = useDispatch();
-    // const { favouritesList } = useSelector(state => state.vacancyListPage);
-    // console.log('favbtn', favouritesList);
+    // const [favouritesList, setFavouritesList] = useState(favourites);
 
-    const toggleFavourites = async (id) => {
-        if (!favouritesList.length) {
-            setFavouritesList([...favouritesList, id]);
-            // dispatch(setFavouritesList([...favouritesList, id]));
+    const dispatch = useDispatch();
+    const { favouritesList } = useSelector(state => state.vacancyListPage);
+    // console.log('btn', favouritesList);
+    useEffect(() => {
+        dispatch(setFavouritesList(favourites));
+    }, []);
 
-            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+
+    const toggleBtnFavourites = (id) => {
+        if (!favouritesList.includes(id)) {
+
+            dispatch(addToFavourites({ user, id }))
         } else {
-            if (favouritesList.includes(id)) {
-                setFavouritesList(favouritesList.filter((favourite) => favourite !== id));
-                await axios.post('/deleteLike', { id: { vacancy_id: id } });
-
-            } else {
-                setFavouritesList([...favouritesList, id]);
-                await axios.post('/addLike', {
-                    like: {
-                        user_id: user.id,
-                        vacancy_id: id
-                    }
-                });
-
-            }
+            dispatch(deleteFromFavourites(id))
         }
+        // if (!favouritesList.length) {
+        //     setFavouritesList([...favouritesList, id]);
+
+        //     await axios.post('/addLike', { like: { vacancy_id: id } });
+        // } else {
+
+
+        // if (favouritesList.includes(id)) {
+        //     setFavouritesList(favouritesList.filter((favourite) => favourite !== id));
+        //     await axios.post('/deleteLike', { id: { vacancy_id: id } });
+
+        // } else {
+        //     setFavouritesList([...favouritesList, id]);
+        //     await axios.post('/addLike', {
+        //         like: {
+        //             user_id: user.id,
+        //             vacancy_id: id
+        //         }
+        //     });
+
+        // }
+
+
+        // }
     }
     const isInFavourite = (id, list) => {
         return list.some(el => el === id)
     }
     return (
         <AppButton
-            onClick={() => toggleFavourites(id)}
+            onClick={() => toggleBtnFavourites(id)}
             className={cn(s.favBtn, className)}
             variant={'clear'}
             {...rest}

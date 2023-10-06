@@ -15,7 +15,7 @@ import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
 import { useDispatch, useSelector } from "react-redux";
 import FavouriteButton from "@/8Shared/ui/FavouriteButton/FavouriteButton";
-import { fetchVacancyList, loadVacancyOnScroll, setFavouritesList, setPageIndex, setStatus, setVacancyList } from "./model/slice/vacancyListPageSlice";
+import { fetchVacancyList, loadVacancyOnScroll, setPageIndex, setStatus, setVacancyList } from "./model/slice/vacancyListPageSlice";
 
 
 
@@ -41,7 +41,7 @@ const VacancyListPage = ({
         status,
         error
     } = useSelector((state) => state.vacancyListPage);
-    console.log('vacancyList', vacancyList);
+    // console.log('favouritesList', favouritesList);
 
 
     const user = auth?.user;
@@ -105,11 +105,6 @@ const VacancyListPage = ({
         return list.some(el => el === id);
     }
 
-
-
-    useEffect(() => {
-        dispatch(setFavouritesList(likes));
-    }, [favouritesList]);
 
     useEffect(() => {
         // if (!debouncedVacancySearch) return;
@@ -260,7 +255,6 @@ const VacancyListPage = ({
         <>
             <Head title={title} />
             <AppPage>
-                <button onClick={() => dispatch(setPageIndex(pageIndex + 1))}>btn</button>
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
@@ -309,6 +303,7 @@ const VacancyListPage = ({
                                 <AppText bold text={`Найдено ${total} вакансии`} /> :
                                 <AppText bold text={`Ничего не найдено`} />
                             }
+                            {error && <AppText text={error} variant={'error'} />}
                             <div className={s.toggleDescBtn}>
                                 <AppButton
                                     width={'40px'}
