@@ -10,7 +10,9 @@ use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use function PHPUnit\Framework\isEmpty;
 use function Termwind\render;
 
 class CompanyController extends Controller
@@ -25,7 +27,7 @@ class CompanyController extends Controller
         //dd($request->all());
         //$date = $request->all();
         return Inertia::render('CompanyListPage/ui/CompanyListPage/CompanyListPage', [
-            'companies'=>$companies
+            'companies' => $companies
 //
         ]);
 
@@ -37,7 +39,7 @@ class CompanyController extends Controller
     public function create()
     {
         $cities = City::all();
-        return Inertia::render('CompanyPageCreate/ui/CompanyPageCreate/CompanyPageCreate', ['cities'=> $cities]);
+        return Inertia::render('CompanyPageCreate/ui/CompanyPageCreate/CompanyPageCreate', ['cities' => $cities]);
         //return view('company.create');
 
     }
@@ -61,12 +63,15 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Company $company) {
-       //return Inertia::render('Company/company_detail', [
+    public function show(Company $company)
+    {
+        $subscribes = CompanyUser::where('company_id', $company->id)->where('user_id', Auth::user()->id)->first();
+        //dd($subscribes);
+        $isSubscribed = $subscribes ? true : false;
+//dd($isSubscribed);
         return Inertia::render('CompanyPage/CompanyPage', [
             'company' => $company,
-            //'userId' => $userId,
-            //'isSubscribed' => $isSubscribed,
+            'isSubscribed' => $isSubscribed,
         ]);
 
     }
@@ -77,8 +82,8 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
 
-        return Inertia::render('CompanyPageUpdate/ui/CompanyPageUpdate/CompanyPageUpdate',  ['company' => $company,
-           ]);
+        return Inertia::render('CompanyPageUpdate/ui/CompanyPageUpdate/CompanyPageUpdate', ['company' => $company,
+        ]);
     }
 
     /**
@@ -86,15 +91,15 @@ class CompanyController extends Controller
      */
     public function update(StoreCompanyRequest $request, $id)
     {
-
-        $date = $request->validated();
+        $data = $request->validated();
         $company = Company::find($id);
-        $company->update($date);
-        return Inertia::render('Company/company_detail', [
-            'company' => $company,
-
-        ]);
+        $company->update($data);
+//        return Inertia::render('CompanyPage/CompanyPage', [
+//            'company' => $company,
+//        ]);
+        return Redirect::route('myCompanies');
     }
+
 
     /**
      * Remove the specified resource from storage.

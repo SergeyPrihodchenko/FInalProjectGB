@@ -65,22 +65,28 @@ class User extends Authenticatable
 
     public function subscriptions(): BelongsToMany
     {
-        return $this->belongsToMany(Company::class);
+        return $this->belongsToMany(Company::class,);
     }
 
-    public function isSubscribedTo(Company $company)
-    {
-        return $this->subscriptions()->contains($company);
-    }
+//    public function isSubscribedTo(Company $company)
+//    {
+//
+//        return $this->subscriptions()->get()->contains($company);
+//    }
+//    public function isSubscribedTo(Company $company)
+//    {
+//        dd($company);
+//        return $this->subscriptions()->where('company_id', $company->id)->exists();
+//    }
 
     public function subscribeToCompany(Company $company)
     {
-        return $this->subscriptions()->attach($company );
+        $this->subscriptions()->attach($company);
     }
 
     public function unsubscribeFromCompany(Company $company)
     {
-        return $this->subscriptions()->detach($company);
+        $this->subscriptions()->detach($company);
     }
 
 

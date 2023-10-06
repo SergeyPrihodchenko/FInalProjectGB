@@ -23,11 +23,11 @@ class Company extends Model
         'creator_id'
     ];
 
-    protected $casts = [
+    //protected $casts = [
 //        'created_at' => 'datetime:Y-m-d',
 //        'updated_at' => 'datetime:d/m/Y',
-        'date_create' => 'datetime:d/m/Y',
-    ];
+    //'date_create' => 'datetime:d/m/Y',
+    //];
 
 
     public function vacancies()
@@ -41,7 +41,7 @@ class Company extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function creater()
+    public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
