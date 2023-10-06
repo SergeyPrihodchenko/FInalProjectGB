@@ -11,6 +11,7 @@
 }
 input::placeholder {
     color: var(--primary-text);
+    opacity: var(--opacity50);
 }
 
 .input:focus {
