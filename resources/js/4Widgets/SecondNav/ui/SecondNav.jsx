@@ -75,7 +75,7 @@ function SecondNav(props) {
                             variant="outline"
                             colorType="normal"
                             rounded
-                            sizeText="l"
+                            sizeText="m"
                         >
                             Создать вакансию
                         </AppButton>
@@ -87,15 +87,14 @@ function SecondNav(props) {
                             variant="outline"
                             colorType="normal"
                             rounded
-                            sizeText="l"
+                            sizeText="m"
                         >
                             Создать компанию
                         </AppButton>
-                    </div >
-                </AppPage >
-            )
-            }
-        </div >
+                    </div>
+                </AppPage>
+            )}
+        </div>
     );
 }
 

@@ -1,16 +1,16 @@
 .app_dark_theme {
     /* main colors */
-    --main-bg: #0C1214;
+    --main-bg: #0c1214;
     --additional-bg: #fff;
     --secondary-bg: gray;
 
     --primary-text: #fff;
     --secondary-text: #000;
 
-    --accent: #5ED3F3;
-    --cancel: #D95757;
-    --error: #D95757;
-    --save: #6CD98B;
+    --accent: #5ed3f3;
+    --cancel: #d95757;
+    --error: #d95757;
+    --save: #6cd98b;
     --hint: #555;
     --not-accented: rgba(0, 0, 0, 0.56);
 
@@ -21,12 +21,12 @@
     --dark-skeleton-shadow: #2b2be8;
 
     /* card */
-    --light-card-bg: #f7f7f7;
-    --dark-card-bg: #181818;
+    --main-card-bg: #242424;
+    --additional-card-bg: #242424;
 
     /* listBox */
     /* --list-bg: #d5d5d7; */
-    --header-color: lightgray;
+    --header-color: #242424;
 
     /* shadow */
     --shadow-dark: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);

@@ -21,8 +21,8 @@
     --dark-skeleton-shadow: #2b2be8;
 
     /* card */
-    --light-card-bg: #f7f7f7;
-    --dark-card-bg: #181818;
+    --main-card-bg: #f7f7f7;
+    --additional-card-bg: #d9d9d9;
 
     /* listBox */
     /* --list-bg: #d5d5d7; */

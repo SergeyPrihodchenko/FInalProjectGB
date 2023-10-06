@@ -11,7 +11,7 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 const MainLayout = (porps) => {
     const [theme, setTheme] = useState("app_light_theme");
-    console.log("theme", theme);
+    // console.log("theme", theme);
     // console.log("s", s);
 
     const { children, user, className } = porps;
@@ -33,6 +33,7 @@ const MainLayout = (porps) => {
                 break;
         }
         setTheme?.(newTheme);
+        document.body.className = newTheme;
     };
     return (
         <div className={cn(s.mainLayout, className, theme)}>
@@ -40,13 +41,13 @@ const MainLayout = (porps) => {
                 <Header className={s.header}>
                     <Navbar user={user} />
                 </Header>
-                {/* <AppButton
+                <AppButton
                     onClick={() => {
                         switchTheme(theme);
                     }}
                 >
                     Тема
-                </AppButton> */}
+                </AppButton>
                 {locationPath !== "/" &&
                     locationPath !== "/register" &&
                     locationPath !== "/login" &&

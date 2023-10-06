@@ -4,7 +4,7 @@ import s from "./CompanyPage.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton.jsx";
 import PropTypes from "prop-types";
 
-const CompanyPageAppCard = ({ img, city }) => {
+const CompanyPageAppCard = ({ img, city, website }) => {
     return (
         <div className={cn(s.companyPageLeft)}>
             <section className={cn(s.companyPageLeftCard)}>
@@ -20,7 +20,7 @@ const CompanyPageAppCard = ({ img, city }) => {
                             className={cn(s.companyPageLeftCardInfoLink)}
                             href="#"
                         >
-                            test.ru
+                            {website}
                         </a>
                     </div>
                     <div className={cn(s.companyPageLeftCardInfoCard)}>
@@ -55,7 +55,7 @@ const CompanyPageAppCard = ({ img, city }) => {
                     </div>
                 </div>
                 <div className={cn(s.companyPageLeftToolbar)}>
-                    <AppButton
+                    {/* <AppButton
                         className={cn(s.companyPageLeftToolbarButton)}
                         width="100%"
                         variant="outline"
@@ -72,7 +72,7 @@ const CompanyPageAppCard = ({ img, city }) => {
                         sizeText="s"
                     >
                         Подписаться
-                    </AppButton>
+                    </AppButton> */}
                 </div>
             </section>
         </div>
