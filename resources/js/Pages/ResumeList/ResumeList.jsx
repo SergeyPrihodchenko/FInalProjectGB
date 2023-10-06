@@ -70,6 +70,10 @@ const arrayBuisnessTravel = [
                             bold
                             className={s.titleResumeList}
                         />
+                        <AppInput 
+                            type="text"
+                            placeholder="Поиск резюме"   
+                        />
 
                         {
                             resumes.map((resume) => {
