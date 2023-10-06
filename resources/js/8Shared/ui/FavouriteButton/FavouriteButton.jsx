@@ -4,8 +4,8 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton"
 import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 import { useState } from "react";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { setFavouritesList } from "@/Pages/VacancyListPage/model/slice/VacancyListPageSlice";
+import { useDispatch, useSelector } from "react-redux"
+import { setFavouritesList } from "@/Pages/VacancyListPage/model/slice/vacancyListPageSlice";
 
 
 const FavouriteButton = ({
