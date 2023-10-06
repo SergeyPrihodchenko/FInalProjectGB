@@ -28,7 +28,11 @@ function AppInput(props) {
 
     return (
         <div className={cn(className, s.appInput)}>
-            {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
+            {label && (
+                <p className={cn(s.label, { [s.textBold]: textBold })}>
+                    {label}
+                </p>
+            )}
             <input
                 value={value}
                 {...props}

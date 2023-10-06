@@ -6,7 +6,11 @@
     outline: none;
     height: 42px;
     padding: 0 0 0 12px;
-    color: inherit;
+    color: var(--primary-text);
+    background-color: var(--secondary-bg);
+}
+input::placeholder {
+    color: var(--primary-text);
 }
 
 .input:focus {
@@ -32,6 +36,9 @@
 
 .fullWidth {
     width: 100%;
+}
+.label {
+    color: var(--primary-text);
 }
 
 .textBold {

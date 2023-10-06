@@ -31,10 +31,10 @@ class VacancyController
         $cities = City::all(['id', 'title']);
         $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
         $responsedVacancy = UserResponseVacancies::where('user_id', auth()->id())->get('vacancy_id');
-        
-        if(!empty($responsedVacancy)){
+
+        if (!empty($responsedVacancy)) {
             $arr = [];
-            foreach($responsedVacancy as $value){
+            foreach ($responsedVacancy as $value) {
                 $arr[] = $value->getAttributes()['vacancy_id'];
             }
             $responsedVacancy = $arr;
@@ -53,6 +53,7 @@ class VacancyController
 
     public function show(Vacancy $vacancy): \Inertia\Response
     {
+        $companies = Company::all();
         $cities = City::all();
         $contacts = json_decode($vacancy->contacts);
         $requirements = json_decode($vacancy->requirements);
@@ -68,6 +69,7 @@ class VacancyController
             'conditions' => $conditions,
             'skills' => $skills,
             'cities' => $cities,
+            'companies' => $companies,
         ]);
     }
 

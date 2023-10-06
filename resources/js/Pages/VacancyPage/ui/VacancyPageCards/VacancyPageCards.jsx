@@ -6,8 +6,15 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 function VacancyPageCards(props) {
-    const { children, className, vacancy, city, isResponse, setIsResponse } =
-        props;
+    const {
+        children,
+        className,
+        vacancy,
+        city,
+        isResponse,
+        setIsResponse,
+        company,
+    } = props;
     const { title, payment, experience, employment, revievs, conditions } =
         vacancy;
     // console.log("experience", experience);
@@ -80,7 +87,7 @@ function VacancyPageCards(props) {
                 )}
             </AppCard>
             <AppCard className={s.aboutCompany} variant={"primary"}>
-                {conditions ? <AppText size="m" title={conditions} /> : null}
+                {conditions ? <AppText size="m" title={company?.name} /> : null}
                 {city ? (
                     <AppText size="m" title={city} />
                 ) : (
