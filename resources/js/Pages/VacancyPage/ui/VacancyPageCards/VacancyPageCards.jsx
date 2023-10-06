@@ -14,7 +14,7 @@ function VacancyPageCards(props) {
 
     return (
         <div className={cn(s.vacancyCards, className)}>
-            <AppCard shadow className={s.mainCard}>
+            <AppCard shadow className={s.mainCard} variant={"primary"}>
                 <AppText title={title} bold={true} size="l" />
                 <AppText
                     text={`от ${payment} р.`}
@@ -79,7 +79,7 @@ function VacancyPageCards(props) {
                     </AppButton>
                 )}
             </AppCard>
-            <AppCard className={s.aboutCompany}>
+            <AppCard className={s.aboutCompany} variant={"primary"}>
                 {conditions ? <AppText size="m" title={conditions} /> : null}
                 {city ? (
                     <AppText size="m" title={city} />

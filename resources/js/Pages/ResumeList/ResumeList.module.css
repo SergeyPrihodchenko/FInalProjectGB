@@ -7,7 +7,7 @@
     margin: 40px 0px 30px 0px;
 }
 
-.resumeListPage{
+.resumeListPage {
     display: flex;
 }
 
@@ -18,11 +18,11 @@
     padding: 10px 10px 10px 10px;
 
     background: var(--main-bg);
-    box-shadow: var(--shadow-dark);
+    box-shadow: var(--shadow-main);
 }
 
 .resumeList:hover {
-    box-shadow: var(--shadow--hover);
+    box-shadow: var(--shadow-hover);
 }
 
 .userResume {
@@ -59,16 +59,16 @@
     border-radius: var(--border-radius-s);
 } */
 
-.checkboxResumeEl{
+.checkboxResumeEl {
     width: 24px;
     height: 24px;
     margin-top: 10px;
 }
 
-.textTitle{
+.textTitle {
     margin: 10px 0px 10px 0px;
 }
 
-.vacancyWishes{
+.vacancyWishes {
     margin-bottom: 40px;
 }

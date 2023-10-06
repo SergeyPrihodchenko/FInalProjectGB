@@ -1,6 +1,6 @@
 .app_dark_theme {
     /* main colors */
-    --main-bg: #0c1214;
+    --main-bg: #151515;
     --additional-bg: #fff;
     --secondary-bg: gray;
 
@@ -21,16 +21,16 @@
     --dark-skeleton-shadow: #2b2be8;
 
     /* card */
-    --main-card-bg: #242424;
-    --additional-card-bg: #242424;
+    --main-card-bg: #191919;
+    --additional-card-bg: #191919;
 
     /* listBox */
     /* --list-bg: #d5d5d7; */
     --header-color: #242424;
 
     /* shadow */
-    --shadow-dark: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    --shadow--hover: 0px 4px 10px var(--accent);
+    --shadow-main: 0px 4px 10px 0px rgb(255, 255, 255, 0.15);
+    --shadow-hover: 0px 4px 10px var(--accent);
 
     /* Checkbox */
     --checkbox-color: #242424;
