@@ -12,11 +12,11 @@
     padding: 10px 10px 10px 10px;
 
     background: var(--main-bg);
-    box-shadow: var(--shadow-dark);
+    box-shadow: var(--shadow-main);
 }
 
 .companyList:hover {
-    box-shadow: var(--shadow--hover);
+    box-shadow: var(--shadow-hover);
 }
 
 .titleCompany {

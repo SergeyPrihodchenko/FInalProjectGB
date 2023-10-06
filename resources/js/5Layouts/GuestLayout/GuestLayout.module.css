@@ -13,5 +13,5 @@
     border-radius: var(--border-radius-s);
     width: 100%;
     max-width: 448px;
-    box-shadow: var(--shadow-dark);
+    box-shadow: var(--shadow-main);
 }

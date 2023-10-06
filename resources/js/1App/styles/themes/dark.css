@@ -1,6 +1,6 @@
 .app_dark_theme {
     /* main colors */
-    --main-bg: #0c1214;
+    --main-bg: #242424;
     --additional-bg: #fff;
     --secondary-bg: gray;
 
@@ -11,8 +11,8 @@
     --cancel: #d95757;
     --error: #d95757;
     --save: #6cd98b;
-    --hint: #555;
-    --not-accented: rgba(0, 0, 0, 0.56);
+    --hint: #0f6efc;
+    --not-accented: #6a6a6a;
 
     /* skeleton */
     --light-skeleton-color: #f7f7f7;
@@ -20,18 +20,22 @@
     --dark-skeleton-color: #1515ad;
     --dark-skeleton-shadow: #2b2be8;
 
+    --main-skeleton: #f7f7f7;
+    --main-skeleton-shadow: rgba(0 0 0 / 20%);
+
     /* card */
-    --main-card-bg: #242424;
-    --additional-card-bg: #242424;
+    --main-card-bg: #181818;
+    --additional-card-bg: #181818;
 
     /* listBox */
     /* --list-bg: #d5d5d7; */
-    --header-color: #242424;
+    --header-color: #000;
+    --footer-color: #000;
 
     /* shadow */
-    --shadow-dark: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    --shadow--hover: 0px 4px 10px var(--accent);
+    --shadow-main: 0px 4px 10px 0px rgb(255, 255, 255, 0.15);
+    --shadow-hover: 0px 4px 10px var(--accent);
 
     /* Checkbox */
-    --checkbox-color: #242424;
+    --checkbox-color: var(--accent);
 }

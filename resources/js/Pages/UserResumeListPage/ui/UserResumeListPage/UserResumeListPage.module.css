@@ -13,11 +13,11 @@
     padding: 10px 10px 10px 10px;
 
     background: var(--main-bg);
-    box-shadow: var(--shadow-dark);
+    box-shadow: var(--shadow-main);
 }
 
 .resumeList:hover {
-    box-shadow: var(--shadow--hover);
+    box-shadow: var(--shadow-hover);
 }
 
 .userResume {
@@ -57,7 +57,7 @@
 .linkViewResume {
     width: 400px;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
 
 .linkResumeList {
