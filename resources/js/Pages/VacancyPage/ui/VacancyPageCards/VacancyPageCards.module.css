@@ -26,6 +26,10 @@
 .aboutCompany {
     padding: 20px;
     width: 35%;
-    height: 125px;
+    min-height: 125px;
+    height: fit-content;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.cancelBtn {
+    margin-left: 12px;
 }

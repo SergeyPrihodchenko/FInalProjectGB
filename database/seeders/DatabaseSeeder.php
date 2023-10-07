@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CitiesSeed::class,
             CategorySeeder::class,
-            VacancySeeder::class,
             CategoryVacancySeeder::class,
             CompanySeeder::class,
             CompanyUserSeeder::class,
+            VacancySeeder::class,
             // ReviewsOfCompanySeeder::class,
 
         ]);

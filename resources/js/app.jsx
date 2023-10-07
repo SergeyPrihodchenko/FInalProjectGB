@@ -23,7 +23,6 @@ createInertiaApp({
                     <StoreProvider>
                         <MainLayout
                             user={page?.props?.auth?.user}
-                            className={"app_light_theme"}
                         >
                             {page}
                         </MainLayout>

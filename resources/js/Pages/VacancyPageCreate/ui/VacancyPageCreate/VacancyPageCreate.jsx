@@ -7,7 +7,7 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./VacancyPageCreate.module.css";
 import cn from "classnames";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import VacancyCreateContacts from "../VacancyCreateContacts/VacancyCreateContacts";
 import VacancyCreateSkills from "../VacancyCreateSkills/VacancyCreateSkills";
@@ -17,6 +17,7 @@ import VacancyCreateRequirements from "../VacancyCreateRequirements/VacancyCreat
 import VacancyCreateFilters from "../VacancyCreateFilters/VacancyCreateFilters";
 import VacancyCreateMainInfo from "../VacancyCreateMainInfo/VacancyCreateMainInfo";
 import { useEffect } from "react";
+
 function VacancyPageCreate(props) {
     const {
         auth,
@@ -53,10 +54,26 @@ function VacancyPageCreate(props) {
         post(route("vacancy.store"));
     };
 
+    // const { data, setData, post, errors } = useForm({
+    //     title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+    //     city_id: "1",
+    //     payment: "1000",
+    //     city_work_id: "1",
+    //     experience: "нет опыта",
+    //     company_id: companies[0]["id"],
+    //     schedule: "Полная занятость",
+    //     employment: employment[0],
+    //     requirements: requirementsList,
+    //     responsibilities: responsibilitiesList,
+    //     conditions: conditionsList,
+    //     skills: skillsList,
+    //     contacts: contactsList,
+    // });
+
     const { data, setData, post, errors } = useForm({
-        title: "Вакансия тест", //форма заполнена по умолчанию, что бы не заполнять каждый раз, временно
+        title: "",
         city_id: "1",
-        payment: "1000",
+        payment: "",
         city_work_id: "1",
         experience: "нет опыта",
         company_id: companies[0]["id"],
@@ -68,6 +85,40 @@ function VacancyPageCreate(props) {
         skills: skillsList,
         contacts: contactsList,
     });
+
+    useEffect(() => {
+        setData("title", vacancyNameInput);
+        setData("city_id", "1");
+        setData("payment", vacancyPaymentInput);
+        setData("city_work_id", "1");
+        setData("experience", "нет опыта");
+        setData("company_id", companies[0]["id"]);
+        setData("schedule", "Полная занятость");
+        setData("employment", employment[0]);
+        setData("requirements", requirementsList);
+        setData("responsibilities", responsibilitiesList);
+        setData("conditions", conditionsList);
+        setData("skills", skillsList);
+        setData("contacts", contactsList);
+    }, [
+        vacancyNameInput,
+        vacancyCityInput,
+        vacancyPaymentInput,
+        requirementsInput,
+        requirementsList,
+        responsibilitiesInput,
+        responsibilitiesList,
+        conditionsInput,
+        conditionsList,
+        skillsInput,
+        skillsList,
+        contactsNameInput,
+        contactsPositionInput,
+        contactsPhoneInput,
+        contactsList,
+    ]);
+
+    // console.log("errors", errors);
     return (
         <>
             <Head title="VacancyPageCreate" />
@@ -94,15 +145,15 @@ function VacancyPageCreate(props) {
                             employment={employment}
                         />
                         {/*Requirements Требования */}
-                        <VacancyCreateRequirements />
+                        <VacancyCreateRequirements errors={errors} />
                         {/*Responsibilities Обязаности */}
-                        <VacancyCreateResponsibilities />
+                        <VacancyCreateResponsibilities errors={errors} />
                         {/* Conditions Условия */}
-                        <VacancyCreateConditions />
+                        <VacancyCreateConditions errors={errors} />
                         {/* Skills Навыки */}
-                        <VacancyCreateSkills />
+                        <VacancyCreateSkills errors={errors} />
                         {/* Contacts контакты */}
-                        <VacancyCreateContacts />
+                        <VacancyCreateContacts errors={errors} />
                         <AppButton className={cn(s.btn, s.item)}>
                             Опубликовать
                         </AppButton>

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Enums\EmploymentType;
 use App\Models\Resume;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,7 +16,7 @@ class ResumeTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get(route('resume.index'));
+        $response = $this->actingAs($user)->get(route('resume.myresumes'));
 
         $response->assertSessionHasNoErrors();
 
@@ -75,13 +76,19 @@ class ResumeTest extends TestCase
             'citizenship' => 'USA',
             'work_permit' => 'USA',
             'education' => 'Высшее образование',
-            'experience' => 'менее года',
+            'experience' => 'нет опыта',
             'skills' => ['Economy'],
-            'educational_institute' => [['title' => 'Универ', 'faculty' => 'мат', 'specialization' => 'физика', 'graduation_year' => '2000-02-02']]
+            'educational_institute' => [['title' => 'Универ', 'faculty' => 'мат', 'specialization' => 'физика', 'start_year' => '2016-02-02', 'graduation_year' => '2000-02-02']],
+            'salary' => '100000',
+            'employment_type' => 'Удаленая работа',
+            'schedule_type' => 'Полная занятость',
+            'relocation' => 'Возможно',
+            'buisness_travel' => 'Готов',
+            'about_me' => 'Some text  about yourself'
         ]);
 
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect(route('resume.index'));
+        $response->assertRedirect(route('resume.myresumes'));
     }
 
     public function test_resume_can_be_updated(): void
@@ -102,13 +109,19 @@ class ResumeTest extends TestCase
             'citizenship' => 'USA',
             'work_permit' => 'USA',
             'education' => 'Высшее образование',
-            'experience' => 'менее года',
+            'experience' => 'нет опыта',
             'skills' => ['Economy'],
-            'educational_institute' => [['title' => 'Универ', 'faculty' => 'мат', 'specialization' => 'физика', 'graduation_year' => '2000-02-02']]
+            'educational_institute' => [['title' => 'Универ', 'faculty' => 'мат', 'specialization' => 'физика', 'start_year' => '2016-02-02', 'graduation_year' => '2020-02-02']],
+            'salary' => '100000',
+            'employment_type' => 'Удаленая работа',
+            'schedule_type' => 'Полная занятость',
+            'relocation' => 'Возможно',
+            'buisness_travel' => 'Готов',
+            'about_me' => 'Some text  about yourself'
         ]);
 
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect(route('resume.index'));
+        $response->assertRedirect(route('resume.myresumes'));
 
         $resume->refresh();
 

@@ -11,8 +11,9 @@ import {
     setSkillsList,
 } from "../../model/slice/vacancyPageCreateSlice";
 import { useDispatch, useSelector } from "react-redux";
+import AppText from "@/8Shared/ui/AppText/AppText";
 
-function VacancyCreateSkills(props) {
+function VacancyCreateSkills({ errors }) {
     const dispatch = useDispatch();
     const { skillsInput, skillsList } = useSelector(
         (state) => state.vacancyPageCreate
@@ -24,7 +25,8 @@ function VacancyCreateSkills(props) {
                     {skillsList?.map((skillsItem, index) => {
                         return (
                             <div className={s.listItem} key={index}>
-                                <div>{skillsItem}</div>
+                                <AppText text={skillsItem} />
+
                                 <AppButton
                                     sizeText={"xs"}
                                     variant={"clear"}
@@ -43,6 +45,7 @@ function VacancyCreateSkills(props) {
             ) : null}
             <div className={cn(s.skills, s.item)}>
                 <AppInput
+                    errorMessage={errors.title}
                     label="Ключевые навыки"
                     value={skillsInput}
                     onChange={(e) => {

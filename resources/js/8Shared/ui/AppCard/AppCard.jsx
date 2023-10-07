@@ -12,7 +12,7 @@ function AppCard({
     height,
     borderLeft,
     borderRadius,
-    borderRadiusSmall,
+    borderRadiusSmall
 }) {
     return (
         <div

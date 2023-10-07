@@ -1,6 +1,5 @@
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { router } from '@inertiajs/react'
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
@@ -15,8 +14,12 @@ import VacancyListPageFilters from "./ui/VacancyListPageFilters/VacancyListPageF
 import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "@/1App/providers/counterSlice/counterSlice";
-import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
+import FavouriteButton from "@/8Shared/ui/FavouriteButton/FavouriteButton";
+import { fetchVacancyList, loadVacancyOnScroll, setPageIndex, setStatus, setVacancyList } from "./model/slice/vacancyListPageSlice";
+import { Modal } from "@/8Shared/ui/Modal/Modal";
+
+
+
 
 const VacancyListPage = ({
     vacancies,
@@ -26,14 +29,27 @@ const VacancyListPage = ({
     schedule,
     employment,
     cities,
-    likes
+    likes,
+    responsedVacancy
 }) => {
-    console.log('likes', likes);
+
+    const dispatch = useDispatch();
+
+    const {
+        favouritesList,
+        vacancyList,
+        pageIndex,
+        total,
+        status,
+        error
+    } = useSelector((state) => state.vacancyListPage);
+
+
     const user = auth?.user;
-    const [vacancyList, setVacancyList] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [vacancyList, setVacancyList] = useState([]);
+    // const [total, setTotal] = useState(0);
+    // const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(0);
-    const [total, setTotal] = useState(0);
     const loaderRef = useRef(null);
 
     const [extendedDescription, setExtendedDescription] = useState(false);
@@ -57,9 +73,16 @@ const VacancyListPage = ({
 
 
     const [favourites, setIsFavourites] = useState(likes);
-    console.log('vacancySearchInput', vacancySearchInput);
-    console.log('vacancies', vacancies);
-    console.log(favourites);
+    const [responsesIdList, setResponsesIdList] = useState(responsedVacancy);
+
+    //Modal
+    const [isResponseModal, setIsResponseModal] = useState(false);
+    const handleToggleModal = () => {
+        setIsResponseModal(prev => !prev)
+    }
+
+
+
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
@@ -75,37 +98,20 @@ const VacancyListPage = ({
         })
     }
 
-    const toggleFavourites = async (id) => {
-        if (!favourites.length) {
-            setIsFavourites([...favourites, id]);
-            await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-        } else {
-            if (favourites.includes(id)) {
-                setIsFavourites(favourites.filter((favourite) => favourite !== id))
-                await axios.post('/deleteLike', { id: { vacancy_id: id } });
-
-            } else {
-                setIsFavourites([...favourites, id]);
-                await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
-
-            }
+    const handleAnswer = async (vacancy_id) => {
+        try {
+            await axios.post('/PageUserResponses/accept', {
+                user_id: user.id,
+                vacancy_id: vacancy_id
+            });
+            setResponsesIdList([...responsesIdList, vacancy_id]);
+        } catch (e) {
+            console.log(e.message);
         }
-
     }
-    const isInFavourite = (id, list) => {
-        return list.some(el => el === id)
+    const isResponsedVacancy = (id, list) => {
+        return list.some(el => el === id);
     }
-    // const getFilterData = async () => {
-    //     const response = await axios.post(`/vacancies/filter?page=1`, {
-    //         filterData: filterData,
-    //     });
-    //     const { data } = response.data;
-    //     setVacancyList(data);
-    //     setTotal(response.data.total);
-    //     setIndex((prevIndex) => prevIndex + 1);
-    //     console.log(data);
-    // };
-    // getFilterData();
 
 
     useEffect(() => {
@@ -143,28 +149,34 @@ const VacancyListPage = ({
     }
 
     const fetchVacancyCards = useCallback(async () => {
-        if (isLoading) return;
+        // if (isLoading) return;
 
-        setIsLoading(true);
+        // setIsLoading(true);
+        // dispatch(setStatus('loading'));
 
-        axios
-            .post(`/vacancies/filter?page=${index}`, { filterData: filterData })
-            .then((res) => {
-                if (res.data.data.length) {
-                    setVacancyList((prevVacancyList) => [
-                        ...prevVacancyList,
-                        ...res.data.data,
-                    ]);
-                    setIsLoading(false);
-                } else {
-                    return;
-                }
-            })
-            .catch((err) => console.log(err))
-            .finally(() => setIsLoading(false));
+        dispatch(loadVacancyOnScroll(filterData));
 
-        setIndex((prevIndex) => prevIndex + 1);
-    }, [index, isLoading]);
+
+        // axios
+        //     .post(`/vacancies/filter?page=${index}`, { filterData: filterData })
+        //     .then((res) => {
+        //         if (res.data.data.length) {
+        //             // setVacancyList((prevVacancyList) => [
+        //             //     ...prevVacancyList,
+        //             //     ...res.data.data,
+        //             // ]);
+        //             setIsLoading(false);
+        //         } else {
+        //             return;
+        //         }
+        //     })
+        //     .catch((err) => console.log(err))
+        //     .finally(() => setIsLoading(false));
+        // setIsLoading(false);
+        dispatch(setPageIndex(pageIndex + 1));
+        // dispatch(setStatus('rejected'));
+        // setIndex((prevIndex) => prevIndex + 1);
+    }, [pageIndex, status]);
 
     useEffect(() => {
         if (vacancyList.length !== total) {
@@ -182,43 +194,19 @@ const VacancyListPage = ({
             return () => {
                 if (loaderRef.current) {
                     observer.unobserve(loaderRef.current);
-                    setIsLoading(false);
+                    // setIsLoading(false);
+                    // dispatch(setStatus('rejected'));
                 }
             };
         }
     }, [loaderRef, vacancyList]);
 
-    // useEffect(() => {
-    //     if (!vacancies) {
-    //         const getData = async () => {
-    //             setIsLoading(true);
-    //             try {
-    //                 const response = await axios.post(`/vacancies/filter?page=1`, { filterData: {} });
-    //                 setVacancyList(response.data.data);
-    //                 setTotal(response.data.total);
-    //             } catch (error) {
-    //                 console.log(error);
-    //             }
-    //             setIsLoading(false);
-    //         };
 
-    //         getData();
-    //     }
-    // }, []);
-
-    // const setValueChange = (value) => {
-    //     setFilterData((prevState) => {
-    //         return {
-    //             ...prevState,
-    //             title: value,
-    //         };
-    //     });
-    //     console.log(filterData.title);
-    // };
 
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
-        setIndex(1);
+        // setIndex(1);
+        dispatch(setPageIndex(1));
 
         switch (type) {
             case "checkbox":
@@ -254,37 +242,86 @@ const VacancyListPage = ({
     };
 
     useEffect(() => {
-        const getFilterData = async () => {
-            const response = await axios.post(`/vacancies/filter?page=1`, {
-                filterData: filterData,
-            });
-            const { data } = response.data;
-            setVacancyList(data);
-            setTotal(response.data.total);
-            setIndex((prevIndex) => prevIndex + 1);
-            console.log(data);
-        };
-        getFilterData();
-    }, [filterData]);
+        dispatch(fetchVacancyList(filterData));
+        // dispatch(setPageIndex(pageIndex + 1));
 
-    // ---------- Redux ----------
-    // const counter = useSelector((state) => state.counter.value);
-    // const dispatch = useDispatch();
-    // const handlIncrement = () => {
-    //     dispatch(increment());
-    // }
-    // const handlDecrement = () => {
-    //     dispatch(decrement());
-    // }
+
+        // const getFilterData = async (filterData) => {
+        //     const response = await axios.post(`/vacancies/filter?page=1`, {
+        //         filterData: filterData,
+        //     });
+        //     const { data } = response.data;
+        //     setVacancyList(data);
+        //     setTotal(response.data.total);
+        //     setIndex((prevIndex) => prevIndex + 1);
+        //     console.log(data);
+        // };
+        // getFilterData(filterData);
+    }, [filterData]);
 
     return (
         <>
             <Head title={title} />
             <AppPage>
-                {/* Redux */}
-                {/* <button onClick={handlIncrement}>+</button>
-                <button onClick={handlDecrement}>-</button>
-                <b>count: {counter}</b> */}
+                <Modal
+                    isOpen={isResponseModal}
+                    onClose={handleToggleModal}
+                >
+                    {user?.id ?
+                        <>
+                            <AppText text={'Выберите резюме для отправки'} size={'s'} />
+                            <AppCard
+                                className={s.modalCard}
+                                borderLeft
+                                width={'500px'}
+                                shadow
+                            >
+                                <AppText
+                                    title={"Резюме 1"}
+                                    size={'m'}
+                                />
+                                <AppButton
+                                    variant={'filled'}
+                                >
+                                    Отправить
+                                </AppButton>
+                            </AppCard>
+                            <AppCard
+                                className={s.modalCard}
+                                borderLeft
+                                width={'500px'}
+                                shadow
+                            >
+                                <AppText
+                                    title={"Резюме 2"}
+                                    size={'m'}
+                                />
+                                <AppButton
+                                    variant={'filled'}
+                                >
+                                    Отправить
+                                </AppButton>
+                            </AppCard>
+                        </> :
+                        <>
+                            <AppText text={'Сначала зарегистрируйтесь'} />
+                            <AppLink
+                                href={route("register")}
+                                className={cn(s.navLink)}
+                            >
+                                Зарегистрироваться
+                            </AppLink>
+
+                            <AppLink
+                                colorType="accent"
+                                href={route("login")}
+                                className={cn(s.navLink)}
+                            >
+                                Войти
+                            </AppLink>
+                        </>
+                    }
+                </Modal>
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
@@ -329,10 +366,11 @@ const VacancyListPage = ({
 
                     <div className={s.vacancyList}>
                         <div className={s.descBlock}>
-                            {vacancyList.length > 0 ?
-                                <AppText bold text={`Найдено ${total} вакансии`} /> :
-                                <AppText bold text={`Ничего не найдено`} />
+                            {status === 'resolved' &&
+                                <AppText bold text={`Найдено ${total} вакансии`} />
+                                // :<AppText bold text={`Ничего не найдено`} />
                             }
+                            {error && <AppText text={error} variant={'error'} />}
                             <div className={s.toggleDescBtn}>
                                 <AppButton
                                     width={'40px'}
@@ -361,89 +399,106 @@ const VacancyListPage = ({
                             </div>
 
                         </div>
-                        {vacancyList.map(vac =>
+                        {vacancyList?.map(vac =>
                             <div className={s.vacancyListCardWrapper}>
-                                <AppLink
 
-                                    path={'vacancy.show'}
-                                    param={vac.id}
+                                <AppCard
                                     key={vac.id}
+                                    variant="primary"
+                                    width={'auto'}
+                                    height={extendedDescription ? `300px` : `260px`}
+                                    shadow
+                                    className={cn(s.vacancyListCard)}
                                 >
-                                    <AppCard
-                                        width={'auto'}
-                                        height={extendedDescription ? `300px` : `260px`}
-                                        shadow
-                                        className={cn(s.vacancyListCard)}
+                                    <AppLink
+
+                                        path={'vacancy.show'}
+                                        param={vac.id}
+
                                     >
                                         <AppText
+                                            className={s.vacancyListCardTitle}
                                             title={vac.title}
                                         />
+                                    </AppLink>
+                                    <AppText
+                                        text={`от ${vac.payment} руб.`}
+                                    />
+                                    <AppText
+                                        text={`Компания ${vac.conditions}.`}
+                                    />
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Город: ${vac.city}`}
+                                    />
+
+                                    <AppText
+                                        size="s"
+                                        variant="notaccented"
+                                        text={`Опыт работы: ${vac.experience}`}
+                                        className={s.vacancyListCardExp}
+                                    />
+                                    <div className={s.vacancyListCardParam}>
                                         <AppText
-                                            text={`от ${vac.payment} руб.`}
+                                            size={'s'}
+                                            variant={'secondary'}
+                                            text={vac.employment}
+                                            className={s.vacancyListCardEmployment}
                                         />
                                         <AppText
-                                            text={`Компания ${vac.conditions}.`}
+                                            size={'s'}
+                                            variant={'secondary'}
+                                            text={vac.schedule}
+                                            className={s.vacancyListCardSchedule}
+
                                         />
+
+                                    </div>
+                                    {extendedDescription &&
                                         <AppText
-                                            size="s"
-                                            variant="notaccented"
-                                            text={`Город: ${vac.city}`}
+                                            size={'xs'}
+                                            text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
+                                            className={s.vacancyListCardDesc}
                                         />
-
-                                        <AppText
-                                            size="s"
-                                            variant="notaccented"
-                                            text={`Опыт работы: ${vac.experience}`}
-                                            className={s.vacancyListCardExp}
-                                        />
-                                        <div className={s.vacancyListCardParam}>
-                                            <AppText
-                                                size={'s'}
-                                                variant={'secondary'}
-                                                text={vac.employment}
-                                                className={s.vacancyListCardEmployment}
-                                            />
-                                            <AppText
-                                                size={'s'}
-                                                variant={'secondary'}
-                                                text={vac.schedule}
-                                                className={s.vacancyListCardSchedule}
-
-                                            />
-
-                                        </div>
-                                        {extendedDescription &&
-                                            <AppText
-                                                size={'xs'}
-                                                text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
-                                                className={s.vacancyListCardDesc}
-                                            />
-                                        }
-
+                                    }
+                                    <div className={s.vacancyListCardBtnWrapper}>
                                         <AppButton
+                                            onClick={handleToggleModal}
                                             className={s.vacancyListCardBtn}
                                             width="auto"
                                         >
                                             Откликнуться
                                         </AppButton>
+                                        <AppButton
+                                            path={'vacancy.show'}
+                                            param={vac.id}
+                                            variant='outline'
+                                            width="auto"
+                                            colorType="normal"
+                                        >
+                                            Посмотреть
+                                        </AppButton>
 
-                                    </AppCard>
-                                </AppLink>
-                                <AppButton
-                                    variant={'clear'}
-                                    className={cn(s.addToFavouriteBtn)}
-                                    onClick={() => toggleFavourites(vac.id)}
-                                >
-                                    {isInFavourite(vac.id, favourites) ?
-                                        <BootstrapIcon name={'BsHeartFill'} size={28} />
-                                        :
-                                        <BootstrapIcon name={'BsHeart'} size={28} />
+                                    </div>
 
-                                    }
-                                </AppButton>
+                                </AppCard>
+                                {auth.user &&
+                                    <FavouriteButton
+                                        favourites={likes}
+                                        id={vac.id}
+                                        user={auth?.user}
+                                        className={s.addToFavouriteBtn}
+                                    />
+
+                                }
+
+
                             </div>
                         )}
-                        <div ref={loaderRef}>{isLoading && <Loader />}</div>
+                        <div ref={loaderRef}>
+                            {status === 'loading' && <Loader />}
+                        </div>
                     </div>
                 </div>
             </AppPage>

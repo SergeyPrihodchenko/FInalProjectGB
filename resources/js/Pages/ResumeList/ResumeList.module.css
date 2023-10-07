@@ -1,52 +1,50 @@
-.mainResumeList{
+.mainResumeList {
     margin: 0;
     padding: 0;
-    width: 886px;
 }
 
-.titleResumeList{
+.titleResumeList {
     margin: 40px 0px 30px 0px;
 }
 
-.resumeList{
+.resumeListPage {
+    display: flex;
+}
+
+.resumeList {
+    width: 800px;
+    height: 213px;
     margin: 50px 0px 30px 0px;
     padding: 10px 10px 10px 10px;
 
-    background: var( --light-bg);
-    box-shadow: var(--shadow-dark);
+    background: var(--main-bg);
+    box-shadow: var(--shadow-main);
 }
 
-.resumeList:hover{
-    box-shadow: var(--shadow--hover);
+.resumeList:hover {
+    box-shadow: var(--shadow-hover);
 }
 
-.userResume{
+.userResume {
     margin-bottom: 30px;
     display: flex;
     justify-content: space-between;
 }
 
-.titleResume{
-    color: var(--accent);
-    border-bottom: 1px solid var(--accent);
+.buttonResumeProfession {
+    display: flex;
+    justify-content: start;
 }
 
-.salaryResume{
+.salaryResume {
     margin-top: 20px;
 }
-.skillUser{
-    border-bottom: 1px solid var(--primary-text);
-}
 
-.lastSkill{ 
-    display: flex;
-}
-
-.userPhoto{
+.userPhoto {
     width: 87px;
     height: 87px;
     color: var(--accent);
-    background-color: var( --light-bg);
+    background-color: var(--main-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
     padding-top: 30px;
@@ -56,17 +54,21 @@
     width: 87px;
     height: 87px;
     color: var(--accent);
-    background-color: var( --light-bg);
+    background-color: var( --main-bg);
     border: 2px solid var(--accent);
     border-radius: var(--border-radius-s);
 } */
 
-.linkViewResume{
-    display: flex;
-    justify-content: flex-start;
+.checkboxResumeEl {
+    width: 24px;
+    height: 24px;
+    margin-top: 10px;
 }
 
-.linkResumeList{
-    margin-left: 10px;
-    padding-top: 18px;
+.textTitle {
+    margin: 10px 0px 10px 0px;
+}
+
+.vacancyWishes {
+    margin-bottom: 40px;
 }

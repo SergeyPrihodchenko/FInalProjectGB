@@ -34,7 +34,7 @@ const Company = ({auth}) => {
 
   
     return (
-        // <MainLayout className={"app_light_theme"}>
+ 
             <AppPage>
                 <AppText
                     title={"Новая компания"}
@@ -172,7 +172,7 @@ const Company = ({auth}) => {
                        
                 </form>
             </AppPage>
-        // </MainLayout>
+
     );
 };
 export default Company;

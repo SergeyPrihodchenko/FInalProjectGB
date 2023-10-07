@@ -3,11 +3,13 @@
     padding: 6px 12px;
     cursor: pointer;
 }
+
 .appButtonLink {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 /* Clear */
 .clear {
     padding: 0;
@@ -17,9 +19,11 @@
     color: inherit;
     transition: var(--transition-delay) linear;
 }
+
 .clear.accent {
     color: var(--accent);
 }
+
 .clear.accent:hover {
     color: var(--secondary-text);
     background: none;
@@ -30,9 +34,11 @@
 .clear.hint {
     color: var(--hint);
 }
+
 .clear.cancel {
     color: var(--cancel);
 }
+
 .clear:hover {
     transition: var(--transition-delay) linear;
     color: var(--accent);
@@ -46,21 +52,25 @@
     font-weight: 700;
     transition: var(--transition-delay) linear;
 }
+
 .outline.normal {
     border: 2px solid var(--primary-text);
     transition: var(--transition-delay) linear;
     color: var(--primary-text);
 }
+
 .normal:hover {
     border: 2px solid var(--secondary-text);
     transition: var(--transition-delay) linear;
     color: var(--secondary-text);
 }
+
 .outline.accent {
     border: 2px solid var(--accent);
     transition: var(--transition-delay) linear;
     color: var(--accent);
 }
+
 .accent:hover {
     border: 2px solid var(--accent);
     color: var(--secondary-text);
@@ -68,11 +78,13 @@
 
     transition: var(--transition-delay) linear;
 }
+
 .outline.notAccent {
     border: 2px solid var(--primary-text);
     background: var(--secondary-bg);
     transition: var(--transition-delay) linear;
 }
+
 .notAccent:hover {
     border: 2px solid var(--accent);
     color: var(--accent);
@@ -84,6 +96,7 @@
     color: var(--cancel);
     transition: var(--transition-delay) linear;
 }
+
 .red:hover {
     opacity: var(--opacity70);
     transition: var(--transition-delay) linear;
@@ -104,6 +117,7 @@
     transition: var(--transition-delay) linear;
     color: var(--accent);
 }
+
 .filled:hover p {
     transition: var(--transition-delay) linear;
     color: var(--accent);
@@ -138,4 +152,10 @@
 /* Border radius */
 .rounded {
     border-radius: 33px;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: var(--opacity30);
+    transition: linear var(--transition-delay);
 }

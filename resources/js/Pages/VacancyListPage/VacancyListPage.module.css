@@ -16,6 +16,7 @@
 
 .toggleDescBtn {
     display: flex;
+    margin-left: auto;
 }
 
 .hideDescBtn,
@@ -105,14 +106,15 @@
 
 .vacancyListCard {
     display: flex;
-
     flex-direction: column;
     align-items: flex-start;
     padding: 15px 20px;
 }
 
+
 .vacancyListCardDesc {
     /* width: 80%; */
+    color: var(--primary-text);
     overflow: hidden;
 }
 
@@ -174,4 +176,21 @@
     position: absolute;
     right: 20px;
     z-index: 1000;
+}
+
+.addToFavouriteBtn:hover {
+    color: tomato;
+}
+
+.vacancyListCardBtnWrapper {
+    display: flex;
+    margin-top: auto;
+    gap: 10px;
+}
+
+.modalCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: var(--indent-s) 0;
 }

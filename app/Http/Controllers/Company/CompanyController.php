@@ -28,9 +28,7 @@ class CompanyController extends Controller
         //$date = $request->all();
         return Inertia::render('CompanyListPage/ui/CompanyListPage/CompanyListPage', [
             'companies' => $companies
-//
         ]);
-
     }
 
     /**
@@ -56,7 +54,7 @@ class CompanyController extends Controller
         $company = Company::create($data);
         //dd($company);
 
-//
+        //
         return Redirect::route('myCompanies');
     }
 
@@ -68,12 +66,11 @@ class CompanyController extends Controller
         $subscribes = CompanyUser::where('company_id', $company->id)->where('user_id', Auth::user()->id)->first();
         //dd($subscribes);
         $isSubscribed = $subscribes ? true : false;
-//dd($isSubscribed);
+
         return Inertia::render('CompanyPage/ui/CompanyPage/CompanyPage', [
             'company' => $company,
             'isSubscribed' => $isSubscribed,
         ]);
-
     }
 
     /**
@@ -82,7 +79,8 @@ class CompanyController extends Controller
     public function edit(Company $company)
     {
 
-        return Inertia::render('CompanyPageUpdate/ui/CompanyPageUpdate/CompanyPageUpdate', ['company' => $company,
+        return Inertia::render('CompanyPageUpdate/ui/CompanyPageUpdate/CompanyPageUpdate', [
+            'company' => $company,
         ]);
     }
 
@@ -94,9 +92,9 @@ class CompanyController extends Controller
         $data = $request->validated();
         $company = Company::find($id);
         $company->update($data);
-//        return Inertia::render('CompanyPage/CompanyPage', [
-//            'company' => $company,
-//        ]);
+        //        return Inertia::render('CompanyPage/CompanyPage', [
+        //            'company' => $company,
+        //        ]);
         return Redirect::route('myCompanies');
     }
 

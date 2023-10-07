@@ -1,5 +1,4 @@
 import MainPage from "./MainPage/MainPage";
-import "../1App/styles/index.css";
 import cn from "classnames";
 import { useSelector } from "react-redux";
 

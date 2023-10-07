@@ -12,9 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsEmployer } from "../model/slice/navbarSlice";
 
 export const Navbar = (props) => {
-    const { user } = props;
+    const { user, switchTheme, theme } = props;
     const isEmployer = useSelector((state) => state.navabr.isEmployer);
-    console.log("isEmployer", isEmployer);
+    // console.log("isEmployer", isEmployer);
 
     const dispatch = useDispatch();
     return (
@@ -53,19 +53,26 @@ export const Navbar = (props) => {
                                 Вакансии
                             </AppLink>
                         </li>{" "}
-                        <AppLink
+                        {/* <AppLink
                             colorType="accent"
                             href={route("company")}
                             className={cn(s.navLink)}
                         >
                             Компания
-                        </AppLink>
+                        </AppLink> */}
                         <AppLink
                             colorType="accent"
                             href={route("company.index")}
                             className={cn(s.navLink)}
                         >
-                            back(Список компаний)
+                            Список всех компаний
+                        </AppLink>
+                        <AppLink
+                            colorType="accent"
+                            href={route("resume.index")}
+                            className={cn(s.navLink)}
+                        >
+                            Все резюме
                         </AppLink>
                         {!user ? (
                             <>
@@ -123,6 +130,13 @@ export const Navbar = (props) => {
                         )}
                         {/* <Link href={route('login')} className={s.navLink}>Войти</Link> */}
                     </ul>
+                    <AppButton
+                        onClick={() => {
+                            switchTheme(theme);
+                        }}
+                    >
+                        Тема
+                    </AppButton>
                 </div>
             </AppPage>
         </nav>

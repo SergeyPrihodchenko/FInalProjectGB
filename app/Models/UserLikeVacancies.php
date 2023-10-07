@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User_like_vacancy extends Model
+class UserLikeVacancies extends Model
 {
     use HasFactory;
+
+    protected $table = 'user_like_vacancies';
 
     protected $fillable = [
         'user_id',

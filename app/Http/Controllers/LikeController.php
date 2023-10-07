@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User_like_vacancy;
+use App\Models\UserLikeVacancies;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
     public function store(Request $request)
     {
-       $likeVacancy = new User_like_vacancy;
+       $likeVacancy = new UserLikeVacancies;
 
        $dataLike = $request->post('like');
        
@@ -18,7 +18,7 @@ class LikeController extends Controller
 
     public function destroy(Request $request)
     {
-        $likeVacancy = new User_like_vacancy;
+        $likeVacancy = new UserLikeVacancies;
 
         $id = $request->post('id');
         

@@ -1,4 +1,4 @@
-.titleResume{
+.titleResume {
     margin-top: 30px;
 }
 
@@ -6,15 +6,15 @@
     padding: 10px;
 }
 
-.basiceData{
+.basiceData {
     margin-top: 30px;
 }
 
-.indentDownBasiceData{
+.indentDownBasiceData {
     margin: 10px;
 }
 
-.inputResumeDataBasice{
+.inputResumeDataBasice {
     box-sizing: border-box;
     width: 220px;
     height: 43px;
@@ -22,15 +22,14 @@
     padding: 10px;
     margin-left: 10px;
 
-    background: var(--light-bg);
+    background: var(--main-bg);
     border: 2px solid var(--light-skeleton-shadow);
     border-radius: var(--border-radius-s);
 }
 
-.inputResumeDataBasice:focus{
+.inputResumeDataBasice:focus {
     border: 2px solid var(--accent);
 }
-
 
 .textareaBasiceData,
 .textSkill {
@@ -39,8 +38,8 @@
     height: 138px;
     font-size: var(--font-size-xs);
     padding: 10px;
-    
-    background: var(--light-bg);
+
+    background: var(--main-bg);
     border: 1px solid var(--light-skeleton-shadow);
     border-radius: var(--border-radius-s);
 }
@@ -55,18 +54,18 @@
     padding: 10px;
 }
 
-.textareaBasiceData::-webkit-resizer{
+.textareaBasiceData::-webkit-resizer {
     resize: horizontal;
-} 
+}
 
 .textareaBasiceData:focus,
-.textSkill:focus{
+.textSkill:focus {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    
+
     box-sizing: border-box;
-    background: var(--light-bg);
+    background: var(--main-bg);
     border: 1px solid var(--accent);
     border-radius: var(--border-radius-s);
 }
@@ -77,16 +76,16 @@
     box-sizing: border-box;
 }
 
-.educationUser{
+.educationUser {
     display: flex;
     justify-content: flex-start;
 }
 
 .buttonYearsEducation,
 .buttonYearsExperience {
-    border:none;
+    border: none;
     color: var(--accent);
-    background-color: var(--light-bg);
+    background-color: var(--main-bg);
 }
 
 .buttonYearsExperience {
@@ -97,14 +96,14 @@
     margin: 15px 0px 0px 177px;
 }
 
-.checkboxEndingWork{
+.checkboxEndingWork {
     position: absolute;
     left: 0;
     opacity: 0.01;
 }
 
 .checkboxEndingWork:checked + label,
-.checkboxEndingWork:not(:checked) + label { 
+.checkboxEndingWork:not(:checked) + label {
     position: relative;
     padding-left: 20px;
     padding-top: 5px;
@@ -114,38 +113,37 @@
 
 .checkboxEndingWork:checked + label:before,
 .checkboxEndingWork:not(:checked) + label:before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
     width: 26px;
     height: 26px;
     border: 2px solid var(--light-skeleton-shadow);
-    background: var(--light-bg);
+    background: var(--main-bg);
     border-radius: var(--border-radius-s);
-    -webkit-transition: all .275s;
-    transition: all .275s;
+    -webkit-transition: all 0.275s;
+    transition: all 0.275s;
 }
 
 .checkboxEndingWork:checked + label:after,
-.checkboxEndingWork:not(:checked) + label:after
- {
-    content: '✓';
+.checkboxEndingWork:not(:checked) + label:after {
+    content: "✓";
     position: absolute;
-    top: .525em;
-    left: .18em;
+    top: 0.525em;
+    left: 0.18em;
     font-size: 1.375em;
     color: var(--accent);
     line-height: 0;
-    -webkit-transition: all .2s;
-    transition: all .2s;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
 }
 
-.checkboxEndingWork:not(:checked) + label:after{
+.checkboxEndingWork:not(:checked) + label:after {
     opacity: 0;
 }
 
-.checkboxEndingWork:checked + label:after{
+.checkboxEndingWork:checked + label:after {
     opacity: 1;
 }
 
@@ -161,15 +159,15 @@
     justify-content: space-between;
 }
 
-.textTitleEnding{
+.textTitleEnding {
     padding-left: 20px;
-} 
+}
 
-.skills{
+.skills {
     margin-bottom: 30px;
 }
 
-.keySkillsTextAll{
+.keySkillsTextAll {
     margin-bottom: 10px;
     display: flex;
     justify-content: flex-start;
@@ -177,23 +175,23 @@
 
 .buttonSkillDelete,
 .buttonSkillAdd {
-    border:none;
+    border: none;
     color: var(--cancel);
-    background-color: var(--light-bg);
-   
+    background-color: var(--main-bg);
+
     margin: 0px 0px 0px 10px;
 }
 
-.buttonSkillAdd {  
+.buttonSkillAdd {
     color: var(--accent);
 }
 
 .buttonDeleteResume,
-.buttonDeleteResume:hover{
+.buttonDeleteResume:hover {
     color: var(--cancel);
     margin-left: 10px;
 }
 
-.buttonUpdateResume{
+.buttonUpdateResume {
     margin: 10px 10px 40px 875px;
 }

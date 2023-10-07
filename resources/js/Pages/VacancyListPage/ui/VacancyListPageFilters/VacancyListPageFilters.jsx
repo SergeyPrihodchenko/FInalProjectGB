@@ -20,6 +20,7 @@ const VacancyListPageFilters = ({
     handlePayment,
     className
 }) => {
+
     const [cityInput, setCityInput] = useState('');
     const [filterCityList, setFilterCityList] = useState(cities);
 
@@ -28,6 +29,7 @@ const VacancyListPageFilters = ({
         setCityInput(value);
 
     }
+
     useEffect(() => {
         if (cityInput) {
             const newList = cities.filter((city) => city.title.toLowerCase().startsWith(cityInput.toLocaleLowerCase()));
