@@ -66,7 +66,7 @@ const FavouriteButton = ({
             {isInFavourite(id, favouritesList) ?
                 <BootstrapIcon name={'BsHeartFill'} size={28} color={'tomato'} />
                 :
-                <BootstrapIcon name={'BsHeart'} size={28} />
+                <BootstrapIcon name={'BsHeart'} color={'var(--primary-text)'} size={28} />
             }
 
         </AppButton>

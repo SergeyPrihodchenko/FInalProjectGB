@@ -113,13 +113,8 @@ export default function VacancyPageList(props) {
             {conditions ? (
                 typeof conditions === "string" ? (
                     <div className={s.vacancyItem}>
-                        <AppText
-                            size={"xl"}
-                            text={`TODO Поле условия указаны не верно`}
-                            variant={"error"}
-                        />
-                        <AppText title={"Условия"} bold variant={"error"} />
-                        <AppText text={`- ${conditions}`} variant={"error"} />
+                        <AppText title={"Условия"} bold />
+                        <AppText text={`- ${conditions}`} />
                     </div>
                 ) : (
                     <div className={s.vacancyList}>

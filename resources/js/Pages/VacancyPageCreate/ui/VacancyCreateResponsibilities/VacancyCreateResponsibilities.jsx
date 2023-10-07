@@ -10,7 +10,8 @@ import {
 } from "../../model/slice/vacancyPageCreateSlice";
 import cn from "classnames";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
-function VacancyCreateResponsibilities({errors}) {
+import AppText from "@/8Shared/ui/AppText/AppText";
+function VacancyCreateResponsibilities({ errors }) {
     const dispatch = useDispatch();
     const { responsibilitiesInput, responsibilitiesList } = useSelector(
         (state) => state.vacancyPageCreate
@@ -24,7 +25,7 @@ function VacancyCreateResponsibilities({errors}) {
                         (responsibilitiesItem, index) => {
                             return (
                                 <div className={s.listItem} key={index}>
-                                    <div>{responsibilitiesItem}</div>
+                                    <AppText text={responsibilitiesItem} />
                                     <AppButton
                                         sizeText={"xs"}
                                         variant={"clear"}
@@ -47,7 +48,7 @@ function VacancyCreateResponsibilities({errors}) {
                 </div>
             ) : null}
             <AppInput
-                 errorMessage={errors.title}
+                errorMessage={errors.title}
                 label="Обязаность сотрудника"
                 value={responsibilitiesInput}
                 onChange={(e) => {
