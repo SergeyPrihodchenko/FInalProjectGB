@@ -37,5 +37,8 @@
     --shadow-hover: 0px 4px 10px 0px var(--accent);
 
     /* Checkbox */
-    --checkbox-color: var(--accent);
+    --checkbox-color: #242424;
+
+    /* Loader */
+    --loader-color: var(--accent);
 }
