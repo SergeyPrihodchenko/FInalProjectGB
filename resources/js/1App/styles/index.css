@@ -4,22 +4,26 @@
 @import "./themes/dark";
 
 #root {
+    height: 100vh;
     width: 100%;
     background: var(--main-bg);
     font-family: var(--font-family-main);
 }
 
 body {
+    height: 100vh;
     width: 100%;
     font: var(--font-s);
     background: var(--main-bg);
     font-family: var(--font-family-main);
 }
 .app {
+    height: 100vh;
+    width: 100%;
     font-family: var(--font-family-main);
 }
 *::-webkit-scrollbar {
-    width: 12px; /* ширина scrollbar */
+    width: 14px; /* ширина scrollbar */
     height: 8px;
 }
 
@@ -35,7 +39,7 @@ body {
 }
 
 .app *::-webkit-scrollbar {
-    width: 12px; /* ширина scrollbar */
+    width: 14px; /* ширина scrollbar */
     height: 8px;
 }
 
