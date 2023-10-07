@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
 
             // Создание внешнего ключа юзера
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('resume_id');
+            $table->foreign('resume_id')
                 ->references('id')
-                ->on('users')
+                ->on('resumes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->index('user_id');    
+            $table->index('resume_id');    
 
             // Создание внешнего ключа вакансии
             $table->unsignedBigInteger('vacancy_id');
@@ -31,7 +31,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->index('vacancy_id');
-            $table->unique(['user_id', 'vacancy_id']);
+            $table->unique(['resume_id', 'vacancy_id']);
             $table->timestamps();
         });
     }
