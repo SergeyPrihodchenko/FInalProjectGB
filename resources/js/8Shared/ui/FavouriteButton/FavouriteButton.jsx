@@ -2,8 +2,6 @@ import cn from "classnames"
 import s from "./FavouriteButton.module.css"
 import AppButton from "@/8Shared/ui/AppButton/AppButton"
 import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
-import { useState } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavourites, deleteFromFavourites, setFavouritesList } from "@/Pages/VacancyListPage/model/slice/vacancyListPageSlice";
 import { useEffect } from "react";
@@ -16,11 +14,8 @@ const FavouriteButton = ({
     className,
     ...rest
 }) => {
-    // const [favouritesList, setFavouritesList] = useState(favourites);
-
     const dispatch = useDispatch();
     const { favouritesList } = useSelector(state => state.vacancyListPage);
-    // console.log('btn', favouritesList);
     useEffect(() => {
         dispatch(setFavouritesList(favourites));
     }, []);

@@ -34,4 +34,7 @@
 
     /* Checkbox */
     --checkbox-color: #242424;
+
+    /* Loader */
+    --loader-color: var(--hint);
 }

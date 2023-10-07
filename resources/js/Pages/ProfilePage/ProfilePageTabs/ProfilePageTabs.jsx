@@ -31,6 +31,7 @@ function ProfilePageTabs(props) {
                 <AppCard
                     width={'auto'}
                     height={`260px`}
+                    variant='primary'
                     shadow
                     className={cn(s.vacancyListCard)}
                 >

@@ -2,11 +2,13 @@
 } */
 .input {
     /* margin-top: 12px; */
-    border: 2px solid #d9d9d9;
+    /* border: 2px solid #d9d9d9; */
+    border: 2px solid var(--secondary-bg);
     outline: none;
     height: 42px;
     padding: 0 0 0 12px;
     color: inherit;
+    background-color: var(--main-bg);
 }
 
 .input:focus {

@@ -16,6 +16,8 @@ import List from "@/8Shared/List/List";
 import { useDispatch, useSelector } from "react-redux";
 import FavouriteButton from "@/8Shared/ui/FavouriteButton/FavouriteButton";
 import { fetchVacancyList, loadVacancyOnScroll, setPageIndex, setStatus, setVacancyList } from "./model/slice/vacancyListPageSlice";
+import { Modal } from "@/8Shared/ui/Modal/Modal";
+
 
 
 
@@ -41,14 +43,13 @@ const VacancyListPage = ({
         status,
         error
     } = useSelector((state) => state.vacancyListPage);
-    // console.log('favouritesList', favouritesList);
 
 
     const user = auth?.user;
     // const [vacancyList, setVacancyList] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [index, setIndex] = useState(0);
     // const [total, setTotal] = useState(0);
+    // const [isLoading, setIsLoading] = useState(false);
+    const [index, setIndex] = useState(0);
     const loaderRef = useRef(null);
 
     const [extendedDescription, setExtendedDescription] = useState(false);
@@ -73,6 +74,13 @@ const VacancyListPage = ({
 
     const [favourites, setIsFavourites] = useState(likes);
     const [responsesIdList, setResponsesIdList] = useState(responsedVacancy);
+
+    //Modal
+    const [isResponseModal, setIsResponseModal] = useState(false);
+    const handleToggleModal = () => {
+        setIsResponseModal(prev => !prev)
+    }
+
 
 
     const handleVacancySearchInput = (e) => {
@@ -141,7 +149,7 @@ const VacancyListPage = ({
     }
 
     const fetchVacancyCards = useCallback(async () => {
-        if (isLoading) return;
+        // if (isLoading) return;
 
         // setIsLoading(true);
         // dispatch(setStatus('loading'));
@@ -168,7 +176,7 @@ const VacancyListPage = ({
         dispatch(setPageIndex(pageIndex + 1));
         // dispatch(setStatus('rejected'));
         // setIndex((prevIndex) => prevIndex + 1);
-    }, [pageIndex, isLoading]);
+    }, [pageIndex, status]);
 
     useEffect(() => {
         if (vacancyList.length !== total) {
@@ -255,6 +263,65 @@ const VacancyListPage = ({
         <>
             <Head title={title} />
             <AppPage>
+                <Modal
+                    isOpen={isResponseModal}
+                    onClose={handleToggleModal}
+                >
+                    {user?.id ?
+                        <>
+                            <AppText text={'Выберите резюме для отправки'} size={'s'} />
+                            <AppCard
+                                className={s.modalCard}
+                                borderLeft
+                                width={'500px'}
+                                shadow
+                            >
+                                <AppText
+                                    title={"Резюме 1"}
+                                    size={'m'}
+                                />
+                                <AppButton
+                                    variant={'filled'}
+                                >
+                                    Отправить
+                                </AppButton>
+                            </AppCard>
+                            <AppCard
+                                className={s.modalCard}
+                                borderLeft
+                                width={'500px'}
+                                shadow
+                            >
+                                <AppText
+                                    title={"Резюме 2"}
+                                    size={'m'}
+                                />
+                                <AppButton
+                                    variant={'filled'}
+                                >
+                                    Отправить
+                                </AppButton>
+                            </AppCard>
+                        </> :
+                        <>
+                            <AppText text={'Сначала зарегистрируйтесь'} />
+                            <AppLink
+                                href={route("register")}
+                                className={cn(s.navLink)}
+                            >
+                                Зарегистрироваться
+                            </AppLink>
+
+                            <AppLink
+                                colorType="accent"
+                                href={route("login")}
+                                className={cn(s.navLink)}
+                            >
+                                Войти
+                            </AppLink>
+                        </>
+                    }
+                </Modal>
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
@@ -299,9 +366,9 @@ const VacancyListPage = ({
 
                     <div className={s.vacancyList}>
                         <div className={s.descBlock}>
-                            {vacancyList?.length > 0 ?
-                                <AppText bold text={`Найдено ${total} вакансии`} /> :
-                                <AppText bold text={`Ничего не найдено`} />
+                            {status === 'resolved' &&
+                                <AppText bold text={`Найдено ${total} вакансии`} />
+                                // :<AppText bold text={`Ничего не найдено`} />
                             }
                             {error && <AppText text={error} variant={'error'} />}
                             <div className={s.toggleDescBtn}>
@@ -337,6 +404,7 @@ const VacancyListPage = ({
 
                                 <AppCard
                                     key={vac.id}
+                                    variant="primary"
                                     width={'auto'}
                                     height={extendedDescription ? `300px` : `260px`}
                                     shadow
@@ -349,6 +417,7 @@ const VacancyListPage = ({
 
                                     >
                                         <AppText
+                                            className={s.vacancyListCardTitle}
                                             title={vac.title}
                                         />
                                     </AppLink>
@@ -395,7 +464,7 @@ const VacancyListPage = ({
                                     }
                                     <div className={s.vacancyListCardBtnWrapper}>
                                         <AppButton
-                                            onClick={() => handleAnswer(vac.id)}
+                                            onClick={handleToggleModal}
                                             className={s.vacancyListCardBtn}
                                             width="auto"
                                         >
@@ -427,7 +496,9 @@ const VacancyListPage = ({
 
                             </div>
                         )}
-                        <div ref={loaderRef}>{status === 'loading' && <Loader />}</div>
+                        <div ref={loaderRef}>
+                            {status === 'loading' && <Loader />}
+                        </div>
                     </div>
                 </div>
             </AppPage>
