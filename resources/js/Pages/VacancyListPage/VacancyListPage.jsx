@@ -30,9 +30,10 @@ const VacancyListPage = ({
     employment,
     cities,
     likes,
-    responsedVacancy
+    responsedVacancy,
+    resumes
 }) => {
-
+    console.log('resumes: ',resumes);
     const dispatch = useDispatch();
 
     const {
