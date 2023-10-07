@@ -14,7 +14,12 @@ class AcceptVacancyController extends Controller
     public function index()
     {
         $id = auth()->id();
-        $vacancies = UserResponseVacancies::where('user_id', $id)->get('vacancy_id')->toArray();
+        $resume = Resume::where('user_id', $id)->get('id')->toArray();
+        $arr = [];
+        foreach ($resume as $value) {
+            $arr[] = $value['id'];
+        }
+        $vacancies = UserResponseVacancies::whereIn('resume_id', $arr)->get('vacancy_id');
         $arrVacancies = [];
         foreach ($vacancies as $value) {
             $arrVacancies[] = $value['vacancy_id'];

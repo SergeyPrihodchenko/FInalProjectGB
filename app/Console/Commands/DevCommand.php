@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vacancy\AcceptVacancyController;
+use App\Http\Controllers\Vacancy\VacancyController;
 use App\Models\SqlBuild;
 use App\Models\UserResponseVacancies;
 use App\Models\User_like_vacancy;
@@ -37,8 +38,8 @@ class DevCommand extends Command
         // UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 8]);
         // UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 12]);
 
-       $test = new AcceptVacancyController();
-       $test->index();
+       $test = null == false;
+       dd($test);
     }
 
 }

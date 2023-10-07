@@ -8,6 +8,7 @@ use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\City;
 use App\Models\Company;
+use App\Models\Resume;
 use App\Models\UserLikeVacancies;
 use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
@@ -25,12 +26,19 @@ class VacancyController
         //     'title' => 'Вакансии'
         // ]);
 
+        $id = auth()->id();
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
-        $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
-        $responsedVacancy = UserResponseVacancies::where('user_id', auth()->id())->get('vacancy_id');
+
+        $likes = UserLikeVacancies::getVacancyIdArray($id);
+        $resume = Resume::where('user_id', $id)->get('id')->toArray();
+        $arr = [];
+        foreach ($resume as $value) {
+            $arr[] = $value['id'];
+        }
+        $responsedVacancy = UserResponseVacancies::whereIn('resume_id', $arr)->get('vacancy_id');
 
         if (!empty($responsedVacancy)) {
             $arr = [];
