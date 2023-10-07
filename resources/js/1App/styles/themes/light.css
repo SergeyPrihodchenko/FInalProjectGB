@@ -1,7 +1,7 @@
 .app_light_theme {
     /* main colors */
-    --light-bg: #fff;
-    --dark-bg: #242424;
+    --main-bg: #fff;
+    --additional-bg: #242424;
     --secondary-bg: rgb(240, 240, 240);
 
     --primary-text: #000;
@@ -20,18 +20,25 @@
     --dark-skeleton-color: #1515ad;
     --dark-skeleton-shadow: #2b2be8;
 
+    --main-skeleton: #1515ad;
+    --main-skeleton-shadow: #2b2be8;
+
     /* card */
-    --light-card-bg: #f7f7f7;
-    --dark-card-bg: #181818;
+    --main-card-bg: #f7f7f7;
+    --additional-card-bg: #d9d9d9;
 
     /* listBox */
     /* --list-bg: #d5d5d7; */
     --header-color: #000;
+    --footer-color: #242424;
 
     /* shadow */
-    --shadow-dark: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    --shadow--hover: 0px 4px 10px var(--accent);
+    --shadow-main: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    --shadow-hover: 0px 4px 10px 0px var(--accent);
 
     /* Checkbox */
     --checkbox-color: #242424;
+
+    /* Loader */
+    --loader-color: var(--accent);
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_click_vacancies', function (Blueprint $table) {
+        Schema::create('user_response_vacancies', function (Blueprint $table) {
             $table->id();
 
             // Создание внешнего ключа юзера
@@ -31,7 +31,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->index('vacancy_id');
-
+            $table->unique(['user_id', 'vacancy_id']);
             $table->timestamps();
         });
     }

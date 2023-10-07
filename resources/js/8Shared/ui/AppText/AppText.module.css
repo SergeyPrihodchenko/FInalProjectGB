@@ -50,8 +50,9 @@
 .bold .title {
     font-weight: 700;
 }
-/* Text colors */
 
+
+/* Text colors */
 .primary .text {
     color: var(--primary-text);
 }

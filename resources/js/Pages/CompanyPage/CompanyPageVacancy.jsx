@@ -1,31 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import cn from "classnames";
 import s from "@/Pages/CompanyPage/CompanyPage.module.css";
-import {Typography} from "@/8Shared/Typography/Typography.jsx";
+import { Typography } from "@/8Shared/Typography/Typography.jsx";
 import CompanyPageVacanciesItem from "@/Pages/CompanyPage/CompanyPageVacanciesItem.jsx";
 import PropTypes from "prop-types";
 
-const CompanyPageVacancy = ({companyName, companyVacancyList}) => {
-    const [vacancyOpen,setVacancyOpen] = useState(true)
+const CompanyPageVacancy = ({ companyName, companyVacancyList }) => {
+    const [vacancyOpen, setVacancyOpen] = useState(true);
 
-    const allVacanciesCount = companyVacancyList?.flatMap(item=>item.cards).length
+    const allVacanciesCount = companyVacancyList?.flatMap(
+        (item) => item.cards
+    ).length;
     return (
-        <div className={cn(s.companyPageReview,s.companyPageVacancies)}>
+        <div className={cn(s.companyPageReview, s.companyPageVacancies)}>
             <Typography variant="h6">
                 Вакансии компании «{companyName}»
             </Typography>
-            <div onClick={()=>setVacancyOpen(!vacancyOpen)} className={s.companyPageVacanciesInfo} >
-                <span className={s.companyPageVacanciesTitleDecorate}>Вакансии в текущем регионе: Россия</span> <span className={s.companyPageVacanciesTitleCount}>{allVacanciesCount}</span>
+            <div
+                onClick={() => setVacancyOpen(!vacancyOpen)}
+                className={s.companyPageVacanciesInfo}
+            >
+                <span className={s.companyPageVacanciesTitleDecorate}>
+                    Вакансии в текущем регионе: Россия
+                </span>{" "}
+                <span className={s.companyPageVacanciesTitleCount}>
+                    {allVacanciesCount}
+                </span>
             </div>
-            {vacancyOpen &&
+            {vacancyOpen && (
                 <div>
-                    {companyVacancyList?.map(item => (
-                        <CompanyPageVacanciesItem
-                            key={item.id}
-                            {...item} />
+                    {companyVacancyList?.map((item) => (
+                        <CompanyPageVacanciesItem key={item.id} {...item} />
                     ))}
                 </div>
-            }
+            )}
         </div>
     );
 };

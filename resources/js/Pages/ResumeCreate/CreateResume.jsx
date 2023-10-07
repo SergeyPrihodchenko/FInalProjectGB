@@ -8,10 +8,6 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { setUserId, addSkills, setSkills, removeSkills } from "./model/slice/resumePageSlice";
-// import { useEffect } from "react";
-
 // const arrayEducation = [
 //     "Среднее",
 //     "Среднее специальное",
@@ -33,21 +29,8 @@ import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 
 function CreateResume() {
-    // const dispatch = useDispatch();
-
     const user = usePage().props.auth.user;
     
-    
-    // useEffect(() => {
-    //     if (user.id) {
-    //         dispatch(
-    //         setUserId(user.id));
-    //     }
-    // }, [user.id]);
-
-    // const {skill, skills} = useSelector(state => state.resumePageCreate);
-    // console.log(skills);
-
     const { data, setData, post, errors } = useForm({
         user_id: user.id,
         profession: "",
@@ -166,7 +149,6 @@ function CreateResume() {
         setSkill("");
     };
 
-    //dispatch(removeSkills(index))
     const removeSkill = (index) => {
         data.skills.splice(index, 1);
 
@@ -782,7 +764,6 @@ function CreateResume() {
                                         <AppButton
                                             onClick={
                                                 (index) => {
-                                                //   dispatch(removeSkills(index));
                                                    removeSkill(index)
                                                 }
 
@@ -800,7 +781,6 @@ function CreateResume() {
                             })}
                             <input
                                 onChange={(e) => {
-                                    // dispatch(setSkills(e.target.value));
                                     setSkill(e.target.value)}
                                 }
                                 value={skill}
@@ -810,9 +790,7 @@ function CreateResume() {
 
                             <AppButton
                                 onClick={() => {
-                                    // dispatch(addSkills())
                                     addSkill()
-                                    // dispatch(setSkills(''))
                                 }
                                 }
                                 variant="outline"
@@ -1017,8 +995,8 @@ function CreateResume() {
                                     <option value="Невозможно">
                                         Невозможно
                                     </option>
-                                    <option value="Возможено">
-                                        Возможено
+                                    <option value="Возможно">
+                                        Возможно
                                     </option>
                                     <option value="Желательно">
                                         Желательно

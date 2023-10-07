@@ -8,10 +8,10 @@
 }
 .form {
     margin-top: 24px;
-    background-color: var(--light-bg);
+    background-color: var(--main-bg);
     padding: 24px;
     border-radius: var(--border-radius-s);
     width: 100%;
     max-width: 448px;
-    box-shadow: var(--shadow-dark);
+    box-shadow: var(--shadow-main);
 }
