@@ -16,7 +16,6 @@ function VacancyCreateRequirements({ errors }) {
     const { requirementsInput, requirementsList } = useSelector(
         (state) => state.vacancyPageCreate
     );
-    console.log("requirementsListStart", requirementsList);
     return (
         <div className={cn(s.requirements, s.item)}>
             {requirementsList ? (

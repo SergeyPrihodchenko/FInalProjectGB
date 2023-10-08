@@ -16,10 +16,14 @@ export const Modal = (props) => {
         isOpen,
         onClose = true,
         closeIcon,
-        lazy
+        lazy,
     } = props;
 
-    const { handleClose, isClosing } = useModal({ animationDelay: ANIMATION_DELAY, onClose, isOpen });
+    const { handleClose, isClosing } = useModal({
+        animationDelay: ANIMATION_DELAY,
+        onClose,
+        isOpen,
+    });
 
     // const { close, isClosing, isMounted } = useModal({
     //     animationDelay: ANIMATION_DELAY,
@@ -49,37 +53,30 @@ export const Modal = (props) => {
     //     return null;
     // }
 
-
     const handleContent = (e) => {
         e.stopPropagation();
-    }
-
-
+    };
 
     return (
-        // <Portal element={document.getElementById("app") ?? document.body}>
         <Portal elem={document.getElementById("themeBlock") ?? document.body}>
-            <div className={cn(s.modal, className, {
-                [s.opened]: isOpen,
-                [s.isClosing]: isClosing
-            })}>
-                {/* <Overlay onClick={close} />` */}
+            <div
+                className={cn(s.modal, className, {
+                    [s.opened]: isOpen,
+                    [s.isClosing]: isClosing,
+                })}
+            >
                 <div className={s.overlay} onClick={handleClose}>
                     <div className={s.content} onClick={handleContent}>
                         {children}
                     </div>
-
                 </div>
             </div>
         </Portal>
-        // </Portal>
     );
 };
 Modal.propTypes = {
     className: PropTypes.string,
     children: PropTypes.any,
     isOpen: PropTypes.bool,
-    onClose: PropTypes.func
-
-}
-
+    onClose: PropTypes.func,
+};

@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import s from "./VacancyPageCards.module.css";
+import s from "./VacancyCards.module.css";
 import cn from "classnames";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
-function VacancyPageCards(props) {
+function VacancyCards(props) {
     const {
         children,
         className,
@@ -103,6 +103,6 @@ function VacancyPageCards(props) {
         </div>
     );
 }
-VacancyPageCards.propTypes = {};
+VacancyCards.propTypes = {};
 
-export default VacancyPageCards;
+export default VacancyCards;
