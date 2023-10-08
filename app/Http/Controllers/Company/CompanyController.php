@@ -66,8 +66,10 @@ class CompanyController extends Controller
         $subscribes = CompanyUser::where('company_id', $company->id)->where('user_id', Auth::user()->id)->first();
         //dd($subscribes);
         $isSubscribed = $subscribes ? true : false;
-        //dd($isSubscribed);
-        return Inertia::render('CompanyPage/CompanyPage', [
+
+//dd($isSubscribed);
+        return Inertia::render('CompanyPage/ui/CompanyPage/CompanyPage', [
+
             'company' => $company,
             'isSubscribed' => $isSubscribed,
         ]);
