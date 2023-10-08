@@ -16,17 +16,19 @@ import { useState } from "react";
 import cn from "classnames";
 const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage(props) {
-    const { auth, vacancy, cities } = props;
+    const { auth, vacancy, cities, companies } = props;
     const user = auth?.user;
     const city = cities?.[vacancy.city_id]?.title || "Город не указан";
     const adress = {
         strAdress: "",
         coordinates: "",
     };
+    const company = companies[vacancy.company_id];
     adress.strAdress = vacancy?.adress || "Адрес не указан";
     adress.coordinates = vacancy?.coordinates || "Адрес не указан";
 
-    console.log("vacancy", vacancy);
+    console.log("company", company);
+    // console.log("vacancy", vacancy);
     // console.log("city", city);
     const [isResponse, setIsResponse] = useState(false);
     return (
@@ -39,6 +41,7 @@ function VacancyPage(props) {
                             className={s.cards}
                             vacancy={vacancy}
                             city={city}
+                            company={company}
                             isResponse={isResponse}
                             setIsResponse={setIsResponse}
                         />

@@ -33,9 +33,11 @@ function VacancyCreateContacts({ errors }) {
                         );
                         return (
                             <div className={s.listItem} key={index}>
-                                <div>{contactsItem?.phone}</div>-
-                                <div>{contactsItem?.name}</div>
-                                <div>{contactsItem?.position}</div>
+                                <AppText text={contactsItem?.phone} />-
+                                <AppText
+                                    text={contactsItem?.position}
+                                />
+                                <AppText text={contactsItem?.name} />
                                 <AppButton
                                     sizeText={"xs"}
                                     variant={"clear"}

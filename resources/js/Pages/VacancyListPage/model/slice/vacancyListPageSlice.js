@@ -18,7 +18,7 @@ export const fetchVacancyList = createAsyncThunk(
             const response = await axios.post(`/vacancies/filter?page=1`, {
                 filterData: filterData,
             });
-            console.log('response', response);
+            // console.log('response', response);
             if (response.status !== 200) {
                 throw new Error('error');
             }
@@ -26,7 +26,7 @@ export const fetchVacancyList = createAsyncThunk(
             const total = response.data.total;
             dispatch(setTotal(total));
             dispatch(setPageIndex(pageIndex + 1));
-            console.log('redux total', response.data.total);
+            // console.log('redux total', response.data.total);
             // console.log('redux pageIndex', pageIndex);
             // console.log('redux filterData', filterData);
             return data;
@@ -46,6 +46,42 @@ export const loadVacancyOnScroll = createAsyncThunk(
     }
 );
 
+export const addToFavourites = createAsyncThunk(
+    'vacancy/addToFavourites',
+    async ({ user, id }, { rejectWithValue, dispatch }) => {
+
+        try {
+            const response = await axios.post('/addLike', { like: { user_id: user.id, vacancy_id: id } });
+            if (response.status !== 200) {
+                throw new Error('Can\'t add to favourites');
+            }
+            dispatch(setAddToFavourites(id));
+
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+
+    }
+);
+export const deleteFromFavourites = createAsyncThunk(
+    'vacancy/addToFavourites',
+    async (id, { rejectWithValue, dispatch }) => {
+
+        try {
+            const response = await axios.post('/deleteLike', { id: { vacancy_id: id } });
+            if (response.status !== 200) {
+                throw new Error('Can\'t remove from favourites');
+            }
+            dispatch(setRemoveFavourites(id));
+
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+
+    }
+);
+
+
 export const vacacyListPageSlice = createSlice({
     name: "vacacyListPage",
     initialState,
@@ -62,6 +98,13 @@ export const vacacyListPageSlice = createSlice({
         },
         setStatus: (state, action) => {
             state.status = action.payload;
+        },
+        setAddToFavourites: (state, action) => {
+            state.favouritesList = [...state.favouritesList, action.payload]
+            console.log(state.favouritesList);
+        },
+        setRemoveFavourites: (state, action) => {
+            state.favouritesList = state.favouritesList.filter(el => el !== action.payload);
         },
         // Список вакансий
         setVacancyList: (state, action) => {
@@ -91,10 +134,13 @@ export const vacacyListPageSlice = createSlice({
 
         });
         builder.addCase(loadVacancyOnScroll.fulfilled, (state, action) => {
-            console.log(state.vacancyList);
             state.status = 'rejected';
             state.vacancyList = [...state.vacancyList, ...action.payload]
-        })
+        });
+        builder.addCase(addToFavourites.rejected, (state, action) => {
+            state.status = 'rejected likes';
+            state.error = action.payload;
+        });
     }
 
 });
@@ -104,6 +150,8 @@ export const {
     setVacancyList,
     setPageIndex,
     setTotal,
+    setAddToFavourites,
+    setRemoveFavourites,
     setStatus
 } = vacacyListPageSlice.actions
 

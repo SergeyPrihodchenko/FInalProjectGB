@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsEmployer } from "../model/slice/navbarSlice";
 
 export const Navbar = (props) => {
-    const { user } = props;
+    const { user, switchTheme, theme } = props;
     const isEmployer = useSelector((state) => state.navabr.isEmployer);
     // console.log("isEmployer", isEmployer);
 
@@ -130,6 +130,13 @@ export const Navbar = (props) => {
                         )}
                         {/* <Link href={route('login')} className={s.navLink}>Войти</Link> */}
                     </ul>
+                    <AppButton
+                        onClick={() => {
+                            switchTheme(theme);
+                        }}
+                    >
+                        Тема
+                    </AppButton>
                 </div>
             </AppPage>
         </nav>

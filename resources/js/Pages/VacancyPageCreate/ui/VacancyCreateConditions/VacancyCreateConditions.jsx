@@ -10,6 +10,7 @@ import cn from "classnames";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
+import AppText from "@/8Shared/ui/AppText/AppText";
 function VacancyCreateConditions({ errors }) {
     const dispatch = useDispatch();
     const { conditionsInput, conditionsList } = useSelector(
@@ -23,7 +24,7 @@ function VacancyCreateConditions({ errors }) {
                     {conditionsList?.map((conditionsItem, index) => {
                         return (
                             <div className={s.listItem} key={index}>
-                                <div>{conditionsItem}</div>
+                                <AppText text={conditionsItem} />
                                 <AppButton
                                     sizeText={"xs"}
                                     variant={"clear"}

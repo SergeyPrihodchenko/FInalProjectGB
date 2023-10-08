@@ -17,6 +17,7 @@ function AppInput(props) {
         onChange,
         ref,
         className,
+        readOnly,
         value,
     } = props;
     const input = ref ? ref : useRef();
@@ -28,15 +29,21 @@ function AppInput(props) {
 
     return (
         <div className={cn(className, s.appInput)}>
-            {label && <p className={cn({ [s.textBold]: textBold })}>{label}</p>}
+            {label && (
+                <p className={cn(s.label, { [s.textBold]: textBold })}>
+                    {label}
+                </p>
+            )}
             <input
                 value={value}
                 {...props}
+                readOnly={readOnly}
                 onChange={onChange}
                 type={type}
                 placeholder={placeholder}
                 className={cn(s.input, s[borderRadius], {
                     [s.fullWidth]: fullWidth,
+                    [s.readOnly]: readOnly,
                 })}
                 style={{ width: width }}
                 ref={input}

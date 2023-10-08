@@ -20,6 +20,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user_id = auth()->id();
+        $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
         $like_vacancy = UserLikeVacancies::where('user_id', $user_id)->get('vacancy_id')->toArray();
         $likesArr = [];
         foreach ($like_vacancy as $value) {
@@ -31,7 +32,7 @@ class ProfileController extends Controller
             ->join('companies', 'vacancies.company_id', '=', 'companies.id')
             ->select('vacancies.id as id', 'vacancies.title as title', 'vacancies.payment as payment', 'vacancies.employment as employment', 'vacancies.schedule as schedule', 'vacancies.experience as experience', 'companies.name as conditions', 'cities.title as city', 'vacancies.description as description')
             ->get();
-        return Inertia::render('ProfilePage/ProfilePage', ['favourite_vacancies' => $vacancies]);
+        return Inertia::render('ProfilePage/ProfilePage', ['favourite_vacancies' => $vacancies, 'likes'=> $likes]);
     }
     /**
      * Display the user's profile form.

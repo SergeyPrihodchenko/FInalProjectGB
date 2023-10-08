@@ -10,6 +10,7 @@ import {
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
 import cn from "classnames";
 import { useDispatch, useSelector } from "react-redux";
+import AppText from "@/8Shared/ui/AppText/AppText";
 function VacancyCreateRequirements({ errors }) {
     const dispatch = useDispatch();
     const { requirementsInput, requirementsList } = useSelector(
@@ -23,7 +24,7 @@ function VacancyCreateRequirements({ errors }) {
                     {requirementsList?.map((requireItem, index) => {
                         return (
                             <div className={s.listItem} key={index}>
-                                <div> {requireItem}</div>
+                                <AppText text={requireItem} />
                                 <AppButton
                                     sizeText={"xs"}
                                     variant={"clear"}
