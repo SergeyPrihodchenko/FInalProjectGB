@@ -67,7 +67,7 @@ class CompanyController extends Controller
         //dd($subscribes);
         $isSubscribed = $subscribes ? true : false;
         //dd($isSubscribed);
-        return Inertia::render('CompanyPage/ui/CompanyPage/CompanyPage', [
+        return Inertia::render('CompanyPage/CompanyPage', [
             'company' => $company,
             'isSubscribed' => $isSubscribed,
         ]);
