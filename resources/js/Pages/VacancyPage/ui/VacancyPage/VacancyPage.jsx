@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import s from "./VacancyPage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import VacancyPageCards from "../VacancyPageCards/VacancyPageCards";
-import VacancyPageList from "../VacancyPageList/VacancyPageList";
-import VacancyPageAdress from "../VacancyPageAdress/VacancyPageAdress";
+import VacancyPageCards from "../VacancyCards/VacancyCards";
+import VacancyPageList from "../VacancyList/VacancyList";
+import VacancyPageAdress from "../VacancyAdress/VacancyAdress";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 import data from "../../data.json";
 import { Head } from "@inertiajs/react";
-import VacancyPageReviews from "../VacancyPageReviews/VacancyPageReviews";
+import VacancyPageReviews from "../VacancyReviews/VacancyReviews";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import cn from "classnames";

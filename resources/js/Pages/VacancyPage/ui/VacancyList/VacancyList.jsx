@@ -1,15 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import s from "./VacancyPageList.module.css";
+import s from "./VacancyList.module.css";
 import cn from "classnames";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
 
-export default function VacancyPageList(props) {
+export default function VacancyList(props) {
     // console.log(props);
-    const { vacancyPageList, className, vacancy } = props;
-    const { vacancyList } = vacancyPageList;
+    const { className, vacancy } = props;
     const {
         description,
         skills,
@@ -20,7 +19,7 @@ export default function VacancyPageList(props) {
     } = vacancy;
     console.log("skills", typeof skills);
     return (
-        <div className={cn(s.vacancyPageList, className)}>
+        <div className={cn(s.vacancyList, className)}>
             {description ? (
                 <div className={s.description}>
                     <AppText className={s.bold} text={description} />
@@ -209,4 +208,4 @@ export default function VacancyPageList(props) {
     );
 }
 
-VacancyPageList.propTypes = {};
+VacancyList.propTypes = {};
