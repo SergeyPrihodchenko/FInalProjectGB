@@ -16,6 +16,7 @@ import { setDataResume,
         setDateFormatWorkEnd,
         setWorksExperience
     } from "./model/slice/ResumePageSlice";
+import List from "@/8Shared/List/List";
 
 
 function ResumePage({ resume, author }) {
@@ -36,7 +37,7 @@ function ResumePage({ resume, author }) {
         dataWorksEnd,
         yearWorksExperience 
     } = useSelector(state => state.resumePage);
-    console.log(authores);
+    //console.log(authores);
     
     //высчитываем из даты рождения сколько полных лет
     const dateOfBirth = resumes.date_of_birth;
@@ -122,18 +123,20 @@ function ResumePage({ resume, author }) {
                         <div className={s.userSpeciality}>
                             <AppText title={resume.profession} size="s" bold />
                             <div className={s.specialization}>
-                                    <AppText text={"Специализации:"} size="s" />
-                                {
-                                    resume.educational_institute.map((el) => {
-                                        return (
+                                <AppText text={"Специализации:"} size="s" />
+                                <List
+                                    list={resume.educational_institute}
+                                    renderItem={(el) =>
+                                        <li key={el}>
                                             <AppText
                                                 text={" - ".concat(el.specialization)}
                                                 size="s"
                                                 className={s.specializationText}   
                                             />
-                                    )
-                                    })
-                                }
+                                        </li>
+                                    }
+                                />    
+                                
                             </div> 
                                 <AppText 
                                     text={"Занятость: ".concat(resume.employment_type) } 
@@ -152,7 +155,6 @@ function ResumePage({ resume, author }) {
                                         bold
                                         variant={"error"}
                                     /> */}
-
                         {
                             resume.companies.map((el) => {
                                 
@@ -217,21 +219,20 @@ function ResumePage({ resume, author }) {
                                 bold
                             />
                            
-                            {
-                                resume.skills.map((el) => {
-                                    return (
-                                        <div className={s.keySkillsTextAll}>
-                                            <div>
-                                                <AppText
-                                                    text={el}
-                                                    size="s"
-                                                    className={s.keySkillsText}
-                                                />
-                                            </div>
+                           <List
+                                list={resume.skills}
+                                renderItem={(el) =>
+                                    <li key={el} className={s.keySkillsTextAll}>
+                                        <div >
+                                            <AppText
+                                                text={el}
+                                                size="s"
+                                                className={s.keySkillsText}
+                                            />    
                                         </div>
-                                    )
-                                })
-                            }
+                                    </li>
+                                }
+                            /> 
                         </div>
                         <div className={s.aboutUser}>
                             <div className={s.aboutUserTitle}>
