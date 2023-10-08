@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import s from "./VacancyPageReviews.module.css";
+import s from "./VacancyReviews.module.css";
 import cn from "classnames";
-function VacancyPageReviews(props) {
+function VacancyReviews(props) {
     const { className } = props;
     return (
-        <div className={cn(s.vacancyPageReviews, className)}>
+        <div className={cn(s.vacancyReviews, className)}>
             <hr className={s.hr} />
             <AppText
                 title="Отзывы о компании"
@@ -23,6 +23,6 @@ function VacancyPageReviews(props) {
     );
 }
 
-VacancyPageReviews.propTypes = {};
+VacancyReviews.propTypes = {};
 
-export default VacancyPageReviews;
+export default VacancyReviews;

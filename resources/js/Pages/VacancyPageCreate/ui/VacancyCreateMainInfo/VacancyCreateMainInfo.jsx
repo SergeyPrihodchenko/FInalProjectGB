@@ -11,7 +11,6 @@ import {
 } from "../../model/slice/vacancyPageCreateSlice";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
 function VacancyCreateMainInfo({ errors }) {
-    console.log("VacancyCreateMainInfo errors", errors);
     const dispatch = useDispatch();
     const { vacancyNameInput, vacancyCityInput, vacancyPaymentInput } =
         useSelector((state) => state.vacancyPageCreate);
