@@ -26,7 +26,7 @@ import AppInput from "@/8Shared/ui/AppInput/AppInput";
 //     "от трех и выше",
 // ];
 
-
+999
 
 function CreateResume() {
     const user = usePage().props.auth.user;
@@ -769,7 +769,7 @@ function CreateResume() {
 
                                             }
                                             variant="outline"
-                                            sizeText="999xs"
+                                            sizeText="xs"
                                             bold
                                             type="button"
                                             className={s.buttonSkillDelete}
