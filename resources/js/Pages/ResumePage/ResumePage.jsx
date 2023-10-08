@@ -6,13 +6,16 @@ import s from "./ResumePage.module.css";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setData } from "./model/slice/ResumePageSlice";
 
 
 function ResumePage({ resume, author }) {
-    //console.log(resume);
+    console.log(resume);
     const user = usePage().props.auth.user;
-    const userEmail = usePage().props.auth.user.email;
-
+    //const userEmail = usePage().props.auth.user.email;
+    const dispatch = useDispatch();
     const { data } = useForm({
         author_email: author.email,
         user_id: user.id,
@@ -32,7 +35,15 @@ function ResumePage({ resume, author }) {
         experience: resume.experience,
         relocation: resume.relocation,
     });
+    useEffect(() => {
+        if (resume) {
+            dispatch(
+            setData(resume));
+        }
+    }, [resume]);
 
+    const {resumes} = useSelector(state => state.resumePage);
+    console.log(resumes.skills);
     //высчитываем из даты рождения сколько полных лет
     const dateOfBirth = data.date_of_birth;
 
@@ -108,7 +119,7 @@ function ResumePage({ resume, author }) {
             
             age = end.getFullYear() - start.getFullYear();
             
-            console.log(month);    
+            //console.log(month);    
             return (
                 (declOfNum(end.setFullYear(1970) < start.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет'])) 
                     + " " 
