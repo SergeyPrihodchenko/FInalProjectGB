@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, usePage } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 //import PropTypes from 'prop-types'
 import s from "./ResumePage.module.css";
 
@@ -7,175 +7,83 @@ import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { setData } from "./model/slice/ResumePageSlice";
+import { setDataResume, 
+        setDataAuthor,
+        setYears, 
+        setGenger, 
+        setDayOfBirth, 
+        setDateFormatWorkBegin, 
+        setDateFormatWorkEnd,
+        setWorksExperience
+    } from "./model/slice/ResumePageSlice";
 
 
 function ResumePage({ resume, author }) {
-    console.log(resume);
+    //console.log(resume);
     const user = usePage().props.auth.user;
-    //const userEmail = usePage().props.auth.user.email;
     const dispatch = useDispatch();
-    const { data } = useForm({
-        author_email: author.email,
-        user_id: user.id,
-        profession: resume.profession,
-        first_name: resume.first_name,
-        last_name: resume.last_name,
-        gender: resume.gender,
-        region: resume.region,
-        date_of_birth: resume.date_of_birth,
-        phone: resume.phone,
-        citizenship: resume.citizenship,
-        work_permit: resume.work_permit,
-        education: resume.education,
-        educational_institute: resume.educational_institute,
-        companies: resume.companies,
-        skills: resume.skills,
-        experience: resume.experience,
-        relocation: resume.relocation,
-    });
-    useEffect(() => {
-        if (resume) {
-            dispatch(
-            setData(resume));
-        }
-    }, [resume]);
 
-    const {resumes} = useSelector(state => state.resumePage);
-    console.log(resumes.skills);
+    dispatch(setDataResume(resume));
+    dispatch(setDataAuthor(author));
+    
+    const {
+        resumes, 
+        authores,
+        yearDateOfBirth, 
+        genderOfUser, 
+        dateOfBirthUser, 
+        dataWorksBegin, 
+        dataWorksEnd,
+        yearWorksExperience 
+    } = useSelector(state => state.resumePage);
+    console.log(authores);
+    
     //высчитываем из даты рождения сколько полных лет
-    const dateOfBirth = data.date_of_birth;
-
-    function declOfNum(number, titles) {
-       let cases = [2, 0, 1, 1, 1, 2];
-        return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-      }
-      
-      function birthDateToAge(b) {
-        var n = new Date(),
-            b = new Date(b),
-            age = n.getFullYear() - b.getFullYear();
-        return n.setFullYear(1970) < b.setFullYear(1970) ? age - 1 : age;
-      }
-      const Years = (declOfNum(birthDateToAge(dateOfBirth), ['год', 'года', 'лет']));
-    //  console.log(Years);
+    const dateOfBirth = resumes.date_of_birth;
+    dispatch(setYears(dateOfBirth));
 
     //переводим из падежа в существительное gender пользователя
-    const dataGender = data.gender;
-    function dataGenderOfUser() {
-        let gender = "";
-        if (dataGender == "Мужской"){
-            gender = "Мужчина";
-        }else{
-            gender = "Женщина";
-        }
-        return gender;
-    }
-    const genderOfUser = dataGenderOfUser(dataGender);
-    //console.log(genderOfUser);
-
+    const dataGender = resumes.gender;
+    dispatch(setGenger(dataGender));
+    
     //форматируем дату рождения
-    const dayOfBirth = new Date(dateOfBirth);
-    const dateSrc = dayOfBirth.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
-    const dateOfBirthUser = dateSrc.split(".").join(" ");
-
-    //форматы даты и периода работы
-    function dateFormatYearsMonch(date){
-        const dayFormat = new Date(date);
-        const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
-        const dateDst = dateSrc.split(".").join(" ");
-        const present = " по настоящее время";
-        if(date == null){
-            return present
-        }else{
-            return(
-                dateDst
-            )
-        }
-    }
+    dispatch(setDayOfBirth(dateOfBirth));
 
     //расчет стажа
-    function declOfNum(number, titles) {
-        let cases = [2, 0, 1, 1, 1, 2];
-            return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-        }
-        
-        function worksExperience(endDate,startDate) {
-            let end, start, month, age;
-            start = new Date(startDate);
-            
-            if(endDate == null){
-                end = new Date();
-                month = end.getMonth() - start.getMonth(); 
-            }else{
-                end = new Date(endDate);
-                if(end.getMonth() > start.getMonth()) {
-                    month = end.getMonth() - start.getMonth();
-                }else{
-                    month = (12 + end.getMonth()) - start.getMonth();
-                }
-            }
-            
-            age = end.getFullYear() - start.getFullYear();
-            
-            //console.log(month);    
-            return (
-                (declOfNum(end.setFullYear(1970) < start.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет'])) 
-                    + " " 
-                    + 
-                (declOfNum(end.setMonth() < start.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
-            )
-        }
-          
+    dispatch(setWorksExperience());    
+              
     return (
         <>
             <AppPage>
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
-                        {/* <div className={s.buttonLinkResumeList}>
-                            <AppButton
-                                href={route("resume.myresumes")}
-                                variant="clear"
-                                className={s.linkResumePage}
-                                sizeText = "s"
-                            >
-                                К списку моих резюме
-                            </AppButton>
-                        </div> */}
                         <div class={s.baceData}>
                             <div class={s.userBaceData}>
-                                {/* <AppText 
-                                    text={"Сейчас на сайте"} 
-                                    size="s" 
-                                /> */}
                                 <AppText
-                                    title={data.last_name.concat(" ", data.first_name)}
+                                    title={resume.last_name.concat(" ", resume.first_name)}
                                     size="s"
                                     bold
                                 />
                                 <AppText 
                                     size="s"
-                                    text={genderOfUser.concat(", ", Years, ", ", dateOfBirthUser, " года рождения")}
+                                    text={genderOfUser.concat(", ", yearDateOfBirth, ", ", dateOfBirthUser, " года рождения")}
                                 />
                                 <div className={s.userContacts}>
                                     <AppText title={"Контакты"} size="s" />
                                     <AppText
-                                        text={data.phone}
+                                        text={resume.phone}
                                         size="s"
                                         className={s.userContactsPhone}
                                     />
                                     <div className={s.userEmail}>
                                         <AppText
-                                            text={data.author_email}
+                                            text={authores.email}
                                             size="s" 
                                             variant="accent"
                                             className={s.userEmailText}   
                                         />
                                         <AppText
-                                            text={
-                                                " — предпочитаемый способ связи"
-                                            }
+                                            text={" — предпочитаемый способ связи"}
                                             size="s"
                                             className={s.emailLeftText}
                                         />
@@ -183,21 +91,17 @@ function ResumePage({ resume, author }) {
                                 </div>
 
                                 <AppText 
-                                    text={data.region} 
-                                        size="s" 
-                                    />
-                                    <AppText 
-                                    text={
-                                        "Готовность к переездам: ".concat(resume.relocation)
-                                    } 
-                                        size="s" 
-                                    />
-                                    <AppText 
-                                    text={
-                                        "Готовность к командировкам: ".concat( resume.buisness_travel)
-                                    } 
-                                        size="s" 
-                                    />
+                                    text={resume.region} 
+                                    size="s" 
+                                />
+                                <AppText 
+                                    text={"Готовность к переездам: ".concat(resume.relocation)} 
+                                    size="s" 
+                                />
+                                <AppText 
+                                    text={"Готовность к командировкам: ".concat( resume.buisness_travel)} 
+                                    size="s" 
+                                />
                                 {/* <div className={s.userSearchArea}>
                                     <AppText
                                         text={"Указан примерный район поиска работы"}
@@ -210,17 +114,17 @@ function ResumePage({ resume, author }) {
                                 </div> */}
                             </div>
                             <div class={s.userPhoto}>
-                                            НЕТ ФОТО
-                                            {/* <img src="#" className={s.imgUserPhoto}/> */}
-                                        </div>
+                                НЕТ ФОТО
+                                {/* <img src="#" className={s.imgUserPhoto}/> */}
+                            </div>
                         </div>
 
                         <div className={s.userSpeciality}>
-                            <AppText title={data.profession} size="s" bold />
+                            <AppText title={resume.profession} size="s" bold />
                             <div className={s.specialization}>
                                     <AppText text={"Специализации:"} size="s" />
                                 {
-                                    data.educational_institute.map((el) => {
+                                    resume.educational_institute.map((el) => {
                                         return (
                                             <AppText
                                                 text={" - ".concat(el.specialization)}
@@ -250,19 +154,16 @@ function ResumePage({ resume, author }) {
                                     /> */}
 
                         {
-                            data.companies.map((el) => {
+                            resume.companies.map((el) => {
                                 
                                 //дата начала и окончания работы
                                 let dataWorkBegin = el.start_date;
                                 let dataWorkEnd = el.end_date;
                                 
                                 //форматы даты и периода работы
-                                const dataWorksBegin = dateFormatYearsMonch(dataWorkBegin);
-                                const dataWorksEnd = dateFormatYearsMonch(dataWorkEnd);
-
-                                //расчет стажа
-                                const Years = (worksExperience(dataWorkEnd, dataWorkBegin));
-                                                                                                
+                                dispatch(setDateFormatWorkBegin(dataWorkBegin));
+                                dispatch(setDateFormatWorkEnd(dataWorkEnd));
+                                                                                          
                                 return (
                                     <>
                                         <div className={s.workPeriods}>
@@ -272,7 +173,7 @@ function ResumePage({ resume, author }) {
                                                     size="s"
                                                 />
                                                 <AppText
-                                                    text={Years}
+                                                    text={yearWorksExperience}
                                                     size="s"
                                                 />
                                             </div>
@@ -317,7 +218,7 @@ function ResumePage({ resume, author }) {
                             />
                            
                             {
-                                data.skills.map((el) => {
+                                resume.skills.map((el) => {
                                     return (
                                         <div className={s.keySkillsTextAll}>
                                             <div>
@@ -354,12 +255,12 @@ function ResumePage({ resume, author }) {
                         <div className={s.education}>
                             <AppText
                                 bold
-                                title={data.education}
+                                title={resume.education}
                                 size="s"
                             />
                              
                             {
-                                data.educational_institute.map((el) => {
+                                resume.educational_institute.map((el) => {
                                     let yearsEducationEnd = new Date(el.graduation_year);
                                     let yearsEducationStart = new Date(el.start_year);
                                     
@@ -392,12 +293,12 @@ function ResumePage({ resume, author }) {
                                 bold
                             />
                             <AppText 
-                                text={"Гражданство: ".concat(data.citizenship)} 
+                                text={"Гражданство: ".concat(resume.citizenship)} 
                                 size="s" 
                             />
                                 
                             <AppText
-                                text={"Разрешение на работу: ".concat(data.work_permit)}
+                                text={"Разрешение на работу: ".concat(resume.work_permit)}
                                 size="s"
                             />
 {/* не знаю откуда тянуть эту информацию */}                                
@@ -407,20 +308,6 @@ function ResumePage({ resume, author }) {
                                 variant={"error"}
                             /> */}
                         </div>
-                       
-                        {/* <div className={s.buttonSave}>
-                            <AppButton
-                                path={"resume.edit"}
-                                param={resume.id}
-                                key={resume.id}
-                                type="submit"
-                                bold
-                                sizeText="s"
-                                className={s.buttonSave}
-                            >
-                                <span>Редактировать</span>
-                            </AppButton>
-                        </div> */}
                     </main> 
                 </container>
             </AppPage>
