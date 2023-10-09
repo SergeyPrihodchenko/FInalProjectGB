@@ -1,0 +1,22 @@
+.keySkills {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.keySkillsTextAll {
+    display: inline-block;
+    margin-right: 20px;
+    padding-bottom: 13px;
+}
+
+.keySkillsText {
+    width: 226px;
+    height: 33px;
+
+    background: var(--light-skeleton-shadow);
+    border: 1px solid var(--additional-bg);
+    border-radius: var(--border-radius-s);
+    text-align: center;
+
+    padding-top: 5px;
+}
