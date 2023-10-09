@@ -12,8 +12,7 @@ class CandidateConditionController extends Controller
 {
     public function getCandidate()
     {
-        // $id = auth()->id();
-        $id = 21;
+        $id = auth()->id();
 
         $companyId = Company::where('creator_id', $id)->get('id');
 
