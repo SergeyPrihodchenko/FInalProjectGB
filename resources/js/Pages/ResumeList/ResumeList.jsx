@@ -11,21 +11,22 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import List from "@/8Shared/List/List";
 
-function ResumePage({ resumes }) {
+function ResumeList({ resumes }) {
     const user = usePage().props.auth.user;
 
 //    console.log(resumes);
-const arrayEducation = [
-    "Среднее",
-    "Среднее специальное",
-    "Неоконченное высшее",
-    "Высшее образование",
-    "Бакалавр",
-    "Магистр",
-    "Кандидат наук",
-];
+// const arrayEducation = [
+//     "Среднее",
+//     "Среднее специальное",
+//     "Неоконченное высшее",
+//     "Высшее образование",
+//     "Бакалавр",
+//     "Магистр",
+//     "Кандидат наук",
+// ];
 
 const arrayExperience = [
+    "Не имеет значения",
     "нет опыта",
     "от 1 до 3 лет",
     "от 3 до 6 лет",
@@ -75,125 +76,124 @@ const arrayBuisnessTravel = [
                             placeholder="Поиск резюме"   
                         />
                         <div className={s.resumeListPage}>
-                            <div>
-                                    <div className={s.vacancyWishes}>
-                                        <AppText
-                                            title={"Тип занятости"}
-                                            bold
-                                            size={"s"}
-                                            className={s.textTitle}
-                                        />
-                                        <List
-                                            list={arrayEmployment}
-                                            renderItem={(el) =>
-                                                <li key={el}>
-                                                    <Checkbox
-                                                        label={el}
-                                                        name={'employment_type'}
-                                                        //checkHandler={}
-                                                        value={el}
-                                                    />
-                                                </li>
-                                            }
-                                        />    
+                            <div className={s.vacancyWishes}>
+                                <AppText
+                                    title={"Тип занятости"}
+                                     bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <List
+                                    list={arrayEmployment}
+                                    renderItem={(el) =>
+                                        <li key={el}>
+                                            <Checkbox
+                                                label={el}
+                                                name={'employment_type'}
+                                                //checkHandler={}
+                                                value={el}
+                                            />
+                                        </li>
+                                    }
+                                />    
                                         
-                                        <AppText
-                                            title={"Опыт работы"}
-                                            bold
-                                            size={"s"}
-                                            className={s.textTitle}
+                                <AppText
+                                    title={"Опыт работы"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
+                                <List
+                                    list={arrayExperience}
+                                    renderItem={(el) =>
+                                        <li key={el}>
+                                            <RadioButton
+                                                label={el}
+                                                value={el}
+                                            className={s.inputResume}
                                         />
-                                        <List
-                                            list={arraySchedule}
-                                            renderItem={(el) =>
-                                                <li key={el}>
-                                                    <RadioButton
-                                                        label={el}
-                                                        value={el}
-                                                    className={s.inputResume}
-                                                />
-                                            </li>
-                                            }
-                                        />    
+                                    </li>
+                                    }
+                                />    
                                             
-                                        <AppText
-                                            title={"Уровень дохода"}
-                                            bold
-                                            size={"s"}
-                                            className={s.textTitle}
-                                        />
+                                <AppText
+                                    title={"Уровень дохода"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
 
-                                        <AppInput    
-                                            type="text"
-                                            placeholder="от 100000"
-                                            width={"220px"}    
-                                        />
+                                    <AppInput    
+                                    type="text"
+                                    placeholder="от 100000"
+                                    width={"220px"}    
+                                />
 
-                                        <AppText
-                                            title={"График работы"}
-                                            bold
-                                            size={"s"}
-                                            className={s.textTitle}
-                                        />
+                                <AppText
+                                    title={"График работы"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
                                         
-                                        <List
-                                            list={arraySchedule}
-                                            renderItem={(el) =>
-                                                <li key={el}>
-                                                    <Checkbox
-                                                        label={el}
-                                                        name="schedule_type"
-                                                        id={el}
-                                                            value={el}
-                                                        className={s.checkboxResumeEl}
-                                                    />
-                                                </li>
-                                            }
-                                        />      
+                                <List
+                                     list={arraySchedule}
+                                    renderItem={(el) =>
+                                        <li key={el}>
+                                            <Checkbox
+                                                label={el}
+                                                name="schedule_type"
+                                                id={el}
+                                                    value={el}
+                                                className={s.checkboxResumeEl}
+                                            />
+                                        </li>
+                                    }
+                                />      
                                         
-                                        <AppText
-                                            title={"Готовность к переездам"}
-                                            bold
-                                             size={"s"}
-                                            className={s.textTitle}
-                                        />
+                                <AppText
+                                    title={"Готовность к переездам"}
+                                    bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
 
-                                        <List
-                                            list={arrayRelocation}
-                                            renderItem={(el) =>
-                                                <li key={el}>
-                                                    <RadioButton
-                                                        name="relocation"
-                                                        label={el}
-                                                        value={el} 
-                                                        className={s.inputResume}
-                                                    />
-                                                </li>
-                                            }
-                                        />
+                                <List
+                                    list={arrayRelocation}
+                                    renderItem={(el) =>
+                                        <li key={el}>
+                                            <RadioButton
+                                                name="relocation"
+                                                label={el}
+                                                value={el} 
+                                                className={s.inputResume}
+                                            />
+                                        </li>
+                                    }
+                                />
                                         
-                                        <AppText
-                                            title={"Готовность к командировкам"}
-                                            bold
-                                            size={"s"}
-                                            className={s.textTitle}
-                                        />
+                                <AppText
+                                    title={"Готовность к командировкам"}
+                                     bold
+                                    size={"s"}
+                                    className={s.textTitle}
+                                />
 
-                                        <List
-                                            list={arrayBuisnessTravel}
-                                            renderItem={(el) =>
-                                                <li key={el}>
-                                                    <RadioButton
-                                                        name="buisness_travel"
-                                                        label={el}
-                                                        value={el} 
-                                                        className={s.inputResume}
-                                                    />
-                                                </li>
-                                            }
-                                        />     
-                                    </div>
+                                <List
+                                    list={arrayBuisnessTravel}
+                                    renderItem={(el) =>
+                                        <li key={el}>
+                                            <RadioButton
+                                                name="buisness_travel"
+                                                label={el}
+                                                value={el} 
+                                                className={s.inputResume}
+                                            />
+                                        </li>
+                                    }
+                                />     
                             </div>
+                           
                             <div>
                             {
                                 resumes.map((resume) => {
@@ -225,9 +225,6 @@ const arrayBuisnessTravel = [
                                     //  console.log(Yers);
 
                                 return (
-
-                                    
-
                                         <div class={s.resumeList}>
                                             <div class={s.userResume}>
                                                 <div className={s.userData}>
@@ -277,9 +274,9 @@ const arrayBuisnessTravel = [
                                                 </div>
                                             </div>
                                         </div>
-
-                                );
-                            })}
+                                    );
+                                }
+                            )}
                             </div>
                         </div>   
                     </main>
@@ -289,4 +286,4 @@ const arrayBuisnessTravel = [
     );
 }
 
-export default ResumePage;
+export default ResumeList;
