@@ -36,24 +36,25 @@ const CompanyPageBody = ({
             <div className={s.companyPageRight}>
                 <CompanyPageHeader
                     title={company?.name || companyName}
-                    initialRating={companyRating}
-                    countReview={countReview}
+                    initialRating={companyRating}//колличество звездочек
+                    countReview={countReview}//колличество отзывов
                 />
                 <CompanyPageInfo
                     title={company?.description || companyInfo}
-                    tagline={companyTagline}
-                    address={companyAddress}
-                    contactPhone={companyPhone}
-                    contactEmail={companyEmail}
-                    infoList={companyInfoList}
+                    //tagline={companyTagline}
+                    address={company?.region_of_location || companyAddress}
+                    contactPhone={company?.phone_number || companyPhone}
+                    contactEmail={company?.email ||companyEmail}
+                    //infoList={companyInfoList}
 
                 />
                 <CompanyPageReview
-                    employeeReview={employeeReview}
-                    otherReview={reviewList}/>
+                    //employeeReview={employeeReview} отзывы
+                    //otherReview={reviewList}
+                    />
                 <CompanyPageVacancy
-                    companyName={companyName}
-                    companyVacancyList={companyVacancies}
+                    companyName={company?.name || companyName}
+                    //companyVacancyList={companyVacancies}
                 />
             </div>
         </div>
