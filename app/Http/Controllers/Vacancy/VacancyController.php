@@ -40,6 +40,8 @@ class VacancyController
         }
         $responsedVacancy = UserResponseVacancies::whereIn('resume_id', $arr)->get('vacancy_id');
 
+        $resumes = Resume::where('user_id', $id)->get()->toArray();
+
         if (!empty($responsedVacancy)) {
             $arr = [];
             foreach ($responsedVacancy as $value) {
@@ -55,7 +57,8 @@ class VacancyController
             'experience' => $experience,
             'cities' => $cities,
             'likes' => $likes,
-            'responsedVacancy' => $responsedVacancy
+            'responsedVacancy' => $responsedVacancy,
+            'resumes' => $resumes
         ]);
     }
 
@@ -84,7 +87,7 @@ class VacancyController
     public function create(): \Inertia\Response
     {
         //return Inertia::render('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate');
-        $companies = Company::all();
+        $companies = Company::where('creator_id', auth()->id())->get('id');
         $cities = City::all();
         $citiesForWork = City::all();
         $experience = Experience::all();

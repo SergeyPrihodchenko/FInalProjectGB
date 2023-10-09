@@ -30,7 +30,7 @@ function VacancyPageCreate(props) {
         schedule,
         employment,
     } = props;
-
+    console.log(companies);
     const {
         vacancyNameInput,
         vacancyCityInput,
