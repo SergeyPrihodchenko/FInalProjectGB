@@ -88,7 +88,16 @@ function CompanyPageCreate({ auth,  cities }) {
                             placeholder="IT, Металлургия, Услуги"
                             className={s.indentDownBasiceData}
                         />
-
+                        <AppInput
+                           //value={regionLocationCompanyInput}
+                            onChange={(e) =>
+                                setRegionLocationCompanyInput(e.value.target)
+                            }
+                            label={"Город или регион расположения"}
+                            type="text"
+                            placeholder="117418 Москва, ул. Новоселов стр 1 офис 5"
+                            className={s.indentDownBasiceData}
+                        />
                         <AppText
                             title={"Логотип компании"}
                             bold
@@ -117,20 +126,8 @@ function CompanyPageCreate({ auth,  cities }) {
                                 </div>
                             </div>
 
-                        
-
-                        {/* <AppInput
-                            value={regionLocationCompanyInput}
-                            onChange={(e) =>
-                                setRegionLocationCompanyInput(e.value.target)
-                            }
-                            label={"Город или регион расположения"}
-                            type="text"
-                            placeholder="Москва"
-                            className={s.indentDownBasiceData}
-                        /> */}
                         <AppText
-                            title = {"Город или регион расположения"}
+                            title = {"Город"}
                             bold
                             size={"xs"}
                             className={s.textTitle}
