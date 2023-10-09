@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\CandidateConditionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Http\Controllers\Vacancy\VacancyController;
@@ -38,8 +39,9 @@ class DevCommand extends Command
         // UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 8]);
         // UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 12]);
 
-       $test = null == false;
-       dd($test);
+       $test = new CandidateConditionController;
+
+       $test->getCandidate();
     }
 
 }
