@@ -63,10 +63,13 @@ class User extends Authenticatable
         return $this->hasMany(Company::class, 'creator_id');
     }
 
+
     public function subscriptions(): BelongsToMany
     {
-        return $this->belongsToMany(Company::class,);
+        return $this->belongsToMany(Company::class, 'company_user', 'user_id', 'company_id')
+            ->using(CompanyUser::class);
     }
+
 
 //    public function isSubscribedTo(Company $company)
 //    {
@@ -81,12 +84,12 @@ class User extends Authenticatable
 
     public function subscribeToCompany(Company $company)
     {
-        $this->subscriptions()->attach($company);
+        $this->subscriptions()->attach($company->id);
     }
 
     public function unsubscribeFromCompany(Company $company)
     {
-        $this->subscriptions()->detach($company);
+        $this->subscriptions()->detach($company->id);
     }
 
 

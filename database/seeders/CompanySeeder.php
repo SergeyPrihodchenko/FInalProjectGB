@@ -24,19 +24,20 @@ class CompanySeeder extends Seeder
             $response[] = [
                 'email' => fake()->safeEmail,
                 'name' => fake('ru_RU')->company,
-                'business_profile' =>  fake('ru_RU')->title,
+                'business_profile' =>  fake('ru_RU')->companySuffix,
                 'website' => fake()->url,
                 'region_of_location' => fake('ru_RU')->address,
                 'date_create' => fake('ru_RU')->date,
                 'phone_number' => fake()->phoneNumber,
                 'description' => fake('ru_RU')->text(),
-//                'creator_id',
                 'creator_id' => User::create([
                 'name' => fake('ru_RU')->name,
                 'email' => fake()->email,
                 'password' => '12345678',
             ])->id,
 
+                'logo' => fake('ru_RU')->imageUrl(150, 150),
+                'city' => fake('ru_RU')->city,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

@@ -20,18 +20,22 @@ const CompanyPageAppCard = ({ img, city, isSubscribed, company, user }) => {
         <div className={cn(s.companyPageLeft)}>
             <section className={cn(s.companyPageLeftCard)}>
                 <div className={cn(s.companyPageLeftCardLogo)}>
-                    <img src={img} alt="Лого" />
+                    <img src={company?.logo || img} alt="Лого" />
                 </div>
                 <div className={cn(s.companyPageLeftCardInfo)}>
                     <div className={cn(s.companyPageLeftCardInfoCard)}>
                         <div className={cn(s.companyPageLeftCardInfoText)}>
-                            {city}
+                            {company?.city || city}
+                        </div>
+                        <div className={cn(s.companyPageLeftCardInfoText)}>
+                            {company?.date_create || city}
                         </div>
                         <a
                             className={cn(s.companyPageLeftCardInfoLink)}
                             href="#"
                         >
-                            test.ru
+                            {company?.website || test.ru}
+
                         </a>
                     </div>
                     <div className={cn(s.companyPageLeftCardInfoCard)}>
@@ -60,8 +64,9 @@ const CompanyPageAppCard = ({ img, city, isSubscribed, company, user }) => {
                             Сферы деятельности
                         </div>
                         <div className={cn(s.companyPageLeftCardInfoText)}>
-                            Информационные технологии, системная интеграция,
-                            интернет
+                            {/*Информационные технологии, системная интеграция,*/}
+                            {/*интернет*/}
+                            {company?.business_profile || companyName}
                         </div>
                     </div>
                 </div>

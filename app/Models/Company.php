@@ -20,14 +20,17 @@ class Company extends Model
         'date_create',
         'phone_number',
         'description',
-        'creator_id'
+        'creator_id',
+        'logo',
+        'city'
+
     ];
 
-    //protected $casts = [
+    protected $casts = [
 //        'created_at' => 'datetime:Y-m-d',
 //        'updated_at' => 'datetime:d/m/Y',
-    //'date_create' => 'datetime:d/m/Y',
-    //];
+    'date_create' => 'datetime:d/m/Y',
+    ];
 
 
     public function vacancies()
