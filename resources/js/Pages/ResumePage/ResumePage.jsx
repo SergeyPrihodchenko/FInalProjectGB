@@ -50,8 +50,14 @@ function ResumePage({ resume, author }) {
     //форматируем дату рождения
     dispatch(setDayOfBirth(dateOfBirth));
 
+                              
+    //форматы даты и периода работы
+    dispatch(setDateFormatWorkBegin());
+    dispatch(setDateFormatWorkEnd());
+                                                                              
     //расчет стажа
-    dispatch(setWorksExperience());    
+    dispatch(setWorksExperience());  
+
               
     return (
         <>
@@ -135,19 +141,20 @@ function ResumePage({ resume, author }) {
                                             />
                                         </li>
                                     }
-                                />    
-                                
+                                />        
                             </div> 
-                                <AppText 
-                                    text={"Занятость: ".concat(resume.employment_type) } 
-                                    size="s" 
-                                />
 
-                                <AppText 
-                                    text={"График работы: ".concat(resume.schedule_type)} 
-                                    size="s" 
-                                />   
+                            <AppText 
+                                text={"Занятость: ".concat(resume.employment_type) } 
+                                size="s" 
+                            />
+
+                            <AppText 
+                                text={"График работы: ".concat(resume.schedule_type)} 
+                                size="s" 
+                            />   
                         </div>
+
                         <div className={s.workExperience}>
                                     {/* <AppText
                                         title={"4 года 9 месяцев"}
@@ -155,17 +162,9 @@ function ResumePage({ resume, author }) {
                                         bold
                                         variant={"error"}
                                     /> */}
+                        
                         {
-                            resume.companies.map((el) => {
-                                
-                                //дата начала и окончания работы
-                                let dataWorkBegin = el.start_date;
-                                let dataWorkEnd = el.end_date;
-                                
-                                //форматы даты и периода работы
-                                dispatch(setDateFormatWorkBegin(dataWorkBegin));
-                                dispatch(setDateFormatWorkEnd(dataWorkEnd));
-                                                                                          
+                            resume.companies.map((el) => {            
                                 return (
                                     <>
                                         <div className={s.workPeriods}>

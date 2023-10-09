@@ -62,30 +62,41 @@ export const resumePage = createSlice({
             state.dateOfBirthUser = dateSrc.split(".").join(" ");
         },
         //форматы даты и периода работы
-        setDateFormatWorkBegin: (state, { payload }) => {
-            function dateFormatYearsMonch(payload){
-                const dayFormat = new Date(payload);
-                const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
-                const dateDst = dateSrc.split(".").join(" ");
-                const present = " по настоящее время";
-                if(payload == null){
-                    return present
-                }else{
-                    return(
-                        dateDst
-                    )
+        setDateFormatWorkBegin: (state) => {
+            state.resumes.companies.map((el) => { 
+                //дата начала работы
+                let dataWorkBegin = el.start_date;
+                    
+                function dateFormatYearsMonch(dataWorkBegin){
+                    const dayFormat = new Date(dataWorkBegin);
+                    const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
+                    const dateDst = dateSrc.split(".").join(" ");
+                    const present = " по настоящее время";
+                    if(dataWorkBegin == null){
+                        return present
+                    }else{
+                        return(
+                               dateDst
+                        )
+                    }
                 }
-            }
-            state.dataWorksBegin = dateFormatYearsMonch(payload);
-        },
+                
+                state.dataWorksBegin = dateFormatYearsMonch(dataWorkBegin);
 
-        setDateFormatWorkEnd: (state, { payload }) => {
-            function dateFormatYearsMonch(payload){
-                const dayFormat = new Date(payload);
+                })    
+            },
+
+        setDateFormatWorkEnd: (state) => {
+            state.resumes.companies.map((el) => {
+            //дата окончания работы
+                let dataWorkEnd = el.end_date;
+                
+            function dateFormatYearsMonch(dataWorkEnd){
+                const dayFormat = new Date(dataWorkEnd);
                 const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
                 const dateDst = dateSrc.split(".").join(" ");
                 const present = " по настоящее время";
-                if(payload == null){
+                if(dataWorkEnd == null){
                     return present
                 }else{
                     return(
@@ -93,7 +104,10 @@ export const resumePage = createSlice({
                     )
                 }
             }
-            state.dataWorksEnd = dateFormatYearsMonch(payload);
+            
+            state.dataWorksEnd = dateFormatYearsMonch(dataWorkEnd);
+
+            })
         },
 
         //расчет стажа
