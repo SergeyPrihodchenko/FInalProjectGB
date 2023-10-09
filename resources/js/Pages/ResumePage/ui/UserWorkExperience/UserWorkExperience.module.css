@@ -1,0 +1,26 @@
+.company {
+    display: flex;
+    justify-content: start;
+
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.userEmailText {
+    border-bottom: 1px solid var(--accent);
+}
+
+.userWorkPeriod {
+    width: 310px;
+    padding-top: 7px;
+}
+
+.workPeriods {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+}
+
+.descriptionExperience {
+    padding-left: 20px;
+}
