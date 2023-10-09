@@ -9,7 +9,7 @@ import Loader from "@/8Shared/Loader/Loader";
 import s from "./VacancyListPage.module.css";
 import cn from "classnames";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
-import { Head } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import VacancyListPageFilters from "./ui/VacancyListPageFilters/VacancyListPageFilters";
 import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
@@ -33,6 +33,9 @@ const VacancyListPage = ({
     responsedVacancy
 }) => {
 
+    console.log('responsedVacancy: ', responsedVacancy);
+    console.log('resumes: ', resumes);
+
     const dispatch = useDispatch();
 
     const {
@@ -49,6 +52,7 @@ const VacancyListPage = ({
     // const [vacancyList, setVacancyList] = useState([]);
     // const [total, setTotal] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);
+
     const [index, setIndex] = useState(0);
     const loaderRef = useRef(null);
 
@@ -75,12 +79,16 @@ const VacancyListPage = ({
     const [favourites, setIsFavourites] = useState(likes);
     const [responsesIdList, setResponsesIdList] = useState(responsedVacancy);
 
+
     //Modal
     const [isResponseModal, setIsResponseModal] = useState(false);
-    const handleToggleModal = () => {
-        setIsResponseModal(prev => !prev)
-    }
+    const [vacId, setVacId] = useState('');
 
+    const handleToggleModal = useCallback((vac_id) => {
+        setIsResponseModal(prev => !prev);
+        setVacId(vac_id);
+
+    }, [isResponseModal]);
 
 
     const handleVacancySearchInput = (e) => {
@@ -270,38 +278,27 @@ const VacancyListPage = ({
                     {user?.id ?
                         <>
                             <AppText text={'Выберите резюме для отправки'} size={'s'} />
-                            <AppCard
+                            {resumes?.map(resume => <AppCard
+                                key={resume.id}
                                 className={s.modalCard}
                                 borderLeft
                                 width={'500px'}
                                 shadow
                             >
                                 <AppText
-                                    title={"Резюме 1"}
+                                    title={resume.profession}
                                     size={'m'}
                                 />
                                 <AppButton
                                     variant={'filled'}
+                                    onClick={() => {
+                                        router.post('PageUserResponses/accept', { resume_id: resume.id, vacancy_id: vacId });
+                                        setIsResponseModal(!isResponseModal);
+                                    }}
                                 >
                                     Отправить
                                 </AppButton>
-                            </AppCard>
-                            <AppCard
-                                className={s.modalCard}
-                                borderLeft
-                                width={'500px'}
-                                shadow
-                            >
-                                <AppText
-                                    title={"Резюме 2"}
-                                    size={'m'}
-                                />
-                                <AppButton
-                                    variant={'filled'}
-                                >
-                                    Отправить
-                                </AppButton>
-                            </AppCard>
+                            </AppCard>)}
                         </> :
                         <>
                             <AppText text={'Сначала зарегистрируйтесь'} />
@@ -401,7 +398,6 @@ const VacancyListPage = ({
                         </div>
                         {vacancyList?.map(vac =>
                             <div className={s.vacancyListCardWrapper}>
-
                                 <AppCard
                                     key={vac.id}
                                     variant="primary"
@@ -464,9 +460,10 @@ const VacancyListPage = ({
                                     }
                                     <div className={s.vacancyListCardBtnWrapper}>
                                         <AppButton
-                                            onClick={handleToggleModal}
+                                            onClick={() => handleToggleModal(vac.id)}
                                             className={s.vacancyListCardBtn}
                                             width="auto"
+                                            disabled={isResponsedVacancy(vac.id, responsedVacancy) ? true : false}
                                         >
                                             Откликнуться
                                         </AppButton>

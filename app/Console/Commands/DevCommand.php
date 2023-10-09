@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\CandidateConditionController;
 use App\Http\Controllers\ProfileController;
 use App\Models\SqlBuild;
 use App\Models\UserResponseVacancies;

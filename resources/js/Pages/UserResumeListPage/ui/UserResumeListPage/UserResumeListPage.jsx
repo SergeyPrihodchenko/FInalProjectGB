@@ -76,7 +76,7 @@ function UserResumeListPage({ resumes }) {
                                                 size="xs"
                                             />
 
-<AppText
+                                            <AppText
                                                 text={"Регион: ".concat(resume.region)}
                                                 size="xs"
                                             />

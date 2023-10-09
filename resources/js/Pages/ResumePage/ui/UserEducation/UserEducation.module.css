@@ -1,0 +1,14 @@
+.userEducationPeriod {
+    width: 310px;
+    padding-top: 7px;
+}
+
+.educationPeriods {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+}
+
+.descriptionEducation {
+    padding-left: 20px;
+}
