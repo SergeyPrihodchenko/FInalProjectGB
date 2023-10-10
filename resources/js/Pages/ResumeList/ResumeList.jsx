@@ -108,9 +108,10 @@ const arrayBuisnessTravel = [
                                     renderItem={(el) =>
                                         <li key={el}>
                                             <RadioButton
+                                                name="experience"
                                                 label={el}
                                                 value={el}
-                                            className={s.inputResume}
+                                                className={s.inputResume}
                                         />
                                     </li>
                                     }
@@ -144,7 +145,7 @@ const arrayBuisnessTravel = [
                                                 label={el}
                                                 name="schedule_type"
                                                 id={el}
-                                                    value={el}
+                                                value={el}
                                                 className={s.checkboxResumeEl}
                                             />
                                         </li>
