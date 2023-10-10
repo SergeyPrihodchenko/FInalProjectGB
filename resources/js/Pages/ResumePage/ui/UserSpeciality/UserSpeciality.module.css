@@ -1,0 +1,12 @@
+.employment,
+.schedule {
+    display: flex;
+}
+
+.userSpeciality {
+    margin: 20px 0px 40px 0px;
+}
+
+.specializationText {
+    padding: 0px 0px 10px 20px;
+}

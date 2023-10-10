@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
-import s from "./VacanyPageNav.module.css";
+import s from "./VacanyNav.module.css";
 const navList = ["Мои резюме", "Отклики", "Помощь"];
-function VacanyPageNav(props) {
+function VacanyNav(props) {
     return (
-        <nav className={s.vacancyPageNav}>
+        <nav className={s.vacancyNav}>
             <AppPage className={s.conatiner}>
                 <div className={s.navLinkList}>
                     {navList.map((navItem, index) => {
@@ -28,6 +28,6 @@ function VacanyPageNav(props) {
     );
 }
 
-VacanyPageNav.propTypes = {};
+VacanyNav.propTypes = {};
 
-export default VacanyPageNav;
+export default VacanyNav;

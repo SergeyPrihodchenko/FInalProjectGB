@@ -13,6 +13,7 @@ import List from "@/8Shared/List/List";
 import { useState, useEffect } from "react";
 
 function ResumeList() {
+
     const user = usePage().props.auth.user;
 
     const [resumes, setResumes] = useState([]);
@@ -189,12 +190,14 @@ const arrayBuisnessTravel = [
                                 <List
                                     list={arrayEmployment}
                                     renderItem={(el, index) =>
+
                                         <li key={el}>
                                             <Checkbox
                                                 label={el}
                                                 name={'employment_type'}
                                                 //checkHandler={}
                                                 value={el}
+
                                                 onChange={(e, index) => setEmploymentType(e, index)}
                                             />
                                         </li>
@@ -218,6 +221,7 @@ const arrayBuisnessTravel = [
                                                 value={el}
                                                 onChange={(e, index) => setExperience(e, index)}
                                             />
+
                                     </li>
                                     }
                                 />    
@@ -252,6 +256,7 @@ const arrayBuisnessTravel = [
                                 <List
                                      list={arraySchedule}
                                     renderItem={(el, index) =>
+
                                         <li key={el}>
                                             <Checkbox
                                                 label={el}
@@ -259,6 +264,7 @@ const arrayBuisnessTravel = [
                                                 id={el}
                                                 value={el}
                                                 onChange={(e, index) => setScheduleType(e, index)}
+
                                                 className={s.checkboxResumeEl}
                                             />
                                         </li>
@@ -281,6 +287,7 @@ const arrayBuisnessTravel = [
                                                 label={el}
                                                 value={el} 
                                                 onChange={(e) => setRelocation(e.target.value)}
+
                                                 className={s.inputResume}
                                             />
                                         </li>
@@ -303,6 +310,7 @@ const arrayBuisnessTravel = [
                                                 label={el}
                                                 value={el} 
                                                 onChange={(e) => setBuisnessTravel(e.target.value)}
+
                                                 className={s.inputResume}
                                             />
                                         </li>
@@ -323,6 +331,7 @@ const arrayBuisnessTravel = [
                                     //     experience: resume.experience,
                                     //     salary: resume.salary,
                                     // });
+
                                     
                                     //высчитываем из даты рождения сколько полных лет
                                     const dateOfBirth = data.date_of_birth;

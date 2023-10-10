@@ -20,13 +20,16 @@ class Company extends Model
         'date_create',
         'phone_number',
         'description',
-        'creator_id'
+        'creator_id',
+        'logo',
+        'city'
+
     ];
 
     protected $casts = [
 //        'created_at' => 'datetime:Y-m-d',
 //        'updated_at' => 'datetime:d/m/Y',
-        'date_create' => 'datetime:d/m/Y',
+    'date_create' => 'datetime:d/m/Y',
     ];
 
 
@@ -41,7 +44,7 @@ class Company extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function creater()
+    public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
     }

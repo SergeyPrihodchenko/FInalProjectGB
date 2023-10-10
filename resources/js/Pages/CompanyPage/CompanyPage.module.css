@@ -51,8 +51,8 @@
 .companyPageRight {
     padding: 0 10px;
 }
-.companyPageHeader {
-}
+/* .companyPageHeader {
+} */
 .CompanyPageRightHeaderPosition {
     line-height: 1.43;
     font-size: 14px;
@@ -159,8 +159,8 @@
     color: #6e7173;
     margin-left: 8px;
 }
-.companyPageVacancies {
-}
+/* .companyPageVacancies {
+} */
 .companyPageVacanciesTitleDecorate {
     text-underline-offset: 3px;
     text-decoration-thickness: 1px !important;

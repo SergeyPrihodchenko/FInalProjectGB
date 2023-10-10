@@ -11,7 +11,7 @@ import DeleteProfileForm from "./Forms/DeleteProfileForm";
 
 import ProfilePageTabs from "./ProfilePageTabs/ProfilePageTabs";
 
-function ProfilePage({ auth, favourite_vacancies }) {
+function ProfilePage({ auth, favourite_vacancies, likes }) {
     const user = usePage().props.auth.user;
     return (
         <AuthContext.Provider value={{ user }}>
@@ -21,7 +21,10 @@ function ProfilePage({ auth, favourite_vacancies }) {
                         <main className={s.mainProfilePage}>
                             <AppText title={"Настройки"} size={"m"} bold />
 
-                            <ProfilePageTabs favourite_vacancies={favourite_vacancies} />
+                            <ProfilePageTabs
+                                favourite_vacancies={favourite_vacancies}
+                                likes={likes}
+                            />
 
                             <DeleteProfileForm />
                             {/* <div className={s.btnProfilePage}>

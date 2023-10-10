@@ -36,18 +36,16 @@ const MainLayout = (porps) => {
         document.body.className = newTheme;
     };
     return (
-        <div className={cn(s.mainLayout, className, theme)}>
+        <div id={'themeBlock'} className={cn(s.mainLayout, className, theme)}>
             <header>
                 <Header className={s.header}>
-                    <Navbar user={user} />
+                    <Navbar
+                        user={user}
+                        switchTheme={switchTheme}
+                        theme={theme}
+                    />
                 </Header>
-                <AppButton
-                    onClick={() => {
-                        switchTheme(theme);
-                    }}
-                >
-                    Тема
-                </AppButton>
+
                 {locationPath !== "/" &&
                     locationPath !== "/register" &&
                     locationPath !== "/login" &&

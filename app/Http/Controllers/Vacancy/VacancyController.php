@@ -8,6 +8,7 @@ use App\Enums\ScheduleType;
 use App\Http\Requests\Vacancy\StoreRequest;
 use App\Models\City;
 use App\Models\Company;
+use App\Models\Resume;
 use App\Models\UserLikeVacancies;
 use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
@@ -25,16 +26,25 @@ class VacancyController
         //     'title' => 'Вакансии'
         // ]);
 
+        $id = auth()->id();
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
-        $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
-        $responsedVacancy = UserResponseVacancies::where('user_id', auth()->id())->get('vacancy_id');
-        
-        if(!empty($responsedVacancy)){
+
+        $likes = UserLikeVacancies::getVacancyIdArray($id);
+        $resume = Resume::where('user_id', $id)->get('id')->toArray();
+        $arr = [];
+        foreach ($resume as $value) {
+            $arr[] = $value['id'];
+        }
+        $responsedVacancy = UserResponseVacancies::whereIn('resume_id', $arr)->get('vacancy_id');
+
+        $resumes = Resume::where('user_id', $id)->get()->toArray();
+
+        if (!empty($responsedVacancy)) {
             $arr = [];
-            foreach($responsedVacancy as $value){
+            foreach ($responsedVacancy as $value) {
                 $arr[] = $value->getAttributes()['vacancy_id'];
             }
             $responsedVacancy = $arr;
@@ -47,12 +57,14 @@ class VacancyController
             'experience' => $experience,
             'cities' => $cities,
             'likes' => $likes,
-            'responsedVacancy' => $responsedVacancy
+            'responsedVacancy' => $responsedVacancy,
+            'resumes' => $resumes
         ]);
     }
 
     public function show(Vacancy $vacancy): \Inertia\Response
     {
+        $companies = Company::all();
         $cities = City::all();
         $contacts = json_decode($vacancy->contacts);
         $requirements = json_decode($vacancy->requirements);
@@ -68,13 +80,14 @@ class VacancyController
             'conditions' => $conditions,
             'skills' => $skills,
             'cities' => $cities,
+            'companies' => $companies,
         ]);
     }
 
     public function create(): \Inertia\Response
     {
         //return Inertia::render('VacancyPageCreate/ui/VacancyPageCreate/VacancyPageCreate');
-        $companies = Company::all();
+        $companies = Company::where('creator_id', auth()->id())->get('id');
         $cities = City::all();
         $citiesForWork = City::all();
         $experience = Experience::all();

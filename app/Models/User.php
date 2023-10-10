@@ -63,24 +63,33 @@ class User extends Authenticatable
         return $this->hasMany(Company::class, 'creator_id');
     }
 
+
     public function subscriptions(): BelongsToMany
     {
-        return $this->belongsToMany(Company::class);
+        return $this->belongsToMany(Company::class, 'company_user', 'user_id', 'company_id')
+            ->using(CompanyUser::class);
     }
 
-    public function isSubscribedTo(Company $company)
-    {
-        return $this->subscriptions()->contains($company);
-    }
+
+//    public function isSubscribedTo(Company $company)
+//    {
+//
+//        return $this->subscriptions()->get()->contains($company);
+//    }
+//    public function isSubscribedTo(Company $company)
+//    {
+//        dd($company);
+//        return $this->subscriptions()->where('company_id', $company->id)->exists();
+//    }
 
     public function subscribeToCompany(Company $company)
     {
-        return $this->subscriptions()->attach($company );
+        $this->subscriptions()->attach($company->id);
     }
 
     public function unsubscribeFromCompany(Company $company)
     {
-        return $this->subscriptions()->detach($company);
+        $this->subscriptions()->detach($company->id);
     }
 
 

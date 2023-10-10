@@ -10,12 +10,14 @@ import List from '@/8Shared/List/List';
 import AppCard from '@/8Shared/ui/AppCard/AppCard';
 import AppLink from '@/8Shared/ui/AppLink/AppLink';
 import AppButton from '@/8Shared/ui/AppButton/AppButton';
+import FavouriteButton from '@/8Shared/ui/FavouriteButton/FavouriteButton';
 
 
 
 function ProfilePageTabs(props) {
     const {
-        favourite_vacancies
+        favourite_vacancies,
+        likes
     } = props;
 
     const ProfilePageFormAll = <ProfilePageForm />;
@@ -24,20 +26,25 @@ function ProfilePageTabs(props) {
         className={s.favList}
         list={favourite_vacancies}
         renderItem={(vac) =>
-            <AppLink
-                path={'vacancy.show'}
-                param={vac.id}
-                key={vac.id}
-            >
+            <>
+
                 <AppCard
                     width={'auto'}
                     height={`260px`}
+                    variant='primary'
                     shadow
                     className={cn(s.vacancyListCard)}
                 >
-                    <AppText
-                        title={vac.title}
-                    />
+                    <AppLink
+                        path={'vacancy.show'}
+                        param={vac.id}
+                        key={vac.id}
+                    >
+                        <AppText
+                            title={vac.title}
+                        />
+
+                    </AppLink>
                     <AppText
                         text={`от ${vac.payment} руб.`}
                     />
@@ -79,9 +86,10 @@ function ProfilePageTabs(props) {
                     >
                         Откликнуться
                     </AppButton>
+                    <FavouriteButton id={vac.id} favourites={likes} />
 
                 </AppCard>
-            </AppLink>}
+            </>}
 
     />
 

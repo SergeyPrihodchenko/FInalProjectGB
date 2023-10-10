@@ -78,7 +78,7 @@ Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::
 
 Route::get('subscribe/{userId}/{companyId}', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 Route::get('unsubscribe/{userId}/{companyId}', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
-Route::get('checkSubscription/{userId}/{companyId}', [SubscriptionController::class, 'checkSubscription'])->name('checkSubscription');
+//Route::get('checkSubscription/{userId}/{companyId}', [SubscriptionController::class, 'checkSubscription'])->name('checkSubscription');
 //Route::post('subscribe/{userId}/{companyId}', [CompanyController::class, 'store']);
 //Route::get('company/company_detail', [Company::class, 'show'];
 

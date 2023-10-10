@@ -2,11 +2,18 @@
 } */
 .input {
     /* margin-top: 12px; */
-    border: 2px solid #d9d9d9;
+    /* border: 2px solid #d9d9d9; */
+    border: 2px solid var(--secondary-bg);
     outline: none;
     height: 42px;
     padding: 0 0 0 12px;
-    color: inherit;
+    color: var(--primary-text);
+    background-color: var(--secondary-bg);
+}
+
+input::placeholder {
+    color: var(--primary-text);
+    opacity: var(--opacity50);
 }
 
 .input:focus {
@@ -34,6 +41,10 @@
     width: 100%;
 }
 
+.label {
+    color: var(--primary-text);
+}
+
 .textBold {
     font-weight: 700;
 }
@@ -41,4 +52,12 @@
 .error {
     margin-top: 8px;
     color: var(--error);
+}
+.readOnly {
+    border: 2px solid transparent;
+    cursor: auto;
+}
+.readOnly:focus {
+    outline: none;
+    border: 2px solid transparent;
 }
