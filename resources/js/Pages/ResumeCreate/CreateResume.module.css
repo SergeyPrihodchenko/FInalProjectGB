@@ -185,14 +185,9 @@
 }
 
 .inputEndingWork {
-    padding-top: 40px;
+    padding-top: 42px;
     display: flex;
     justify-content: space-between;
-}
-
-.textTitleEnding {
-    padding-left: 20px;
-    margin-top: -3px;
 }
 
 .skills,

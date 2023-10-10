@@ -7,6 +7,7 @@ import s from "./ResumeUpdate.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
+import Checkbox from "@/8Shared/Checkbox/Checkbox";
 
 function Resume({ resume }) {
     const user = usePage().props.auth.user;
@@ -602,12 +603,12 @@ function Resume({ resume }) {
                                 ) : null}
 
                                 <div className={s.inputEndingWork}>
-                                    <input
+                                    <Checkbox
                                         id="checkboxEndingWork"
                                         value={checkbox}
-                                        onChange={() => setCheckbox(!checkbox)}
-                                        type="checkbox"
-                                        className={s.checkboxEndingWork}
+                                        //onChange={() => setCheckbox(!checkbox)}
+                                        //type="checkbox"
+                                        //className={s.checkboxEndingWork}
                                     />
                                     <label for="checkboxEndingWork">
                                         <AppText

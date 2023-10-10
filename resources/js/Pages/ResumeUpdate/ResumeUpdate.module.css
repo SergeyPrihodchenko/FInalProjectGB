@@ -89,7 +89,7 @@
 }
 
 .buttonYearsExperience {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .buttonYearsEducation {
@@ -154,13 +154,13 @@
 }
 
 .inputEndingWork {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
 }
 
 .textTitleEnding {
-    padding-left: 20px;
+    padding: 10px 0px 0px 10px;
 }
 
 .skills {

@@ -714,11 +714,10 @@ function CreateResume() {
                                     <div className={s.inputEndingWork}>
                                         <Checkbox
                                             id="checkboxEndingWork"
-                                            type="checkbox"
                                             value={checkbox}
-                                        >
+                                            // onClick={() => setCheckbox(!checkbox)}
+                                        />
 
-                                        </Checkbox>
                                         {/* <input
                                             id="checkboxEndingWork"
                                             type="checkbox"
@@ -730,7 +729,7 @@ function CreateResume() {
                                             <AppText
                                                 title={"По настоящее время"}
                                                 size={"xs"}
-                                                className={s.textTitleEnding}
+                                               // className={s.textTitleEnding}
                                             />
                                         </label>
                                     </div>
