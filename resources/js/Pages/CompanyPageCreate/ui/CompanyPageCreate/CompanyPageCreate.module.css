@@ -80,25 +80,18 @@
     width: auto;
 }
 
-.textFileCompany {
-    z-index: 1;
+.inputCity {
+    box-sizing: border-box;
     width: 240px;
-    white-space: nowrap;
-    -o-text-overflow: ellipsis;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #000;
-    text-overflow: ellipsis;
-    padding: 0px 0px 10px 10px;
-    border-radius: 5px;
+    height: 43px;
+    font-size: var(--font-size-s);
+    padding: 10px;
+
+    background: var(--main-bg);
+    border: 2px solid var(--light-skeleton-shadow);
+    border-radius: var(--border-radius-s);
 }
 
-.textLabel{
-    position: absolute;
-    left: -9999px;
-}
-
-.cityCompany{
-    display: flex;
-
+.inputCity:focus {
+    border: 2px solid var(--accent);
 }
