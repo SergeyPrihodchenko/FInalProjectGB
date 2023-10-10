@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             CompanyUserSeeder::class,
             VacancySeeder::class,
+            StatusResponse::class
             // ReviewsOfCompanySeeder::class,
 
         ]);

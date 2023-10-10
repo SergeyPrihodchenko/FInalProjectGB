@@ -40,9 +40,9 @@ class AcceptVacancyController extends Controller
 
     public function store(Request $request)
     {
-        $user_id = $request['user_id'];
+        $resume_id = $request['resume_id'];
         $vacancy_id =$request['vacancy_id'];
 
-        UserResponseVacancies::create(['user_id' => $user_id, 'vacancy_id' => $vacancy_id]);
+        UserResponseVacancies::create(['resume_id' => $resume_id, 'vacancy_id' => $vacancy_id]);
     }
 }
