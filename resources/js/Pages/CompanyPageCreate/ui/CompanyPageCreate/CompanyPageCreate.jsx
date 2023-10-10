@@ -121,7 +121,7 @@ function CompanyPageCreate({ auth,  cities }) {
                                 <div className={s.inputlogoUpload}>
                                     <input 
                                         type="text"
-                                        className={s.textFileCompany}
+                                        className={s.inputCity}
                                     />
                                     <AppButton 
                                         type="submit"
@@ -147,7 +147,7 @@ function CompanyPageCreate({ auth,  cities }) {
                                 onChange={
                                     (e) => setData("city", e.target.value)
                                 }
-                                className={s.textFileCompany}
+                                className={s.inputCity}
                             >
                                 {cities.map((city, index) => (
                                     <option 

@@ -607,8 +607,6 @@ function Resume({ resume }) {
                                         id="checkboxEndingWork"
                                         value={checkbox}
                                         //onChange={() => setCheckbox(!checkbox)}
-                                        //type="checkbox"
-                                        //className={s.checkboxEndingWork}
                                     />
                                     <label for="checkboxEndingWork">
                                         <AppText

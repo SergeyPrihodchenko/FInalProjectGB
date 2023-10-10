@@ -68,11 +68,6 @@
     box-sizing: border-box;
 }
 
-.textInputRadio {
-    margin-top: -5px;
-    padding: 0px 20px 5px 10px;
-}
-
 .educationUser {
     display: flex;
     justify-content: flex-start;
@@ -90,92 +85,6 @@
 
 .buttonYearsEducation {
     margin: 15px 0px 0px 177px;
-}
-
-.inputRadioCreateResume,
-.checkboxEndingWork {
-    position: absolute;
-    left: 0;
-    opacity: 0.01;
-}
-
-.inputRadioCreateResume:checked + label,
-.inputRadioCreateResume:not(:checked) + label,
-.checkboxEndingWork:checked + label,
-.checkboxEndingWork:not(:checked) + label {
-    position: relative;
-    padding-left: 20px;
-    padding-top: 5px;
-    line-height: 1.7;
-    cursor: pointer;
-}
-
-.inputRadioCreateResume:checked + label:before,
-.inputRadioCreateResume:not(:checked) + label:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--light-skeleton-shadow);
-    background: var(--main-bg);
-    border-radius: var(--border-radius-l);
-    -webkit-transition: all 0.275s;
-    transition: all 0.275s;
-}
-
-.checkboxEndingWork:checked + label:before,
-.checkboxEndingWork:not(:checked) + label:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 24px;
-    height: 24px;
-    border: 2px solid var(--light-skeleton-shadow);
-    background: var(--main-bg);
-    border-radius: var(--border-radius-s);
-    -webkit-transition: all 0.275s;
-    transition: all 0.275s;
-}
-
-.checkboxEndingWork:checked + label:after,
-.checkboxEndingWork:not(:checked) + label:after {
-    content: "✓";
-    position: absolute;
-    top: 0.525em;
-    left: 0.18em;
-    font-size: 1.375em;
-    color: var(--accent);
-    line-height: 0;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
-}
-
-.inputRadioCreateResume:checked + label:after,
-.inputRadioCreateResume:not(:checked) + label:after {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: var(--accent);
-    line-height: 0;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
-    border: 5px solid var(--accent);
-    border-radius: var(--border-radius-l);
-    background: var(--main-bg);
-}
-
-.inputRadioCreateResume:not(:checked) + label:after,
-.checkboxEndingWork:not(:checked) + label:after {
-    opacity: 0;
-}
-
-.inputRadioCreateResume:checked + label:after,
-.checkboxEndingWork:checked + label:after {
-    opacity: 1;
 }
 
 .experienceWork {
