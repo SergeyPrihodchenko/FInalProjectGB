@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vacancy;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resume;
 use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -13,7 +14,12 @@ class AcceptVacancyController extends Controller
     public function index()
     {
         $id = auth()->id();
-        $vacancies = UserResponseVacancies::where('user_id', $id)->get('vacancy_id')->toArray();
+        $resumeId = Resume::where('user_id', $id)->get('id')->toArray();
+        $arrResumeId = [];
+        foreach ($resumeId as $value) {
+            $arrResumeId[] = $value['id'];
+        }
+        $vacancies = UserResponseVacancies::whereIn('resume_id', $arrResumeId)->get('vacancy_id')->toArray();
         $arrVacancies = [];
         foreach ($vacancies as $value) {
             $arrVacancies[] = $value['vacancy_id'];
@@ -34,9 +40,9 @@ class AcceptVacancyController extends Controller
 
     public function store(Request $request)
     {
-        $user_id = $request['user_id'];
+        $resume_id = $request['resume_id'];
         $vacancy_id =$request['vacancy_id'];
 
-        UserResponseVacancies::create(['user_id' => $user_id, 'vacancy_id' => $vacancy_id]);
+        UserResponseVacancies::create(['resume_id' => $resume_id, 'vacancy_id' => $vacancy_id]);
     }
 }

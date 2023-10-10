@@ -30,6 +30,7 @@ class StoreCompanyRequest extends FormRequest
             'date_create'=> ['sometimes' ],
             'phone_number'=> ['sometimes' ],
             'description'=> ['sometimes' ],
+            'city'=>[ 'sometimes' ],
         ];
     }
 }

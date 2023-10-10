@@ -33,7 +33,6 @@ const VacancyListPage = ({
     responsedVacancy,
     resumes
 }) => {
-
     console.log('responsedVacancy: ', responsedVacancy);
     console.log('resumes: ', resumes);
 

@@ -26,12 +26,19 @@ class VacancyController
         //     'title' => 'Вакансии'
         // ]);
 
+        $id = auth()->id();
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all(['id', 'title']);
-        $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
-        $responsedVacancy = UserResponseVacancies::where('user_id', auth()->id())->get('vacancy_id');
+
+        $likes = UserLikeVacancies::getVacancyIdArray($id);
+        $resume = Resume::where('user_id', $id)->get('id')->toArray();
+        $arr = [];
+        foreach ($resume as $value) {
+            $arr[] = $value['id'];
+        }
+        $responsedVacancy = UserResponseVacancies::whereIn('resume_id', $arr)->get('vacancy_id');
 
         $resumes = Resume::where('user_id', auth()->id())->get()->toArray();
 
