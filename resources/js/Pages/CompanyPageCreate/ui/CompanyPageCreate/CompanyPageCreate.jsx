@@ -22,6 +22,7 @@ function CompanyPageCreate({ auth,  cities }) {
         phone_number: '',
         description: '',
         date_create: '',
+        city: '',
     })
         
     const handleSubmit = (e) => {
@@ -89,11 +90,17 @@ function CompanyPageCreate({ auth,  cities }) {
                             className={s.indentDownBasiceData}
                         />
                         <AppInput
-                           //value={regionLocationCompanyInput}
-                            onChange={(e) =>
-                                setRegionLocationCompanyInput(e.value.target)
-                            }
-                            label={"Город или регион расположения"}
+                           id='region_of_location' 
+                           name='region_of_location' 
+                           value={data.region_of_location} 
+                           onChange={
+                               (e) => setData("region_of_location", e.target.value)
+                           }
+                        //    value={regionLocationCompanyInput}
+                        //     onChange={(e) =>
+                        //         setRegionLocationCompanyInput(e.value.target)
+                        //     }
+                            label={"Юридический адрес компании"}
                             type="text"
                             placeholder="117418 Москва, ул. Новоселов стр 1 офис 5"
                             className={s.indentDownBasiceData}
@@ -106,7 +113,7 @@ function CompanyPageCreate({ auth,  cities }) {
                         />
                         <div className={s.logoCompanyUpload}>
                             <div className={s.fileLoadBlock}>
-                                <input 
+                                <AppInput 
                                     type="file" 
                                     id="file"
                                     className={s.fileCompany}
@@ -124,38 +131,39 @@ function CompanyPageCreate({ auth,  cities }) {
                                     </AppButton>
                                     </div>
                                 </div>
-                            </div>
+                        </div>
 
                         <AppText
                             title = {"Город"}
                             bold
                             size={"xs"}
-                            className={s.textTitle}
                         >
                         </AppText>
-                        {/* <label htmlFor="city_id">Город или регион расположения</label> */}
-                        <select 
-                            id='region_of_location' 
-                            name='region_of_location' 
-                            value={data.region_of_location} 
-                            onChange={
-                                (e) => setData("region_of_location", e.target.value)
-                            }
-                            className={s.textFileCompany}
-                        >
-                            {cities.map((city, index) => (
-                                <option 
-                                    key={index} 
-                                    value={city.title}
-                                    className={s.textTitle}
-                                >
-                                        {city.title}
-                                        
-                                        
-                                </option>
-                            ))}
-                        </select>
-
+                        
+                            <label 
+                                htmlFor="city_id"
+                                className={s.textLabel}
+                                >Город</label>
+                            <select 
+                                id='city_id' 
+                                name='city' 
+                                value={data.city} 
+                                onChange={
+                                    (e) => setData("city", e.target.value)
+                                }
+                                className={s.textFileCompany}
+                            >
+                                {cities.map((city, index) => (
+                                    <option 
+                                        key={index} 
+                                        value={city.title}
+                                        className={s.textTitle}
+                                    >
+                                            {city.title}        
+                                    </option>
+                                ))}
+                            </select>
+                        
                         <AppInput
                             value={data.date_create}
                             onChange={(e) =>
