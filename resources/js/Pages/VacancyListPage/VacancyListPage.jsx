@@ -30,7 +30,8 @@ const VacancyListPage = ({
     employment,
     cities,
     likes,
-    responsedVacancy
+    responsedVacancy,
+    resumes
 }) => {
 
     console.log('responsedVacancy: ', responsedVacancy);
@@ -278,7 +279,7 @@ const VacancyListPage = ({
                     {user?.id ?
                         <>
                             <AppText text={'Выберите резюме для отправки'} size={'s'} />
-                            {resumes?.map(resume => <AppCard
+                            {!resumes.length ? <>Создайте резюме!</> : resumes?.map(resume => <AppCard
                                 key={resume.id}
                                 className={s.modalCard}
                                 borderLeft
