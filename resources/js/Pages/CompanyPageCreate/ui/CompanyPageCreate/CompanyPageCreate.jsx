@@ -22,6 +22,7 @@ function CompanyPageCreate({ auth,  cities }) {
         phone_number: '',
         description: '',
         date_create: '',
+        city: '',
     })
         
     const handleSubmit = (e) => {
@@ -88,7 +89,22 @@ function CompanyPageCreate({ auth,  cities }) {
                             placeholder="IT, Металлургия, Услуги"
                             className={s.indentDownBasiceData}
                         />
-
+                        <AppInput
+                           id='region_of_location' 
+                           name='region_of_location' 
+                           value={data.region_of_location} 
+                           onChange={
+                               (e) => setData("region_of_location", e.target.value)
+                           }
+                        //    value={regionLocationCompanyInput}
+                        //     onChange={(e) =>
+                        //         setRegionLocationCompanyInput(e.value.target)
+                        //     }
+                            label={"Юридический адрес компании"}
+                            type="text"
+                            placeholder="117418 Москва, ул. Новоселов стр 1 офис 5"
+                            className={s.indentDownBasiceData}
+                        />
                         <AppText
                             title={"Логотип компании"}
                             bold
@@ -97,7 +113,7 @@ function CompanyPageCreate({ auth,  cities }) {
                         />
                         <div className={s.logoCompanyUpload}>
                             <div className={s.fileLoadBlock}>
-                                <input 
+                                <AppInput 
                                     type="file" 
                                     id="file"
                                     className={s.fileCompany}
@@ -105,7 +121,7 @@ function CompanyPageCreate({ auth,  cities }) {
                                 <div className={s.inputlogoUpload}>
                                     <input 
                                         type="text"
-                                        className={s.textFileCompany}
+                                        className={s.inputCity}
                                     />
                                     <AppButton 
                                         type="submit"
@@ -115,50 +131,35 @@ function CompanyPageCreate({ auth,  cities }) {
                                     </AppButton>
                                     </div>
                                 </div>
-                            </div>
-
-                        
-
-                        {/* <AppInput
-                            value={regionLocationCompanyInput}
-                            onChange={(e) =>
-                                setRegionLocationCompanyInput(e.value.target)
-                            }
-                            label={"Город или регион расположения"}
-                            type="text"
-                            placeholder="Москва"
-                            className={s.indentDownBasiceData}
-                        /> */}
-                        <AppText
-                            title = {"Город или регион расположения"}
-                            bold
-                            size={"xs"}
-                            className={s.textTitle}
-                        >
-                        </AppText>
-                        {/* <label htmlFor="city_id">Город или регион расположения</label> */}
-                        <select 
-                            id='region_of_location' 
-                            name='region_of_location' 
-                            value={data.region_of_location} 
-                            onChange={
-                                (e) => setData("region_of_location", e.target.value)
-                            }
-                            className={s.textFileCompany}
-                        >
-                            {cities.map((city, index) => (
-                                <option 
-                                    key={index} 
-                                    value={city.title}
-                                    className={s.textTitle}
+                        </div>
+                            <label htmlFor="city_id">
+                                <AppText
+                                    title = {"Город"}
+                                    bold
+                                    size={"xs"}
                                 >
-                                        {city.title}
-                                        
-                                        
-                                </option>
-                            ))}
-                        </select>
-
+                                </AppText>
+                            </label>
+                            <select 
+                                id='city_id' 
+                                name='city' 
+                                value={data.city} 
+                                onChange={
+                                    (e) => setData("city", e.target.value)
+                                }
+                                className={s.inputCity}
+                            >
+                                {cities.map((city, index) => (
+                                    <option 
+                                        key={index} 
+                                        value={city.title}
+                                        className={s.textTitle}
+                                    >
+                                            {city.title}        
+                                    </option>
+                                ))}
+                            </select>
+                        
                         <AppInput
                             value={data.date_create}
                             onChange={(e) =>
