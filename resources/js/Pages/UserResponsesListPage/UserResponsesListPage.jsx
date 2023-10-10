@@ -42,6 +42,7 @@ const UserResponsesListPage = ({ auth, vacancies }) => {
             logo: "https://img.hhcdn.ru/employer-logo/3381258.png",
         },
     ];
+    concat
     return (
         <>
             <Head>

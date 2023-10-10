@@ -23,14 +23,13 @@ function VacancyPageCreate(props) {
         auth,
         vacancy,
         btn,
-        companies,
         cities,
         citiesForWork,
         experience,
         schedule,
         employment,
     } = props;
-    console.log(companies);
+    console.log("props", props);
     const {
         vacancyNameInput,
         vacancyCityInput,
@@ -48,6 +47,21 @@ function VacancyPageCreate(props) {
         contactsPhoneInput,
         contactsList,
     } = useSelector((state) => state.vacancyPageCreate);
+
+    // console.log("vacancyCityInput", vacancyCityInput);
+    // console.log("vacancyPaymentInput", vacancyPaymentInput);
+    // console.log("requirementsInput", requirementsInput);
+    // console.log("requirementsList", requirementsList);
+    // console.log("responsibilitiesInput", responsibilitiesInput);
+    // console.log("responsibilitiesList", responsibilitiesList);
+    // console.log("conditionsInput", conditionsInput);
+    // console.log("conditionsList", conditionsList);
+    // console.log("skillsInput", skillsInput);
+    // console.log("skillsList", skillsList);
+    // console.log("contactsNameInput", contactsNameInput);
+    // console.log("contactsPositionInput", contactsPositionInput);
+    // console.log("contactsPhoneInput", contactsPhoneInput);
+    // console.log("contactsList", contactsList);
 
     const saveVacancy = (e) => {
         e.preventDefault();
@@ -76,7 +90,7 @@ function VacancyPageCreate(props) {
         payment: "",
         city_work_id: "1",
         experience: "нет опыта",
-        company_id: companies[0]["id"],
+        company_id: 1,
         schedule: "Полная занятость",
         employment: employment[0],
         requirements: requirementsList,
@@ -88,11 +102,13 @@ function VacancyPageCreate(props) {
 
     useEffect(() => {
         setData("title", vacancyNameInput);
+        console.log("setData vacancyNameInput", vacancyNameInput);
+
         setData("city_id", "1");
         setData("payment", vacancyPaymentInput);
         setData("city_work_id", "1");
         setData("experience", "нет опыта");
-        setData("company_id", companies[0]["id"]);
+        setData("company_id", "1");
         setData("schedule", "Полная занятость");
         setData("employment", employment[0]);
         setData("requirements", requirementsList);
@@ -118,14 +134,11 @@ function VacancyPageCreate(props) {
         contactsList,
     ]);
 
-    // console.log("errors", errors);
     return (
         <>
             <Head title="VacancyPageCreate" />
 
             <AppPage>
-                {btn}
-
                 <form onSubmit={saveVacancy}>
                     <AppText
                         title="Создание вакансии"
