@@ -89,62 +89,11 @@
 }
 
 .buttonYearsExperience {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .buttonYearsEducation {
     margin: 15px 0px 0px 177px;
-}
-
-.checkboxEndingWork {
-    position: absolute;
-    left: 0;
-    opacity: 0.01;
-}
-
-.checkboxEndingWork:checked + label,
-.checkboxEndingWork:not(:checked) + label {
-    position: relative;
-    padding-left: 20px;
-    padding-top: 5px;
-    line-height: 1.7;
-    cursor: pointer;
-}
-
-.checkboxEndingWork:checked + label:before,
-.checkboxEndingWork:not(:checked) + label:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 26px;
-    height: 26px;
-    border: 2px solid var(--light-skeleton-shadow);
-    background: var(--main-bg);
-    border-radius: var(--border-radius-s);
-    -webkit-transition: all 0.275s;
-    transition: all 0.275s;
-}
-
-.checkboxEndingWork:checked + label:after,
-.checkboxEndingWork:not(:checked) + label:after {
-    content: "✓";
-    position: absolute;
-    top: 0.525em;
-    left: 0.18em;
-    font-size: 1.375em;
-    color: var(--accent);
-    line-height: 0;
-    -webkit-transition: all 0.2s;
-    transition: all 0.2s;
-}
-
-.checkboxEndingWork:not(:checked) + label:after {
-    opacity: 0;
-}
-
-.checkboxEndingWork:checked + label:after {
-    opacity: 1;
 }
 
 .experienceWork {
@@ -154,13 +103,13 @@
 }
 
 .inputEndingWork {
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
 }
 
 .textTitleEnding {
-    padding-left: 20px;
+    padding: 10px 0px 0px 10px;
 }
 
 .skills {
@@ -194,4 +143,8 @@
 
 .buttonUpdateResume {
     margin: 10px 10px 40px 875px;
+}
+
+.incomeLevel{
+    margin-left: 10px;
 }

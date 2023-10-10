@@ -121,7 +121,7 @@ function CompanyPageCreate({ auth,  cities }) {
                                 <div className={s.inputlogoUpload}>
                                     <input 
                                         type="text"
-                                        className={s.textFileCompany}
+                                        className={s.inputCity}
                                     />
                                     <AppButton 
                                         type="submit"
@@ -132,18 +132,14 @@ function CompanyPageCreate({ auth,  cities }) {
                                     </div>
                                 </div>
                         </div>
-
-                        <AppText
-                            title = {"Город"}
-                            bold
-                            size={"xs"}
-                        >
-                        </AppText>
-                        
-                            <label 
-                                htmlFor="city_id"
-                                className={s.textLabel}
-                                >Город</label>
+                            <label htmlFor="city_id">
+                                <AppText
+                                    title = {"Город"}
+                                    bold
+                                    size={"xs"}
+                                >
+                                </AppText>
+                            </label>
                             <select 
                                 id='city_id' 
                                 name='city' 
@@ -151,7 +147,7 @@ function CompanyPageCreate({ auth,  cities }) {
                                 onChange={
                                     (e) => setData("city", e.target.value)
                                 }
-                                className={s.textFileCompany}
+                                className={s.inputCity}
                             >
                                 {cities.map((city, index) => (
                                     <option 
