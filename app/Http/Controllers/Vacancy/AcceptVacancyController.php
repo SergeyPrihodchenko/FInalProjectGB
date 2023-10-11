@@ -15,15 +15,10 @@ class AcceptVacancyController extends Controller
     {
         $id = auth()->id();
         $resumeId = Resume::where('user_id', $id)->get('id')->toArray();
-        $arrResumeId = [];
-        foreach ($resumeId as $value) {
-            $arrResumeId[] = $value['id'];
-        }
+        $arrResumeId = array_values($resumeId);
+
         $vacancies = UserResponseVacancies::whereIn('resume_id', $arrResumeId)->get('vacancy_id')->toArray();
-        $arrVacancies = [];
-        foreach ($vacancies as $value) {
-            $arrVacancies[] = $value['vacancy_id'];
-        }
+        $arrVacancies = array_values($vacancies);
         
         $vacancy = Vacancy::query();
         $vacancy->whereIn('vacancies.id', $arrVacancies);
@@ -43,6 +38,6 @@ class AcceptVacancyController extends Controller
         $resume_id = $request['resume_id'];
         $vacancy_id =$request['vacancy_id'];
 
-        UserResponseVacancies::create(['resume_id' => $resume_id, 'vacancy_id' => $vacancy_id]);
+        UserResponseVacancies::create(['resume_id' => $resume_id, 'vacancy_id' => $vacancy_id, 'status_id' => 4]);
     }
 }

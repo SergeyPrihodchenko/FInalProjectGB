@@ -10,6 +10,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\Vacancy\FilterVacanciesController;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Resume\FilterResumeController;
 use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\Vacancy\VacancyController;
 use App\Models\Vacancy;
@@ -69,6 +70,8 @@ require __DIR__ . '/auth.php';
 Route::resource('vacancy', VacancyController::class);
 
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
+
+Route::post('resume/filter', [FilterResumeController::class, 'filterResumes'])->name('resume.filter');
 
 Route::resource('company', CompanyController::class);
 Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');

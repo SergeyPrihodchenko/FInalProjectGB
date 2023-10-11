@@ -14,7 +14,7 @@ class StatusResponse extends Seeder
      */
     public function run(): void
     {
-        $statuses = EnumsStatusResponse::getAll();
+        $statuses = EnumsStatusResponse::all();
 
         foreach ($statuses as $value) {
             Status::create(['title' => $value]);

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Http\Controllers\CandidateConditionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatusResponseResumeController;
 use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Models\SqlBuild;
 use App\Models\UserResponseVacancies;
@@ -32,7 +33,6 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        (new AcceptVacancyController)->index();
     }
 
 }

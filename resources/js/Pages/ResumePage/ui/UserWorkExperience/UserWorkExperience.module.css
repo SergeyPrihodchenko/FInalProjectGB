@@ -1,6 +1,6 @@
 .company {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 
     padding-bottom: 10px;
     padding-top: 10px;
