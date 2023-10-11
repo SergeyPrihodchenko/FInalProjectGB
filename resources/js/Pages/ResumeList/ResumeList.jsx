@@ -11,6 +11,7 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import List from "@/8Shared/List/List";
 import { useState, useEffect } from "react";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
 function ResumeList() {
 
@@ -232,20 +233,28 @@ const arrayBuisnessTravel = [
                                     size={"s"}
                                     className={s.textTitle}
                                 />
-
+                                <div className={s.buttonIncomeLevel}>
                                     <AppInput    
-                                    type="text"
-                                    placeholder="от 100000"
-                                    width={"220px"}
-                                    onChange={(e)=> setSalary(e.target.value)}    
-                                />
+                                        type="text"
+                                        placeholder="от 100000"
+                                        width={"220px"}
+                                        onChange={(e)=> setSalary(e.target.value)}    
+                                    />
 
-                                <button
-                                    onClick={() => hadnlePayment(salary)}
-                                >
-                                    Поиск
-                                </button>
-
+                                    <AppButton
+                                        colorType={'accent'}
+                                        variant={'outline'}
+                                        type='button'
+                                        height={"35px"}
+                                        onClick={() => hadnlePayment(salary)}
+                                        className={s.buttonIcon}
+                                    >
+                                        <BootstrapIcon
+                                            name={'BsSearch'}
+                                            size={20}
+                                        />
+                                    </AppButton>
+                                </div>
                                 <AppText
                                     title={"График работы"}
                                     bold
