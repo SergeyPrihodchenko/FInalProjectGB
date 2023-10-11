@@ -7,9 +7,11 @@ use App\Http\Requests\Company\StoreCompanyRequest;
 use App\Models\City;
 use App\Models\CompanyUser;
 use App\Models\Company;
+use App\Models\ReviewsOfCompanies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use function PHPUnit\Framework\isEmpty;
@@ -50,11 +52,12 @@ class CompanyController extends Controller
         $data = $request->validated();
         $creatorId = Auth::user()->id;
         $data['creator_id'] = $creatorId;
-        //dd($data);
+        //dd($data['logo']);
+        $path = $request->file('logo')->storeAs('images',$data['logo']->hashName(), 'public');
+        $data['logo'] = $path;
+        //dd($path);
         $company = Company::create($data);
-        //dd($company);
 
-        //
         return Redirect::route('myCompanies');
     }
 
@@ -67,13 +70,14 @@ class CompanyController extends Controller
         //dd($subscribes);
         $isSubscribed = $subscribes ? true : false;
 
+        $companyImageURL = $company->getLogoUrl();
 
-
-        //dd($isSubscribed);
+       //dd( $companyImageURL);
 
         return Inertia::render('CompanyPage/CompanyPage', [
             'company' => $company,
             'isSubscribed' => $isSubscribed,
+            'companyImageURL' => $companyImageURL,
         ]);
     }
 

@@ -23,12 +23,9 @@ class Company extends Model
         'creator_id',
         'logo',
         'city'
-
     ];
 
     protected $casts = [
-//        'created_at' => 'datetime:Y-m-d',
-//        'updated_at' => 'datetime:d/m/Y',
     'date_create' => 'datetime:d/m/Y',
     ];
 
@@ -38,7 +35,6 @@ class Company extends Model
         return $this->hasMany(Vacancy::class);
     }
 
-
     public function users()
     {
         return $this->belongsToMany(User::class);
@@ -47,6 +43,11 @@ class Company extends Model
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function getLogoUrl()
+    {
+        return asset('storage/' . $this->logo);
     }
 
 }

@@ -11,7 +11,8 @@ import { useSelector } from "react-redux";
 
 function CompanyPageCreate({ auth,  cities }) {
     const user = auth?.user;
-  
+
+    const [selectedImage, setSelectedImage] = useState(null);
     const {data, setData, post, errors} = useForm({
 //форма заполнена по умолчанию, чтобы не заполнять каждый раз, временно
         email: '',
@@ -22,13 +23,24 @@ function CompanyPageCreate({ auth,  cities }) {
         phone_number: '',
         description: '',
         date_create: '',
+        logo: '',
+        city: '',
     })
-        
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         post(route("company.store"));
     };
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        setSelectedImage(file);
+        console.log('file', file);
+        setData('logo', file);
+    };
+
+
 
     //Ввод данных компании
     const [emailCompanyInput, setEmailCompanyInput] = useState("");
@@ -53,8 +65,8 @@ function CompanyPageCreate({ auth,  cities }) {
                     className={s.textTitle}
                 />
 
-                <form onSubmit={handleSubmit}>
-                   
+                <form onSubmit={handleSubmit} encType='multipart/form-data'>
+
 
                     {/* Ввод данных компании */}
                     <div className={s.basiceData}>
@@ -97,27 +109,31 @@ function CompanyPageCreate({ auth,  cities }) {
                         />
                         <div className={s.logoCompanyUpload}>
                             <div className={s.fileLoadBlock}>
-                                <input 
-                                    type="file" 
-                                    id="file"
-                                    className={s.fileCompany}
-                                />
+                                {/*<input*/}
+                                {/*    value={data.logo}*/}
+                                {/*    type="file"*/}
+                                {/*    id="file"*/}
+                                {/*    className={s.fileCompany}*/}
+                                {/*/>*/}
+                                <input type="file" onChange={handleImageChange} />
                                 <div className={s.inputlogoUpload}>
-                                    <input 
+                                    <input
                                         type="text"
                                         className={s.textFileCompany}
                                     />
-                                    <AppButton 
-                                        type="submit"
-                                        bold 
-                                        sizeText = "xs"
-                                    ><span>Загрузить</span>
-                                    </AppButton>
+                                    {/*<AppButton*/}
+                                    {/*    onChange={(e) =>*/}
+                                    {/*        setData('logo', e.target.value)}*/}
+                                    {/*    type="submit"*/}
+                                    {/*    bold*/}
+                                    {/*    sizeText = "xs"*/}
+                                    {/*><span>Загрузить</span>*/}
+                                    {/*</AppButton>*/}
                                     </div>
                                 </div>
                             </div>
 
-                        
+
 
                         {/* <AppInput
                             value={regionLocationCompanyInput}
@@ -137,24 +153,24 @@ function CompanyPageCreate({ auth,  cities }) {
                         >
                         </AppText>
                         {/* <label htmlFor="city_id">Город или регион расположения</label> */}
-                        <select 
-                            id='region_of_location' 
-                            name='region_of_location' 
-                            value={data.region_of_location} 
+                        <select
+                            id='region_of_location'
+                            name='region_of_location'
+                            value={data.city}
                             onChange={
-                                (e) => setData("region_of_location", e.target.value)
+                                (e) => setData("city", e.target.value)
                             }
                             className={s.textFileCompany}
                         >
                             {cities.map((city, index) => (
-                                <option 
-                                    key={index} 
+                                <option
+                                    key={index}
                                     value={city.title}
                                     className={s.textTitle}
                                 >
                                         {city.title}
-                                        
-                                        
+
+
                                 </option>
                             ))}
                         </select>

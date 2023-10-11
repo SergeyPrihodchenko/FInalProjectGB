@@ -27,11 +27,12 @@ const CompanyPageBody = ({
                              company,
                              isSubscribed,
                              user,
+                             companyImageURL
                          }) => {
     return (
         <div className={cn(s.companyPageContainer)}>
             <AppCard>
-                <CompanyPageAppCard img={companyImg} city={companyLocation} isSubscribed={isSubscribed} user={user} company={company}/>
+                <CompanyPageAppCard img={companyImg} city={companyLocation} isSubscribed={isSubscribed} user={user} company={company} companyImageURL={companyImageURL}/>
             </AppCard>
             <div className={s.companyPageRight}>
                 <CompanyPageHeader

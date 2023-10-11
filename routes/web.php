@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Company\ReviewsOfCompaniesController;
 use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Http\Controllers\Company\CompanyController;
 
@@ -79,5 +80,7 @@ Route::get('unsubscribe/{userId}/{companyId}', [SubscriptionController::class, '
 //Route::post('subscribe/{userId}/{companyId}', [CompanyController::class, 'store']);
 //Route::get('company/company_detail', [Company::class, 'show'];
 
-Route::resource('company', CompanyController::class);
+Route::resource('review', ReviewsOfCompaniesController::class);
+
+
 
