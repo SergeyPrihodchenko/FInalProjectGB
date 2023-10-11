@@ -367,7 +367,7 @@ const VacancyListPage = ({
                                 <AppText bold text={`Найдено ${total} вакансии`} />
                                 // :<AppText bold text={`Ничего не найдено`} />
                             }
-                            {error && <AppText text={error} variant={'error'} />}
+                            {/* {error && <AppText text={error} variant={'error'} />} */}
                             <div className={s.toggleDescBtn}>
                                 <AppButton
                                     width={'40px'}
