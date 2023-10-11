@@ -10,9 +10,113 @@ import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import List from "@/8Shared/List/List";
+import { useState, useEffect } from "react";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
-function ResumeList({ resumes }) {
+function ResumeList() {
+
     const user = usePage().props.auth.user;
+
+    const [resumes, setResumes] = useState([]);
+
+    const [salary, setSalary] = useState(0);
+
+    const {data, setData} = useForm({
+        filterData: {
+            experience: [],
+            employment_type: [],
+            schedule_type: [],
+            relocation: "",
+            buisness_travel: "",
+            salary: 0,
+            search: "",
+        }
+    })
+
+    useEffect(() => {
+        fetchFilterData()
+    },[])
+
+    const fetchFilterData = async () => {
+        console.log(data.filterData);
+        try {
+            const response = await axios.post(route('resume.filter', {
+            filterData: data.filterData
+            }));
+    
+            setResumes([...response.data])
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const setEmploymentType = (e) => {
+
+        if(!e.target.checked){
+            data.filterData.employment_type.splice(data.filterData.employment_type.indexOf(e.target.value), 1)
+        }
+        if(e.target.checked){
+            data.filterData.employment_type = [...data.filterData.employment_type, e.target.value]
+        }
+
+        fetchFilterData();
+    }
+
+    const setExperience = (e) => {
+
+        if(!e.target.checked){
+            data.filterData.experience.splice(data.filterData.experience.indexOf(e.target.value), 1)
+        }
+        if(e.target.checked){
+            data.filterData.experience = [...data.filterData.experience, e.target.value]
+        }
+
+        fetchFilterData();
+    }
+
+    const setScheduleType = (e) => {
+
+        if(!e.target.checked){
+            data.filterData.schedule_type.splice(data.filterData.schedule_type.indexOf(e.target.value), 1)
+        }
+        if(e.target.checked){
+            data.filterData.schedule_type = [...data.filterData.schedule_type, e.target.value]
+        }
+
+        fetchFilterData();
+    }
+
+    const setRelocation = (relocation) => {
+        data.filterData.relocation = relocation;
+
+        fetchFilterData();
+    }
+
+    const setBuisnessTravel = (status) => {
+        data.filterData.buisness_travel = status
+
+        fetchFilterData();
+    }
+
+    const hadnlePayment = (salary) => {
+        if(!salary == 0){
+            data.filterData.salary = salary
+        }else{
+            data.filterData.salary = 0
+        }
+
+        fetchFilterData();
+    }
+
+    const handleSearch = (e) => {
+
+        data.filterData.search = e.target.value
+
+        fetchFilterData()
+    } 
+
+
 
 //    console.log(resumes);
 // const arrayEducation = [
@@ -74,6 +178,7 @@ const arrayBuisnessTravel = [
                         <AppInput 
                             type="text"
                             placeholder="Поиск резюме"   
+                            onChange={(e) => handleSearch(e)}
                         />
                         <div className={s.resumeListPage}>
                             <div className={s.vacancyWishes}>
@@ -85,13 +190,16 @@ const arrayBuisnessTravel = [
                                 />
                                 <List
                                     list={arrayEmployment}
-                                    renderItem={(el) =>
+                                    renderItem={(el, index) =>
+
                                         <li key={el}>
                                             <Checkbox
                                                 label={el}
                                                 name={'employment_type'}
                                                 //checkHandler={}
                                                 value={el}
+
+                                                onChange={(e, index) => setEmploymentType(e, index)}
                                             />
                                         </li>
                                     }
@@ -105,14 +213,16 @@ const arrayBuisnessTravel = [
                                 />
                                 <List
                                     list={arrayExperience}
-                                    renderItem={(el) =>
+                                    renderItem={(el, index) =>
                                         <li key={el}>
-                                            <RadioButton
-                                                name="experience"
+                                            <Checkbox
                                                 label={el}
+                                                name={'experience'}
+                                                //checkHandler={}
                                                 value={el}
-                                                className={s.inputResume}
-                                        />
+                                                onChange={(e, index) => setExperience(e, index)}
+                                            />
+
                                     </li>
                                     }
                                 />    
@@ -123,13 +233,28 @@ const arrayBuisnessTravel = [
                                     size={"s"}
                                     className={s.textTitle}
                                 />
-
+                                <div className={s.buttonIncomeLevel}>
                                     <AppInput    
-                                    type="text"
-                                    placeholder="от 100000"
-                                    width={"220px"}    
-                                />
+                                        type="text"
+                                        placeholder="от 100000"
+                                        width={"220px"}
+                                        onChange={(e)=> setSalary(e.target.value)}    
+                                    />
 
+                                    <AppButton
+                                        colorType={'accent'}
+                                        variant={'outline'}
+                                        type='button'
+                                        height={"35px"}
+                                        onClick={() => hadnlePayment(salary)}
+                                        className={s.buttonIcon}
+                                    >
+                                        <BootstrapIcon
+                                            name={'BsSearch'}
+                                            size={20}
+                                        />
+                                    </AppButton>
+                                </div>
                                 <AppText
                                     title={"График работы"}
                                     bold
@@ -139,13 +264,16 @@ const arrayBuisnessTravel = [
                                         
                                 <List
                                      list={arraySchedule}
-                                    renderItem={(el) =>
+                                    renderItem={(el, index) =>
+
                                         <li key={el}>
                                             <Checkbox
                                                 label={el}
                                                 name="schedule_type"
                                                 id={el}
                                                 value={el}
+                                                onChange={(e, index) => setScheduleType(e, index)}
+
                                                 className={s.checkboxResumeEl}
                                             />
                                         </li>
@@ -167,6 +295,8 @@ const arrayBuisnessTravel = [
                                                 name="relocation"
                                                 label={el}
                                                 value={el} 
+                                                onChange={(e) => setRelocation(e.target.value)}
+
                                                 className={s.inputResume}
                                             />
                                         </li>
@@ -188,6 +318,8 @@ const arrayBuisnessTravel = [
                                                 name="buisness_travel"
                                                 label={el}
                                                 value={el} 
+                                                onChange={(e) => setBuisnessTravel(e.target.value)}
+
                                                 className={s.inputResume}
                                             />
                                         </li>
@@ -198,16 +330,17 @@ const arrayBuisnessTravel = [
                             <div>
                             {
                                 resumes.map((resume) => {
-                                    const { data } = useForm({
-                                        profession: resume.profession,
-                                        region: resume.region,
-                                        date_of_birth: resume.date_of_birth,
-                                        education: resume.education,
-                                        companies: resume.companies,
-                                        skills: resume.skills,
-                                        experience: resume.experience,
-                                        salary: resume.salary,
-                                    });
+                                    // const { data } = useForm({
+                                    //     profession: resume.profession,
+                                    //     region: resume.region,
+                                    //     date_of_birth: resume.date_of_birth,
+                                    //     education: resume.education,
+                                    //     companies: resume.companies,
+                                    //     skills: resume.skills,
+                                    //     experience: resume.experience,
+                                    //     salary: resume.salary,
+                                    // });
+
                                     
                                     //высчитываем из даты рождения сколько полных лет
                                     const dateOfBirth = data.date_of_birth;

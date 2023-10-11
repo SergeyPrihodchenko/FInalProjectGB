@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StatusResumeVacancy;
+use App\Models\UserResponseVacancies;
 use Illuminate\Http\Request;
 
 class StatusResponseResumeController extends Controller
@@ -13,7 +13,7 @@ class StatusResponseResumeController extends Controller
 
         $vacancy_id = $request['vacancy_id'];
 
-        $statusResponse = StatusResumeVacancy::where('resume_id', $resume_id)->where('vacancy_id', $vacancy_id)->update(['status_id' => 4]);
+        $statusResponse = UserResponseVacancies::where('resume_id', $resume_id)->where('vacancy_id', $vacancy_id)->update(['status_id' => 3]);
 
         dd($statusResponse);
     }

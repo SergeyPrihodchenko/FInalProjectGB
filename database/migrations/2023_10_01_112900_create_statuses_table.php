@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\StatusResponse;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status_resume_vacancies', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('resume_id')->index()->constrained('resumes');
-            $table->foreignId('vacancy_id')->index()->constrained('vacancies');
-            $table->foreignId('status_id')->index()->constrained('statuses');
+            $table->enum('title', StatusResponse::all());
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('status_resume_vacancies');
+        Schema::dropIfExists('statuses');
     }
 };
