@@ -18,7 +18,6 @@ export const fetchVacancyList = createAsyncThunk(
             const response = await axios.post(`/vacancies/filter?page=1`, {
                 filterData: filterData,
             });
-            // console.log('response', response);
             if (response.status !== 200) {
                 throw new Error('error');
             }
@@ -64,7 +63,7 @@ export const addToFavourites = createAsyncThunk(
     }
 );
 export const deleteFromFavourites = createAsyncThunk(
-    'vacancy/addToFavourites',
+    'vacancy/deleteFromFavourites',
     async (id, { rejectWithValue, dispatch }) => {
 
         try {

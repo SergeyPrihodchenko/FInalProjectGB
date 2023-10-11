@@ -103,6 +103,7 @@ const VacancyListPageFilters = ({
                         type='button'
                         onClick={handlePayment}
                         className={s.paymentBtn}
+                        height={'42px'}
                     >
                         <BootstrapIcon
                             name={'BsSearch'}
