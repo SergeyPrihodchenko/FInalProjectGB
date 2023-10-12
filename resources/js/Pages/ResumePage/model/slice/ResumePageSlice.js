@@ -78,7 +78,10 @@ export const resumePage = createSlice({
         },
         //форматы даты и периода работы
         setDateFormatWorkBegin: (state) => {
-            state.resumes.companies.map((el) => { 
+            if(state.resumes.companies != null){
+               
+
+                state.resumes.companies.map((el) => { 
                 //дата начала работы
                 let dataWorkBegin = el.start_date;
                     
@@ -98,10 +101,12 @@ export const resumePage = createSlice({
                 
                 state.dataWorksBegin = dateFormatYearsMonch(dataWorkBegin);
 
-                })    
+                }) 
+            }    
             },
 
         setDateFormatWorkEnd: (state) => {
+            if(state.resumes.companies != null){
             state.resumes.companies.map((el) => {
             //дата окончания работы
                 let dataWorkEnd = el.end_date;
@@ -123,10 +128,12 @@ export const resumePage = createSlice({
             state.dataWorksEnd = dateFormatYearsMonch(dataWorkEnd);
 
             })
+        }
         },
 
         //расчет стажа
         setWorksExperience: (state) => {
+            if(state.resumes.companies != null){
             state.resumes.companies.map((el) => {
                                 
                 //дата начала и окончания работы
@@ -167,6 +174,7 @@ export const resumePage = createSlice({
 
             state.yearWorksExperience = worksExperience(dataWorkEnd, dataWorkBegin);
             })
+        }
         }, 
 
         
