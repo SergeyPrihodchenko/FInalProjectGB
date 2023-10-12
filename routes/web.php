@@ -12,6 +12,7 @@ use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Resume\FilterResumeController;
 use App\Http\Controllers\Resume\ResumeController;
+use App\Http\Controllers\StatusResponseResumeController;
 use App\Http\Controllers\Vacancy\VacancyController;
 use App\Models\Vacancy;
 use App\Models\Company;
@@ -54,15 +55,23 @@ Route::middleware('auth')->group(function () {
     Route::put('resume/{resume}', [ResumeController::class, 'update'])->name('resume.update');
     Route::delete('resume/{resume}', [ResumeController::class, 'destroy'])->name('resume.destroy');
 
-    Route::post('addLike', [LikeController::class, 'store'])->name('addLike');
-    Route::post('deleteLike', [LikeController::class, 'destroy'])->name('deleteLike');
-
     Route::get('/PageUserResponses', [AcceptVacancyController::class, 'index'])->name('userResponses');
-    Route::post('/PageUserResponses/accept', [AcceptVacancyController::class, 'store'])->name('userVacancyAccept');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::middleware('isRolCompany')->group(function() {
+        Route::post('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
+        Route::post('/refusal', [StatusResponseResumeController::class, 'refusal'])->name('refusal');
+        Route::post('/invitation', [StatusResponseResumeController::class, 'invitation'])->name('invitation');
+    });
+
+    Route::middleware('isRolCandidate')->group(function() {
+        Route::post('addLike', [LikeController::class, 'store'])->name('addLike');
+        Route::post('deleteLike', [LikeController::class, 'destroy'])->name('deleteLike');
+        Route::post('/PageUserResponses/accept', [AcceptVacancyController::class, 'store'])->name('userVacancyAccept');
+    });
 });
 
 require __DIR__ . '/auth.php';

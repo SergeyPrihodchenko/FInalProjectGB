@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Resume;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Resume\ResumeStoreRequest;
 use App\Models\Resume;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,8 +57,10 @@ class ResumeController extends Controller
     public function store(ResumeStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
-
+        $id = auth()->id();
         Resume::create($data);
+
+        User::where('id', $id)->update(['isRol' => 0]);
 
         return redirect()->route('resume.myresumes');
 
