@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware('isRolCompany')->group(function() {
-        Route::get('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
+        Route::post('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
         Route::post('/refusal', [StatusResponseResumeController::class, 'refusal'])->name('refusal');
         Route::post('/invitation', [StatusResponseResumeController::class, 'invitation'])->name('invitation');
     });
