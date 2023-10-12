@@ -20,7 +20,6 @@ class VacancyController
 {
     public function index(): \Inertia\Response
     {
-        //VacancyPage/ui/VacancyPageList/VacancyPageList
         //В странице Vacancy/Index больше не нужны дынные из БД в этом свойтве
         // return Inertia::render('Vacancy/Index', [
         //     'title' => 'Вакансии'
@@ -35,7 +34,7 @@ class VacancyController
         $likes = UserLikeVacancies::getVacancyIdArray($id);
         $resume = Resume::where('user_id', $id)->get('id')->toArray();
         $arr = array_values($resume);
-        
+
         $responsedVacancy = UserResponseVacancies::whereIn('resume_id', $arr)->get('vacancy_id');
 
         $resumes = Resume::where('user_id', $id)->get()->toArray();
