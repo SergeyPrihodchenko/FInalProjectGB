@@ -26,6 +26,21 @@ export const resumePage = createSlice({
         }, 
 
          //высчитываем из даты рождения сколько полных лет
+        setYearsUser: ( state, { payload } ) => {
+            function declOfNum(number, titles) {
+                let cases = [2, 0, 1, 1, 1, 2];
+                 return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+            }
+               
+            function birthDateToAge(b) {
+                var n = new Date(),
+                    b = new Date(b),
+                    age = n.getFullYear() - b.getFullYear();
+                return n.setFullYear(1970) < b.setFullYear(1970) ? age - 1 : age;
+            }
+           state.yearDateOfBirth = (declOfNum(birthDateToAge(payload), ['год', 'года', 'лет']));
+        },
+
         setYears: ( state, { payload } ) => {
             function declOfNum(number, titles) {
                 let cases = [2, 0, 1, 1, 1, 2];
@@ -161,7 +176,8 @@ export const resumePage = createSlice({
 export const { 
         setDataResume, 
         setDataAuthor,
-        setYears, 
+        setYears,
+        setYearsUser, 
         setGenger, 
         setDayOfBirth, 
         setDateFormatWorkBegin, 

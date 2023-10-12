@@ -14,7 +14,7 @@ import {setDateFormatWorkBegin,
 
 function UserWorkExperience() {
     const dispatch = useDispatch();
-    
+ 
     const {
         resumes, 
         dataWorksBegin, 
@@ -75,13 +75,13 @@ function UserWorkExperience() {
                                     <AppText
                                         size="s"
                                         text={el.achievements}
-                                    />
+                                    /> 
                                  </div>
                             </div>
                         </div>                         
                     )
                 })
-            }
+            } 
         </div>                      
     );
 }

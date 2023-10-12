@@ -3,7 +3,7 @@ import React from "react";
 import s from "./UserBaceData.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import { useDispatch, useSelector } from "react-redux";
-import { setYears, 
+import { setYearsUser, 
         setGenger, 
         setDayOfBirth
     } from "@/Pages/ResumePage/model/slice/ResumePageSlice";
@@ -19,11 +19,11 @@ function UserBaceData() {
         genderOfUser, 
         dateOfBirthUser
     } = useSelector(state => state.resumePage);
-    //console.log(authores);
+    //console.log(resumes);
     
     //высчитываем из даты рождения сколько полных лет
     const dateOfBirth = resumes.date_of_birth;
-    dispatch(setYears(dateOfBirth));
+    dispatch(setYearsUser(dateOfBirth));
 
     //переводим из падежа в существительное gender пользователя
     const dataGender = resumes.gender;
@@ -36,13 +36,13 @@ function UserBaceData() {
        <div class={s.baceData}>
             <div class={s.userBaceData}>
                 <AppText
-                    title={resumes.last_name.concat(" ", resumes.first_name)}
+                    title={resumes.last_name + " " + resumes.first_name}
                     size="s"
                     bold
                 />
                 <AppText 
                     size="s"
-                    text={genderOfUser.concat(", ", yearDateOfBirth, ", ", dateOfBirthUser, " года рождения")}
+                    text={genderOfUser + ", " + yearDateOfBirth + ", " + dateOfBirthUser + " года рождения"}
                 />
                 <div className={s.userContacts}>
                     <AppText title={"Контакты"} size="s" />
@@ -71,11 +71,11 @@ function UserBaceData() {
                      size="s" 
                 />
                 <AppText 
-                    text={"Готовность к переездам: ".concat(resumes.relocation)} 
+                    text={"Готовность к переездам: " + resumes.relocation} 
                     size="s" 
                 />
                 <AppText 
-                    text={"Готовность к командировкам: ".concat( resumes.buisness_travel)} 
+                    text={"Готовность к командировкам: " + resumes.buisness_travel} 
                     size="s" 
                 />
                 {/* <div className={s.userSearchArea}>

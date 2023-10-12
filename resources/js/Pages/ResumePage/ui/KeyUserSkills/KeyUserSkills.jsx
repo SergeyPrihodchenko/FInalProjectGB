@@ -20,8 +20,7 @@ function KeyUserSkills() {
                 title={"Ключевые навыки"}
                 size="s"
                 bold
-            />
-                           
+            />            
             <List
                 list={resumes.skills}
                 renderItem={(el) =>

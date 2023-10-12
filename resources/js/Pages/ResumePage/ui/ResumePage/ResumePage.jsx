@@ -13,13 +13,14 @@ import KeyUserSkills from "../KeyUserSkills/KeyUserSkills";
 import AboutUser from "../AboutUser/AboutUser";
 import UserEducation from "../UserEducation/UserEducation";
 import UserWorkConditions from "../UserWorkConditions/UserWorkConditions";
+import { useEffect } from "react";
 
 
 function ResumePage({ resume, author }) {
     //console.log(resume);
     const user = usePage().props.auth.user;
     const dispatch = useDispatch();
-
+    
     dispatch(setDataResume(resume));
     dispatch(setDataAuthor(author));
               
