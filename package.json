@@ -1,48 +1,37 @@
 {
-  "private": false,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^8.0.2",
-    "@headlessui/react": "^1.4.2",
-    "@inertiajs/react": "^1.0.0",
-    "@storybook/addon-essentials": "^7.4.6",
-    "@storybook/addon-interactions": "^7.4.6",
-    "@storybook/addon-links": "^7.4.6",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.4.6",
-    "@storybook/react": "^7.4.6",
-    "@storybook/react-vite": "^7.4.6",
-    "@storybook/testing-library": "^0.2.2",
-    "@tailwindcss/forms": "^0.5.6",
-    "@types/howler": "^2.2.8",
-    "@vitejs/plugin-react": "^4.0.4",
-    "autoprefixer": "^10.4.12",
-    "axios": "^1.1.2",
-    "classnames": "^2.3.2",
-    "laravel-vite-plugin": "^0.8.0",
-    "postcss": "^8.4.18",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.10.1",
-    "storybook": "^7.4.6",
-    "tailwindcss": "^3.3.3",
-    "vite": "^4.0.0"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.8",
-    "@mui/material": "^5.14.8",
-    "@reduxjs/toolkit": "^1.9.5",
-    "2gis-maps": "^3.7.3",
-    "moment": "^2.29.4",
-    "react-redux": "^8.1.2"
-  }
+    "private": false,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^8.0.2",
+        "@headlessui/react": "^1.4.2",
+        "@inertiajs/react": "^1.0.0",
+        "@tailwindcss/forms": "^0.5.6",
+        "@types/howler": "^2.2.8",
+        "@vitejs/plugin-react": "^4.0.4",
+        "autoprefixer": "^10.4.12",
+        "axios": "^1.1.2",
+        "classnames": "^2.3.2",
+        "laravel-vite-plugin": "^0.8.0",
+        "postcss": "^8.4.18",
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.10.1",
+        "tailwindcss": "^3.3.3",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@mui/icons-material": "^5.14.8",
+        "@mui/material": "^5.14.8",
+        "@reduxjs/toolkit": "^1.9.5",
+        "2gis-maps": "^3.7.3",
+        "moment": "^2.29.4",
+        "react-redux": "^8.1.2"
+    }
 }

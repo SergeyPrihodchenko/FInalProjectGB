@@ -16,15 +16,26 @@ class CandidateConditionController extends Controller
 
         $companyId = Company::where('creator_id', $id)->get('id');
 
-        $arrComp = array_values($companyId);
+        $arrComp = [];
+        foreach ($companyId as $value) {
+            $arrComp[] = $value['id'];
+        }
 
         $vacancyId = Vacancy::whereIn('company_id', $arrComp)->get('id')->toArray();
 
-        $arrVacanId = array_values($vacancyId);
+        $arrVacanId = [];
+
+        foreach ($vacancyId as $value) {
+            $arrVacanId[] = $value['id'];
+        }
 
         $candidateId = UserResponseVacancies::whereIn('vacancy_id', $arrVacanId)->get('resume_id')->toArray();
 
-        $arrResumId = array_values($candidateId);
+        $arrResumId = [];
+
+        foreach ($candidateId as $value) {
+            $arrResumId[] = $value['resume_id'];
+        }
 
         $resumes = Resume::whereIn('id', $arrResumId)->get()->toArray();
 

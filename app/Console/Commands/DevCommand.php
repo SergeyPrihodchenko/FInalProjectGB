@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use App\Http\Controllers\CandidateConditionController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StatusResponseResumeController;
-use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Models\SqlBuild;
 use App\Models\UserResponseVacancies;
 use App\Models\User_like_vacancy;
@@ -33,7 +31,11 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        // (new StatusResponseResumeController)->viewed();
+        UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 2]);
+        UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 4]);
+        UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 7]);
+        UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 8]);
+        UserResponseVacancies::create(['user_id' => 20, 'vacancy_id' => 12]);
     }
 
 }

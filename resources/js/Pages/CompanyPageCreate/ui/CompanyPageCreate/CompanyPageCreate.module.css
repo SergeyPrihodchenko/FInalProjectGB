@@ -1,5 +1,5 @@
 .textTitle {
-    padding: 5px 0px 5px 0px;
+    padding: 20px 10px 10px 0px;
 }
 
 .indentDownBasiceData {
@@ -80,18 +80,15 @@
     width: auto;
 }
 
-.inputCity {
-    box-sizing: border-box;
+.textFileCompany {
+    z-index: 1;
     width: 240px;
-    height: 43px;
-    font-size: var(--font-size-s);
-    padding: 10px;
-
-    background: var(--main-bg);
-    border: 2px solid var(--light-skeleton-shadow);
-    border-radius: var(--border-radius-s);
-}
-
-.inputCity:focus {
-    border: 2px solid var(--accent);
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    text-overflow: ellipsis;
+    padding: 0px 0px 10px 10px;
+    border-radius: 5px;
 }

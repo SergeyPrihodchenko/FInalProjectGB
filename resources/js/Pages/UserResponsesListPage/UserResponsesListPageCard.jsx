@@ -26,7 +26,6 @@ const UserResponsesListPageCard = ({
             key={id}
         >
             <AppCard
-                variant='primary'
                 width={'auto'}
                 height={'260px'}
                 shadow

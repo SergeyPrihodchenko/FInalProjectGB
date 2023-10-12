@@ -33,7 +33,7 @@
 
 .buttonResumeProfession {
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
 }
 
 .salaryResume {
@@ -71,15 +71,4 @@
 
 .vacancyWishes {
     margin-bottom: 40px;
-}
-
-.buttonIncomeLevel{
-    width: 280px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.buttonIcon{
-    margin-top: 3px;
-    padding-top: 5px;  
 }

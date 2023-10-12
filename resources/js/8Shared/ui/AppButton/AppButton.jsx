@@ -35,11 +35,11 @@ function AppButton(props) {
                         s[variant],
                         s[colorType],
                         s[sizeText],
-                        className,
                         {
                             [s.rounded]: rounded,
                             [s.bold]: bold,
                             [s.disabled]: disabled,
+                            className,
                         }
                     )}
                     {...otherProps}

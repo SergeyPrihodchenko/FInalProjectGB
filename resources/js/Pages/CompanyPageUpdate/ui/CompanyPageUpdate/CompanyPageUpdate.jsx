@@ -20,9 +20,8 @@ function CompanyPageUpdate({ company, auth }) {
         phone_number: company.phone_number,
         description: company.description,
         date_create: company.date_create,
-        city: company.city,
     });
-    console.log(company);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -78,7 +77,7 @@ function CompanyPageUpdate({ company, auth }) {
                         onChange={(e) =>
                             setData("region_of_location", e.target.value)
                         }
-                        label={"Юридический адрес компании"}
+                        label={"Город или регион расположения"}
                         type="text"
                         className={s.indentDownBasiceData}
                     />
@@ -96,15 +95,6 @@ function CompanyPageUpdate({ company, auth }) {
                                 setData("region_of_location", e.target.value)
                             }
                         /> */}
-                    <AppInput
-                        value={data.city}
-                        onChange={(e) =>
-                            setData("city", e.target.value)
-                        }
-                        label={"Город"}
-                        type="text"
-                        className={s.indentDownBasiceData}
-                    />
 
                     <AppInput
                         value={data.date_create}

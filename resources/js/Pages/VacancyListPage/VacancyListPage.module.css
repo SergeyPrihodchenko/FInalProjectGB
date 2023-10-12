@@ -174,7 +174,7 @@
     top: 20px;
     position: absolute;
     right: 20px;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .addToFavouriteBtn:hover {
@@ -192,9 +192,4 @@
     align-items: center;
     justify-content: space-between;
     margin: var(--indent-s) 0;
-}
-
-.vacancyListCardBtnView:hover {
-    color: var(--hint);
-    border-color: var(--hint);
 }

@@ -30,12 +30,11 @@ const VacancyListPage = ({
     employment,
     cities,
     likes,
-    responsedVacancy,
-    resumes
+    responsedVacancy
 }) => {
-    // console.log('responsedVacancy: ', responsedVacancy);
-    // console.log('resumes: ', resumes);
-    // console.log(auth.user);
+
+    console.log('responsedVacancy: ', responsedVacancy);
+    console.log('resumes: ', resumes);
 
     const dispatch = useDispatch();
 
@@ -107,12 +106,16 @@ const VacancyListPage = ({
         })
     }
 
-    const handleAnswer = async (resume_id) => {
-        router.post('PageUserResponses/accept',
-            { resume_id: resume_id, vacancy_id: vacId },
-            // { preserveState: (page) => Object.keys(page.props.errors).length }
-        );
-        setIsResponseModal(!isResponseModal);
+    const handleAnswer = async (vacancy_id) => {
+        try {
+            await axios.post('/PageUserResponses/accept', {
+                user_id: user.id,
+                vacancy_id: vacancy_id
+            });
+            setResponsesIdList([...responsesIdList, vacancy_id]);
+        } catch (e) {
+            console.log(e.message);
+        }
     }
     const isResponsedVacancy = (id, list) => {
         return list.some(el => el === id);
@@ -275,31 +278,27 @@ const VacancyListPage = ({
                     {user?.id ?
                         <>
                             <AppText text={'Выберите резюме для отправки'} size={'s'} />
-                            {!resumes.length ?
-                                <>Создайте резюме!</>
-                                :
-                                resumes?.map(resume => <AppCard
-                                    key={resume.id}
-                                    className={s.modalCard}
-                                    borderLeft
-                                    width={'500px'}
-                                    shadow
+                            {resumes?.map(resume => <AppCard
+                                key={resume.id}
+                                className={s.modalCard}
+                                borderLeft
+                                width={'500px'}
+                                shadow
+                            >
+                                <AppText
+                                    title={resume.profession}
+                                    size={'m'}
+                                />
+                                <AppButton
+                                    variant={'filled'}
+                                    onClick={() => {
+                                        router.post('PageUserResponses/accept', { resume_id: resume.id, vacancy_id: vacId });
+                                        setIsResponseModal(!isResponseModal);
+                                    }}
                                 >
-                                    <AppText
-                                        title={resume.profession}
-                                        size={'m'}
-                                    />
-                                    <AppButton
-                                        variant={'filled'}
-                                        // onClick={() => {
-                                        //     router.post('PageUserResponses/accept', { resume_id: resume.id, vacancy_id: vacId }, { preserveState: (page) => Object.keys(page.props.errors).length });
-                                        //     setIsResponseModal(!isResponseModal);
-                                        // }}
-                                        onClick={() => handleAnswer(resume.id)}
-                                    >
-                                        Отправить
-                                    </AppButton>
-                                </AppCard>)}
+                                    Отправить
+                                </AppButton>
+                            </AppCard>)}
                         </> :
                         <>
                             <AppText text={'Сначала зарегистрируйтесь'} />
@@ -368,7 +367,7 @@ const VacancyListPage = ({
                                 <AppText bold text={`Найдено ${total} вакансии`} />
                                 // :<AppText bold text={`Ничего не найдено`} />
                             }
-                            {/* {error && <AppText text={error} variant={'error'} />} */}
+                            {error && <AppText text={error} variant={'error'} />}
                             <div className={s.toggleDescBtn}>
                                 <AppButton
                                     width={'40px'}
@@ -472,9 +471,8 @@ const VacancyListPage = ({
                                             path={'vacancy.show'}
                                             param={vac.id}
                                             variant='outline'
-                                            colorType={'normal'}
                                             width="auto"
-                                            className={s.vacancyListCardBtnView}
+                                            colorType="normal"
                                         >
                                             Посмотреть
                                         </AppButton>

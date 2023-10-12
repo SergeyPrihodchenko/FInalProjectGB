@@ -11,7 +11,6 @@ import AppCard from '@/8Shared/ui/AppCard/AppCard';
 import AppLink from '@/8Shared/ui/AppLink/AppLink';
 import AppButton from '@/8Shared/ui/AppButton/AppButton';
 import FavouriteButton from '@/8Shared/ui/FavouriteButton/FavouriteButton';
-import { useEffect } from 'react';
 
 
 
@@ -20,10 +19,8 @@ function ProfilePageTabs(props) {
         favourite_vacancies,
         likes
     } = props;
-    console.log(likes);
+
     const ProfilePageFormAll = <ProfilePageForm />;
-
-
 
     const favList = <List
         className={s.favList}

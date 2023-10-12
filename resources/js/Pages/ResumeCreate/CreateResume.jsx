@@ -7,7 +7,26 @@ import s from "./CreateResume.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
-import Checkbox from "@/8Shared/Checkbox/Checkbox";
+
+// const arrayEducation = [
+//     "Среднее",
+//     "Среднее специальное",
+//     "Неоконченное высшее",
+//     "Высшее образование",
+//     "Бакалавр",
+//     "Магистр",
+//     "Кандидат наук",
+//     // "Доктор наук",
+// ];
+
+// const arrayExperience = [
+//     // "без опыта",
+//     "менее года",
+//     "от года до трех",
+//     "от трех и выше",
+// ];
+
+999
 
 function CreateResume() {
     const user = usePage().props.auth.user;
@@ -204,6 +223,45 @@ function CreateResume() {
                                 </div>
                             </div>
 
+                            {/* <div className={s.inputRadioBasiceData}>
+                                <input
+                                    onChange={(e) =>
+                                        setData("gender", e.target.value)
+                                    }
+                                    value="Мужской"
+                                    type="radio"
+                                    name="gender"
+                                    id="genderMen"
+                                    className={s.inputRadioCreateResume}
+                                    errorMessage={errors.gender}
+                                />
+                                <label htmlFor="genderMen">
+                                    <AppText
+                                        text={"Мужской"}
+                                        size={"s"}
+                                        className={s.textInputRadio}
+                                    />
+                                </label>
+
+                                <input
+                                    onChange={(e) =>
+                                        setData("gender", e.target.value)
+                                    }
+                                    value="Женский"
+                                    type="radio"
+                                    name="gender"
+                                    id="genderWoman"
+                                    className={s.inputRadioCreateResume}
+                                    errorMessage={errors.gender}
+                                />
+                                <label htmlFor="genderWoman">
+                                    <AppText
+                                        text={"Женский"}
+                                        size={"s"}
+                                        className={s.textInputRadio}
+                                    />
+                                </label>
+                            </div> */}
                             <AppInput
                                 onChange={(e) =>
                                     setData("region", e.target.value)
@@ -308,6 +366,46 @@ function CreateResume() {
                                         {errors.education}
                                     </div>
                                 </div>
+                                {/* <div className={s.education}>
+                                    {arrayEducation.map((el) => {
+                                        // console.log(el);
+                                        return (
+                                            <div
+                                                className={
+                                                    s.inputRadioBasiceData
+                                                }
+                                            >
+                                                <input
+                                                    onChange={(e) =>
+                                                        setData(
+                                                            "education",
+                                                            e.target.value
+                                                        )
+                                                    }
+                                                    value={el}
+                                                    name="education"
+                                                    id={el}
+                                                    type="radio"
+                                                    className={
+                                                        s.inputRadioCreateResume
+                                                    }
+                                                />
+                                                <label for={el}>
+                                                    <AppText
+                                                        text={el}
+                                                        size={"s"}
+                                                        className={
+                                                            s.textInputRadio
+                                                        }
+                                                    />
+                                                </label>
+                                                <div style={{ color: "red" }}>
+                                                    {errors.education}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div> */}
                             </div>
                             {data.educational_institute.map((el, index) => {
                                 return (
@@ -606,16 +704,25 @@ function CreateResume() {
                                 ) : null}
 
                                 <div className={s.experienceEndingWork}>
+                                    {/* <AppText
+                                        title={"Окончание"}
+                                        bold
+                                        size={"xs"}
+                                        className={s.textTitle}
+                                    /> */}
                                     <div className={s.inputEndingWork}>
-                                        <Checkbox
+                                        <input
                                             id="checkboxEndingWork"
+                                            type="checkbox"
                                             value={checkbox}
                                             // onClick={() => setCheckbox(!checkbox)}
+                                            className={s.checkboxEndingWork}
                                         />
                                         <label for="checkboxEndingWork">
                                             <AppText
                                                 title={"По настоящее время"}
                                                 size={"xs"}
+                                                className={s.textTitleEnding}
                                             />
                                         </label>
                                     </div>
@@ -749,6 +856,38 @@ function CreateResume() {
                                 <div style={{ color: "red" }}>
                                     {errors.experience}
                                 </div>
+                                {/* {arrayExperience.map((el) => {
+                                    // console.log(el);
+                                    return (
+                                        <div className={s.inputRadioBasiceData}>
+                                            <input
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "experience",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                value={el}
+                                                name="experience"
+                                                id={el}
+                                                type="radio"
+                                                className={
+                                                    s.inputRadioCreateResume
+                                                }
+                                            />
+                                            <label for={el}>
+                                                <AppText
+                                                    text={el}
+                                                    size={"s"}
+                                                    className={s.textInputRadio}
+                                                />
+                                            </label>
+                                            <div style={{ color: "red" }}>
+                                                {errors.experience}
+                                            </div>
+                                        </div>
+                                    );
+                                })} */}
                             </div>
                             <div className={s.education}>
                                 <AppText
@@ -769,6 +908,9 @@ function CreateResume() {
                                     <option value="Не выбрано">
                                         Не выбрано
                                     </option>
+                                    {/* <option value="Любой">
+                                        Любой
+                                    </option> */}
                                     <option value="Полный день">
                                         Полный день
                                     </option>
@@ -808,6 +950,9 @@ function CreateResume() {
                                     <option value="Не выбрано">
                                         Не выбрано
                                     </option>
+                                    {/* <option value="Любой">
+                                        Любой
+                                    </option> */}
                                     <option value="Полная занятость">
                                         Полная занятость
                                     </option>

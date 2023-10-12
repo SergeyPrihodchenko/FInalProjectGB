@@ -6,7 +6,7 @@ enum EmploymentType: string
     case fullTimeJob = 'Полный день';
     case shiftWork = 'Сменный график';
     case flexibleSchedule = 'Гибкий график';
-    case distantWork = 'Удаленная работа';
+    case distantWork = 'Удаленая работа';
     case watchSchedule = 'Вахтовый метод';
 
     public static function all(): array

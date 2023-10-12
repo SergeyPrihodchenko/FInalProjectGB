@@ -82,14 +82,20 @@ class User extends Authenticatable
 //        return $this->subscriptions()->where('company_id', $company->id)->exists();
 //    }
 
-    public function subscribeToCompany(Company $company)
+    public function subscribeToCompany(Company $company): void
     {
-        $this->subscriptions()->attach($company->id);
+        $this->subscriptions()->attach($company);
     }
 
-    public function unsubscribeFromCompany(Company $company)
+    public function unsubscribeFromCompany(Company $company): void
     {
-        $this->subscriptions()->detach($company->id);
+        $this->subscriptions()->detach($company);
+    }
+
+    public function reviews(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class, 'reviews_of_companies', 'user_id', 'company_id')
+            ->using(ReviewsOfCompanies::class);
     }
 
 

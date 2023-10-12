@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Company;
+
+namespace App\Http\Requests\ReviewsOfCompanies;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCompanyRequest extends FormRequest
+class StoreReviewsOfCompaniesRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -22,16 +24,12 @@ class StoreCompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'review' => ['sometimes'],
             'email' => ['sometimes' ],
             'name'=> ['required' ],
-            'business_profile'=> ['sometimes' ],
-            'website'=> ['sometimes' ],
-            'region_of_location'=> ['sometimes' ],
-            'date_create'=> ['sometimes' ],
-            'phone_number'=> ['sometimes' ],
-            'description'=> ['sometimes' ],
-            'logo' => ['sometimes', 'image', 'mimes:jpeg,bmp,png,jpg,gif|max:2048'],
-            'city' => ['sometimes']
+
         ];
     }
+
+
 }
