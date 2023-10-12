@@ -15,18 +15,22 @@ function UserSpeciality() {
             <AppText title={resumes.profession} size="s" bold />
             <div className={s.specialization}>
                 <AppText text={"Специализации:"} size="s" />
-                <List
-                    list={resumes.educational_institute}
-                    renderItem={(el) =>
-                        <li key={el}>
-                            <AppText
-                                text={" - ".concat(el.specialization)}
-                                size="s"
-                                className={s.specializationText}   
-                            />
-                        </li>
-                    }
-                />        
+
+                {resumes.educational_institute != null ? (
+                    <List
+                        list={resumes.educational_institute}
+                        renderItem={(el) =>
+                            <li key={el}>
+                                <AppText
+                                    text={" - ".concat(el.specialization)}
+                                    size="s"
+                                    className={s.specializationText}   
+                                />
+                            </li>
+                        }
+                    />  ) : null
+                }
+                      
             </div> 
 
             <AppText 

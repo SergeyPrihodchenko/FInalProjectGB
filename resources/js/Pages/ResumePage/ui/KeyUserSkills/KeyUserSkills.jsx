@@ -20,22 +20,25 @@ function KeyUserSkills() {
                 title={"Ключевые навыки"}
                 size="s"
                 bold
-            />
-                           
-            <List
-                list={resumes.skills}
-                renderItem={(el) =>
-                    <li key={el} className={s.keySkillsTextAll}>
-                        <div >
-                            <AppText
-                                 text={el}
-                                size="s"
-                                className={s.keySkillsText}
-                            />    
-                        </div>
-                    </li>
-                }
             /> 
+
+            { resumes.skills != null ? (
+                <List
+                    list={resumes.skills}
+                    renderItem={(el) =>
+                        <li key={el} className={s.keySkillsTextAll}>
+                            <div >
+                                <AppText
+                                    text={el}
+                                    size="s"
+                                    className={s.keySkillsText}
+                                />    
+                            </div>
+                        </li>
+                    }
+                />  ) : null
+            }     
+            
         </div>
                         
     );

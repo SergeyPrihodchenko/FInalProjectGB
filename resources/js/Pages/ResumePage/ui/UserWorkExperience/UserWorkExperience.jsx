@@ -1,5 +1,4 @@
 import React from "react";
-import { usePage } from "@inertiajs/react";
 //import PropTypes from 'prop-types'
 import s from "./UserWorkExperience.module.css";
 
@@ -14,14 +13,16 @@ import {setDateFormatWorkBegin,
 
 function UserWorkExperience() {
     const dispatch = useDispatch();
-    
+ 
     const {
         resumes, 
         dataWorksBegin, 
         dataWorksEnd,
         yearWorksExperience 
     } = useSelector(state => state.resumePage);
-                                 
+     
+    const companies = resumes.companies;
+    console.log(companies);
     //форматы даты и периода работы
     dispatch(setDateFormatWorkBegin());
     dispatch(setDateFormatWorkEnd());
@@ -40,8 +41,9 @@ function UserWorkExperience() {
             /> */}
                         
             {
-                resumes.companies.map((el) => {            
-                     return (
+                companies !=null ? (
+                companies.map((el) => {            
+                    return (
                        <div className={s.workPeriods}>
                             <div className={s.userWorkPeriod}>
                                 <AppText
@@ -59,7 +61,6 @@ function UserWorkExperience() {
                                     <AppButton
                                         variant="clear"
                                         sizeText="s"
-                                        className={s.userEmailText}
                                         href="#"
                                         >{el.name}
                                     </AppButton>
@@ -75,13 +76,16 @@ function UserWorkExperience() {
                                     <AppText
                                         size="s"
                                         text={el.achievements}
-                                    />
+                                    /> 
                                  </div>
                             </div>
                         </div>                         
                     )
                 })
+                ) : null
+                
             }
+            
         </div>                      
     );
 }
