@@ -9,7 +9,7 @@ enum StatusResponse: string
     case NOT_VIEWED = 'Не просмотренно';
     case VIEWED = 'Просмотренно';
 
-    public static function getAll(): array
+    public static function all(): array
     {
         return [
             self::INVATEATION->value,

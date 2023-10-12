@@ -7,6 +7,7 @@ use App\Http\Requests\Company\StoreCompanyRequest;
 use App\Models\City;
 use App\Models\CompanyUser;
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -52,6 +53,7 @@ class CompanyController extends Controller
         $data['creator_id'] = $creatorId;
         //dd($data);
         $company = Company::create($data);
+        User::where('id', $creatorId)->update(['isRol' => 1]);
         //dd($company);
 
         //

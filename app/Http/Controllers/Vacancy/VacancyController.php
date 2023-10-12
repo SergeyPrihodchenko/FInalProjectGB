@@ -34,13 +34,11 @@ class VacancyController
 
         $likes = UserLikeVacancies::getVacancyIdArray($id);
         $resume = Resume::where('user_id', $id)->get('id')->toArray();
-        $arr = [];
-        foreach ($resume as $value) {
-            $arr[] = $value['id'];
-        }
+        $arr = array_values($resume);
+        
         $responsedVacancy = UserResponseVacancies::whereIn('resume_id', $arr)->get('vacancy_id');
 
-        $resumes = Resume::where('user_id', $id)->get()->toArray();
+        $resumes = Resume::where('user_id', auth()->id())->get()->toArray();
 
         if (!empty($responsedVacancy)) {
             $arr = [];

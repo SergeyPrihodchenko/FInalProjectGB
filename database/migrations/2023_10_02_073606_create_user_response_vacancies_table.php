@@ -33,6 +33,8 @@ return new class extends Migration
             $table->index('vacancy_id');
             $table->unique(['resume_id', 'vacancy_id']);
             $table->timestamps();
+
+            $table->foreignId('status_id')->index()->constrained('statuses');
         });
     }
 

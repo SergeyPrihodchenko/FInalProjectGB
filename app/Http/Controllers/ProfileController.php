@@ -22,10 +22,8 @@ class ProfileController extends Controller
         $user_id = auth()->id();
         $likes = UserLikeVacancies::getVacancyIdArray(auth()->id());
         $like_vacancy = UserLikeVacancies::where('user_id', $user_id)->get('vacancy_id')->toArray();
-        $likesArr = [];
-        foreach ($like_vacancy as $value) {
-            $likesArr[] = $value['vacancy_id'];
-        }
+        
+        $likesArr = array_values($like_vacancy);
 
         $vacancies = Vacancy::whereIn('vacancies.id',$likesArr)
           ->join('cities', 'vacancies.city_id', '=', 'cities.id')
