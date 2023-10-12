@@ -33,6 +33,7 @@ class DevCommand extends Command
      */
     public function handle()
     {
+        // (new StatusResponseResumeController)->viewed();
     }
 
 }
