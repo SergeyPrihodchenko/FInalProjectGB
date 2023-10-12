@@ -3,11 +3,12 @@ import cn from "classnames";
 import s from "./CompanyPage.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton.jsx";
 import PropTypes from "prop-types";
+import AppCard from "@/8Shared/ui/AppCard/AppCard";
 
 const CompanyPageAppCard = ({ img, city, website }) => {
     return (
         <div className={cn(s.companyPageLeft)}>
-            <section className={cn(s.companyPageLeftCard)}>
+            <AppCard>
                 <div className={cn(s.companyPageLeftCardLogo)}>
                     <img src={img} alt="Лого" />
                 </div>
@@ -74,7 +75,7 @@ const CompanyPageAppCard = ({ img, city, website }) => {
                         Подписаться
                     </AppButton> */}
                 </div>
-            </section>
+            </AppCard>
         </div>
     );
 };

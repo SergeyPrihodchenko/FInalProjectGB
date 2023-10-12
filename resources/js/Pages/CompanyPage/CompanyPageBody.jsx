@@ -48,10 +48,10 @@ const CompanyPageBody = ({
                     //infoList={companyInfoList}
 
                 />
-                <CompanyPageReview
+                {/* <CompanyPageReview
                     //employeeReview={employeeReview} отзывы
                     //otherReview={reviewList}
-                    />
+                    /> */}
                 <CompanyPageVacancy
                     companyName={company?.name || companyName}
                     //companyVacancyList={companyVacancies}
