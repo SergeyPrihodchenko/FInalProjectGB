@@ -33,8 +33,9 @@ const VacancyListPage = ({
     responsedVacancy,
     resumes
 }) => {
-    console.log('responsedVacancy: ', responsedVacancy);
-    console.log('resumes: ', resumes);
+    // console.log('responsedVacancy: ', responsedVacancy);
+    // console.log('resumes: ', resumes);
+    // console.log('user: ', user);
 
     const dispatch = useDispatch();
 
@@ -49,7 +50,6 @@ const VacancyListPage = ({
 
 
     const user = auth?.user;
-    console.log('user: ', user);
     // const [vacancyList, setVacancyList] = useState([]);
     // const [total, setTotal] = useState(0);
     // const [isLoading, setIsLoading] = useState(false);

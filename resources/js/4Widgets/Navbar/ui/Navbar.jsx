@@ -14,37 +14,15 @@ import { setIsEmployer } from "../model/slice/navbarSlice";
 export const Navbar = (props) => {
     const { user, switchTheme, theme } = props;
     const isEmployer = useSelector((state) => state.navabr.isEmployer);
-    // console.log("isEmployer", isEmployer);
-    console.log("user navbar", user?.isRol);
-
     const dispatch = useDispatch();
+    // console.log("isEmployer", isEmployer);
+    console.log("user navbar", user);
+
     return (
         <nav className={s.navBg}>
             <AppPage className={s.appPage}>
                 <div className={s.navBar}>
                     <Logo src={mainlogo} alt={"Логотип"} href={route("main")} />
-                    {user?.isRol === null && <>
-                        <AppButton
-                            variant={"clear"}
-                            colorType={"accent"}
-                            className={cn(s.toglleBtn, { [s.active]: !isEmployer })}
-                            onClick={() => {
-                                dispatch(setIsEmployer());
-                            }}
-                        >
-                            Соискателям
-                        </AppButton>
-                        <AppButton
-                            variant={"clear"}
-                            colorType={"accent"}
-                            className={cn(s.toglleBtn, { [s.active]: isEmployer })}
-                            onClick={() => {
-                                dispatch(setIsEmployer());
-                            }}
-                        >
-                            Работодателям
-                        </AppButton>
-                    </>}
 
                     {user?.isRol === 0 && <AppButton
                         variant={"clear"}

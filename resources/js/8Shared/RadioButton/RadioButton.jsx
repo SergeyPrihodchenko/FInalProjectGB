@@ -17,10 +17,11 @@ const RadioButton = ({
                     name={name}
                     id=""
                     value={value}
-                    {...props}
+
                     className={cn(className, {
                         // [s.checked]: isChecked
                     })}
+                    {...props}
                 />
                 <span>{label}</span>
             </label>
