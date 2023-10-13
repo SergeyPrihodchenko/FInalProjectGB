@@ -76,7 +76,7 @@ class ResumeSeeder extends Seeder
                 'citizenship' => fake('ru_RU')->country,
                 'work_permit' => fake('ru_RU')->country,
                 'education' => $education[$e],
-                'skills' => json_encode(fake('ru_RU')->jobTitle),
+                'skills' => json_encode([fake('ru_RU')->jobTitle]),
                 'educational_institute' =>json_encode([
                     [
                         'title' => fake('ru_RU')->title,

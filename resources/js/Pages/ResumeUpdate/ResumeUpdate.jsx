@@ -799,8 +799,8 @@ function Resume({ resume }) {
                                     <option value="Гибкий график">
                                         Гибкий график
                                     </option>
-                                    <option value="Удаленая работа">
-                                        Удаленая работа
+                                    <option value="Удаленная работа">
+                                        Удаленная работа
                                     </option>
                                     <option value="Вахтовый метод">
                                         Вахтовый метод
