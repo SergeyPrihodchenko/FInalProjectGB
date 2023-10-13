@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('resumes', function (Blueprint $table) {
             $table->dropColumn('educational_institute');
-            $table->dropColumn('company');
+            $table->dropColumn('companies');
         });
     }
 };
