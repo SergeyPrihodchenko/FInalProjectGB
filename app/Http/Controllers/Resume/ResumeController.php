@@ -57,11 +57,7 @@ class ResumeController extends Controller
     public function store(ResumeStoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $id = auth()->id();
         Resume::create($data);
-
-        User::where('id', $id)->update(['isRol' => 0]);
-
         return redirect()->route('resume.myresumes');
 
     }
