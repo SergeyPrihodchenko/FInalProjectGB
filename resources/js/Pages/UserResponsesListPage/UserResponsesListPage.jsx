@@ -6,9 +6,12 @@ import UserResponsesListPageCard from "@/Pages/UserResponsesListPage/UserRespons
 import { useState } from "react";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import AppText from "@/8Shared/ui/AppText/AppText";
+import { useEffect } from "react";
+import axios from "axios";
 
 const UserResponsesListPage = ({ auth, vacancies }) => {
     const user = auth?.user;
+    console.log(vacancies);
     const [responsesList, setResponsesList] = useState(vacancies);
     const mockData = [
         {
@@ -42,6 +45,13 @@ const UserResponsesListPage = ({ auth, vacancies }) => {
             logo: "https://img.hhcdn.ru/employer-logo/3381258.png",
         },
     ];
+    useEffect(() => {
+        const getStatusEachVacancy = async () => {
+            const res = await axios.get('/viewed');
+            console.log(res.data);
+        }
+        // getStatus();
+    }, [])
     return (
         <>
             <Head>

@@ -33,8 +33,9 @@ const VacancyListPage = ({
     responsedVacancy,
     resumes
 }) => {
-    console.log('responsedVacancy: ', responsedVacancy);
-    console.log('resumes: ', resumes);
+    // console.log('responsedVacancy: ', responsedVacancy);
+    // console.log('resumes: ', resumes);
+    // console.log('user: ', user);
 
     const dispatch = useDispatch();
 
@@ -106,13 +107,17 @@ const VacancyListPage = ({
         })
     }
 
-    const handleAnswer = async (vacancy_id) => {
+    const handleAnswer = async (vacancy_id, resume_id) => {
         try {
-            await axios.post('/PageUserResponses/accept', {
-                user_id: user.id,
+            const res = await axios.post('/PageUserResponses/accept', {
+                resume_id: resume_id,
                 vacancy_id: vacancy_id
             });
-            setResponsesIdList([...responsesIdList, vacancy_id]);
+            if (res.status === 200) {
+                setResponsesIdList([...responsesIdList, vacancy_id]);
+                setIsResponseModal(prev => !prev);
+            }
+            console.log(res);
         } catch (e) {
             console.log(e.message);
         }
@@ -291,10 +296,11 @@ const VacancyListPage = ({
                                 />
                                 <AppButton
                                     variant={'filled'}
-                                    onClick={() => {
-                                        router.post('PageUserResponses/accept', { resume_id: resume.id, vacancy_id: vacId });
-                                        setIsResponseModal(!isResponseModal);
-                                    }}
+                                    // onClick={() => {
+                                    //     router.post('PageUserResponses/accept', { resume_id: resume.id, vacancy_id: vacId });
+                                    //     setIsResponseModal(!isResponseModal);
+                                    // }}
+                                    onClick={() => handleAnswer(vacId, resume.id)}
                                 >
                                     Отправить
                                 </AppButton>
@@ -367,7 +373,7 @@ const VacancyListPage = ({
                                 <AppText bold text={`Найдено ${total} вакансии`} />
                                 // :<AppText bold text={`Ничего не найдено`} />
                             }
-                            {error && <AppText text={error} variant={'error'} />}
+                            {/* {error && <AppText text={error} variant={'error'} />} */}
                             <div className={s.toggleDescBtn}>
                                 <AppButton
                                     width={'40px'}
@@ -463,7 +469,7 @@ const VacancyListPage = ({
                                             onClick={() => handleToggleModal(vac.id)}
                                             className={s.vacancyListCardBtn}
                                             width="auto"
-                                            disabled={isResponsedVacancy(vac.id, responsedVacancy) ? true : false}
+                                            disabled={isResponsedVacancy(vac.id, responsesIdList) ? true : false}
                                         >
                                             Откликнуться
                                         </AppButton>

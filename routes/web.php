@@ -62,7 +62,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('isRolCandidate')->group(function() {
-
         Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
         Route::get('myresumes', [ResumeController::class, 'getByUser'])->name('resume.myresumes');
         Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');

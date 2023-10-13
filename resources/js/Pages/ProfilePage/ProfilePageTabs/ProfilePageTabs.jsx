@@ -113,7 +113,7 @@ function ProfilePageTabs(props) {
         'Избранное': [
             {
                 id: 1,
-                desc: favourite_vacancies.length ? favList : <p>
+                desc: favourite_vacancies?.length ? favList : <p>
                     У вас нет избранных вакансий<br />
                     Если вам понравилась вакансия, которую вы нашли в нашем поиске, вы можете добавить её в избранное, чтобы не потерять её и вернуться к ней позже
                 </p>,
