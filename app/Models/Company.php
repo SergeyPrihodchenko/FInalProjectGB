@@ -45,9 +45,6 @@ class Company extends Model
         return $this->belongsTo(User::class, 'creator_id');
     }
 
-    public function getLogoUrl()
-    {
-        return asset('storage/' . $this->logo);
-    }
+
 
 }
