@@ -15,6 +15,7 @@ export const Navbar = (props) => {
     const { user, switchTheme, theme } = props;
     const isEmployer = useSelector((state) => state.navabr.isEmployer);
     // console.log("isEmployer", isEmployer);
+    console.log("user navbar", user?.isRol);
 
     const dispatch = useDispatch();
     return (
@@ -22,8 +23,30 @@ export const Navbar = (props) => {
             <AppPage className={s.appPage}>
                 <div className={s.navBar}>
                     <Logo src={mainlogo} alt={"Логотип"} href={route("main")} />
+                    {user?.isRol === null && <>
+                        <AppButton
+                            variant={"clear"}
+                            colorType={"accent"}
+                            className={cn(s.toglleBtn, { [s.active]: !isEmployer })}
+                            onClick={() => {
+                                dispatch(setIsEmployer());
+                            }}
+                        >
+                            Соискателям
+                        </AppButton>
+                        <AppButton
+                            variant={"clear"}
+                            colorType={"accent"}
+                            className={cn(s.toglleBtn, { [s.active]: isEmployer })}
+                            onClick={() => {
+                                dispatch(setIsEmployer());
+                            }}
+                        >
+                            Работодателям
+                        </AppButton>
+                    </>}
 
-                    <AppButton
+                    {user?.isRol === 0 && <AppButton
                         variant={"clear"}
                         colorType={"accent"}
                         className={cn(s.toglleBtn, { [s.active]: !isEmployer })}
@@ -33,7 +56,8 @@ export const Navbar = (props) => {
                     >
                         Соискателям
                     </AppButton>
-                    <AppButton
+                    }
+                    {user?.isRol === 1 && <AppButton
                         variant={"clear"}
                         colorType={"accent"}
                         className={cn(s.toglleBtn, { [s.active]: isEmployer })}
@@ -43,6 +67,7 @@ export const Navbar = (props) => {
                     >
                         Работодателям
                     </AppButton>
+                    }
                     <ul className={s.navList}>
                         <li>
                             <AppLink

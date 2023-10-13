@@ -49,7 +49,7 @@ const MainLayout = (porps) => {
                 {locationPath !== "/" &&
                     locationPath !== "/register" &&
                     locationPath !== "/login" &&
-                    locationPath !== "/forgot-password" && <SecondNav />}
+                    locationPath !== "/forgot-password" && <SecondNav user={user} />}
             </header>
 
             <main>{children}</main>

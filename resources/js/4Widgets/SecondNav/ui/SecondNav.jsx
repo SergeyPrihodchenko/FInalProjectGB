@@ -17,10 +17,12 @@ const navListEmployment = [
 ];
 // href={route("userResponses")}
 function SecondNav(props) {
+    const { user } = props;
+    console.log('second nav', user);
     const isEmployer = useSelector((state) => state.navabr.isEmployer);
     return (
         <div className={s.secondNav}>
-            {!isEmployer ? (
+            {user?.isRol === 0 ? (
                 <AppPage className={s.conatiner}>
                     <div className={s.navLinkList}>
                         {navListJobSeeker.map((navItem, index) => {
