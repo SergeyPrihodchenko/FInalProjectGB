@@ -51,10 +51,7 @@ class CompanyController extends Controller
         $data = $request->validated();
         $creatorId = Auth::user()->id;
         $data['creator_id'] = $creatorId;
-        //dd($data);
-        $company = Company::create($data);
-        User::where('id', $creatorId)->update(['isRol' => 1]);
-        //dd($company);
+        Company::create($data);
 
         //
         return Redirect::route('myCompanies');
