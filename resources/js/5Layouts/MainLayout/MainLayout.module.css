@@ -1,4 +1,4 @@
-.mainLAyout {
+.mainLayout {
     display: grid;
     grid-template-areas:
         "header"
@@ -9,17 +9,19 @@
     min-height: 100vh;
 }
 
-.mainLAyout > header {
+.mainLayout>header {
     grid-area: header;
 }
+
 .header {
     background-color: var(--header-color);
 }
-.mainLAyout > main {
+
+.mainLayout>main {
     grid-area: main;
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
-.mainLAyout > footer {
+.mainLayout>footer {
     grid-area: footer;
 }
