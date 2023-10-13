@@ -9,6 +9,8 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import cn from "classnames";
 import s from "./RegisterPage.module.css";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
+import RadioButton from "@/8Shared/RadioButton/RadioButton";
+import { useState } from "react";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -16,8 +18,9 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
+        isRol: ''
     });
-
+    // console.log(data);
     useEffect(() => {
         return () => {
             reset("password", "password_confirmation");
@@ -32,10 +35,27 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Register" />
+            <Head title="Регистрация" />
 
             <form onSubmit={submit}>
                 <div>
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                        <RadioButton
+                            name={"isRol"}
+                            value={0}
+                            id={'applicant'}
+                            label={"Соискатель"}
+                            onChange={(e) => setData("isRol", e.target.value)}
+                        />
+                        <RadioButton
+                            name={"isRol"}
+                            id={'employer'}
+                            value={1}
+                            label={"Работодатель"}
+                            onChange={(e) => setData('isRol', e.target.value)}
+                        />
+
+                    </div>
                     <AppInput
                         id="name"
                         name="name"
