@@ -3,6 +3,7 @@
     padding: 30px;
     color: #fff;
     height: var(--footer-height);
+    margin-top: 30px;
 }
 
 .footerTop {
