@@ -31,6 +31,7 @@ class StoreCompanyRequest extends FormRequest
             'phone_number'=> ['sometimes' ],
             'description'=> ['sometimes' ],
             'city'=>[ 'sometimes' ],
+            'logo'=>[ 'sometimes', 'image', 'mimes:jpeg,bmp,png,jpg,gif|max:2048'],
         ];
     }
 }

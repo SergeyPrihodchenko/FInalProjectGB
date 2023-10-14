@@ -46,7 +46,7 @@ Route::get('/testResumePage', function () {
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::middleware('auth')->group(function () {
-    
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -57,8 +57,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/refusal', [StatusResponseResumeController::class, 'refusal'])->name('refusal');
         Route::post('/invitation', [StatusResponseResumeController::class, 'invitation'])->name('invitation');
 
-        Route::resource('company', CompanyController::class);
-        Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
+//        Route::resource('company', CompanyController::class);
+//        Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
     });
 
     Route::middleware('isRolCandidate')->group(function() {
@@ -91,6 +91,5 @@ Route::get('unsubscribe/{userId}/{companyId}', [SubscriptionController::class, '
 //Route::get('checkSubscription/{userId}/{companyId}', [SubscriptionController::class, 'checkSubscription'])->name('checkSubscription');
 //Route::post('subscribe/{userId}/{companyId}', [CompanyController::class, 'store']);
 //Route::get('company/company_detail', [Company::class, 'show'];
-
 Route::resource('company', CompanyController::class);
-
+Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');

@@ -5,9 +5,9 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton.jsx";
 import PropTypes from "prop-types";
 import {router} from "@inertiajs/react";
 
-const CompanyPageAppCard = ({ img, city, isSubscribed, company, user }) => {
-
-    //console.log('isSubscribed', isSubscribed)
+const CompanyPageAppCard = ({ img, city, isSubscribed, company, user, companyImageURL }) => {
+    console.log('companyImageURL', companyImageURL)
+    console.log('isSubscribed', isSubscribed)
     console.log(user.id);
     const sub = () => {
         router.get(route("subscribe", [user.id, company.id]));
@@ -20,7 +20,8 @@ const CompanyPageAppCard = ({ img, city, isSubscribed, company, user }) => {
         <div className={cn(s.companyPageLeft)}>
             <section className={cn(s.companyPageLeftCard)}>
                 <div className={cn(s.companyPageLeftCardLogo)}>
-                    <img src={company?.logo || img} alt="Лого" />
+                    {/*<img src={company?.logo || img} alt="Лого" />*/}
+                    <img src={companyImageURL} alt="Лого" style={{width: '150px', height: '150px'}} />
                 </div>
                 <div className={cn(s.companyPageLeftCardInfo)}>
                     <div className={cn(s.companyPageLeftCardInfoCard)}>
@@ -34,7 +35,7 @@ const CompanyPageAppCard = ({ img, city, isSubscribed, company, user }) => {
                             className={cn(s.companyPageLeftCardInfoLink)}
                             href="#"
                         >
-                            {company?.website || test.ru}
+                            {company?.website || 'test.ru'}
 
                         </a>
                     </div>
