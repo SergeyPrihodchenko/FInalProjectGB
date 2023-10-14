@@ -11,6 +11,7 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import List from "@/8Shared/List/List";
 import { useState, useEffect } from "react";
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
 
 function ResumeList() {
 
@@ -232,20 +233,29 @@ const arrayBuisnessTravel = [
                                     size={"s"}
                                     className={s.textTitle}
                                 />
-
+                                <div className={s.salaryFilter}>
                                     <AppInput    
-                                    type="text"
-                                    placeholder="от 100000"
-                                    width={"220px"}
-                                    onChange={(e)=> setSalary(e.target.value)}    
-                                />
+                                        type="text"
+                                        placeholder="от 100000"
+                                        width={"220px"}
+                                        onChange={(e)=> setSalary(e.target.value)}    
+                                    />
 
-                                <button
-                                    onClick={() => hadnlePayment(salary)}
-                                >
-                                    Поиск
-                                </button>
-
+                                    <AppButton
+                                        colorType={'accent'}
+                                        variant={'outline'}
+                                        type='button'
+                                        height={"38px"}
+                                        onClick={() => hadnlePayment(salary)}
+                                        className={s.buttonSalary}
+                                    >
+                                        <BootstrapIcon
+                                            name={'BsSearch'}
+                                            size={20}
+                                        />
+                                        
+                                    </AppButton>
+                                </div>
                                 <AppText
                                     title={"График работы"}
                                     bold
@@ -321,20 +331,9 @@ const arrayBuisnessTravel = [
                             <div>
                             {
                                 resumes.map((resume) => {
-                                    // const { data } = useForm({
-                                    //     profession: resume.profession,
-                                    //     region: resume.region,
-                                    //     date_of_birth: resume.date_of_birth,
-                                    //     education: resume.education,
-                                    //     companies: resume.companies,
-                                    //     skills: resume.skills,
-                                    //     experience: resume.experience,
-                                    //     salary: resume.salary,
-                                    // });
-
                                     
                                     //высчитываем из даты рождения сколько полных лет
-                                    const dateOfBirth = data.date_of_birth;
+                                    const dateOfBirth = resume.date_of_birth;
                                     function declOfNum(number, titles) {
                                     let cases = [2, 0, 1, 1, 1, 2];
                                         return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];

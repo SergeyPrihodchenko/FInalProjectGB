@@ -72,3 +72,14 @@
 .vacancyWishes {
     margin-bottom: 40px;
 }
+
+.salaryFilter{
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonSalary{
+    margin-top: 2px;
+    padding-top: 7px;
+}
