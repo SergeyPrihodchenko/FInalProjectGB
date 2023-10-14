@@ -26,7 +26,7 @@ export const Navbar = (props) => {
 
                     {user?.isRol === 0 && <AppButton
                         variant={"clear"}
-                        colorType={"accent"}
+                        // colorType={"accent"}
                         className={cn(s.toglleBtn, { [s.active]: !isEmployer })}
                         onClick={() => {
                             dispatch(setIsEmployer());
@@ -101,17 +101,15 @@ export const Navbar = (props) => {
                         ) : (
                             <>
                                 <AppLink
-                                    colorType="accent"
+                                    // colorType="accent"
                                     href={route("profilePage")}
-                                    className={cn(s.navLink, [
-                                        "hover:text-white ",
-                                    ])}
+                                    className={cn(s.navLink)}
                                 >
                                     {user?.name && (
                                         <AppText
                                             text={user?.name}
-                                            variant="accent"
-                                            size="xl"
+                                            // variant="accent"
+                                            size="l"
                                             className={cn(s.name)}
                                         />
                                     )}
@@ -122,7 +120,7 @@ export const Navbar = (props) => {
                                 </AppLink>
 
                                 <AppLink
-                                    colorType="accent"
+                                    // colorType="accent"
                                     href={route("logout")}
                                     method="post"
                                     className={cn(s.navLink)}
@@ -134,11 +132,26 @@ export const Navbar = (props) => {
                         {/* <Link href={route('login')} className={s.navLink}>Войти</Link> */}
                     </ul>
                     <AppButton
+                        className={s.navBarThemeSwitcher}
+                        variant={'clear'}
                         onClick={() => {
                             switchTheme(theme);
                         }}
                     >
-                        Тема
+                        {theme === 'app_light_theme' ?
+                            <BootstrapIcon
+                                name={'BsFillSunFill'}
+                                color={'inherit'}
+                                size={28}
+                            />
+                            :
+                            <BootstrapIcon
+                                name={'BsMoonStars'}
+                                color={'inherit'}
+                                size={28}
+                            />
+                        }
+
                     </AppButton>
                 </div>
             </AppPage>
