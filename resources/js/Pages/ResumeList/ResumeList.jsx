@@ -321,20 +321,9 @@ const arrayBuisnessTravel = [
                             <div>
                             {
                                 resumes.map((resume) => {
-                                    // const { data } = useForm({
-                                    //     profession: resume.profession,
-                                    //     region: resume.region,
-                                    //     date_of_birth: resume.date_of_birth,
-                                    //     education: resume.education,
-                                    //     companies: resume.companies,
-                                    //     skills: resume.skills,
-                                    //     experience: resume.experience,
-                                    //     salary: resume.salary,
-                                    // });
-
-                                    
+                                                                        
                                     //высчитываем из даты рождения сколько полных лет
-                                    const dateOfBirth = data.date_of_birth;
+                                    const dateOfBirth = resume.date_of_birth;
                                     function declOfNum(number, titles) {
                                     let cases = [2, 0, 1, 1, 1, 2];
                                         return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
