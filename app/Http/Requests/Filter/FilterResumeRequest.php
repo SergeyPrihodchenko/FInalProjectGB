@@ -23,7 +23,7 @@ class FilterResumeRequest extends FormRequest
     {
         return [
             'filterData.experience' => 'array|nullable|between:0,50',
-            'filterData.salary' => 'string|nullable',
+            'filterData.salary' => 'numeric|nullable',
             'filterData.relocation' => 'string|nullable',
             'filterData.employment_type' => 'array|nullable',
             'filterData.schedule_type' => 'array|nullable',

@@ -28,6 +28,6 @@ final class FilterResumeQueryBuilder
             }
         }
 
-        return $resume->get();
+        return $resume->paginate(4);
     }
 }
