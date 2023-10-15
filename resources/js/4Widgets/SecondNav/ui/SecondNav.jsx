@@ -12,7 +12,7 @@ const navListJobSeeker = [
 ];
 const navListEmployment = [
     { routeName: "Мои компании", routePath: "myCompanies" },
-    { routeName: "Мои вакансии", routePath: "resume.myresumes" },
+    { routeName: "Мои вакансии", routePath: "my.vacancies" },
     { routeName: "Кандидаты ", routePath: "resume.myresumes" },
 ];
 // href={route("userResponses")}
