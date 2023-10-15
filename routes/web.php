@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidateConditionController;
 use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Http\Controllers\Company\CompanyController;
 
@@ -46,25 +47,27 @@ Route::get('/testResumePage', function () {
 Route::get('/category/sort/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::middleware('auth')->group(function () {
-    
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+    Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
     Route::middleware('isRolCompany')->group(function() {
         Route::get('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
         Route::post('/refusal', [StatusResponseResumeController::class, 'refusal'])->name('refusal');
         Route::post('/invitation', [StatusResponseResumeController::class, 'invitation'])->name('invitation');
-
-        Route::resource('company', CompanyController::class);
-        Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
+        Route::get('/condidate', [CandidateConditionController::class, 'getCandidate'])->name('condidate');
+//        Route::resource('company', CompanyController::class);
+//        Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
     });
 
     Route::middleware('isRolCandidate')->group(function() {
-        Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
+        //Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
         Route::get('myresumes', [ResumeController::class, 'getByUser'])->name('resume.myresumes');
-        Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+        //Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
         Route::get('resume/update/{resume}', [ResumeController::class, 'edit'])->name('resume.edit');
         Route::get('resume', [ResumeController::class, 'create'])->name('resume.create');
         Route::post('resume', [ResumeController::class, 'store'])->name('resume.store');
@@ -91,6 +94,5 @@ Route::get('unsubscribe/{userId}/{companyId}', [SubscriptionController::class, '
 //Route::get('checkSubscription/{userId}/{companyId}', [SubscriptionController::class, 'checkSubscription'])->name('checkSubscription');
 //Route::post('subscribe/{userId}/{companyId}', [CompanyController::class, 'store']);
 //Route::get('company/company_detail', [Company::class, 'show'];
-
 Route::resource('company', CompanyController::class);
-
+Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');

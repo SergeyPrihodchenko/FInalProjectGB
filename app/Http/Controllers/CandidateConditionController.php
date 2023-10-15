@@ -7,6 +7,7 @@ use App\Models\Resume;
 use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CandidateConditionController extends Controller
 {
@@ -14,7 +15,7 @@ class CandidateConditionController extends Controller
     {
         $id = auth()->id();
 
-        $companyId = Company::where('creator_id', $id)->get('id');
+        $companyId = Company::where('creator_id', $id)->get('id')->toArray();
 
         $arrComp = array_values($companyId);
 
@@ -28,6 +29,9 @@ class CandidateConditionController extends Controller
 
         $resumes = Resume::whereIn('id', $arrResumId)->get()->toArray();
 
-        return $resumes;
+        return Inertia::render('CandidatePage/ui/CandidatePage/CandidatePage', [
+            'title' => 'Кандидаты',
+            'resumes' => $resumes
+        ]);
     }
 }

@@ -14,7 +14,7 @@ function ResumePage({ resume, author }) {
     const userEmail = usePage().props.auth.user.email;
 
     console.log(author.id);
-    console.log(user.id);
+    console.log(user.isRol);
 
     const { data } = useForm({
         author_email: author.email,
@@ -416,16 +416,44 @@ function ResumePage({ resume, author }) {
                                         key={resume.id}
                                         type="submit"
                                         bold
-                                        sizeText="s"
-                                       
-                                        
+                                        sizeText="s"    
                                     >
                                     <span>Редактировать</span>
                                     </AppButton>
                                 </div>
                             ):null
                         }
-                        
+                       
+                       {
+                            user.isRol == 1 ? (
+                            <div className={s.linkViewResume}>
+                                <AppButton
+                                    onClick={invitation}
+                                    id={resume.id}
+                                    type="button"
+                                    height={"60px"}
+                                    sizeText="s"
+                                    className={s.linkResumeList}
+                                >
+                                    Пригласить
+                                </AppButton>
+                                <AppButton
+                                    onClick={refusar}
+                                    id={resume.id}
+                                    type="button"
+                                    height={"60px"}
+                                    sizeText="s"
+                                    className={s.linkResumeList}
+                                >
+                                    <span className={s.buttonReject}>
+                                    Отклонить
+                                    </span>
+                                   
+                                </AppButton>
+                            </div>  
+                            ):null
+                       }
+                                             
                         
                     </main> 
                 </container>

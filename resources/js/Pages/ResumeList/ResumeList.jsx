@@ -11,6 +11,12 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import List from "@/8Shared/List/List";
 import { useState, useEffect } from "react";
+import { Try } from "@mui/icons-material";
+import axios from "axios";
+import Loader from "@/8Shared/Loader/Loader";
+
+import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
+
 
 function ResumeList() {
 
@@ -19,6 +25,10 @@ function ResumeList() {
     const [resumes, setResumes] = useState([]);
 
     const [salary, setSalary] = useState(0);
+
+    const [nextPageUrl, setNextPageUrl] = useState('');
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const {data, setData} = useForm({
         filterData: {
@@ -32,23 +42,69 @@ function ResumeList() {
         }
     })
 
+    //Первичная подгрузка данных
     useEffect(() => {
         fetchFilterData()
     },[])
 
+    //Добавление и удаление слушателя события scroll при изменении isLoading
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isLoading]);
+
+    //Метод первичной подгрузки данных, отробатывает при первом рендере страницы
     const fetchFilterData = async () => {
-        console.log(data.filterData);
         try {
+            setIsLoading(true);
+
             const response = await axios.post(route('resume.filter', {
             filterData: data.filterData
             }));
+
+            setNextPageUrl(response.data.next_page_url)
     
-            setResumes([...response.data])
+            setResumes([...response.data.data])
+
+            setIsLoading(false);
 
         } catch (error) {
             console.log(error);
+        }finally{
+            setIsLoading(false);
         }
     }
+
+    //Метод отвечающий за подгрузку следующей порции данных, использует nextPageUrl
+    const fetchNextData = async () => {
+        if(nextPageUrl !== null){
+            try {
+                setIsLoading(true);
+
+                const response = await axios.post(nextPageUrl, {
+                    filterData: data.filterData
+                });
+
+                setNextPageUrl(response.data.next_page_url)
+
+                setResumes([...resumes, ...response.data.data])
+
+                setIsLoading(false);
+
+            } catch (error) {
+                console.log(error);
+            }finally{
+                setIsLoading(false);
+            }
+        }
+    }
+
+    const handleScroll = (e) => {
+        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200){
+            fetchNextData();
+        }
+
+    };
 
     const setEmploymentType = (e) => {
 
@@ -232,20 +288,29 @@ const arrayBuisnessTravel = [
                                     size={"s"}
                                     className={s.textTitle}
                                 />
-
+                                <div className={s.salaryFilter}>
                                     <AppInput    
-                                    type="text"
-                                    placeholder="от 100000"
-                                    width={"220px"}
-                                    onChange={(e)=> setSalary(e.target.value)}    
-                                />
+                                        type="text"
+                                        placeholder="от 100000"
+                                        width={"220px"}
+                                        onChange={(e)=> setSalary(e.target.value)}    
+                                    />
 
-                                <button
-                                    onClick={() => hadnlePayment(salary)}
-                                >
-                                    Поиск
-                                </button>
-
+                                    <AppButton
+                                        colorType={'accent'}
+                                        variant={'outline'}
+                                        type='button'
+                                        height={"38px"}
+                                        onClick={() => hadnlePayment(salary)}
+                                        className={s.buttonSalary}
+                                    >
+                                        <BootstrapIcon
+                                            name={'BsSearch'}
+                                            size={20}
+                                        />
+                                        
+                                    </AppButton>
+                                </div>
                                 <AppText
                                     title={"График работы"}
                                     bold
@@ -321,20 +386,9 @@ const arrayBuisnessTravel = [
                             <div>
                             {
                                 resumes.map((resume) => {
-                                    // const { data } = useForm({
-                                    //     profession: resume.profession,
-                                    //     region: resume.region,
-                                    //     date_of_birth: resume.date_of_birth,
-                                    //     education: resume.education,
-                                    //     companies: resume.companies,
-                                    //     skills: resume.skills,
-                                    //     experience: resume.experience,
-                                    //     salary: resume.salary,
-                                    // });
-
                                     
                                     //высчитываем из даты рождения сколько полных лет
-                                    const dateOfBirth = data.date_of_birth;
+                                    const dateOfBirth = resume.date_of_birth;
                                     function declOfNum(number, titles) {
                                     let cases = [2, 0, 1, 1, 1, 2];
                                         return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
@@ -402,6 +456,9 @@ const arrayBuisnessTravel = [
                                     );
                                 }
                             )}
+                                <div>
+                                    {isLoading && <Loader />}
+                                </div>
                             </div>
                         </div>   
                     </main>

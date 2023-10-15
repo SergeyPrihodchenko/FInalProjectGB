@@ -11,7 +11,8 @@ import { useSelector } from "react-redux";
 
 function CompanyPageCreate({ auth,  cities }) {
     const user = auth?.user;
-  
+
+    const [selectedImage, setSelectedImage] = useState(null);
     const {data, setData, post, errors} = useForm({
 //форма заполнена по умолчанию, чтобы не заполнять каждый раз, временно
         email: '',
@@ -22,13 +23,21 @@ function CompanyPageCreate({ auth,  cities }) {
         phone_number: '',
         description: '',
         date_create: '',
+        logo: '',
         city: '',
     })
-        
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         post(route("company.store"));
+    };
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        setSelectedImage(file);
+        console.log('file', file);
+        setData('logo', file);
     };
 
     //Ввод данных компании
@@ -54,8 +63,8 @@ function CompanyPageCreate({ auth,  cities }) {
                     className={s.textTitle}
                 />
 
-                <form onSubmit={handleSubmit}>
-                   
+                <form onSubmit={handleSubmit} encType='multipart/form-data'>
+
 
                     {/* Ввод данных компании */}
                     <div className={s.basiceData}>
@@ -90,9 +99,9 @@ function CompanyPageCreate({ auth,  cities }) {
                             className={s.indentDownBasiceData}
                         />
                         <AppInput
-                           id='region_of_location' 
-                           name='region_of_location' 
-                           value={data.region_of_location} 
+                           id='region_of_location'
+                           name='region_of_location'
+                           value={data.region_of_location}
                            onChange={
                                (e) => setData("region_of_location", e.target.value)
                            }
@@ -113,19 +122,20 @@ function CompanyPageCreate({ auth,  cities }) {
                         />
                         <div className={s.logoCompanyUpload}>
                             <div className={s.fileLoadBlock}>
-                                <AppInput 
-                                    type="file" 
+                                <AppInput
+                                    type="file"
                                     id="file"
                                     className={s.fileCompany}
+                                    onChange={handleImageChange}
                                 />
                                 <div className={s.inputlogoUpload}>
-                                    <input 
+                                    <input
                                         type="text"
                                         className={s.inputCity}
                                     />
-                                    <AppButton 
+                                    <AppButton
                                         type="submit"
-                                        bold 
+                                        bold
                                         sizeText = "xs"
                                     ><span>Загрузить</span>
                                     </AppButton>
@@ -140,26 +150,26 @@ function CompanyPageCreate({ auth,  cities }) {
                                 >
                                 </AppText>
                             </label>
-                            <select 
-                                id='city_id' 
-                                name='city' 
-                                value={data.city} 
+                            <select
+                                id='city_id'
+                                name='city'
+                                value={data.city}
                                 onChange={
                                     (e) => setData("city", e.target.value)
                                 }
                                 className={s.inputCity}
                             >
                                 {cities.map((city, index) => (
-                                    <option 
-                                        key={index} 
+                                    <option
+                                        key={index}
                                         value={city.title}
                                         className={s.textTitle}
                                     >
-                                            {city.title}        
+                                            {city.title}
                                     </option>
                                 ))}
                             </select>
-                        
+
                         <AppInput
                             value={data.date_create}
                             onChange={(e) =>

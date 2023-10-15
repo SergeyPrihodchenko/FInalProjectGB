@@ -17,7 +17,7 @@
 .buttonLinkResumeList,
 .company {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .baceData {
@@ -57,7 +57,7 @@
 }
 
 .userContactsPhone {
-    width: 100px;
+    width: 150px;
     border-bottom: 1px solid var(--primary-text);
 }
 
@@ -145,4 +145,20 @@
 .aboutUserTextAll {
     padding-bottom: 30px;
     padding-top: 10px;
+}
+.linkViewResume {
+    margin-top: 10px;
+    margin-left: 900px;
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linkResumeList {
+    margin-left: 10px;
+    padding-top: 18px;
+}
+
+.buttonReject{
+    color: var(--cancel);
 }
