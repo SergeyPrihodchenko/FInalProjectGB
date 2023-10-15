@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Resume\FilterResumeController;
 use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\StatusResponseResumeController;
+use App\Http\Controllers\Vacancy\MyVacanciesController;
 use App\Http\Controllers\Vacancy\VacancyController;
 use App\Models\Vacancy;
 use App\Models\Company;
@@ -84,6 +85,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
+Route::get('myVacancies', MyVacanciesController::class)->name('my.vacancies');
 
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
 
