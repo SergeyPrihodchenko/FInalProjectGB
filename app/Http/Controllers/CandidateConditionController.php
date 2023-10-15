@@ -15,7 +15,7 @@ class CandidateConditionController extends Controller
     {
         $id = auth()->id();
 
-        $companyId = Company::where('creator_id', $id)->get('id');
+        $companyId = Company::where('creator_id', $id)->get('id')->toArray();
 
         $arrComp = array_values($companyId);
 
@@ -29,7 +29,7 @@ class CandidateConditionController extends Controller
 
         $resumes = Resume::whereIn('id', $arrResumId)->get()->toArray();
 
-        return Inertia::render('CandidatePage/CandidatePage', [
+        return Inertia::render('CandidatePage/ui/CandidatePage/CandidatePage', [
             'title' => 'Кандидаты',
             'resumes' => $resumes
         ]);

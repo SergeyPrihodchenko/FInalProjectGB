@@ -146,3 +146,19 @@
     padding-bottom: 30px;
     padding-top: 10px;
 }
+.linkViewResume {
+    margin-top: 10px;
+    margin-left: 900px;
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linkResumeList {
+    margin-left: 10px;
+    padding-top: 18px;
+}
+
+.buttonReject{
+    color: var(--cancel);
+}
