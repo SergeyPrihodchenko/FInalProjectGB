@@ -11,7 +11,12 @@ import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import List from "@/8Shared/List/List";
 import { useState, useEffect } from "react";
+import { Try } from "@mui/icons-material";
+import axios from "axios";
+import Loader from "@/8Shared/Loader/Loader";
+
 import { BootstrapIcon } from "@/8Shared/Icon/BootstrapIcon";
+
 
 function ResumeList() {
 
@@ -20,6 +25,10 @@ function ResumeList() {
     const [resumes, setResumes] = useState([]);
 
     const [salary, setSalary] = useState(0);
+
+    const [nextPageUrl, setNextPageUrl] = useState('');
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const {data, setData} = useForm({
         filterData: {
@@ -33,23 +42,69 @@ function ResumeList() {
         }
     })
 
+    //Первичная подгрузка данных
     useEffect(() => {
         fetchFilterData()
     },[])
 
+    //Добавление и удаление слушателя события scroll при изменении isLoading
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isLoading]);
+
+    //Метод первичной подгрузки данных, отробатывает при первом рендере страницы
     const fetchFilterData = async () => {
-        console.log(data.filterData);
         try {
+            setIsLoading(true);
+
             const response = await axios.post(route('resume.filter', {
             filterData: data.filterData
             }));
+
+            setNextPageUrl(response.data.next_page_url)
     
-            setResumes([...response.data])
+            setResumes([...response.data.data])
+
+            setIsLoading(false);
 
         } catch (error) {
             console.log(error);
+        }finally{
+            setIsLoading(false);
         }
     }
+
+    //Метод отвечающий за подгрузку следующей порции данных, использует nextPageUrl
+    const fetchNextData = async () => {
+        if(nextPageUrl !== null){
+            try {
+                setIsLoading(true);
+
+                const response = await axios.post(nextPageUrl, {
+                    filterData: data.filterData
+                });
+
+                setNextPageUrl(response.data.next_page_url)
+
+                setResumes([...resumes, ...response.data.data])
+
+                setIsLoading(false);
+
+            } catch (error) {
+                console.log(error);
+            }finally{
+                setIsLoading(false);
+            }
+        }
+    }
+
+    const handleScroll = (e) => {
+        if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200){
+            fetchNextData();
+        }
+
+    };
 
     const setEmploymentType = (e) => {
 
@@ -401,6 +456,9 @@ const arrayBuisnessTravel = [
                                     );
                                 }
                             )}
+                                <div>
+                                    {isLoading && <Loader />}
+                                </div>
                             </div>
                         </div>   
                     </main>

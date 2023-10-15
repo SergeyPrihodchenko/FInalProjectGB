@@ -739,8 +739,8 @@ function CreateResume() {
                                     <option value="от 1 до 3 лет">
                                         от 1 до 3 лет
                                     </option>
-                                    <option value="От 3 до 6 лет">
-                                        от 3 и 6 лет
+                                    <option value="от 3 до 6 лет">
+                                        от 3 до 6 лет
                                     </option>
                                     <option value="более 6 лет">
                                         более 6 лет
@@ -891,7 +891,7 @@ function CreateResume() {
                                     </option>
                                 </select>
                                 <div style={{ color: "red" }}>
-                                    {errors.experience}
+                                    {errors.buisness_travel}
                                 </div>
                             </div>
                         </div>
