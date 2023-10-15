@@ -19,7 +19,7 @@ function UserResumeListPage({ resumes }) {
                 <AppPage>
                     <main className={s.mainResumeList}>
                         <AppText
-                            title={"Кандидаты"}
+                            title={"Мои резюме"}
                             size="m"
                             bold
                             className={s.titleResumeList}
@@ -99,8 +99,6 @@ function UserResumeListPage({ resumes }) {
                                     </div>
                                     <div className={s.linkViewResume}>
                                         <AppButton
-                                            onClick={invitation}
-                                            id={resume.id}
                                             path={"resume.show"}
                                             param={resume.id}
                                             key={resume.id}
@@ -112,7 +110,6 @@ function UserResumeListPage({ resumes }) {
                                             Просмотреть резюме
                                         </AppButton>
 
-{/* Сделать активной кнопку редаткировать только для пользователя чье резюме открыто */}
                                     </div>
                                 </div>
                             );

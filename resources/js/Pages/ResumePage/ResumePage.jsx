@@ -428,8 +428,7 @@ function ResumePage({ resume, author }) {
                             user.isRol == 1 ? (
                             <div className={s.linkViewResume}>
                                 <AppButton
-                                    onClick={invitation}
-                                    id={resume.id}
+                                    
                                     type="button"
                                     height={"60px"}
                                     sizeText="s"
@@ -438,8 +437,7 @@ function ResumePage({ resume, author }) {
                                     Пригласить
                                 </AppButton>
                                 <AppButton
-                                    onClick={refusar}
-                                    id={resume.id}
+                                    
                                     type="button"
                                     height={"60px"}
                                     sizeText="s"
