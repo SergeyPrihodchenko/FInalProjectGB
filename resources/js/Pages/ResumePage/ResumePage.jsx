@@ -416,9 +416,7 @@ function ResumePage({ resume, author }) {
                                         key={resume.id}
                                         type="submit"
                                         bold
-                                        sizeText="s"
-                                       
-                                        
+                                        sizeText="s"    
                                     >
                                     <span>Редактировать</span>
                                     </AppButton>
