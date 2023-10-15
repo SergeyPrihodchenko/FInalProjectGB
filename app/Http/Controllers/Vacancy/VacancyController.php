@@ -67,7 +67,7 @@ class VacancyController
         $requirements = json_decode($vacancy->requirements);
         $responsibilities = json_decode($vacancy->responsibilities);
         $conditions = json_decode($vacancy->conditions);
-        $skills = json_decode($vacancy->skills);
+        $skills = json_decode($vacancy->skills, true);
 
         return Inertia::render('VacancyPage/ui/VacancyPage/VacancyPage', [
             'vacancy' => $vacancy,

@@ -30,8 +30,11 @@ function VacancyPageCreate(props) {
         schedule,
         employment,
     } = props;
-    console.log(companies);
+    // console.log(cities);
     const {
+        vacancyExperience,
+        vacancySchedule,
+        vacancyEmployment,
         vacancyNameInput,
         vacancyCityInput,
         vacancyPaymentInput,
@@ -48,6 +51,7 @@ function VacancyPageCreate(props) {
         contactsPhoneInput,
         contactsList,
     } = useSelector((state) => state.vacancyPageCreate);
+
 
     const saveVacancy = (e) => {
         e.preventDefault();
@@ -70,64 +74,101 @@ function VacancyPageCreate(props) {
     //     contacts: contactsList,
     // });
 
-    const { data, setData, post, errors } = useForm({
+    const { data, setData, post, errors, setError } = useForm({
         title: '',
-        city_id: "1",
+        city_id: '',
         payment: "",
-        city_work_id: "1",
-        experience: "нет опыта",
+        // city_work_id: "1",
+        experience: "",
         company_id: companies[0]["id"],
-        schedule: "Полная занятость",
-        employment: employment[0],
+        schedule: "",
+        employment: "",
         requirements: requirementsList,
         responsibilities: responsibilitiesList,
         conditions: conditionsList,
         skills: skillsList,
         contacts: contactsList,
     });
+    useEffect(() => {
+        setData("title", vacancyNameInput);
+    }, [vacancyNameInput]);
 
     useEffect(() => {
-        // setData("title", vacancyNameInput);
-        setData("city_id", "1");
+        setData("experience", vacancyExperience);
+    }, [vacancyExperience]);
+    useEffect(() => {
         setData("payment", vacancyPaymentInput);
-        setData("city_work_id", "1");
-        setData("experience", "нет опыта");
-        setData("company_id", companies[0]["id"]);
-        setData("schedule", "Полная занятость");
-        setData("employment", employment[0]);
+    }, [vacancyPaymentInput]);
+
+    useEffect(() => {
+        const city = cities.find(item => item.title.toLowerCase().startsWith(vacancyCityInput.toLowerCase()));
+        if (!city) {
+            setError("city_id", "Такого города нет в списке");
+            return;
+        }
+        setData("city_id", city?.id);
+        setError("city_id", "");
+    }, [vacancyCityInput]);
+    useEffect(() => {
+        setData("schedule", vacancySchedule);
+    }, [vacancySchedule]);
+    useEffect(() => {
+        setData("employment", vacancyEmployment);
+    }, [vacancyEmployment]);
+
+    useEffect(() => {
         setData("requirements", requirementsList);
+    }, [requirementsList]);
+    useEffect(() => {
         setData("responsibilities", responsibilitiesList);
+    }, [responsibilitiesList]);
+    useEffect(() => {
         setData("conditions", conditionsList);
+    }, [conditionsList]);
+    useEffect(() => {
         setData("skills", skillsList);
-        setData("contacts", contactsList);
-    }, [
-        vacancyNameInput,
-        vacancyCityInput,
-        vacancyPaymentInput,
-        requirementsInput,
-        requirementsList,
-        responsibilitiesInput,
-        responsibilitiesList,
-        conditionsInput,
-        conditionsList,
-        skillsInput,
-        skillsList,
-        contactsNameInput,
-        contactsPositionInput,
-        contactsPhoneInput,
-        contactsList,
-    ]);
-    console.log(vacancyNameInput);
+    }, [skillsList]);
+
+    // useEffect(() => {
+    //     // setData("title", vacancyNameInput);
+    //     setData("city_id", "1");
+    //     setData("payment", vacancyPaymentInput);
+    //     setData("city_work_id", "1");
+    //     setData("experience", vacancyExperience);
+    //     setData("company_id", companies[0]["id"]);
+    //     setData("schedule", "Полная занятость");
+    //     setData("employment", employment[0]);
+    //     setData("requirements", requirementsList);
+    //     setData("responsibilities", responsibilitiesList);
+    //     setData("conditions", conditionsList);
+    //     setData("skills", skillsList);
+    //     setData("contacts", contactsList);
+    // }, [
+    //     vacancyNameInput,
+    //     vacancyCityInput,
+    //     vacancyPaymentInput,
+    //     requirementsInput,
+    //     requirementsList,
+    //     responsibilitiesInput,
+    //     responsibilitiesList,
+    //     conditionsInput,
+    //     conditionsList,
+    //     skillsInput,
+    //     skillsList,
+    //     contactsNameInput,
+    //     contactsPositionInput,
+    //     contactsPhoneInput,
+    //     contactsList,
+    // ]);
     // console.log("errors", errors);
     return (
         <>
-            <Head title="Создать компанию" />
+            <Head title="Создать вакансию" />
 
             <AppPage>
                 {btn}
 
                 <form onSubmit={saveVacancy}>
-                    <input name="title" value={data.title} onChange={(e) => setData("title", e.target.value)} />
                     <AppText
                         title="Создание вакансии"
                         size="l"
@@ -139,7 +180,12 @@ function VacancyPageCreate(props) {
                         className={s.item}
                     />
                     <div className={cn(s.mainInfo, s.item)}>
-                        <VacancyCreateMainInfo errors={errors} />
+                        <VacancyCreateMainInfo
+                            errors={errors}
+                            cities={cities}
+                            cityError={errors.city_id}
+
+                        />
                         <VacancyCreateFilters
                             experience={experience}
                             schedule={schedule}

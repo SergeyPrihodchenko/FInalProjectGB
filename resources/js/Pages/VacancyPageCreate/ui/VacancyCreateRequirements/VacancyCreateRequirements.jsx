@@ -41,7 +41,7 @@ function VacancyCreateRequirements({ errors }) {
                 </div>
             ) : null}
             <AppInput
-                errorMessage={errors.title}
+                // errorMessage={errors.title}
                 label="Требования к соискателю"
                 value={requirementsInput}
                 onChange={(e) => {

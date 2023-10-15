@@ -37,86 +37,86 @@ function UserResumeListPage({ resumes }) {
                                     experience: resume.experience,
                                     salary: resume.salary,
                                 });
-                                
+
                                 //высчитываем из даты рождения сколько полных лет
                                 const dateOfBirth = data.date_of_birth;
                                 function declOfNum(number, titles) {
-                                   let cases = [2, 0, 1, 1, 1, 2];
+                                    let cases = [2, 0, 1, 1, 1, 2];
                                     return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-                                  }
-                                  
-                                  function birthDateToAge(b) {
+                                }
+
+                                function birthDateToAge(b) {
                                     var n = new Date(),
                                         b = new Date(b),
                                         age = n.getFullYear() - b.getFullYear();
                                     return n.setFullYear(1970) < b.setFullYear(1970) ? age - 1 : age;
-                                  }
-                                  const Yers = (declOfNum(birthDateToAge(dateOfBirth), ['год', 'года', 'лет']));
+                                }
+                                const Yers = (declOfNum(birthDateToAge(dateOfBirth), ['год', 'года', 'лет']));
                                 //  console.log(Yers);
 
-                            return (
-                                <div class={s.resumeList}>
-                                    <div class={s.userResume}>
-                                        <div className={s.userData}>
-                                            <AppText
-                                                title={resume.profession}
-                                                variant={"accent"}
-                                                bold
-                                                size="xs"
-                                            />
+                                return (
+                                    <div class={s.resumeList}>
+                                        <div class={s.userResume}>
+                                            <div className={s.userData}>
+                                                <AppText
+                                                    title={resume.profession}
+                                                    variant={"accent"}
+                                                    bold
+                                                    size="xs"
+                                                />
 
-                                            <AppText
-                                                title={resume.salary.concat(" " , "₽")}
-                                                size="s"
-                                                bold
-                                                className={s.salaryResume}
-                                            />
-                                            <AppText
-                                                text={Yers}
-                                                size="xs"
-                                            />
+                                                <AppText
+                                                    title={resume.salary.concat(" ", "₽")}
+                                                    size="s"
+                                                    bold
+                                                    className={s.salaryResume}
+                                                />
+                                                <AppText
+                                                    text={Yers}
+                                                    size="xs"
+                                                />
 
-                                            <AppText
-                                                text={"Регион: ".concat(resume.region)}
-                                                size="xs"
-                                            />
-                                                                                           
-                                            <AppText
-                                                text={"Опыт работы: ".concat(resume.experience)}
-                                                size="xs"
-                                            />
-                                            
-                                            <AppText
-                                                text={"Образование: ".concat(resume.education)}
-                                                size="xs"
-                                            />
+                                                <AppText
+                                                    text={"Регион: ".concat(resume.region)}
+                                                    size="xs"
+                                                />
+
+                                                <AppText
+                                                    text={"Опыт работы: ".concat(resume.experience)}
+                                                    size="xs"
+                                                />
+
+                                                <AppText
+                                                    text={"Образование: ".concat(resume.education)}
+                                                    size="xs"
+                                                />
+                                            </div>
+
+                                            <div class={s.userPhoto}>
+                                                НЕТ ФОТО
+                                                {/* <img src="#" className={s.imgUserPhoto}/> */}
+                                            </div>
                                         </div>
-                                        
-                                        <div class={s.userPhoto}>
-                                            НЕТ ФОТО
-                                            {/* <img src="#" className={s.imgUserPhoto}/> */}
+                                        <div className={s.linkViewResume}>
+                                            <AppButton
+
+                                                id={resume.id}
+                                                path={"resume.show"}
+                                                param={resume.id}
+                                                key={resume.id}
+                                                type="button"
+                                                sizeText="s"
+                                                height={"60px"}
+                                                className={s.linkResumeList}
+                                            >
+                                                Просмотреть резюме
+                                            </AppButton>
+
+                                            {/* Сделать активной кнопку редаткировать только для пользователя чье резюме открыто */}
                                         </div>
                                     </div>
-                                    <div className={s.linkViewResume}>
-                                        <AppButton
-                                            onClick={invitation}
-                                            id={resume.id}
-                                            path={"resume.show"}
-                                            param={resume.id}
-                                            key={resume.id}
-                                            type="button"
-                                            sizeText="s"
-                                            height={"60px"}
-                                            className={s.linkResumeList}
-                                        >
-                                            Просмотреть резюме
-                                        </AppButton>
-
-{/* Сделать активной кнопку редаткировать только для пользователя чье резюме открыто */}
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
                     </main>
                 </AppPage>
             </>
