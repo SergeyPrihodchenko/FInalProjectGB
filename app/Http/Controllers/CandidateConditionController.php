@@ -7,6 +7,7 @@ use App\Models\Resume;
 use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CandidateConditionController extends Controller
 {
@@ -28,6 +29,9 @@ class CandidateConditionController extends Controller
 
         $resumes = Resume::whereIn('id', $arrResumId)->get()->toArray();
 
-        return $resumes;
+        return Inertia::render('CandidatePage/CandidatePage', [
+            'title' => 'Кандидаты',
+            'resumes' => $resumes
+        ]);
     }
 }
