@@ -71,7 +71,7 @@ function VacancyPageCreate(props) {
     // });
 
     const { data, setData, post, errors } = useForm({
-        title: "",
+        title: '',
         city_id: "1",
         payment: "",
         city_work_id: "1",
@@ -87,7 +87,7 @@ function VacancyPageCreate(props) {
     });
 
     useEffect(() => {
-        setData("title", vacancyNameInput);
+        // setData("title", vacancyNameInput);
         setData("city_id", "1");
         setData("payment", vacancyPaymentInput);
         setData("city_work_id", "1");
@@ -117,16 +117,17 @@ function VacancyPageCreate(props) {
         contactsPhoneInput,
         contactsList,
     ]);
-
+    console.log(vacancyNameInput);
     // console.log("errors", errors);
     return (
         <>
-            <Head title="VacancyPageCreate" />
+            <Head title="Создать компанию" />
 
             <AppPage>
                 {btn}
 
                 <form onSubmit={saveVacancy}>
+                    <input name="title" value={data.title} onChange={(e) => setData("title", e.target.value)} />
                     <AppText
                         title="Создание вакансии"
                         size="l"

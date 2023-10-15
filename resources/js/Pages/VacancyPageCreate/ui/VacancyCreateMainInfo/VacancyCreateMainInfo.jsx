@@ -12,13 +12,17 @@ import {
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
 function VacancyCreateMainInfo({ errors }) {
     const dispatch = useDispatch();
-    const { vacancyNameInput, vacancyCityInput, vacancyPaymentInput } =
-        useSelector((state) => state.vacancyPageCreate);
+    const {
+        vacancyNameInput,
+        vacancyCityInput,
+        vacancyPaymentInput
+    } = useSelector((state) => state.vacancyPageCreate);
     return (
         <>
             <AppInput
-                label="Название вакакнсии"
+                label="Название вакансии"
                 placeholder="Должность"
+                name="title"
                 value={vacancyNameInput}
                 onChange={(e) => {
                     dispatch(setVacancyNameInput(e.target.value));
