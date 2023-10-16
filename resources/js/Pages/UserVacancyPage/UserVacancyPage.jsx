@@ -8,7 +8,7 @@ import cn from "classnames";
 import { usePage } from "@inertiajs/react";
 import { AuthContext } from "@/8Shared/store/AuthContext";
 
-const UserVacancyPage = ({ vacancies  }) => {
+const UserVacancyPage = ({ vacancies }) => {
     console.log('vacancies: ', vacancies);
     
     const user = usePage().props.auth.user;
@@ -30,39 +30,46 @@ const UserVacancyPage = ({ vacancies  }) => {
                                 variant="primary"
                                 width={'auto'}
                                 shadow
-                                className={cn(s.vacancyListCard)}
+                                className={s.vacancyListCard}
                             >
                                 <AppText
                                     className={s.vacancyListCardTitle}
                                     title={vac.title}
+                                    variant={"accent"}
+                                    bold
+                                    size="xs"
                                 />
                                         
                                 <AppText
                                     text={`от ${vac.payment} руб.`}
-                                />
-                                <AppText
-                                    text={`Компания ${vac.conditions}.`}
-                                />
-                                <AppText
                                     size="s"
+                                    bold
+                                />
+                                <AppText
+                                    text={`Компания ${vac.company}.`}
+                                    size="s"
+                                    bold
+                                />
+                                <AppText
+                                    size="xs"
                                     variant="notaccented"
                                     text={`Город: ${vac.city}`}
                                 />
                                 <AppText
-                                    size="s"
+                                    size="xs"
                                     variant="notaccented"
                                     text={`Опыт работы: ${vac.experience}`}
                                     className={s.vacancyListCardExp}
                                 />
                                 <div className={s.vacancyListCardParam}>
                                     <AppText
-                                        size={'s'}
+                                        size={'xs'}
                                         variant={'secondary'}
                                         text={vac.employment}
                                         className={s.vacancyListCardEmployment}
                                     />
                                     <AppText
-                                        size={'s'}
+                                        size={'xs'}
                                         variant={'secondary'}
                                         text={vac.schedule}
                                         className={s.vacancyListCardSchedule}
@@ -77,7 +84,7 @@ const UserVacancyPage = ({ vacancies  }) => {
                                         //key={vac.id}
                                         type="button"
                                         sizeText="s"
-                                       width={"150px"}
+                                       width={"120px"}
                                         className={s.linkResumeList}
                                        
                                     >
@@ -89,7 +96,7 @@ const UserVacancyPage = ({ vacancies  }) => {
                                         param={""}
                                         key={""}
                                         type="button"
-                                        width={"170px"}
+                                        width={"150px"}
                                         height={"40px"}
                                         sizeText="s"
                                         className={s.linkResumeList}

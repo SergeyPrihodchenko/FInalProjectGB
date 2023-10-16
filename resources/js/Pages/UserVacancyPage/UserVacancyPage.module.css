@@ -9,11 +9,13 @@
     gap: 30px;
     flex-grow: 1;
     margin-bottom: 30px;
-
 }
 
 .vacancyListCardWrapper {
     position: relative;
+
+    background: var(--main-bg);
+    box-shadow: var(--shadow-main);
 }
 
 .vacancyListCard {
