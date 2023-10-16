@@ -485,7 +485,7 @@ const VacancyListPage = ({
                                     </div>
 
                                 </AppCard>
-                                {auth.user &&
+                                {auth.user && auth.user.isRol === 0 &&
                                     <FavouriteButton
                                         favourites={likes}
                                         id={vac.id}

@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .conatiner {
     width: 100%;
     height: var(--second-header-height);
@@ -13,15 +14,18 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .navLinkList {
     display: flex;
-    justify-content: space-between;
-}
-.navItem {
-    padding: 20px;
+    align-items: center;
+    gap: 20px;
 }
 
-.secondNavButton{
+.navItem {
+    padding: 10px;
+}
+
+.secondNavButton {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
 }

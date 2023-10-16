@@ -20,7 +20,7 @@ class MyVacanciesController extends Controller
         $vacancies = Vacancy::whereIn('company_id', $companies)->get();
 
         // Убрать эту строчку
-        return dd($vacancies);
+        // return dd($vacancies);
 
         // Добавить путь
         return Inertia::render('Путь к компоненту', [
