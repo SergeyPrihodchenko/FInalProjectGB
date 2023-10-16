@@ -13,7 +13,7 @@ class StatusResponseResumeController extends Controller
 
         $vacancy_id = $request['vacancy_id'];
 
-        UserResponseVacancies::where('resume_id', $resume_id)->where('vacancy_id', $vacancy_id)->update(['status_id' => 3]);
+        UserResponseVacancies::where('resume_id', $resume_id)->where('vacancy_id', $vacancy_id)->update(['status_id' => 4]);
 
     }
 

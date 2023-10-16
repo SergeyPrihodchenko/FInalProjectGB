@@ -328,7 +328,6 @@ const VacancyListPage = ({
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
-
                             autoComplete="off"
                             width={'550px'}
                             name={'title'}

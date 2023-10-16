@@ -18,22 +18,22 @@ const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage(props) {
     const { auth, vacancy, cities, companies } = props;
     const user = auth?.user;
-    const city = cities?.[vacancy.city_id]?.title || "Город не указан";
+    const city = cities?.[vacancy.city_id - 1]?.title || "Город не указан";
     const adress = {
         strAdress: "",
         coordinates: "",
     };
-    const company = companies[vacancy.company_id];
+    const company = companies[vacancy.company_id - 1];
     adress.strAdress = vacancy?.adress || "Адрес не указан";
     adress.coordinates = vacancy?.coordinates || "Адрес не указан";
 
-    console.log("company", company);
+    console.log("companies", companies);
     // console.log("vacancy", vacancy);
     // console.log("city", city);
     const [isResponse, setIsResponse] = useState(false);
     return (
         <>
-            <Head title="VacancyPage" />
+            <Head title={`${vacancy.title}`} />
             <div className={s.vacancyPage}>
                 <AppPage>
                     <div className={s.vacancyPage}>

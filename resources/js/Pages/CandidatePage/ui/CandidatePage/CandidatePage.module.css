@@ -45,6 +45,7 @@
     padding-top: 30px;
     text-align: center;
 }
+
 /* .imgUserPhoto{
     width: 87px;
     height: 87px;
@@ -53,14 +54,44 @@
     border: 2px solid var(--accent);
     border-radius: var(--border-radius-s);
 } */
-
-.linkViewResume {
-    width: 400px;
+.statusWithName {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.manageResume {
+    display: flex;
+    gap: 10px;
 }
 
 .linkResumeList {
     margin-left: 10px;
     padding-top: 18px;
+}
+
+.statusBadge {
+    padding: 2px 5px;
+    border-radius: 3px;
+
+}
+
+.statusBadgeNotViewd {
+    background-color: var(--status-bg-notviewd);
+
+}
+
+.statusBadgeViewd {
+    background-color: var(--accent);
+
+}
+
+.statusBadgeRefuse {
+    background-color: var(--cancel);
+
+}
+
+.statusBadgeInvite {
+    background-color: var(--save);
+
 }

@@ -48,7 +48,7 @@ function VacancyCreateResponsibilities({ errors }) {
                 </div>
             ) : null}
             <AppInput
-                errorMessage={errors.title}
+                // errorMessage={errors.title}
                 label="Обязаность сотрудника"
                 value={responsibilitiesInput}
                 onChange={(e) => {

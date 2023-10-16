@@ -7,6 +7,7 @@ use App\Models\Resume;
 use App\Models\UserResponseVacancies;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class CandidateConditionController extends Controller
@@ -15,19 +16,18 @@ class CandidateConditionController extends Controller
     {
         $id = auth()->id();
 
-        $companyId = Company::where('creator_id', $id)->get('id')->toArray();
+        $companies = Company::where('creator_id', $id)->get('id')->toArray();
 
-        $arrComp = array_values($companyId);
+        $companiesId = array_values($companies);
 
-        $vacancyId = Vacancy::whereIn('company_id', $arrComp)->get('id')->toArray();
+        $vacancies = Vacancy::whereIn('company_id', $companiesId)->get('id')->toArray();
 
-        $arrVacanId = array_values($vacancyId);
+        $vacanciesId = array_values($vacancies);
 
-        $candidateId = UserResponseVacancies::whereIn('vacancy_id', $arrVacanId)->get('resume_id')->toArray();
 
-        $arrResumId = array_values($candidateId);
-
-        $resumes = Resume::whereIn('id', $arrResumId)->get()->toArray();
+        $resumes = UserResponseVacancies::whereIn('vacancy_id', $vacanciesId)
+        ->join('resumes', 'resumes.id', 'user_response_vacancies.resume_id')
+        ->join('statuses', 'statuses.id', 'user_response_vacancies.status_id')->get()->toArray();
 
         return Inertia::render('CandidatePage/ui/CandidatePage/CandidatePage', [
             'title' => 'Кандидаты',

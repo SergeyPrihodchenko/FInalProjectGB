@@ -43,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_click_vacancies');
+        Schema::dropIfExists('user_response_vacancies');
     }
 };
