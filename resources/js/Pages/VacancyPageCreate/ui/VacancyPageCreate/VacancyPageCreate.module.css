@@ -3,14 +3,43 @@
     width: 760px;
     align-items: center;
 }
+
 .payment {
     display: flex;
     justify-content: space-between;
     margin-right: 20px;
 }
+
 .item {
     margin-top: 16px;
 }
+
 .listItem {
     display: flex;
+}
+
+.citiesList {
+    position: absolute;
+    top: 65px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 760px;
+    background-color: #fff;
+    z-index: 20;
+    border-radius: 5px
+}
+
+.citiesListItem {
+    border: 1px solid #555;
+    padding: 10px;
+
+}
+
+.citiesListItem:first-of-type {
+    border-radius: 5px 5px 0 0;
+}
+
+.citiesListItem:last-of-type {
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
 }
