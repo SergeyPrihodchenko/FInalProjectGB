@@ -117,7 +117,7 @@ const VacancyListPage = ({
                 setResponsesIdList([...responsesIdList, vacancy_id]);
                 setIsResponseModal(prev => !prev);
             }
-            console.log(res);
+            console.log(responsesIdList);
         } catch (e) {
             console.log(e.message);
         }
