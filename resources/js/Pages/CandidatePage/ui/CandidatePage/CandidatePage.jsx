@@ -55,7 +55,7 @@ function CandidatePage({ resumes }) {
                 <AppPage>
                     <main className={s.mainResumeList}>
                         <AppText
-                            title={"Мои резюме"}
+                            title={"Кандидаты"}
                             size="m"
                             bold
                             className={s.titleResumeList}
