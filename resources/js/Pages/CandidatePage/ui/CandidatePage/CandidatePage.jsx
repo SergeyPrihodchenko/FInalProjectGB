@@ -10,20 +10,39 @@ import cn from "classnames";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import axios from "axios";
 import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { resumeInvite, resumeRefuse, setResumeList, setResumeStatusInvite, setResumeStatusRefuse } from "../../model/slice/candidatePageSlice";
 
 function UserResumeListPage({ resumes }) {
     const user = usePage().props.auth.user;
+    const dispatch = useDispatch();
+    const { resumeStatusRefuse, resumeList, resumeStatusInvite } = useSelector((state) => state.candidatePage);
+    const [flag, setFlag] = useState(false);
+    // const [resumeList, setResumeList] = useState(resumes);
 
-    console.log(resumes);
+    useEffect(() => {
+        dispatch(setResumeList(resumes))
+        dispatch(setResumeStatusRefuse(resumes));
+        dispatch(setResumeStatusInvite(resumes));
+    }, []);
+
+    console.log('redux', resumeStatusInvite);
+    console.log('redux resumeList', resumeList);
+
+    const isInStatusList = (vacancy_id, resume_id, list) => {
+        return list.some(el => (el.vacancy_id === vacancy_id && el.resume_id === resume_id));
+    }
 
     const handleView = async (resume_id, vacancy_id) => {
+
         const response = await axios.post('/viewed', { resume_id: resume_id, vacancy_id: vacancy_id });
         console.log(response);
     }
-    const handleRefuse = async (resume_id, vacancy_id) => {
-        const response = await axios.post('/refusal', { resume_id: resume_id, vacancy_id: vacancy_id });
-        console.log(response);
-    }
+    // const handleRefuse = async (resume_id, vacancy_id) => {
+    //     const response = await axios.post('/refusal', { resume_id: resume_id, vacancy_id: vacancy_id });
+    //     console.log(response);
+    // }
     const handleInvite = async (resume_id, vacancy_id) => {
         const response = await axios.post('/invitation', { resume_id: resume_id, vacancy_id: vacancy_id });
         console.log(response);
@@ -84,15 +103,16 @@ function UserResumeListPage({ resumes }) {
                                                     />
                                                     <AppText
                                                         text={`${resume.title}`}
-                                                        className={cn(s.statusBadge, {
-                                                            [s.statusBadgeNotViewd]: resume.title === 'Не просмотренно',
-                                                            [s.statusBadgeViewd]: resume.title === 'Просмотренно',
-                                                            [s.statusBadgeRefuse]: resume.title === 'Отказ',
-                                                            [s.statusBadgeInvite]: resume.title === 'Приглашение',
-                                                        })}
                                                         variant={"secondary"}
                                                         bold
                                                         size="xs"
+                                                        className={cn(s.statusBadge, {
+                                                            [s.statusBadgeNotViewd]: resume.title === 'Не просмотренно',
+                                                            [s.statusBadgeInvite]: isInStatusList(resume.vacancy_id, resume.resume_id, resumeStatusInvite),
+                                                            [s.statusBadgeRefuse]: isInStatusList(resume.vacancy_id, resume.resume_id, resumeStatusRefuse),
+                                                            // [s.statusBadgeRefuse]: resume.title === 'Отказ',
+                                                            [s.statusBadgeViewd]: resume.title === 'Просмотренно',
+                                                        })}
                                                     />
 
                                                 </div>
@@ -133,7 +153,6 @@ function UserResumeListPage({ resumes }) {
 
                                             <div class={s.userPhoto}>
                                                 НЕТ ФОТО
-                                                {/* <img src="#" className={s.imgUserPhoto}/> */}
                                             </div>
                                         </div>
                                         <div className={s.manageResume}>
@@ -148,7 +167,7 @@ function UserResumeListPage({ resumes }) {
                                                 Просмотреть резюме
                                             </AppButton>
                                             <AppButton
-                                                onClick={() => { handleInvite(resume.resume_id, resume.vacancy_id) }}
+                                                onClick={() => dispatch(resumeInvite(resume))}
                                                 type="button"
                                                 sizeText="s"
                                                 colorType={'save'}
@@ -156,14 +175,14 @@ function UserResumeListPage({ resumes }) {
                                                 Пригласить
                                             </AppButton>
                                             <AppButton
-                                                onClick={() => handleRefuse(resume.resume_id, resume.vacancy_id)}
+                                                onClick={() => dispatch(resumeRefuse(resume))}
                                                 colorType={'cancel'}
                                                 type="button"
                                                 sizeText="s"
-                                                disabled={resume.title === "Отказ"}
+                                                disabled={isInStatusList(resume.vacancy_id, resume.resume_id, resumeStatusRefuse)}
                                             >
                                                 <span className={s.buttonReject}>
-                                                    {resume.title === "Отказ" ? 'Отклонено' : 'Отклонить'}
+                                                    {isInStatusList(resume.vacancy_id, resume.resume_id, resumeStatusRefuse) ? 'Отклонено' : 'Отклонить'}
                                                 </span>
 
                                             </AppButton>
