@@ -13,8 +13,9 @@ function ResumePage({ resume, author }) {
     const user = usePage().props.auth.user;
     const userEmail = usePage().props.auth.user.email;
 
-    console.log(author.id);
-    console.log(user.isRol);
+    // console.log(author.id);
+    // console.log(user.isRol);
+    console.log('resume', resume);
 
     const { data } = useForm({
         author_email: author.email,
@@ -35,7 +36,7 @@ function ResumePage({ resume, author }) {
         experience: resume.experience,
         relocation: resume.relocation,
     });
-    const refuseResume = async (resume_id, vacancy_id) => {
+    const handleRefuseResume = async (resume_id, vacancy_id) => {
 
     }
 
@@ -436,17 +437,16 @@ function ResumePage({ resume, author }) {
                                         type="button"
                                         height={"60px"}
                                         sizeText="s"
-                                        className={s.linkResumeList}
                                     >
                                         Пригласить
                                     </AppButton>
                                     <AppButton
+                                        onClick={() => handleRefuseResume()}
                                         // onClick={refusar}
                                         id={resume.id}
                                         type="button"
                                         height={"60px"}
                                         sizeText="s"
-                                        className={s.linkResumeList}
                                     >
                                         <span className={s.buttonReject}>
                                             Отклонить

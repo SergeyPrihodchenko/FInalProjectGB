@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
     Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
     Route::middleware('isRolCompany')->group(function() {
-        Route::get('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
+        Route::post('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
         Route::post('/refusal', [StatusResponseResumeController::class, 'refusal'])->name('refusal');
         Route::post('/invitation', [StatusResponseResumeController::class, 'invitation'])->name('invitation');
         Route::get('/condidate', [CandidateConditionController::class, 'getCandidate'])->name('condidate');

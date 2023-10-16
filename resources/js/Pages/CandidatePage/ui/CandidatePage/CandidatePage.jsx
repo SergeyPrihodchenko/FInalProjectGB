@@ -1,21 +1,41 @@
 import React from "react";
-import { useForm, usePage } from "@inertiajs/react";
+import { Head, useForm, usePage } from "@inertiajs/react";
 
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
-import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import s from "./CandidatePage.module.css";
+import cn from "classnames";
+
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import axios from "axios";
+import { useEffect } from "react";
 
 function UserResumeListPage({ resumes }) {
     const user = usePage().props.auth.user;
 
     console.log(resumes);
 
+    const handleView = async (resume_id, vacancy_id) => {
+        const response = await axios.post('/viewed', { resume_id: resume_id, vacancy_id: vacancy_id });
+        console.log(response);
+    }
+    const handleRefuse = async (resume_id, vacancy_id) => {
+        const response = await axios.post('/refusal', { resume_id: resume_id, vacancy_id: vacancy_id });
+        console.log(response);
+    }
+    const handleInvite = async (resume_id, vacancy_id) => {
+        const response = await axios.post('/invitation', { resume_id: resume_id, vacancy_id: vacancy_id });
+        console.log(response);
+    }
+    useEffect(() => {
+
+    }, []);
+
     return (
         <AuthContext.Provider value={{ user }}>
             <>
+                <Head title="Кандидаты" />
                 <AppPage>
                     <main className={s.mainResumeList}>
                         <AppText
@@ -58,12 +78,34 @@ function UserResumeListPage({ resumes }) {
                                     <div class={s.resumeList}>
                                         <div class={s.userResume}>
                                             <div className={s.userData}>
+                                                <div className={s.statusWithName}>
+                                                    <AppText
+                                                        title={resume.profession}
+                                                        variant={"accent"}
+                                                        bold
+                                                        size="xs"
+                                                    />
+                                                    <AppText
+                                                        text={`${resume.title}`}
+                                                        className={cn(s.statusBadge, {
+                                                            [s.statusBadgeNotViewd]: resume.title === 'Не просмотренно',
+                                                            [s.statusBadgeViewd]: resume.title === 'Просмотренно',
+                                                            [s.statusBadgeRefuse]: resume.title === 'Отказ',
+                                                            [s.statusBadgeInvite]: resume.title === 'Приглашение',
+                                                        })}
+                                                        variant={"secondary"}
+                                                        bold
+                                                        size="xs"
+                                                    />
+
+                                                </div>
                                                 <AppText
-                                                    title={resume.profession}
-                                                    variant={"accent"}
+                                                    text={`${resume.first_name} ${resume.last_name}`}
+                                                    variant={"primary"}
                                                     bold
                                                     size="xs"
                                                 />
+
 
                                                 <AppText
                                                     title={resume.salary.concat(" ", "₽")}
@@ -97,19 +139,36 @@ function UserResumeListPage({ resumes }) {
                                                 {/* <img src="#" className={s.imgUserPhoto}/> */}
                                             </div>
                                         </div>
-                                        <div className={s.linkViewResume}>
+                                        <div className={s.manageResume}>
                                             <AppButton
-
-                                                id={resume.id}
+                                                onClick={() => { handleView(resume.resume_id, resume.vacancy_id) }}
                                                 path={"resume.show"}
-                                                param={resume.id}
+                                                param={resume.resume_id}
                                                 key={resume.id}
                                                 type="button"
                                                 sizeText="s"
-                                                height={"60px"}
-                                                className={s.linkResumeList}
                                             >
                                                 Просмотреть резюме
+                                            </AppButton>
+                                            <AppButton
+                                                onClick={() => { handleInvite(resume.resume_id, resume.vacancy_id) }}
+                                                type="button"
+                                                sizeText="s"
+                                                colorType={'save'}
+                                            >
+                                                Пригласить
+                                            </AppButton>
+                                            <AppButton
+                                                onClick={() => handleRefuse(resume.resume_id, resume.vacancy_id)}
+                                                colorType={'cancel'}
+                                                type="button"
+                                                sizeText="s"
+                                                disabled={resume.title === "Отказ"}
+                                            >
+                                                <span className={s.buttonReject}>
+                                                    {resume.title === "Отказ" ? 'Отклонено' : 'Отклонить'}
+                                                </span>
+
                                             </AppButton>
 
                                             {/* Сделать активной кнопку редаткировать только для пользователя чье резюме открыто */}
