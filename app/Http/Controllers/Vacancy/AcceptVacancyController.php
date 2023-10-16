@@ -38,6 +38,6 @@ class AcceptVacancyController extends Controller
         $resume_id = $request['resume_id'];
         $vacancy_id =$request['vacancy_id'];
 
-        UserResponseVacancies::create(['resume_id' => $resume_id, 'vacancy_id' => $vacancy_id, 'status_id' => 4]);
+        UserResponseVacancies::create(['resume_id' => $resume_id, 'vacancy_id' => $vacancy_id, 'status_id' => 3]);
     }
 }
