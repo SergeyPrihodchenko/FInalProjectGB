@@ -15,6 +15,7 @@
     align-items: flex-start;
     justify-content: space-between;
     padding: 15px 20px;
+    position: relative;
 }
 
 .userResponsesPageCardBtn {
@@ -50,4 +51,34 @@
 
 .userResponsesPageCardIconBlockIconMR {
     margin-right: 5px;
+}
+
+.statusBadge {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    border-radius: 3px;
+
+}
+
+.statusBadgeNotViewd {
+    background-color: var(--status-bg-notviewd);
+
+}
+
+.statusBadgeViewd {
+    background-color: var(--accent);
+
+}
+
+.statusBadgeRefuse {
+    background-color: var(--cancel);
+
+}
+
+.statusBadgeInvite {
+    background-color: var(--save);
+
 }

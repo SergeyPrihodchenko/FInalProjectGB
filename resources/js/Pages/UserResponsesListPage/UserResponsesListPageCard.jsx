@@ -18,75 +18,94 @@ const UserResponsesListPageCard = ({
     employment,
     schedule,
     experience,
+    status,
     logo }) => {
-    return (
-        <AppLink
-            path={'vacancy.show'}
-            param={id}
-            key={id}
-        >
-            <AppCard
-                width={'auto'}
-                height={'260px'}
-                shadow
-                className={cn(s.userResponsesPageCard,)}
-            >
-                <div>
-                    <AppText
-                        variant="accent"
-                        title={title}
-                    />
-                    <AppText
-                        size="l"
-                        className={s.userResponsesPageCardMarginText}
-                        text={`от ${payment} руб.`}
-                    />
-                    <div className={s.userResponsesPageCardIconBlock}>
-                        <AppText
-                            size="s"
-                            text={`Компания ${conditions}.`}
-                        />
-                        <Tooltip
-                            title="Компания прошла проверку на сайте"
-                            placement="top"
-                            arrow
-                        >
-                            <CheckCircleOutlineSharpIcon fontSize="20" className={cn(s.userResponsesPageCardIconBlockIcon, s.userResponsesPageCardIconBlockIconML)} />
-                        </Tooltip>
-                    </div>
-                    <AppText
-                        size="s"
-                        className={s.userResponsesPageCardMarginText}
-                        text={employment}
-                    />
-                    <AppText
-                        size="s"
-                        className={s.userResponsesPageCardMarginText}
-                        text={schedule}
-                    />
-                    <div className={cn(s.userResponsesPageCardIconBlock, s.userResponsesPageCardMarginText)}>
-                        <WorkOutlineIcon fontSize="20" className={cn(s.userResponsesPageCardIconBlockIcon, s.userResponsesPageCardIconBlockIconMR)} />
-                        <AppText
-                            size="s"
-                            variant="notaccented"
-                            text={`Опыт работы: ${experience}`}
-                        />
-                    </div>
 
-                    <AppButton
-                        className={s.userResponsesPageCardBtn}
-                        width="auto"
+    return (
+        <AppCard
+            width={'auto'}
+            height={'260px'}
+            shadow
+            className={cn(s.userResponsesPageCard,)}
+        >
+
+            <div>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <AppLink
+                        path={'vacancy.show'}
+                        param={id}
+                        key={id}
                     >
-                        Подробнее
-                    </AppButton>
+                        <AppText
+                            variant="accent"
+                            title={title}
+                        />
+                    </AppLink>
+                    <AppText
+                        text={`${status}`}
+                        variant={"secondary"}
+                        bold
+                        size="s"
+                        className={cn(s.statusBadge, {
+                            [s.statusBadgeNotViewd]: status === 'Не просмотренно',
+                            [s.statusBadgeViewd]: status === 'Просмотренно',
+                            [s.statusBadgeRefuse]: status === 'Отказ',
+                            [s.statusBadgeInvite]: status === 'Приглашение',
+                        })}
+                    />
+
                 </div>
-                {logo && (
-                    <div className={s.userResponsesPageCardLogo}>
-                        <img className={s.userResponsesPageCardLogoImg} alt="Лого" src={logo} />
-                    </div>
-                )}
-            </AppCard>
-        </AppLink>
+                <AppText
+                    size="l"
+                    className={s.userResponsesPageCardMarginText}
+                    text={`от ${payment} руб.`}
+                />
+                <div className={s.userResponsesPageCardIconBlock}>
+                    <AppText
+                        size="s"
+                        text={`Компания ${conditions}.`}
+                    />
+                    <Tooltip
+                        title="Компания прошла проверку на сайте"
+                        placement="top"
+                        arrow
+                    >
+                        <CheckCircleOutlineSharpIcon fontSize="20" className={cn(s.userResponsesPageCardIconBlockIcon, s.userResponsesPageCardIconBlockIconML)} />
+                    </Tooltip>
+                </div>
+                <AppText
+                    size="s"
+                    className={s.userResponsesPageCardMarginText}
+                    text={employment}
+                />
+                <AppText
+                    size="s"
+                    className={s.userResponsesPageCardMarginText}
+                    text={schedule}
+                />
+                <div className={cn(s.userResponsesPageCardIconBlock, s.userResponsesPageCardMarginText)}>
+                    <WorkOutlineIcon fontSize="20" className={cn(s.userResponsesPageCardIconBlockIcon, s.userResponsesPageCardIconBlockIconMR)} />
+                    <AppText
+                        size="s"
+                        variant="notaccented"
+                        text={`Опыт работы: ${experience}`}
+                    />
+                </div>
+
+                <AppButton
+                    className={s.userResponsesPageCardBtn}
+                    width="auto"
+                >
+                    Подробнее
+                </AppButton>
+            </div>
+            {logo && (
+                <div className={s.userResponsesPageCardLogo}>
+                    <img className={s.userResponsesPageCardLogoImg} alt="Лого" src={logo} />
+                </div>
+            )}
+        </AppCard>
+
     );
 };
 

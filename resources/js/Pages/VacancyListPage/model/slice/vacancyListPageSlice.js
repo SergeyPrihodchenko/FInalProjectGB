@@ -134,7 +134,7 @@ export const vacacyListPageSlice = createSlice({
 
         });
         builder.addCase(loadVacancyOnScroll.fulfilled, (state, action) => {
-            state.status = 'rejected';
+            state.status = 'resolved';
             state.vacancyList = [...state.vacancyList, ...action.payload]
         });
         builder.addCase(addToFavourites.rejected, (state, action) => {
