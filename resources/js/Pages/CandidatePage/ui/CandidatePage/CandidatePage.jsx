@@ -11,7 +11,7 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import axios from "axios";
 import { useEffect } from "react";
 
-function UserResumeListPage({ resumes }) {
+function CandidatePage({ resumes }) {
     const user = usePage().props.auth.user;
 
     console.log(resumes);
@@ -180,4 +180,4 @@ function UserResumeListPage({ resumes }) {
     );
 }
 
-export default UserResumeListPage;
+export default CandidatePage;
