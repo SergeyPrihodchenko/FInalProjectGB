@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resumeInvite, resumeRefuse, setResumeList, setResumeStatusInvite, setResumeStatusRefuse } from "../../model/slice/candidatePageSlice";
 
-function UserResumeListPage({ resumes }) {
+function CandidatePage({ resumes }) {
     const user = usePage().props.auth.user;
     const dispatch = useDispatch();
     const { resumeStatusRefuse, resumeList, resumeStatusInvite } = useSelector((state) => state.candidatePage);
@@ -55,7 +55,7 @@ function UserResumeListPage({ resumes }) {
                 <AppPage>
                     <main className={s.mainResumeList}>
                         <AppText
-                            title={"Кандидаты"}
+                            title={"Мои резюме"}
                             size="m"
                             bold
                             className={s.titleResumeList}
@@ -199,4 +199,4 @@ function UserResumeListPage({ resumes }) {
     );
 }
 
-export default UserResumeListPage;
+export default CandidatePage;

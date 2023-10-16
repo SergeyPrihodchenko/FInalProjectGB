@@ -55,7 +55,6 @@ function UserCompanyList({companies}) {
                                             param={company.id}
                                             key={company.id}
                                             sizeText="s"
-                                            height="60px"
                                             className={s.linkListCompany}
                                         >
                                             Просмотреть
