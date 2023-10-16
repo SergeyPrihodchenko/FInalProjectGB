@@ -435,7 +435,7 @@ function ResumePage({ resume, author }) {
                                         // onClick={invitation}
                                         id={resume.id}
                                         type="button"
-                                        height={"60px"}
+                                        height={"40px"}
                                         sizeText="s"
                                     >
                                         Пригласить
@@ -445,7 +445,7 @@ function ResumePage({ resume, author }) {
                                         // onClick={refusar}
                                         id={resume.id}
                                         type="button"
-                                        height={"60px"}
+                                        height={"40px"}
                                         sizeText="s"
                                     >
                                         <span className={s.buttonReject}>
