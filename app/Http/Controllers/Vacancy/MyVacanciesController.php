@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Vacancy;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,7 +15,9 @@ class MyVacanciesController extends Controller
     {
         $user = $request->user();
 
-        $vacancies = Vacancy::all()->where('company_id', $user->id);
+        $companies = Company::where('creator_id', $user->id)->get('id')->toArray();
+
+        $vacancies = Vacancy::whereIn('company_id', $companies)->get();
 
         // Убрать эту строчку
         return dd($vacancies);
