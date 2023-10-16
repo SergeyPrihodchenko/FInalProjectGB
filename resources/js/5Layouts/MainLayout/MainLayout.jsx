@@ -8,9 +8,15 @@ import { Navbar } from "@/4Widgets/Navbar/ui/Navbar";
 import SecondNav from "@/4Widgets/SecondNav/ui/SecondNav";
 import { useState } from "react";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
+import { useEffect } from "react";
+
+import { useDispatch } from "react-redux";
 
 const MainLayout = (porps) => {
-    const [theme, setTheme] = useState("app_light_theme");
+    const LOCALSTORAGE_THEME_KEY = "theme";
+    const defaultTheme = localStorage.getItem(LOCALSTORAGE_THEME_KEY);
+    const [theme, setTheme] = useState(defaultTheme);
+    const dispatch = useDispatch();
     // console.log("theme", theme);
     // console.log("s", s);
 
@@ -18,7 +24,7 @@ const MainLayout = (porps) => {
     // console.log(".jsx porps", porps);
     const locationPath = window.location.pathname;
 
-    const switchTheme = () => {
+    const switchTheme = (theme) => {
         let newTheme;
         switch (theme) {
             case "app_light_theme":
@@ -34,9 +40,20 @@ const MainLayout = (porps) => {
         }
         setTheme?.(newTheme);
         document.body.className = newTheme;
+        localStorage.setItem(LOCALSTORAGE_THEME_KEY, newTheme);
     };
+    useEffect(() => {
+        if (defaultTheme) {
+            console.log("defaultTheme", defaultTheme);
+            setTheme(defaultTheme);
+            document.body.className = defaultTheme;
+        } else {
+            setTheme("app_light_theme");
+            document.body.className = "app_light_theme";
+        }
+    }, []);
     return (
-        <div id={'themeBlock'} className={cn(s.mainLayout, className, theme)}>
+        <div id={"themeBlock"} className={cn(s.mainLayout, className, theme)}>
             <header>
                 <Header className={s.header}>
                     <Navbar
@@ -50,8 +67,7 @@ const MainLayout = (porps) => {
                     locationPath !== "/register" &&
                     locationPath !== "/login" &&
                     locationPath !== "/forgot-password" &&
-                    user !== null &&
-                    <SecondNav user={user} />}
+                    user !== null && <SecondNav user={user} />}
             </header>
 
             <main>{children}</main>

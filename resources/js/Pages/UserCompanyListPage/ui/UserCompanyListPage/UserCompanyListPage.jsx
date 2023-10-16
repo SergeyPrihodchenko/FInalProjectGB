@@ -9,7 +9,7 @@ import { useForm } from "@inertiajs/react";
 
 
 function UserCompanyList({companies}) {
-    console.log('companies', companies)
+    // console.log('companies', companies)
     return (
         <AuthContext.Provider>
             <AppPage>
