@@ -112,6 +112,34 @@
     transition: var(--transition-delay) linear;
 }
 
+
+
+.filled.cancel {
+    background: var(--cancel);
+    border: 2px solid var(--cancel);
+}
+
+.filled.cancel:hover {
+    color: var(--cancel);
+}
+
+.filled.cancel:hover p {
+    color: var(--cancel);
+}
+
+.filled.save {
+    background: var(--save);
+    border: 2px solid var(--save);
+}
+
+.filled.save:hover {
+    color: var(--save);
+}
+
+.filled.save:hover p {
+    color: var(--save);
+}
+
 .filled:hover {
     background-color: var(--secondary-text);
     transition: var(--transition-delay) linear;
@@ -122,6 +150,10 @@
     transition: var(--transition-delay) linear;
     color: var(--accent);
 }
+
+
+
+
 
 /* Text sizes */
 .xs {

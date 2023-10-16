@@ -42,4 +42,6 @@
 
     /* Loader */
     --loader-color: var(--hint);
+
+    --status-bg-notviewd: #727272;
 }

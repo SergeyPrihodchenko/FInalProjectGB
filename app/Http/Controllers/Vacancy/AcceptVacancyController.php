@@ -17,8 +17,10 @@ class AcceptVacancyController extends Controller
         // $resumeId = Resume::where('user_id', $id)->get('id')->toArray();
         // $arrResumeId = array_values($resumeId);
 
+
         // $vacancies = UserResponseVacancies::whereIn('resume_id', $arrResumeId)->get('vacancy_id')->toArray();
         // $arrVacancies = array_values($vacancies);
+
         
         // $vacancy = Vacancy::query();
         // $vacancy->whereIn('vacancies.id', $arrVacancies);

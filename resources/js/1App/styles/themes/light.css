@@ -9,9 +9,9 @@
     --secondary-text: #fff;
 
     --accent: #0fc3fce5;
-    --cancel: #ff0000cc;
+    --cancel: #b10000cc;
     --error: #ff0000cc;
-    --save: #62de85;
+    --save: #51d777;
     --hint: #0f6efc;
     --not-accented: rgba(0, 0, 0, 0.56);
 
@@ -42,4 +42,6 @@
 
     /* Loader */
     --loader-color: var(--accent);
+
+    --status-bg-notviewd: #555;
 }
