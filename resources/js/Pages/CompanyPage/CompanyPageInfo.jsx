@@ -2,6 +2,7 @@ import React from "react";
 import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import PropTypes from "prop-types";
 import CompanyPageInfoItem from "@/Pages/CompanyPage/CompanyPageInfoItem.jsx";
+import AppText from "@/8Shared/ui/AppText/AppText";
 
 const CompanyPageInfo = ({
     address,
@@ -10,27 +11,44 @@ const CompanyPageInfo = ({
     title,
     tagline,
     infoList,
+    values,
 }) => {
     return (
         <div className={s.companyPageRightInfo}>
-            <strong>{title}</strong>
-            <article>
-                <strong>Видение:</strong>
-                {tagline}
-            </article>
-            <strong>Ценности:</strong>
-            {infoList?.map((item, index) => (
-                <CompanyPageInfoItem
-                    key={item.id}
-                    title={item.title}
-                    text={item.text}
-                    index={index + 1}
-                />
-            ))}
+            <AppText text={title} />
+            {tagline && (
+                <article>
+                    <AppText
+                        className={s.CompanyPageRightHeaderRatingText}
+                        text={"Видение:"}
+                    />
+                    <AppText
+                        className={s.CompanyPageRightHeaderRatingText}
+                        text={tagline}
+                    />
+                </article>
+            )}
+            {values && (
+                <>
+                    <AppText text={"Ценности:"} />
+                    {infoList?.map((item, index) => (
+                        <CompanyPageInfoItem
+                            key={item.id}
+                            title={item.title}
+                            text={item.text}
+                            index={index + 1}
+                        />
+                    ))}
+                </>
+            )}
+
             <div className={s.companyPageRightInfoContacts}>
-                <p>{address}</p>
-                <p>Телефон: {contactPhone}</p>
-                <p>Электронная почта: {contactEmail}</p>
+                <AppText text={address} size={"xs"} />
+                <AppText text={`Телефон: ${contactPhone}`} size={"xs"} />
+                <AppText
+                    text={`Электронная почта: ${contactEmail}`}
+                    size={"xs"}
+                />
             </div>
         </div>
     );
