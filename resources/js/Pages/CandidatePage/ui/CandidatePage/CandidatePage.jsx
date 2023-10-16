@@ -28,9 +28,6 @@ function UserResumeListPage({ resumes }) {
         const response = await axios.post('/invitation', { resume_id: resume_id, vacancy_id: vacancy_id });
         console.log(response);
     }
-    useEffect(() => {
-
-    }, []);
 
     return (
         <AuthContext.Provider value={{ user }}>
