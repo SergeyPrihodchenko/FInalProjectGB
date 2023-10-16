@@ -1,7 +1,6 @@
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import React from "react";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import AppLink from "@/8Shared/ui/AppLink/AppLink";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import s from "./UserVacancyPage.module.css";
@@ -75,17 +74,26 @@ const UserVacancyPage = ({ vacancies  }) => {
                                     <AppButton
                                         path={'vacancy.show'}
                                         param={vac.id}
-                                        variant='outline'
-                                        width="auto"
-                                        colorType="normal"
+                                        //key={vac.id}
+                                        type="button"
+                                        sizeText="s"
+                                       width={"150px"}
+                                        className={s.linkResumeList}
+                                       
                                     >
-                                        Посмотреть
+                                        Просмотреть
                                     </AppButton>
+
                                     <AppButton
-                                    //    onClick={() => handleToggleModal(vac.id)}
-                                        className={s.vacancyListCardBtn}
-                                        width="auto"
-                                        //   disabled={isResponsedVacancy(vac.id, responsesIdList) ? true : false}
+                                        path={""}
+                                        param={""}
+                                        key={""}
+                                        type="button"
+                                        width={"170px"}
+                                        height={"40px"}
+                                        sizeText="s"
+                                        className={s.linkResumeList}
+                                        
                                     >
                                         Редактировать
                                     </AppButton>
@@ -97,6 +105,6 @@ const UserVacancyPage = ({ vacancies  }) => {
             </AppPage>
             </>
         </AuthContext.Provider>
-);
+    );
 };
 export default UserVacancyPage;
