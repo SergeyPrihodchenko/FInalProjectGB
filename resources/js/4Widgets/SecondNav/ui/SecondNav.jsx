@@ -19,8 +19,7 @@ const navListEmployment = [
 // href={route("userResponses")}
 function SecondNav(props) {
     const { user } = props;
-    console.log('second nav', user);
-    const isEmployer = useSelector((state) => state.navabr.isEmployer);
+    // console.log('second nav', user);
     return (
         <div className={s.secondNav}>
             {user?.isRol === 0 ? (

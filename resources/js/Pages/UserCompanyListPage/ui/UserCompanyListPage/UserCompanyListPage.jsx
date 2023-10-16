@@ -9,7 +9,7 @@ import { useForm } from "@inertiajs/react";
 
 
 function UserCompanyList({companies}) {
-    console.log('companies', companies)
+    // console.log('companies', companies)
     return (
         <AuthContext.Provider>
             <AppPage>
@@ -55,7 +55,6 @@ function UserCompanyList({companies}) {
                                             param={company.id}
                                             key={company.id}
                                             sizeText="s"
-                                            height="60px"
                                             className={s.linkListCompany}
                                         >
                                             Просмотреть
