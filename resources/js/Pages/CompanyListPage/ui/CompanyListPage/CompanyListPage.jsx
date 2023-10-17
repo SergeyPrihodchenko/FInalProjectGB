@@ -8,6 +8,7 @@ import { AuthContext } from "@/8Shared/store/AuthContext";
 import { useForm } from "@inertiajs/react";
 
 function CompanyListPage({ companies }) {
+    console.log(companies)
     return (
         <AuthContext.Provider>
             <AppPage>
@@ -19,43 +20,55 @@ function CompanyListPage({ companies }) {
                 />
                 {companies
                     ? companies.map((company, index) => {
+                        
                           const { data } = useForm({
                               name: company.name,
                               business_profile: company.business_profile,
                               website: company.website,
                           });
-                          // console.log(data);
+                           console.log(data);
+                          
                           return (
                               <div className={s.companyList} key={index}>
                                   <div className={s.buttonCompany}>
-                                      <AppButton
-                                          path={"company.show"}
-                                          param={company.id}
-                                          key={company.id}
-                                          sizeText="s"
-                                          bold
-                                          variant="clear"
-                                      >
+                                    <AppButton
+                                        path={"company.show"}
+                                        param={company.id}
+                                        key={company.id}
+                                        sizeText="s"
+                                        bold
+                                        variant="clear"
+                                    >
                                           <span className={s.titleCompany}>
                                               {company.name}
                                           </span>
                                       </AppButton>
                                   </div>
-
-                                  <AppText
-                                      text={"Сфера деятельности: ".concat(
-                                          company.business_profile
-                                      )}
-                                      bold
-                                      size="xs"
-                                  />
-                                  <AppText
-                                      text={"Сайт компании: ".concat(
-                                          company.website
-                                      )}
-                                      bold
-                                      size="xs"
-                                  />
+                                {company.business_profile !=null ? (
+                                    
+                                        <AppText
+                                            text={"Сфера деятельности: ".concat(
+                                                company.business_profile
+                                            )}
+                                            bold
+                                            size="xs"
+                                            
+                                        />
+                                   
+                                    ):null
+                                }
+                                {company.website !=null ? (
+                                    
+                                        <AppText
+                                            text={"Сайт компании: ".concat(
+                                                company.website
+                                            )}
+                                            bold
+                                            size="xs"
+                                        />
+                                  
+                                  ):null
+                                }
                               </div>
                           );
                       })
