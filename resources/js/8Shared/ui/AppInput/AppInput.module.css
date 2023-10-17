@@ -10,6 +10,7 @@
     color: var(--primary-text);
     background-color: var(--secondary-bg);
     margin-top: var(--indent-xs);
+    transition: linear var(--transition-delay);
 }
 
 input::placeholder {
@@ -22,8 +23,9 @@ input::placeholder {
     border: 2px solid var(--accent);
 }
 input:hover {
-    cursor: auto;
     border: 2px solid var(--accent);
+    transition: linear var(--transition-delay);
+    cursor: pointer;
 }
 
 .radiusL {

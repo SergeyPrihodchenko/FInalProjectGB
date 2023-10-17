@@ -8,10 +8,11 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
+import AppSelect from "@/8Shared/ui/AppSelect/AppSelect";
 
 function CreateResume() {
     const user = usePage().props.auth.user;
-    
+
     const { data, setData, post, errors } = useForm({
         user_id: user.id,
         profession: "",
@@ -33,10 +34,10 @@ function CreateResume() {
         schedule_type: "",
         relocation: "",
         buisness_travel: "",
-        about_me: ""
+        about_me: "",
     });
 
-   const [skill, setSkill] = useState("");
+    const [skill, setSkill] = useState("");
 
     // educational institute array
     const [institute, setInstitute] = useState({});
@@ -72,7 +73,7 @@ function CreateResume() {
         setGraduation_year("");
     };
 
-  //  console.log(data.educational_institute);
+    //  console.log(data.educational_institute);
 
     // company array
     const [company, setCompany] = useState({});
@@ -178,15 +179,26 @@ function CreateResume() {
                                 errorMessage={errors.first_name}
                             />
 
-                            <AppText
+                            {/* <AppText
                                 title={"Пол"}
                                 bold
                                 size={"xs"}
                                 className={s.textTitle}
-                            />
+                            /> */}
 
                             <div className={s.inputRadioBasiceData}>
-                                <select
+                                <AppSelect
+                                    label={"Пол"}
+                                    name="gender"
+                                    id="gender"
+                                    onChange={(e) =>
+                                        setData("gender", e.target.value)
+                                    }
+                                    value={data.gender}
+                                    options={["Мужской", "Женский"]}
+                                    error={errors.gender}
+                                />
+                                {/* <select
                                     name="gender"
                                     id="gender"
                                     onChange={(e) =>
@@ -201,7 +213,7 @@ function CreateResume() {
                                 </select>
                                 <div style={{ color: "red" }}>
                                     {errors.gender}
-                                </div>
+                                </div> */}
                             </div>
 
                             <AppInput
@@ -266,13 +278,33 @@ function CreateResume() {
                         </div>
 
                         <div className={s.educationResumePage}>
-                            <div className={s.levelOfEucation}>
+                            <AppSelect
+                                label={"Уровень образования"}
+                                name="education"
+                                id="education"
+                                onChange={(e) =>
+                                    setData("education", e.target.value)
+                                }
+                                value={data.education}
+                                options={[
+                                    "Среднее",
+                                    "Среднее специальное",
+                                    "Неоконченное высшее",
+                                    "Высшее образование",
+                                    "Бакалавр",
+                                    "Магистр",
+                                    "Кандидат наук",
+                                ]}
+                                error={errors.education}
+                            />
+                            {/* <div className={s.levelOfEucation}>
                                 <AppText
                                     title="Уровень образования"
                                     bold
                                     size={"xs"}
                                     className={s.textTitle}
                                 />
+
                                 <div className={s.education}>
                                     <select
                                         name="education"
@@ -308,7 +340,7 @@ function CreateResume() {
                                         {errors.education}
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {data.educational_institute.map((el, index) => {
                                 return (
                                     <div className={s.education}>
@@ -343,7 +375,9 @@ function CreateResume() {
                                                 label="Дата начала"
                                                 type="date"
                                                 width="140px"
-                                                className={s.indentDownBasiceData}
+                                                className={
+                                                    s.indentDownBasiceData
+                                                }
                                                 value={el.start_year}
                                                 readOnly
                                             />
@@ -415,7 +449,7 @@ function CreateResume() {
                                         className={s.indentDownBasiceData}
                                         value={start_year}
                                         onChange={(e) => {
-                                            setStart_year(e.target.value)
+                                            setStart_year(e.target.value);
                                         }}
                                     />
 
@@ -655,12 +689,9 @@ function CreateResume() {
                                         />
 
                                         <AppButton
-                                            onClick={
-                                                (index) => {
-                                                   removeSkill(index)
-                                                }
-
-                                            }
+                                            onClick={(index) => {
+                                                removeSkill(index);
+                                            }}
                                             variant="outline"
                                             sizeText="xs"
                                             bold
@@ -674,8 +705,8 @@ function CreateResume() {
                             })}
                             <input
                                 onChange={(e) => {
-                                    setSkill(e.target.value)}
-                                }
+                                    setSkill(e.target.value);
+                                }}
                                 value={skill}
                                 type="text"
                                 className={s.textSkill}
@@ -683,9 +714,8 @@ function CreateResume() {
 
                             <AppButton
                                 onClick={() => {
-                                    addSkill()
-                                }
-                                }
+                                    addSkill();
+                                }}
                                 variant="outline"
                                 sizeText="s"
                                 bold
@@ -705,7 +735,9 @@ function CreateResume() {
                                 className={s.textTitle}
                             />
                             <AppInput
-                                onChange={(e) => setData('salary', e.target.value)}
+                                onChange={(e) =>
+                                    setData("salary", e.target.value)
+                                }
                                 value={data.salary}
                                 label={"Уровень дохода"}
                                 type="text"
@@ -713,7 +745,7 @@ function CreateResume() {
                                 width={"220px"}
                                 className={s.incomeLevel}
                             />
-                            
+
                             <div className={s.education}>
                                 <AppText
                                     title={"Опыт работы"}
@@ -733,9 +765,7 @@ function CreateResume() {
                                     <option value="не выбрано">
                                         не выбрано
                                     </option>
-                                    <option value="нет опыта">
-                                        нет опыта
-                                    </option>
+                                    <option value="нет опыта">нет опыта</option>
                                     <option value="от 1 до 3 лет">
                                         от 1 до 3 лет
                                     </option>
@@ -762,7 +792,10 @@ function CreateResume() {
                                     id="employment_type"
                                     value={data.employment_type}
                                     onChange={(e) =>
-                                        setData("employment_type", e.target.value)
+                                        setData(
+                                            "employment_type",
+                                            e.target.value
+                                        )
                                     }
                                     className={s.inputResumeDataBasice}
                                 >
@@ -850,9 +883,7 @@ function CreateResume() {
                                     <option value="Невозможно">
                                         Невозможно
                                     </option>
-                                    <option value="Возможно">
-                                        Возможно
-                                    </option>
+                                    <option value="Возможно">Возможно</option>
                                     <option value="Желательно">
                                         Желательно
                                     </option>
@@ -873,22 +904,19 @@ function CreateResume() {
                                     id="buisness_travel"
                                     value={data.buisness_travel}
                                     onChange={(e) =>
-                                        setData("buisness_travel", e.target.value)
+                                        setData(
+                                            "buisness_travel",
+                                            e.target.value
+                                        )
                                     }
                                     className={s.inputResumeDataBasice}
                                 >
                                     <option value="Не выбрано">
                                         Не выбрано
                                     </option>
-                                    <option value="Никогда">
-                                        Никогда
-                                    </option>
-                                    <option value="Готов">
-                                        Готов
-                                    </option>
-                                    <option value="Иногда">
-                                        Иногда
-                                    </option>
+                                    <option value="Никогда">Никогда</option>
+                                    <option value="Готов">Готов</option>
+                                    <option value="Иногда">Иногда</option>
                                 </select>
                                 <div style={{ color: "red" }}>
                                     {errors.buisness_travel}
@@ -898,24 +926,20 @@ function CreateResume() {
 
                         <div className={s.aboutUser}>
                             <AppText
-                                title={
-                                    "Дополнительная информация"
-                                }
+                                title={"Дополнительная информация"}
                                 bold
                                 size={"xs"}
                                 className={s.textTitle}
                             />
                             <AppText
-                                title={
-                                    "Расскажите о себе"
-                                }
+                                title={"Расскажите о себе"}
                                 bold
                                 size={"xs"}
                                 className={s.textTitle}
                             />
                             <textarea
                                 onChange={(e) =>
-                                    setData('about_me', e.target.value)
+                                    setData("about_me", e.target.value)
                                 }
                                 value={data.about_me}
                                 className={s.textareaBasiceData}
