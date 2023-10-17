@@ -53,6 +53,7 @@ AppLink.propTypes = {
         "primary",
         "secondary",
         "primaryAccent",
+        "lightAccent",
     ]),
     variant: PropTypes.oneOf(["filled", "outline", "clear"]),
     bold: PropTypes.bool,

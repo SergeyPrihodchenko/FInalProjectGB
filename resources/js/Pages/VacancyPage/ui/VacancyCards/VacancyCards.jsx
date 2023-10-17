@@ -14,6 +14,7 @@ function VacancyCards(props) {
         isResponse,
         setIsResponse,
         company,
+        user,
     } = props;
     const { title, payment, experience, employment, revievs, conditions } =
         vacancy;
@@ -57,35 +58,37 @@ function VacancyCards(props) {
                         </>
                     ) : null}
                 </div>
-                {isResponse ? (
-                    <>
+                {user && user.isRol === 0 ? (
+                    isResponse ? (
+                        <>
+                            <AppButton
+                                onClick={() => setIsResponse(!isResponse)}
+                                className={s.btn}
+                                disabled={isResponse}
+                            >
+                                Откликнуться
+                            </AppButton>
+                            <AppButton
+                                onClick={() => setIsResponse(!isResponse)}
+                                className={cn(s.btn, s.cancelBtn)}
+                            >
+                                Отозвать отклик
+                            </AppButton>
+                            <AppText
+                                className={s.responseText}
+                                text={"Вы отлкинулись, ожидайте приглашения"}
+                                variant={"notaccented"}
+                            />
+                        </>
+                    ) : (
                         <AppButton
                             onClick={() => setIsResponse(!isResponse)}
                             className={s.btn}
-                            disabled={isResponse}
                         >
                             Откликнуться
                         </AppButton>
-                        <AppButton
-                            onClick={() => setIsResponse(!isResponse)}
-                            className={cn(s.btn, s.cancelBtn)}
-                        >
-                            Отозвать отклик
-                        </AppButton>
-                        <AppText
-                            className={s.responseText}
-                            text={"Вы отлкинулись, ожидайте приглашения"}
-                            variant={"notaccented"}
-                        />
-                    </>
-                ) : (
-                    <AppButton
-                        onClick={() => setIsResponse(!isResponse)}
-                        className={s.btn}
-                    >
-                        Откликнуться
-                    </AppButton>
-                )}
+                    )
+                ) : null}
             </AppCard>
             <AppCard className={s.aboutCompany} variant={"primary"}>
                 {conditions ? <AppText size="m" title={company?.name} /> : null}

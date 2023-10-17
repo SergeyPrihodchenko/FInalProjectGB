@@ -11,6 +11,10 @@
     display: flex;
 }
 
+.footerNav {
+    display: flex;
+    flex-direction: column;
+}
 .footerBottom {
     display: flex;
     justify-content: space-between;

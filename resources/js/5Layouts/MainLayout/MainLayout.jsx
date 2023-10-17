@@ -16,13 +16,14 @@ const MainLayout = (porps) => {
     const LOCALSTORAGE_THEME_KEY = "theme";
     const defaultTheme = localStorage.getItem(LOCALSTORAGE_THEME_KEY);
     const [theme, setTheme] = useState(defaultTheme);
+
     const dispatch = useDispatch();
     // console.log("theme", theme);
     // console.log("s", s);
 
     const { children, user, className } = porps;
     // console.log(".jsx porps", porps);
-    const locationPath = window.location.pathname;
+    const locationPath = window.location;
 
     const switchTheme = (theme) => {
         let newTheme;

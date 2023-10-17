@@ -13,10 +13,19 @@ function ErrorPage(props) {
                 text={"Произошла непредвиденная ошибка"}
                 variant={"error"}
             />
-            
-            <AppButton onClick={reloadPage} className={s.btn}>
-                {"Обновить страницу"}
-            </AppButton>
+            <div className={s.btns}>
+                <AppButton
+                    onClick={() => {
+                        location.replace("/");
+                    }}
+                    className={s.btn}
+                >
+                    {"На главную"}
+                </AppButton>
+                <AppButton onClick={reloadPage} className={s.btn}>
+                    {"Обновить страницу"}
+                </AppButton>
+            </div>
         </div>
     );
 }

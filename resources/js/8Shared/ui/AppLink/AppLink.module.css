@@ -58,6 +58,15 @@
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
 }
+.lightAccent {
+    color: var(--light-color);
+    transition: var(--transition-delay) linear;
+}
+
+.lightAccent:hover {
+    color: var(--accent);
+    transition: var(--transition-delay) linear;
+}
 .accent.active {
     color: var(--secondary-text);
 }
