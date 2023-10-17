@@ -4,6 +4,7 @@ import style from "../ProfilePageForm/ProfilePageForm.module.css";
 import { useForm } from "@inertiajs/react";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppText from "@/8Shared/ui/AppText/AppText";
+import AppInput from "@/8Shared/ui/AppInput/AppInput";
 
 function DeleteProfileForm() {
     const passwordInput = useRef();
@@ -24,14 +25,15 @@ function DeleteProfileForm() {
 
     return (
         <form onSubmit={destroyProfile} className={s.formProfileDelete}>
-            <input
+            <AppInput
+                width={"400px"}
                 id="password"
                 ref={passwordInput}
                 value={data.password}
-                className={s.inputFormProfileDelete}
                 type="password"
-                placeholder="Введите пароль"
+                placeholder="Введите пароль, чтобы удалить аккаунт"
                 onChange={(e) => setData("password", e.target.value)}
+                variant="primary"
             />
             <div className={style.divLeft}>
                 <AppButton
@@ -39,7 +41,9 @@ function DeleteProfileForm() {
                     colorType="cancel"
                     sizeText="m"
                     type="submit"
-                >Удаление аккаунта</AppButton>
+                >
+                    Удаление аккаунта
+                </AppButton>
             </div>
         </form>
     );

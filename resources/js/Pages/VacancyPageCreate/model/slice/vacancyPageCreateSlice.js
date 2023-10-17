@@ -4,6 +4,9 @@ const initialState = {
     vacancyNameInput: "",
     vacancyCityInput: "",
     vacancyPaymentInput: "",
+    vacancyExperience: "",
+    vacancySchedule: "",
+    vacancyEmployment: "",
     requirementsInput: "",
     requirementsList: [],
     responsibilitiesInput: "",
@@ -30,6 +33,15 @@ export const vacancyPageCreateSlice = createSlice({
         },
         setVacancyPaymentInput: (state, action) => {
             state.vacancyPaymentInput = action.payload;
+        },
+        setVacancyExperience: (state, action) => {
+            state.vacancyExperience = action.payload;
+        },
+        setVacancySchedule: (state, action) => {
+            state.vacancySchedule = action.payload;
+        },
+        setVacancyEmployment: (state, action) => {
+            state.vacancyEmployment = action.payload;
         },
         // Требования
         setRequirementsInput: (state, action) => {
@@ -121,6 +133,9 @@ export const {
     setContactsPhoneInput,
     setContactsList,
     removeContactsItem,
+    setVacancyExperience,
+    setVacancySchedule,
+    setVacancyEmployment
 } = vacancyPageCreateSlice.actions;
 
 export default vacancyPageCreateSlice.reducer;

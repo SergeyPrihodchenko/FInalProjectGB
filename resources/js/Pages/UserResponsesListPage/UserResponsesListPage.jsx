@@ -47,8 +47,7 @@ const UserResponsesListPage = ({ auth, vacancies }) => {
     ];
     useEffect(() => {
         const getStatusEachVacancy = async () => {
-            const res = await axios.get('/viewed');
-            console.log(res.data);
+
         }
         // getStatus();
     }, [])
@@ -75,7 +74,7 @@ const UserResponsesListPage = ({ auth, vacancies }) => {
                             payment={item.payment}
                             experience={item.experience}
                             schedule={item.schedule}
-                        // logo={item.logo}
+                            status={item.status}
                         />
                     ))}
                     {responsesList.length === 0 && <p>У вас нет активных откликов.</p>}

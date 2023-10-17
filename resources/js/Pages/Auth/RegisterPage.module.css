@@ -1,3 +1,6 @@
+.registerItem {
+    margin-top: var(--indent-xs);
+}
 .btn {
     margin-left: 16px;
 }

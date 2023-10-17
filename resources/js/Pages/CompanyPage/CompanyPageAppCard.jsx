@@ -3,55 +3,74 @@ import cn from "classnames";
 import s from "./CompanyPage.module.css";
 import AppButton from "@/8Shared/ui/AppButton/AppButton.jsx";
 import PropTypes from "prop-types";
-import {router} from "@inertiajs/react";
+import { router } from "@inertiajs/react";
+import AppCard from "@/8Shared/ui/AppCard/AppCard";
+import AppText from "@/8Shared/ui/AppText/AppText";
+import AppLink from "@/8Shared/ui/AppLink/AppLink";
 
-const CompanyPageAppCard = ({ img, city, isSubscribed, company, user, companyImageURL }) => {
-    console.log('companyImageURL', companyImageURL)
-    console.log('isSubscribed', isSubscribed)
-    console.log(user.id);
+const CompanyPageAppCard = ({
+    img,
+    city,
+    isSubscribed,
+    company,
+    user,
+    companyImageURL,
+}) => {
+    // console.log("companyImageURL", companyImageURL);
+    // console.log(user.id);  http://public/storage/
     const sub = () => {
         router.get(route("subscribe", [user.id, company.id]));
     };
     const unsub = () => {
         router.get(route("unsubscribe", [user.id, company.id]));
     };
-
+    console.log("CompanyPageAppCard city", city);
+    console.log("CompanyPageAppCard company", company);
+    console.log("CompanyPageAppCard user", user);
     return (
-        <div className={cn(s.companyPageLeft)}>
-            <section className={cn(s.companyPageLeftCard)}>
+        <div className={cn(s.companyPageLeftCard)}>
+            {/* {companyImageURL && (
                 <div className={cn(s.companyPageLeftCardLogo)}>
-                    {/*<img src={company?.logo || img} alt="Лого" />*/}
-                    <img src={companyImageURL} alt="Лого" style={{width: '150px', height: '150px'}} />
+                    <img
+                        src={companyImageURL.replace(
+                            "http://public/storage/",
+                            ""
+                        )}
+                        alt="Лого"
+                        style={{ width: "150px", height: "150px" }}
+                    />
                 </div>
-                <div className={cn(s.companyPageLeftCardInfo)}>
-                    <div className={cn(s.companyPageLeftCardInfoCard)}>
-                        <div className={cn(s.companyPageLeftCardInfoText)}>
-                            {company?.city || city}
-                        </div>
-                        <div className={cn(s.companyPageLeftCardInfoText)}>
-                            {company?.date_create || city}
-                        </div>
-                        <a
+            )} */}
+            <div className={cn(s.companyPageLeftCardInfo)}>
+                <div className={cn(s.companyPageLeftCardInfoCard)}>
+                    <AppText
+                        className={cn(s.companyPageLeftCardInfoText)}
+                        title={company?.city || city}
+                    />
+                    {company?.date_create && (
+                        <AppText text={company?.date_create} />
+                    )}
+                    {company?.website && (
+                        <AppLink
                             className={cn(s.companyPageLeftCardInfoLink)}
                             href="#"
                         >
-                            {company?.website || 'test.ru'}
+                            {company?.website || test.ru}
+                        </AppLink>
+                    )}
+                </div>
+                <div className={cn(s.companyPageLeftCardInfoCard)}>
+                    <AppText
+                        className={cn(s.companyPageLeftCardInfoText)}
+                        text={"Вакансии"}
+                    />
 
-                        </a>
-                    </div>
-                    <div className={cn(s.companyPageLeftCardInfoCard)}>
-                        <div
-                            className={cn(
-                                s.companyPageLeftCardInfoText,
-                                s.companyPageStrong
-                            )}
-                        >
-                            Вакансии
-                        </div>
-                        <a
+                    {company?.vacancyList ? (
+                        <AppLink
                             className={cn(s.companyPageLeftCardInfoLink)}
                             href="#"
                         >
+
                             1 активная вакансия
                         </a>
                     </div>
@@ -70,53 +89,68 @@ const CompanyPageAppCard = ({ img, city, isSubscribed, company, user, companyIma
                             {company?.business_profile || 'companyName'}
                         </div>
                     </div>
+
                 </div>
-                <div className={cn(s.companyPageLeftToolbar)}>
+
+                <div className={cn(s.companyPageLeftCardInfoCard)}>
+                    {company?.business_profile ? (
+                        <>
+                            <AppText
+                                className={cn(s.companyPageLeftCardInfoText)}
+                                text={"Сферы деятельности"}
+                            />
+                            <AppText
+                                size={"s"}
+                                variant="notaccented"
+                                className={cn(s.companyPageLeftCardInfoText)}
+                                text={company?.business_profile}
+                            />
+                        </>
+                    ) : null}
+                </div>
+            </div>
+            <div className={cn(s.companyPageLeftToolbar)}>
+                {/* <AppButton
+                    className={cn(s.companyPageLeftToolbarButton)}
+                    width="100%"
+                    variant="outline"
+                    colorType="notAccent"
+                    sizeText="s"
+                >
+                    Я хочу тут работать
+                </AppButton> */}
+                {/* {isSubscribed ? (
                     <AppButton
+                        onClick={unsub}
                         className={cn(s.companyPageLeftToolbarButton)}
                         width="100%"
-                        variant="outline"
-                        colorType="notAccent"
                         sizeText="s"
                     >
-                        Я хочу тут работать
+                        Отписаться
                     </AppButton>
-                    {isSubscribed ?
-                        <AppButton
-                            onClick={unsub}
-                            className={cn(s.companyPageLeftToolbarButton)}
-                            width="100%"
-                            variant="outline"
-                            colorType="notAccent"
-                            sizeText="s"
-                        >
-                            Отписаться
-                        </AppButton> :
-                        <AppButton
-                            onClick={sub}
-                            path={'subscribe'}
-                            //param={company.id}
-                            className={cn(s.companyPageLeftToolbarButton)}
-                            width="100%"
-                            variant="outline"
-                            colorType="notAccent"
-                            sizeText="s"
-                        >
-                            Подписаться
-                        </AppButton>
-                    }
+                ) : (
+                    <AppButton
+                        onClick={sub}
+                        path={"subscribe"}
+                        //param={company.id}
+                        className={cn(s.companyPageLeftToolbarButton)}
+                        width="100%"
+                        sizeText="s"
+                    >
+                        Подписаться
+                    </AppButton>
+                )} */}
 
-                    {/*<AppButton*/}
-                    {/*    className={cn(s.companyPageLeftToolbarButton)}*/}
-                    {/*    width="100%"*/}
-                    {/*    variant="outline"*/}
-                    {/*    colorType="notAccent"*/}
-                    {/*    sizeText="s"*/}
-                    {/*>*/}
-                    {/*    Подписаться*/}
-                    {/*</AppButton>*/}
-                </div>
-            </section>
+                {/*<AppButton*/}
+                {/*    className={cn(s.companyPageLeftToolbarButton)}*/}
+                {/*    width="100%"*/}
+                {/*    variant="outline"*/}
+                {/*    colorType="notAccent"*/}
+                {/*    sizeText="s"*/}
+                {/*>*/}
+                {/*    Подписаться*/}
+                {/*</AppButton>*/}
+            </div>
         </div>
     );
 };

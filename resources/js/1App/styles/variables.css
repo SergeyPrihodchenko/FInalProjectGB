@@ -54,15 +54,16 @@
     /* Colors */
     --overlay-color: rgba(0 0 0 / 60%);
     --error-color: #ff0000cc;
+    --light-color: white;
 
     /* Border-radius */
     --border-radius-l: 33px;
     --border-radius-s: 8px;
 
     /* Indent-Margin-Padding*/
-    --indent-xxs: 8px;
-    --indent-xs: 12px;
-    --indent-s: 16px;
+    --indent-xs: 8px;
+    --indent-s: 12px;
+    --indent-m: 16px;
     --indent-l: 20px;
     --indent-xl: 24px;
     --indent-xxl: 32px;

@@ -11,7 +11,7 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 function UserResumeListPage({ resumes }) {
     const user = usePage().props.auth.user;
 
-    console.log(resumes);
+  //  console.log(resumes);
 
     return (
         <AuthContext.Provider value={{ user }}>
@@ -91,11 +91,6 @@ function UserResumeListPage({ resumes }) {
                                                 size="xs"
                                             />
                                         </div>
-                                        
-                                        <div class={s.userPhoto}>
-                                            НЕТ ФОТО
-                                            {/* <img src="#" className={s.imgUserPhoto}/> */}
-                                        </div>
                                     </div>
                                     <div className={s.linkViewResume}>
                                         <AppButton
@@ -121,8 +116,6 @@ function UserResumeListPage({ resumes }) {
                                         >
                                             Редактировать резюме
                                         </AppButton>
-
-{/* Сделать активной кнопку редаткировать только для пользователя чье резюме открыто */}
                                     </div>
                                 </div>
                             );

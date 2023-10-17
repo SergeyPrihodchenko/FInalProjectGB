@@ -48,7 +48,13 @@ function AppLink(props) {
 
 AppLink.propTypes = {
     sizeText: PropTypes.oneOf(["xs", "s", "m", "l", "xl"]),
-    colorType: PropTypes.oneOf(["accent", "primary", "secondary"]),
+    colorType: PropTypes.oneOf([
+        "accent",
+        "primary",
+        "secondary",
+        "primaryAccent",
+        "lightAccent",
+    ]),
     variant: PropTypes.oneOf(["filled", "outline", "clear"]),
     bold: PropTypes.bool,
 };

@@ -49,7 +49,7 @@ const MainPage = (props) => {
                 </AppPage>
             </Banner>
             <AppPage>
-                <div className="categoryContainer">
+                {/* <div className="categoryContainer">
                     <AppText
                         bold
                         title={"Категории"}
@@ -76,7 +76,7 @@ const MainPage = (props) => {
                             </AppLink>
                         ))}
                     </div>
-                </div>
+                </div> */}
 
                 <div className="vacancyContainer mb-[20px]">
                     <AppText

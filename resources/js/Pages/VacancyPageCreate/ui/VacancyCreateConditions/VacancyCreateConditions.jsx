@@ -42,7 +42,7 @@ function VacancyCreateConditions({ errors }) {
                 </div>
             ) : null}
             <AppInput
-                errorMessage={errors.title}
+                // errorMessage={errors.title}
                 label="Условия работы"
                 value={conditionsInput}
                 onChange={(e) => {

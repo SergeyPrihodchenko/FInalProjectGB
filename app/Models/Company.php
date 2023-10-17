@@ -21,7 +21,6 @@ class Company extends Model
         'phone_number',
         'description',
         'creator_id',
-        'logo',
         'city'
 
     ];

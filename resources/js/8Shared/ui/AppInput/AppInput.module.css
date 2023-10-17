@@ -9,6 +9,8 @@
     padding: 0 0 0 12px;
     color: var(--primary-text);
     background-color: var(--secondary-bg);
+    margin-top: var(--indent-xs);
+    transition: linear var(--transition-delay);
 }
 
 input::placeholder {
@@ -18,7 +20,12 @@ input::placeholder {
 
 .input:focus {
     outline: none;
-    border: 2px solid #0fc3fc;
+    border: 2px solid var(--accent);
+}
+input:hover {
+    border: 2px solid var(--accent);
+    transition: linear var(--transition-delay);
+    cursor: pointer;
 }
 
 .radiusL {

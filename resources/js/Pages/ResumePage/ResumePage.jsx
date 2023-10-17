@@ -9,12 +9,13 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 
 function ResumePage({ resume, author }) {
-    
+
     const user = usePage().props.auth.user;
     const userEmail = usePage().props.auth.user.email;
 
-    console.log(author.id);
-    console.log(user.id);
+    // console.log(author.id);
+    // console.log(user.isRol);
+    console.log('resume', resume);
 
     const { data } = useForm({
         author_email: author.email,
@@ -35,31 +36,34 @@ function ResumePage({ resume, author }) {
         experience: resume.experience,
         relocation: resume.relocation,
     });
+    const handleRefuseResume = async (resume_id, vacancy_id) => {
+
+    }
 
     //высчитываем из даты рождения сколько полных лет
     const dateOfBirth = data.date_of_birth;
 
     function declOfNum(number, titles) {
-       let cases = [2, 0, 1, 1, 1, 2];
+        let cases = [2, 0, 1, 1, 1, 2];
         return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-      }
-      
-      function birthDateToAge(b) {
+    }
+
+    function birthDateToAge(b) {
         var n = new Date(),
             b = new Date(b),
             age = n.getFullYear() - b.getFullYear();
         return n.setFullYear(1970) < b.setFullYear(1970) ? age - 1 : age;
-      }
-      const Years = (declOfNum(birthDateToAge(dateOfBirth), ['год', 'года', 'лет']));
+    }
+    const Years = (declOfNum(birthDateToAge(dateOfBirth), ['год', 'года', 'лет']));
     //  console.log(Years);
 
     //переводим из падежа в существительное gender пользователя
     const dataGender = data.gender;
     function dataGenderOfUser() {
         let gender = "";
-        if (dataGender == "Мужской"){
+        if (dataGender == "Мужской") {
             gender = "Мужчина";
-        }else{
+        } else {
             gender = "Женщина";
         }
         return gender;
@@ -73,15 +77,15 @@ function ResumePage({ resume, author }) {
     const dateOfBirthUser = dateSrc.split(".").join(" ");
 
     //форматы даты и периода работы
-    function dateFormatYearsMonch(date){
+    function dateFormatYearsMonch(date) {
         const dayFormat = new Date(date);
-        const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric'});
+        const dateSrc = dayFormat.toLocaleString('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' });
         const dateDst = dateSrc.split(".").join(" ");
         const present = " по настоящее время";
-        if(date == null){
+        if (date == null) {
             return present
-        }else{
-            return(
+        } else {
+            return (
                 dateDst
             )
         }
@@ -90,63 +94,49 @@ function ResumePage({ resume, author }) {
     //расчет стажа
     function declOfNum(number, titles) {
         let cases = [2, 0, 1, 1, 1, 2];
-            return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
-        }
-        
-        function worksExperience(endDate,startDate) {
-            let end, start, month, age;
-            start = new Date(startDate);
-            
-            if(endDate == null){
-                end = new Date();
-                month = end.getMonth() - start.getMonth(); 
-            }else{
-                end = new Date(endDate);
-                if(end.getMonth() > start.getMonth()) {
-                    month = end.getMonth() - start.getMonth();
-                }else{
-                    month = (12 + end.getMonth()) - start.getMonth();
-                }
+        return number + " " + titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+    }
+
+    function worksExperience(endDate, startDate) {
+        let end, start, month, age;
+        start = new Date(startDate);
+
+        if (endDate == null) {
+            end = new Date();
+            month = end.getMonth() - start.getMonth();
+        } else {
+            end = new Date(endDate);
+            if (end.getMonth() > start.getMonth()) {
+                month = end.getMonth() - start.getMonth();
+            } else {
+                month = (12 + end.getMonth()) - start.getMonth();
             }
-            
-            age = end.getFullYear() - start.getFullYear();
-            
-            console.log(month);    
-            return (
-                (declOfNum(end.setFullYear(1970) < start.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет'])) 
-                    + " " 
-                    + 
-                (declOfNum(end.setMonth() < start.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
-            )
         }
-          
+
+        age = end.getFullYear() - start.getFullYear();
+
+        console.log(month);
+        return (
+            (declOfNum(end.setFullYear(1970) < start.setFullYear(1970) ? age - 1 : age, ['год', 'года', 'лет']))
+            + " "
+            +
+            (declOfNum(end.setMonth() < start.setMonth() ? month - 1 : month, ['месяц', 'месяца', 'месяцев']))
+        )
+    }
+
     return (
         <>
             <AppPage>
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
-                        {/* <div className={s.buttonLinkResumeList}>
-                            <AppButton
-                                href={route("resume.myresumes")}
-                                variant="clear"
-                                className={s.linkResumePage}
-                                sizeText = "s"
-                            >
-                                К списку моих резюме
-                            </AppButton>
-                        </div> */}
                         <div class={s.baceData}>
                             <div class={s.userBaceData}>
-                                {/* <AppText 
-                                    text={"Сейчас на сайте"} 
-                                    size="s" 
-                                /> */}
                                 <AppText
                                     title={data.last_name.concat(" ", data.first_name)}
                                     size="s"
                                     bold
                                 />
-                                <AppText 
+                                <AppText
                                     size="s"
                                     text={genderOfUser.concat(", ", Years, ", ", dateOfBirthUser, " года рождения")}
                                 />
@@ -160,9 +150,9 @@ function ResumePage({ resume, author }) {
                                     <div className={s.userEmail}>
                                         <AppText
                                             text={data.author_email}
-                                            size="s" 
+                                            size="s"
                                             variant="accent"
-                                            className={s.userEmailText}   
+                                            className={s.userEmailText}
                                         />
                                         <AppText
                                             text={
@@ -174,43 +164,29 @@ function ResumePage({ resume, author }) {
                                     </div>
                                 </div>
 
-                                <AppText 
-                                    text={data.region} 
-                                        size="s" 
-                                    />
-                                    <AppText 
+                                <AppText
+                                    text={data.region}
+                                    size="s"
+                                />
+                                <AppText
                                     text={
                                         "Готовность к переездам: ".concat(resume.relocation)
-                                    } 
-                                        size="s" 
-                                    />
-                                    <AppText 
+                                    }
+                                    size="s"
+                                />
+                                <AppText
                                     text={
-                                        "Готовность к командировкам: ".concat( resume.buisness_travel)
-                                    } 
-                                        size="s" 
-                                    />
-                                {/* <div className={s.userSearchArea}>
-                                    <AppText
-                                        text={"Указан примерный район поиска работы"}
-                                        size="s"
-                                        variant={"error"}
-                                    />
-                                    <a href="#" className={s.linkResumePage}>
-                                        Показать карту
-                                    </a>
-                                </div> */}
+                                        "Готовность к командировкам: ".concat(resume.buisness_travel)
+                                    }
+                                    size="s"
+                                />
                             </div>
-                            <div class={s.userPhoto}>
-                                            НЕТ ФОТО
-                                            {/* <img src="#" className={s.imgUserPhoto}/> */}
-                                        </div>
                         </div>
 
                         <div className={s.userSpeciality}>
                             <AppText title={data.profession} size="s" bold />
                             <div className={s.specialization}>
-                                    <AppText text={"Специализации:"} size="s" />
+                                <AppText text={"Специализации:"} size="s" />
                                 {
                                     data.educational_institute != null ? (
                                         data.educational_institute.map((el) => {
@@ -218,128 +194,122 @@ function ResumePage({ resume, author }) {
                                                 <AppText
                                                     text={" - ".concat(el.specialization)}
                                                     size="s"
-                                                    className={s.specializationText}   
+                                                    className={s.specializationText}
                                                 />
-                                        )
+                                            )
                                         })
-                                    ):null
-                                    
-                                }
-                            </div> 
-                                <AppText 
-                                    text={"Занятость: ".concat(resume.employment_type) } 
-                                    size="s" 
-                                />
+                                    ) : null
 
-                                <AppText 
-                                    text={"График работы: ".concat(resume.schedule_type)} 
-                                    size="s" 
-                                />   
+                                }
+                            </div>
+                            <AppText
+                                text={"Занятость: ".concat(resume.employment_type)}
+                                size="s"
+                            />
+
+                            <AppText
+                                text={"График работы: ".concat(resume.schedule_type)}
+                                size="s"
+                            />
                         </div>
                         <div className={s.workExperience}>
-                                    {/* <AppText
-                                        title={"4 года 9 месяцев"}
-                                        size="s"
-                                        bold
-                                        variant={"error"}
-                                    /> */}
-                        {
-                            data.companies != null ? (
-                            data.companies.map((el) => {
-                                
-                                //дата начала и окончания работы
-                                let dataWorkBegin = el.start_date;
-                                let dataWorkEnd = el.end_date;
-                                
-                                //форматы даты и периода работы
-                                const dataWorksBegin = dateFormatYearsMonch(dataWorkBegin);
-                                const dataWorksEnd = dateFormatYearsMonch(dataWorkEnd);
+                            {
+                                data.companies != null ? (
+                                    data.companies.map((el) => {
 
-                                //расчет стажа
-                                const Years = (worksExperience(dataWorkEnd, dataWorkBegin));
-                                                                                                
-                                return (
-                                    <>
-                                        <div className={s.workPeriods}>
-                                            <div className={s.userWorkPeriod}>
-                                                <AppText
-                                                    text={dataWorksBegin.concat(" - ", dataWorksEnd)}
-                                                    size="s"
-                                                />
-                                                <AppText
-                                                    text={Years}
-                                                    size="s"
-                                                />
-                                            </div>
+                                        //дата начала и окончания работы
+                                        let dataWorkBegin = el.start_date;
+                                        let dataWorkEnd = el.end_date;
 
-                                            <div className={s.descriptionExperience}>
-                                                <div className={s.company}>
-                                                    <AppButton
-                                                        variant="clear"
-                                                        sizeText="s"
-                                                        className={s.userEmailText}
-                                                        href="#"
-                                                    >{el.name}
-                                                    </AppButton>
+                                        //форматы даты и периода работы
+                                        const dataWorksBegin = dateFormatYearsMonch(dataWorkBegin);
+                                        const dataWorksEnd = dateFormatYearsMonch(dataWorkEnd);
+
+                                        //расчет стажа
+                                        const Years = (worksExperience(dataWorkEnd, dataWorkBegin));
+
+                                        return (
+                                            <>
+                                                <div className={s.workPeriods}>
+                                                    <div className={s.userWorkPeriod}>
+                                                        <AppText
+                                                            text={dataWorksBegin.concat(" - ", dataWorksEnd)}
+                                                            size="s"
+                                                        />
+                                                        <AppText
+                                                            text={Years}
+                                                            size="s"
+                                                        />
+                                                    </div>
+
+                                                    <div className={s.descriptionExperience}>
+                                                        <div className={s.company}>
+                                                            <AppButton
+                                                                variant="clear"
+                                                                sizeText="s"
+                                                                className={s.userEmailText}
+                                                                href="#"
+                                                            >{el.name}
+                                                            </AppButton>
+                                                        </div>
+
+                                                        <div className={s.responsibilities}>
+                                                            <AppText
+                                                                bold
+                                                                title={el.position}
+                                                                size="s"
+                                                            />
+
+                                                            <AppText
+                                                                size="s"
+                                                                text={el.achievements}
+                                                            />
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                        
-                                                <div className={s.responsibilities}>
-                                                    <AppText
-                                                        bold                                                            
-                                                        title={el.position}
-                                                        size="s"
-                                                    />
+                                            </>
+                                        )
+                                    })
+                                ) : null
+                            }
+                        </div>
 
-                                                    <AppText
-                                                        size="s"
-                                                        text={el.achievements}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>               
-                                    </>
-                                )
-                            })
-                            ):null
-                        }
-                       </div>  
-                        
                         <div className={s.keySkills}>
-                            
+
                             <AppText
                                 title={"Ключевые навыки"}
                                 size="s"
                                 bold
                             />
-                           
-                            { 
-                                data.skills !=null ? (
-                                data.skills.map((el) => {
-                                    return (
-                                        <div className={s.keySkillsTextAll}>
-                                            <div>
-                                                <AppText
-                                                    text={el}
-                                                    size="s"
-                                                    className={s.keySkillsText}
-                                                />
+
+                            {
+                                data.skills != null ? (
+                                    data.skills.map((el) => {
+                                        return (
+                                            <div className={s.keySkillsTextAll}>
+                                                <div>
+                                                    <AppText
+                                                        text={el}
+                                                        size="s"
+                                                        className={s.keySkillsText}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                    )
-                                })
-                                ):null
+                                        )
+                                    })
+                                ) : null
                             }
                         </div>
                         <div className={s.aboutUser}>
                             <div className={s.aboutUserTitle}>
-                                <AppText 
-                                bold 
-                                title={"Обо мне"} 
-                                size="s" 
+                                <AppText
+                                    bold
+                                    title={"Обо мне"}
+                                    size="s"
 
-                            />
+                                />
                             </div>
-                            
+
                             <div className={s.aboutUserTextAll}>
                                 <AppText
                                     text={resume.about_me}
@@ -348,40 +318,40 @@ function ResumePage({ resume, author }) {
                                 />
                             </div>
                         </div>
-                           
+
                         <div className={s.education}>
                             <AppText
                                 bold
                                 title={data.education}
                                 size="s"
                             />
-                             
-                            { 
+
+                            {
                                 data.educational_institute != null ? (
-                                data.educational_institute.map((el) => {
-                                    let yearsEducationEnd = new Date(el.graduation_year);
-                                    let yearsEducationStart = new Date(el.start_year);
-                                    
-                                    let yearsEducationExit = yearsEducationEnd.getFullYear();
-                                    let yearsEducationBegin = yearsEducationStart.getFullYear();
-                                    return (
-                                        <div className={s.educationPeriods}>
-                                            <div className={s.userEducationPeriod}>
-                                                <AppText
-                                                    text={yearsEducationBegin + " - " + yearsEducationExit}
-                                                    size="s"
-                                                />
+                                    data.educational_institute.map((el) => {
+                                        let yearsEducationEnd = new Date(el.graduation_year);
+                                        let yearsEducationStart = new Date(el.start_year);
+
+                                        let yearsEducationExit = yearsEducationEnd.getFullYear();
+                                        let yearsEducationBegin = yearsEducationStart.getFullYear();
+                                        return (
+                                            <div className={s.educationPeriods}>
+                                                <div className={s.userEducationPeriod}>
+                                                    <AppText
+                                                        text={yearsEducationBegin + " - " + yearsEducationExit}
+                                                        size="s"
+                                                    />
+                                                </div>
+                                                <div className={s.descriptionEducation}>
+                                                    <AppText
+                                                        size="s"
+                                                        text={el.title}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className={s.descriptionEducation}>
-                                                <AppText
-                                                    size="s"
-                                                    text={el.title}
-                                                />
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                                ):null
+                                        )
+                                    })
+                                ) : null
                             }
                         </div>
 
@@ -391,23 +361,23 @@ function ResumePage({ resume, author }) {
                                 size="s"
                                 bold
                             />
-                            <AppText 
-                                text={"Гражданство: ".concat(data.citizenship)} 
-                                size="s" 
+                            <AppText
+                                text={"Гражданство: ".concat(data.citizenship)}
+                                size="s"
                             />
-                                
+
                             <AppText
                                 text={"Разрешение на работу: ".concat(data.work_permit)}
                                 size="s"
                             />
-{/* не знаю откуда тянуть эту информацию */}                                
+                            {/* не знаю откуда тянуть эту информацию */}
                             {/* <AppText
                                 text={"Желательное время в пути до работы".concat(": не имеет значения")}
                                 size="s"
                                 variant={"error"}
                             /> */}
                         </div>
-                        { 
+                        {
                             author.id == user.id ? (
                                 <div className={s.buttonResumePage}>
                                     <AppButton
@@ -416,16 +386,14 @@ function ResumePage({ resume, author }) {
                                         key={resume.id}
                                         type="submit"
                                         bold
-                                        sizeText="s"    
+                                        sizeText="s"
                                     >
-                                    <span>Редактировать</span>
+                                        <span>Редактировать</span>
                                     </AppButton>
                                 </div>
-                            ):null
+                            ) : null
                         }
-                        
-                        
-                    </main> 
+                    </main>
                 </container>
             </AppPage>
         </>

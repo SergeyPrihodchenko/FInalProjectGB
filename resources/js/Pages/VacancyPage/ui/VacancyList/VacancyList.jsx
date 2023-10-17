@@ -5,9 +5,9 @@ import cn from "classnames";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import AppCard from "@/8Shared/ui/AppCard/AppCard";
 import AppLink from "@/8Shared/ui/AppLink/AppLink";
+import { useState } from "react";
 
 export default function VacancyList(props) {
-    // console.log(props);
     const { className, vacancy } = props;
     const {
         description,
@@ -17,7 +17,18 @@ export default function VacancyList(props) {
         responsibilities,
         conditions,
     } = vacancy;
-    console.log("skills", typeof skills);
+    // const [vacancyRequirements] = useState(JSON.parse(requirements));
+    // const [vacancyResponsibilities] = useState(JSON.parse(responsibilities));
+    // const [vacancyConditions] = useState(JSON.parse(conditions));
+    // const [vacancySkills] = useState(JSON.parse(skills));
+
+    const [vacancyRequirements] = useState(requirements);
+    const [vacancyResponsibilities] = useState(responsibilities);
+    const [vacancyConditions] = useState(conditions);
+    const [vacancySkills] = useState(skills);
+
+    console.log(vacancyRequirements, vacancyResponsibilities, vacancyConditions, vacancySkills);
+    // console.log("VacancyPage/VacancyList vacancy", vacancy);
     return (
         <div className={cn(s.vacancyList, className)}>
             {description ? (
@@ -27,20 +38,20 @@ export default function VacancyList(props) {
             ) : null}
 
             {/* Requirements */}
-            {requirements ? (
-                typeof requirements === "string" ? (
+            {vacancyRequirements ? (
+                typeof vacancyRequirements === "string" ? (
                     <div className={s.vacancyItem}>
                         <AppText title={"Требования"} bold />
                         <AppText text={`- ${requirements}`} />
                     </div>
                 ) : (
                     <div className={s.vacancyList}>
-                        {requirements?.map((requirementsItem, index) => {
+                        <AppText title={"Требования"} bold />
+                        {vacancyRequirements?.map((requirementsItem, index) => {
                             return (
                                 <div className={s.vacancyItem} key={index}>
                                     <AppText
-                                        title={requirementsItem.title}
-                                        bold
+                                        title={`- ${requirementsItem}`}
                                     />
                                     {requirementsItem.list &&
                                         requirementsItem.list.map(
@@ -67,21 +78,21 @@ export default function VacancyList(props) {
             ) : null}
 
             {/* Responsibilities */}
-            {responsibilities ? (
-                typeof responsibilities === "string" ? (
+            {vacancyResponsibilities ? (
+                typeof vacancyResponsibilities === "string" ? (
                     <div className={s.vacancyItem}>
                         <AppText title={"Обязаности"} bold />
                         <AppText text={`- ${responsibilities}`} />
                     </div>
                 ) : (
                     <div className={s.vacancyList}>
-                        {responsibilities?.map(
+                        <AppText title={"Обязаности"} bold />
+                        {vacancyResponsibilities?.map(
                             (responsibilitiesItem, index) => {
                                 return (
                                     <div className={s.vacancyItem} key={index}>
                                         <AppText
-                                            title={responsibilitiesItem.title}
-                                            bold
+                                            title={responsibilitiesItem}
                                         />
                                         {responsibilitiesItem.list &&
                                             responsibilitiesItem.list.map(
@@ -109,20 +120,20 @@ export default function VacancyList(props) {
             ) : null}
 
             {/*Сonditions */}
-            {conditions ? (
-                typeof conditions === "string" ? (
+            {vacancyConditions ? (
+                typeof vacancyConditions === "string" ? (
                     <div className={s.vacancyItem}>
                         <AppText title={"Условия"} bold />
                         <AppText text={`- ${conditions}`} />
                     </div>
                 ) : (
                     <div className={s.vacancyList}>
-                        {conditions?.map((conditionsItem, index) => {
+                        <AppText title={"Условия"} bold />
+                        {vacancyConditions?.map((conditionsItem, index) => {
                             return (
                                 <div className={s.vacancyItem} key={index}>
                                     <AppText
-                                        title={conditionsItem.title}
-                                        bold
+                                        title={conditionsItem}
                                     />
                                     {conditionsItem.list &&
                                         conditionsItem.list.map(
@@ -149,8 +160,8 @@ export default function VacancyList(props) {
             ) : null}
 
             {/* Skills */}
-            {skills ? (
-                typeof skills === "string" ? (
+            {vacancySkills ? (
+                typeof vacancySkills === "string" ? (
                     <div className={s.vacancyItem}>
                         <AppText title={"Ключевые навыки"} bold />
 
@@ -166,7 +177,7 @@ export default function VacancyList(props) {
                 ) : (
                     <div className={s.vacancyItem}>
                         <AppText title={skills?.title} bold />
-                        {skills?.skillsList.map((skill, index) => {
+                        {vacancySkills?.map((skill, index) => {
                             return (
                                 <AppCard
                                     variant="secondary"

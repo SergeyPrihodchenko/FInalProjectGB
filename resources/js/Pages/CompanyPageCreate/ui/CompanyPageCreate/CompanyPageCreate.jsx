@@ -7,25 +7,24 @@ import AppText from "@/8Shared/ui/AppText/AppText";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import { useSelector } from "react-redux";
-
-
-function CompanyPageCreate({ auth,  cities }) {
+import AppSelect from "@/8Shared/ui/AppSelect/AppSelect";
+import AppTextarea from "@/8Shared/ui/AppTextarea/AppTextarea";
+function CompanyPageCreate({ auth, cities }) {
     const user = auth?.user;
 
     const [selectedImage, setSelectedImage] = useState(null);
-    const {data, setData, post, errors} = useForm({
-//форма заполнена по умолчанию, чтобы не заполнять каждый раз, временно
-        email: '',
-        name: '',
-        business_profile: '',
-        website: '',
-        region_of_location: '',
-        phone_number: '',
-        description: '',
-        date_create: '',
-        logo: '',
-        city: '',
-    })
+    const { data, setData, post, errors } = useForm({
+        email: "",
+        name: "",
+        business_profile: "",
+        website: "",
+        region_of_location: "",
+        phone_number: "",
+        description: "",
+        date_create: "",
+        city: "",
+    });
+    const citiesName = cities.map((city) => city.title);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,8 +35,8 @@ function CompanyPageCreate({ auth,  cities }) {
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         setSelectedImage(file);
-        console.log('file', file);
-        setData('logo', file);
+        console.log("file", file);
+        setData("logo", file);
     };
 
     //Ввод данных компании
@@ -63,16 +62,12 @@ function CompanyPageCreate({ auth,  cities }) {
                     className={s.textTitle}
                 />
 
-                <form onSubmit={handleSubmit} encType='multipart/form-data'>
-
-
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
                     {/* Ввод данных компании */}
                     <div className={s.basiceData}>
                         <AppInput
                             value={data.email}
-                            onChange={(e) =>
-                                setData('email', e.target.value)
-                            }
+                            onChange={(e) => setData("email", e.target.value)}
                             label={"Email"}
                             type="text"
                             placeholder="Email"
@@ -81,7 +76,7 @@ function CompanyPageCreate({ auth,  cities }) {
 
                         <AppInput
                             value={data.name}
-                            onChange={(e) => setData('name', e.target.value)}
+                            onChange={(e) => setData("name", e.target.value)}
                             label={"Наименование"}
                             type="text"
                             placeholder="Наименование"
@@ -91,7 +86,7 @@ function CompanyPageCreate({ auth,  cities }) {
                         <AppInput
                             value={data.business_profile}
                             onChange={(e) =>
-                                setData('business_profile', e.target.value)
+                                setData("business_profile", e.target.value)
                             }
                             label={"Сферы деятельности"}
                             type="text"
@@ -99,16 +94,16 @@ function CompanyPageCreate({ auth,  cities }) {
                             className={s.indentDownBasiceData}
                         />
                         <AppInput
-                           id='region_of_location'
-                           name='region_of_location'
-                           value={data.region_of_location}
-                           onChange={
-                               (e) => setData("region_of_location", e.target.value)
-                           }
-                        //    value={regionLocationCompanyInput}
-                        //     onChange={(e) =>
-                        //         setRegionLocationCompanyInput(e.value.target)
-                        //     }
+                            id="region_of_location"
+                            name="region_of_location"
+                            value={data.region_of_location}
+                            onChange={(e) =>
+                                setData("region_of_location", e.target.value)
+                            }
+                            //    value={regionLocationCompanyInput}
+                            //     onChange={(e) =>
+                            //         setRegionLocationCompanyInput(e.value.target)
+                            //     }
                             label={"Юридический адрес компании"}
                             type="text"
                             placeholder="117418 Москва, ул. Новоселов стр 1 офис 5"
@@ -120,7 +115,7 @@ function CompanyPageCreate({ auth,  cities }) {
                             size={"xs"}
                             className={s.textTitle}
                         />
-                        <div className={s.logoCompanyUpload}>
+                        {/* <div className={s.logoCompanyUpload}>
                             <div className={s.fileLoadBlock}>
                                 <AppInput
                                     type="file"
@@ -141,39 +136,42 @@ function CompanyPageCreate({ auth,  cities }) {
                                     </AppButton>
                                     </div>
                                 </div>
-                        </div>
-                            <label htmlFor="city_id">
-                                <AppText
-                                    title = {"Город"}
-                                    bold
-                                    size={"xs"}
+                        </div> */}
+                        <AppSelect
+                            label={"Город"}
+                            id="city_id"
+                            name="city"
+                            value={data.city}
+                            onChange={(e) => setData("city", e.target.value)}
+                            options={[...citiesName]}
+                            firstStubNone
+                        />
+                        {/* <label htmlFor="city_id">
+                            <AppText title={"Город"} bold size={"xs"}></AppText>
+                        </label>
+
+                        <select
+                            id="city_id"
+                            name="city"
+                            value={data.city}
+                            onChange={(e) => setData("city", e.target.value)}
+                            className={s.inputCity}
+                        >
+                            {cities.map((city, index) => (
+                                <option
+                                    key={index}
+                                    value={city.title}
+                                    className={s.textTitle}
                                 >
-                                </AppText>
-                            </label>
-                            <select
-                                id='city_id'
-                                name='city'
-                                value={data.city}
-                                onChange={
-                                    (e) => setData("city", e.target.value)
-                                }
-                                className={s.inputCity}
-                            >
-                                {cities.map((city, index) => (
-                                    <option
-                                        key={index}
-                                        value={city.title}
-                                        className={s.textTitle}
-                                    >
-                                            {city.title}
-                                    </option>
-                                ))}
-                            </select>
+                                    {city.title}
+                                </option>
+                            ))}
+                        </select> */}
 
                         <AppInput
                             value={data.date_create}
                             onChange={(e) =>
-                                setData('date_create', e.target.value)
+                                setData("date_create", e.target.value)
                             }
                             label={"Дата основания"}
                             type="date"
@@ -184,7 +182,7 @@ function CompanyPageCreate({ auth,  cities }) {
                         <AppInput
                             value={data.phone_number}
                             onChange={(e) =>
-                                setData('phone_number', e.target.value)
+                                setData("phone_number", e.target.value)
                             }
                             label={"Контактный номер телефона"}
                             type="text"
@@ -194,16 +192,23 @@ function CompanyPageCreate({ auth,  cities }) {
 
                         <AppInput
                             value={data.website}
-                            onChange={(e) =>
-                                setData('website', e.target.value)
-                            }
+                            onChange={(e) => setData("website", e.target.value)}
                             label={"Сайт компании"}
                             type="text"
                             placeholder="https://GoodJobs.ru/"
                             className={s.indentDownBasiceData}
                         />
 
-                        <AppText
+                        <AppTextarea
+                            label={"Расскажите о вашей компании"}
+                            value={data.description}
+                            onChange={(e) =>
+                                setData("description", e.target.value)
+                            }
+                            placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
+                        />
+
+                        {/* <AppText
                             title={"Расскажите о вашей компании"}
                             bold
                             size={"xs"}
@@ -212,11 +217,11 @@ function CompanyPageCreate({ auth,  cities }) {
                         <textarea
                             value={data.description}
                             onChange={(e) =>
-                                setData('description', e.target.value)
+                                setData("description", e.target.value)
                             }
                             className={s.textareaBasiceData}
                             placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
-                        />
+                        /> */}
                     </div>
 
                     <AppButton

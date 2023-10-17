@@ -10,31 +10,78 @@ import {
     setVacancyPaymentInput,
 } from "../../model/slice/vacancyPageCreateSlice";
 import s from "../VacancyPageCreate/VacancyPageCreate.module.css";
-function VacancyCreateMainInfo({ errors }) {
+import { useEffect } from "react";
+import { useState } from "react";
+import List from "@/8Shared/List/List";
+import { useForm } from "@inertiajs/react";
+function VacancyCreateMainInfo({ errors, cities, cityError }) {
+    const {
+        vacancyNameInput,
+        vacancyCityInput,
+        vacancyPaymentInput
+    } = useSelector((state) => state.vacancyPageCreate);
+    const [citiesList, setCititesList] = useState([]);
+    const [openCitiesList, setOpenCititesList] = useState(false);
+    const handleCitiesList = (e) => {
+        dispatch(setVacancyCityInput(e.target.value));
+    }
     const dispatch = useDispatch();
-    const { vacancyNameInput, vacancyCityInput, vacancyPaymentInput } =
-        useSelector((state) => state.vacancyPageCreate);
+
+    useEffect(() => {
+        if (vacancyCityInput) {
+            const newList = cities.filter(item => item.title.toLowerCase().startsWith(vacancyCityInput.toLowerCase()));
+            console.log('newList', newList);
+            setCititesList(newList);
+        } else {
+            setCititesList([]);
+
+        }
+
+    }, [vacancyCityInput])
     return (
         <>
             <AppInput
-                label="Название вакакнсии"
+                label="Название вакансии"
                 placeholder="Должность"
+                name="title"
                 value={vacancyNameInput}
                 onChange={(e) => {
                     dispatch(setVacancyNameInput(e.target.value));
                 }}
                 errorMessage={errors.title}
             />
-            <AppInput
-                label="Где искать сотрудника"
-                placeholder="Город"
-                className={s.input}
-                value={vacancyCityInput}
-                onChange={(e) => {
-                    dispatch(setVacancyCityInput(e.target.value));
-                }}
-                errorMessage={errors.title}
-            />
+            <div style={{ position: 'relative' }}>
+
+                <AppInput
+                    autocomplete="off"
+                    label="Где искать сотрудника"
+                    placeholder="Город"
+                    className={s.input}
+                    name="city_id"
+                    value={vacancyCityInput}
+                    onChange={handleCitiesList}
+                    onClick={() => setOpenCititesList(!openCitiesList)}
+                    errorMessage={cityError}
+                />
+                {openCitiesList &&
+                    <List
+                        className={s.citiesList}
+                        list={citiesList}
+                        renderItem={(city) => <li
+                            key={city.id}
+                            className={s.citiesListItem}
+                            onClick={(e) => {
+                                dispatch(setVacancyCityInput(e.target.innerText));
+                                setOpenCititesList(false)
+                            }
+                            }
+                        >
+                            {city.title}
+                        </li>}
+                    >
+                    </List>}
+            </div>
+
             <div>
                 <AppText
                     text="Предполагаемый уровень дохода в месяц или за объем работ"
@@ -64,7 +111,7 @@ function VacancyCreateMainInfo({ errors }) {
                     </div>
                 </div>
             </div>
-            <AppInput textBold label="Город" placeholder="Адрес" />
+            {/* <AppInput textBold label="Город" placeholder="Адрес" /> */}
         </>
     );
 }

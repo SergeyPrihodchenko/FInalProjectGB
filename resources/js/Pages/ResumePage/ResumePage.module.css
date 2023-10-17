@@ -57,7 +57,7 @@
 }
 
 .userContactsPhone {
-    width: 100px;
+    width: 150px;
     border-bottom: 1px solid var(--primary-text);
 }
 
@@ -131,18 +131,23 @@
     padding-left: 10px;
 }
 
-.userPhoto {
-    width: 200px;
-    height: 200px;
-    color: var(--accent);
-    background-color: var(--main-bg);
-    border: 1px solid var(--accent);
-    border-radius: var(--border-radius-s);
-    padding-top: 90px;
-    text-align: center;
-}
-
 .aboutUserTextAll {
     padding-bottom: 30px;
     padding-top: 10px;
+}
+.linkViewResume {
+    margin-top: 10px;
+    margin-left: 900px;
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.linkResumeList {
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+.buttonReject{
+    color: var(--cancel);
 }

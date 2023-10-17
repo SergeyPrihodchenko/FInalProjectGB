@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidateConditionController;
 use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Company\ReviewsController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Resume\FilterResumeController;
 use App\Http\Controllers\Resume\ResumeController;
 use App\Http\Controllers\StatusResponseResumeController;
+use App\Http\Controllers\Vacancy\MyVacanciesController;
 use App\Http\Controllers\Vacancy\VacancyController;
 use App\Models\Vacancy;
 use App\Models\Company;
@@ -52,19 +54,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::middleware('isRolCompany')->group(function() {
-        Route::get('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
+    Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+    Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
+    Route::middleware('isRolCompany')->group(function () {
+        Route::post('/viewed', [StatusResponseResumeController::class, 'viewed'])->name('viewed');
         Route::post('/refusal', [StatusResponseResumeController::class, 'refusal'])->name('refusal');
         Route::post('/invitation', [StatusResponseResumeController::class, 'invitation'])->name('invitation');
-
+        Route::get('/condidate', [CandidateConditionController::class, 'getCandidate'])->name('condidate');
 //        Route::resource('company', CompanyController::class);
 //        Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
     });
 
     Route::middleware('isRolCandidate')->group(function() {
-        Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
+        //Route::get('resumes', [ResumeController::class, 'index'])->name('resume.index');
         Route::get('myresumes', [ResumeController::class, 'getByUser'])->name('resume.myresumes');
-        Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
+        //Route::get('resume/show/{resume}', [ResumeController::class, 'show'])->name('resume.show');
         Route::get('resume/update/{resume}', [ResumeController::class, 'edit'])->name('resume.edit');
         Route::get('resume', [ResumeController::class, 'create'])->name('resume.create');
         Route::post('resume', [ResumeController::class, 'store'])->name('resume.store');
@@ -81,6 +85,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::resource('vacancy', VacancyController::class);
+Route::get('myVacancies', MyVacanciesController::class)->name('my.vacancies');
 
 Route::post('/vacancies/filter', [FilterVacanciesController::class, 'filterVacancy']);
 

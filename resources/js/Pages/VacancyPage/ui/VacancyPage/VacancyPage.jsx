@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import s from "./VacancyPage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import VacancyPageCards from "../VacancyCards/VacancyCards";
-import VacancyPageList from "../VacancyList/VacancyList";
-import VacancyPageAdress from "../VacancyAdress/VacancyAdress";
+import VacancyCards from "../VacancyCards/VacancyCards";
+import VacancyList from "../VacancyList/VacancyList";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 import data from "../../data.json";
@@ -18,26 +17,26 @@ const navList = ["Мои резюме", "Отклики", "Помощь"];
 function VacancyPage(props) {
     const { auth, vacancy, cities, companies } = props;
     const user = auth?.user;
-    const city = cities?.[vacancy.city_id]?.title || "Город не указан";
+    const city = cities?.[vacancy.city_id - 1]?.title || "Город не указан";
     const adress = {
         strAdress: "",
         coordinates: "",
     };
-    const company = companies[vacancy.company_id];
+    const company = companies[vacancy.company_id - 1];
     adress.strAdress = vacancy?.adress || "Адрес не указан";
     adress.coordinates = vacancy?.coordinates || "Адрес не указан";
 
-    console.log("company", company);
+    // console.log("companies", companies);
     // console.log("vacancy", vacancy);
-    // console.log("city", city);
     const [isResponse, setIsResponse] = useState(false);
     return (
         <>
-            <Head title="VacancyPage" />
+            <Head title={`${vacancy.title}`} />
             <div className={s.vacancyPage}>
                 <AppPage>
                     <div className={s.vacancyPage}>
-                        <VacancyPageCards
+                        <VacancyCards
+                            user={user}
                             className={s.cards}
                             vacancy={vacancy}
                             city={city}
@@ -45,61 +44,64 @@ function VacancyPage(props) {
                             isResponse={isResponse}
                             setIsResponse={setIsResponse}
                         />
-                        <VacancyPageList
+                        <VacancyList
                             vacancy={vacancy}
-                            vacancyPageList={data}
+                            vacancyList={data}
                             className={s.list}
                         />
-                        <VacancyPageAdress
-                            className={s.adress}
-                            adress={adress}
-                        />
-                        <AppText
+                        {/* <VacancyAdress className={s.adress} adress={adress} /> */}
+                        {/* <AppText
                             text="Вакансия опубликована 28 августа 2023 в Москве"
                             variant="notaccented"
                             size="s"
                             className={s.date}
-                        />
+                        /> */}
 
-                        {isResponse ? (
-                            <>
+                        {user && user.isRol === 0 ? (
+                            isResponse ? (
+                                <>
+                                    <AppButton
+                                        width="360px"
+                                        height="60px"
+                                        className={s.btn}
+                                        variant={"outline"}
+                                        colorType={"accent"}
+                                        disabled={isResponse}
+                                    >
+                                        Откликнуться
+                                    </AppButton>
+                                    <AppButton
+                                        width="360px"
+                                        height="60px"
+                                        className={cn(s.btn, s.cancelBtn)}
+                                        onClick={() =>
+                                            setIsResponse(!isResponse)
+                                        }
+                                    >
+                                        Отозвать отклик
+                                    </AppButton>
+
+                                    <AppText
+                                        className={s.responseText}
+                                        text={
+                                            "Вы отлкинулись, ожидайте приглашения"
+                                        }
+                                        variant={"notaccented"}
+                                    />
+                                </>
+                            ) : (
                                 <AppButton
                                     width="360px"
                                     height="60px"
                                     className={s.btn}
-                                    variant={"outline"}
-                                    colorType={"accent"}
-                                    disabled={isResponse}
+                                    onClick={() => setIsResponse(!isResponse)}
                                 >
                                     Откликнуться
                                 </AppButton>
-                                <AppButton
-                                    width="360px"
-                                    height="60px"
-                                    className={cn(s.btn, s.cancelBtn)}
-                                    onClick={() => setIsResponse(!isResponse)}
-                                >
-                                    Отозвать отклик
-                                </AppButton>
+                            )
+                        ) : null}
 
-                                <AppText
-                                    className={s.responseText}
-                                    text={
-                                        "Вы отлкинулись, ожидайте приглашения"
-                                    }
-                                    variant={"notaccented"}
-                                />
-                            </>
-                        ) : (
-                            <AppButton
-                                width="360px"
-                                height="60px"
-                                className={s.btn}
-                                onClick={() => setIsResponse(!isResponse)}
-                            >
-                                Откликнуться
-                            </AppButton>
-                        )}
+                        {}
                         <VacancyPageReviews className={s.reviews} />
                     </div>
                 </AppPage>

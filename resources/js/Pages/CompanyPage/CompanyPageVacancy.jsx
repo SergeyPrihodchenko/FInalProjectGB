@@ -4,6 +4,7 @@ import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import { Typography } from "@/8Shared/Typography/Typography.jsx";
 import CompanyPageVacanciesItem from "@/Pages/CompanyPage/CompanyPageVacanciesItem.jsx";
 import PropTypes from "prop-types";
+import AppText from "@/8Shared/ui/AppText/AppText";
 
 const CompanyPageVacancy = ({ companyName, companyVacancyList }) => {
     const [vacancyOpen, setVacancyOpen] = useState(true);
@@ -13,19 +14,29 @@ const CompanyPageVacancy = ({ companyName, companyVacancyList }) => {
     ).length;
     return (
         <div className={cn(s.companyPageReview, s.companyPageVacancies)}>
-            <Typography variant="h6">
-                Вакансии компании «{companyName}»
-            </Typography>
+            <AppText title={` Вакансии компании «${companyName}»`} />
             <div
                 onClick={() => setVacancyOpen(!vacancyOpen)}
                 className={s.companyPageVacanciesInfo}
             >
-                <span className={s.companyPageVacanciesTitleDecorate}>
-                    Вакансии в текущем регионе: Россия
-                </span>{" "}
-                <span className={s.companyPageVacanciesTitleCount}>
-                    {allVacanciesCount}
-                </span>
+                {allVacanciesCount ? (
+                    <AppText
+                        title={`Вакансии в текущем регионе: Россия ${allVacanciesCount}`}
+                        size={"s"}
+                    />
+                ) : (
+                    <>
+                        <AppText
+                            title={"Вакансии в текущем регионе: Россия"}
+                            size={"s"}
+                        />
+                        <AppText
+                            title={"Нет активных выкансий"}
+                            size={"xs"}
+                            variant={"notaccented"}
+                        />
+                    </>
+                )}
             </div>
             {vacancyOpen && (
                 <div>

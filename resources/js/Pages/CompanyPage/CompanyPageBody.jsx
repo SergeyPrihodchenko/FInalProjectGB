@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import cn from "classnames";
 import s from "@/Pages/CompanyPage/CompanyPage.module.css";
 import AppCard from "@/8Shared/ui/AppCard/AppCard.jsx";
@@ -10,6 +10,7 @@ import CompanyPageVacancy from "@/Pages/CompanyPage/CompanyPageVacancy.jsx";
 import PropTypes from "prop-types";
 
 const CompanyPageBody = ({
+
                              reviewList,
                              employeeReview,
                              companyVacancies,
@@ -33,10 +34,18 @@ const CompanyPageBody = ({
                              grade
 
                          }) => {
+    
     return (
         <div className={cn(s.companyPageContainer)}>
-            <AppCard>
-                <CompanyPageAppCard img={companyImg} city={companyLocation} isSubscribed={isSubscribed} user={user} company={company} companyImageURL={companyImageURL}/>
+            <AppCard variant="primary" borderRadiusSmall>
+                <CompanyPageAppCard
+                    img={companyImg}
+                    city={companyLocation}
+                    isSubscribed={isSubscribed}
+                    user={user}
+                    company={company}
+                    companyImageURL={companyImageURL}
+                />
             </AppCard>
             <div className={s.companyPageRight}>
                 <CompanyPageHeader
@@ -45,12 +54,15 @@ const CompanyPageBody = ({
                     countReview={countReview}//колличество отзывов
                     grade={grade}
 
+
+                   
                 />
                 <CompanyPageInfo
                     title={company?.description || companyInfo}
                     //tagline={companyTagline}
                     address={company?.region_of_location || companyAddress}
                     contactPhone={company?.phone_number || companyPhone}
+
                     contactEmail={company?.email ||companyEmail}
                     //infoList={companyInfoList} employeeReview?.
 
@@ -61,6 +73,7 @@ const CompanyPageBody = ({
                     company={company}
                     reviews={ reviews}
                     />
+
                 <CompanyPageVacancy
                     companyName={company?.name || companyName}
                     companyVacancyList={companyVacancies}

@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 import Checkbox from "@/Components/Checkbox";
 import GuestLayout from "@/5Layouts/GuestLayout/GuestLayout";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import s from "./LoginPage.module.css";
 import cn from "classnames";
@@ -39,7 +35,7 @@ export default function Login({ status, canResetPassword }) {
             )}
 
             <form onSubmit={submit}>
-                <div>
+                <div className={cn(s.loginItem)}>
                     <AppInput
                         id="email"
                         type="email"
@@ -68,7 +64,7 @@ export default function Login({ status, canResetPassword }) {
                     {/* <InputError message={errors.email} className="mt-2" /> */}
                 </div>
 
-                <div className="mt-4">
+                <div className={cn(s.loginItem)}>
                     <AppInput
                         id="password"
                         type="password"
@@ -95,7 +91,7 @@ export default function Login({ status, canResetPassword }) {
                     {/* <InputError message={errors.password} className="mt-2" /> */}
                 </div>
 
-                <div className="block mt-4">
+                {/* <div className="block mt-4">
                     <label className="flex items-center">
                         <Checkbox
                             name="remember"
@@ -108,17 +104,23 @@ export default function Login({ status, canResetPassword }) {
                             Запомнить меня
                         </span>
                     </label>
-                </div>
+                </div> */}
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
+                <div
+                    className={cn(
+                        "flex items-center justify-end mt-4",
+                        s.loginWrapper,
+                        s.loginItem
+                    )}
+                >
+                    {/* {canResetPassword && (
                         <Link
                             href={route("password.request")}
                             className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             Восстановить пароль?
                         </Link>
-                    )}
+                    )} */}
 
                     <AppButton
                         className={cn(s.btn)}

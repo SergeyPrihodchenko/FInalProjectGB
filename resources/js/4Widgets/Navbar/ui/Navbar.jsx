@@ -13,10 +13,12 @@ import { setIsEmployer } from "../model/slice/navbarSlice";
 
 export const Navbar = (props) => {
     const { user, switchTheme, theme } = props;
+
     const isEmployer = useSelector((state) => state.navabr.isEmployer);
+
     const dispatch = useDispatch();
     // console.log("isEmployer", isEmployer);
-    console.log("user navbar", user);
+    // console.log("user navbar", user);
 
     return (
         <nav className={s.navBg}>
@@ -24,28 +26,34 @@ export const Navbar = (props) => {
                 <div className={s.navBar}>
                     <Logo src={mainlogo} alt={"Логотип"} href={route("main")} />
 
-                    {user?.isRol === 0 && <AppButton
-                        variant={"clear"}
-                        // colorType={"accent"}
-                        className={cn(s.toglleBtn, { [s.active]: !isEmployer })}
-                        onClick={() => {
-                            dispatch(setIsEmployer());
-                        }}
-                    >
-                        Соискателям
-                    </AppButton>
-                    }
-                    {user?.isRol === 1 && <AppButton
-                        variant={"clear"}
-                        colorType={"accent"}
-                        className={cn(s.toglleBtn, { [s.active]: isEmployer })}
-                        onClick={() => {
-                            dispatch(setIsEmployer());
-                        }}
-                    >
-                        Работодателям
-                    </AppButton>
-                    }
+                    {user?.isRol === 0 && (
+                        <AppButton
+                            variant={"clear"}
+                            // colorType={"accent"}
+                            className={cn(s.toglleBtn, {
+                                [s.active]: !isEmployer,
+                            })}
+                            onClick={() => {
+                                dispatch(setIsEmployer());
+                            }}
+                        >
+                            Соискателям
+                        </AppButton>
+                    )}
+                    {user?.isRol === 1 && (
+                        <AppButton
+                            variant={"clear"}
+                            colorType={"accent"}
+                            className={cn(s.toglleBtn, {
+                                [s.active]: isEmployer,
+                            })}
+                            onClick={() => {
+                                dispatch(setIsEmployer());
+                            }}
+                        >
+                            Работодателям
+                        </AppButton>
+                    )}
                     <ul className={s.navList}>
                         <li>
                             <AppLink
@@ -53,7 +61,7 @@ export const Navbar = (props) => {
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("vacancy.index")}
                             >
-                                Вакансии
+                                Все вакансии
                             </AppLink>
                         </li>{" "}
                         {/* <AppLink
@@ -68,7 +76,7 @@ export const Navbar = (props) => {
                             href={route("company.index")}
                             className={cn(s.navLink)}
                         >
-                            Список всех компаний
+                            Все компании
                         </AppLink>
                         <AppLink
                             colorType="accent"
@@ -133,25 +141,24 @@ export const Navbar = (props) => {
                     </ul>
                     <AppButton
                         className={s.navBarThemeSwitcher}
-                        variant={'clear'}
+                        variant={"clear"}
                         onClick={() => {
                             switchTheme(theme);
                         }}
                     >
-                        {theme === 'app_light_theme' ?
+                        {theme === "app_light_theme" ? (
                             <BootstrapIcon
-                                name={'BsFillSunFill'}
-                                color={'inherit'}
+                                name={"BsFillSunFill"}
+                                color={"inherit"}
                                 size={28}
                             />
-                            :
+                        ) : (
                             <BootstrapIcon
-                                name={'BsMoonStars'}
-                                color={'inherit'}
+                                name={"BsMoonStars"}
+                                color={"inherit"}
                                 size={28}
                             />
-                        }
-
+                        )}
                     </AppButton>
                 </div>
             </AppPage>

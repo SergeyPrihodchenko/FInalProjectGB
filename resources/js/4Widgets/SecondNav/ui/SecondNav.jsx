@@ -12,14 +12,13 @@ const navListJobSeeker = [
 ];
 const navListEmployment = [
     { routeName: "Мои компании", routePath: "myCompanies" },
-    { routeName: "Мои вакансии", routePath: "resume.myresumes" },
-    { routeName: "Кандидаты ", routePath: "resume.myresumes" },
+    { routeName: "Мои вакансии", routePath: "my.vacancies" },
+    { routeName: "Кандидаты ", routePath: "condidate" },
 ];
 // href={route("userResponses")}
 function SecondNav(props) {
     const { user } = props;
-    console.log('second nav', user);
-    const isEmployer = useSelector((state) => state.navabr.isEmployer);
+    // console.log('second nav', user);
     return (
         <div className={s.secondNav}>
             {user?.isRol === 0 ? (
@@ -45,7 +44,7 @@ function SecondNav(props) {
                         href={route("resume.create")}
                         height="50px"
                         variant="outline"
-                        colorType="normal"
+                        colorType="primarySecondary"
                         rounded
                         sizeText="m"
                     >
@@ -72,10 +71,9 @@ function SecondNav(props) {
                     <div className={s.secondNavButton}>
                         <AppButton
                             href={route("vacancy.create")}
-                            width="250px"
                             height="50px"
                             variant="outline"
-                            colorType="normal"
+                            colorType="primarySecondary"
                             rounded
                             sizeText="m"
                         >
@@ -84,10 +82,9 @@ function SecondNav(props) {
 
                         <AppButton
                             href={route("company.create")}
-                            width="250px"
                             height="50px"
                             variant="outline"
-                            colorType="normal"
+                            colorType="primarySecondary"
                             rounded
                             sizeText="m"
                         >

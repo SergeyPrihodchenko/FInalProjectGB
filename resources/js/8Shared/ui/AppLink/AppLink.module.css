@@ -29,19 +29,19 @@
     color: var(--primary-text);
     transition: var(--transition-delay) linear;
 }
-
-.secondary {
+.primary:hover {
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
 }
-.accent {
+.primaryAccent {
+    color: var(--primary-text);
+    transition: var(--transition-delay) linear;
+}
+.primaryAccent:hover {
     color: var(--accent);
     transition: var(--transition-delay) linear;
 }
-.accent.active {
-    color: var(--secondary-text);
-}
-.primary:hover {
+.secondary {
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
 }
@@ -49,7 +49,24 @@
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
 }
+.accent {
+    color: var(--accent);
+    transition: var(--transition-delay) linear;
+}
+
 .accent:hover {
     color: var(--secondary-text);
     transition: var(--transition-delay) linear;
+}
+.lightAccent {
+    color: var(--light-color);
+    transition: var(--transition-delay) linear;
+}
+
+.lightAccent:hover {
+    color: var(--accent);
+    transition: var(--transition-delay) linear;
+}
+.accent.active {
+    color: var(--secondary-text);
 }
