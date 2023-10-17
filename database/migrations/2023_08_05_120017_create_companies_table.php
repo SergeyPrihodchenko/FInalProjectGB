@@ -31,7 +31,6 @@ return new class extends Migration
                 ->onUpdate('cascade');
             $table->index('creator_id');
 
-            $table->string('logo', 250)->nullable();
             $table->string('city', 250)->nullable();
 
             $table->timestamps();

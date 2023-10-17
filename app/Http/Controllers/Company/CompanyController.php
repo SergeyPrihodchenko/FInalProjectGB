@@ -54,10 +54,6 @@ class CompanyController extends Controller
         $data['creator_id'] = $creatorId;
         //Company::create($data);
 
-        $path = $request->file('logo')->storeAs('images',$data['logo']->hashName(), 'public');
-        $data['logo'] = $path;
-        //dd($data['logo']);
-        //dd($path);
         $company = Company::create($data);
 
         return Redirect::route('myCompanies');
