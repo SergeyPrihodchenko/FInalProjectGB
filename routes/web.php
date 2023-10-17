@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Vacancy\AcceptVacancyController;
 use App\Http\Controllers\Company\CompanyController;
-
+use App\Http\Controllers\Company\ReviewsController;
 
 use App\Http\Controllers\Category\CategoryController;
 use App\Http\Controllers\Subscription\SubscriptionController;
@@ -23,9 +23,9 @@ Route::get('/', [MainController::class, 'index'])->name('main');
 Route::get('/searchSort', [MainController::class, 'beforeSearchSort']);
 Route::get('/category/search', [MainController::class, 'searchSort'])->name('category.sort');
 
-Route::get('/testPageCompany', function () {
-    return Inertia::render('CompanyPage/ui/CompanyPage/CompanyPage');
-})->name('company');
+//Route::get('/testPageCompany', function () {
+//    return Inertia::render('CompanyPage/ui/CompanyPage/CompanyPage');
+//})->name('company');
 
 Route::get('/profilePage',[ProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('profilePage');
 
@@ -89,7 +89,8 @@ Route::post('resume/filter', [FilterResumeController::class, 'filterResumes'])->
 Route::get('subscribe/{userId}/{companyId}', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 Route::get('unsubscribe/{userId}/{companyId}', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
 //Route::get('checkSubscription/{userId}/{companyId}', [SubscriptionController::class, 'checkSubscription'])->name('checkSubscription');
-//Route::post('subscribe/{userId}/{companyId}', [CompanyController::class, 'store']);
-//Route::get('company/company_detail', [Company::class, 'show'];
+
 Route::resource('company', CompanyController::class);
 Route::get('myCompanies', [\App\Http\Controllers\Company\MyCompaniesController::class, 'index'])->name('myCompanies');
+Route::resource('reviews', \App\Http\Controllers\Company\ReviewsController::class);
+//Route::post('/company/{company}/reviews',[CompanyController::class, 'createReview'])->name('company.reviews.create');

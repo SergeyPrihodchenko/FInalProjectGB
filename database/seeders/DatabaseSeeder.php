@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             CompanyUserSeeder::class,
             VacancySeeder::class,
             ResumeSeeder::class,
-            StatusResponse::class
-            // ReviewsOfCompanySeeder::class,
+            StatusResponse::class,
+            ReviewsOfCompanySeeder::class
 
         ]);
     }

@@ -7,6 +7,7 @@ use App\Http\Requests\Company\StoreCompanyRequest;
 use App\Models\City;
 use App\Models\CompanyUser;
 use App\Models\Company;
+use App\Models\ReviewsOfCompanies;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\Model;
 use Inertia\Inertia;
 use function PHPUnit\Framework\isEmpty;
-//use function Termwind\render;
+use function Termwind\render;
 
 class CompanyController extends Controller
 {
@@ -68,12 +69,16 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
+        $grade=4;
         $subscribes = CompanyUser::where('company_id', $company->id)->where('user_id', Auth::user()->id)->first();
         //dd($subscribes);
         $isSubscribed = $subscribes ? true : false;
 
         $companyImageURL = $company->getLogoUrl();
 
+        $reviews = $company->reviews;
+        $reviews = ReviewsOfCompanies::where('company_id', $company->id)->get();
+//dd($reviews);
 
         //dd($companyImageURL);
 
@@ -81,6 +86,8 @@ class CompanyController extends Controller
             'company' => $company,
             'isSubscribed' => $isSubscribed,
             'companyImageURL' => $companyImageURL,
+            'reviews' => $reviews,
+            'grade' => $grade
         ]);
     }
 
@@ -118,4 +125,8 @@ class CompanyController extends Controller
         $company->delete();
         return Redirect::route('myCompanies');
     }
+
+
+
+
 }

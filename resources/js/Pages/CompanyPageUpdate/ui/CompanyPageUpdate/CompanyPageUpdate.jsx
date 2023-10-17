@@ -21,6 +21,7 @@ function CompanyPageUpdate({ company, auth }) {
         description: company.description,
         date_create: company.date_create,
         city: company.city,
+        logo: company.logo,
     });
     console.log(company);
     const handleSubmit = (e) => {

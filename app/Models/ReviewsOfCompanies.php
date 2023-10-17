@@ -1,23 +1,27 @@
 <?php
 
-
-
-
 namespace App\Models;
 
+use App\Enums\CompanyRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CompanyUser extends Pivot
+class ReviewsOfCompanies extends Pivot
 {
     use HasFactory;
 
-    protected $table = 'company_user';
+    protected $table = 'reviews_of_companies';
 
     protected $fillable = [
         'company_id',
-        'user_id'
+        'user_id',
+        'content',
+        'rating'
+    ];
+
+    protected $casts = [
+     'rating' => 'int',
+        //'rating' => CompanyRating::class,
     ];
 
     public $timestamps = false;
@@ -31,4 +35,6 @@ class CompanyUser extends Pivot
     {
         return $this->belongTo(User::class);
     }
+
+
 }

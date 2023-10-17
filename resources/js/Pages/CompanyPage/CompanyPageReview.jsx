@@ -8,7 +8,8 @@ import CompanyPageEmployeeReviewItem from "@/Pages/CompanyPage/CompanyPageEmploy
 import PropTypes from "prop-types";
 import CompanyPageInfo from "@/Pages/CompanyPage/CompanyPageInfo.jsx";
 
-const CompanyPageReview = ({ otherReview, employeeReview }) => {
+const CompanyPageReview = ({ otherReview, employeeReview, company, reviews }) => {
+    console.log('reviews',reviews)
     return (
         <>
             <div className={s.companyPageReview}>
@@ -23,6 +24,7 @@ const CompanyPageReview = ({ otherReview, employeeReview }) => {
                             карьерные решения
                         </span>
                         <AppButton
+                            href={route("reviews.show", company.id)}
                             className={cn(
                                 s.companyPageReviewButtonCardButton,
                                 s.companyPageLeftToolbarButton
@@ -38,6 +40,9 @@ const CompanyPageReview = ({ otherReview, employeeReview }) => {
             <div className={s.companyPageReview}>
                 <Typography variant="h6">Что говорят сотрудники</Typography>
                 <div className={s.companyPageEmployeeReviewCards}>
+                    { reviews.map((item, key)=>(
+                        <Typography variant="h6">{item.content}</Typography>
+                        ))}
                     {employeeReview?.map((item) => (
                         <CompanyPageEmployeeReviewItem
                             key={item.id}

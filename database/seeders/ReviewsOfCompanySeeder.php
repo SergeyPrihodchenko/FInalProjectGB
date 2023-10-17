@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 
 class ReviewsOfCompanySeeder extends Seeder
@@ -21,6 +22,7 @@ class ReviewsOfCompanySeeder extends Seeder
 
     public function getData(): array
     {
+
         $response = [];
         for ($i = 0; $i < 10; $i++) {
             $response[] = [
@@ -32,7 +34,8 @@ class ReviewsOfCompanySeeder extends Seeder
                     'email' => fake()->email,
                     'password' => '12345678',
                 ])->id,
-                'review' => fake('ru_RU')->text,
+                'content' => fake('ru_RU')->text,
+                'rating' => fake()->numberBetween(1, 5),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

@@ -39,13 +39,21 @@ class Company extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'company_user');
+    }
+    public function reviews()
+    {
+        return $this->belongsToMany(User::class, 'reviews_of_companies')
+            ->using(ReviewsOfCompanies::class)
+            ->withPivot(['content', 'rating'])
+            ->withTimestamps();
     }
 
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
+
     public function getLogoUrl()
     {
         return asset('storage/' . $this->logo);

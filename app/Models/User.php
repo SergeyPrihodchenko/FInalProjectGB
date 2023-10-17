@@ -93,6 +93,14 @@ class User extends Authenticatable
         $this->subscriptions()->detach($company->id);
     }
 
+    public function companies(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class, 'reviews_of_companies', 'user_id', 'company_id')
+            ->using(ReviewsOfCompanies::class)
+            ->withPivot(['content', 'rating'])
+            ->withTimestamps();
+    }
+
 
     public function resumes(): HasMany
     {

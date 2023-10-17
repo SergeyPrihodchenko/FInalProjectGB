@@ -32,9 +32,10 @@ return new class extends Migration
                 ->onUpdate('cascade');
             $table->index('user_id');
 
-           // $table->string('name', 100);
-            $table->text('review')->nullable();
-
+            $table->text('content')->nullable();//Содержание отзыва
+            $table->integer('rating')->nullable();
+           //$table->enum('rating', ['1', '2' ,'3' ,'4' ,'5',])->nullable(); //Рейтинг отзыва (1-5)
+            //$table->enum('rating', \App\Enums\CompanyRating::getAll())->nullable(); //Рейтинг отзыва (1-5)
             $table->timestamps();
         });
     }

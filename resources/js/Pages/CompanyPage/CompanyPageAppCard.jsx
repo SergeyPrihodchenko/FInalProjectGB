@@ -67,7 +67,7 @@ const CompanyPageAppCard = ({ img, city, isSubscribed, company, user, companyIma
                         <div className={cn(s.companyPageLeftCardInfoText)}>
                             {/*Информационные технологии, системная интеграция,*/}
                             {/*интернет*/}
-                            {company?.business_profile || companyName}
+                            {company?.business_profile || 'companyName'}
                         </div>
                     </div>
                 </div>

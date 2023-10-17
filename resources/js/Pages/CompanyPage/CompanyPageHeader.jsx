@@ -5,8 +5,8 @@ import CheckCircleOutlineSharpIcon from "@mui/icons-material/CheckCircleOutlineS
 import cn from "classnames";
 import PropTypes from "prop-types";
 
-const CompanyPageHeader = ({title, initialRating, countReview}) => {
-    const [rating,setRating] = useState(Number(initialRating))
+const CompanyPageHeader = ({title, initialRating, countReview, grade}) => {
+    const [rating,setRating] = useState(Number(grade))
     return (
         <div className={s.companyPageHeader}>
             <div className={s.CompanyPageRightHeaderPosition}>
@@ -34,6 +34,7 @@ const CompanyPageHeader = ({title, initialRating, countReview}) => {
                     value={rating}
                     onChange={(event, newValue) => {
                         setRating(newValue);
+
                     }}
                 />
                 <a

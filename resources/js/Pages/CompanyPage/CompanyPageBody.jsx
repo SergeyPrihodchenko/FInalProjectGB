@@ -27,7 +27,11 @@ const CompanyPageBody = ({
                              company,
                              isSubscribed,
                              user,
-                             companyImageURL
+                             companyImageURL,
+                             reviewsOfCompanies,
+                            reviews,
+                             grade
+
                          }) => {
     return (
         <div className={cn(s.companyPageContainer)}>
@@ -39,6 +43,8 @@ const CompanyPageBody = ({
                     title={company?.name || companyName}
                     initialRating={companyRating}//колличество звездочек
                     countReview={countReview}//колличество отзывов
+                    grade={grade}
+
                 />
                 <CompanyPageInfo
                     title={company?.description || companyInfo}
@@ -46,16 +52,18 @@ const CompanyPageBody = ({
                     address={company?.region_of_location || companyAddress}
                     contactPhone={company?.phone_number || companyPhone}
                     contactEmail={company?.email ||companyEmail}
-                    //infoList={companyInfoList}
+                    //infoList={companyInfoList} employeeReview?.
 
                 />
                 <CompanyPageReview
-                    //employeeReview={employeeReview} отзывы
-                    //otherReview={reviewList}
+                    employeeReview={reviewsOfCompanies?.content} отзывы
+                    otherReview={reviewList}
+                    company={company}
+                    reviews={ reviews}
                     />
                 <CompanyPageVacancy
                     companyName={company?.name || companyName}
-                    //companyVacancyList={companyVacancies}
+                    companyVacancyList={companyVacancies}
                 />
             </div>
         </div>
