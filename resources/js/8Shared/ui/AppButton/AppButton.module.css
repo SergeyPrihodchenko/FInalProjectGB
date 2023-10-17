@@ -65,6 +65,16 @@
     transition: var(--transition-delay) linear;
 }
 
+.outline.primarySecondary {
+    border: 2px solid var(--primary-text);
+    color: var(--primary-text);
+    transition: var(--transition-delay) linear;
+}
+.primarySecondary:hover {
+    border: 2px solid var(--secondary-text);
+    color: var(--secondary-text);
+    transition: var(--transition-delay) linear;
+}
 .outline.accent {
     border: 2px solid var(--accent);
     color: var(--accent);

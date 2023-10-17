@@ -43,7 +43,7 @@ function AppSelect(props) {
                     size={"s"}
                     className={s.error}
                     text={error}
-                    variant={"error"}
+                    variant={"cancel"}
                 />
             )}
         </div>

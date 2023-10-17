@@ -44,7 +44,7 @@ function SecondNav(props) {
                         href={route("resume.create")}
                         height="50px"
                         variant="outline"
-                        colorType="primary"
+                        colorType="primarySecondary"
                         rounded
                         sizeText="m"
                     >
@@ -73,7 +73,7 @@ function SecondNav(props) {
                             href={route("vacancy.create")}
                             height="50px"
                             variant="outline"
-                            colorType="primary"
+                            colorType="primarySecondary"
                             rounded
                             sizeText="m"
                         >
@@ -84,7 +84,7 @@ function SecondNav(props) {
                             href={route("company.create")}
                             height="50px"
                             variant="outline"
-                            colorType="primary"
+                            colorType="primarySecondary"
                             rounded
                             sizeText="m"
                         >

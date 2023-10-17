@@ -82,6 +82,7 @@ AppButton.propTypes = {
     variant: PropTypes.oneOf(["filled", "outline", "clear"]),
     colorType: PropTypes.oneOf([
         "primary",
+        "primarySecondary",
         "succes",
         "hint",
         "cancel",

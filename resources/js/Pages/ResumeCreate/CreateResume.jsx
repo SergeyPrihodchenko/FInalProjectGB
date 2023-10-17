@@ -9,6 +9,7 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import Checkbox from "@/8Shared/Checkbox/Checkbox";
 import AppSelect from "@/8Shared/ui/AppSelect/AppSelect";
+import AppTextarea from "@/8Shared/ui/AppTextarea/AppTextarea";
 
 function CreateResume() {
     const user = usePage().props.auth.user;
@@ -597,7 +598,17 @@ function CreateResume() {
                                 className={s.indentDownBasiceData}
                             />
 
-                            <AppText
+                            <AppTextarea
+                                label={
+                                    "Расскажите о ваших обязанностях и достижениях"
+                                }
+                                onChange={(e) =>
+                                    setAchievements(e.target.value)
+                                }
+                                value={achievements}
+                                placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
+                            />
+                            {/* <AppText
                                 title={
                                     "Расскажите о ваших обязанностях и достижениях"
                                 }
@@ -612,7 +623,7 @@ function CreateResume() {
                                 value={achievements}
                                 className={s.textareaBasiceData}
                                 placeholder="Например, изучали и анализировали информацию, технические данные, показатели и результаты работы, обобщали и систематизировали их"
-                            />
+                            /> */}
 
                             <div className={s.experienceWork}>
                                 <AppInput
@@ -703,28 +714,40 @@ function CreateResume() {
                                     </div>
                                 );
                             })}
-                            <input
+                            <div className={s.skillsWrapper}>
+                                <AppInput
+                                    width={"300px"}
+                                    onChange={(e) => {
+                                        setSkill(e.target.value);
+                                    }}
+                                    value={skill}
+                                    type="text"
+                                />
+                                {/* <input
                                 onChange={(e) => {
                                     setSkill(e.target.value);
                                 }}
                                 value={skill}
                                 type="text"
                                 className={s.textSkill}
-                            />
+                            /> */}
 
-                            <AppButton
-                                onClick={() => {
-                                    addSkill();
-                                }}
-                                variant="outline"
-                                sizeText="s"
-                                bold
-                                type="button"
-                                className={s.buttonSkillAdd}
-                            >
-                                Добавить
-                            </AppButton>
-                            <div style={{ color: "red" }}>{errors.skills}</div>
+                                <AppButton
+                                    onClick={() => {
+                                        addSkill();
+                                    }}
+                                    variant="outline"
+                                    sizeText="s"
+                                    bold
+                                    type="button"
+                                    className={s.buttonSkillAdd}
+                                >
+                                    Добавить
+                                </AppButton>
+                                <div style={{ color: "red" }}>
+                                    {errors.skills}
+                                </div>
+                            </div>
                         </div>
 
                         <div className={s.vacancyWishes}>
@@ -747,7 +770,23 @@ function CreateResume() {
                             />
 
                             <div className={s.education}>
-                                <AppText
+                                <AppSelect
+                                    label={"Опыт работы"}
+                                    name="experience"
+                                    id="experience"
+                                    onChange={(e) =>
+                                        setData("experience", e.target.value)
+                                    }
+                                    value={data.experience}
+                                    options={[
+                                        "нет опыта",
+                                        "от 1 до 3 лет",
+                                        "от 3 до 6 лет",
+                                        "более 6 лет",
+                                    ]}
+                                    error={errors.experience}
+                                />
+                                {/* <AppText
                                     title={"Опыт работы"}
                                     bold
                                     size={"xs"}
@@ -778,10 +817,30 @@ function CreateResume() {
                                 </select>
                                 <div style={{ color: "red" }}>
                                     {errors.experience}
-                                </div>
+                                </div> */}
                             </div>
                             <div className={s.education}>
-                                <AppText
+                                <AppSelect
+                                    label={"Тип занятости"}
+                                    name="employment_type"
+                                    id="employment_type"
+                                    value={data.employment_type}
+                                    onChange={(e) =>
+                                        setData(
+                                            "employment_type",
+                                            e.target.value
+                                        )
+                                    }
+                                    options={[
+                                        "Полный ден",
+                                        "Сменный график",
+                                        "Гибкий график",
+                                        "Удаленная работа",
+                                        "Вахтовый метод",
+                                    ]}
+                                    error={errors.employment_type}
+                                />
+                                {/* <AppText
                                     title={"Тип занятости"}
                                     bold
                                     size={"xs"}
@@ -820,10 +879,27 @@ function CreateResume() {
                                 </select>
                                 <div style={{ color: "red" }}>
                                     {errors.employment_type}
-                                </div>
+                                </div> */}
                             </div>
                             <div className={s.education}>
-                                <AppText
+                                <AppSelect
+                                    label={"График работы"}
+                                    name="schedule_type"
+                                    id="schedule_type"
+                                    value={data.schedule_type}
+                                    onChange={(e) =>
+                                        setData("schedule_type", e.target.value)
+                                    }
+                                    options={[
+                                        "Полная занятость",
+                                        "Частичная занятость",
+                                        "Стажировка",
+                                        "Проектная работа",
+                                        "Волонтерство",
+                                    ]}
+                                    error={errors.schedule_type}
+                                />
+                                {/* <AppText
                                     title={"График работы"}
                                     bold
                                     size={"xs"}
@@ -859,10 +935,25 @@ function CreateResume() {
                                 </select>
                                 <div style={{ color: "red" }}>
                                     {errors.schedule_type}
-                                </div>
+                                </div> */}
                             </div>
                             <div className={s.education}>
-                                <AppText
+                                <AppSelect
+                                    label={"Готовность к переездам"}
+                                    name="relocation"
+                                    id="relocation"
+                                    value={data.relocation}
+                                    onChange={(e) =>
+                                        setData("relocation", e.target.value)
+                                    }
+                                    options={[
+                                        "Невозможно",
+                                        "Возможно",
+                                        "Желательно",
+                                    ]}
+                                    error={errors.relocation}
+                                />
+                                {/* <AppText
                                     title={"Готовность к переездам"}
                                     bold
                                     size={"xs"}
@@ -890,10 +981,24 @@ function CreateResume() {
                                 </select>
                                 <div style={{ color: "red" }}>
                                     {errors.relocation}
-                                </div>
+                                </div> */}
                             </div>
                             <div className={s.education}>
-                                <AppText
+                                <AppSelect
+                                    label={"Готовность к командировкам"}
+                                    name="buisness_travel"
+                                    id="buisness_travel"
+                                    value={data.buisness_travel}
+                                    onChange={(e) =>
+                                        setData(
+                                            "buisness_travel",
+                                            e.target.value
+                                        )
+                                    }
+                                    options={["Никогда", "Готов", "Иногда"]}
+                                    error={errors.buisness_travel}
+                                />
+                                {/* <AppText
                                     title={"Готовность к командировкам"}
                                     bold
                                     size={"xs"}
@@ -920,7 +1025,7 @@ function CreateResume() {
                                 </select>
                                 <div style={{ color: "red" }}>
                                     {errors.buisness_travel}
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -931,7 +1036,18 @@ function CreateResume() {
                                 size={"xs"}
                                 className={s.textTitle}
                             />
-                            <AppText
+
+                            <AppTextarea
+                                label={"Расскажите о себе"}
+                                onChange={(e) =>
+                                    setData("about_me", e.target.value)
+                                }
+                                value={data.about_me}
+                                className={s.textareaBasiceData}
+                                placeholder="Например, усидчивость, внимательность, целеустремленность, легко ли вливаетесь в коллектив. Ваша профессия. Ищите работу для получения опыта и получения более обширных знаний в этой сфере или готовы делиться своим опытом. Готовы к любой работе или есть конкретные пожелания к графику или уровню дохода"
+                                error={errors.about_me}
+                            />
+                            {/* <AppText
                                 title={"Расскажите о себе"}
                                 bold
                                 size={"xs"}
@@ -948,7 +1064,7 @@ function CreateResume() {
 
                             <div style={{ color: "red" }}>
                                 {errors.about_me}
-                            </div>
+                            </div> */}
                         </div>
 
                         <AppButton
