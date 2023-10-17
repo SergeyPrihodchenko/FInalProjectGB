@@ -21,8 +21,8 @@ class MyVacanciesController extends Controller
         // $vacancies = Vacancy::whereIn('company_id', $companies)->get();
 
         $vacancies = DB::table('vacancies')
-                        // ->join('companies', 'vacancies.company_id', '=', 'companies.id')
-                         ->whereIn('vacancies.company_id', $companies)
+                        ->join('companies', 'vacancies.company_id', '=', 'companies.id')
+                        ->whereIn('vacancies.company_id', $companies)
                         ->get();
 
         // Убрать эту строчку
