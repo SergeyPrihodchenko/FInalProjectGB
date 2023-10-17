@@ -38,17 +38,22 @@ function UserCompanyList({companies}) {
                                         bold
                                         size="xs"
                                     />
-                                    <AppText
-                                        text={"Сфера деятельности: ".concat(company.business_profile)}
-                                        bold
-                                        size="xs"
-                                    />
+                                    {company.business_profile ? (
+                                        <AppText
+                                            text={"Сфера деятельности: ".concat(company.business_profile)}
+                                            bold
+                                            size="xs"
+                                        />
+                                    ):null
+                                    }
+                                     {company.website ? (
                                     <AppText
                                         text={"Сайт компании: ".concat(company.website)}
                                         bold
                                         size="xs"
                                     />
-
+                                    ):null
+                                    }
                                     <div className={s.linkViewCompany}>
                                         <AppButton
                                             path={'company.show'}
