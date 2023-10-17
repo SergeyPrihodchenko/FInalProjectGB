@@ -1,0 +1,36 @@
+.appTextareaWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    margin-left: 0;
+}
+.label {
+    margin-bottom: var(--indent-xs);
+}
+.textarea {
+    box-sizing: border-box;
+    width: 760px;
+    min-height: 138px;
+    font-size: var(--font-size-s);
+    padding: 10px;
+
+    background-color: var(--secondary-bg);
+    border: 2px solid var(--light-skeleton-shadow);
+    border-radius: var(--border-radius-s);
+    color: var(--primary-text);
+    resize: none;
+    height: max-content;
+}
+.textarea::placeholder {
+    color: var(--primary-text);
+    opacity: var(--opacity30);
+}
+.textarea:focus {
+    border: 2px solid var(--accent);
+}
+textarea:hover {
+    cursor: pointer;
+}
+.error {
+    margin-top: var(--indent-m);
+}

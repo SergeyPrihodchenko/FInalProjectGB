@@ -1,0 +1,29 @@
+.selectWrapper {
+    display: flex;
+    flex-direction: column;
+}
+.label {
+    margin-bottom: var(--indent-xs);
+}
+.select {
+    box-sizing: border-box;
+    width: 220px;
+    height: 43px;
+    font-size: var(--font-size-s);
+    padding: 10px;
+
+    background-color: var(--secondary-bg);
+    border: 2px solid var(--light-skeleton-shadow);
+    border-radius: var(--border-radius-s);
+    color: var(--primary-text);
+}
+
+.select:focus {
+    border: 2px solid var(--accent);
+}
+select:hover {
+    cursor: pointer;
+}
+.error {
+    margin-top: var(--indent-m);
+}

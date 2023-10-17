@@ -9,6 +9,7 @@ import { AuthContext } from "./8Shared/store/AuthContext";
 import { useEffect } from "react";
 import { AuthProvider } from "./1App/providers/AuthProvider/AuthProvider";
 import { StoreProvider } from "./1App/providers/StoreProvider/StoreProvider";
+import { ErrorBoundary } from "./5Layouts/ErrorBoundry/ui/ErrorBoundry/ErrorBoundry";
 
 const appName = import.meta.env.VITE_APP_NAME;
 createInertiaApp({
@@ -21,10 +22,8 @@ createInertiaApp({
             ((page) => {
                 return (
                     <StoreProvider>
-                        <MainLayout
-                            user={page?.props?.auth?.user}
-                        >
-                            {page}
+                        <MainLayout user={page?.props?.auth?.user}>
+                            <ErrorBoundary>{page}</ErrorBoundary>
                         </MainLayout>
                     </StoreProvider>
                 );

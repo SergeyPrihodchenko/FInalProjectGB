@@ -15,11 +15,14 @@ import useDebounce from "@/8Shared/Search/useDebounce";
 import List from "@/8Shared/List/List";
 import { useDispatch, useSelector } from "react-redux";
 import FavouriteButton from "@/8Shared/ui/FavouriteButton/FavouriteButton";
-import { fetchVacancyList, loadVacancyOnScroll, setPageIndex, setStatus, setVacancyList } from "./model/slice/vacancyListPageSlice";
+import {
+    fetchVacancyList,
+    loadVacancyOnScroll,
+    setPageIndex,
+    setStatus,
+    setVacancyList,
+} from "./model/slice/vacancyListPageSlice";
 import { Modal } from "@/8Shared/ui/Modal/Modal";
-
-
-
 
 const VacancyListPage = ({
     vacancies,
@@ -31,7 +34,7 @@ const VacancyListPage = ({
     cities,
     likes,
     responsedVacancy,
-    resumes
+    resumes,
 }) => {
     // console.log('responsedVacancy: ', responsedVacancy);
     // console.log('resumes: ', resumes);
@@ -39,15 +42,8 @@ const VacancyListPage = ({
 
     const dispatch = useDispatch();
 
-    const {
-        favouritesList,
-        vacancyList,
-        pageIndex,
-        total,
-        status,
-        error
-    } = useSelector((state) => state.vacancyListPage);
-
+    const { favouritesList, vacancyList, pageIndex, total, status, error } =
+        useSelector((state) => state.vacancyListPage);
 
     const user = auth?.user;
     // const [vacancyList, setVacancyList] = useState([]);
@@ -59,7 +55,7 @@ const VacancyListPage = ({
 
     const [extendedDescription, setExtendedDescription] = useState(false);
 
-    const [payment, setPayment] = useState(''); // состояние инпута зарплаты
+    const [payment, setPayment] = useState(""); // состояние инпута зарплаты
     const debouncedPayment = useDebounce(payment, 500);
 
     const [filterData, setFilterData] = useState({
@@ -67,65 +63,64 @@ const VacancyListPage = ({
         schedule: [],
         experience: "",
         city_id: [],
-        title: vacancies ? vacancies : '',
+        title: vacancies ? vacancies : "",
         payment: 0,
     });
     //поиск по названию вакансии
-    const [vacancySearchInput, setVacancySearchInput] = useState(vacancies ? vacancies : ''); // состояние инпута поиска по названию вакансии
+    const [vacancySearchInput, setVacancySearchInput] = useState(
+        vacancies ? vacancies : ""
+    ); // состояние инпута поиска по названию вакансии
     const [suggestions, setSuggestions] = useState([]);
     const debouncedVacancySearch = useDebounce(vacancySearchInput, 500);
     const [suggestionsActive, setSuggestionsActive] = useState(false);
 
-
     const [favourites, setIsFavourites] = useState(likes);
     const [responsesIdList, setResponsesIdList] = useState(responsedVacancy);
 
-
     //Modal
     const [isResponseModal, setIsResponseModal] = useState(false);
-    const [vacId, setVacId] = useState('');
+    const [vacId, setVacId] = useState("");
 
-    const handleToggleModal = useCallback((vac_id) => {
-        setIsResponseModal(prev => !prev);
-        setVacId(vac_id);
-
-    }, [isResponseModal]);
-
+    const handleToggleModal = useCallback(
+        (vac_id) => {
+            setIsResponseModal((prev) => !prev);
+            setVacId(vac_id);
+        },
+        [isResponseModal]
+    );
 
     const handleVacancySearchInput = (e) => {
         const { value } = e.target;
         setVacancySearchInput(value);
-
-    }
+    };
 
     const handlePayment = () => {
         setFilterData((prevState) => {
             return {
                 ...prevState,
-                payment: Number(payment)
-            }
-        })
-    }
+                payment: Number(payment),
+            };
+        });
+    };
 
     const handleAnswer = async (vacancy_id, resume_id) => {
         try {
-            const res = await axios.post('/PageUserResponses/accept', {
+            const res = await axios.post("/PageUserResponses/accept", {
                 resume_id: resume_id,
-                vacancy_id: vacancy_id
+                vacancy_id: vacancy_id,
             });
             if (res.status === 200) {
                 setResponsesIdList([...responsesIdList, vacancy_id]);
-                setIsResponseModal(prev => !prev);
+                setIsResponseModal((prev) => !prev);
             }
             console.log(responsesIdList);
         } catch (e) {
             console.log(e.message);
         }
-    }
+    };
     const isResponsedVacancy = (id, list) => {
-        return list.some(el => el === id);
-    }
-
+        return list.some((el) => el === id);
+    };
 
     useEffect(() => {
         // if (!debouncedVacancySearch) return;
@@ -133,12 +128,12 @@ const VacancyListPage = ({
             setFilterData((prevState) => {
                 return {
                     ...prevState,
-                    title: '',
+                    title: "",
                 };
             });
             setSuggestions([]);
             return;
-        };
+        }
 
         axios
             .get(`/searchSort?str=${debouncedVacancySearch}`)
@@ -154,12 +149,11 @@ const VacancyListPage = ({
         });
     }, [debouncedVacancySearch]);
 
-
     const handleSuggestionClick = (e) => {
         setSuggestions([]);
         setVacancySearchInput(e.target.innerText);
         setSuggestionsActive(false);
-    }
+    };
 
     const fetchVacancyCards = useCallback(async () => {
         // if (isLoading) return;
@@ -168,7 +162,6 @@ const VacancyListPage = ({
         // dispatch(setStatus('loading'));
 
         dispatch(loadVacancyOnScroll(filterData));
-
 
         // axios
         //     .post(`/vacancies/filter?page=${index}`, { filterData: filterData })
@@ -214,8 +207,6 @@ const VacancyListPage = ({
         }
     }, [loaderRef, vacancyList]);
 
-
-
     const handleChange = (event) => {
         const { value, checked, name, type } = event.target;
         // setIndex(1);
@@ -243,9 +234,8 @@ const VacancyListPage = ({
                 const pattern = /^\d+$/;
                 if (pattern.test(value)) {
                     setPayment(value);
-
                 } else {
-                    setPayment('');
+                    setPayment("");
                 }
                 break;
             default:
@@ -257,7 +247,6 @@ const VacancyListPage = ({
     useEffect(() => {
         dispatch(fetchVacancyList(filterData));
         // dispatch(setPageIndex(pageIndex + 1));
-
 
         // const getFilterData = async (filterData) => {
         //     const response = await axios.post(`/vacancies/filter?page=1`, {
@@ -276,38 +265,43 @@ const VacancyListPage = ({
         <>
             <Head title={title} />
             <AppPage>
-                <Modal
-                    isOpen={isResponseModal}
-                    onClose={handleToggleModal}
-                >
-                    {user?.id ?
+                <Modal isOpen={isResponseModal} onClose={handleToggleModal}>
+                    {user?.id ? (
                         <>
-                            <AppText text={'Выберите резюме для отправки'} size={'s'} />
-                            {resumes?.map(resume => <AppCard
-                                key={resume.id}
-                                className={s.modalCard}
-                                borderLeft
-                                width={'500px'}
-                                shadow
-                            >
-                                <AppText
-                                    title={resume.profession}
-                                    size={'m'}
-                                />
-                                <AppButton
-                                    variant={'filled'}
-                                    // onClick={() => {
-                                    //     router.post('PageUserResponses/accept', { resume_id: resume.id, vacancy_id: vacId });
-                                    //     setIsResponseModal(!isResponseModal);
-                                    // }}
-                                    onClick={() => handleAnswer(vacId, resume.id)}
+                            <AppText
+                                text={"Выберите резюме для отправки"}
+                                size={"s"}
+                            />
+                            {resumes?.map((resume) => (
+                                <AppCard
+                                    key={resume.id}
+                                    className={s.modalCard}
+                                    borderLeft
+                                    width={"500px"}
+                                    shadow
                                 >
-                                    Отправить
-                                </AppButton>
-                            </AppCard>)}
-                        </> :
+                                    <AppText
+                                        title={resume.profession}
+                                        size={"m"}
+                                    />
+                                    <AppButton
+                                        variant={"filled"}
+                                        // onClick={() => {
+                                        //     router.post('PageUserResponses/accept', { resume_id: resume.id, vacancy_id: vacId });
+                                        //     setIsResponseModal(!isResponseModal);
+                                        // }}
+                                        onClick={() =>
+                                            handleAnswer(vacId, resume.id)
+                                        }
+                                    >
+                                        Отправить
+                                    </AppButton>
+                                </AppCard>
+                            ))}
+                        </>
+                    ) : (
                         <>
-                            <AppText text={'Сначала зарегистрируйтесь'} />
+                            <AppText text={"Сначала зарегистрируйтесь"} />
                             <AppLink
                                 href={route("register")}
                                 className={cn(s.navLink)}
@@ -323,15 +317,15 @@ const VacancyListPage = ({
                                 Войти
                             </AppLink>
                         </>
-                    }
+                    )}
                 </Modal>
                 <div className={s.filterSearchVacancy}>
                     <form action="" className={s.vacancySearch}>
                         <AppInput
                             autoComplete="off"
-                            width={'550px'}
-                            name={'title'}
-                            placeholder={'Поиск вакансии'}
+                            width={"550px"}
+                            name={"title"}
+                            placeholder={"Поиск вакансии"}
                             value={vacancySearchInput}
                             onChange={handleVacancySearchInput}
                             onClick={() =>
@@ -343,15 +337,15 @@ const VacancyListPage = ({
                         <List
                             className={s.serachFilterSuggestions}
                             list={suggestions}
-                            renderItem={(suggestion) =>
+                            renderItem={(suggestion) => (
                                 <li
                                     key={suggestion.id}
                                     className={s.serachFilterSuggestion}
                                     onClick={handleSuggestionClick}
                                 >
                                     {suggestion.title}
-                                </li>}
-
+                                </li>
+                            )}
                         />
                     )}
                 </div>
@@ -368,63 +362,65 @@ const VacancyListPage = ({
 
                     <div className={s.vacancyList}>
                         <div className={s.descBlock}>
-                            {status === 'resolved' &&
-                                <AppText bold text={`Найдено ${total} вакансии`} />
+                            {
+                                status === "resolved" && (
+                                    <AppText
+                                        bold
+                                        text={`Найдено ${total} вакансии`}
+                                    />
+                                )
                                 // :<AppText bold text={`Ничего не найдено`} />
                             }
                             {/* {error && <AppText text={error} variant={'error'} />} */}
                             <div className={s.toggleDescBtn}>
                                 <AppButton
-                                    width={'40px'}
-                                    height={'40px'}
-                                    variant='clear'
-                                    onClick={() => setExtendedDescription(false)}
+                                    width={"40px"}
+                                    height={"40px"}
+                                    variant="clear"
+                                    onClick={() =>
+                                        setExtendedDescription(false)
+                                    }
                                     className={cn(s.hideDescBtn, {
-                                        [s.pressed]: !extendedDescription
+                                        [s.pressed]: !extendedDescription,
                                     })}
                                 >
                                     <span></span>
-
                                 </AppButton>
                                 <AppButton
-                                    width={'40px'}
-                                    height={'40px'}
-                                    variant='clear'
+                                    width={"40px"}
+                                    height={"40px"}
+                                    variant="clear"
                                     onClick={() => setExtendedDescription(true)}
                                     className={cn(s.showDescBtn, {
-                                        [s.pressed]: extendedDescription
+                                        [s.pressed]: extendedDescription,
                                     })}
                                 >
                                     <span></span>
                                 </AppButton>
-
                             </div>
-
                         </div>
-                        {vacancyList?.map(vac =>
+                        {vacancyList?.map((vac) => (
                             <div className={s.vacancyListCardWrapper}>
                                 <AppCard
                                     key={vac.id}
                                     variant="primary"
-                                    width={'auto'}
-                                    height={extendedDescription ? `300px` : `260px`}
+                                    width={"auto"}
+                                    height={
+                                        extendedDescription ? `300px` : `260px`
+                                    }
                                     shadow
                                     className={cn(s.vacancyListCard)}
                                 >
                                     <AppLink
-
-                                        path={'vacancy.show'}
+                                        path={"vacancy.show"}
                                         param={vac.id}
-
                                     >
                                         <AppText
                                             className={s.vacancyListCardTitle}
                                             title={vac.title}
                                         />
                                     </AppLink>
-                                    <AppText
-                                        text={`от ${vac.payment} руб.`}
-                                    />
+                                    <AppText text={`от ${vac.payment} руб.`} />
                                     <AppText
                                         text={`Компания ${vac.conditions}.`}
                                     />
@@ -442,64 +438,82 @@ const VacancyListPage = ({
                                     />
                                     <div className={s.vacancyListCardParam}>
                                         <AppText
-                                            size={'s'}
-                                            variant={'secondary'}
+                                            size={"s"}
+                                            variant={"secondary"}
                                             text={vac.employment}
-                                            className={s.vacancyListCardEmployment}
+                                            className={
+                                                s.vacancyListCardEmployment
+                                            }
                                         />
                                         <AppText
-                                            size={'s'}
-                                            variant={'secondary'}
+                                            size={"s"}
+                                            variant={"secondary"}
                                             text={vac.schedule}
-                                            className={s.vacancyListCardSchedule}
-
+                                            className={
+                                                s.vacancyListCardSchedule
+                                            }
                                         />
-
                                     </div>
-                                    {extendedDescription &&
+                                    {extendedDescription && (
                                         <AppText
-                                            size={'xs'}
-                                            text={vac.description.length > 120 ? `${vac.description.substring(0, 115)}...` : vac.description}
+                                            size={"xs"}
+                                            text={
+                                                vac.description.length > 120
+                                                    ? `${vac.description.substring(
+                                                          0,
+                                                          115
+                                                      )}...`
+                                                    : vac.description
+                                            }
                                             className={s.vacancyListCardDesc}
                                         />
-                                    }
-                                    <div className={s.vacancyListCardBtnWrapper}>
+                                    )}
+                                    <div
+                                        className={s.vacancyListCardBtnWrapper}
+                                    >
+                                        {auth.user && auth.user.isRol === 0 && (
+                                            <AppButton
+                                                onClick={() =>
+                                                    handleToggleModal(vac.id)
+                                                }
+                                                className={s.vacancyListCardBtn}
+                                                width="auto"
+                                                disabled={
+                                                    isResponsedVacancy(
+                                                        vac.id,
+                                                        responsesIdList
+                                                    )
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                Откликнуться
+                                            </AppButton>
+                                        )}
+
                                         <AppButton
-                                            onClick={() => handleToggleModal(vac.id)}
-                                            className={s.vacancyListCardBtn}
-                                            width="auto"
-                                            disabled={isResponsedVacancy(vac.id, responsesIdList) ? true : false}
-                                        >
-                                            Откликнуться
-                                        </AppButton>
-                                        <AppButton
-                                            path={'vacancy.show'}
+                                            path={"vacancy.show"}
                                             param={vac.id}
-                                            variant='outline'
+                                            variant="outline"
                                             width="auto"
-                                            colorType="normal"
+                                            colorType="primary"
                                         >
                                             Посмотреть
                                         </AppButton>
-
                                     </div>
-
                                 </AppCard>
-                                {auth.user && auth.user.isRol === 0 &&
+                                {auth.user && auth.user.isRol === 0 && (
                                     <FavouriteButton
                                         favourites={likes}
                                         id={vac.id}
                                         user={auth?.user}
                                         className={s.addToFavouriteBtn}
                                     />
-
-                                }
-
-
+                                )}
                             </div>
-                        )}
+                        ))}
                         <div ref={loaderRef}>
-                            {status === 'loading' && <Loader />}
+                            {status === "loading" && <Loader />}
                         </div>
                     </div>
                 </div>

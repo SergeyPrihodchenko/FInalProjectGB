@@ -16,19 +16,23 @@
     height: 20px;
     border-radius: 4px;
     margin-right: 8px;
-    border: 1px solid var(--checkbox-color);
+    border: 1px solid var(--primary-text);
     outline: none;
     cursor: pointer;
+    transition: linear var(--transition-delay);
 }
 
 input[type="checkbox"]:focus,
 input[type="checkbox"]:focus:checked {
     box-shadow: 0 0 0 1px var(--accent);
-    border: none;
 }
 
 input[type="checkbox"]:checked {
     background-color: var(--accent);
     position: relative;
     border: none;
+}
+input[type="checkbox"]:hover {
+    border: 1px solid var(--accent);
+    transition: linear var(--transition-delay);
 }

@@ -44,7 +44,6 @@ const MainLayout = (porps) => {
     };
     useEffect(() => {
         if (defaultTheme) {
-            console.log("defaultTheme", defaultTheme);
             setTheme(defaultTheme);
             document.body.className = defaultTheme;
         } else {

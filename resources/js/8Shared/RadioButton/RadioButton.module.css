@@ -1,7 +1,6 @@
 .radioField {
     display: flex;
     margin-bottom: 10px;
-
 }
 
 .radioWrapper {
@@ -17,11 +16,11 @@
     height: 26px;
     border-radius: 50%;
     margin-right: 8px;
-    border: 1px solid var(--checkbox-color);
+    border: 1px solid var(--primary-text);
     outline: none;
     cursor: pointer;
     color: #fff;
-
+    transition: linear var(--transition-delay);
 }
 
 input[type="radio"]:focus,
@@ -30,7 +29,6 @@ input[type="radio"]:focus:checked {
     /* border: none; */
     border-color: var(--accent);
     border-width: 6px;
-
 }
 
 input[type="radio"]:checked {
@@ -38,6 +36,8 @@ input[type="radio"]:checked {
     border-width: 6px;
     position: relative;
     background-image: none;
-
-
+}
+input[type="radio"]:hover {
+    border: 1px solid var(--accent);
+    transition: linear var(--transition-delay);
 }
