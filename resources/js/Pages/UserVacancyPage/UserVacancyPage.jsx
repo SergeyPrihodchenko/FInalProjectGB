@@ -46,7 +46,7 @@ const UserVacancyPage = ({ vacancies }) => {
                                     bold
                                 />
                                 <AppText
-                                    text={`Компания ${vac.company}.`}
+                                    text={`Компания ${vac.name}.`}
                                     size="s"
                                     bold
                                 />
@@ -77,14 +77,13 @@ const UserVacancyPage = ({ vacancies }) => {
                                     />
                                 </div>
                                 
-                                <div className={s.vacancyListCardBtnWrapper}>
+                                <div className={s.vacancyListCardBtnWrapper}>                                 
                                     <AppButton
                                         path={'vacancy.show'}
                                         param={vac.id}
-                                        //key={vac.id}
                                         type="button"
                                         sizeText="s"
-                                       width={"120px"}
+                                        width={"120px"}
                                         className={s.linkResumeList}
                                        
                                     >

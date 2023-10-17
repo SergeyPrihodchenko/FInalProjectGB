@@ -129,22 +129,8 @@ function ResumePage({ resume, author }) {
             <AppPage>
                 <container className={s.containerResumePage}>
                     <main className={s.mainResumePage}>
-                        {/* <div className={s.buttonLinkResumeList}>
-                            <AppButton
-                                href={route("resume.myresumes")}
-                                variant="clear"
-                                className={s.linkResumePage}
-                                sizeText = "s"
-                            >
-                                К списку моих резюме
-                            </AppButton>
-                        </div> */}
                         <div class={s.baceData}>
                             <div class={s.userBaceData}>
-                                {/* <AppText 
-                                    text={"Сейчас на сайте"} 
-                                    size="s" 
-                                /> */}
                                 <AppText
                                     title={data.last_name.concat(" ", data.first_name)}
                                     size="s"
@@ -194,20 +180,6 @@ function ResumePage({ resume, author }) {
                                     }
                                     size="s"
                                 />
-                                {/* <div className={s.userSearchArea}>
-                                    <AppText
-                                        text={"Указан примерный район поиска работы"}
-                                        size="s"
-                                        variant={"error"}
-                                    />
-                                    <a href="#" className={s.linkResumePage}>
-                                        Показать карту
-                                    </a>
-                                </div> */}
-                            </div>
-                            <div class={s.userPhoto}>
-                                НЕТ ФОТО
-                                {/* <img src="#" className={s.imgUserPhoto}/> */}
                             </div>
                         </div>
 
@@ -421,37 +393,6 @@ function ResumePage({ resume, author }) {
                                 </div>
                             ) : null
                         }
-
-                        {
-                            user.isRol == 1 ? (
-                                <div className={s.linkViewResume}>
-                                    <AppButton
-                                        // onClick={invitation}
-                                        id={resume.id}
-                                        type="button"
-                                        height={"40px"}
-                                        sizeText="s"
-                                    >
-                                        Пригласить
-                                    </AppButton>
-                                    <AppButton
-                                        onClick={() => handleRefuseResume()}
-                                        // onClick={refusar}
-                                        id={resume.id}
-                                        type="button"
-                                        height={"40px"}
-                                        sizeText="s"
-                                    >
-                                        <span className={s.buttonReject}>
-                                            Отклонить
-                                        </span>
-
-                                    </AppButton>
-                                </div>
-                            ) : null
-                        }
-
-
                     </main>
                 </container>
             </AppPage>
