@@ -17,15 +17,17 @@ export default function VacancyList(props) {
         responsibilities,
         conditions,
     } = vacancy;
-    const [vacancyRequirements] = useState(JSON.parse(requirements));
-    const [vacancyResponsibilities] = useState(JSON.parse(responsibilities));
-    const [vacancyConditions] = useState(JSON.parse(conditions));
-    const [vacancySkills] = useState(JSON.parse(skills));
+    // const [vacancyRequirements] = useState(JSON.parse(requirements));
+    // const [vacancyResponsibilities] = useState(JSON.parse(responsibilities));
+    // const [vacancyConditions] = useState(JSON.parse(conditions));
+    // const [vacancySkills] = useState(JSON.parse(skills));
 
-    // const [vacancyRequirements] = useState(requirements);
-    // const [vacancyResponsibilities] = useState(responsibilities);
-    // const [vacancyConditions] = useState(conditions);
-    // const [vacancySkills] = useState(skills);
+    const [vacancyRequirements] = useState(requirements);
+    const [vacancyResponsibilities] = useState(responsibilities);
+    const [vacancyConditions] = useState(conditions);
+    const [vacancySkills] = useState(skills);
+
+    console.log(vacancyRequirements, vacancyResponsibilities, vacancyConditions, vacancySkills);
     // console.log("VacancyPage/VacancyList vacancy", vacancy);
     return (
         <div className={cn(s.vacancyList, className)}>
