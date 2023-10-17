@@ -9,6 +9,7 @@ function AppSelect(props) {
         name,
         id,
         onChange,
+        firstStubNone = "false",
         value,
         className,
         options,
@@ -28,11 +29,11 @@ function AppSelect(props) {
                 onChange={onChange}
                 value={value}
             >
-                <option value="">Не выбран</option>
+                {!firstStubNone ? <option value="">Не выбран</option> : null}
                 {options &&
-                    options.map((optionItem) => {
+                    options.map((optionItem, index) => {
                         return (
-                            <option key={optionItem} value={optionItem}>
+                            <option key={optionItem + index} value={optionItem}>
                                 {optionItem}
                             </option>
                         );

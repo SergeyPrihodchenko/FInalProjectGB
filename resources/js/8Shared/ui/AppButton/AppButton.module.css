@@ -2,6 +2,7 @@
     outline-style: none;
     padding: 6px 12px;
     cursor: pointer;
+    transition: var(--transition-delay) linear;
 }
 
 .appButtonLink {

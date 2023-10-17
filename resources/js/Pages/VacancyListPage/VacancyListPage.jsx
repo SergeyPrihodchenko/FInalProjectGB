@@ -471,23 +471,26 @@ const VacancyListPage = ({
                                     <div
                                         className={s.vacancyListCardBtnWrapper}
                                     >
-                                        <AppButton
-                                            onClick={() =>
-                                                handleToggleModal(vac.id)
-                                            }
-                                            className={s.vacancyListCardBtn}
-                                            width="auto"
-                                            disabled={
-                                                isResponsedVacancy(
-                                                    vac.id,
-                                                    responsesIdList
-                                                )
-                                                    ? true
-                                                    : false
-                                            }
-                                        >
-                                            Откликнуться
-                                        </AppButton>
+                                        {auth.user && auth.user.isRol === 0 && (
+                                            <AppButton
+                                                onClick={() =>
+                                                    handleToggleModal(vac.id)
+                                                }
+                                                className={s.vacancyListCardBtn}
+                                                width="auto"
+                                                disabled={
+                                                    isResponsedVacancy(
+                                                        vac.id,
+                                                        responsesIdList
+                                                    )
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                Откликнуться
+                                            </AppButton>
+                                        )}
+
                                         <AppButton
                                             path={"vacancy.show"}
                                             param={vac.id}
