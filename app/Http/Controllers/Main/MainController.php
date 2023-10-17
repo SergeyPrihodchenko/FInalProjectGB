@@ -18,27 +18,27 @@ use function Laravel\Prompts\select;
 
 class MainController extends Controller
 {
-    public function index() 
+    public function index()
     {
-        
+
         $categories = Category::all();
         $vacancies = Vacancy::all()->take(6);
-            return Inertia::render('Main', [
-                'canLogin' => Route::has('login'),
-                'canRegister' => Route::has('register'),
-                'categories' => $categories,
-                'vacancies' => $vacancies
-            ]);
+        return Inertia::render('Main', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'categories' => $categories,
+            'vacancies' => $vacancies
+        ]);
     }
 
-    public function searchSort(CategoryRequest $request) 
+    public function searchSort(Request $request)
     {
         $employment = EmploymentType::all();
         $schedule = ScheduleType::all();
         $experience = Experience::all();
         $cities = City::all();
-        
-        $data = $request->validated();
+
+        $data = $request->all();
         $vacancies = $data['vacancy'];
         if (!empty($vacancies)) {
             return Inertia::render('VacancyListPage/VacancyListPage', [
@@ -60,10 +60,10 @@ class MainController extends Controller
         ]);
     }
 
-    public function beforeSearchSort(CategoryRequest $request) 
+    public function beforeSearchSort(CategoryRequest $request)
     {
         $data = $request->validated();
         $searchStr = $data['str'];
-        return Vacancy::where('title', 'like', '%'.$searchStr.'%')->distinct()->get('title');
+        return Vacancy::where('title', 'like', '%' . $searchStr . '%')->distinct()->get('title');
     }
 }
