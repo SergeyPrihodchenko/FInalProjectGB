@@ -29,7 +29,6 @@ function VacancyPage(props) {
 
     console.log("companies", companies);
     // console.log("vacancy", vacancy);
-    // console.log("city", city);
     const [isResponse, setIsResponse] = useState(false);
     return (
         <>

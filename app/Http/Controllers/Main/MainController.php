@@ -22,7 +22,7 @@ class MainController extends Controller
     {
         
         $categories = Category::all();
-        $vacancies = Vacancy::all()->take(3);
+        $vacancies = Vacancy::all()->take(6);
             return Inertia::render('Main', [
                 'canLogin' => Route::has('login'),
                 'canRegister' => Route::has('register'),

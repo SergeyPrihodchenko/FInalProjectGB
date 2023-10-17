@@ -1,5 +1,5 @@
 import React from "react";
-import { Head, useForm, usePage } from "@inertiajs/react";
+import { Head, router, useForm, usePage } from "@inertiajs/react";
 
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import { AuthContext } from "@/8Shared/store/AuthContext";
@@ -10,33 +10,65 @@ import cn from "classnames";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import axios from "axios";
 import { useEffect } from "react";
+import { useState } from "react";
 
 function UserResumeListPage({ resumes }) {
     const user = usePage().props.auth.user;
+    const [resumeList, setResumeList] = useState(resumes ? resumes : []);
 
-    // console.log(resumes);
+
 
     const handleView = async (resume_id, vacancy_id) => {
         const response = await axios.post("/viewed", {
             resume_id: resume_id,
             vacancy_id: vacancy_id,
         });
-        console.log(response);
+
     };
     const handleRefuse = async (resume_id, vacancy_id) => {
-        const response = await axios.post("/refusal", {
-            resume_id: resume_id,
-            vacancy_id: vacancy_id,
-        });
-        console.log(response);
+        try {
+            const response = await axios.post("/refusal", {
+                resume_id: resume_id,
+                vacancy_id: vacancy_id,
+            });
+            if (response.status === 200) {
+                router.get('condidate', {}, { preserveScroll: true });
+                console.log(response);
+
+            } else {
+
+                throw new Error('something wrong!')
+            }
+
+
+        } catch (error) {
+            console.log(error);
+        }
     };
     const handleInvite = async (resume_id, vacancy_id) => {
-        const response = await axios.post("/invitation", {
-            resume_id: resume_id,
-            vacancy_id: vacancy_id,
-        });
-        console.log(response);
+        try {
+            const response = await axios.post("/invitation", {
+                resume_id: resume_id,
+                vacancy_id: vacancy_id,
+            });
+            if (response.status === 200) {
+                router.get('condidate', {}, { preserveScroll: true });
+                console.log(response);
+
+            } else {
+
+                throw new Error('something wrong!')
+            }
+
+
+        } catch (error) {
+            console.log(error);
+        }
     };
+
+    useEffect(() => {
+        setResumeList(resumes);
+    }, [])
 
     return (
         <AuthContext.Provider value={{ user }}>
@@ -51,7 +83,7 @@ function UserResumeListPage({ resumes }) {
                             className={s.titleResumeList}
                         />
 
-                        {resumes.map((resume) => {
+                        {resumeList.map((resume) => {
                             const { data } = useForm({
                                 profession: resume.profession,
                                 region: resume.region,
@@ -71,13 +103,13 @@ function UserResumeListPage({ resumes }) {
                                     number +
                                     " " +
                                     titles[
-                                        number % 100 > 4 && number % 100 < 20
-                                            ? 2
-                                            : cases[
-                                                  number % 10 < 5
-                                                      ? number % 10
-                                                      : 5
-                                              ]
+                                    number % 100 > 4 && number % 100 < 20
+                                        ? 2
+                                        : cases[
+                                        number % 10 < 5
+                                            ? number % 10
+                                            : 5
+                                        ]
                                     ]
                                 );
                             }
@@ -212,6 +244,7 @@ function UserResumeListPage({ resumes }) {
                                                     resume.vacancy_id
                                                 )
                                             }
+                                            // onClick={handleRefuse}
                                             colorType={"cancel"}
                                             type="button"
                                             sizeText="s"

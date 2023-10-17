@@ -72,7 +72,6 @@ function SecondNav(props) {
                     <div className={s.secondNavButton}>
                         <AppButton
                             href={route("vacancy.create")}
-                            width="250px"
                             height="50px"
                             variant="outline"
                             colorType="normal"
@@ -84,7 +83,6 @@ function SecondNav(props) {
 
                         <AppButton
                             href={route("company.create")}
-                            width="250px"
                             height="50px"
                             variant="outline"
                             colorType="normal"
