@@ -93,6 +93,9 @@ const UserResponsesListPageCard = ({
                 </div>
 
                 <AppButton
+                    path={'vacancy.show'}
+                    param={id}
+                    key={id}
                     className={s.userResponsesPageCardBtn}
                     width="auto"
                 >

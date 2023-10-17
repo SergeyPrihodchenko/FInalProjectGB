@@ -35,25 +35,6 @@
     margin-top: 20px;
 }
 
-.userPhoto {
-    width: 87px;
-    height: 87px;
-    color: var(--accent);
-    background-color: var(--main-bg);
-    border: 1px solid var(--accent);
-    border-radius: var(--border-radius-s);
-    padding-top: 30px;
-    text-align: center;
-}
-
-/* .imgUserPhoto{
-    width: 87px;
-    height: 87px;
-    color: var(--accent);
-    background-color: var( --main-bg);
-    border: 2px solid var(--accent);
-    border-radius: var(--border-radius-s);
-} */
 .statusWithName {
     display: flex;
     align-items: center;
