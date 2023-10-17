@@ -1,3 +1,10 @@
+.loginItem {
+    margin-top: var(--indent-s);
+}
+.loginWrapper {
+    width: 100%;
+    display: flex;
+}
 .btn {
-    margin-left: 16px;
+    margin-left: auto;
 }

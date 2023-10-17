@@ -14,7 +14,6 @@ const navListEmployment = [
     { routeName: "Мои компании", routePath: "myCompanies" },
     { routeName: "Мои вакансии", routePath: "my.vacancies" },
     { routeName: "Кандидаты ", routePath: "condidate" },
-
 ];
 // href={route("userResponses")}
 function SecondNav(props) {
@@ -45,7 +44,7 @@ function SecondNav(props) {
                         href={route("resume.create")}
                         height="50px"
                         variant="outline"
-                        colorType="normal"
+                        colorType="primary"
                         rounded
                         sizeText="m"
                     >
@@ -74,7 +73,7 @@ function SecondNav(props) {
                             href={route("vacancy.create")}
                             height="50px"
                             variant="outline"
-                            colorType="normal"
+                            colorType="primary"
                             rounded
                             sizeText="m"
                         >
@@ -85,7 +84,7 @@ function SecondNav(props) {
                             href={route("company.create")}
                             height="50px"
                             variant="outline"
-                            colorType="normal"
+                            colorType="primary"
                             rounded
                             sizeText="m"
                         >

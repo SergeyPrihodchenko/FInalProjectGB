@@ -11,6 +11,7 @@ import s from "./RegisterPage.module.css";
 import AppInput from "@/8Shared/ui/AppInput/AppInput";
 import RadioButton from "@/8Shared/RadioButton/RadioButton";
 import { useState } from "react";
+import AppLink from "@/8Shared/ui/AppLink/AppLink";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -18,7 +19,7 @@ export default function Register() {
         email: "",
         password: "",
         password_confirmation: "",
-        isRol: ''
+        isRol: "",
     });
     // console.log(data);
     useEffect(() => {
@@ -39,22 +40,21 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <div style={{ display: 'flex', gap: '15px' }}>
+                    <div style={{ display: "flex", gap: "15px" }}>
                         <RadioButton
                             name={"isRol"}
                             value={0}
-                            id={'applicant'}
+                            id={"applicant"}
                             label={"Соискатель"}
                             onChange={(e) => setData("isRol", e.target.value)}
                         />
                         <RadioButton
                             name={"isRol"}
-                            id={'employer'}
+                            id={"employer"}
                             value={1}
                             label={"Работодатель"}
-                            onChange={(e) => setData('isRol', e.target.value)}
+                            onChange={(e) => setData("isRol", e.target.value)}
                         />
-
                     </div>
                     <AppInput
                         id="name"
@@ -143,7 +143,7 @@ export default function Register() {
                     {/* <InputError message={errors.password} className="mt-2" /> */}
                 </div>
 
-                <div className="mt-4">
+                <div className={cn(s.registerItem)}>
                     <AppInput
                         id="password_confirmation"
                         type="password"
@@ -182,13 +182,15 @@ export default function Register() {
                     /> */}
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route("login")}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
+                <div
+                    className={cn(
+                        "flex items-center justify-end mt-4",
+                        s.registerItem
+                    )}
+                >
+                    <AppLink href={route("login")} colorType={"primaryAccent"}>
                         Уже зарегестрирован?
-                    </Link>
+                    </AppLink>
 
                     <AppButton
                         className={cn(s.btn)}
