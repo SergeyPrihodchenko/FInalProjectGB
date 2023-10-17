@@ -5,7 +5,6 @@ import s from "./VacancyPage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
 import VacancyCards from "../VacancyCards/VacancyCards";
 import VacancyList from "../VacancyList/VacancyList";
-import VacancyAdress from "../VacancyAdress/VacancyAdress";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 import data from "../../data.json";
@@ -37,6 +36,7 @@ function VacancyPage(props) {
                 <AppPage>
                     <div className={s.vacancyPage}>
                         <VacancyCards
+                            user={user}
                             className={s.cards}
                             vacancy={vacancy}
                             city={city}
@@ -49,7 +49,7 @@ function VacancyPage(props) {
                             vacancyList={data}
                             className={s.list}
                         />
-                        <VacancyAdress className={s.adress} adress={adress} />
+                        {/* <VacancyAdress className={s.adress} adress={adress} /> */}
                         <AppText
                             text="Вакансия опубликована 28 августа 2023 в Москве"
                             variant="notaccented"
@@ -57,45 +57,51 @@ function VacancyPage(props) {
                             className={s.date}
                         />
 
-                        {isResponse ? (
-                            <>
+                        {user && user.isRol === 0 ? (
+                            isResponse ? (
+                                <>
+                                    <AppButton
+                                        width="360px"
+                                        height="60px"
+                                        className={s.btn}
+                                        variant={"outline"}
+                                        colorType={"accent"}
+                                        disabled={isResponse}
+                                    >
+                                        Откликнуться
+                                    </AppButton>
+                                    <AppButton
+                                        width="360px"
+                                        height="60px"
+                                        className={cn(s.btn, s.cancelBtn)}
+                                        onClick={() =>
+                                            setIsResponse(!isResponse)
+                                        }
+                                    >
+                                        Отозвать отклик
+                                    </AppButton>
+
+                                    <AppText
+                                        className={s.responseText}
+                                        text={
+                                            "Вы отлкинулись, ожидайте приглашения"
+                                        }
+                                        variant={"notaccented"}
+                                    />
+                                </>
+                            ) : (
                                 <AppButton
                                     width="360px"
                                     height="60px"
                                     className={s.btn}
-                                    variant={"outline"}
-                                    colorType={"accent"}
-                                    disabled={isResponse}
+                                    onClick={() => setIsResponse(!isResponse)}
                                 >
                                     Откликнуться
                                 </AppButton>
-                                <AppButton
-                                    width="360px"
-                                    height="60px"
-                                    className={cn(s.btn, s.cancelBtn)}
-                                    onClick={() => setIsResponse(!isResponse)}
-                                >
-                                    Отозвать отклик
-                                </AppButton>
+                            )
+                        ) : null}
 
-                                <AppText
-                                    className={s.responseText}
-                                    text={
-                                        "Вы отлкинулись, ожидайте приглашения"
-                                    }
-                                    variant={"notaccented"}
-                                />
-                            </>
-                        ) : (
-                            <AppButton
-                                width="360px"
-                                height="60px"
-                                className={s.btn}
-                                onClick={() => setIsResponse(!isResponse)}
-                            >
-                                Откликнуться
-                            </AppButton>
-                        )}
+                        {}
                         <VacancyPageReviews className={s.reviews} />
                     </div>
                 </AppPage>

@@ -31,12 +31,11 @@ class CompanySeeder extends Seeder
                 'phone_number' => fake()->phoneNumber,
                 'description' => fake('ru_RU')->text(),
                 'creator_id' => User::create([
-                'name' => fake('ru_RU')->name,
-                'email' => fake()->email,
-                'password' => '12345678',
-            ])->id,
+                    'name' => fake('ru_RU')->name,
+                    'email' => fake()->email,
+                    'password' => '12345678',
+                ])->id,
 
-                'logo' => fake('ru_RU')->imageUrl(150, 150),
                 'city' => fake('ru_RU')->city,
                 'created_at' => now(),
                 'updated_at' => now(),

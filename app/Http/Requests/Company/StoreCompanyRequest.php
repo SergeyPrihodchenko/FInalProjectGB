@@ -30,8 +30,7 @@ class StoreCompanyRequest extends FormRequest
             'date_create'=> ['sometimes' ],
             'phone_number'=> ['sometimes' ],
             'description'=> ['sometimes' ],
-            'city'=>[ 'sometimes' ],
-            'logo'=>[ 'sometimes', 'image', 'mimes:jpeg,bmp,png,jpg,gif|max:2048'],
+           
         ];
     }
 }

@@ -5,6 +5,7 @@ import { SocialLinksWidget } from "../SocialLinksWidget/SocialLinksWidget";
 import { BootstrapIcon } from "../../8Shared/Icon/BootstrapIcon";
 import AppText from "../../8Shared/ui/AppText/AppText";
 import cn from "classnames";
+import AppLink from "@/8Shared/ui/AppLink/AppLink";
 const socialList = [
     {
         name: "telegram",
@@ -31,43 +32,62 @@ export const Footer = ({ children, className }) => {
                             bold
                             className="mb-3"
                         />
-                        <ul>
-                            <li className="mb-1">О компании</li>
-                            <li className="mb-1">Наши вакансии</li>
-                            <li className="mb-1">Реклама на сайте</li>
-                            <li className="mb-1">Требования к ПО</li>
-                            <li className="mb-1">Защита персональных данных</li>
-                            <li className="mb-1">Безопасный Golden Head</li>
-                            <li className="mb-1">Партнерам</li>
-                            <li>Инвесторам</li>
-                        </ul>
-                    </div>
-                    <div className={s.footerTopList}>
-                        <AppText
-                            title="Сервисы для соискателей"
-                            size="m"
-                            variant="secondary"
-                            bold
-                            className="mb-3"
-                        />
-                        <ul className={s.footerTopList}>
-                            <li className="mb-1">Готовое резюме</li>
-                            <li className="mb-1">Все сервисы</li>
-                            <li className="mb-1">Продвижение резюме</li>
-                            <li className="mb-1">Хочу у вас работать</li>
-                            <li className="mb-1">Производственный календарь</li>
-                            <li className="mb-1">
-                                Карьера для молодых специалистов
-                            </li>
-                            <li className="mb-1">Школа программистов</li>
-                            <li>Профориентация</li>
-                        </ul>
+                        <div className={s.footerNav}>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                О компании
+                            </AppLink>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                Наши вакансии
+                            </AppLink>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                Реклама на сайте
+                            </AppLink>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                Требования к ПО
+                            </AppLink>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                Защита персональных данных
+                            </AppLink>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                Партнерам
+                            </AppLink>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                Адрес
+                            </AppLink>
+                            <AppLink
+                                colorType={"lightAccent"}
+                                href={route("main")}
+                            >
+                                Инвесторам
+                            </AppLink>
+                        </div>
                     </div>
                 </div>
                 <hr />
                 <div className={s.footerBottom}>
-                    <span>© 2023 Группа компаний GoldenHead</span>
-                    <SocialLinksWidget list={socialList} />
+                    <span>© 2023 Группа компаний GoodJob</span>
+                    {/* <SocialLinksWidget list={socialList} /> */}
                 </div>
             </AppPage>
         </footer>

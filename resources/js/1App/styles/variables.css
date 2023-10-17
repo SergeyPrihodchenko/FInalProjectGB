@@ -54,6 +54,7 @@
     /* Colors */
     --overlay-color: rgba(0 0 0 / 60%);
     --error-color: #ff0000cc;
+    --light-color: white;
 
     /* Border-radius */
     --border-radius-l: 33px;
