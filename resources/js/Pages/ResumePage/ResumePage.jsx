@@ -241,12 +241,6 @@ function ResumePage({ resume, author }) {
                             />
                         </div>
                         <div className={s.workExperience}>
-                            {/* <AppText
-                                        title={"4 года 9 месяцев"}
-                                        size="s"
-                                        bold
-                                        variant={"error"}
-                                    /> */}
                             {
                                 data.companies != null ? (
                                     data.companies.map((el) => {

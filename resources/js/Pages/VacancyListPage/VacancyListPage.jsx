@@ -117,7 +117,7 @@ const VacancyListPage = ({
                 setResponsesIdList([...responsesIdList, vacancy_id]);
                 setIsResponseModal(prev => !prev);
             }
-            console.log(res);
+            console.log(responsesIdList);
         } catch (e) {
             console.log(e.message);
         }
@@ -485,7 +485,7 @@ const VacancyListPage = ({
                                     </div>
 
                                 </AppCard>
-                                {auth.user &&
+                                {auth.user && auth.user.isRol === 0 &&
                                     <FavouriteButton
                                         favourites={likes}
                                         id={vac.id}

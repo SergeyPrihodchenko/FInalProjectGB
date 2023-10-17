@@ -11,13 +11,16 @@ const initialState = {
 
 export const resumeRefuse = createAsyncThunk(
     'candidate/resumeRefuse',
-    async (resume, { rejectWithValue, dispatch }) => {
+    async (resume, { rejectWithValue, dispatch, getState }) => {
         const { resume_id, vacancy_id } = resume;
         try {
             const response = await axios.post('/refusal', { resume_id: resume_id, vacancy_id: vacancy_id });
             if (response.status !== 200) {
                 throw new Error('Cant refuse');
             }
+            const { resumeList } = getState().candidatePage;
+            console.log('resumeList', resumeList);
+
             return { resume_id: resume_id, vacancy_id: vacancy_id };
         } catch (error) {
             return rejectWithValue(error);
@@ -63,14 +66,12 @@ export const candidatePageSlice = createSlice({
             const item = action.payload;
             console.log(item);
             state.resumeStatusRefuse = [...state.resumeStatusRefuse, item];
-
         });
         builder.addCase(resumeInvite.fulfilled, (state, action) => {
             const item = action.payload;
             console.log(item);
             state.resumeStatusInvite = [...state.resumeStatusInvite, item];
-
-        })
+        });
 
     }
 
