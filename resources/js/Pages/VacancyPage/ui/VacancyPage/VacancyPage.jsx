@@ -50,12 +50,12 @@ function VacancyPage(props) {
                             className={s.list}
                         />
                         {/* <VacancyAdress className={s.adress} adress={adress} /> */}
-                        <AppText
+                        {/* <AppText
                             text="Вакансия опубликована 28 августа 2023 в Москве"
                             variant="notaccented"
                             size="s"
                             className={s.date}
-                        />
+                        /> */}
 
                         {user && user.isRol === 0 ? (
                             isResponse ? (
