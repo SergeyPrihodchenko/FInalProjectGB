@@ -9,13 +9,11 @@ import AppButton from "@/8Shared/ui/AppButton/AppButton";
 import { useSelector } from "react-redux";
 import AppSelect from "@/8Shared/ui/AppSelect/AppSelect";
 import AppTextarea from "@/8Shared/ui/AppTextarea/AppTextarea";
-
 function CompanyPageCreate({ auth, cities }) {
     const user = auth?.user;
 
     const [selectedImage, setSelectedImage] = useState(null);
     const { data, setData, post, errors } = useForm({
-        //форма заполнена по умолчанию, чтобы не заполнять каждый раз, временно
         email: "",
         name: "",
         business_profile: "",
@@ -24,7 +22,6 @@ function CompanyPageCreate({ auth, cities }) {
         phone_number: "",
         description: "",
         date_create: "",
-        // logo: "",
         city: "",
     });
     const citiesName = cities.map((city) => city.title);

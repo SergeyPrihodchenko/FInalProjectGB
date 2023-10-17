@@ -47,7 +47,7 @@ class VacancySeeder extends Seeder
                 'contacts' => json_encode(fake()->phoneNumber()),
                 'requirements' => json_encode(fake('ru_RU')->text),
                 'responsibilities' => json_encode(fake('ru_RU')->text),
-                'conditions' => fake('ru_RU')->text,
+                'conditions' => json_encode(fake('ru_RU')->text),
                 'skills' => json_encode(fake('ru_RU')->jobTitle),
                 'reviews' => json_encode(fake('ru_RU')->jobTitle),
                 'company_id' => Company::create([

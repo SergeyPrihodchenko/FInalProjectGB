@@ -16,7 +16,7 @@ const CompanyPageAppCard = ({
     user,
     companyImageURL,
 }) => {
-    console.log("companyImageURL", companyImageURL);
+    // console.log("companyImageURL", companyImageURL);
     // console.log(user.id);  http://public/storage/
     const sub = () => {
         router.get(route("subscribe", [user.id, company.id]));
@@ -24,7 +24,9 @@ const CompanyPageAppCard = ({
     const unsub = () => {
         router.get(route("unsubscribe", [user.id, company.id]));
     };
-
+    console.log("CompanyPageAppCard city", city);
+    console.log("CompanyPageAppCard company", company);
+    console.log("CompanyPageAppCard user", user);
     return (
         <div className={cn(s.companyPageLeftCard)}>
             {/* {companyImageURL && (
@@ -80,23 +82,20 @@ const CompanyPageAppCard = ({
                 </div>
 
                 <div className={cn(s.companyPageLeftCardInfoCard)}>
-                    <AppText
-                        className={cn(s.companyPageLeftCardInfoText)}
-                        text={"  Сферы деятельности"}
-                    />
-                    {!company?.business_profile ? (
-                        <div className={cn(s.companyPageLeftCardInfoText)}>
-                            {/*Информационные технологии, системная интеграция,*/}
-                            {/*интернет*/}
-                            {company?.business_profile || "companyName"}
-                        </div>
-                    ) : (
-                        <AppText
-                            text={"Не указаны"}
-                            size={"s"}
-                            variant="notaccented"
-                        />
-                    )}
+                    {company?.business_profile ? (
+                        <>
+                            <AppText
+                                className={cn(s.companyPageLeftCardInfoText)}
+                                text={"Сферы деятельности"}
+                            />
+                            <AppText
+                                size={"s"}
+                                variant="notaccented"
+                                className={cn(s.companyPageLeftCardInfoText)}
+                                text={company?.business_profile}
+                            />
+                        </>
+                    ) : null}
                 </div>
             </div>
             <div className={cn(s.companyPageLeftToolbar)}>

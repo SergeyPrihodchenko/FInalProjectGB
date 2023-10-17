@@ -61,7 +61,7 @@ export const Navbar = (props) => {
                                 className={cn(s.navLink, ["hover:text-white "])}
                                 href={route("vacancy.index")}
                             >
-                                Вакансии
+                                Все вакансии
                             </AppLink>
                         </li>{" "}
                         {/* <AppLink
@@ -76,7 +76,7 @@ export const Navbar = (props) => {
                             href={route("company.index")}
                             className={cn(s.navLink)}
                         >
-                            Список всех компаний
+                            Все компании
                         </AppLink>
                         <AppLink
                             colorType="accent"
