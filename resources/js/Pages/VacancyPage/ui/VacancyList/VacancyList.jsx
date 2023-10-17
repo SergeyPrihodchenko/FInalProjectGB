@@ -22,7 +22,11 @@ export default function VacancyList(props) {
     const [vacancyConditions] = useState(JSON.parse(conditions));
     const [vacancySkills] = useState(JSON.parse(skills));
 
-    console.log("skills", JSON.parse(requirements));
+    // const [vacancyRequirements] = useState(requirements);
+    // const [vacancyResponsibilities] = useState(responsibilities);
+    // const [vacancyConditions] = useState(conditions);
+    // const [vacancySkills] = useState(skills);
+    // console.log("VacancyPage/VacancyList vacancy", vacancy);
     return (
         <div className={cn(s.vacancyList, className)}>
             {description ? (

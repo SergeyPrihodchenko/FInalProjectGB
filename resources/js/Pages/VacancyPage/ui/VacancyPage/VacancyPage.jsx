@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { AppPage } from "@/5Layouts/AppPage/AppPage";
 import s from "./VacancyPage.module.css";
 import AppText from "@/8Shared/ui/AppText/AppText";
-import VacancyPageCards from "../VacancyCards/VacancyCards";
-import VacancyPageList from "../VacancyList/VacancyList";
-import VacancyPageAdress from "../VacancyAdress/VacancyAdress";
+import VacancyCards from "../VacancyCards/VacancyCards";
+import VacancyList from "../VacancyList/VacancyList";
+import VacancyAdress from "../VacancyAdress/VacancyAdress";
 import AppButton from "@/8Shared/ui/AppButton/AppButton";
 
 import data from "../../data.json";
@@ -27,7 +27,7 @@ function VacancyPage(props) {
     adress.strAdress = vacancy?.adress || "Адрес не указан";
     adress.coordinates = vacancy?.coordinates || "Адрес не указан";
 
-    console.log("companies", companies);
+    // console.log("companies", companies);
     // console.log("vacancy", vacancy);
     // console.log("city", city);
     const [isResponse, setIsResponse] = useState(false);
@@ -37,7 +37,7 @@ function VacancyPage(props) {
             <div className={s.vacancyPage}>
                 <AppPage>
                     <div className={s.vacancyPage}>
-                        <VacancyPageCards
+                        <VacancyCards
                             className={s.cards}
                             vacancy={vacancy}
                             city={city}
@@ -45,15 +45,12 @@ function VacancyPage(props) {
                             isResponse={isResponse}
                             setIsResponse={setIsResponse}
                         />
-                        <VacancyPageList
+                        <VacancyList
                             vacancy={vacancy}
-                            vacancyPageList={data}
+                            vacancyList={data}
                             className={s.list}
                         />
-                        <VacancyPageAdress
-                            className={s.adress}
-                            adress={adress}
-                        />
+                        <VacancyAdress className={s.adress} adress={adress} />
                         <AppText
                             text="Вакансия опубликована 28 августа 2023 в Москве"
                             variant="notaccented"

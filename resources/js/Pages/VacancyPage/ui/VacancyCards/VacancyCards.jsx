@@ -18,7 +18,7 @@ function VacancyCards(props) {
     const { title, payment, experience, employment, revievs, conditions } =
         vacancy;
     // console.log("experience", experience);
-    console.log("vacancy", vacancy);
+    // console.log("vacancy", vacancy);
 
     return (
         <div className={cn(s.vacancyCards, className)}>

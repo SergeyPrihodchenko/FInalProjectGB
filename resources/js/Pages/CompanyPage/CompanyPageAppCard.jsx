@@ -27,7 +27,7 @@ const CompanyPageAppCard = ({
 
     return (
         <div className={cn(s.companyPageLeftCard)}>
-            {companyImageURL && (
+            {/* {companyImageURL && (
                 <div className={cn(s.companyPageLeftCardLogo)}>
                     <img
                         src={companyImageURL.replace(
@@ -38,7 +38,7 @@ const CompanyPageAppCard = ({
                         style={{ width: "150px", height: "150px" }}
                     />
                 </div>
-            )}
+            )} */}
             <div className={cn(s.companyPageLeftCardInfo)}>
                 <div className={cn(s.companyPageLeftCardInfoCard)}>
                     <AppText
@@ -100,7 +100,7 @@ const CompanyPageAppCard = ({
                 </div>
             </div>
             <div className={cn(s.companyPageLeftToolbar)}>
-                <AppButton
+                {/* <AppButton
                     className={cn(s.companyPageLeftToolbarButton)}
                     width="100%"
                     variant="outline"
@@ -108,8 +108,8 @@ const CompanyPageAppCard = ({
                     sizeText="s"
                 >
                     Я хочу тут работать
-                </AppButton>
-                {isSubscribed ? (
+                </AppButton> */}
+                {/* {isSubscribed ? (
                     <AppButton
                         onClick={unsub}
                         className={cn(s.companyPageLeftToolbarButton)}
@@ -129,7 +129,7 @@ const CompanyPageAppCard = ({
                     >
                         Подписаться
                     </AppButton>
-                )}
+                )} */}
 
                 {/*<AppButton*/}
                 {/*    className={cn(s.companyPageLeftToolbarButton)}*/}
