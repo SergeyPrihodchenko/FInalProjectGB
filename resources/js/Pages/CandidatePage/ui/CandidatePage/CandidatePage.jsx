@@ -202,11 +202,6 @@ function UserResumeListPage({ resumes }) {
                                                 size="xs"
                                             />
                                         </div>
-
-                                        <div class={s.userPhoto}>
-                                            НЕТ ФОТО
-                                            {/* <img src="#" className={s.imgUserPhoto}/> */}
-                                        </div>
                                     </div>
                                     <div className={s.manageResume}>
                                         <AppButton

@@ -273,7 +273,6 @@ const arrayBuisnessTravel = [
                                             <Checkbox
                                                 label={el}
                                                 name={'experience'}
-                                                //checkHandler={}
                                                 value={el}
                                                 onChange={(e, index) => setExperience(e, index)}
                                             />
@@ -440,16 +439,11 @@ const arrayBuisnessTravel = [
                                                         text={"Опыт работы: ".concat(resume.experience)}
                                                         size="xs"
                                                     />
-                                                    
+                                                                       
                                                     <AppText
                                                         text={"Образование: ".concat(resume.education)}
                                                         size="xs"
                                                     />
-                                                </div>
-                                                
-                                                <div class={s.userPhoto}>
-                                                    НЕТ ФОТО
-                                                    {/* <img src="#" className={s.imgUserPhoto}/> */}
                                                 </div>
                                             </div>
                                         </div>
